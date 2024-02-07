@@ -1,0 +1,523 @@
+/* Common */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,500;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Georama:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+:root {
+    --bg-color: #ECEBEE;
+    --note-color: #9CA3AF;
+    --orange-weight-color: #EA580C;
+    --title-color: #333;
+    --content-color: #030712;
+    --search-bg-color: #F3F4F6;
+    --search-text-color: #6B7280;
+    --red-bg-color: #DC2626;
+    --main-color: #FACC15;
+    --Product-List-Color: #D9D9D9;
+    --Category-box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.10), 0px 3px 3px 0px rgba(0, 0, 0, 0.09), 0px 6px 3px 0px rgba(0, 0, 0, 0.05), 0px 10px 4px 0px rgba(0, 0, 0, 0.01), 0px 16px 5px 0px rgba(0, 0, 0, 0.00);
+    --Product-Card-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.10), 0px 4px 4px 0px rgba(0, 0, 0, 0.09), 0px 10px 6px 0px rgba(0, 0, 0, 0.05), 0px 17px 7px 0px rgba(0, 0, 0, 0.01), 0px 27px 8px 0px rgba(0, 0, 0, 0.00);
+    --font-size-s: 14px;
+    --font-size-m: 16px;  /* Corrected typo from 4px to 14px */
+    --font-size-xm: 18px;
+    --font-size-l: 24px;
+    --font-size-xl: 32px;
+    --font-size-xxl: 36px;
+    --font-size-xxxl: 52px;
+}
+
+html {
+    background-color: var(--bg-color);
+    color: var(--content-color);
+    font-size: var(--font-size-s);
+    font-family: 'Inner', sans-serif;
+    color: #030712;
+    user-select: none;
+    scroll-behavior: smooth;
+}
+
+.orange-bold {
+    color: var(--orange-weight-color);
+    font-weight: 700;
+}
+
+.Logo:hover {
+    cursor: pointer;
+}
+
+.btn {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    outline: none;
+}
+
+a{
+    color: #fff;
+}
+
+.clear{
+    clear: both;
+}
+
+.pad-l-r-170{
+    padding-left: 170px;
+    padding-right: 170px;
+}
+
+.pad-t-b-30{
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+/* Header */
+
+#Header {
+    min-height: 140px;
+    width: 100%;
+}
+
+#Header .Header-Top {
+    padding: 0 170px;
+    min-height: 37px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#Header .Header-Bot {
+    background-color: #fff;
+    padding: 0 170px;
+    display: flex;
+    flex-direction: row;
+    min-height: 103px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Header-Bot__left {
+    display: flex;
+    flex-grow: 1;
+}
+
+.Header-Bot img {
+    width: auto;
+    height: 70px;
+}
+
+.Header-Bot form {
+    width: auto;
+    padding: 12px 24px;
+    flex-grow: 1;
+    position: relative;
+    align-items: center;
+}
+
+.Header-Bot form input {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--search-bg-color);
+    color: var(--search-text-color);
+    font-size: 16px;
+}
+
+.Header-Bot form input:hover {
+    background-color: #ccc;
+}
+
+.Header-Bot form i {
+    position: absolute;
+    right: 10%;
+    bottom: 40%;
+    font-size: 20px;
+}
+
+.Header-Bot__right {
+    display: flex;
+}
+
+.Header-Bot__right li {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 10px;
+}
+
+.Header-Bot__right li:hover {
+    background-color: #DC2626;
+    color: #fff;
+    cursor: pointer;
+}
+
+.Header-Bot__right li i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Slider */
+
+#Slider {
+    padding-top: 50%;
+    background: url(img/slider/TeaChia.jpeg) center/cover no-repeat;
+    position: relative;
+}
+
+.Slider-container {
+    position: absolute;
+    max-width: 600px;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-left: 170px;
+}
+
+.Slider-container__lable {
+    width: auto;
+    padding: 10px 18px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    background: linear-gradient(90deg, #39245F 0%, #39245F 60%);
+    color: #fff;
+}
+
+.Slider-container__main {
+    font-size: var(--font-size-xxxl);
+    margin-top: 30px;
+    font-weight: 700;
+    max-width: 600px;
+    margin-bottom: 28px;
+    color: #39245F;
+    line-height: 63.8px; /* 159.5% */
+    letter-spacing: -1.4px;
+}
+
+.Slider-container__slogan {
+    font-size: var(--font-size-m);
+    margin-bottom: 42px;
+    color: #030712;
+}
+
+.Slider-container__btn {
+    background-color: var(--main-color);
+    color: #fff;
+    font-size: var(--font-size-xl);
+    padding: 12px 24px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    float: left;
+    margin-right: 16px;
+}
+
+.Slider-container__btn:hover {
+    background-color: #f8b400;
+}
+
+.Price {
+    /* background-color: rgba(0, 0, 0, 0.7); */
+    float: left;
+}
+
+.new-Price {
+    color: #DC2626;
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.old-Price {
+    color: var(--note-color);
+    font-size: var(--font-size-l);
+    font-weight: 600;
+    text-decoration: line-through;
+    margin-bottom: 10px;
+}
+
+.Price-desc {
+    color: var(--note-color);
+    font-size: var(--font-size-m);
+}
+
+/*Content*/
+
+#Content{
+    margin-top: 30px;
+    background-color: var(--bg-color);
+}
+
+.Category{
+    background-color: #F3F4F6;
+    padding: 40px 170px;
+}
+
+/*Danh mục sản phẩm (Category) */
+#Content .Category .Category-Title{
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.Card-Container{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.Category-Card{
+    background-color: #fff;
+    padding: 12px 24px;
+    border-radius: 15px;
+    box-shadow: var(--Category-box-shadow);
+    margin: 15px 15px;
+}
+
+.Category-Card img{
+    max-width: 130px;
+    max-height: 130px;
+    border-radius: 50%;
+}
+
+.Card-Desc{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    font-size: var(--font-size-m);
+    font-weight: 600;
+}
+
+/* Product and Product Card */
+.Title-Container{
+    padding: 30px 170px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Title-Container h3{
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+}
+
+.Title-Container p{
+    font-size: 20px;
+    opacity: 50%;
+    padding-top: 16px;
+}
+
+.Title-Container button{
+    padding: 8px 12px;
+    border-radius: 12px;
+    background-color: #fff;
+    font-weight: 700;
+}
+
+.Title-Container button:hover{
+    background-color: #030712;
+    color: #fff;
+}
+
+/* Product */
+.Product-List{
+    background-color: var(--Product-List-Color);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.Product-Card{
+    box-shadow: var(--Product-Card-box-shadow);
+    background-color: #fff;
+    max-width: 250px;
+    margin-bottom: 20px;
+    margin-right: 25px;
+}
+
+/*Product Description */
+.Product-Image{
+    background: url(img/Product/T-Shirt.jpeg) center/cover no-repeat;
+    max-width: 300px;
+    padding-top: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.Product-Image .Hot,
+.Product-Image .Discount{
+    position: absolute;
+    padding: 5px 10px;
+    background-color: var(--red-bg-color);
+    color: #fff;
+}
+
+.Product-Image .Hot{
+    top: 5%;
+    left: 0%;
+}
+
+.Product-Image .Discount{
+    top: 10%;
+    right: 0%;
+    font-weight: 700;
+}
+
+.Product-Desc{
+    padding: 15px 15px;
+}
+
+.Product-Desc h3{
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--main-color);
+    margin-bottom: 10px;
+}
+
+.Product-Desc .Character{
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.Product-Desc .Brand-Avatar{
+    background: url(img/Brand/Coffee.jpeg) center/cover no-repeat;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    float: left;
+}
+
+.Product-Desc label{
+    float: left;
+    line-height: 30px;
+    margin-left: 10px;
+    font-size: var(--font-size-s);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.Product-Desc .Line{
+    background-color: #ccc;
+    height: 1.5px;
+    border-radius: 50%;
+    max-width: 217px;
+    margin: 0 auto;
+}
+
+.Product-Bot-Container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 15px 0;
+}
+
+.Product-Desc .Product-Price{
+    margin-bottom: 10px;
+}
+
+.Product-Price .old-Price{
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.Product-Price .new-Price{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--main-color)
+}
+
+.Product-Button{
+    padding-top: 10px;
+    font-size: 23px;
+    color: #ccc;
+}
+
+.Product-Evaluation{
+    color: var(--main-color);
+}
+
+/* Footer */
+
+#Footer {
+    /* Your footer styling goes here */
+    height: 450px;
+    padding: 40px 170px;
+    background-color: #030712;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+#Footer ul li{
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.Footer-Title{
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    margin-bottom: 24px !important;
+}
+
+.Phone-Number__Container{
+    display: grid;
+    grid-template-areas:
+  "Icon time time"
+  "Icon phone phone"
+}
+
+.Phone-Number__Container i{
+    font-size: 32px;
+    grid-area: Icon;
+}
+
+.Email__Container{
+    margin-top: 30px;
+}
+
+.Email__Container i{
+    font-size: 32px;
+    margin-right: 20px;
+}
+
+.Email__Container i{
+    float: left;
+}
+
+.Phone-Number__Container .time{
+    grid-area: time;
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 70%;
+}
+
+.Phone-Number__Container .PhoneNumber,
+.Email__Container-Email{
+    grid-area: phone;
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 5px;
+}
+
+.Email__Container-Email{
+    float: left;
+}
+
+.Footer-Social i{
+    font-size: 30px;
+}
+
+.Social-Container{
+    display: flex;
+    justify-content: space-between;
+}
