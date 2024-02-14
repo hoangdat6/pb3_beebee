@@ -116,7 +116,7 @@
       </div>
       <div class="Category-Card">
         <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
+        <p class="Card-Desc">Avatar
           Thời trang
         </p>
       </div>
