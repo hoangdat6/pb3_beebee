@@ -77,6 +77,21 @@ a{
     padding-top: 30px;
     padding-bottom: 30px;
 }
+
+.mg-bot-10{
+    margin-bottom: 10px;
+}
+
+.mg-bot-15{
+    margin-bottom: 15px;
+}
+
+.line{
+    height: 1.5px;
+    width: 100%;
+    margin: 10px auto;
+    background-color: #030712;
+}
 /* Header */
 
 #Header {
@@ -166,6 +181,47 @@ a{
     margin-right: 10px;
 }
 
+/* Media queries */
+/* Điều chỉnh cho màn hình có chiều rộng nhỏ hơn 768px (di động) */
+@media only screen and (max-width: 767px) {
+      /* Ẩn văn bản và chỉ hiển thị icon */
+    .Header-Bot__right li {
+        font-size: 0; /* Ẩn văn bản */
+    }
+
+    /* Hiển thị lại icon */
+    .Header-Bot__right li i {
+        font-size: 20px;
+        margin-right: 10px;
+        display: inline-block; /* Hiển thị icon */
+    }
+
+    #Header .Header-Top {
+      padding: 0 10px;
+    }
+    
+    #Header .Header-Bot {
+      padding: 0 10px;
+      justify-content: left;
+    }
+    
+    .Header-Bot form {
+      flex-grow: 1;
+    }
+    
+    .Header-Bot form input {
+      width: 100%;
+    }
+    
+    .Header-Bot form i {
+      display: none;
+    }
+    .pad-l-r-170{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+  }
+
 /* Slider */
 
 #Slider {
@@ -251,7 +307,7 @@ a{
 
 /*Content*/
 
-#Content{
+#Home-Content{
     margin-top: 30px;
     background-color: var(--bg-color);
 }
@@ -262,7 +318,7 @@ a{
 }
 
 /*Danh mục sản phẩm (Category) */
-#Content .Category .Category-Title{
+#Home-Content .Category .Category-Title{
     font-size: var(--font-size-xl);
     font-weight: 700;
     margin-bottom: 40px;
@@ -341,6 +397,10 @@ a{
     max-width: 250px;
     margin-bottom: 20px;
     margin-right: 25px;
+    color: #030712;
+    display: block;
+    border: none;
+    outline: none;
 }
 
 /*Product Description */
