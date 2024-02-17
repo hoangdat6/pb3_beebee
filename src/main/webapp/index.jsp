@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="Product-Detail.css">
   <!-- <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
@@ -72,7 +73,7 @@
   </div>
   <div class="clear"></div>
 </div>
-<div id="Content">
+<div id="Home-Content">
   <div class="Category">
     <p class="Category-Title">
       Danh mục
@@ -133,7 +134,7 @@
       <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
     </div>
     <div class="Product-List pad-l-r-170 pad-t-b-30">
-      <div class="Product-Card">
+      <a href="Product_Details.html" class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -167,9 +168,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="Product-Card">
+      <a href="Product_Details.html" class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -203,9 +204,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="Product-Card">
+      <a class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -239,9 +240,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="Product-Card">
+      <a href="Product_Details.html" class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -249,7 +250,7 @@
         <div class="Product-Desc">
           <h3>Áo thun nữ co dãn</h3>
           <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
+          <div id="Brand-Avatar"></div>
           <label for="Brand-Avatar">Tên Shop</label>
           <div class="clear"></div>
           <div class="Line"></div>
@@ -275,9 +276,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="Product-Card">
+      <a href="Product_Details.html" class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -311,9 +312,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="Product-Card">
+      <a href="Product_Details.html" class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -347,9 +348,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="Product-Card">
+      <a href="Product_Details.html" class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -383,9 +384,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="Product-Card">
+      <a href="Product_Details.html" class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -419,9 +420,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="Product-Card">
+      <a href="Product_Details.html" class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -455,9 +456,9 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
 
-      <div class="Product-Card">
+      <a href="Product_Details.html" class="Product-Card">
         <div class="Product-Image">
           <span class="Hot">Hot</span>
           <span class="Discount">- 50%</span>
@@ -491,7 +492,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 
