@@ -5,49 +5,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="CommonCSS.css">
+  <link rel="stylesheet" type="text/css" href="Top-Bar.css">
+  <link rel="stylesheet" type="text/css" href = "Footer.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" type="text/css" href="Product-Detail.css">
-  <!-- <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script> -->
+<%--  <link rel="stylesheet" type="text/css" href="Product-Detail.css">--%>
+ <!-- <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script> -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <!--Header contain navigation-->
 
 <body>
-<header id="Header">
-  <div class="Header-Top">
-    <div class="Header-Top__item1">Chúng tôi giao hàng mỗi ngày từ <span class="orange-bold">7:00</span> đến
-      <span class="orange-bold">23:00</span></div>
-    <div class="Header-Top__item2">Bạn đang ở kênh mua hàng! <a href="#" class="orange-bold">Chuyển qua kênh người
-      bán?</a></div>
-  </div>
-  <div class="Header-Bot">
-    <div class="Header-Bot__left">
-      <img class="Logo" src="img/Logo/Logo.png" alt="Logo">
-      <form action="/search" method="get">
-        <label for="search"></label>
-        <input type="search" id="search" name="q"
-               placeholder="Tìm kiếm theo sản phẩm, phân loại và thương hiệu">
-        <i class="fa-solid fa-magnifying-glass"></i>
-      </form>
-    </div>
-
-    <ul class="Header-Bot__right">
-      <li class="Header-Bot__Account">
-        <i class="fa-solid fa-user"></i>
-        Tài khoản
-      </li>
-      <li class="Header-Bot__Cart">
-        <i class="fa-solid fa-cart-shopping"></i>
-        Giỏ hàng
-      </li>
-      <li class="Header-Bot__Announce">
-        <i class="fa-solid fa-bell"></i>
-        Thông báo
-      </li>
-    </ul>
-  </div>
-</header>
+<%@ include file="Top-Bar.jsp" %>
 <div id="Slider">
   <div class="Slider-container">
     <span class="Slider-container__lable">Ưu đãi cuối tuần</span>
@@ -866,50 +836,5 @@
   </div>
 </div>
 </div>
-<footer id="Footer">
-  <div class="Footer-Support">
-    <p class="Footer-Support__Label Footer-Title">Bạn cần hỗ trợ?</p>
-    <div class="Footer-Support__Contact">
-      <div class="Phone-Number__Container">
-        <i class="fa-solid fa-phone-volume"></i>
-        <p class="time"> Thứ 2 - Chủ nhật: 08:00 - 21:00</p>
-        <p class="PhoneNumber">097 xxx xxxx</p>
-      </div>
-
-      <div class="Email__Container">
-        <i class="fa-solid fa-envelope"></i>
-        <p class="Email__Container-Email">vulinhtruongxxx@gmail.com</p>
-        <div class="clear"></div>
-      </div>
-      <div class="clear"></div>
-    </div>
-  </div>
-  <ul class="Footer-Policy">
-    <li class="Footer-Title">Hãy để chúng tôi giúp bạn</li>
-    <li><a href="#">Khả năng tiếp cận</a></li>
-    <li><a href="#">Đơn hàng của bạn</a></li>
-    <li><a href="#">Trả hàng &amp; Hoàn tiền</a></li>
-    <li><a href="#">Chính sách giao hàng</a></li>
-    <li><a href="#">Chính sách quyền riêng tư</a></li>
-    <li><a href="#">Điều khoản &amp; Điều kiện</a></li>
-    <li><a href="#">Cài đặt Cookie</a></li>
-    <li><a href="#">Trung tâm trợ giúp</a></li>
-  </ul>
-  <ul class="Footer-About">
-    <li class="Footer-Title">Về chúng tôi</li>
-    <li><a href="#">Đánh giá của đối tác</a></li>
-    <li><a href="#">Trách nhiệm pháp lí</a></li>
-    <li><a href="#">Trách nhiệm xã hội</a></li>
-    <li><a href="#">Lịch sử pháp triển</a></li>
-  </ul>
-  <div class="Footer-Social">
-    <p class="Footer-Title">Theo dõi chúng tôi</p>
-    <div class="Social-Container">
-      <a href="#"><i class="fa-brands fa-square-facebook"></i></a>
-      <a href="#"><i class="fa-brands fa-youtube"></i></a>
-      <a href="#"><i class="fa-brands fa-tiktok"></i></a>
-      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-    </div>
-  </div>
-</footer>
+  <%@ include file="Footer.jsp" %>
 </body>

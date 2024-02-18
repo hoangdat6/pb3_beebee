@@ -1,0 +1,75 @@
+/* Footer */
+
+#Footer {
+    /* Your footer styling goes here */
+    height: 450px;
+    padding: 40px 170px;
+    background-color: #030712;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+}
+
+#Footer ul li{
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.Footer-Title{
+    font-size: 24px !important;
+    font-weight: 600 !important;
+    margin-bottom: 24px !important;
+}
+
+.Phone-Number__Container{
+    display: grid;
+    grid-template-areas:
+  "Icon time time"
+  "Icon phone phone"
+}
+
+.Phone-Number__Container i{
+    font-size: 32px;
+    grid-area: Icon;
+}
+
+.Email__Container{
+    margin-top: 30px;
+}
+
+.Email__Container i{
+    font-size: 32px;
+    margin-right: 20px;
+}
+
+.Email__Container i{
+    float: left;
+}
+
+.Phone-Number__Container .time{
+    grid-area: time;
+    font-size: 12px;
+    font-weight: 400;
+    opacity: 70%;
+}
+
+.Phone-Number__Container .PhoneNumber,
+.Email__Container-Email{
+    grid-area: phone;
+    font-size: 16px;
+    font-weight: 700;
+    padding-top: 5px;
+}
+
+.Email__Container-Email{
+    float: left;
+}
+
+.Footer-Social i{
+    font-size: 30px;
+}
+
+.Social-Container{
+    display: flex;
+    justify-content: space-between;
+}
