@@ -18,7 +18,7 @@
                 <i class="fa-solid fa-chevron-left"></i>
                 <span>Trở về</span>
             </a>
-            <a href="Sign_Up" class="New_Account">
+            <a href="Sign_Up.jsp" class="New_Account">
                 Tạo tài khoản mới
             </a>
         </header>

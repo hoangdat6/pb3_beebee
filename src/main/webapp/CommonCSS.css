@@ -92,3 +92,7 @@ a{
     margin: 10px auto;
     background-color: #030712;
 }
+
+.Color-White{
+    background-color: #fff !important;
+}
