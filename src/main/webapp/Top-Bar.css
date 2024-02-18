@@ -1,0 +1,129 @@
+/* Header */
+
+#Header {
+    min-height: 140px;
+    width: 100%;
+}
+
+#Header .Header-Top {
+    padding: 0 170px;
+    min-height: 37px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#Header .Header-Bot {
+    background-color: #fff;
+    padding: 0 170px;
+    display: flex;
+    flex-direction: row;
+    min-height: 103px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Header-Bot__left {
+    display: flex;
+    flex-grow: 1;
+}
+
+.Header-Bot img {
+    width: auto;
+    height: 70px;
+}
+
+.Header-Bot form {
+    width: auto;
+    padding: 12px 24px;
+    flex-grow: 1;
+    position: relative;
+    align-items: center;
+}
+
+.Header-Bot form input {
+    width: 100%;
+    padding: 16px 20px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--search-bg-color);
+    color: var(--search-text-color);
+    font-size: 16px;
+}
+
+.Header-Bot form input:hover {
+    background-color: #ccc;
+}
+
+.Header-Bot form i {
+    position: absolute;
+    right: 10%;
+    bottom: 40%;
+    font-size: 20px;
+}
+
+.Header-Bot__right {
+    display: flex;
+}
+
+.Header-Bot__right li {
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 10px;
+}
+
+.Header-Bot__right li:hover {
+    background-color: #DC2626;
+    color: #fff;
+    cursor: pointer;
+}
+
+.Header-Bot__right li i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+/* Media queries */
+/* Điều chỉnh cho màn hình có chiều rộng nhỏ hơn 768px (di động) */
+@media only screen and (max-width: 767px) {
+    /* Ẩn văn bản và chỉ hiển thị icon */
+    .Header-Bot__right li {
+        font-size: 0; /* Ẩn văn bản */
+    }
+
+    /* Hiển thị lại icon */
+    .Header-Bot__right li i {
+        font-size: 20px;
+        margin-right: 10px;
+        display: inline-block; /* Hiển thị icon */
+    }
+
+    #Header .Header-Top {
+        padding: 0 10px;
+    }
+
+    #Header .Header-Bot {
+        padding: 0 10px;
+        justify-content: left;
+    }
+
+    .Header-Bot form {
+        flex-grow: 1;
+    }
+
+    .Header-Bot form input {
+        width: 100%;
+    }
+
+    .Header-Bot form i {
+        display: none;
+    }
+    .pad-l-r-170{
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}

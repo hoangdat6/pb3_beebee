@@ -1,0 +1,158 @@
+.BG-White{
+    background-color: #fff;
+}
+
+.mg-l-r-170{
+    margin-left: 64px;
+    margin-right: 64px;
+}
+
+.Center{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#LG-Header{
+    padding: 12px 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+#LG-Header a{
+    display: flex;
+    color: #666666;
+    font-size: 16px;
+}
+
+#LG-Header a:hover{
+    opacity: 50%;
+}
+
+#LG-Header a > i{
+    margin-right: 15px;
+}
+
+#LG-Header .New_Account{
+    color: var(--orange-weight-color);
+    font-weight: 600;
+}
+
+#LG-Logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#LG-Logo img{
+    max-width: 145px;
+    max-height: 145px;
+}
+
+#LG-Logo .LG-Logo_Desc{
+    font-size: 40px;
+    font-weight: 500;
+    margin-top: 30px;
+}
+
+/*Login Content*/
+#LG-Content{
+    display: flex;
+    flex-wrap: wrap;
+    color: #121212;
+    justify-content: center;
+    padding: 100px 50px;
+}
+
+.Login-Form{
+    padding-right: 30px;
+}
+
+#LG-Content .Login-Form label{
+    font-size: 16px;
+    font-weight: 400;
+    display: block;
+    color: #666666;
+}
+
+#LG-Content .Login-Form input{
+    width: 360px;
+    height: 56px;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 12px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+}
+
+#LG-Content .Login-Form input:hover{
+    border: 2px solid #121212;
+}
+
+.Forgot-Password a{
+    text-decoration: underline;
+    color: #121212;
+    font-size: 16px;
+    font-weight: 600;
+    padding-bottom: 15px;
+}
+
+
+.Login-Button{
+    border-radius: 32px !important;
+    font-size: 22px;
+    font-weight: 500;
+    background-color: #ccc;
+    color: #fff;
+    border: none !important;
+}
+
+.Login-Button:hover{
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Login.css */
+
+.Login-Method {
+    padding-top: 50px;
+}
+
+.Login-Method li {
+    margin-bottom: 20px;
+}
+
+.Login-Method ul li >  a {
+    display: inline-block;
+    color: #121212;
+    background-color: #fff;
+    width: 354px;
+    height: 40px;
+    padding: 5px 20px;
+    border-radius: 40px;
+    font-size: 22px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+.Login-Method a i{
+    margin-right: 15px;
+}
+
+.Login-Method a:hover {
+    background-color: #121212;
+    color: #fff;
+}
+
+.No-Account{
+    font-size: 16px;
+}
+
+.No-Account a{
+    padding-left: 5px;
+    font-weight: 600;
+    color: var(--main-color);
+}
