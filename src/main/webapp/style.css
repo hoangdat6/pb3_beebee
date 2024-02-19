@@ -39,7 +39,6 @@ html {
     color: var(--content-color);
     font-size: var(--font-size-s);
     font-family: 'Inner', sans-serif;
-    color: #030712;
     user-select: none;
     scroll-behavior: smooth;
 }

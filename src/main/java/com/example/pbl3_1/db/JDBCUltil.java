@@ -8,7 +8,7 @@ public class JDBCUltil {
     private static Connection con = null;
 
     public static Connection getConnection(){
-        String url = "jdbc:mysql://localhost:3306/shop";
+        String url = "jdbc:mysql://localhost:3306/shop_bee";
         String username = "root";
         String password = "dat123";
 
