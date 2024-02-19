@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.sql.Date;
 import java.util.TimeZone;
 
 @Getter
@@ -15,5 +16,7 @@ public class User {
     private String password;
     private String email;
     private String phone;
+    private Egender gender;
+    private Date dob;
     private TimeZone createAt;
 }
