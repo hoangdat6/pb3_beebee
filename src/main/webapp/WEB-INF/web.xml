@@ -6,4 +6,8 @@
     <welcome-file-list>
         <welcome-file>Sign_Up.jsp</welcome-file>
     </welcome-file-list>
+
+    <session-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
 </web-app>

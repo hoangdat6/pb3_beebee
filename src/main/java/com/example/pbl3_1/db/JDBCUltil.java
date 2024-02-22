@@ -8,12 +8,13 @@ public class JDBCUltil {
     private static Connection con = null;
 
     public static Connection getConnection(){
-        String url = "jdbc:mysql://localhost:3306/shop";
+        String url = "jdbc:mysql://localhost:3306/shop_bee";
         String username = "root";
         String password = "dat123";
 
         try {
-            con = DriverManager.getConnection(url, username, password);
+            if(con == null)
+                con = DriverManager.getConnection(url, username, password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -23,7 +24,9 @@ public class JDBCUltil {
 
     public static void closeConnection(Connection con){
         try {
-            con.close();
+            if(con != null){
+                con.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
