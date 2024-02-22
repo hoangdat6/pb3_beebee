@@ -9,17 +9,8 @@
   <link rel="stylesheet" type="text/css" href="Top-Bar.css">
   <link rel="stylesheet" type="text/css" href = "Footer.css">
   <link rel="stylesheet" type="text/css" href="style.css">
-<%--  <link rel="stylesheet" type="text/css" href="Font-Awesome/css/all.css">--%>
-<%--  <link rel="stylesheet" type="text/css" href="Font-Awesome/css/brands.css">--%>
-<%--  <link rel="stylesheet" type="text/css" href="Font-Awesome/css/fontawesome.min.css">--%>
-<%--  <link rel="stylesheet" type="text/css" href="Font-Awesome/css/regular.css">--%>
-<%--  <link rel="stylesheet" type="text/css" href="Font-Awesome/css/solid.css">--%>
+  <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
 
-
-
-<%--  <link rel="stylesheet" type="text/css" href="Product-Detail.css">--%>
- <!-- <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script> -->
-<%--  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--%>
 </head>
 
 <!--Header contain navigation-->
