@@ -9,8 +9,7 @@
         <link rel="stylesheet" type="text/css" href="style.css">
         <link rel="stylesheet" type="text/css" href ="Footer.css">
         <link rel="stylesheet" type="text/css" href="Sign_Up.css">
-        <!-- <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script> -->
-<%--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--%>
+        <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="main.js"></script>
     </head>
       
@@ -26,7 +25,7 @@
         <img src="img/Logo/Logo.png" alt="Logo" class="Logo-Image">
         <p style="padding-top: 20px;">Đăng ký để bắt đầu mua/bán hàng trên nền tảng của chúng tôi</p>
     </div>
-    <div class="SU-Content">
+    <div class="SU-Content">~
         <div class="Login-Method">
             <a href="" class="Method-Item"><i class="fa-brands fa-facebook"></i> Đăng nhập bằng Facebook</a>
             <a href="" class="Method-Item"><i class="fa-brands fa-google"></i> Đăng nhập bằng Google</a>
