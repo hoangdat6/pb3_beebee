@@ -1,5 +1,9 @@
 /* Header */
 
+a{
+    color: #000;
+}
+
 #Header {
     min-height: 140px;
     width: 100%;
@@ -136,14 +140,18 @@
     left: 0;
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.10), 0 8px 8px 0 rgba(0, 0, 0, 0.09), 0 19px 11px 0 rgba(0, 0, 0, 0.05), 0 33px 13px 0 rgba(0, 0, 0, 0.01), 0 52px 14px 0 rgba(0, 0, 0, 0.00);
     z-index: 5;
-    padding: 40px 24px;
+    padding: 10px 5px;
     background: #fff;
     color: #121212;
-    display: flex;
+    display: none;
     flex-wrap: wrap;
     flex: 1 1 auto;
     min-width: 413px;
     justify-content: center;
+}
+
+.Header-Bot__Cart:hover .SM_Cart_Container {
+    display: flex;
 }
 
 .SM_Cart_Container > h3{
@@ -153,18 +161,23 @@
 
 .SM_Cart-Content {
     display: flex;
-    flex-wrap: wrap;
     flex-direction: column;
-    padding: 30px 10px;
+    padding: 10px 10px;
+    max-height: 618px;
+    overflow: scroll;
 }
 
 img.SM_Cart-Item--Image {
     height: 96px;
     width: 80px;
+    margin-right: 10px;
 }
 
 .SM_Cart-Item {
     display: flex;
+    padding: 15px 0;
+    border-bottom: 1px solid #E8ECEF;
+    color: #141718;
 }
 
 img.SM_Cart-Item--Image {
@@ -184,4 +197,131 @@ img.SM_Cart-Item--Image {
     margin-right: 10px;
     margin-bottom: 10px;
 }
+
+.Main--Qty_and_Category {
+    display: flex;
+}
+
+.SM_Cart-Item--Main {
+    display: flex;
+    flex-direction: column;
+    margin-right: 20px;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    color: #121315;
+}
+
+h3.Main--Name {
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.Main--Qty_and_Category {
+    display: flex;
+    /* justify-items: center; */
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.Main--Qty {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 12px;
+    border: 1px solid;
+    color: #6C7275;
+    border-radius: 8px;
+}
+
+.Main--Qty i.fa-solid.fa-minus {
+    margin-right: 0;
+}
+
+.Main--Qty button.btn.Qty__Minus {
+    text-align: center;
+    padding: 0 5px;
+}
+
+.Main--Qty input.btn.Qty__Input {
+    text-align: center;
+    font-size: 14px;
+    max-width: 40px;
+    padding: 5px 5px;
+}
+
+.Main--Qty button.btn.Qty__Plus {
+    padding: 5px 5px;
+}
+
+span.Main--Category {
+    margin-right: 10px;
+    width: 100px;
+    font-size: 14px;
+    color: #6C7275;
+}
+
+.SM_Cart-Item--Price span {
+    padding: 15px 5px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #121212;
+}
+
+.SM_Cart-Item--Price i.fa-solid.fa-x {
+    margin-top: 10px;
+    padding: 15px 5px;
+}
+
+.Purchase{
+    padding: 20px 20px;
+    width: 100%;
+}
+
+.Purchase .Total{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    font-size: 22px;
+    font-weight: 500;
+    color: #131415;
+    margin-bottom: 15px;
+}
+
+.Purchase .Total h3{
+
+}
+
+.Purchase .Total span{
+}
+
+.Purchase .Checkout-Btn{
+    width: 100%;
+    border-radius: 6px;
+    padding: 12px 24px;
+    text-align: center;
+    background-color: #121212;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.Purchase .Checkout-Btn:hover{
+    opacity: 0.7;
+}
+
+.Purchase .Cart-Btn{
+    width: 100%;
+    color: #121212;
+    text-decoration: underline;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.Purchase .Cart-Btn:hover{
+    opacity: 0.7;
+}
+
 

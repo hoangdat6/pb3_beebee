@@ -1,0 +1,239 @@
+#Cart_Header{
+    margin: 45px 0px;
+}
+
+h3.Cart_Title {
+    text-align: center;
+    font-size: 60px;
+    margin: 30px 0;
+    font-weight: 600;
+}
+
+.Process_Container {
+    display: flex;
+    justify-content: center;
+}
+
+.Process_Item {
+    margin-right: 25px;
+    border-bottom: 2px solid #121314;
+    padding-bottom: 25px;
+    color: #141718;
+    font-weight: 600;
+    font-size: 20px;
+    width: 256px;
+}
+
+span.Process_Item-Number {
+    padding: 12px 18px;
+    border-radius: 50%;
+    background-color: #121314;
+    color: #fff;
+    margin-right: 20px;
+}
+
+#Cart_Content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/*Main Cart table*/
+
+#Cart_Content .Cart_Table{
+
+}
+
+.Table_Header {
+    min-width: 591px;
+    margin-right: 50px;
+    display: flex;
+    color: #131415;
+    font-size: 16px;
+    font-weight: 600;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #6C7275;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.Table_Header-Product{
+    margin-right: 80px;
+}
+
+.Table_Content{
+    overflow: scroll;
+}
+
+.Shop_Products {
+    padding: 20px 0;
+    border-bottom: 1px solid #171819;
+}
+
+.Shop_Products-Header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    border-bottom: 0.5px solid #ccc;
+}
+
+.Shop_Products-Header img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin: 10px;
+}
+
+#Cart_Content .Cart_Table .Shop_Products-Cell img{
+    max-width: 84px;
+}
+
+.Shop_Products-Content {
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    max-height: 700px;
+    overflow: scroll;
+}
+
+.Shop_Products-Cell {
+    display: flex;
+    padding: 20px 0;
+    border-bottom: 1px solid #ccc;
+}
+a.Item-Remove {
+    color: #6C7275;
+    font-size: 14px;
+}
+
+p.Item-Category {
+    font-size: 12px;
+    color: #6C7275;
+    padding: 8px 0;
+}
+
+.Cell_Col_2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 5px 15px;
+}
+
+.Cell_Col_3 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-grow: 1;
+    padding: 0 15px;
+}
+
+.Item-Qty{
+    padding: 5px 5px;
+    border-radius: 3px;
+    border: 1px solid #6C7275;
+    background-color: #fff;
+}
+
+.Item-Qty input{
+    max-width: 30px;
+    padding: 3px 5px;
+    text-align: center;
+}
+
+.Item-Qty button{
+    padding: 5px 3px;
+}
+
+.Item-Unit_Price{
+    font-size: 18px;
+    font-weight: 500;
+    color: #121212;
+}
+
+.Item-Total_Price{
+    font-size: 18px;
+    font-weight: 600;
+    color: #121212
+}
+
+/*Aside*/
+
+#Cart_Content aside{
+    padding: 16px 24px;
+    background-color: #fff;
+    border: 1px solid #6C7275;
+    border-radius: 8px;
+    min-width: 413px;
+    height: 500px;
+    margin-left: 30px;
+}
+
+#Cart_Content .Cart_Summary-Title{
+    font-size: 22px;
+    font-weight: 500;
+    color: #141718;
+    margin-bottom: 12px;
+}
+
+ .Cart_Voucher{
+    border-radius: 5px;
+    padding: 8px 12px;
+    border: 1px solid #121314;
+    display: flex;
+    width: 100%;
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 40px;
+}
+
+.Cart_Voucher span{
+    margin-left: 15px;
+}
+
+.Cart_Voucher a {
+    color: var(--main-color);
+    flex: 1;
+    margin-left: auto;
+    text-align: end;
+}
+
+.Shipping_Option{
+    margin-bottom: 20px;
+}
+
+.Shipping_Option-Item{
+    padding: 12px 24px;
+    border: 1px solid #121314;
+    border-radius: 5px;
+    margin: 10px 0;
+    
+}
+
+.Shipping_Option .Total-Price{
+    font-size: 16px;
+    color: #141718;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #EAEAEA;
+}
+
+.Shipping_Option .Total-Checkout{
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.Shipping_Option input[type="submit"]{
+    padding: 12px;
+    text-align: center;
+    width: 100%;
+    background-color: #121314;
+    color: #fff;
+    border-radius: 8px;
+    margin: 15px 0;
+}
+
+.Shipping_Option input[type="submit"]:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
