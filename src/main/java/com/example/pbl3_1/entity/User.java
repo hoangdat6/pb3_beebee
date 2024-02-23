@@ -20,4 +20,15 @@ public class User {
     private Egender gender;
     private Date dob;
     private Timestamp createAt;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\''
+                ;
+    }
 }

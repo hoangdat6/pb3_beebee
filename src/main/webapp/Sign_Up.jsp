@@ -13,6 +13,8 @@
         <!-- <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script> -->
 <%--        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--%>
         <script type="text/javascript" src="main.js"></script>
+        <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+
     </head>
 <body class="Color-White">
     <header id="SU-Header" class="pad-l-r-170">

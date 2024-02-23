@@ -1,14 +1,12 @@
 package com.example.pbl3_1.DAO.impl;
 
 import com.example.pbl3_1.DAO.GenericDAO;
-import com.example.pbl3_1.db.JDBCUltil;
+import com.example.pbl3_1.Util.JDBCUtil;
 import com.example.pbl3_1.mapper.RowMapper;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-import java.util.TimeZone;
 
 public class AbstractDAO<T> implements GenericDAO<T> {
     public Long save(String sql, Object ...parameters) {
@@ -34,19 +32,14 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     }
 
     public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object ...parameters){
-        Connection con = JDBCUltil.getConnection();
+        Connection con = JDBCUtil.getInstance().getConnection();
         PreparedStatement ps = null;
-        List<T> list = null;
+        List<T> list = new ArrayList<>();
         ResultSet rs = null;
         try {
-            ps = con == null ? null : con.prepareStatement(sql);
+            ps = (con == null) ? null : con.prepareStatement(sql);
             setParamater(ps, parameters);
             rs = ps.executeQuery();
-
-            if (rs == null)
-                return null;
-            else
-                list = new ArrayList<>();
 
             while(rs.next()){
                 list.add(rowMapper.mapRow(rs));
@@ -58,8 +51,9 @@ public class AbstractDAO<T> implements GenericDAO<T> {
             try {
                 if(ps != null)
                     ps.close();
-                if(con != null)
+                if(con != null) {
                     con.close();
+                }
                 if(rs != null)
                     rs.close();
             } catch (SQLException e) {

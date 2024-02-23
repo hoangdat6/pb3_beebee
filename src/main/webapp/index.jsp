@@ -10,7 +10,6 @@
   <link rel="stylesheet" type="text/css" href = "Footer.css">
   <link rel="stylesheet" type="text/css" href="style.css">
   <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
-
 </head>
 
 <!--Header contain navigation-->

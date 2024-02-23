@@ -19,7 +19,7 @@ public class UserMapper implements RowMapper<User>{
                     email(rs.getString("email")).
                     phone(rs.getString("phone")).
                     dob(rs.getDate("dob")).
-                    gender(Egender.fromString(rs.getString("gender"))).
+//                    gender(Egender.fromString(rs.getString("gender"))).
                     createAt(rs.getTimestamp("created_at")).
                     build();
         } catch (SQLException e) {
