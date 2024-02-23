@@ -21,7 +21,7 @@
     <ul class="Header-Bot__right">
       <li class="Header-Bot__Account">
         <i class="fa-solid fa-user"></i>
-        Tài khoản
+        ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
       </li>
       <li class="Header-Bot__Cart" style="position: relative; display: flex;">
            <i class="fa-solid fa-cart-shopping"></i>Giỏ hàng
@@ -29,7 +29,7 @@
              <h3>SẢN PHẨM MỚI THÊM</h3>
              <div class="SM_Cart-Content">
 
-               <a href="Cart.jsp" class="SM_Cart-Item">
+               <div class="SM_Cart-Item">
                  <img class="SM_Cart-Item--Image" src="img/Product-Details/Category-1.jpeg" alt="Product">
                  <div class="SM_Cart-Item--Main">
                    <h3 class="Main--Name">Bàn xách tay</h3>
@@ -50,7 +50,7 @@
                    <span>350.000₫</span>
                    <i class="fa-solid fa-x"></i>
                  </div>
-               </a>
+               </div>
 
              </div>
 
