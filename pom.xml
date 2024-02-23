@@ -55,6 +55,7 @@
         <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
+
       <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
       <dependency>
           <groupId>org.projectlombok</groupId>
@@ -62,7 +63,35 @@
           <version>1.18.30</version>
           <scope>provided</scope>
       </dependency>
-
+      <dependency>
+          <groupId>junit</groupId>
+          <artifactId>junit</artifactId>
+          <version>4.13.2</version>
+          <scope>compile</scope>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+      <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>8.0.33</version>
+      </dependency>
+      <!-- https://mvnrepository.com/artifact/jakarta.inject/jakarta.inject-api -->
+      <dependency>
+          <groupId>jakarta.inject</groupId>
+          <artifactId>jakarta.inject-api</artifactId>
+          <version>2.0.1</version>
+      </dependency>
+      <!-- Jakarta JSTL for JSP -->
+      <dependency>
+          <groupId>jakarta.servlet.jsp.jstl</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
+          <version>3.0.0</version>
+      </dependency>
+      <dependency>
+          <groupId>org.glassfish.web</groupId>
+          <artifactId>jakarta.servlet.jsp.jstl</artifactId>
+          <version>3.0.1</version>
+      </dependency>
   </dependencies>
 
   <build>

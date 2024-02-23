@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.TimeZone;
 
 @Getter
@@ -18,5 +19,16 @@ public class User {
     private String phone;
     private Egender gender;
     private Date dob;
-    private TimeZone createAt;
+    private Timestamp createAt;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\''
+                ;
+    }
 }

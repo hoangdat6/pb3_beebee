@@ -1,8 +1,10 @@
 package com.example.pbl3_1;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-import com.example.pbl3_1.entity.User;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
@@ -25,4 +27,6 @@ public class HelloServlet extends HttpServlet {
 
     public void destroy() {
     }
+
+
 }
