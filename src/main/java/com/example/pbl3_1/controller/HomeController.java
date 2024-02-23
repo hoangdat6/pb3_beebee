@@ -13,16 +13,18 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/logout"})
+@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register"})
 public class HomeController extends HttpServlet {
     UserService userService = new UserServiceImpl();
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         String action = request.getParameter("action");
         if(action == null){
+
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
 //            String alert = request.getParameter("alert");
@@ -36,15 +38,11 @@ public class HomeController extends HttpServlet {
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
                     break;
                 case "logout":
-                    SessionUtil sessionUtil = SessionUtil.getInstance();
-                    sessionUtil.removeValue(request, "USERMODEL");
-                    response.sendRedirect("login?action=login&message=logout_success&alert=success");
+//                    request.getRequestDispatcher("register.jsp").forward(request, response);
                     break;
                 case "register":
                     request.getRequestDispatcher("Sign_up.jsp").forward(request, response);
                 default:
-                    User user = (User)request.getSession().getAttribute("USERMODEL");
-
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                     break;
             }
