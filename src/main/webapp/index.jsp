@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="Top-Bar.css">
   <link rel="stylesheet" type="text/css" href = "Footer.css">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <script type="text/javascript" src="main.js"></script>
   <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
 </head>
 
