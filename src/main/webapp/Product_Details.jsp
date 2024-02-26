@@ -70,9 +70,9 @@
           </div>
           <div class="Product_Loop-Button">
             <div class="Qty">
-              <button class="btn Qty__Minus" onclick="decreaseQuantity()"><i class="fa-solid fa-minus"></i></button>
+              <button class="btn Qty__Minus" onclick="decreaseQuantity(this)"><i class="fa-solid fa-minus"></i></button>
               <input class="btn Qty__Input" type="number" value="1" min="1">
-              <button class="btn Qty__Plus" onclick="increaseQuantity()"><i class="fa-solid fa-plus"></i></button>
+              <button class="btn Qty__Plus" onclick="increaseQuantity(this)"><i class="fa-solid fa-plus"></i></button>
             </div>
             <div class="Add-to-Cart Same" >
                 <i class="fa-solid fa-cart-shopping"></i>

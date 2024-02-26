@@ -29,7 +29,7 @@
              <h3>SẢN PHẨM MỚI THÊM</h3>
              <div class="SM_Cart-Content">
 
-               <a href="Cart.jsp" class="SM_Cart-Item">
+               <div class="SM_Cart-Item">
                  <img class="SM_Cart-Item--Image" src="img/Product-Details/Category-1.jpeg" alt="Product">
                  <div class="SM_Cart-Item--Main">
                    <h3 class="Main--Name">Bàn xách tay</h3>
@@ -50,7 +50,7 @@
                    <span>350.000₫</span>
                    <i class="fa-solid fa-x"></i>
                  </div>
-               </a>
+               </div>
 
              </div>
 
