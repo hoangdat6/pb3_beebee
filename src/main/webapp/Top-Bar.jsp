@@ -21,7 +21,7 @@
     <ul class="Header-Bot__right">
       <li class="Header-Bot__Account">
         <i class="fa-solid fa-user"></i>
-        Tài khoản
+        ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
       </li>
       <li class="Header-Bot__Cart" style="position: relative; display: flex;">
            <i class="fa-solid fa-cart-shopping"></i>Giỏ hàng
