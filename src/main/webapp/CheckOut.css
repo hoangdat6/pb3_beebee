@@ -1,0 +1,229 @@
+#CO_Content label,
+#CO_Content input[type="text"],
+#CO_Content input[type="email"],
+#CO_Content input[type="date"],
+#CO_Content .CO-Form2 h4
+{
+    display: block;
+    color: #6C7275;
+}
+
+#CO_Content label, 
+#CO_Content .CO-Form2 h4{
+    font-weight: bold;
+}
+
+#CO_Content input[type="text"],
+#CO_Content input[type="email"],
+#CO_Content input[type="date"],
+.Payment_Method {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #CBCBCB;
+    border-radius: 8px;
+    margin-top: 5px;
+    margin-bottom: 24px;
+}
+
+
+#CO_Header{
+    margin: 45px 0px;
+}
+
+h3.CO_Title {
+    text-align: center;
+    font-size: 60px;
+    margin: 30px 0;
+    font-weight: 600;
+}
+
+.Process_Container {
+    display: flex;
+    justify-content: center;
+}
+
+.Process_Item {
+    margin-right: 25px;
+    border-bottom: 2px solid #121314;
+    padding-bottom: 25px;
+    color: #141718;
+    font-weight: 600;
+    font-size: 20px;
+    width: 256px;
+}
+
+span.Process_Item-Number {
+    padding: 12px 18px;
+    border-radius: 50%;
+    background-color: #121314;
+    color: #fff;
+    margin-right: 20px;
+}
+
+#CO_Content{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-bottom: 60px;
+}
+
+.CO_Content-Col1 {
+    margin-right: 60px;
+}
+
+.CO-Form {
+    min-width: 643px;
+    padding: 12px 24px;
+    border: 1px solid #6C7275;
+    font-size: 14px;
+    margin-bottom: 24px;
+    border-radius: 5px;
+}
+
+.CO-Form-Item--Title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #141718;
+    margin-bottom: 24px;
+}
+
+.CO-Form--Content select{
+    width: 100%;
+    padding: 6px 12px;
+    margin-top: 10px;
+    border: 1px solid #6C7275;
+    border-radius: 6px;
+    margin-bottom: 24px;
+}
+
+.CO-Form--Content select option{
+    padding: 8px 12px;
+}
+
+.Payment_Method{
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 10px 12px;
+}
+
+.Col1--Button{
+    width: 100%;
+    text-align: center;
+    background-color: #141718;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 14px 14px;
+    border-radius: 6px;
+}
+
+.Col1--Button:hover{
+    opacity: 0.5;
+}
+
+.CO_Content-Col2{
+    padding: 12px 24px;
+    border: 1px solid #6C7275;
+    font-size: 14px;
+    margin-bottom: 24px;
+    border-radius: 5px;
+    min-width: 420px;
+    height: 768px;
+}
+
+.CO_Content-Col2 .CO-Col2--Title{
+    font-size: 28px;
+    font-weight: 500;
+    color:#141718;
+}
+
+.CO-Col2-Product{ 
+    margin-bottom: 16px;
+    margin-top: 16px;
+    display: flex;
+    flex-direction: column;
+    height: 480px;
+    overflow-y: scroll;
+}
+
+.Col2-Product-Item {
+    display: flex;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #E8ECEF;
+    margin: 10px 0;;
+}
+
+.CO-Col2-Product img{
+    max-width: 80px;
+}
+
+.Col2-Product-Item--Main{
+    margin: 0 10px;
+}
+
+.Col2-Main--Qty{
+    width: 80px;
+    height: 32px;
+    padding: 10px 8px;
+    border: 1px solid #6C7275;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+}
+
+.btn.Qty__Input {
+    max-width: 20px;
+    text-align: center;
+}
+
+.Col2-Product-Item--Price{
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.CO-Same{
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #E8ECEF;
+    width: 100%;
+    font-size: 16px;
+    color: #141718;
+    display: flex;
+}
+
+.CO-Same .CO-Same--Item{
+    font-weight: 600;
+}
+
+.CO-Voucher{
+
+}
+
+.CO-Voucher i{
+    margin-right: 5px;
+}
+
+.CO-Voucher .Voucher-Code{
+    margin-right: 50%;
+}
+
+.CO-Voucher .Voucher-Money{
+    color: #38CB89;
+    font-weight: 600;
+}
+
+.CO-Delivery{
+    justify-content: space-between;
+}
+
+.CO-Price{
+    justify-content: space-between;
+}
+
+.CO-Total{
+    font-size: 20px;
+    justify-content: space-between;
+}

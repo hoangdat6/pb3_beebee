@@ -5,9 +5,13 @@
     height: 450px;
     padding: 40px 170px;
     background-color: #030712;
-    color: #fff;
     display: flex;
     justify-content: space-between;
+    color: #fff;
+}
+
+#Footer a{
+    color: #fff !important;
 }
 
 #Footer ul li{

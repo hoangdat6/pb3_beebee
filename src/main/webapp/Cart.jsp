@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Giỏ Hàng</title>
   <link rel="stylesheet" type="text/css" href="CommonCSS.css">
   <link rel="stylesheet" type="text/css" href="Top-Bar.css">
   <link rel="stylesheet" type="text/css" href = "Footer.css">
@@ -1186,8 +1186,9 @@
                         <span>Tổng tiền thanh toán</span>
                         <span>0₫</span>
                     </div>
-
-                    <input class="btn" id="Checkout" type="submit" value="Thanh toán">
+                    <a href="CheckOut.jsp">
+                        <input class="btn" id="Checkout" type="submit" value="Thanh toán">
+                    </a>
                 </form>
                 
             </div>

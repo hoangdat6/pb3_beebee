@@ -1,0 +1,201 @@
+.COD_Content img{
+    max-width: 80px;
+}
+
+#COD_Header{
+    margin-top: 40px;
+    margin-bottom: 80px;
+}
+
+h3.COD_Title {
+    text-align: center;
+    font-size: 60px;
+    margin: 30px 0;
+    font-weight: 600;
+}
+
+.Process_Container {
+    display: flex;
+    justify-content: center;
+}
+
+.Process_Item {
+    margin-right: 25px;
+    border-bottom: 2px solid #121314;
+    padding-bottom: 25px;
+    color: #141718;
+    font-weight: 600;
+    font-size: 20px;
+    width: 256px;
+}
+
+span.Process_Item-Number {
+    padding: 12px 18px;
+    border-radius: 50%;
+    background-color: #121314;
+    color: #fff;
+    margin-right: 20px;
+}
+
+
+.COD_Content{
+    display: flex;
+    padding: 80px 95px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 80px 95px;
+}
+
+/* CheckOutDone.css */
+
+/* Phần Header */
+.COD_Header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.COD_Title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Nội dung "Hoàn Thành" */
+.COD_Content {
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.10), 0px 18px 18px 0px rgba(0, 0, 0, 0.09), 0px 40px 24px 0px rgba(0, 0, 0, 0.05), 0px 71px 28px 0px rgba(0, 0, 0, 0.01), 0px 111px 31px 0px rgba(0, 0, 0, 0.00);
+    display: flex;
+    padding: 80px 95px;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    max-width: 730px; 
+    max-height:730px;
+    margin:0 auto;
+}
+
+.COD-Title {
+    display: flex;
+    width: 546px;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;        
+}
+
+.COD-Title p {
+    color: #6C7275;
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.COD-Title p:last-child {
+    font-size: 40px;
+    line-height: 44px;
+    font-weight: 500;
+    color: #23262F;
+}
+
+.COD-Item {
+    /*overflow-x: scroll;*/ 
+    display: flex;
+    scrollbar-width: thin;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    background-color: #fff;
+    scrollbar-width: thin;
+}
+
+/* Tùy chỉnh màu sắc cho thanh cuộn trên các trình duyệt hiện đại */
+.COD-Item::-webkit-scrollbar {
+    width: 2px; /* Chiều rộng của thanh cuộn */
+}
+  
+.COD-Item::-webkit-scrollbar-thumb {
+    background-color: #333333; /* Màu của phần thân của thanh cuộn */
+}
+  
+.COD-Item::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* Màu của phần nền của thanh cuộn */
+}
+
+.Number {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #333;
+    color: #FFF;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.COD-Order_Detail {
+    display: flex;
+    width: 548px;
+    justify-content: center;
+    align-items: center;
+    gap: 32px
+}
+
+.Title {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    font-size: 16px; 
+    font-weight: 600
+}
+
+.Title-Item {
+    color: #333;
+}
+
+.COD-Item--PlaceHolder{
+    position: relative;
+}
+
+.COD-Item--PlaceHolder span{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.Info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px; 
+    font-size: 16px; 
+    font-weight: 500
+}
+
+.Info-Item {
+    color: #333;
+}
+
+.COD_Content .History{
+    background-color: #141718;
+    padding: 18px 30px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 80px;
+    width: 209px;
+    height: 52px;
+    color:#fff;
+    text-align: center;
+}
+
+.COD_Content .History:hover{
+    background-color: #ccc;
+    color: #121314;
+}
+
+/* Thêm các quy tắc CSS khác tùy theo yêu cầu */
