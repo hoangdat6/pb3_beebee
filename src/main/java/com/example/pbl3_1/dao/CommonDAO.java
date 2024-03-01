@@ -1,4 +1,4 @@
-package com.example.pbl3_1.DAO;
+package com.example.pbl3_1.dao;
 
 public interface CommonDAO<T> {
     public void save(T object);

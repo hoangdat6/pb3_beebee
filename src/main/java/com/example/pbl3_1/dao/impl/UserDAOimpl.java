@@ -1,6 +1,6 @@
-package com.example.pbl3_1.DAO.impl;
+package com.example.pbl3_1.dao.impl;
 
-import com.example.pbl3_1.DAO.inter.UserDAO;
+import com.example.pbl3_1.dao.inter.UserDAO;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.mapper.UserMapper;
 
@@ -37,7 +37,7 @@ public class UserDAOimpl implements UserDAO {
     }
 
     @Override
-    public User findByUserUsernameAndPassword(String username, String password) {
+    public User findByUsernameAndPassword(String username, String password) {
         StringBuilder sql = new StringBuilder("SELECT * FROM users WHERE username = ? AND password = ?");
         List<User> users = abstractDAO.query(sql.toString(), new UserMapper(), username, password);
         return (users.isEmpty() ? null : users.get(0));
