@@ -26,7 +26,7 @@
           ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
         </li>
         <li class="Header-Bot__Cart" style="position: relative;">
-             <i class="fa-cart-shopping"></i>Giỏ hàng
+             <i class="fa-solid fa-cart-shopping"></i>Giỏ hàng
              <div class="SM_Cart_Container" style="position: absolute;
       font-size: 16px;
       top: 0;
