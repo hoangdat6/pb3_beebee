@@ -1,6 +1,6 @@
-package com.example.pbl3_1.DAO.impl;
+package com.example.pbl3_1.dao.impl;
 
-import com.example.pbl3_1.DAO.GenericDAO;
+import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.Util.JDBCUtil;
 import com.example.pbl3_1.mapper.RowMapper;
 

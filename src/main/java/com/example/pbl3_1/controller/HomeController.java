@@ -21,6 +21,7 @@ public class HomeController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
+
         String action = request.getParameter("action");
         if(action == null){
             request.getRequestDispatcher("index.jsp").forward(request, response);
@@ -31,19 +32,20 @@ public class HomeController extends HttpServlet {
 //                request.setAttribute("message", "Tài khoản hoặc mật khẩu không đúng");
 //                request.setAttribute("alert", alert);
 //            }
-            switch (action){
+            SessionUtil sessionUtil = SessionUtil.getInstance();
+            switch (action) {
                 case "login":
+                    sessionUtil.removeValue(request, "USERMODEL");
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
                     break;
                 case "logout":
-                    SessionUtil sessionUtil = SessionUtil.getInstance();
                     sessionUtil.removeValue(request, "USERMODEL");
                     response.sendRedirect("login?action=login&message=logout_success&alert=success");
                     break;
                 case "register":
                     request.getRequestDispatcher("Sign_up.jsp").forward(request, response);
                 default:
-                    User user = (User)request.getSession().getAttribute("USERMODEL");
+                    User user = (User) request.getSession().getAttribute("USERMODEL");
 
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                     break;

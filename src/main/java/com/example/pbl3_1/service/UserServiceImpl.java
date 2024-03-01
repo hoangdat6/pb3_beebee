@@ -1,9 +1,8 @@
 package com.example.pbl3_1.service;
 
-import com.example.pbl3_1.DAO.impl.UserDAOimpl;
-import com.example.pbl3_1.DAO.inter.UserDAO;
+import com.example.pbl3_1.dao.impl.UserDAOimpl;
+import com.example.pbl3_1.dao.inter.UserDAO;
 import com.example.pbl3_1.entity.User;
-import jakarta.inject.Inject;
 
 public class UserServiceImpl implements UserService{
 //    @Inject
@@ -11,7 +10,6 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User findByUsernameAndPassword(String username, String password) {
-        return userDAO.findByUserUsernameAndPassword(username, password);
+        return userDAO.findByUsernameAndPassword(username, password);
     }
-
 }

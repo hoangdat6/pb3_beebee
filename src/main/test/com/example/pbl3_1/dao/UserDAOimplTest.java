@@ -1,21 +1,22 @@
-package com.example.pbl3_1.DAO;
+package com.example.pbl3_1.dao;
 
-import com.example.pbl3_1.DAO.impl.UserDAOimpl;
 import com.example.pbl3_1.entity.User;
+import com.example.pbl3_1.service.UserService;
+import com.example.pbl3_1.service.UserServiceImpl;
 import org.junit.Test;
 
 public class UserDAOimplTest {
     @Test
     public void testSave() throws Exception {
-        UserDAOimpl userDAOimpl = new UserDAOimpl();
-//        User user = User.builder()
+        UserService userService = new UserServiceImpl();
+        //        User user = User.builder()
 //                .username("test")
 //                .password("test")
 //                .email("test")
 //                .build();
 //        userDAOimpl.save(user);
 
-        User user = userDAOimpl.findByUserUsernameAndPassword("test", "test");
+        User user = userService.findByUsernameAndPassword("test", "test");
 
         System.out.println(user.toString());
     }
