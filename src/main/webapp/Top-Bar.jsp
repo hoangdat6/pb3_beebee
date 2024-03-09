@@ -69,8 +69,8 @@
                       1.400.000₫
                     </span>
                  </div>
-                 <a href="Checkout.jsp">Thanh toán</a>
-                 <a href="Cart.jsp">Xem giỏ hàng</a>
+                 <a class="Checkout-Btn btn" href="Checkout.jsp">Thanh toán</a>
+                 <a class="Cart-Btn btn" href="Cart.jsp">Xem giỏ hàng</a>
                </div>
              </div>
         </li>

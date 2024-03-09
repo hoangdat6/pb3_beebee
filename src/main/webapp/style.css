@@ -222,11 +222,6 @@ a{
     margin-bottom: 10px;
 }
 
-.Product-Desc .Character{
-    font-size: 12px;
-    margin-bottom: 10px;
-}
-
 .Product-Desc .Brand-Avatar{
     background: url(img/Brand/Coffee.jpeg) center/cover no-repeat;
     border-radius: 50%;
