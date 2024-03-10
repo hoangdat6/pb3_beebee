@@ -22,7 +22,12 @@
 
       <ul class="Header-Bot__right">
         <li class="Header-Bot__Account" >
-          <a style="color: #030712" href='<c:url value="/logout?action=logout"/>'><i class="fa-solid fa-user"></i></a>
+          <c:if test="${sessionScope.get('USERMODEL') != null}">
+            <a style="color: #030712" href='<c:url value="/logout"/>'><i class="fa-solid fa-user"></i></a>
+          </c:if>
+          <c:if test="${sessionScope.get('USERMODEL') == null}">
+              <a style="color: #030712" href='<c:url value="/login"/>'><i class="fa-solid fa-user"></i></a>
+          </c:if>
           ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
         </li>
         <li class="Header-Bot__Cart" style="position: relative;">

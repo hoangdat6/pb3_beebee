@@ -1,4 +1,4 @@
-package com.example.pbl3_1.dao.inter;
+package com.example.pbl3_1.dao;
 
 import com.example.pbl3_1.dao.CommonDAO;
 import com.example.pbl3_1.entity.User;
