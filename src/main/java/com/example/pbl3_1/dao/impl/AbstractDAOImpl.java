@@ -3,26 +3,54 @@ package com.example.pbl3_1.dao.impl;
 import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.Util.JDBCUtil;
 import com.example.pbl3_1.mapper.RowMapper;
+import jakarta.inject.Inject;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AbstractDAO<T> implements GenericDAO<T> {
+public class AbstractDAOImpl<T> implements GenericDAO<T> {
+
     public Long save(String sql, Object ...parameters) {
-//        Connection con = JDBCUltil.getConnection();
-//        PreparedStatement ps = null;
-//
-//        try {
-//            ps = con != null ? con.prepareStatement(sql) : null;
-//
-//            if(ps != null){
-//                setParamater(ps, parameters);
-//                ps.executeUpdate();
-//            }
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
+        Connection connection = null;
+        PreparedStatement statement = null;
+        ResultSet resultSet = null;
+        try {
+            Long id = null;
+            connection = JDBCUtil.getInstance().getConnection();
+            connection.setAutoCommit(false);
+            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            setParameter(statement, parameters);
+            statement.executeUpdate();
+            resultSet = statement.getGeneratedKeys();
+            if (resultSet.next()) {
+                id = resultSet.getLong(1);
+            }
+            connection.commit();
+            return id;
+        } catch (SQLException e) {
+            if (connection != null) {
+                try {
+                    connection.rollback();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        } finally {
+            try {
+                if (connection != null) {
+                    connection.close();
+                }
+                if (statement != null) {
+                    statement.close();
+                }
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
+        }
         return null;
     }
 
@@ -38,7 +66,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
         ResultSet rs = null;
         try {
             ps = (con == null) ? null : con.prepareStatement(sql);
-            setParamater(ps, parameters);
+            setParameter(ps, parameters);
             rs = ps.executeQuery();
 
             while(rs.next()){
@@ -69,7 +97,7 @@ public class AbstractDAO<T> implements GenericDAO<T> {
     }
 
 
-    private void setParamater(PreparedStatement ps, Object... parameters) {
+    private void setParameter(PreparedStatement ps, Object... parameters) {
         try {
             for (int i = 1; i <= parameters.length; ++i) {
                 Object parameter = parameters[i - 1];

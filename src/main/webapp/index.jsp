@@ -1,5 +1,7 @@
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ include file="common/taglib.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -18,6 +20,7 @@
 
 <body>
 <%@ include file="Top-Bar.jsp" %>
+<fmt:setLocale value = "vi_VN"/>
 <div id="Slider">
   <div class="Slider-container">
     <span class="Slider-container__lable">Ưu đãi cuối tuần</span>
@@ -49,48 +52,14 @@
       Danh mục
     </p>
     <div class="Card-Container">
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">Avatar
-          Thời trang
-        </p>
-      </div>
+      <c:forEach var="i" begin="1" end="6">
+        <a class="Category-Card">
+          <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
+          <p class="Card-Desc">
+            Thời trang
+          </p>
+        </a>
+      </c:forEach>
     </div>
 
   </div>
@@ -104,365 +73,49 @@
       <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
     </div>
     <div class="Product-List pad-l-r-170 pad-t-b-30">
-      <a href="Product_Details.jsp" class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
+      <c:forEach items="${products}" var="product">
+        <a href='<c:url value="/product?id=${product.id}" />'  class="Product-Card">
+          <div class="Product-Image">
+            <span class="Hot">Hot</span>
+            <span class="Discount">- ${product.discount}%</span>
+          </div>
+          <div class="Product-Desc">
+            <p class="product-name">${product.name}</p>
+            <div class="Brand-Avatar"></div>
+            <c:if test="product.sellerName == null">
+            <label for="Brand-Avatar">Tên Shop</label>
+            </c:if>
+            <c:if test="product.sellerName != null">
+            <label for="Brand-Avatar">${product.sellerName}dsad</label>
+            </c:if>
+            <div class="clear"></div>
+            <div class="Line"></div>
+            <div class="Product-Bot-Container">
+              <div class="Product-Price">
                   <span class="new-Price">
-                    120.000₫
+                    <fmt:formatNumber value = "${product.price * (1 - product.discount / 100)}" type = "currency"/>
                   </span>
-              <span class="old-Price">
-                      240.000₫
+                <span class="old-Price">
+                  <fmt:formatNumber value = "${product.price}" type = "currency"/>
                   </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
+              </div>
+              <div class="Product-Button">
+                <i class="fa-regular fa-heart"></i>
+                <i class="fa-solid fa-cart-shopping"></i>
+              </div>
+              <div class="Product-Evaluation">
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-solid fa-star"></i>
+                <i class="fa-regular fa-star"></i>
+              </div>
             </div>
           </div>
-        </div>
-      </a>
+        </a>
+      </c:forEach>
 
-      <a href="Product_Details.html" class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-              <span class="old-Price">
-                      240.000₫
-                  </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-          </div>
-        </div>
-      </a>
 
-      <a class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-              <span class="old-Price">
-                      240.000₫
-                  </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="Product_Details.html" class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div id="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-              <span class="old-Price">
-                      240.000₫
-                  </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="Product_Details.html" class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-              <span class="old-Price">
-                      240.000₫
-                  </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="Product_Details.html" class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-              <span class="old-Price">
-                      240.000₫
-                  </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="Product_Details.html" class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-              <span class="old-Price">
-                      240.000₫
-                  </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="Product_Details.html" class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-              <span class="old-Price">
-                      240.000₫
-                  </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="Product_Details.html" class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-              <span class="old-Price">
-                      240.000₫
-                  </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-          </div>
-        </div>
-      </a>
-
-      <a href="Product_Details.html" class="Product-Card">
-        <div class="Product-Image">
-          <span class="Hot">Hot</span>
-          <span class="Discount">- 50%</span>
-        </div>
-        <div class="Product-Desc">
-          <h3>Áo thun nữ co dãn</h3>
-          <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-          <div class="Brand-Avatar"></div>
-          <label for="Brand-Avatar">Tên Shop</label>
-          <div class="clear"></div>
-          <div class="Line"></div>
-          <div class="Product-Bot-Container">
-            <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-              <span class="old-Price">
-                      240.000₫
-                  </span>
-            </div>
-            <div class="Product-Button">
-              <i class="fa-regular fa-heart"></i>
-              <i class="fa-solid fa-cart-shopping"></i>
-            </div>
-            <div class="Product-Evaluation">
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-solid fa-star"></i>
-              <i class="fa-regular fa-star"></i>
-            </div>
-          </div>
-        </div>
-      </a>
     </div>
   </div>
 
@@ -474,62 +127,27 @@
     <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
   </div>
   <div class="Product-List pad-l-r-170 pad-t-b-30">
-    <div class="Product-Card">
-      <div class="Product-Image">
-        <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
-      </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
-            <span class="old-Price">
-                    240.000₫
-                </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
 
-    <div class="Product-Card">
+    <c:forEach var="i" begin="1" end="10">
+    <a href="Product_Details.jsp" class="Product-Card">
       <div class="Product-Image">
         <span class="Hot">Hot</span>
         <span class="Discount">- 50%</span>
       </div>
       <div class="Product-Desc">
         <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
         <div class="Brand-Avatar"></div>
         <label for="Brand-Avatar">Tên Shop</label>
         <div class="clear"></div>
         <div class="Line"></div>
         <div class="Product-Bot-Container">
           <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
+                  <span class="new-Price">
+                    120.000₫
+                  </span>
             <span class="old-Price">
-                    240.000₫
-                </span>
+                      240.000₫
+                  </span>
           </div>
           <div class="Product-Button">
             <i class="fa-regular fa-heart"></i>
@@ -544,295 +162,9 @@
           </div>
         </div>
       </div>
-    </div>
+    </a>
+    </c:forEach>
 
-    <div class="Product-Card">
-      <div class="Product-Image">
-        <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
-      </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
-            <span class="old-Price">
-                    240.000₫
-                </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="Product-Card">
-      <div class="Product-Image">
-        <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
-      </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
-            <span class="old-Price">
-                    240.000₫
-                </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="Product-Card">
-      <div class="Product-Image">
-        <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
-      </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
-            <span class="old-Price">
-                    240.000₫
-                </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="Product-Card">
-      <div class="Product-Image">
-        <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
-      </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
-            <span class="old-Price">
-                    240.000₫
-                </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="Product-Card">
-      <div class="Product-Image">
-        <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
-      </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
-            <span class="old-Price">
-                    240.000₫
-                </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="Product-Card">
-      <div class="Product-Image">
-        <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
-      </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
-            <span class="old-Price">
-                    240.000₫
-                </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="Product-Card">
-      <div class="Product-Image">
-        <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
-      </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
-            <span class="old-Price">
-                    240.000₫
-                </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="Product-Card">
-      <div class="Product-Image">
-        <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
-      </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet consectetur.</p>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                <span class="new-Price">
-                  120.000₫
-                </span>
-            <span class="old-Price">
-                    240.000₫
-                </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 </div>

@@ -12,16 +12,15 @@ public class UserMapper implements RowMapper<User>{
     public User mapRow(ResultSet rs) {
         User user = null;
         try {
-            user = User.builder().
-                    id(rs.getLong("id")).
-                    username(rs.getString("username")).
-                    password(rs.getString("password")).
-                    email(rs.getString("email")).
-                    phone(rs.getString("phone")).
-                    dob(rs.getDate("dob")).
+            user = new User();
+            user.setId(rs.getLong("id"));
+            user.setUsername(rs.getString("username"));
+            user.setPassword(rs.getString("password"));
+            user.setEmail(rs.getString("email"));
+            user.setPhone(rs.getString("phone"));
+            user.setDob(rs.getDate("dob"));
 //                    gender(Egender.fromString(rs.getString("gender"))).
-                    createAt(rs.getTimestamp("created_at")).
-                    build();
+            user.setCreateAt(rs.getTimestamp("created_at"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
