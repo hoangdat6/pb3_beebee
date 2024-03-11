@@ -55,9 +55,9 @@
                      <div class="Main--Qty_and_Category">
                        <span class="Main--Category">Loại: Đen</span>
                        <div class="Main--Qty Qty">
-                         <button class="btn Qty__Minus" onclick="decreaseQuantity()"><i class="fa-solid fa-minus"></i></button>
+                         <button class="btn Qty__Minus" onclick="decreaseQuantity()"><i class="fa-solid fa-minus" style="font-size: 10px;"></i></button>
                          <input class="btn Qty__Input" type="number" value="1" min="1">
-                         <button class="btn Qty__Plus" onclick="increaseQuantity()"><i class="fa-solid fa-plus"></i></button>
+                         <button class="btn Qty__Plus" onclick="increaseQuantity()"><i class="fa-solid fa-plus" style="font-size: 10px;"></i></button>
                        </div>
                      </div>
                    </div>

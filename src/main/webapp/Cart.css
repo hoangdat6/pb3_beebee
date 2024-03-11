@@ -36,6 +36,7 @@ span.Process_Item-Number {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    align-items: flex-start;
 }
 
 /*Main Cart table*/
@@ -165,7 +166,7 @@ p.Item-Category {
     border: 1px solid #6C7275;
     border-radius: 8px;
     min-width: 413px;
-    height: 500px;
+    /*height: 500px;*/
     margin-left: 30px;
 }
 
