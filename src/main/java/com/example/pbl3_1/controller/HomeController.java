@@ -7,10 +7,7 @@ import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.dao.impl.UserDAOimpl;
 import com.example.pbl3_1.entity.Egender;
 import com.example.pbl3_1.entity.User;
-import com.example.pbl3_1.service.ProductService;
-import com.example.pbl3_1.service.ProductServiceImpl;
-import com.example.pbl3_1.service.UserService;
-import com.example.pbl3_1.service.UserServiceImpl;
+import com.example.pbl3_1.service.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
@@ -28,7 +25,10 @@ import java.util.Random;
 
 @WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/logout", "/confirmcode"})
 public class HomeController extends HttpServlet {
-    UserService     userService = new UserServiceImpl();
+
+    private final UserService userService = new UserServiceImpl();
+    private final ProductService productService = new ProductServiceImpl();
+    private final CategoryService categoryService = new CategoryServiceImpl();
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -57,9 +57,7 @@ public class HomeController extends HttpServlet {
                     request.getRequestDispatcher("Confirmcode.jsp").forward(request, response);
                     break;
                 default:
-                    ProductService productService = new ProductServiceImpl();
-                    request.setAttribute("products", productService.getProductsForHome());
-                    request.getRequestDispatcher("index.jsp").forward(request, response);
+                    showHome(request, response);
                     break;
             }
         }
@@ -146,5 +144,12 @@ public class HomeController extends HttpServlet {
             }
 
         }
+    }
+
+    public void showHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("products", productService.getProductsForHome());
+        request.setAttribute("categories", categoryService.getCategories());
+
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

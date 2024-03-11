@@ -22,6 +22,7 @@ public class User {
     private Egender gender;
     private Date dob;
     private Timestamp createdAt;
+    private String imgPath;
 
     public User() {
     }

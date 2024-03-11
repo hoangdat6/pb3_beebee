@@ -8,24 +8,23 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
-@WebServlet(name = "product", urlPatterns = {"/product", "/product/add", "/product/edit", "/product/delete"})
+@WebServlet(name = "product", urlPatterns = {"/product"})
 public class ProductController extends HttpServlet {
     public final ProductService productService = new ProductServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+
         String path = request.getServletPath();
 
         switch (path) {
             case "/product":
                 showProductDetails(request, response);
-                break;
-            case "/product/add":
-                break;
-            case "/product/edit":
-                break;
-            case "/product/delete":
                 break;
         }
     }
@@ -36,10 +35,6 @@ public class ProductController extends HttpServlet {
     }
 
     public void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html; charset=UTF-8");
-
         Long id = Long.parseLong(request.getParameter("id"));
 
         ProductDetailDTO productDetailDTO = productService.getProductDetail(id);

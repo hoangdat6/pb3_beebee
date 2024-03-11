@@ -12,6 +12,7 @@ import lombok.Setter;
 public class Category {
     int id;
     String name;
+    String imgPath;
 
     public Category() {
     }

@@ -55,8 +55,35 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
     }
 
     @Override
-    public int count(String sql, Object... parameters) {
-        return 0;
+    public Long count(String sql, Object... parameters) {
+        Connection con = JDBCUtil.getInstance().getConnection();
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            ps = (con == null) ? null : con.prepareStatement(sql);
+            setParameter(ps, parameters);
+            rs = ps.executeQuery();
+
+            if(rs.next()){
+                return rs.getLong(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0L;
+        }finally {
+            try {
+                if(ps != null)
+                    ps.close();
+                if(con != null) {
+                    con.close();
+                }
+                if(rs != null)
+                    rs.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return 0L;
     }
 
     public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object ...parameters){

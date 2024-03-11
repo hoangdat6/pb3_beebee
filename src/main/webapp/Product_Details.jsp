@@ -18,8 +18,6 @@
                 <script type="text/javascript" src="main.js"></script>
             </head>
 
-            <!--Header contain navigation-->
-
             <body>
                 <%-- Header --%>
                 <%@ include file="Top-Bar.jsp" %>
