@@ -64,7 +64,7 @@ public class HomeController extends HttpServlet {
                 SessionUtil sessionUtil = SessionUtil.getInstance();
                 sessionUtil.putValue(request, "USERMODEL", user);
                 response.sendRedirect(request.getContextPath() + "/home");
-            } else {
+            } else{
                 response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
             }
         }else if (action != null && action.equals("register")){

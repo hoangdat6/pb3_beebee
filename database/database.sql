@@ -1,3 +1,4 @@
+
 create table roles
 (
     id   bigint auto_increment
