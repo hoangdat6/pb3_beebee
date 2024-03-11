@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
@@ -19,6 +20,7 @@
 <body>
   <%-- Header  --%>
   <%@ include file="Top-Bar.jsp" %>
+  <fmt:setLocale value = "vi_VN"/>
 
   <div id="PD-Content">
       <div class="Product_Loop">
@@ -26,7 +28,7 @@
           <div class="Product_Loop-Image">
             <div class="Main-Image">
               <span class="Hot">Hot</span>
-              <span class="Sale">-50%</span>
+              <span class="Sale">-${productDetail.discount}%</span>
             </div>
             <div class="Secondary-Image">
               <img src="img/Product-Details/img-1.jpeg" alt="#">
@@ -46,16 +48,13 @@
               <i class="fa-regular fa-star"></i>
               <span>16k lượt đánh giá</span>
             </div>
-            <h3 id="Product-Name">Bàn xách tay</h3>
-            <p class="Short-Desc">
-              Mô tả ngắn
-            </p>
+            <span style="font-size: 20px;" id="Product-Name">${productDetail.name}</span>
             <div class="Product-Price">
               <span class="new-Price">
-                120.000₫
+                <fmt:formatNumber value="${productDetail.price * (1 - productDetail.discount / 100)}" type="currency"/>
               </span>
               <span class="old-Price">
-                  240.000₫
+                <fmt:formatNumber value="${productDetail.price}" type="currency"/>
               </span>
             </div>
             <div class="Product-Category">
@@ -86,23 +85,24 @@
           <button class="btn Buy">Mua ngay</button>
           <div class="Product-Menu">
             Danh mục
-            <span> Nội Thất</span>
+            <span>${productDetail.categoryName}</span>
           </div>
           <div class="Product-Info" >
               <div class="Heading-Container" style="display: flex; justify-content:space-between">
                 <h3>Thông tin thêm về sản phẩm</h3>
                 <i class="fa-solid fa-chevron-right"></i>
               </div>
-              <div class="Product-Info__Detail mg-bot-15">
-                <h4 class="mg-bot-10">Chi Tiết</h4>
-                <p>Lorem Ispum</p>
-              </div>
-              <div class="Product-Info__Size mg-bot-15">
-                <h4 class="mg-bot-10">Kích thước</h4>
-                <p>Chiều dài: 20 <br> Chiều cao: 1 ½ <br> Độ dày: 21 ½ <br>
-                  Cân nặng: 7 lb 8 oz <br>
-                  Số lượng: 1</p>
-              </div>
+<%--              <div class="Product-Info__Detail mg-bot-15">--%>
+<%--                <h4 class="mg-bot-10">Chi Tiết</h4>--%>
+<%--                <p>Lorem Ispum</p>--%>
+<%--              </div>--%>
+<%--              <div class="Product-Info__Size mg-bot-15">--%>
+<%--                <h4 class="mg-bot-10">Kích thước</h4>--%>
+<%--                <p>Chiều dài: 20 <br> Chiều cao: 1 ½ <br> Độ dày: 21 ½ <br>--%>
+<%--                  Cân nặng: 7 lb 8 oz <br>--%>
+<%--                  Số lượng: 1</p>--%>
+<%--              </div>--%>
+            <pre>${productDetail.description}</pre>
           </div>
         </div>
         

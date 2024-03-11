@@ -1,13 +1,13 @@
 package com.example.pbl3_1.dao.impl;
 
-import com.example.pbl3_1.dao.inter.UserDAO;
+import com.example.pbl3_1.dao.UserDAO;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.mapper.UserMapper;
 
 import java.util.List;
 
 public class UserDAOimpl implements UserDAO {
-    AbstractDAO<User> abstractDAO = new AbstractDAO<User>();
+    AbstractDAOImpl<User> abstractDAO = new AbstractDAOImpl<User>();
     @Override
     public void save(User object) {
         String sql = "INSERT INTO users(username, password, email, phone, gender, dob, created_at) VALUES(?,?,?,?,?,?,?)";

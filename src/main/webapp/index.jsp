@@ -1,5 +1,7 @@
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ include file="common/taglib.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -18,6 +20,7 @@
 
 <body>
 <%@ include file="Top-Bar.jsp" %>
+<fmt:setLocale value = "vi_VN"/>
 <div id="Slider">
   <div class="Slider-container">
     <span class="Slider-container__lable">Ưu đãi cuối tuần</span>
@@ -49,48 +52,14 @@
       Danh mục
     </p>
     <div class="Card-Container">
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">
-          Thời trang
-        </p>
-      </div>
-      <div class="Category-Card">
-        <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
-        <p class="Card-Desc">Avatar
-          Thời trang
-        </p>
-      </div>
+      <c:forEach var="i" begin="1" end="6">
+        <a class="Category-Card">
+          <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
+          <p class="Card-Desc">
+            Thời trang
+          </p>
+        </a>
+      </c:forEach>
     </div>
 
   </div>

@@ -1,5 +1,6 @@
 package com.example.pbl3_1.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.util.TimeZone;
 @Getter
 @Setter
 @Builder
+@AllArgsConstructor
 public class User {
     private Long id;
     private String username;
@@ -21,14 +23,6 @@ public class User {
     private Date dob;
     private Timestamp createAt;
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                ", phone='" + phone + '\''
-                ;
+    public User() {
     }
 }
