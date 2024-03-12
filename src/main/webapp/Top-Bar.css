@@ -1,6 +1,6 @@
 /* Header */
 
-a{
+a {
     color: #000;
 }
 
@@ -94,16 +94,19 @@ a{
 /* Media queries */
 /* Điều chỉnh cho màn hình có chiều rộng nhỏ hơn 768px (di động) */
 @media only screen and (max-width: 767px) {
+
     /* Ẩn văn bản và chỉ hiển thị icon */
     .Header-Bot__right li {
-        font-size: 0; /* Ẩn văn bản */
+        font-size: 0;
+        /* Ẩn văn bản */
     }
 
     /* Hiển thị lại icon */
     .Header-Bot__right li i {
         font-size: 20px;
         margin-right: 10px;
-        display: inline-block; /* Hiển thị icon */
+        display: inline-block;
+        /* Hiển thị icon */
     }
 
     #Header .Header-Top {
@@ -126,7 +129,8 @@ a{
     .Header-Bot form i {
         display: none;
     }
-    .pad-l-r-170{
+
+    .pad-l-r-170 {
         padding-left: 10px;
         padding-right: 10px;
     }
@@ -152,7 +156,7 @@ a{
     display: flex;
 }
 
-.SM_Cart_Container > h3{
+.SM_Cart_Container>h3 {
     font-size: 20px;
     font-weight: 500;
 }
@@ -193,7 +197,7 @@ SM_Cart-Item--Image {
     margin-bottom: 5px;
 }
 
-.Main--Shop span{
+.Main--Shop span {
     font-size: 10px;
     font-weight: 400;
     color: #ccc;
@@ -236,7 +240,7 @@ h3.Main--Name {
     border-radius: 4px;
 }
 
-.Main--Qty i{
+.Main--Qty i {
     font-size: 10px;
 }
 
@@ -279,12 +283,12 @@ span.Main--Category {
     padding: 10px 5px;
 }
 
-.Purchase{
+.Purchase {
     padding: 20px 20px;
     width: 100%;
 }
 
-.Purchase .Total{
+.Purchase .Total {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
@@ -295,14 +299,11 @@ span.Main--Category {
     margin-bottom: 10px;
 }
 
-.Purchase .Total h3{
+.Purchase .Total h3 {}
 
-}
+.Purchase .Total span {}
 
-.Purchase .Total span{
-}
-
-.Purchase .Checkout-Btn{
+.Purchase .Checkout-Btn {
     width: 100%;
     border-radius: 6px;
     padding: 8px 0;
@@ -312,11 +313,11 @@ span.Main--Category {
     margin-bottom: 10px;
 }
 
-.Purchase .Checkout-Btn:hover{
+.Purchase .Checkout-Btn:hover {
     opacity: 0.7;
 }
 
-.Purchase .Cart-Btn{
+.Purchase .Cart-Btn {
     width: 100%;
     color: #121212;
     text-decoration: underline;
@@ -325,8 +326,67 @@ span.Main--Category {
     text-align: center;
 }
 
-.Purchase .Cart-Btn:hover{
+.Purchase .Cart-Btn:hover {
     opacity: 0.7;
 }
 
+.User_option {
+    position: absolute;
+    top: 46px;
+    left: 0;
+    z-index: 1;
+    display: none;
+    align-items: flex-start;
+    justify-content: space-between;
+    color: #141718;
+    padding: 15px 10px;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.10), 0px 8px 8px 0px rgba(0, 0, 0, 0.09), 0px 19px 11px 0px rgba(0, 0, 0, 0.05), 0px 33px 13px 0px rgba(0, 0, 0, 0.01), 0px 52px 14px 0px rgba(0, 0, 0, 0.00);
+}
 
+.User_option h3{
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+.Header-Bot__Account{
+    position: relative;
+}
+
+.Header-Bot__Account:hover .User_option{
+    display: flex;
+}
+
+.User_option .Line {
+    height: 100px;
+    margin: auto 20px;
+    width: 1px;
+    background-color: #ccc;
+}
+
+.User_option a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    transition: all 0.3s;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.User_option a:hover {
+    opacity: 0.5;
+}
+
+.User_option img {
+    width: 15px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.User_option .Shop_option,
+.User_option .Account_option {
+    gap: 3px;
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+}
