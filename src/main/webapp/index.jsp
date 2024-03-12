@@ -75,15 +75,17 @@
     <div class="Product_list pad-l-r-170 pad-t-b-30">
       <% for (int i = 0; i < 20; i++) { %>
       <div class="Card">
-        <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
-        <span class="Hot">Hot</span>
-        <span class="Sale">-50%</span>
+        <a href="./Product_Details.jsp">
+          <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
+          <span class="Hot">Hot</span>
+          <span class="Sale">-50%</span>
+        </a>
         <div class="Card_top">
           <h3>Áo thun nữ co dán</h3>
-          <div class="Card_shop">
+          <a class="Card_shop" href="Shop.jsp">
             <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
             <span>Tên shop</span>
-          </div>
+          </a>
         </div>
         <div class="Card_bot">
           <div class="Card_price">
@@ -98,11 +100,6 @@
             <i class="fa-solid fa-star"></i>
             <i class="fa-solid fa-star"></i>
             <span class="Card_ratingCount">(62.5k đánh giá) </span>
-          </div>
-
-          <div class="Card_logo">
-            <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
-            <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
           </div>
         </div>
       </div>
@@ -121,15 +118,17 @@
   <div class="Product_list pad-l-r-170 pad-t-b-30">
     <% for (int i = 0; i < 20; i++) { %>
     <div class="Card">
-      <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
-      <span class="Hot">Hot</span>
-      <span class="Sale">-50%</span>
+      <a href="./Product_Details.jsp">
+        <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
+        <span class="Hot">Hot</span>
+        <span class="Sale">-50%</span>
+      </a>
       <div class="Card_top">
         <h3>Áo thun nữ co dán</h3>
-        <div class="Card_shop">
+        <a class="Card_shop" href="Shop.jsp">
           <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
           <span>Tên shop</span>
-        </div>
+        </a>
       </div>
       <div class="Card_bot">
         <div class="Card_price">
@@ -144,11 +143,6 @@
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star"></i>
           <span class="Card_ratingCount">(62.5k đánh giá) </span>
-        </div>
-
-        <div class="Card_logo">
-          <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
-          <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
         </div>
       </div>
     </div>

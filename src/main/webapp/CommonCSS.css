@@ -211,7 +211,6 @@ a {
 
 .Card {
     position: relative;
-    width: 200px;
     background-color: #fff;
     border-radius: 5px;
     overflow: hidden;
@@ -219,8 +218,8 @@ a {
 }
 
 .Card-Image {
-    width: 200px;
-    height: 170px;
+    width: 100%;
+    height: 180px;
     object-fit: cover;
 }
 
@@ -248,7 +247,7 @@ a {
 }
 
 .Card_top h3 {
-    font-size: 12px;
+    font-size: 14px;
     font-weight: 400;
     width: 100%;
     overflow: hidden;
@@ -274,7 +273,7 @@ a {
 }
 
 .Card_shop span {
-    font-size: 10px;
+    font-size: 12px;
     color: #605F5F;
 }
 
@@ -290,13 +289,13 @@ a {
 }
 
 .Card_price .oldPrice {
-    font-size: 10px;
+    font-size: 12px;
     color: #ccc;
     text-decoration: line-through;
 }
 
 .Card_price .newPrice {
-    font-size: 12px;
+    font-size: 15px;
     font-weight: 500;
     color: #FACC15;
 }
