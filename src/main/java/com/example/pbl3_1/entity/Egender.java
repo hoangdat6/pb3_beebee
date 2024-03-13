@@ -1,15 +1,15 @@
 package com.example.pbl3_1.entity;
 
 public enum Egender {
-    MALE, FEMALE, OTHER;
+    male, female, other;
     public static Egender fromString(String gender){
         switch(gender) {
-            case "MALE":
-                return MALE;
-            case "FEMALE":
-                return FEMALE;
+            case "male":
+                return male;
+            case "female":
+                return female;
             default:
-                return OTHER;
+                return other;
         }
     }
 }

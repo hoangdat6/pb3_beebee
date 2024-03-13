@@ -11,5 +11,8 @@ public interface UserService {
 //    public void deleteUser(String username);
 //    public void updateUser(String username, String password);
 //    public void showUser();
+
     public User findByUsernameAndPassword(String username, String password);
+    User findByUsernameOrEmailOrPhone(String username, String email, String phone);
+    public void save(User object);
 }

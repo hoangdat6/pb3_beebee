@@ -12,4 +12,14 @@ public class UserServiceImpl implements UserService{
     public User findByUsernameAndPassword(String username, String password) {
         return userDAO.findByUsernameAndPassword(username, password);
     }
+
+    @Override
+    public User findByUsernameOrEmailOrPhone(String username, String email, String phone) {
+        return userDAO.findByUsernameOrEmailOrPhone(username, email, phone);
+    }
+
+    @Override
+    public void save(User object) {
+        userDAO.save(object);
+    }
 }

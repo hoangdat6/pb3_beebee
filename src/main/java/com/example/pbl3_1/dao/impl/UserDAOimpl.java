@@ -11,7 +11,7 @@ public class UserDAOimpl implements UserDAO {
     @Override
     public void save(User object) {
         String sql = "INSERT INTO users(username, password, email, phone, gender, dob, created_at) VALUES(?,?,?,?,?,?,?)";
-        abstractDAO.save(sql, object.getUsername(), object.getPassword(), object.getEmail(), object.getPhone(), object.getGender(), object.getDob(), object.getCreateAt());
+        abstractDAO.save(sql, object.getUsername(), object.getPassword(), object.getEmail(), object.getPhone(), object.getGender().toString(), object.getDob(), object.getCreatedAt());
     }
 
     @Override
@@ -38,8 +38,15 @@ public class UserDAOimpl implements UserDAO {
 
     @Override
     public User findByUsernameAndPassword(String username, String password) {
-        StringBuilder sql = new StringBuilder("SELECT * FROM users WHERE username = ? AND password = ?");
-        List<User> users = abstractDAO.query(sql.toString(), new UserMapper(), username, password);
+        StringBuilder sql = new StringBuilder("SELECT * FROM users WHERE (username = ? OR email = ? OR phone = ?) AND password = ?");
+        List<User> users = abstractDAO.query(sql.toString(), new UserMapper(), username, username, username, password);
+        return (users.isEmpty() ? null : users.get(0));
+    }
+
+    @Override
+    public User findByUsernameOrEmailOrPhone(String username, String email, String phone) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM users WHERE username = ? OR email = ? OR phone = ?");
+        List<User> users = abstractDAO.query(sql.toString(), new UserMapper(), username, email, phone);
         return (users.isEmpty() ? null : users.get(0));
     }
 }

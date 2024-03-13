@@ -42,11 +42,11 @@
         <form action='<c:url value="/login"/>' method="post">
             <div>
                 <label for="username">Email hoặc Số điện thoại</label><br>
-                <input type="text" id="username" name="username" required placeholder="example@gmail.com"><br>
+                <input type="text" id="username" name="username" value='<c:if test="${sessionScope.get('username') != null}">${sessionScope.get('username')}</c:if>' required placeholder="example@gmail.com"><br>
             </div>
             <div>
                 <label for="password">Mật khẩu</label><br>
-                <input type="password" id="password" name="password" required placeholder="Mật khẩu"><br>
+                <input type="password" id="password" name="password" value='<c:if test="${sessionScope.get('password') != null}">${sessionScope.get('password')}</c:if>' required placeholder="Mật khẩu"><br>
             </div>
             <div class="Forgot-Password">
                 <a href="#" class="btn">Quên mật khẩu?</a>
