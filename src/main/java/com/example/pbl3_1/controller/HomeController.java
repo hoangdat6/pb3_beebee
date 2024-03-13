@@ -50,8 +50,8 @@ public class HomeController extends HttpServlet {
                 case "/register":
                     request.getRequestDispatcher("Sign_Up.jsp").forward(request, response);
                 default:
-                    ProductService productService = new ProductServiceImpl();
-                    request.setAttribute("products", productService.getProductsForHome());
+//                    ProductService productService = new ProductServiceImpl();
+//                    request.setAttribute("products", productService.getProductsForHome());
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                     break;
             }

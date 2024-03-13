@@ -72,50 +72,38 @@
       </div>
       <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
     </div>
-    <div class="Product-List pad-l-r-170 pad-t-b-30">
-      <c:forEach items="${products}" var="product">
-        <a href='<c:url value="/product?id=${product.id}" />'  class="Product-Card">
-          <div class="Product-Image">
-            <span class="Hot">Hot</span>
-            <span class="Discount">- ${product.discount}%</span>
-          </div>
-          <div class="Product-Desc">
-            <p class="product-name">${product.name}</p>
-            <div class="Brand-Avatar"></div>
-            <c:if test="product.sellerName == null">
-            <label for="Brand-Avatar">Tên Shop</label>
-            </c:if>
-            <c:if test="product.sellerName != null">
-            <label for="Brand-Avatar">${product.sellerName}dsad</label>
-            </c:if>
-            <div class="clear"></div>
-            <div class="Line"></div>
-            <div class="Product-Bot-Container">
-              <div class="Product-Price">
-                  <span class="new-Price">
-                    <fmt:formatNumber value = "${product.price * (1 - product.discount / 100)}" type = "currency"/>
-                  </span>
-                <span class="old-Price">
-                  <fmt:formatNumber value = "${product.price}" type = "currency"/>
-                  </span>
-              </div>
-              <div class="Product-Button">
-                <i class="fa-regular fa-heart"></i>
-                <i class="fa-solid fa-cart-shopping"></i>
-              </div>
-              <div class="Product-Evaluation">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-regular fa-star"></i>
-              </div>
-            </div>
-          </div>
+    <div class="Product_list pad-l-r-170 pad-t-b-30">
+      <% for (int i = 0; i < 20; i++) { %>
+      <div class="Card">
+        <a href="./Product_Details.jsp">
+          <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
+          <span class="Hot">Hot</span>
+          <span class="Sale">-50%</span>
         </a>
-      </c:forEach>
+        <div class="Card_top">
+          <h3>Áo thun nữ co dán</h3>
+          <a class="Card_shop" href="Shop.jsp">
+            <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
+            <span>Tên shop</span>
+          </a>
+        </div>
+        <div class="Card_bot">
+          <div class="Card_price">
+            <span class="oldPrice">238.000đ</span>
+            <span class="newPrice">150.000đ</span>
+          </div>
 
-
+          <div class="Card_rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="Card_ratingCount">(62.5k đánh giá) </span>
+          </div>
+        </div>
+      </div>
+        <% } %>
     </div>
   </div>
 
@@ -126,44 +114,40 @@
     </div>
     <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
   </div>
-  <div class="Product-List pad-l-r-170 pad-t-b-30">
 
-    <c:forEach var="i" begin="1" end="10">
-    <a href="Product_Details.jsp" class="Product-Card">
-      <div class="Product-Image">
+  <div class="Product_list pad-l-r-170 pad-t-b-30">
+    <% for (int i = 0; i < 20; i++) { %>
+    <div class="Card">
+      <a href="./Product_Details.jsp">
+        <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
         <span class="Hot">Hot</span>
-        <span class="Discount">- 50%</span>
+        <span class="Sale">-50%</span>
+      </a>
+      <div class="Card_top">
+        <h3>Áo thun nữ co dán</h3>
+        <a class="Card_shop" href="Shop.jsp">
+          <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
+          <span>Tên shop</span>
+        </a>
       </div>
-      <div class="Product-Desc">
-        <h3>Áo thun nữ co dãn</h3>
-        <div class="Brand-Avatar"></div>
-        <label for="Brand-Avatar">Tên Shop</label>
-        <div class="clear"></div>
-        <div class="Line"></div>
-        <div class="Product-Bot-Container">
-          <div class="Product-Price">
-                  <span class="new-Price">
-                    120.000₫
-                  </span>
-            <span class="old-Price">
-                      240.000₫
-                  </span>
-          </div>
-          <div class="Product-Button">
-            <i class="fa-regular fa-heart"></i>
-            <i class="fa-solid fa-cart-shopping"></i>
-          </div>
-          <div class="Product-Evaluation">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-regular fa-star"></i>
-          </div>
+      <div class="Card_bot">
+        <div class="Card_price">
+          <span class="oldPrice">238.000đ</span>
+          <span class="newPrice">150.000đ</span>
+        </div>
+
+        <div class="Card_rating">
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <i class="fa-solid fa-star"></i>
+          <span class="Card_ratingCount">(62.5k đánh giá) </span>
         </div>
       </div>
-    </a>
-    </c:forEach>
+    </div>
+    <% } %>
+  </div>
 
   </div>
 </div>
