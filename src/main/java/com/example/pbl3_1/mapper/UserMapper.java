@@ -19,8 +19,8 @@ public class UserMapper implements RowMapper<User>{
             user.setEmail(rs.getString("email"));
             user.setPhone(rs.getString("phone"));
             user.setDob(rs.getDate("dob"));
-//                    gender(Egender.fromString(rs.getString("gender"))).
-            user.setCreateAt(rs.getTimestamp("created_at"));
+//            user.getGender(Egender.fromString(rs.getString("gender"))).
+            user.setCreatedAt(rs.getTimestamp("created_at"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

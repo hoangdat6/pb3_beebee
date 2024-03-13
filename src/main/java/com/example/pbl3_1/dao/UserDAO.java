@@ -6,4 +6,5 @@ import com.example.pbl3_1.entity.User;
 public interface UserDAO extends CommonDAO<User> {
     User findByUsername(String username);
     User findByUsernameAndPassword(String username, String password);
+    User findByUsernameOrEmailOrPhone(String username, String email, String phone);
 }
