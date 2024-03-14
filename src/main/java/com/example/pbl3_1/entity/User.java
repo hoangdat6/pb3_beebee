@@ -35,4 +35,8 @@ public class User {
         this.dob = dob;
         this.createdAt = createdAt;
     }
+//    public void setPassword(String newPass)
+//    {
+//        password = newPass;
+//    }
 }

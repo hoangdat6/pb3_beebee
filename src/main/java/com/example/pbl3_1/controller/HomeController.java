@@ -1,6 +1,7 @@
 package com.example.pbl3_1.controller;
 
 //import com.example.pbl3_1.Util.HttpUtil;
+import com.example.pbl3_1.Util.PasswordEncryption;
 import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.dao.impl.UserDAOimpl;
 import com.example.pbl3_1.entity.Egender;
@@ -68,6 +69,7 @@ public class HomeController extends HttpServlet {
             SessionUtil sessionUtil = SessionUtil.getInstance();
             sessionUtil.putValue(request, "username", username);
             sessionUtil.putValue(request, "password", password);
+            password = PasswordEncryption.ToSHA1(password, username);
             User user = userService.findByUsernameAndPassword(username, password);
             if(user != null){
                 sessionUtil.removeValue(request, "username");
@@ -96,6 +98,7 @@ public class HomeController extends HttpServlet {
             {
                 if(password.equals(confirmPassword))
                 {
+                    newUser.setPassword(PasswordEncryption.ToSHA1(newUser.getPassword(), username));
                     userService.save(newUser);
                     sessionUtil.removeValue(request, "newUser");
                     sessionUtil.removeValue(request, "confirmPassword");
