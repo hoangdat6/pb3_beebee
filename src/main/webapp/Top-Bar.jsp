@@ -63,6 +63,7 @@
                 <h3>SẢN PHẨM MỚI THÊM</h3>
                 <div class="SM_Cart-Content">
                   <div class="SM_Cart-Item">
+                    <input name="SM_Cart_CB" type="checkbox" class="SM_Cart-Item--Checkbox">
                     <img class="SM_Cart-Item--Image" src="img/Product-Details/Category-1.jpeg" alt="Product">
                     <div class="SM_Cart-Item--Main">
                       <h3 class="Main--Name">Bàn xách tay</h3>

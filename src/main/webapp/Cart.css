@@ -63,7 +63,7 @@ span.Process_Item-Number {
 }
 
 .Table_Content{
-    overflow: scroll;
+
 }
 
 .Shop_Products {
@@ -95,7 +95,7 @@ span.Process_Item-Number {
     flex-wrap: nowrap;
     flex-direction: column;
     max-height: 700px;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .Shop_Products-Cell {

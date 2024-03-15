@@ -167,9 +167,14 @@ a {
     padding: 8px 8px;
     max-height: 500px;
     overflow-y: scroll;
+    justify-content: center;
 }
 
-SM_Cart-Item--Image {
+.SM_Cart-Item--Checkbox{
+    padding: 3px 3px;
+}
+
+.SM_Cart-Item--Image {
     height: 80px;
     width: 80px;
     object-fit: cover;
