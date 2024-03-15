@@ -56,6 +56,12 @@
         <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-util -->
+      <dependency>
+          <groupId>org.apache.tomcat</groupId>
+          <artifactId>tomcat-util</artifactId>
+          <version>10.1.2</version>
+      </dependency>
 
       <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
       <dependency>
