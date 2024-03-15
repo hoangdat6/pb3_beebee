@@ -2,6 +2,7 @@ package com.example.pbl3_1.controller;
 
 //import com.example.pbl3_1.Util.HttpUtil;
 import com.example.pbl3_1.Util.PasswordEncryption;
+import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.dao.impl.UserDAOimpl;
 import com.example.pbl3_1.entity.Egender;
@@ -23,8 +24,9 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Random;
 
-@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/logout"})
+@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/logout", "/confirmcode"})
 public class HomeController extends HttpServlet {
     UserService     userService = new UserServiceImpl();
     @Override
@@ -50,6 +52,10 @@ public class HomeController extends HttpServlet {
                     break;
                 case "/register":
                     request.getRequestDispatcher("Sign_Up.jsp").forward(request, response);
+                    break;
+                case "/confirmcode":
+                    request.getRequestDispatcher("Confirmcode.jsp").forward(request, response);
+                    break;
                 default:
 //                    ProductService productService = new ProductServiceImpl();
 //                    request.setAttribute("products", productService.getProductsForHome());
@@ -99,10 +105,20 @@ public class HomeController extends HttpServlet {
                 if(password.equals(confirmPassword))
                 {
                     newUser.setPassword(PasswordEncryption.ToSHA1(newUser.getPassword(), username));
-                    userService.save(newUser);
+                    String code = "";
+                    for(int i = 0; i < 6; i++)
+                    {
+                        Random rand = new Random();
+                        int randomNumber = Math.abs((rand.nextInt())%10);
+                        System.out.println(randomNumber);
+                        code += randomNumber;
+                    }
                     sessionUtil.removeValue(request, "newUser");
+                    sessionUtil.putValue(request, "newUser", newUser);
                     sessionUtil.removeValue(request, "confirmPassword");
-                    response.sendRedirect(request.getContextPath() + "/login");
+                    sessionUtil.putValue(request, "code", code);
+                    SendMail.Send(email, code);
+                    response.sendRedirect(request.getContextPath() + "/confirmcode");
                 }else
                 {
                     response.sendRedirect(request.getContextPath() + "/register");
@@ -111,6 +127,25 @@ public class HomeController extends HttpServlet {
             {
                 response.sendRedirect(request.getContextPath() + "/register");
             }
+        }else if(action != null && action.equals("/confirmcode"))
+        {
+            String confirmcode = request.getParameter("confirmcode");
+            SessionUtil sessionUtil = SessionUtil.getInstance();
+            String code = (String)sessionUtil.getValue(request, "code");
+            System.out.println(confirmcode + "    " + code);
+            if(confirmcode.equals(code))
+            {
+                User user = (User)sessionUtil.getValue(request, "newUser");
+                userService.save(user);
+                sessionUtil.removeValue(request, "newUser");
+                sessionUtil.removeValue(request, "code");
+                response.sendRedirect(request.getContextPath() + "/login");
+            }else
+            {
+                System.out.println("Nhập sai mã code");
+                response.sendRedirect(request.getContextPath() + "/confirmcode");
+            }
+
         }
     }
 }
