@@ -21,7 +21,7 @@ public class UserMapper implements RowMapper<User>{
             user.setDob(rs.getDate("dob"));
             user.setGender(Egender.fromString(rs.getString("gender")));
             user.setImgPath(rs.getString("img_path"));
-            user.setCreateAt(rs.getTimestamp("created_at"));
+            user.setCreatedAt(rs.getTimestamp("created_at"));
         } catch (SQLException e) {
             e.printStackTrace();
         }
