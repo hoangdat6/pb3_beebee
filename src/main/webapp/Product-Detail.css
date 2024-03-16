@@ -116,7 +116,7 @@
 /*Product Loop Right*/
 #PD-Content .Product_Loop .Product_Loop-right {
   flex-wrap: wrap;
-  max-width: 520px;
+  min-width: 520px;
 }
 
 #PD-Content .Product_Loop .Product_Loop-right .Product-Content {
@@ -156,7 +156,7 @@
   margin: 10px;
 }
 
-.Category_container>span {
+.Category_container>button {
   font-size: 14px;
   padding: 5px;
   width: 80px;
@@ -169,12 +169,14 @@
   cursor: pointer;
   margin: 8px 8px;
   display: block;
-  opacity: 0.7;
+  opacity: 1;
 }
 
-.Category_container>span:hover,
-.Category_container>span:active {
-  opacity: 1;
+.Category_container>button:hover,
+.Category_container>button:active,
+.Selected {
+  background: #000 !important;
+  color: #fff !important;
 }
 
 .Product_Loop-right .Product-Price .new-Price {

@@ -64,31 +64,21 @@
                                         </div>
                                         <div class="Product_category">
                                             <div class="Category_item">
-                                                <h3 style="font-size: 16px; color:#333; margin-right: 20px;">Màu
-                                                    sắc</h3>
+                                                <h3 style="font-size: 16px; color:#333; margin-right: 20px;">Màu sắc</h3>
                                                 <div class="Category_container">
-                                                    <span>Đỏ</span>
-                                                    <span>Xanh</span>
-                                                    <span>Lam</span>
-                                                    <span>Tím</span>
-                                                    <span>Đỏ</span>
-                                                    <span>Xanh</span>
-                                                    <span>Lam</span>
-                                                    <span>Tím</span>
+                                                    <button class="Category_option1">Đỏ</button>
+                                                    <button class="Category_option1">Xanh</button>
+                                                    <button class="Category_option1">Lam</button>
+                                                    <button class="Category_option1">Tím</button>
                                                 </div>
                                             </div>
                                             <div class="Category_item">
-                                                <h3 style="font-size: 16px; color:#333; margin-right: 20px">Màu
-                                                    sắc</h3>
+                                                <h3 style="font-size: 16px; color:#333; margin-right: 20px">Màu sắc</h3>
                                                 <div class="Category_container">
-                                                    <span>Đỏ</span>
-                                                    <span>Xanh</span>
-                                                    <span>Lam</span>
-                                                    <span>Tím</span>
-                                                    <span>Đỏ</span>
-                                                    <span>Xanh</span>
-                                                    <span>Lam</span>
-                                                    <span>Tím</span>
+                                                    <button class="Category_option2">Đỏ</button>
+                                                    <button class="Category_option2">Xanh</button>
+                                                    <button class="Category_option2">Lam</button>
+                                                    <button class="Category_option2">Tím</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -576,5 +566,6 @@
                                 <button class="btn"> <i class="fa-solid fa-chevron-right"></i> </button>
                             </div>
                         </div>
+                        <script type="text/javascript" src="./Product_Details.js"></script>
                         <%@ include file="Footer.jsp" %>
             </body>
