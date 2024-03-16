@@ -13,6 +13,7 @@ public class CategoryMapper implements RowMapper<Category>{
             category = Category.builder()
                     .id(rs.getInt("id"))
                     .name(rs.getString("name"))
+                    .imgPath(rs.getString("img_path"))
                     .build();
         } catch (Exception e) {
             e.printStackTrace();

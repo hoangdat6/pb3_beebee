@@ -18,8 +18,6 @@
                 <script type="text/javascript" src="main.js"></script>
             </head>
 
-            <!--Header contain navigation-->
-
             <body>
                 <%-- Header --%>
                 <%@ include file="Top-Bar.jsp" %>
@@ -51,7 +49,7 @@
                                             <i class="fa-regular fa-star"></i>
                                             <span>16k lượt đánh giá</span>
                                         </div>
-                                        <span style="font-size: 20px;" id="Product-Name">${productDetail.name}</span>
+                                        <span style="font-size: 20px; line-height: 1.6; margin: 15px 0;" id="Product-Name">${productDetail.name}</span>
                                         <div class="Product-Price">
                                             <span class="new-Price">
                                                 <fmt:formatNumber
@@ -111,7 +109,7 @@
                                             <h3>Thông tin thêm về sản phẩm</h3>
                                             <i class="fa-solid fa-chevron-right"></i>
                                         </div>
-                                        <pre>${productDetail.description}</pre>
+                                        <div class="text-description" style="max-width: 650px">${productDetail.description}</div>
                                     </div>
                                 </div>
 
