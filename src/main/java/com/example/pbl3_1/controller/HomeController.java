@@ -57,8 +57,8 @@ public class HomeController extends HttpServlet {
                     request.getRequestDispatcher("Confirmcode.jsp").forward(request, response);
                     break;
                 default:
-//                    ProductService productService = new ProductServiceImpl();
-//                    request.setAttribute("products", productService.getProductsForHome());
+                    ProductService productService = new ProductServiceImpl();
+                    request.setAttribute("products", productService.getProductsForHome());
                     request.getRequestDispatcher("index.jsp").forward(request, response);
                     break;
             }
@@ -67,7 +67,6 @@ public class HomeController extends HttpServlet {
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        String action = request.getParameter("action");
         String action = request.getServletPath();
         if(action != null && action.equals("/login")){
             String username = request.getParameter("username");
