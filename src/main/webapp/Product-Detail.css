@@ -1,5 +1,5 @@
 /*Common*/
-.See-More{
+.See-More {
   width: 155px;
   height: 40px;
   border-radius: 80px;
@@ -10,18 +10,18 @@
   background-color: #fff;
 }
 
-.See-More:hover{
+.See-More:hover {
   background-color: #000;
   color: #fff;
 }
 
 
 /*Product Details*/
-#PD-Content{
+#PD-Content {
   background-color: #fff;
 }
 
-#PD-Content .Product_Loop{
+#PD-Content .Product_Loop {
   padding: 20px 170px;
   display: flex;
   flex-direction: row;
@@ -30,30 +30,30 @@
 }
 
 /*Product Loop Left*/
-#PD-Content .Product_Loop .Product_Loop-left
-{
+#PD-Content .Product_Loop .Product_Loop-left {
   margin-right: 172px;
   margin-bottom: 50px;
 }
 
 @media only screen and (max-width: 954px) {
-  .Product_Loop{
+  .Product_Loop {
     padding: 20px 10px;
   }
 
-  .Product_Loop-left{
+  .Product_Loop-left {
     margin-right: 20px;
   }
-  .Product_Loop-right{
-    padding-right:0;
+
+  .Product_Loop-right {
+    padding-right: 0;
   }
 }
 
-#PD-Content .Product_Loop .Product_Loop-left .Product_Loop-Image{
+#PD-Content .Product_Loop .Product_Loop-left .Product_Loop-Image {
   width: 100%;
 }
 
-#PD-Content .Product_Loop-left .Product_Loop-Image .Main-Image{
+#PD-Content .Product_Loop-left .Product_Loop-Image .Main-Image {
   padding-top: 344px;
   max-width: 344px;
   background: url(img/Product-Details/Main.png) center/cover no-repeat;
@@ -61,10 +61,10 @@
   position: relative;
 }
 
-#PD-Content .Main-Image span{
+#PD-Content .Main-Image span {
   position: absolute;
   left: 0;
-  padding: 8px 24px;
+  padding: 3px 12px;
   max-width: 81px;
   font-weight: bold;
   font-size: 20px;
@@ -72,19 +72,19 @@
   border-radius: 3px;
 }
 
-.Main-Image .Hot{
+.Main-Image .Hot {
   background-color: white;
   color: #000;
   top: 8%;
 }
 
-.Main-Image .Sale{
+.Main-Image .Sale {
   background-color: #38CB89;
   color: #fff;
   top: 20%;
 }
 
-#PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image{
+#PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image {
   display: flex;
   flex-wrap: wrap;
   max-width: 344px;
@@ -92,13 +92,13 @@
   align-items: center;
 }
 
-#PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image img{
+#PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image img {
   width: 100px;
   height: 138px;
   overflow: hidden;
 }
 
-#PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image .Next{
+#PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image .Next {
   width: 25px;
   height: 40px;
   padding-left: 5px;
@@ -109,93 +109,102 @@
   opacity: 50%;
 }
 
-#PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image .Next:hover{
+#PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image .Next:hover {
   opacity: 1;
 }
+
 /*Product Loop Right*/
-#PD-Content .Product_Loop .Product_Loop-right
-{
-  flex-grow: 1;
-  padding-right: 200px;
+#PD-Content .Product_Loop .Product_Loop-right {
+  flex-wrap: wrap;
+  min-width: 520px;
 }
 
-#PD-Content .Product_Loop .Product_Loop-right .Product-Content{
+#PD-Content .Product_Loop .Product_Loop-right .Product-Content {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
 }
 
-
-.Product_Loop-right .Product-Evaluation{
+.Product_Loop-right .Product-Evaluation {
   font-size: 12px;
   font-weight: 300;
   margin-bottom: 15px;
 }
 
-.Product_Loop-right h3{
+.Product_Loop-right h3 {
   font-size: 40px;
   font-weight: 500;
   margin-bottom: 15px;
 }
 
-.Product_Loop-right .Short-Desc{
+.Product_Loop-right .Short-Desc {
   opacity: 0.7;
   font-size: 16px;
   font-weight: 300;
   margin-bottom: 20px;
 }
 
-.Product_Loop-right .Product-Price .new-Price{
+.Product_category {
+  margin: 15px 0;
+}
+
+.Category_item {}
+
+.Category_item .Category_container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px;
+}
+
+.Category_container>button {
+  font-size: 14px;
+  padding: 5px;
+  width: 80px;
+  text-align: center;
+  font-weight: 300;
+  background-color: transparent;
+  color: #121314;
+  border: 1px solid #121314;
+  border-radius: 3px;
+  cursor: pointer;
+  margin: 8px 8px;
+  display: block;
+  opacity: 1;
+}
+
+.Category_container>button:hover,
+.Category_container>button:active,
+.Selected {
+  background: #000 !important;
+  color: #fff !important;
+}
+
+.Product_Loop-right .Product-Price .new-Price {
   font-size: 30px;
 }
 
-.Product_Loop-right .Product-Price .old-Price{
+.Product_Loop-right .Product-Price .old-Price {
   font-size: 22px;
-}
-
-.Product_Loop-right .Product-Category{
-  padding: 20px 0;
-}
-
-.Product_Loop-right .Product-Category .Category-Choice{
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 30px;
-  color: #6c7275;
-  margin: 20px 0;
-}
-
-.Product_Loop-right .Product-Category .Category-Choice i{
-  font-size: 15px;
-  line-height: 30px;
-}
-
-.Product-Category img{
-  width:  72px;
-  height: 72px;
-}
-
-.Product-Category img:hover{
-  border: solid 2px #131415;
-  opacity: 80%;
 }
 
 /*Product Loop button */
 
-#PD-Content .Product_Loop .Product_Loop-right .Product_Loop-Button{
+#PD-Content .Product_Loop .Product_Loop-right .Product_Loop-Button {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
 }
 
-#PD-Content .Product_Loop .Product_Loop-right .Product_Loop-Button > div{
+#PD-Content .Product_Loop .Product_Loop-right .Product_Loop-Button>div {
   flex-grow: 1;
   text-align: center;
   justify-content: center;
 }
 
-.Product_Loop-Button .Qty{
+.Product_Loop-Button .Qty {
   background-color: #F5F5F5;
   border-radius: 5px;
-  font-size: 18px;
+  font-size: 15px;
   display: flex;
   align-items: center;
 }
@@ -203,9 +212,9 @@
 .Qty__Minus,
 .Qty__Plus {
   justify-content: center;
-  height: 52px;
+  height: 40px;
   cursor: pointer;
-  padding: 0 15px;
+  padding: 0 10px;
   width: 33.33%;
 }
 
@@ -213,13 +222,13 @@
   width: 50px;
   padding-left: 15px;
   text-align: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 600;
   color: #121314;
 }
 
-.Product_Loop-Button .Same{
-  padding: 5px 24px;
+.Product_Loop-Button .Same {
+  padding: 5px 5px;
   background-color: #fff;
   border: 1px solid #121212;
   text-align: center;
@@ -227,68 +236,67 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
-  margin: 0 10px;
 }
 
-.Product_Loop-Button .Same:hover{
+.Product_Loop-Button .Same:hover {
   color: #fff;
   background-color: #000;
 }
 
-.Product_Loop-Button .Same i{
+.Product_Loop-Button .Same i {
   margin-right: 10px;
 }
 
 
 /*Product Loop Buy*/
-.Product_Loop-right .Buy{
+.Product_Loop-right .Buy {
   margin: 25px 0;
   width: 100%;
   background-color: #000;
   color: #fff;
   border-radius: 8px;
-  font-size: 28px;
+  font-size: 20px;
   text-align: center;
-  padding: 12px 24px;
+  padding: 8px;
 }
 
-.Product_Loop-right .Buy:hover{
+.Product_Loop-right .Buy:hover {
   background-color: #ccc;
   color: #000;
 }
 
 /*Product Menu (Phân loại, danh mục*/
 
-.Product_Loop-right .Product-Menu{
+.Product_Loop-right .Product-Menu {
   font-size: 14px;
   color: #6C7275;
   margin-bottom: 25px;
 }
 
-.Product_Loop-right .Product-Menu span{
+.Product_Loop-right .Product-Menu span {
   color: #121212;
   margin-left: 40px;
 }
 
 /* Product Info : Mô tả sản phẩm, kích thước */
-.Product_Loop-right .Product-Info .Heading-Container{
+.Product_Loop-right .Product-Info .Heading-Container {
   border-bottom: 1px solid #000;
   margin-bottom: 15px;
 }
 
-.Product_Loop-right .Product-Info h3{
+.Product_Loop-right .Product-Info h3 {
   font-size: 18px;
   display: inline-block;
 }
 
-.Product_Loop-right .Product-Info h4{
+.Product_Loop-right .Product-Info h4 {
   color: #6C7275;
   font-weight: 600;
 }
 
-.Product_Loop-right .Product-Info p{
+.Product_Loop-right .Product-Info p {
   font-size: 12px;
 }
 
@@ -296,33 +304,33 @@
 
 
 /*Begin Shop*/
-#PD-Content .Shop{
+#PD-Content .Shop {
   padding: 30px 170px;
   display: flex;
 }
 
-.Shop img{
+.Shop img {
   width: 92px;
   height: 92px;
   border-radius: 50%;
 }
 
-.Shop .Shop-Content{
-  margin-left: 20px; 
+.Shop .Shop-Content {
+  margin-left: 20px;
   padding: 12px 10px;
   font-size: 12px;
   font-weight: 300;
   color: #333;
 }
 
-.Shop .Shop-Content h3{
+.Shop .Shop-Content h3 {
   font-size: 30px;
   font-weight: 500;
   margin-bottom: 15px;
   color: #000;
 }
 
-.Shop .Shop-Content i{
+.Shop .Shop-Content i {
   color: #FACC15;
 }
 
@@ -330,12 +338,12 @@
 
 /*Begin Tabs (bao gồm Thông tin về sản phẩm, câu hỏi và đánh giá)*/
 
-#PD-Content .Tabs{
+#PD-Content .Tabs {
   display: flex;
   flex-direction: column;
 }
 
-#PD-Content .Tabs .Tabs-Menu{
+#PD-Content .Tabs .Tabs-Menu {
   display: flex;
   padding-bottom: 25px;
   border-bottom: 2px solid #ccc;
@@ -346,7 +354,8 @@
   padding: 8px 30px;
   font-size: 20px;
   color: #807E7E;
-  position: relative; /* Để có thể sử dụng vị trí tương đối cho pseudo-element */
+  position: relative;
+  /* Để có thể sử dụng vị trí tương đối cho pseudo-element */
 }
 
 .Tabs .Tabs-Menu button:hover {
@@ -357,33 +366,42 @@
   content: "";
   position: absolute;
   bottom: 0;
-  left: 50%; /*  Để căn giữa */
-  width: 20%; /* Chiều rộng của border-bottom */
-  height: 2px; /* Chiều dày của border-bottom */
-  background-color: #000; /* Màu sắc của border-bottom */
-  transition: width 0.3s ease; /* Thêm hiệu ứng chuyển động */
-  transform: translateX(-50%); /* Để căn giữa */
-  visibility: hidden; /* Không hiển thị ban đầu */
+  left: 50%;
+  /*  Để căn giữa */
+  width: 20%;
+  /* Chiều rộng của border-bottom */
+  height: 2px;
+  /* Chiều dày của border-bottom */
+  background-color: #000;
+  /* Màu sắc của border-bottom */
+  transition: width 0.3s ease;
+  /* Thêm hiệu ứng chuyển động */
+  transform: translateX(-50%);
+  /* Để căn giữa */
+  visibility: hidden;
+  /* Không hiển thị ban đầu */
 }
 
 .Tabs .Tabs-Menu button:hover::after {
-  visibility: visible; /* Hiển thị khi hover */
-  width: calc(100% - 60px); /* Chiều rộng của border-bottom sẽ là 100% trừ đi kích thước của padding */
+  visibility: visible;
+  /* Hiển thị khi hover */
+  width: calc(100% - 60px);
+  /* Chiều rộng của border-bottom sẽ là 100% trừ đi kích thước của padding */
 }
 
-.Tabs .Review-Section{
+.Tabs .Review-Section {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.Review-Section > h3{
+.Review-Section>h3 {
   font-size: 28px;
   font-weight: 500;
   margin-bottom: 30px;
 }
 
-.Review-Section > button{
+.Review-Section>button {
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 10px 12px;
@@ -392,37 +410,37 @@
   margin-bottom: 30px;
 }
 
-.Review-Section .Review-Item{
+.Review-Section .Review-Item {
   display: flex;
   padding: 30px 0;
   border-bottom: #ccc 0.5px solid;
   margin-bottom: 15px;
 }
 
-.Review-Section .Review-Item img{
+.Review-Section .Review-Item img {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-} 
+}
 
-.Review-Section .Review-Item .Review-Item--Content{
+.Review-Section .Review-Item .Review-Item--Content {
   padding-left: 15px;
   max-width: 90%;
 }
 
-.Review-Item--Content .Review-Item__Name{
+.Review-Item--Content .Review-Item__Name {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.Review-Item__Evaluation{
+.Review-Item__Evaluation {
   color: #FACC15;
   font-size: 12px;
   margin-bottom: 10px;
 }
 
-.Review-Item__Comment{
+.Review-Item__Comment {
   font-size: 15px;
   font-weight: 300;
   color: #353945;
@@ -430,10 +448,9 @@
   margin-bottom: 10px;
 }
 
-.Review-Respond{
-}
+.Review-Respond {}
 
-.Review-Respond button{
+.Review-Respond button {
   padding: 8px 12px;
   font-weight: 600;
   font-size: 12px;
@@ -442,7 +459,7 @@
   margin-right: 20px;
 }
 
-.Review-Respond button:hover{
+.Review-Respond button:hover {
   cursor: pointer;
   background-color: #000;
   color: #F5F5F5;
@@ -452,7 +469,7 @@
 
 /*Start Similar Products*/
 
-#PD-Content .Similar_Product{
+#PD-Content .Similar_Product {
   padding-top: 30px;
   padding-bottom: 50px;
   display: flex;
@@ -462,19 +479,19 @@
   background-color: #fff;
 }
 
-.Similar_Product h3{
+.Similar_Product h3 {
   font-size: 28px;
   font-weight: 500;
 }
 
-.Similar_Product > span{
+.Similar_Product>span {
   text-decoration: underline;
   font-size: 16px;
   font-weight: 500;
   padding-top: 15px;
 }
 
-.Similar_Product > button{
+.Similar_Product>button {
   border-radius: 50%;
   border: 1px solid #121314;
   width: 110px;
@@ -486,7 +503,3 @@
   padding: 30px 30px;
   font-size: 30px;
 }
-
-
-
-

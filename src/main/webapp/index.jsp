@@ -81,7 +81,9 @@
           <span class="Sale">-50%</span>
         </a>
         <div class="Card_top">
-          <h3>Áo thun nữ co dán</h3>
+          <a href="./Product_Details.jsp">
+            <h3>Áo thun nữ co dán</h3>
+          </a>
           <a class="Card_shop" href="Shop.jsp">
             <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
             <span>Tên shop</span>
@@ -124,7 +126,10 @@
         <span class="Sale">-50%</span>
       </a>
       <div class="Card_top">
-        <h3>Áo thun nữ co dán</h3>
+
+        <a href="./Product_Details.jsp">
+          <h3>Áo thun nữ co dán</h3>
+        </a>
         <a class="Card_shop" href="Shop.jsp">
           <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
           <span>Tên shop</span>
