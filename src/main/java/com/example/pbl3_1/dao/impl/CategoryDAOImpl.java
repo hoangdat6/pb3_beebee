@@ -45,4 +45,5 @@ public class CategoryDAOImpl implements CategoryDAO {
         String sql = "SELECT id, name, img_path FROM categories";
         return abstractDAO.query(sql, new CategoryMapper());
     }
+
 }
