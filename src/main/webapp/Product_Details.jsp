@@ -15,6 +15,7 @@
                 <link rel="stylesheet" type="text/css" href="Footer.css">
                 <link rel="stylesheet" type="text/css" href="CommonCSS.css">
                 <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
                 <script type="text/javascript" src="main.js"></script>
             </head>
 
@@ -27,9 +28,9 @@
                             <div class="Product_Loop">
                                 <div class="Product_Loop-left">
                                     <div class="Product_Loop-Image">
-                                        <div class="Main-Image">
+                                        <div class="Main-Image" style="background: url(img/Product-Details/Main.png) center/cover no-repeat;">
                                             <span class="Hot">Hot</span>
-                                            <span class="Sale">-${productDetail.discount}%</span>
+                                            <span class="Sale" id="${productDetail.discount}">-${productDetail.discount}%</span>
                                         </div>
                                         <div class="Secondary-Image">
                                             <img src="img/Product-Details/img-1.jpeg" alt="#">
@@ -61,26 +62,24 @@
                                             </span>
                                         </div>
                                         <div class="Product_category">
+                                            <c:set var="cnt" value="1" />
+                                            <c:forEach var="variation" items="${productDetail.variations}">
                                             <div class="Category_item">
-                                                <h3 style="font-size: 16px; color:#333; margin-right: 20px;">Màu sắc</h3>
+                                                <h3 style="font-size: 16px; color:#333; margin-right: 20px;">${variation.name}</h3>
                                                 <div class="Category_container">
-                                                    <button class="Category_option1">Đỏ</button>
-                                                    <button class="Category_option1">Xanh</button>
-                                                    <button class="Category_option1">Lam</button>
-                                                    <button class="Category_option1">Tím</button>
+                                                    <c:forEach var="option" items="${variation.variationOptions}">
+                                                    <button id="${option.id}" class="Category_option${cnt}">${option.value}</button>
+                                                    </c:forEach>
                                                 </div>
+
                                             </div>
-                                            <div class="Category_item">
-                                                <h3 style="font-size: 16px; color:#333; margin-right: 20px">Màu sắc</h3>
-                                                <div class="Category_container">
-                                                    <button class="Category_option2">Đỏ</button>
-                                                    <button class="Category_option2">Xanh</button>
-                                                    <button class="Category_option2">Lam</button>
-                                                    <button class="Category_option2">Tím</button>
-                                                </div>
-                                            </div>
+                                            <c:set var="cnt" value="${cnt + 1}" />
+                                            </c:forEach>
+
                                         </div>
+                                        <div style="font-size: 14px; margin-bottom: 12px"><span id="quantity"></span> sản phẩm có sẵn</div>
                                     </div>
+
                                     <div class="Product_Loop-Button">
                                         <div class="Qty">
                                             <button class="btn Qty__Minus" onclick="decreaseQuantity(this)"><i
