@@ -34,17 +34,13 @@
 
 <main id="LG-Content">
     <div class="Login-Form">
-        <c:if test="${not empty message}">
-            <div class="alert alert-${alert}">
-                    ${message}
-            </div>
-        </c:if>
         <form action='<c:url value="/login"/>' method="post">
-            <div>
+            <div style="margin-bottom: 20px">
                 <label for="username">Email hoặc Số điện thoại</label><br>
                 <input type="text" id="username" name="username" required placeholder="example@gmail.com"><br>
+                <span style="color: red;">* Look at here</span>
             </div>
-            <div>
+            <div style="margin-bottom: 20px">
                 <label for="password">Mật khẩu</label><br>
                 <input type="password" id="password" name="password" required placeholder="Mật khẩu"><br>
             </div>

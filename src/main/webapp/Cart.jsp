@@ -29,6 +29,7 @@
                     Giỏ hàng
                 </span>
             </div>
+
             <div class="clear"></div>
 
             <div class="Process_Item">
@@ -122,33 +123,33 @@
                 <form class="Shipping_Option" action="/submit-form" method="post">
                     <div class="Shipping_Option-Item">
                         <input type="radio" id="free-shipping" name="shipping-option" value="free-shipping">
-                        <label for="free-shipping">Miễn phí giao hàng</label> 
+                        <label for="free-shipping">Miễn phí giao hàng</label>
                         <span>0đ</span>
                     </div>
-                    
+
                     <div class="Shipping_Option-Item">
                         <input type="radio" id="fast-shipping" name="shipping-option" value="fast-shipping">
-                        <label for="fast-shipping">Giao hàng nhanh</label> 
+                        <label for="fast-shipping">Giao hàng nhanh</label>
                         <span>0đ</span>
                     </div>
-                
+
                     <div class="Shipping_Option-Item">
                         <input type="radio" id="express-shipping" name="shipping-option" value="express-shipping">
-                        <label for="express-shipping">Giao hàng hỏa tốc</label> 
+                        <label for="express-shipping">Giao hàng hỏa tốc</label>
                         <span>0đ</span>
                     </div>
-                
+
                     <div class="Shipping_Option-Item">
                         <input type="radio" id="Self-pickup" name="shipping-option" value="Self-pickup">
-                        <label for="Self-pickup">Tự lấy hàng</label> 
+                        <label for="Self-pickup">Tự lấy hàng</label>
                         <span>0đ</span>
                     </div>
-                    
+
                     <div class="Total-Price">
                         <span>Tổng tiền sản phẩm</span>
                         <span>0₫</span>
                     </div>
-                    
+
                     <div class="Total-Checkout">
                         <span>Tổng tiền thanh toán</span>
                         <span>0₫</span>
@@ -157,7 +158,7 @@
                         <input class="btn" id="Checkout" type="submit" value="Thanh toán">
                     </a>
                 </form>
-                
+
             </div>
         </aside>
     </div>
