@@ -24,6 +24,7 @@ import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.AbstractMap;
 import java.util.Random;
 
 @WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/logout", "/confirmcode"})
@@ -77,30 +78,38 @@ public class HomeController extends HttpServlet {
             sessionUtil.putValue(request, "password", password);
             password = PasswordEncryption.ToSHA1(password, username);
             User user = userService.findByUsernameAndPassword(username, password);
+            sessionUtil.putValue(request, "status", true);
             if(user != null){
+                sessionUtil.removeValue(request, "status");
                 sessionUtil.removeValue(request, "username");
                 sessionUtil.removeValue(request, "password");
                 sessionUtil.putValue(request, "USERMODEL", user);
                 response.sendRedirect(request.getContextPath() + "/index.jsp");
             } else {
+                sessionUtil.putValue(request, "status", false);
                 response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
             }
         }else if (action != null && action.equals("/register")){
             String username = request.getParameter("username");
             String email = request.getParameter("email");
-            String phone = request.getParameter("phone");
+//            String phone = request.getParameter("phone");
             String password = request.getParameter("password");
             String confirmPassword = request.getParameter("confirmPassword");
             Egender gender = Egender.fromString(request.getParameter("gender"));
             Date dob = Date.valueOf(request.getParameter("dob"));
             Timestamp createdAt = new Timestamp (System.currentTimeMillis());
-            User user = userService.findByUsernameOrEmailOrPhone(username, email, phone);
+            AbstractMap.SimpleEntry<Boolean, Boolean> check = userService.findByUsernameOrEmail(username, email);
             SessionUtil sessionUtil = SessionUtil.getInstance();
             User newUser = new User();
-            newUser.SetAttribute(username, password, email, phone, gender, dob, createdAt);
+            newUser.SetAttribute(username, password, email, gender, dob, createdAt);
             sessionUtil.putValue(request, "newUser", newUser);
             sessionUtil.putValue(request, "confirmPassword", confirmPassword);
-            if(user == null)
+            sessionUtil.putValue(request, "userStatus", true);
+            sessionUtil.putValue(request, "emailStatus", true);
+            sessionUtil.putValue(request, "cpStatus", true);
+            System.out.println(check.getKey());
+            System.out.println(check.getValue());
+            if(check.getKey() && check.getValue())
             {
                 if(password.equals(confirmPassword))
                 {
@@ -117,14 +126,20 @@ public class HomeController extends HttpServlet {
                     sessionUtil.putValue(request, "newUser", newUser);
                     sessionUtil.removeValue(request, "confirmPassword");
                     sessionUtil.putValue(request, "code", code);
+                    sessionUtil.removeValue(request, "userStatus");
+                    sessionUtil.removeValue(request, "emailStatus");
+                    sessionUtil.removeValue(request, "cpStatus");
                     SendMail.Send(email, code);
                     response.sendRedirect(request.getContextPath() + "/confirmcode");
                 }else
                 {
+                    sessionUtil.putValue(request, "cpStatus", false);
                     response.sendRedirect(request.getContextPath() + "/register");
                 }
             }else
             {
+                sessionUtil.putValue(request, "userStatus", check.getKey());
+                sessionUtil.putValue(request, "emailStatus", check.getValue());
                 response.sendRedirect(request.getContextPath() + "/register");
             }
         }else if(action != null && action.equals("/confirmcode"))
