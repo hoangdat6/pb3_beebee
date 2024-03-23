@@ -4,6 +4,8 @@ import com.example.pbl3_1.dao.impl.UserDAOimpl;
 import com.example.pbl3_1.dao.UserDAO;
 import com.example.pbl3_1.entity.User;
 
+import java.util.AbstractMap;
+
 public class UserServiceImpl implements UserService{
 //    @Inject
     UserDAO userDAO = new UserDAOimpl();
@@ -14,8 +16,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public User findByUsernameOrEmailOrPhone(String username, String email, String phone) {
-        return userDAO.findByUsernameOrEmailOrPhone(username, email, phone);
+    public AbstractMap.SimpleEntry<Boolean, Boolean> findByUsernameOrEmail(String username, String email) {
+        return userDAO.findByUsernameOrEmail(username, email);
     }
 
     @Override

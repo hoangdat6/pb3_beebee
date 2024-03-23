@@ -26,12 +26,11 @@ public class User {
 
     public User() {
     }
-    public void SetAttribute(String username, String password, String email, String phone, Egender gender, Date dob, Timestamp createdAt)
+    public void SetAttribute(String username, String password, String email, Egender gender, Date dob, Timestamp createdAt)
     {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.phone = phone;
         this.gender = gender;
         this.dob = dob;
         this.createdAt = createdAt;
