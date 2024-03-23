@@ -1,6 +1,8 @@
 package com.example.pbl3_1.controller;
 
+import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
+import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.ProductService;
 import com.example.pbl3_1.service.ProductServiceImpl;
 import jakarta.servlet.ServletException;
@@ -22,8 +24,17 @@ public class ProductController extends HttpServlet {
 
         String path = request.getServletPath();
 
+
         switch (path) {
             case "/product":
+                // get user from session
+                User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
+                // check if the user is logged in or not
+                if(user == null){
+                    // if not, redirect to the login page
+                    response.sendRedirect(request.getContextPath() + "/login?action=login&message=login_required&alert=danger");
+                    return;
+                }
                 showProductDetails(request, response);
                 break;
         }

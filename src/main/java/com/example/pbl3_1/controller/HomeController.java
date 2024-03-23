@@ -37,7 +37,7 @@ public class HomeController extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
 
         String action2 = request.getServletPath();
-        System.out.println(action2);
+        System.out.println(action2 + "1");
         if(action2 == null){
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
@@ -49,7 +49,7 @@ public class HomeController extends HttpServlet {
                     break;
                 case "/logout":
                     sessionUtil.removeValue(request, "USERMODEL");
-                    response.sendRedirect("login?action=login&message=logout_success&alert=success");
+                    response.sendRedirect(request.getContextPath() + "/login?action=login&message=logout_success&alert=success");
                     break;
                 case "/register":
                     request.getRequestDispatcher("Sign_Up.jsp").forward(request, response);
@@ -81,7 +81,7 @@ public class HomeController extends HttpServlet {
                 sessionUtil.removeValue(request, "username");
                 sessionUtil.removeValue(request, "password");
                 sessionUtil.putValue(request, "USERMODEL", user);
-                response.sendRedirect(request.getContextPath() + "/index.jsp");
+                response.sendRedirect(request.getContextPath() + "/home");
             } else {
                 sessionUtil.putValue(request, "status", false);
                 response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
@@ -157,7 +157,6 @@ public class HomeController extends HttpServlet {
                 System.out.println("Nhập sai mã code");
                 response.sendRedirect(request.getContextPath() + "/confirmcode");
             }
-
         }
     }
 

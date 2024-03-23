@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
 
 @Getter
 @Setter
@@ -16,7 +17,8 @@ import java.util.List;
 public class ProductDetailDTO {
     private Long id;
     private String name;
-    private Float price;
+    private Float maxPrice;
+    private Float minPrice;
     private Float discount;
     private List<String> productImgPath;
     private String description;
@@ -27,16 +29,18 @@ public class ProductDetailDTO {
     private String sellerAvatar;
     private List<Variation> variations;
 
+
     public ProductDetailDTO(){
 
     }
 
-    public ProductDetailDTO(Product product, Category category, Seller seller, List<Variation> variations){
+    public ProductDetailDTO(Product product, List<String> productImgPath, Map.Entry<Float, Float> maxAndMinPrice, Category category, Seller seller, List<Variation> variations){
         this.id = product.getId();
         this.name = product.getName();
-        this.price = product.getPrice();
+        this.maxPrice = maxAndMinPrice.getKey();
+        this.minPrice = maxAndMinPrice.getValue();
         this.discount = product.getDiscount();
-//        this.productImgPath =
+        this.productImgPath = productImgPath;
         this.description = product.getDescription();
         this.categoryId = category.getId();
         this.categoryName = category.getName();

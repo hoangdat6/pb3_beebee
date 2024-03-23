@@ -7,10 +7,7 @@ import com.example.pbl3_1.entity.VariationOption;
 
 import java.util.List;
 
-public interface ProductDAO {
-    public Long addProduct(Product product);
-    public void updateById(Product product);
-    public void deleteById(int id);
+public interface ProductDAO extends CommonDAO<Product>{
     public Product getProductById(Long id);
     public List<Product> getProducts();
 //    public List<Product> getProductsByCategory(int categoryId);

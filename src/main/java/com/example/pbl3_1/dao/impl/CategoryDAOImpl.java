@@ -24,12 +24,12 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public Integer updateById(Category category) {
+    public Integer update(Category category) {
         return null;
     }
 
     @Override
-    public void deleteById(Category category) {
+    public void deleteById(Long category) {
 
     }
 

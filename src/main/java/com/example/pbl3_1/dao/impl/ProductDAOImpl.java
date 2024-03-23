@@ -9,19 +9,24 @@ import java.util.List;
 public class ProductDAOImpl implements ProductDAO {
     private AbstractDAOImpl<Product> abstractDAO = new AbstractDAOImpl<>();
     @Override
-    public Long addProduct(Product product) {
+    public Long save(Product product) {
         String sql = "insert into products (name, description, product_img_path, category_id, seller_id, created_at, discount) values (?, ?, ?, ?, ?, ?)";
         return abstractDAO.save(sql, product.getName(), product.getDescription(), product.getProductImgPath(), product.getCategoryId(), product.getSellerId(), product.getCreatedAt(), product.getDiscount());
     }
 
     @Override
-    public void updateById(Product product) {
+    public void update(Product product) {
 
     }
 
     @Override
-    public void deleteById(int id) {
+    public void deleteById(Long id) {
 
+    }
+
+    @Override
+    public Product findById(int id) {
+        return null;
     }
 
     @Override

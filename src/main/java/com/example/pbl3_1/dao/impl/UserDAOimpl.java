@@ -10,9 +10,9 @@ import java.util.List;
 public class UserDAOimpl implements UserDAO {
     AbstractDAOImpl<User> abstractDAO = new AbstractDAOImpl<User>();
     @Override
-    public void save(User object) {
+    public Long save(User object) {
         String sql = "INSERT INTO users(username, password, email, phone, gender, dob, created_at) VALUES(?,?,?,?,?,?,?)";
-        abstractDAO.save(sql, object.getUsername(), object.getPassword(), object.getEmail(), object.getPhone(), object.getGender().toString(), object.getDob(), object.getCreatedAt());
+        return abstractDAO.save(sql, object.getUsername(), object.getPassword(), object.getEmail(), object.getPhone(), object.getGender().toString(), object.getDob(), object.getCreatedAt());
     }
 
     @Override
@@ -21,7 +21,7 @@ public class UserDAOimpl implements UserDAO {
     }
 
     @Override
-    public void delete(User object) {
+    public void deleteById(Long object) {
 
     }
 
