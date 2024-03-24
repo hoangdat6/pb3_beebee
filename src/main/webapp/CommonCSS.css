@@ -134,6 +134,12 @@
     --font-size-xxxl: 52px;
 }
 
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 html {
     background-color: var(--bg-color);
     color: var(--content-color);
@@ -214,11 +220,12 @@ input[type="checkbox"]:before {
     transform: translateY(-50%);
     width: 10px;
     height: 10px;
-    border: 2px solid #000; /* Màu đen */
-    border-radius:2px;
+    border: 2px solid #000;
+    /* Màu đen */
+    border-radius: 2px;
 }
 
-input[type="checkbox"]:checked::before{
+input[type="checkbox"]:checked::before {
     background-color: #000;
     color: #fff;
 }
@@ -350,4 +357,31 @@ input[type="checkbox"]:checked::before{
     width: 20px;
     height: auto;
     margin-right: 10px;
+}
+
+.Page_num {
+    display: flex;
+    width: 600px;
+    margin: 40px auto;
+    justify-content: space-between;
+}
+
+.num_item {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+    font-size: 20px;
+    background-color: #fff;
+    color: #141718;
+    text-align: center;
+    transition: ease 0.25s;
+}
+
+#Page_next,
+#Page_pre {}
+
+.num_item:hover {
+    background-color: #141718;
+    color: #fff;
 }

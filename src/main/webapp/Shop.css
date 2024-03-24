@@ -302,31 +302,3 @@
     grid-template-columns: repeat(5, 1fr);
     grid-gap: 10px;
 }
-
-.Page_num {
-    display: flex;
-    width: 600px;
-    margin: 40px auto;
-    justify-content: space-between;
-}
-
-.num_item {
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 50%;
-    font-size: 20px;
-    background-color: #fff;
-    color: #141718;
-    text-align: center;
-    transition: ease 0.25s;
-}
-
-#Page_next,
-#Page_pre {
-}
-
-.num_item:hover {
-    background-color: #141718;
-    color: #fff;
-}

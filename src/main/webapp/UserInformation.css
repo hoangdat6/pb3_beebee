@@ -1,0 +1,127 @@
+.UI_wrap {
+    display: flex;
+    width: 100%;
+    gap: 15px;
+    align-items: flex-start;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.UI_bar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    padding: 15px 20px;
+    background-color: #F3F5F7;
+    gap: 10px;
+}
+
+.UI_bar_top {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.UI_userName {
+    font-size: 20px;
+}
+
+.Avatar_wrapper {
+    position: relative;
+    width: max-content;
+    margin: 10px auto;
+}
+
+.UI_bar_top .UI_avatar {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.UI_bar_top .UI_camera {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.UI_bar_bot {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.UI_bar_bot_item {
+    padding: 5px 8px;
+    font-size: 16px;
+    color: #6C7275
+}
+
+.UI_bar_bot_item:hover {
+    color: #131415;
+    border-bottom: 1.5px solid #131415;
+    cursor: pointer;
+}
+
+.UI_bar_bot_item img {
+    margin-right: 10px;
+    width: 20px;
+    height: auto;
+}
+
+.UI_content {
+    padding-left: 75px;
+    flex-grow: 1;
+}
+
+.UI_title {
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.UI_form {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.form_title {
+    margin-bottom: 20px;
+}
+
+.UI_form input {
+    font-size: 16px;
+    padding: 7px 16px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #CBCBCB;
+    margin-bottom: 20px;
+    color: #6C7275;
+}
+
+/*.UI_form input:invalid {*/
+/*    border-color: red;*/
+/*}*/
+
+.UI_form input[type="submit"] {
+    color: #131415;
+    border-color: #131415;
+}
+
+.UI_form input[type="submit"]:hover {
+    background-color: #131415;
+    color: #fff;
+}
+
+.UI_form label {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6C7275;
+}
+
+.form_title {}

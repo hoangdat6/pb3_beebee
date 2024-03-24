@@ -1,18 +1,18 @@
-.BG-White{
+.BG-White {
     background-color: #fff;
 }
 
-.mg-l-r-170{
+.mg-l-r-170 {
     margin-left: 64px;
     margin-right: 64px;
 }
 
-.Center{
+.Center {
     margin-left: auto;
     margin-right: auto;
 }
 
-#LG-Header{
+#LG-Header {
     padding: 12px 0;
     display: flex;
     flex-direction: row;
@@ -21,45 +21,45 @@
     margin-bottom: 40px;
 }
 
-#LG-Header a{
+#LG-Header a {
     display: flex;
     color: #666666;
     font-size: 16px;
 }
 
-#LG-Header a:hover{
+#LG-Header a:hover {
     opacity: 50%;
 }
 
-#LG-Header a > i{
+#LG-Header a>i {
     margin-right: 15px;
 }
 
-#LG-Header .New_Account{
+#LG-Header .New_Account {
     color: var(--orange-weight-color);
     font-weight: 600;
 }
 
-#LG-Logo{
+#LG-Logo {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
 }
 
-#LG-Logo img{
+#LG-Logo img {
     max-width: 145px;
     max-height: 145px;
 }
 
-#LG-Logo .LG-Logo_Desc{
+#LG-Logo .LG-Logo_Desc {
     font-size: 40px;
     font-weight: 500;
     margin-top: 30px;
 }
 
 /*Login Content*/
-#LG-Content{
+#LG-Content {
     display: flex;
     flex-wrap: wrap;
     color: #121212;
@@ -67,18 +67,18 @@
     padding: 100px 50px;
 }
 
-.Login-Form{
+.Login-Form {
     padding-right: 30px;
 }
 
-#LG-Content .Login-Form label{
+#LG-Content .Login-Form label {
     font-size: 16px;
     font-weight: 400;
     display: block;
     color: #666666;
 }
 
-#LG-Content .Login-Form input{
+#LG-Content .Login-Form input {
     width: 360px;
     height: 56px;
     padding: 5px 10px;
@@ -87,11 +87,11 @@
     border: 1px solid #ccc;
 }
 
-#LG-Content .Login-Form input:hover{
+#LG-Content .Login-Form input:hover {
     border: 2px solid #121212;
 }
 
-.Forgot-Password a{
+.Forgot-Password a {
     text-decoration: underline;
     color: #121212;
     font-size: 16px;
@@ -100,7 +100,7 @@
 }
 
 
-.Login-Button{
+.Login-Button {
     border-radius: 32px !important;
     font-size: 22px;
     font-weight: 500;
@@ -109,7 +109,7 @@
     border: none !important;
 }
 
-.Login-Button:hover{
+.Login-Button:hover {
     background-color: #121212;
     color: #fff;
 }
@@ -124,7 +124,7 @@
     margin-bottom: 20px;
 }
 
-.Login-Method ul li >  a {
+.Login-Method ul li>a {
     display: inline-block;
     color: #121212;
     background-color: #fff;
@@ -137,7 +137,7 @@
     text-align: center;
 }
 
-.Login-Method a i{
+.Login-Method a i {
     margin-right: 15px;
 }
 
@@ -146,11 +146,11 @@
     color: #fff;
 }
 
-.No-Account{
+.No-Account {
     font-size: 16px;
 }
 
-.No-Account a{
+.No-Account a {
     padding-left: 5px;
     font-weight: 600;
     color: var(--main-color);

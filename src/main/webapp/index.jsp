@@ -21,6 +21,7 @@
 <body>
 <%@ include file="Top-Bar.jsp" %>
 <fmt:setLocale value = "vi_VN"/>
+
 <div id="Slider">
   <div class="Slider-container">
     <span class="Slider-container__lable">Ưu đãi cuối tuần</span>

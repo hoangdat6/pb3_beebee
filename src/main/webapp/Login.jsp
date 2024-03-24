@@ -34,11 +34,6 @@
 
 <main id="LG-Content">
     <div class="Login-Form">
-        <c:if test="${not empty message}">
-            <div class="alert alert-${alert}">
-                    ${message}
-            </div>
-        </c:if>
         <form action='<c:url value="/login"/>' method="post">
             <div style="margin-bottom: 20px">
                 <label for="username">Email hoặc Số điện thoại</label><br>
