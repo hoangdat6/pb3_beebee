@@ -8,24 +8,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
-    <link rel="stylesheet" type="text/c
-    ss" href="style.css">
-    <link rel="stylesheet" type="text/c
-    ss" href="Top-Bar.css">
-    <link rel="stylesheet" type="text/c
-    ss" href="Footer.css">
-    <link rel="stylesheet" type="text/c
-    ss" href="CommonCSS.css">
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
-    <script type="text/j
-    avascript" src="main.js"></script>
-    <link rel="stylesheet" href="UserInformation.css">
     <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" type="text/css" href="Product-Detail.css">
     <link rel="stylesheet" type="text/css" href="Top-Bar.css">
     <link rel="stylesheet" type="text/css" href="Footer.css">
     <link rel="stylesheet" type="text/css" href="CommonCSS.css">
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="UserInformation.css">
     <script type="text/javascript" src="main.js"></script>
 </head>
 
@@ -73,7 +62,7 @@
                 <h3 class="UI_userName">Tên người dùng</h3>
             </div>
             <ul class="UI_bar_bot">
-                <li class="UI_bar_bot_item"><img src="./img/User_information/User.png" alt="#"> Tài khoản</li>
+                <li class="UI_bar_bot_item"><img src="./img/User_information/User.png" alt="#">Tài khoản</li>
                 <li class="UI_bar_bot_item"><img src="./img/User_information/Location.svg" alt="#">Địa chỉ của tôi</li>
                 <li class="UI_bar_bot_item"><img src="./img/User_information/order.png" alt="#">Đơn hàng của tôi</li>
                 <li class="UI_bar_bot_item"><img src="./img/User_information/heart.svg" alt="#">Sản phẩm yêu thích</li>
