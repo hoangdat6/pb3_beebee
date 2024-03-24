@@ -4,9 +4,9 @@ public enum Egender {
     MALE, FEMALE, OTHER;
     public static Egender fromString(String gender){
         switch(gender) {
-            case "MALE":
+            case "male":
                 return MALE;
-            case "FEMALE":
+            case "female":
                 return FEMALE;
             default:
                 return OTHER;

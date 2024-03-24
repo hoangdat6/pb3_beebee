@@ -6,6 +6,7 @@ import java.sql.SQLException;
 
 public class JDBCUtil {
     private static JDBCUtil jdbcUtil = null;
+//    private static Connection con = null;
     public  static JDBCUtil getInstance(){
         if(jdbcUtil == null){
             jdbcUtil = new JDBCUtil();
@@ -14,12 +15,14 @@ public class JDBCUtil {
     }
 
     public Connection getConnection(){
+//        if(con != null) return con;
         try {
-            Connection con = null;
+            Connection con;
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/shop_bee";
             String username = "root";
-            String password = "vulinhv11";
+            String password = "dat123";
+
             con = DriverManager.getConnection(url, username, password);
             System.out.println(DriverManager.getDriver(url).toString());
             return con;

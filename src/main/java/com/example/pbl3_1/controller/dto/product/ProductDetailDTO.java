@@ -18,7 +18,7 @@ public class ProductDetailDTO {
     private String name;
     private Float price;
     private Float discount;
-    private String productImgPath;
+    private List<String> productImgPath;
     private String description;
     private int categoryId;
     private String categoryName;
@@ -36,7 +36,7 @@ public class ProductDetailDTO {
         this.name = product.getName();
         this.price = product.getPrice();
         this.discount = product.getDiscount();
-        this.productImgPath = product.getProductImgPath();
+//        this.productImgPath =
         this.description = product.getDescription();
         this.categoryId = category.getId();
         this.categoryName = category.getName();
