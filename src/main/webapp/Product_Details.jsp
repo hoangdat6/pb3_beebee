@@ -96,7 +96,7 @@
                                             </c:forEach>
 
                                         </div>
-                                        <div style="font-size: 14px; margin-bottom: 12px"><span id="quantity"></span> sản phẩm có sẵn</div>
+                                        <div style="font-size: 14px; margin-bottom: 12px"><span id="quantity">${productDetail.quantity}</span> sản phẩm có sẵn</div>
                                     </div>
 
                                     <div class="Product_Loop-Button">

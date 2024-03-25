@@ -23,4 +23,5 @@ public class ProductItemServiceImpl implements ProductItemService {
             return productItemDAO.getProductItemByVariations(null, null);
         }
     }
+
 }

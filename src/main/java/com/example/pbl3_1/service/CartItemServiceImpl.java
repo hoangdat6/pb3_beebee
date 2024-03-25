@@ -21,10 +21,13 @@ public class CartItemServiceImpl implements CartItemService{
         Long productItemId;
         if(!Objects.equals(variation1, "")){
             if(!Objects.equals(variation2, ""))
+                // add to cart with 2 variations
                 productItemId = productItemDAO.getProductItemIdByVariations(Long.parseLong(variation1), Long.parseLong(variation2));
             else
+                // add to cart with 1 variation
                 productItemId = productItemDAO.getProductItemIdByVariations(Long.parseLong(variation1), null);
         }else {
+            // add to cart without variation
             productItemId = productItemDAO.getProductItemIdByVariations(null, null);
         }
 

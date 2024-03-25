@@ -15,7 +15,7 @@ import java.io.IOException;
 
 @WebServlet(name = "cartApi", urlPatterns = {"/api/cart", "/api/add-to-cart"})
 public class ShoppingCartApi extends HttpServlet {
-    private CartItemService cartItemService = new CartItemServiceImpl();
+    private final CartItemService cartItemService = new CartItemServiceImpl();
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -33,24 +33,27 @@ public class ShoppingCartApi extends HttpServlet {
         // Add to cart logic here
         Long id = cartItemService.saveToCart(variation1, variation2, Integer.parseInt(quantity), user.getId());
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        response.setContentType("application/json");
+        String json;
         if(id != null){
-            ObjectMapper objectMapper = new ObjectMapper();
-            response.setContentType("application/json");
-            String json = "\"status\" : \"200\"";
-            objectMapper.writeValue(response.getOutputStream(), json);
-        }
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-
-        System.out.println(user);
-        if(user == null){
-            response.sendRedirect(request.getContextPath() + "/login?action=login&message=login_required&alert=danger");
+             json = "{\"status\" : \"200\"}";
         }else {
-            // Show cart
-            response.sendRedirect(request.getContextPath() + "/Cart.jsp");
+             json = "{\"status\" : \"500\"}";
         }
+        objectMapper.writeValue(response.getOutputStream(), json);
     }
+
+//    @Override
+//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
+//
+//        System.out.println(user);
+//        if(user == null){
+//            response.sendRedirect(request.getContextPath() + "/login?action=login&message=login_required&alert=danger");
+//        }else {
+//            // Show cart
+//            response.sendRedirect(request.getContextPath() + "/Cart.jsp");
+//        }
+//    }
 }

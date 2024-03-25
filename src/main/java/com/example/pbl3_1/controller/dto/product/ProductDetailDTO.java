@@ -27,6 +27,7 @@ public class ProductDetailDTO {
     private Long sellerId;
     private String sellerName;
     private String sellerAvatar;
+    private int quantity;
     private List<Variation> variations;
 
 
@@ -34,7 +35,7 @@ public class ProductDetailDTO {
 
     }
 
-    public ProductDetailDTO(Product product, List<String> productImgPath, Map.Entry<Float, Float> maxAndMinPrice, Category category, Seller seller, List<Variation> variations){
+    public ProductDetailDTO(Product product, List<String> productImgPath, Map.Entry<Float, Float> maxAndMinPrice, Category category, int quantity, Seller seller, List<Variation> variations){
         this.id = product.getId();
         this.name = product.getName();
         this.maxPrice = maxAndMinPrice.getKey();
@@ -44,6 +45,7 @@ public class ProductDetailDTO {
         this.description = product.getDescription();
         this.categoryId = category.getId();
         this.categoryName = category.getName();
+        this.quantity = quantity;
 //        this.sellerId = seller.getId();
 //        this.sellerName = seller.getShopName();
 //        this.sellerAvatar = seller.getImgPath();

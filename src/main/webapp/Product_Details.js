@@ -36,6 +36,7 @@ function changeImage(image) {
 
 let discount = parseFloat($(".Sale").attr('id'));
 let oldPrice = $(".Product-Price").html();
+let quantityAll = $("#quantity").html();
 
 $(document).ready(function(){
     $(".Category_option1, .Category_option2").click(function(){
@@ -47,12 +48,13 @@ $(document).ready(function(){
         if($(".Category_option1").length){
             variation1 = $(".Category_option1.Selected").attr('id');
 
-            if(variation1 === undefined){
-                $(".Product-Price").html(oldPrice);
-            }
-
             if($(".Category_option2").length)
                 variation2 = $(".Category_option2.Selected").attr('id');
+
+            if(variation1 === undefined || variation2 === undefined){
+                $(".Product-Price").html(oldPrice);
+                $("#quantity").html(quantityAll);
+            }
         }
 
         $.ajax({

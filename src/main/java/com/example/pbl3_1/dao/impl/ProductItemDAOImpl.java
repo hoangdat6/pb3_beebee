@@ -66,4 +66,19 @@ public class ProductItemDAOImpl implements ProductItemDAO {
         }, v1, v2);
         return productItemId.isEmpty() ? null : productItemId.get(0);
     }
+
+    @Override
+    public int getQuantityByProductId(Long id) {
+        String sql = "SELECT SUM(qty_in_stock) AS quantity FROM product_item WHERE product_id = ?";
+
+        List<Integer> quantity = genericDAO.query(sql, resultSet -> {
+            try{
+                return resultSet.getInt("quantity");
+            }catch (SQLException e){
+                e.printStackTrace();
+            }
+            return null;
+        }, id);
+        return quantity.isEmpty() ? null : quantity.get(0);
+    }
 }

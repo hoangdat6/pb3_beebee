@@ -50,8 +50,9 @@ public class ProductServiceImpl implements ProductService{
         List<Variation> variations = variationService.getVariationsByProductId(id);
         List<String> imgPaths = productItemDAO.getImgPathByProductId(id);
         imgPaths.add(0, product.getProductImgPath());
+        int quantity = productItemDAO.getQuantityByProductId(id);
         Map.Entry<Float, Float> maxAndMinPrice = productItemDAO.getMaxAndMinPriceByProductId(id);
 
-        return new ProductDetailDTO(product, imgPaths, maxAndMinPrice, category, null, variations);
+        return new ProductDetailDTO(product, imgPaths, maxAndMinPrice, category, quantity, null, variations);
     }
 }
