@@ -205,6 +205,7 @@ a {
 
 input[type="checkbox"] {
     position: relative;
+    cursor: pointer;
 }
 
 input[type="checkbox"]:hover {
