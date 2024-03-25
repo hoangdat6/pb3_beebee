@@ -21,8 +21,22 @@ public class User {
     private String phone;
     private Egender gender;
     private Date dob;
-    private Timestamp createAt;
+    private Timestamp createdAt;
+    private String imgPath;
 
     public User() {
     }
+    public void SetAttribute(String username, String password, String email, Egender gender, Date dob, Timestamp createdAt)
+    {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.gender = gender;
+        this.dob = dob;
+        this.createdAt = createdAt;
+    }
+//    public void setPassword(String newPass)
+//    {
+//        password = newPass;
+//    }
 }

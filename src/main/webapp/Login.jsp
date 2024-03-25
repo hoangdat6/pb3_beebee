@@ -37,12 +37,14 @@
         <form action='<c:url value="/login"/>' method="post">
             <div style="margin-bottom: 20px">
                 <label for="username">Email hoặc Số điện thoại</label><br>
-                <input type="text" id="username" name="username" required placeholder="example@gmail.com"><br>
-                <span style="color: red;">* Look at here</span>
+                <input type="text" id="username" name="username" value='<c:if test="${sessionScope.get('username') != null}">${sessionScope.get('username')}</c:if>' required placeholder="example@gmail.com"><br>
             </div>
             <div style="margin-bottom: 20px">
                 <label for="password">Mật khẩu</label><br>
-                <input type="password" id="password" name="password" required placeholder="Mật khẩu"><br>
+                <input type="password" id="password" name="password" value='<c:if test="${sessionScope.get('password') != null}">${sessionScope.get('password')}</c:if>' required placeholder="Mật khẩu"><br>
+                <c:if test="${sessionScope.get('status') == false}">
+                    <span style="color: red;">*Sai tên đăng nhập hoặc mật khẩu</span>
+                </c:if>
             </div>
             <div class="Forgot-Password">
                 <a href="#" class="btn">Quên mật khẩu?</a>

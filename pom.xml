@@ -56,6 +56,12 @@
         <version>${junit.version}</version>
         <scope>test</scope>
       </dependency>
+      <!-- https://mvnrepository.com/artifact/org.apache.tomcat/tomcat-util -->
+      <dependency>
+          <groupId>org.apache.tomcat</groupId>
+          <artifactId>tomcat-util</artifactId>
+          <version>10.1.2</version>
+      </dependency>
 
       <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
       <dependency>
@@ -121,12 +127,27 @@
           <artifactId>jackson-datatype-jsr310</artifactId>
           <version>2.16.1</version>
       </dependency>
-
+      <dependency>
+          <groupId>javax.mail</groupId>
+          <artifactId>mail</artifactId>
+          <version>1.4</version>
+      </dependency>
+      <dependency>
+          <groupId>org.apache.commons</groupId>
+          <artifactId>commons-email</artifactId>
+          <version>1.6.0</version>
+      </dependency>
       <!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-core-asl -->
       <dependency>
           <groupId>org.codehaus.jackson</groupId>
           <artifactId>jackson-core-asl</artifactId>
           <version>1.9.13</version>
+      </dependency>
+      <dependency>
+          <groupId>org.jetbrains</groupId>
+          <artifactId>annotations</artifactId>
+          <version>RELEASE</version>
+          <scope>compile</scope>
       </dependency>
 
 

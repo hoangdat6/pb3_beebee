@@ -53,11 +53,11 @@
       Danh mục
     </p>
     <div class="Card-Container">
-      <c:forEach var="i" begin="1" end="6">
-        <a class="Category-Card">
+      <c:forEach items="${categories}" var="category" begin="0" end="5">
+        <a href='<c:url value="/catrgory/${category.id}"/>' class="Category-Card">
           <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
           <p class="Card-Desc">
-            Thời trang
+            <c:out value="${category.name}"/>
           </p>
         </a>
       </c:forEach>
@@ -73,7 +73,56 @@
       </div>
       <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
     </div>
-    
+    <div class="Product_list pad-l-r-170 pad-t-b-30">
+      <c:forEach items="${products}" var="product">
+      <div class="Card">
+        <a href='<c:url value="/product?id=${product.id}" />'>
+          <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
+          <span class="Hot">Hot</span>
+          <span class="Sale">-${product.discount}%</span>
+        </a>
+        <div class="Card_top">
+          <a href='<c:url value="/product?id=${product.id}" />'>
+            <h3>${product.name}</h3>
+          </a>
+          <a class="Card_shop" href="Shop.jsp">
+            <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
+            <c:if test="${product.sellerName != null}">
+              <span>${product.sellerName}</span>
+            </c:if>
+            <c:if test="${product.sellerName == null}">
+              <span>Tên Shop</span>
+            </c:if>
+          </a>
+        </div>
+        <div class="Card_bot">
+          <div class="Card_price">
+            <span class="oldPrice">
+              <fmt:formatNumber value = "${product.price}" type = "currency"/>
+            </span>
+            <span class="newPrice">
+              <fmt:formatNumber value = "${product.price * (1 - product.discount / 100)}" type = "currency"/>
+            </span>
+          </div>
+
+          <div class="Card_rating">
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <i class="fa-solid fa-star"></i>
+            <span class="Card_ratingCount">(62.5k đánh giá) </span>
+          </div>
+
+          <div class="Card_logo">
+            <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
+            <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
+          </div>
+        </div>
+      </div>
+      </c:forEach>
+
+    </div>
   </div>
 
   <div class="Title-Container">
@@ -87,20 +136,15 @@
   <div class="Product_list pad-l-r-170 pad-t-b-30">
     <% for (int i = 0; i < 20; i++) { %>
     <div class="Card">
-      <a href="./Product_Details.jsp">
-        <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
-        <span class="Hot">Hot</span>
-        <span class="Sale">-50%</span>
-      </a>
+      <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
+      <span class="Hot">Hot</span>
+      <span class="Sale">-50%</span>
       <div class="Card_top">
-
-        <a href="./Product_Details.jsp">
-          <h3>Áo thun nữ co dán</h3>
-        </a>
-        <a class="Card_shop" href="Shop.jsp">
+        <h3>Áo thun nữ co dán</h3>
+        <div class="Card_shop">
           <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
           <span>Tên shop</span>
-        </a>
+        </div>
       </div>
       <div class="Card_bot">
         <div class="Card_price">
@@ -116,13 +160,16 @@
           <i class="fa-solid fa-star"></i>
           <span class="Card_ratingCount">(62.5k đánh giá) </span>
         </div>
+
+        <div class="Card_logo">
+          <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
+          <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
+        </div>
       </div>
     </div>
     <% } %>
   </div>
 
-  </div>
-</div>
 </div>
   <%@ include file="Footer.jsp" %>
 </body>

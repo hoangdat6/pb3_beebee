@@ -10,6 +10,7 @@ target/
 *.iml
 *.ipr
 src/main/java/com/example/pbl3_1/Util/JDBCUtil.java
+node_modules
 
 ### Eclipse ###
 .apt_generated

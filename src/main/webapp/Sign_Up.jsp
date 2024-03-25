@@ -40,22 +40,33 @@
         </div>
         <h3 class="mg-b-40" style="font-size: 20px; color:#666666">Đăng ký với Email và số điện thoại của bạn</h3>
 
-        <form action="#" method="post" class="mg-b-20">
-            <label for="displayName">Tên hiển thị (Họ và tên):</label><br>
-            <input type="text" id="displayName" name="displayName" required><br><br>
-
+        <form action='<c:url value="/register"/>' method="post" class="mg-b-20">
+            <c:set var="newUser" value="${sessionScope.get('newUser')}"/>
+            <label for="username">Tên đăng nhập:</label><br>
+            <input type="text" id="username" name="username" value='<c:if test="${newUser.username != null}">${newUser.username}</c:if>' required><br>
+            <c:if test="${sessionScope.get('userStatus') == false}">
+                <span style="color: red;">*Tên đăng nhập đã được sử dụng</span>
+            </c:if>
+            <br>
             <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" required><br><br>
-
-            <label for="phone">Số điện thoại:</label><br>
-            <input type="tel" id="phone" name="phone" pattern="[0-9]{10,11}" required><br><br>
+            <input type="email" id="email" name="email" value='<c:if test="${newUser.email != null}">${newUser.email}</c:if>' required><br>
+            <c:if test="${sessionScope.get('emailStatus') == false}">
+                <span style="color: red;">*Email đã được sử dụng</span>
+            </c:if>
+            <br>
+<%--            <label for="phone">Số điện thoại:</label><br>--%>
+<%--            <input type="tel" id="phone" name="phone" pattern="[0-9]{10,11}" value='<c:if test="${newUser.phone != null}">${newUser.phone}</c:if>' required><br><br>--%>
 
             <label for="password">Mật khẩu</label><br>
-            <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\S{8,}" required placeholder="Mật khẩu (ít nhất 8 kí tự, bao gồm số, chữ viết thường, chữ in hoa và dấu cách)"><br><br>
+
+            <input type="password" id="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\S{8,}" value='<c:if test="${newUser.password != null}">${newUser.password}</c:if>' required placeholder="Mật khẩu (ít nhất 8 kí tự, bao gồm số, chữ viết thường, chữ in hoa và dấu cách)"><br><br>
 
             <label for="confirmPassword">Nhập lại mật khẩu:</label><br>
-            <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
-
+            <input type="password" id="confirmPassword" name="confirmPassword" value='<c:if test="${sessionScope.get('confirmPassword') != null}">${sessionScope.get('confirmPassword')}</c:if>' required><br>
+            <c:if test="${sessionScope.get('cpStatus') == false}">
+                <p style="color: red;">*Mật khẩu không trùng khớp</p>
+            </c:if>
+            <br>
             <div class="Form-Item" style="display: flex; flex-wrap:wrap;justify-content:space-between; align-items:center; width: 600px;">
                 <div class="Gender">
                     <label class="Gender-Label" for="gender">Giới tính:</label><br>
@@ -64,10 +75,20 @@
                         <option value="female">Nữ</option>
                         <option value="other">Khác</option>
                     </select>
+                    <script>
+                        var initialValue = "<c:out value='${newUser.gender}'/>";
+                        var selectElement = document.getElementById("gender");
+                        for (var i = 0; i < selectElement.options.length; i++) {
+                            if (selectElement.options[i].value === initialValue) {
+                                selectElement.options[i].selected = true;
+                                break;
+                            }
+                        }
+                    </script>
                 </div>
                 <div class="DOB">
                     <label for="dob">Ngày sinh:</label><br>
-                    <input style="width: 360px;" type="date" id="dob" name="dob" required>
+                    <input style="width: 360px;" type="date" id="dob" name="dob" value = '<c:if test="${newUser.dob != null}">${newUser.dob}</c:if>' required>
                 </div>
             </div>
 

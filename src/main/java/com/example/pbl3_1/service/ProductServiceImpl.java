@@ -18,7 +18,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService{
     private final ProductDAO productDAO = new ProductDAOImpl();
     private final CategoryDAO categoryDAO = new CategoryDAOImpl();
-    private final VariationDAO variationDAO = new VariationDAOImpl();
+    private final VariationService variationService = new VariationServiceImpl();
 
     @Override
     public List<ProductForHomeDTO> getProductsForHome() {
@@ -43,7 +43,7 @@ public class ProductServiceImpl implements ProductService{
     public ProductDetailDTO getProductDetail(Long id) {
         Product product = productDAO.getProductById(id);
         Category category = categoryDAO.findById(product.getCategoryId().getId());
-        List<Variation> variations = variationDAO.getVariationsByProductId(id);
+        List<Variation> variations = variationService.getVariationsByProductId(id);
 
         return new ProductDetailDTO(product, category, null, variations);
     }

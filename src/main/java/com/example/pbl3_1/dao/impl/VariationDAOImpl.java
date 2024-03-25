@@ -11,7 +11,7 @@ public class VariationDAOImpl implements VariationDAO {
     private final GenericDAO<Variation> genericDAO = new AbstractDAOImpl<>();
     @Override
     public List<Variation> getVariationsByProductId(Long productId) {
-        String sql = "SELECT * FROM variation WHERE product_id = ?";
+        String sql = "SELECT v.id, v.name FROM variation v WHERE product_id = ?";
         return genericDAO.query(sql, new VariationMapper(), productId);
     }
 }
