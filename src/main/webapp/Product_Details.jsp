@@ -16,6 +16,8 @@
                 <link rel="stylesheet" type="text/css" href="CommonCSS.css">
                 <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
                 <script type="text/javascript" src="main.js"></script>
+                <script type="text/javascript" src="./toast.js"></script>
+                <link rel="stylesheet" type="text/css" href="./toast.css">
             </head>
 
             <!--Header contain navigation-->
@@ -24,6 +26,9 @@
                 <%-- Header --%>
                 <%@ include file="Top-Bar.jsp" %>
                         <fmt:setLocale value="vi_VN" />
+                        <div id="toast">
+
+                        </div>
 
                         <div id="PD-Content">
                             <div class="Product_Loop">
@@ -91,7 +96,7 @@
                                             <button class="btn Qty__Plus" onclick="increaseQuantity(this)"><i
                                                     class="fa-solid fa-plus"></i></button>
                                         </div>
-                                        <div class="Add-to-Cart Same">
+                                        <div onclick="showSuccessToast()" class="Add-to-Cart Same">
                                             <i class="fa-solid fa-cart-shopping"></i>
                                             <p>Thêm vào giỏ hàng</p>
                                         </div>
