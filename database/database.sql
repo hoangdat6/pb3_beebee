@@ -47,6 +47,19 @@ create table users
     avatar     varchar(1024)                    null
 );
 
+create table shopping_cart
+(
+    id         bigint auto_increment
+        primary key,
+    user_id    bigint   null,
+    created_at datetime null,
+    constraint shopping_cart_ibfk_1
+        foreign key (user_id) references users (id)
+);
+
+create index user_id
+    on shopping_cart (user_id);
+
 create table user_role
 (
     user_id bigint null,
@@ -110,6 +123,21 @@ create index variation1
 
 create index variation2
     on product_item (variation2);
+
+create table shopping_cart_item
+(
+    id              bigint auto_increment
+        primary key,
+    cart_id         bigint   null,
+    product_item_id bigint   null,
+    qty             int      null,
+    created_at      datetime null,
+    constraint shopping_cart_item_ibfk_1
+        foreign key (product_item_id) references product_item (id)
+);
+
+create index product_item_id
+    on shopping_cart_item (product_item_id);
 
 create index variation_id
     on variation_option (variation_id);
