@@ -86,6 +86,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
         return 0L;
     }
 
+
     public <T> List<T> query(String sql, RowMapper<T> rowMapper, Object ...parameters){
         Connection con = JDBCUtil.getInstance().getConnection();
         PreparedStatement ps = null;

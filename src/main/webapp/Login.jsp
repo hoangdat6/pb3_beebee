@@ -16,7 +16,7 @@
 </head>
 <body class="BG-White">
 <header id="LG-Header" class="mg-l-r-170">
-    <a href="index.jsp" class="LG-Header_Back">
+    <a class="LG-Header_Back" href='<c:url value="/home"/>' >
         <i class="fa-solid fa-chevron-left"></i>
         <span>Trở về</span>
     </a>

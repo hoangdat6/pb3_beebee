@@ -56,7 +56,7 @@ public class ProductDAOImplTest {
 
         ProductDAO productDAO = new ProductDAOImpl();
 
-        System.out.println(productDAO.addProduct(product));
+        System.out.println(productDAO.save(product));
     }
 
     @Test
