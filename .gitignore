@@ -4,12 +4,11 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
-
+JDBCUtil.java
 .idea
 *.iws
 *.iml
 *.ipr
-src/main/java/com/example/pbl3_1/Util/JDBCUtil.java
 node_modules
 
 ### Eclipse ###
