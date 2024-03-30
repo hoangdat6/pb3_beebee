@@ -45,19 +45,19 @@ function toast(
     else console.log('Toast not found');
 }
 
-function showSuccessToast(){
+function showSuccessToast(title, message){
     toast({
-        title: 'Success',
-        message: 'Ok',
+        title: title,
+        message: message,
         type: 'success',
         duration: 3000
     })
 }
 
-function showErrorToast(){
+function showErrorToast(title, message){
     toast({
-        title: 'Error',
-        message: 'Error',
+        title: title,
+        message: message,
         type: 'error',
         duration: 3000
     })

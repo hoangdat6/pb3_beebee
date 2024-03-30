@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: dathv1612
-  Date: 3/29/24
-  Time: 5:16 PM
+  Date: 3/30/24
+  Time: 8:16 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,19 +17,15 @@
 <body>
 <div class="wrapper">
     <div class="container">
-        <form action="#" method="post" >
-            <h1>Xác nhận Email</h1>
-            <input class="box_input" type="text" id="code" placeholder="Nhập mã xác nhận" pattern="[0-9]{6}">
+        <form action="#" method="post">
+            <h1>Thay đổi mật khẩu</h1>
+            <label for="pw">Mật khẩu</label>
+            <input class="box_input pw" type="password" pattern="">
+            <label for="confirm_pw">Xác nhận mật khẩu</label>
+            <input class="box_input confirm_pw" type="password" pattern="">
             <input class="btn" type="submit" value="Xác nhận">
         </form>
     </div>
 </div>
-<script>
-    document.getElementById('code').addEventListener('input', function() {
-        if (this.value.length > 6) {
-            this.value = this.value.slice(0, 6);
-        }
-    });
-</script>
 </body>
 </html>

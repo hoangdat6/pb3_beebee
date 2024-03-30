@@ -18,7 +18,13 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
 
     @Override
     public void update(ShoppingCartItem object) {
-
+        String sql = "UPDATE shop_bee.shopping_cart_item SET cart_id = ?, product_item_id = ?, qty = ?, created_at = ? WHERE id = ?";
+        genericDAO.update(sql,
+                object.getCartId(),
+                object.getProductItemId(),
+                object.getQuantity(),
+                object.getCreatedAt(),
+                object.getId());
     }
 
     @Override
@@ -31,4 +37,9 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
         return null;
     }
 
+    @Override
+    public Long findByCartIAndProductItemId(Long cartId, Long productItemId) {
+        String sql = "SELECT * FROM shop_bee.shopping_cart_item WHERE cart_id = ? AND product_item_id = ?";
+        return genericDAO.count(sql, cartId, productItemId);
+    }
 }

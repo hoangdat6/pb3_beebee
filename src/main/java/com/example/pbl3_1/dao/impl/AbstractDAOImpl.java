@@ -12,37 +12,37 @@ import java.util.List;
 public class AbstractDAOImpl<T> implements GenericDAO<T> {
 
     public Long save(String sql, Object ...parameters) {
-        Connection connection = null;
-        PreparedStatement statement = null;
+        Connection con = null;
+        PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
             Long id = null;
-            connection = JDBCUtil.getInstance().getConnection();
-            connection.setAutoCommit(false);
-            statement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-            setParameter(statement, parameters);
-            statement.executeUpdate();
-            resultSet = statement.getGeneratedKeys();
+            con = JDBCUtil.getInstance().getConnection();
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+            setParameter(ps, parameters);
+            ps.executeUpdate();
+            resultSet = ps.getGeneratedKeys();
             if (resultSet.next()) {
                 id = resultSet.getLong(1);
             }
-            connection.commit();
+            con.commit();
             return id;
         } catch (SQLException e) {
-            if (connection != null) {
+            if (con != null) {
                 try {
-                    connection.rollback();
+                    con.rollback();
                 } catch (SQLException e1) {
                     e1.printStackTrace();
                 }
             }
         } finally {
             try {
-                if (connection != null) {
-                    connection.close();
+                if (con != null) {
+                    con.close();
                 }
-                if (statement != null) {
-                    statement.close();
+                if (ps != null) {
+                    ps.close();
                 }
                 if (resultSet != null) {
                     resultSet.close();
@@ -121,7 +121,39 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
 
     @Override
     public void update(String sql, Object... parameters) {
-
+        Connection con = null;
+        PreparedStatement ps = null;
+        ResultSet resultSet = null;
+        try {
+            con = JDBCUtil.getInstance().getConnection();
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(sql);
+            setParameter(ps, parameters);
+            ps.executeUpdate();
+            con.commit();
+        } catch (SQLException e) {
+            if (con != null) {
+                try {
+                    con.rollback();
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                if (resultSet != null) {
+                    resultSet.close();
+                }
+            } catch (SQLException e2) {
+                e2.printStackTrace();
+            }
+        }
     }
 
 

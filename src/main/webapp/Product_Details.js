@@ -77,6 +77,7 @@ function load(response){
     $(".old-Price").text(formattedPrice);
     $("#quantity").text(product.qtyInStock);
     $(".Main-Image").attr('style', `background: url(${product.productImgPath}) center/cover no-repeat;`);
+
 }
 
 function saveToCart(){
@@ -95,6 +96,14 @@ function saveToCart(){
             return;
         }
     }
+    let quantityProductItem = parseInt($("#quantity").text());
+    console.log(quantityProductItem);
+
+    if(quantityProductItem === 0){
+        showErrorToast("Warning", "Vui lòng chọn loại khác");
+        return;
+    }
+
     $.ajax({
         type: "POST",
         url: "/PBL3_1_war_exploded/api/add-to-cart",
