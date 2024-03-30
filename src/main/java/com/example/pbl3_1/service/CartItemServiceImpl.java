@@ -32,17 +32,29 @@ public class CartItemServiceImpl implements CartItemService{
         }
 
         Long cartId = shoppingCartDAO.getCartIdByUserId(userId);
-
         // If the user's shopping cart does not exist, then create a shopping cart for the user.
         if(cartId == null){
             cartId = shoppingCartDAO.createCart(userId);
         }
 
-        return cartItemDAO.save(ShoppingCartItem.builder().
-                CartId(cartId).
-                ProductItemId(productItemId).
-                quantity(i).
-                createdAt(new Timestamp(System.currentTimeMillis())).
-                build());
+        Long cartItemId = cartItemDAO.findByCartIAndProductItemId(cartId, productItemId);
+
+        if(cartItemId != null){
+             cartItemDAO.update(ShoppingCartItem.builder().
+                    id(cartItemId).
+                    CartId(cartId).
+                    ProductItemId(productItemId).
+                    quantity(i).
+                    createdAt(new Timestamp(System.currentTimeMillis())).
+                    build());
+        }else {
+            return cartItemDAO.save(ShoppingCartItem.builder().
+                    CartId(cartId).
+                    ProductItemId(productItemId).
+                    quantity(i).
+                    createdAt(new Timestamp(System.currentTimeMillis())).
+                    build());
+        }
+        return null;
     }
 }
