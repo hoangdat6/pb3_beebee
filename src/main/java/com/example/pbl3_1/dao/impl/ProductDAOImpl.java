@@ -34,6 +34,19 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public Product getProductById(Long id) {
+        String sql = "select * from products where id = ?";
+        List<Product> products = abstractDAO.query(sql, new ProductMapper(), id);
+        return products.isEmpty() ? null : products.get(0);
+    }
+
+    @Override
+    public List<Product> getProducts() {
+        String sql = "select * from products";
+        return abstractDAO.query(sql, new ProductMapper());
+    }
+
+    @Override
     public List<ProductForHomeDTO> getProductForHomeDtos() {
         StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.product_img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
         sql.append("FROM products AS p\n");
@@ -72,7 +85,7 @@ public class ProductDAOImpl implements ProductDAO {
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
         sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
         sql.append("JOIN categories as c ON p.category_id = c.id\n");
-        sql.append("WHERE p.id = 1");
+        sql.append("WHERE p.id = ?");
 
         return abstractDAO.query(sql.toString(), resultSet -> {
             try {
@@ -96,6 +109,7 @@ public class ProductDAOImpl implements ProductDAO {
                 e.printStackTrace();
                 return null;
             }
-        }).get(0);
+        }, id).get(0);
     }
+
 }

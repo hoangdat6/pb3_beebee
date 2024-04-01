@@ -27,7 +27,6 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<ProductForHomeDTO> getProductsForHome() {
         List<ProductForHomeDTO> productForHomeDTOS = productDAO.getProductForHomeDtos();
-
         return productForHomeDTOS;
     }
 
