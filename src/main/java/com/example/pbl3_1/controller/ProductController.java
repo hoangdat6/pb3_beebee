@@ -24,7 +24,6 @@ public class ProductController extends HttpServlet {
 
         String path = request.getServletPath();
 
-
         switch (path) {
             case "/product":
                 // get user from session

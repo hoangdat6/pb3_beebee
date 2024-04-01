@@ -31,7 +31,7 @@ public class ShoppingCartApi extends HttpServlet {
         String quantity = request.getParameter("quantity");
 
         // Add to cart logic here
-        Long id = cartItemService.saveToCart(variation1, variation2, Integer.parseInt(quantity), user.getId());
+        Object id = cartItemService.saveToCart(variation1, variation2, Integer.parseInt(quantity), user.getId());
 
         ObjectMapper objectMapper = new ObjectMapper();
         response.setContentType("application/json");

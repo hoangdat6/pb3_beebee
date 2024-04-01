@@ -17,7 +17,7 @@ public class CartItemServiceImpl implements CartItemService{
     private final ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAOImpl();
 
     @Override
-    public Long saveToCart(String variation1, String variation2, int i, Long userId) {
+    public Object saveToCart(String variation1, String variation2, int i, Long userId) {
         Long productItemId;
         if(!Objects.equals(variation1, "")){
             if(!Objects.equals(variation2, ""))
@@ -37,14 +37,14 @@ public class CartItemServiceImpl implements CartItemService{
             cartId = shoppingCartDAO.createCart(userId);
         }
 
-        Long cartItemId = cartItemDAO.findByCartIAndProductItemId(cartId, productItemId);
+        ShoppingCartItem cartItemId = cartItemDAO.findByCartIAndProductItemId(cartId, productItemId);
 
         if(cartItemId != null){
-             cartItemDAO.update(ShoppingCartItem.builder().
-                    id(cartItemId).
+             return cartItemDAO.update(ShoppingCartItem.builder().
+                    id(cartItemId.getId()).
                     CartId(cartId).
                     ProductItemId(productItemId).
-                    quantity(i).
+                    quantity(cartItemId.getQuantity() + i).
                     createdAt(new Timestamp(System.currentTimeMillis())).
                     build());
         }else {
@@ -55,6 +55,5 @@ public class CartItemServiceImpl implements CartItemService{
                     createdAt(new Timestamp(System.currentTimeMillis())).
                     build());
         }
-        return null;
     }
 }

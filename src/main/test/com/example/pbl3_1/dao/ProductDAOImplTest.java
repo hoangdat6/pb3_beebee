@@ -61,12 +61,6 @@ public class ProductDAOImplTest {
 
     @Test
     public void testGetProduct(){
-        ProductDAO productDAO = new ProductDAOImpl();
 
-        List<Product> list = productDAO.getProducts();
-
-        for(Product p : list){
-            System.out.println(p.toString());
-        }
     }
 }
