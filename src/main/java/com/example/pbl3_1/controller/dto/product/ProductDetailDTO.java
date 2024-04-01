@@ -46,9 +46,9 @@ public class ProductDetailDTO {
         this.categoryId = category.getId();
         this.categoryName = category.getName();
         this.quantity = quantity;
-//        this.sellerId = seller.getId();
-//        this.sellerName = seller.getShopName();
-//        this.sellerAvatar = seller.getImgPath();
+        this.sellerId = seller.getId();
+        this.sellerName = seller.getShopName();
+        this.sellerAvatar = seller.getImgPath();
         this.variations = variations;
     }
 }

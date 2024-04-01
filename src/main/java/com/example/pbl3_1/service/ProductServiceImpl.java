@@ -26,33 +26,20 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<ProductForHomeDTO> getProductsForHome() {
-        List<Product> products = productDAO.getProducts();
-
-        List<ProductForHomeDTO> productForHomeDTOS = new ArrayList<>();
-
-        for (Product product : products) {
-            ProductForHomeDTO productForHomeDTO = new ProductForHomeDTO(
-                    product.getId(),
-                    product.getName(),
-                    product.getPrice(),
-                    product.getDiscount(),
-                    product.getProductImgPath()
-            );
-            productForHomeDTOS.add(productForHomeDTO);
-        }
+        List<ProductForHomeDTO> productForHomeDTOS = productDAO.getProductForHomeDtos();
         return productForHomeDTOS;
     }
 
     @Override
     public ProductDetailDTO getProductDetail(Long id) {
-        Product product = productDAO.getProductById(id);
-        Category category = categoryDAO.findById(product.getCategoryId().getId());
+        ProductDetailDTO productDetailDTO = productDAO.getProductDetailById(id);
         List<Variation> variations = variationService.getVariationsByProductId(id);
         List<String> imgPaths = productItemDAO.getImgPathByProductId(id);
-        imgPaths.add(0, product.getProductImgPath());
-        int quantity = productItemDAO.getQuantityByProductId(id);
-        Map.Entry<Float, Float> maxAndMinPrice = productItemDAO.getMaxAndMinPriceByProductId(id);
+        imgPaths.add(0, productDetailDTO.getProductImgPath().get(0));
 
-        return new ProductDetailDTO(product, imgPaths, maxAndMinPrice, category, quantity, null, variations);
+        productDetailDTO.setVariations(variations);
+        productDetailDTO.setProductImgPath(imgPaths);
+
+        return productDetailDTO;
     }
 }

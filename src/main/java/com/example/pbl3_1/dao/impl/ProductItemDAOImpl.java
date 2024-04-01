@@ -81,4 +81,5 @@ public class ProductItemDAOImpl implements ProductItemDAO {
         }, id);
         return quantity.isEmpty() ? null : quantity.get(0);
     }
+
 }

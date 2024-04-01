@@ -16,8 +16,8 @@ public class UserDAOimpl implements UserDAO {
     }
 
     @Override
-    public void update(User object) {
-
+    public Integer update(User object) {
+        return null;
     }
 
     @Override

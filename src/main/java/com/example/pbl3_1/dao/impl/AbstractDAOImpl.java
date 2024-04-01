@@ -120,7 +120,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
     }
 
     @Override
-    public void update(String sql, Object... parameters) {
+    public Integer update(String sql, Object... parameters) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;
@@ -129,8 +129,9 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
             con.setAutoCommit(false);
             ps = con.prepareStatement(sql);
             setParameter(ps, parameters);
-            ps.executeUpdate();
+            Integer row = ps.executeUpdate();
             con.commit();
+            return row;
         } catch (SQLException e) {
             if (con != null) {
                 try {
@@ -154,6 +155,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
                 e2.printStackTrace();
             }
         }
+        return null;
     }
 
 

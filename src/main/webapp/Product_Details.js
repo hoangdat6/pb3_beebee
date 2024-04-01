@@ -97,10 +97,9 @@ function saveToCart(){
         }
     }
     let quantityProductItem = parseInt($("#quantity").text());
-    console.log(quantityProductItem);
 
-    if(quantityProductItem === 0){
-        showErrorToast("Warning", "Vui lòng chọn loại khác");
+    if(quantityProductItem < quantity){
+        showErrorToast("Warning", "Số lượng sản phẩm không đủ");
         return;
     }
 
@@ -111,9 +110,9 @@ function saveToCart(){
         success: function(response){
             let re = JSON.parse(response);
             if(re.status === "200"){
-                showSuccessToast();
+                showSuccessToast("Success", "Đã thêm vào giỏ hàng");
             } else {
-                showErrorToast();
+                showErrorToast("Warning", "Số lượng sản phẩm không đủ");
             }
         }
     });
