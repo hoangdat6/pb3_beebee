@@ -36,7 +36,7 @@
     <div class="Login-Form">
         <form action='<c:url value="/login"/>' method="post">
             <div style="margin-bottom: 20px">
-                <label for="username">Email hoặc Số điện thoại</label><br>
+                <label for="username">Email, Tên đăng nhập hoặc Số điện thoại</label><br>
                 <input type="text" id="username" name="username" value='<c:if test="${sessionScope.get('username') != null}">${sessionScope.get('username')}</c:if>' required placeholder="example@gmail.com"><br>
             </div>
             <div style="margin-bottom: 20px">
