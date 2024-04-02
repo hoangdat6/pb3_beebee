@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 import java.util.AbstractMap;
 import java.util.Random;
 
-@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/logout", "/confirmcode"})
+@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/userinfor", "/confirmcode", "/logout"})
 public class HomeController extends HttpServlet {
 
     private final UserService userService = new UserServiceImpl();
@@ -47,15 +47,18 @@ public class HomeController extends HttpServlet {
                     sessionUtil.removeValue(request, "USERMODEL");
                     request.getRequestDispatcher("Login.jsp").forward(request, response);
                     break;
-                case "/logout":
-                    sessionUtil.removeValue(request, "USERMODEL");
-                    response.sendRedirect(request.getContextPath() + "/login?action=login&message=logout_success&alert=success");
+                case "/userinfor":
+                    response.sendRedirect(request.getContextPath() + "/UserInformation.jsp");
                     break;
                 case "/register":
                     request.getRequestDispatcher("Sign_Up.jsp").forward(request, response);
                     break;
                 case "/confirmcode":
                     request.getRequestDispatcher("Confirmcode.jsp").forward(request, response);
+                    break;
+                case "/logout":
+                    sessionUtil.removeValue(request, "USERMODEL");
+                    response.sendRedirect(request.getContextPath() + "/home");
                     break;
                 default:
                     showHome(request, response);
@@ -73,7 +76,9 @@ public class HomeController extends HttpServlet {
             SessionUtil sessionUtil = SessionUtil.getInstance();
             sessionUtil.putValue(request, "username", username);
             sessionUtil.putValue(request, "password", password);
-            password = PasswordEncryption.ToSHA1(password, username);
+            String tmp = userService.findUsernameByEmail(username);
+            if(tmp == null) tmp = username;
+            password = PasswordEncryption.ToSHA1(password, tmp);
             User user = userService.findByUsernameAndPassword(username, password);
             sessionUtil.putValue(request, "status", true);
             if(user != null){

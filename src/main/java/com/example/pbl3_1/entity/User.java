@@ -23,6 +23,7 @@ public class User {
     private Date dob;
     private Timestamp createdAt;
     private String imgPath;
+    private String fullname;
 
     public User() {
     }

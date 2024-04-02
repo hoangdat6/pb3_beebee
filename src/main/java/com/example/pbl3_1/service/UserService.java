@@ -16,6 +16,7 @@ public interface UserService {
 
     public User findByUsernameAndPassword(String username, String password);
     AbstractMap.SimpleEntry<Boolean, Boolean> findByUsernameOrEmail(String username, String email);
+    public String findUsernameByEmail(String username);
     public Long save(User object);
 
 }
