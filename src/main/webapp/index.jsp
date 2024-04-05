@@ -77,7 +77,7 @@
       <c:forEach items="${products}" var="product">
       <div class="Card">
         <a href='<c:url value="/product?id=${product.id}" />'>
-          <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
+          <img class="Card-Image" src="${product.productImgPath}">
           <span class="Hot">Hot</span>
           <span class="Sale">-${product.discount}%</span>
         </a>

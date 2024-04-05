@@ -27,7 +27,7 @@ public class HomeController extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
 
         String action2 = request.getServletPath();
-        System.out.println(action2 + "1");
+
         if(action2 == null){
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
