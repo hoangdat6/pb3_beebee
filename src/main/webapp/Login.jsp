@@ -47,7 +47,7 @@
                 </c:if>
             </div>
             <div class="Forgot-Password">
-                <a href="#" class="btn">Quên mật khẩu?</a>
+                <a href="ForgotPassword.jsp" class="btn">Quên mật khẩu?</a>
             </div>
             <input type="hidden" value="login" name="action"/>
             <div>
