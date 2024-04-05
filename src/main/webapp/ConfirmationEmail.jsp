@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="common/taglib.jsp"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,9 +18,12 @@
 <body>
 <div class="wrapper">
     <div class="container">
-        <form action="#" method="post" >
+        <form action= '<c:url value="/confirmemail"/>' method="post" >
             <h1>Xác nhận Email</h1>
-            <input class="box_input" type="text" id="code" placeholder="Nhập mã xác nhận" pattern="[0-9]{6}">
+            <input class="box_input" type="text" id="code" name = "code" placeholder="Nhập mã xác nhận" pattern="[0-9]{6}" required  >
+            <c:if test="${sessionScope.get('codestatus') == false}">
+                <span style="color: red;">*Sai mã xác nhận</span>
+            </c:if>
             <input class="btn" type="submit" value="Xác nhận">
         </form>
     </div>
