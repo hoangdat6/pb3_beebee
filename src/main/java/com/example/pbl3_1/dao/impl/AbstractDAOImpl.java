@@ -88,7 +88,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
     }
 
     @Override
-    public Long saveAll(String sql, List<T> parameters) {
+    public Object saveAll(String sql, List<T> parameters) {
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -98,11 +98,10 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
             ps = con.prepareStatement(sql);
             for (int i = 0; i < parameters.size(); i++){
                 setObject(ps, i, parameters.get(i));
-//                ps.addBatch();
             }
             Integer i = ps.executeUpdate();
             con.commit();
-            return 1L;
+            return i;
         } catch (SQLException e) {
             if (con != null) {
                 try {

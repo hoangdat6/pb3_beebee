@@ -13,7 +13,7 @@ public class ProductItemServiceImpl implements ProductItemService {
     private final ProductItemDAO productItemDAO = new ProductItemDAOImpl();
 
     @Override
-    public Long addProductItems(List<ProductItem> productItems) {
+    public Object addProductItems(List<ProductItem> productItems) {
         return productItemDAO.addProductItems(productItems);
     }
 
