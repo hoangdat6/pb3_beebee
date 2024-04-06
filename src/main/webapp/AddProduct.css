@@ -1,0 +1,236 @@
+:is(#Sale_info, #Basic_info) h3{
+    font-weight: 500;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+.Side_nav {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 20px;
+    left: 20px;
+    overflow-x: hidden;
+    padding: 20px;
+    display: block;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    background-color: #fff;
+}
+
+.Side_nav a {
+    display: block;
+    margin: 10px 0;
+}
+
+.AddProduct_wrap {
+    margin-left: 250px;
+}
+
+.AddProduct_content {}
+
+#Basic_info,
+#Sale_info {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-right: 170px;
+    margin-bottom: 25px;
+}
+
+#Basic_info .section_title,
+#Sale_info .section_title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+:is(#Basic_info, #Sale_info) :is(input[type="text"],
+    input[type="number"], select) {
+    width: 40%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+:where(#Basic_info, #Sale_info) label
+{
+    margin-right: 10px;
+    min-width: 100px;
+    display: inline-block;
+    font-weight: 500;
+}
+
+#Basic_info input,
+#Basic_info select {
+    margin-right: 20px;
+}
+
+#Basic_info label[for="product_image"] img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 2px;
+    display: block;
+    margin-left: 110px;
+}
+
+#Basic_info label[for="product_image"]{
+    display: flex;
+    flex-direction: column;
+}
+
+#image_preview img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin: 10px;
+}
+
+#Sale_info {}
+
+
+#Sale_info .section_title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#Sale_info .Item_title {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+#Sale_info .SII_content_wrap {
+    margin-top: 20px;
+}
+
+#Sale_info :is(.btnAddVarientGroup, .btnAddVarient) {
+    padding: 5px 10px;
+    color: #ee4d2d;
+    border: 1px solid #ee4d2d;
+    border-radius: 5px;
+}
+
+#Sale_info .VGI_wrap,
+#Sale_info .VI_wrap {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 20px;
+}
+
+#Sale_info .VGI {
+    min-width: 100%;
+    position: relative;
+    padding: 10px 5px;
+    border: 1px solid #ccc;
+}
+
+#Sale_info .VGI .Remove_VGI {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+#Sale_info .VI {
+    min-width: calc(50% - 40px);
+    position: relative;
+    padding: 5px;
+    border: 1px solid #f2f2f2;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+#Sale_info .VI label {
+    min-width: auto; display: block; padding: 5px; border: 1px dashed #131417; border-radius: 5px;
+}
+
+#Sale_info .VI label:hover {
+    background-color: #f2f2f2;
+}
+
+#Sale_info .VI label img {
+    width: 20px;
+    height: 20px;
+}
+
+#Sale_info .VI .Remove_VI {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+#myTable {
+    width: 100%; /* Chiều rộng của bảng */
+    border-collapse: collapse; /* Gộp các đường viền của ô lại với nhau */
+    margin-top: 15px;
+}
+
+#myTable th, #myTable td {
+    border: 1px solid black; /* Đường viền cho các ô */
+    padding: 10px; /* Khoảng cách từ nội dung bên trong ô đến đường viền */
+    text-align: left; /* Căn lề cho văn bản */
+}
+
+#myTable td {
+    font-size: 16px;
+}
+
+#myTable td img{
+    margin-top: 10px;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    display: block;
+}
+
+#myTable th {
+    background-color: #f2f2f2; /* Màu nền cho tiêu đề bảng */
+}
+
+.SII{
+    margin: 10px 0;
+}
+
+.SII_content_wrap .SII_list_top{
+    display: none;
+    gap: 10px;
+    padding: 5px 20px;
+}
+
+.SII_content_wrap .SII_list_top_btn
+{
+    padding: 5px 10px;
+    border: 1px solid #141718;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.SII_content_wrap .SII_list_top_btn:hover
+{
+    background-color: #141718;
+    color: #fff;
+}
+
+.SII label{
+    margin-right: 10px;
+    min-width: 100px;
+    display: inline-block;
+    font-weight: 500;
+}
+
+.btnSubmit{
+    padding: 8px 20px;
+    color: #000;
+    border-radius: 8px;
+    border: 1px solid #000 !important;
+}
+
+.btnSubmit:hover{
+    background-color: #000 !important;
+    color: #fff;
+}
