@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface VariationDAO {
     public List<Variation> getVariationsByProductId(Long productId);
+    public Long addVariation(Variation variation);
 }

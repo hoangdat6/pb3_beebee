@@ -6,10 +6,16 @@ import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
 import com.example.pbl3_1.dao.impl.ShoppingCartDAOImpl;
 import com.example.pbl3_1.entity.ProductItem;
 
+import java.util.List;
 import java.util.Objects;
 
 public class ProductItemServiceImpl implements ProductItemService {
     private final ProductItemDAO productItemDAO = new ProductItemDAOImpl();
+
+    @Override
+    public Long addProductItems(List<ProductItem> productItems) {
+        return productItemDAO.addProductItems(productItems);
+    }
 
     @Override
     public ProductItem getProductItemByVariations(String  v1, String v2) {

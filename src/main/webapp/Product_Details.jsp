@@ -34,14 +34,14 @@
                             <div class="Product_Loop">
                                 <div class="Product_Loop-left">
                                     <div class="Product_Loop-Image">
-                                        <div class="Main-Image" style="background: url(img/Product-Details/Main.png) center/cover no-repeat;">
+                                        <div class="Main-Image" style="background: url(${productDetail.productImgPath[0]}) center/cover no-repeat;">
                                             <span class="Hot">Hot</span>
                                             <span class="Sale" id="${productDetail.discount}">-${productDetail.discount}%</span>
                                         </div>
                                         <div class="Secondary-Image">
-                                            <img src="img/Product-Details/img-1.jpeg" alt="#">
-                                            <img src="img/Product-Details/img-2.jpeg" alt="#">
-                                            <img src="img/Product-Details/img-3.jpeg" alt="#">
+                                            <img src="${productDetail.productImgPath[1]}" alt="#">
+                                            <img src="${productDetail.productImgPath[2]}" alt="#">
+                                            <img src="${productDetail.productImgPath[3]}" alt="#">
                                             <i class="fa-solid fa-chevron-right Next"></i>
                                         </div>
                                     </div>

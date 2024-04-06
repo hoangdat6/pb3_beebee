@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface VariationService {
     public List<Variation> getVariationsByProductId(Long id);
+    public Long addVariation(Variation variation);
 }

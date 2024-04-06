@@ -27,7 +27,7 @@ public class HomeController extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
 
         String action2 = request.getServletPath();
-        System.out.println(action2 + "1");
+
         if(action2 == null){
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
@@ -73,7 +73,13 @@ public class HomeController extends HttpServlet {
         String action = request.getServletPath();
         if(action != null && action.equals("/login")){
             boolean check = LoginFunction.Login(request, userService);
-            if(check) response.sendRedirect(request.getContextPath() + "/home");
+            if(check) {
+                response.sendRedirect(request.getContextPath() +
+                        (SessionUtil.getInstance().getValue(request, "redirect") != null ?
+                                SessionUtil.getInstance().getValue(request, "redirect").toString() :
+                                "/home"));
+                SessionUtil.getInstance().removeValue(request, "redirect");
+            }
             else response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
         }else if (action != null && action.equals("/register")){
             boolean check = RegisterFunction.Register(request, userService);

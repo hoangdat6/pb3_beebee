@@ -7,6 +7,7 @@ import com.example.pbl3_1.entity.Product;
 import com.example.pbl3_1.mapper.ProductMapper;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,16 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public Long save(Product product) {
         String sql = "insert into products (name, description, product_img_path, category_id, seller_id, created_at, discount) values (?, ?, ?, ?, ?, ?)";
-        return abstractDAO.save(sql, product.getName(), product.getDescription(), product.getProductImgPath(), product.getCategoryId(), product.getSellerId(), product.getCreatedAt(), product.getDiscount());
+        return abstractDAO.save(
+                sql,
+                product.getName(),
+                product.getDescription(),
+                product.getProductImgPath(),
+                product.getCategoryId(),
+                product.getSellerId(),
+                new Timestamp(System.currentTimeMillis()),
+                product.getDiscount()
+        );
     }
 
     @Override
@@ -111,5 +121,7 @@ public class ProductDAOImpl implements ProductDAO {
             }
         }, id).get(0);
     }
+
+
 
 }

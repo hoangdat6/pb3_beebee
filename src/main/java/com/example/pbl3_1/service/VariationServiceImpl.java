@@ -19,4 +19,9 @@ public class VariationServiceImpl implements VariationService{
         }
         return variations;
     }
+
+    @Override
+    public Long addVariation(Variation variation) {
+        return variationDAO.addVariation(variation);
+    }
 }
