@@ -12,7 +12,7 @@
         </div>
         <div class="Header-Bot">
           <div class="Header-Bot__left">
-            <img class="Logo" src="img/Logo/Logo.png" alt="Logo">
+            <a href='<c:url value="/home"/>' ><img class="Logo" src="img/Logo/Logo.png" alt="Logo"></a>
             <form action="/search" method="get">
               <label for="search"></label>
               <input type="search" id="search" name="q" placeholder="Tìm kiếm theo sản phẩm, phân loại và thương hiệu">

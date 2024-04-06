@@ -25,6 +25,11 @@ public class ProductServiceImpl implements ProductService{
     private final ProductItemDAO productItemDAO = new ProductItemDAOImpl();
 
     @Override
+    public Long addProduct(Product product) {
+        return 0L;
+    }
+
+    @Override
     public List<ProductForHomeDTO> getProductsForHome() {
         List<ProductForHomeDTO> productForHomeDTOS = productDAO.getProductForHomeDtos();
         return productForHomeDTOS;

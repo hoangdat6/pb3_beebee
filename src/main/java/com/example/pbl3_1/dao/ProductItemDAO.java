@@ -11,4 +11,5 @@ public interface ProductItemDAO {
     public Map.Entry<Float, Float> getMaxAndMinPriceByProductId(Long id);
     public Long getProductItemIdByVariations(Long v1, Long v2);
     public int getQuantityByProductId(Long id);
+    Long addProductItems(List<ProductItem> productItems);
 }

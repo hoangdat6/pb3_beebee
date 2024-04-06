@@ -82,4 +82,11 @@ public class ProductItemDAOImpl implements ProductItemDAO {
         return quantity.isEmpty() ? null : quantity.get(0);
     }
 
+    @Override
+    public Long addProductItems(List<ProductItem> productItems) {
+        return genericDAO.saveAll(
+                "INSERT INTO product_item (product_id, product_img_path, variation1, variation2, qty_in_stock, price) VALUES (?, ?, ?, ?, ?, ?)" + ", (?, ?, ?, ?, ?, ?)"
+                        .repeat(Math.max(0, productItems.size() - 1)),
+                productItems);
+    }
 }
