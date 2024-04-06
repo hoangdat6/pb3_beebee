@@ -1,3 +1,4 @@
+<%--<jsp:useBean id="productDetail" scope="session" type="com.example.pbl3_1.controller.dto.product.ProductDetailDTO"/>--%>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
     <%@ include file="common/taglib.jsp" %>
         <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
@@ -33,14 +34,14 @@
                             <div class="Product_Loop">
                                 <div class="Product_Loop-left">
                                     <div class="Product_Loop-Image">
-                                        <div class="Main-Image" style="background: url(img/Product-Details/Main.png) center/cover no-repeat;">
+                                        <div class="Main-Image" style="background: url(${productDetail.productImgPath[0]}) center/cover no-repeat;">
                                             <span class="Hot">Hot</span>
                                             <span class="Sale" id="${productDetail.discount}">-${productDetail.discount}%</span>
                                         </div>
                                         <div class="Secondary-Image">
-                                            <img src="img/Product-Details/img-1.jpeg" alt="#">
-                                            <img src="img/Product-Details/img-2.jpeg" alt="#">
-                                            <img src="img/Product-Details/img-3.jpeg" alt="#">
+                                            <img src="${productDetail.productImgPath[1]}" alt="#">
+                                            <img src="${productDetail.productImgPath[2]}" alt="#">
+                                            <img src="${productDetail.productImgPath[3]}" alt="#">
                                             <i class="fa-solid fa-chevron-right Next"></i>
                                         </div>
                                     </div>
@@ -57,14 +58,27 @@
                                         </div>
                                         <span style="font-size: 20px; line-height: 1.6; margin: 15px 0;" id="Product-Name">${productDetail.name}</span>
                                         <div class="Product-Price">
-                                            <span class="new-Price">
-                                                <fmt:formatNumber
-                                                    value="${productDetail.price * (1 - productDetail.discount / 100)}"
-                                                    type="currency" />
-                                            </span>
-                                            <span class="old-Price">
-                                                <fmt:formatNumber value="${productDetail.price}" type="currency" />
-                                            </span>
+<%--                                            <c:if test=""></c:if>--%>
+                                            <c:if test="${productDetail.minPrice != productDetail.maxPrice}">
+                                                <span class="old-Price">
+                                                    <fmt:formatNumber value="${productDetail.minPrice}" type="currency" /> -
+                                                    <fmt:formatNumber value="${productDetail.maxPrice}" type="currency" />
+                                                </span>
+                                                <span class="new-Price">
+                                                    <fmt:formatNumber value="${productDetail.minPrice * (1 - productDetail.discount / 100)}" type="currency" /> -
+                                                    <fmt:formatNumber value="${productDetail.maxPrice * (1 - productDetail.discount / 100)}" type="currency" />
+                                                </span>
+                                            </c:if>
+
+                                            <c:if test="${productDetail.minPrice == productDetail.maxPrice}">
+                                                <span class="old-Price">
+                                                    <fmt:formatNumber value="${productDetail.maxPrice}" type="currency" />
+                                                </span>
+                                                <span class="new-Price">
+                                                    <fmt:formatNumber value="${productDetail.maxPrice * (1 - productDetail.discount / 100)}" type="currency" />
+                                                </span>
+                                            </c:if>
+
                                         </div>
                                         <div class="Product_category">
                                             <c:set var="cnt" value="1" />
@@ -82,25 +96,28 @@
                                             </c:forEach>
 
                                         </div>
-                                        <div style="font-size: 14px; margin-bottom: 12px"><span id="quantity"></span> sản phẩm có sẵn</div>
+                                        <div style="font-size: 14px; margin-bottom: 12px"><span id="quantity">${productDetail.quantity}</span> sản phẩm có sẵn</div>
                                     </div>
 
                                     <div class="Product_Loop-Button">
                                         <div class="Qty">
                                             <button class="btn Qty__Minus" onclick="decreaseQuantity(this)"><i
                                                     class="fa-solid fa-minus"></i></button>
-                                            <input class="btn Qty__Input" type="number" value="1" min="1">
+                                            <label>
+                                                <input class="btn Qty__Input" type="number" value="1" min="1">
+                                            </label>
                                             <button class="btn Qty__Plus" onclick="increaseQuantity(this)"><i
                                                     class="fa-solid fa-plus"></i></button>
                                         </div>
-                                        <div onclick="showSuccessToast()" class="Add-to-Cart Same">
+                                        <button class="btn Add-to-Cart Same" onclick="saveToCart()">
                                             <i class="fa-solid fa-cart-shopping"></i>
                                             <p>Thêm vào giỏ hàng</p>
-                                        </div>
-                                        <div class="Add-to-Favorite Same">
+                                        </button>
+
+                                        <button class="btn Add-to-Favorite Same">
                                             <i class="fa-regular fa-heart"></i>
                                             <p>Yêu thích</p>
-                                        </div>
+                                        </button>
                                     </div>
                                     <button class="btn Buy">Mua ngay</button>
                                     <div class="Product-Menu">

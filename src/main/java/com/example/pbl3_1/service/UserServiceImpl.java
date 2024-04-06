@@ -21,7 +21,22 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void save(User object) {
-        userDAO.save(object);
+    public String findUsernameByEmail(String username) {
+        return userDAO.findUsernameByEmail(username);
+    }
+
+    @Override
+    public Long save(User object) {
+        return userDAO.save(object);
+    }
+
+    @Override
+    public boolean findEmail(String email) {
+        return userDAO.findEmail(email);
+    }
+
+    @Override
+    public Integer updatePass(String username, String password) {
+        return userDAO.updatePass(username, password);
     }
 }

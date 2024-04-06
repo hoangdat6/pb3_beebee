@@ -13,6 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class Variation {
     Long id;
+    Long productId;
     String name;
     List<VariationOption> variationOptions;
 

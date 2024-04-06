@@ -12,7 +12,7 @@
         </div>
         <div class="Header-Bot">
           <div class="Header-Bot__left">
-            <img class="Logo" src="img/Logo/Logo.png" alt="Logo">
+            <a href='<c:url value="/home"/>' ><img class="Logo" src="img/Logo/Logo.png" alt="Logo"></a>
             <form action="/search" method="get">
               <label for="search"></label>
               <input type="search" id="search" name="q" placeholder="Tìm kiếm theo sản phẩm, phân loại và thương hiệu">
@@ -23,12 +23,13 @@
           <ul class="Header-Bot__right">
             <li class="Header-Bot__Account">
               <c:if test="${sessionScope.get('USERMODEL') != null}">
-                <a style="color: #030712" href='<c:url value="/logout"/>'><i class="fa-solid fa-user"></i></a>
+                <a style="color: #030712" href='<c:url value="/userinfor"/>'><i class="fa-solid fa-user"></i></a>
               </c:if>
               <c:if test="${sessionScope.get('USERMODEL') == null}">
                 <a style="color: #030712" href='<c:url value="/login"/>'><i class="fa-solid fa-user"></i></a>
               </c:if>
               ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
+              <c:if test="${sessionScope.get('USERMODEL') != null}">
               <div class="User_option">
                 <div class="Shop_option">
                   <h3>Shop của bạn</h3>
@@ -44,9 +45,10 @@
                   <a href="UserInformation.jsp"><img src="./img/Shop/TKCuaToi.svg" alt="">Tài khoản của tôi</a>
                   <a href="#"><img src="./img/Shop/DiaChiCT.svg" alt="">Địa chỉ của tôi</a>
                   <a href="#"><img src="./img/Shop/DonMua.svg" alt="">Đơn mua</a>
-                  <a href="#"><img src="./img/Shop/DangXuar.svg" alt="">Đăng xuất</a>
+                  <a href='<c:url value="/logout"/>'><img src="./img/Shop/DangXuar.svg" alt="">Đăng xuất</a>
                 </div>
               </div>
+              </c:if>
             </li>
             <li class="Header-Bot__Cart" style="position: relative;">
               <i class="fa-solid fa-cart-shopping"></i>Giỏ hàng

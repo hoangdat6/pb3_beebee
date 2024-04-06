@@ -34,109 +34,38 @@ function changeImage(image) {
     document.getElementById('productImage').src = image;
 }
 
-
-// $(document).ready(function(){
-//     $(".Category_option1, .Category_option2").click(function(){
-//         let variation1 = $(".Category_option1.Selected").attr('id');
-//         let variation2 = null;
-//         if($(".Category_option2").length){
-//             variation2 = $(".Category_option2.Selected").attr('id');
-//             if(variation1 !== undefined && variation2 !== undefined){
-//                 $.ajax({
-//                     type: "GET",
-//                     url: "/PBL3_1_war_exploded/api/product-detail",
-//                     data: {variation1: variation1, variation2: variation2},
-//                     success: function(response){
-//                         let product = JSON.parse(response);
-//                         // $("#quantity").text(product.qtyInStock);
-//                         document.querySelector('#quantity').innerText = product.qtyInStock;
-//                     }
-//                 });
-//             }
-//         } else {
-//             if(variation1 !== undefined){
-//                 $.ajax({
-//                     type: "GET",
-//                     url: "/PBL3_1_war_exploded/api/product-detail",
-//                     data: {variation1: variation1, variation2: null},
-//                     success: function(response){
-//                         let product = JSON.parse(response);
-//                         $("#quantity").text(product.qtyInStock);
-//
-//                     }
-//                 });
-//             }
-//         }
-//     });
-//
-//     $(".Category_option2").click(function(){
-//         let variation1 = $(".Category_option1.Selected").attr('id');
-//         let variation2 = $(".Category_option2.Selected").attr('id');
-//         if(variation1 !== undefined && variation2 !== undefined){
-//             $.ajax({
-//                 type: "GET",
-//                 url: "/PBL3_1_war_exploded/api/product-detail",
-//                 data: {variation1: variation1, variation2: variation2},
-//                 success: function(response){
-//                     let product = JSON.parse(response);
-//                     $("#quantity").text(product.qtyInStock);
-//
-//                 }
-//             });
-//         }
-//     });
-// });
-//
-//
-// $(document).ready(function(){
-//     $(".Category_option1, .Category_option2").click(function(){
-//         let variation1 = $(".Category_option1.Selected").attr('id');
-//         let variation2 = $(".Category_option2.Selected").attr('id');
-//         if(variation1 !== undefined && variation2 !== undefined){
-//             $.ajax({
-//                 type: "GET",
-//                 url: "/PBL3_1_war_exploded/api/product-detail",
-//                 data: {variation1: variation1, variation2: variation2},
-//                 success: function(response){
-//                     let product = JSON.parse(response);
-//                     $("#price").text(product.price);
-//                     $("#quantity").text(product.qtyInStock);
-//                 }
-//             });
-//         }
-//     });
-// });
-
 let discount = parseFloat($(".Sale").attr('id'));
+let oldPrice = $(".Product-Price").html();
+let quantityAll = $("#quantity").html();
 
 $(document).ready(function(){
     $(".Category_option1, .Category_option2").click(function(){
-        let variation1 = $(".Category_option1.Selected").attr('id');
+        let variation1 = null;
         let variation2 = null;
-        if($(".Category_option2").length){
-            variation2 = $(".Category_option2.Selected").attr('id');
-            if(variation1 !== undefined && variation2 !== undefined){
-                $.ajax({
-                    type: "GET",
-                    url: "/PBL3_1_war_exploded/api/product-detail",
-                    data: {variation1: variation1, variation2: variation2},
-                    success: function(response){
-                        load(response);
-                    }
-                });
-            }
-        } else {
-            if(variation1 !== undefined){``
-                $.ajax({
-                    type: "GET",
-                    url: "/PBL3_1_war_exploded/api/product-detail",
-                    data: {variation1: variation1, variation2: null},
-                    success: function(response){
-                        load(response);
-                    }
-                });
+        let input = document.getElementsByClassName('Qty__Input');
+        let quantity = parseInt(input[1].value);
+
+        if($(".Category_option1").length){
+            variation1 = $(".Category_option1.Selected").attr('id');
+
+            if($(".Category_option2").length)
+                variation2 = $(".Category_option2.Selected").attr('id');
+
+            if(variation1 === undefined || variation2 === undefined){
+                $(".Product-Price").html(oldPrice);
+                $("#quantity").html(quantityAll);
             }
         }
+
+        $.ajax({
+            type: "GET",
+            url: "/PBL3_1_war_exploded/api/product-detail",
+            data: {variation1: variation1, variation2: variation2},
+            success: function(response){
+                load(response);
+            }
+        });
+
     });
 });
 
@@ -147,4 +76,46 @@ function load(response){
     $(".new-Price").text(formattedNewPrice);
     $(".old-Price").text(formattedPrice);
     $("#quantity").text(product.qtyInStock);
+    $(".Main-Image").attr('style', `background: url(${product.productImgPath}) center/cover no-repeat;`);
+
 }
+
+function saveToCart(){
+    let variation1 = null;
+    let variation2 = null;
+    let input = document.getElementsByClassName('Qty__Input');
+    let quantity = parseInt(input[1].value);
+
+    if($(".Category_option1").length){
+        variation1 = $(".Category_option1.Selected").attr('id');
+        if($(".Category_option2").length)
+            variation2 = $(".Category_option2.Selected").attr('id');
+
+        if(variation1 === undefined || variation2 === undefined){
+            alert("Please choose a variation and quantity");
+            return;
+        }
+    }
+    let quantityProductItem = parseInt($("#quantity").text());
+
+    if(quantityProductItem < quantity){
+        showErrorToast("Warning", "Số lượng sản phẩm không đủ");
+        return;
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/PBL3_1_war_exploded/api/add-to-cart",
+        data: {variation1: variation1, variation2: variation2, quantity: quantity},
+        success: function(response){
+            let re = JSON.parse(response);
+            if(re.status === "200"){
+                showSuccessToast("Success", "Đã thêm vào giỏ hàng");
+            } else {
+                showErrorToast("Warning", "Số lượng sản phẩm không đủ");
+            }
+        }
+    });
+}
+
+

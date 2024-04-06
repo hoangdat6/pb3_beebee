@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Trang chủ</title>
   <link rel="stylesheet" type="text/css" href="CommonCSS.css">
   <link rel="stylesheet" type="text/css" href="Top-Bar.css">
   <link rel="stylesheet" type="text/css" href = "Footer.css">
@@ -77,7 +77,7 @@
       <c:forEach items="${products}" var="product">
       <div class="Card">
         <a href='<c:url value="/product?id=${product.id}" />'>
-          <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
+          <img class="Card-Image" src="${product.productImgPath}">
           <span class="Hot">Hot</span>
           <span class="Sale">-${product.discount}%</span>
         </a>

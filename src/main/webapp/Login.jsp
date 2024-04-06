@@ -16,7 +16,7 @@
 </head>
 <body class="BG-White">
 <header id="LG-Header" class="mg-l-r-170">
-    <a href="index.jsp" class="LG-Header_Back">
+    <a class="LG-Header_Back" href='<c:url value="/home"/>' >
         <i class="fa-solid fa-chevron-left"></i>
         <span>Trở về</span>
     </a>
@@ -36,7 +36,7 @@
     <div class="Login-Form">
         <form action='<c:url value="/login"/>' method="post">
             <div style="margin-bottom: 20px">
-                <label for="username">Email hoặc Số điện thoại</label><br>
+                <label for="username">Email, Tên đăng nhập hoặc Số điện thoại</label><br>
                 <input type="text" id="username" name="username" value='<c:if test="${sessionScope.get('username') != null}">${sessionScope.get('username')}</c:if>' required placeholder="example@gmail.com"><br>
             </div>
             <div style="margin-bottom: 20px">
@@ -47,7 +47,7 @@
                 </c:if>
             </div>
             <div class="Forgot-Password">
-                <a href="#" class="btn">Quên mật khẩu?</a>
+                <a href="ForgotPassword.jsp" class="btn">Quên mật khẩu?</a>
             </div>
             <input type="hidden" value="login" name="action"/>
             <div>

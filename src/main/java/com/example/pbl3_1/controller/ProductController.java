@@ -1,6 +1,8 @@
 package com.example.pbl3_1.controller;
 
+import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
+import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.ProductService;
 import com.example.pbl3_1.service.ProductServiceImpl;
 import jakarta.servlet.ServletException;
@@ -19,12 +21,21 @@ public class ProductController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-
         String path = request.getServletPath();
 
         switch (path) {
             case "/product":
-                showProductDetails(request, response);
+                // get user from session
+                User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
+                // check if the user is logged in or not
+                Long id = Long.parseLong(request.getParameter("id"));
+                if(user == null){
+                    // if not, redirect to the login page
+                    SessionUtil.getInstance().putValue(request, "redirect", "/product?id=" + id);
+                    response.sendRedirect(request.getContextPath() + "/login?action=login&message=login_required&alert=danger");
+                    return;
+                }
+                showProductDetails(request, response, id);
                 break;
         }
     }
@@ -34,9 +45,7 @@ public class ProductController extends HttpServlet {
 
     }
 
-    public void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
-
+    public void showProductDetails(HttpServletRequest request, HttpServletResponse response, Long id) throws ServletException, IOException {
         ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
         request.setAttribute("productDetail", productDetailDTO);
 

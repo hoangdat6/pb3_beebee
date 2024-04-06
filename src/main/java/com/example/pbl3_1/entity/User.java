@@ -7,7 +7,6 @@ import lombok.Setter;
 
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.util.TimeZone;
 
 @Getter
 @Setter
@@ -22,7 +21,8 @@ public class User {
     private Egender gender;
     private Date dob;
     private Timestamp createdAt;
-    private String imgPath;
+    private String avatar;
+    private String fullname;
 
     public User() {
     }
