@@ -178,6 +178,14 @@ input[type="file"] {
 
 #myTable td {
     font-size: 16px;
+    text-align: center;
+}
+
+#myTable td > input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
 #myTable td img{
@@ -186,6 +194,8 @@ input[type="file"] {
     height: 50px;
     object-fit: cover;
     display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #myTable th {
