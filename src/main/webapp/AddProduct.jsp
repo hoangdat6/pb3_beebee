@@ -56,7 +56,7 @@
                         <input type="file" name="product_image" id="product_image" accept="image/*" multiple>
                         <label style="font-size: 20px;" for="product_image">
                             <span style="font-size: 14px; font-weight: 500; min-width:100px;">Ảnh bìa</span>
-                            <img src="./img/Logo/insert-picture-icon.png" alt="">
+                            <img id="ProductImage" src="./img/Logo/insert-picture-icon.png" alt="">
                         </label>
                     </div>
                     <div id="image_preview"></div>                    
@@ -119,7 +119,7 @@
                 </div>
             </section>
             <section>
-                <button class="btn btnSubmit">Thêm sản phẩm</button>
+                <button class="btn btnSubmit" onclick="AddProduct()">Thêm sản phẩm</button>
             </section>
         </main>
     </div>
