@@ -48,7 +48,7 @@ public class ProductController extends HttpServlet {
     public void showProductDetails(HttpServletRequest request, HttpServletResponse response, Long id) throws ServletException, IOException {
         ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
         request.setAttribute("productDetail", productDetailDTO);
-
+        productService.increaseView(id);
         request.getRequestDispatcher("Product_Details.jsp").forward(request, response);
     }
 }
