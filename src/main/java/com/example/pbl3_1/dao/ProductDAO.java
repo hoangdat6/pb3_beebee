@@ -15,4 +15,5 @@ public interface ProductDAO extends CommonDAO<Product>{
     List<ProductForHomeDTO> getProductForHomeDtos();
     ProductDetailDTO getProductDetailById(Long id);
     void increaseView(Long id);
+    Long addProduct(Product product);
 }

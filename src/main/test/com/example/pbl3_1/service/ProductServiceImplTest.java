@@ -15,7 +15,7 @@ public class ProductServiceImplTest {
         VariationOptionService variationOptionService = new VariationOptionServiceImpl();
         ProductItemService productItemService = new ProductItemServiceImpl();
 
-        Product product = Product.builder().name("test1").price(10F).build();
+        Product product = Product.builder().name("test1").build();
         Long productId = productService.addProduct(product);
 
         ProductItem productItem1 = ProductItem.builder().productId(2L).productImgPath("test2").variation1(1L).variation2(2L).qtyInStock(10).price(1000F).build();

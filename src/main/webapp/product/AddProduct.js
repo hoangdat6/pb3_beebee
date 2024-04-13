@@ -346,7 +346,7 @@ function AddVarient(id) {
         VI_wrap.insertAdjacentHTML('beforeend', `
         <div class="VI" id="VI0${VI_id_wrap0}">
               <label for="VI_img${cntVGI0element}">
-                <img src="./img/Logo/insert-picture-icon.png" alt="preview">
+                <img src="../img/Logo/insert-picture-icon.png" alt="preview">
               </label>
               <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
@@ -423,13 +423,16 @@ function ChangeImagePreview(div) {
 function AddProduct() {
     let data = [];
     let ProductName = document.querySelector('#product_name').value;
-    let discount = parseFloat(document.querySelector('#discount').value);
+    let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
     let ProductImage = document.querySelector('#product_image').src;
     let ProductCategory = document.querySelector('#category').value;
     let ProductDescription= document.querySelector('#product_description').value;
-    // let table = document.querySelector('#myTable th ');
-    let Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]').value;
-    let Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]').value;
+
+    let Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]') != null ?
+        document.querySelector('.VGI0 input[name="varient_group_name"]').value : "";
+
+    let Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]') != null ?
+        document.querySelector('.VGI1 input[name="varient_group_name"]').value : "";
 
     // let ProductImage = document.getElementById('ProductImage').src;
     data.push({
@@ -441,21 +444,33 @@ function AddProduct() {
         Variation1 : Variation1Name,
         Variation2 : Variation2Name,
     });
-    let ProductRows = table.table.rows;
-    let VariationOption1Name = "";
-    for (let i = 1; i < ProductRows.length; i++) {
-        let cells = ProductRows[i].cells;
-        if (cells.length === 4) {
-            VariationOption1Name = cells[0].innerText;
-        }
-        let VariationOption1 = VariationOption1Name;
-        let VariationOption2 = cells[cells.length - 3].innerText;
-        let QtyInStock = cells[cells.length - 2].children[0].value;
-        let Price = cells[cells.length - 1].children[0].value;
+    let table = document.getElementById("myTable");
+    if(table.rows.length > 0) {
+        let ProductRows = table.table.rows;
+        let VariationOption1Name = "";
+        for (let i = 1; i < ProductRows.length; i++) {
+            let cells = ProductRows[i].cells;
+            if (cells.length === 4) {
+                VariationOption1Name = cells[0].innerText;
+            }
+            let VariationOption1 = VariationOption1Name;
+            let VariationOption2 = cells[cells.length - 3].innerText;
+            let QtyInStock = cells[cells.length - 2].children[0].value;
+            let Price = cells[cells.length - 1].children[0].value;
 
+            data.push({
+                VariationOption1: VariationOption1,
+                VariationOption2: VariationOption2,
+                QtyInStock: QtyInStock,
+                Price: Price
+            });
+        }
+    }else {
+        let QtyInStock = document.getElementById("KhoHang").value;
+        let Price = document.getElementById("Gia").value;
         data.push({
-            VariationOption1: VariationOption1,
-            VariationOption2: VariationOption2,
+            VariationOption1: "",
+            VariationOption2: "",
             QtyInStock: QtyInStock,
             Price: Price
         });
@@ -471,7 +486,13 @@ function AddProduct() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            let response = JSON.parse(data);
+            console.log(response);
+            if(response.status === "200") {
+                showSuccessToast("Success", "Thêm sản phẩm thành công");
+            }else {
+                showErrorToast("Warning", "Thêm sản phẩm thất bại");
+            }
         })
         .catch((error) => {
             console.error('Error:', error);

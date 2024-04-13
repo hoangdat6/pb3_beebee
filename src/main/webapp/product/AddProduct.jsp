@@ -1,5 +1,5 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-<%@ include file="common/taglib.jsp"%>
+<%@ include file="../common/taglib.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
@@ -10,14 +10,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add new product</title>
     <link rel="stylesheet" href="AddProduct.css">
-    <link rel="stylesheet" type="text/css" href="CommonCSS.css">
-    <link rel="stylesheet" type="text/css" href="Top-Bar.css">
-    <link rel="stylesheet" type="text/css" href="Footer.css">
+    <link rel="stylesheet" type="text/css" href="../CommonCSS.css">
+    <link rel="stylesheet" type="text/css" href="../Top-Bar.css">
+    <link rel="stylesheet" type="text/css" href="../Footer.css">
+    <script src="../toast.js"></script>
+    <script src="AddProduct.js"></script>
+    <link rel="stylesheet" href="../toast.css" />
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
+    <div id="toast">
+
+    </div>
     <div class="AddProduct_wrap">
         <aside class="Side_nav">
             <a href="#Basic_info">
@@ -56,18 +62,21 @@
                             Mô tả sản phẩm
                         </label>
                         <textarea name="product_description" id="product_description" cols="30" rows="10" required></textarea>
+                        <span style="color: #9CA3AF"></span>2000</span>
+
                     </div>
                     <div>
                         <label for="discount">
                             Giảm giá (%)
                         </label>
-                        <input type="text" name="discount" id="discount" required>
+                        <input type="number" name="discount" id="discount" required>
+                        <span style="color: #9CA3AF"><= 99%</span>
                     </div>
                     <div style="margin-top: 10px; margin-bottom: 10px;">
                         <input type="file" name="product_image" id="product_image" accept="image/*" multiple>
                         <label style="font-size: 20px;" for="product_image">
                             <span style="font-size: 14px; font-weight: 500; min-width:100px;">Ảnh bìa</span>
-                            <img id="ProductImage" src="./img/Logo/insert-picture-icon.png" alt="">
+                            <img id="ProductImage" src="../img/Logo/insert-picture-icon.png" alt="">
                         </label>
                     </div>
                     <div id="image_preview"></div>                    
@@ -134,7 +143,16 @@
             </section>
         </main>
     </div>
-    <script src="./AddProduct.js"></script>
+    <script>
+        document.getElementById('discount').addEventListener('input', function() {
+            if (this.value.length > 2) {
+                this.value = this.value.slice(0, 2);
+            }
+        });
+
+        
+    </script>
+    <script src="AddProduct.js"></script>
 </body>
 
 </html>

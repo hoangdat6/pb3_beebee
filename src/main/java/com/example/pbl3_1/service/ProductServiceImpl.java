@@ -26,13 +26,12 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public Long addProduct(Product product) {
-        return 0L;
+        return productDAO.addProduct(product);
     }
 
     @Override
     public List<ProductForHomeDTO> getProductsForHome() {
-        List<ProductForHomeDTO> productForHomeDTOS = productDAO.getProductForHomeDtos();
-        return productForHomeDTOS;
+        return productDAO.getProductForHomeDtos();
     }
 
     @Override
@@ -44,7 +43,7 @@ public class ProductServiceImpl implements ProductService{
 
         productDetailDTO.setVariations(variations);
         productDetailDTO.setProductImgPath(imgPaths);
-
+        increaseView(id);
         return productDetailDTO;
     }
 
