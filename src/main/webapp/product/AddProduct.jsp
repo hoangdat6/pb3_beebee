@@ -13,6 +13,8 @@
     <link rel="stylesheet" type="text/css" href="CommonCSS.css">
     <link rel="stylesheet" type="text/css" href="Top-Bar.css">
     <link rel="stylesheet" type="text/css" href="Footer.css">
+    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -44,14 +46,23 @@
                         Danh mục
                     </label>
                     <select name="category" id="category" required>
-                        <option value="">-- Chọn danh mục --</option>
-                        <option value="Thời trang">Thời trang</option>
-                        <option value="Điện thoại & Phụ kiện">Điện thoại & Phụ kiện</option>
-                        <option value="Máy tính & Laptop">Máy tính & Laptop</option>
-                        <option value="Đồng hồ">Đồng hồ</option>
-                        <option value="Giày dép">Giày dép</option>
-                        <option value="Đồ gia dụng">Đồ gia dụng</option>
+                        <c:forEach var="category" items="${categories}">
+                            <option value="${category.id}">${category.name}</option>
+                        </c:forEach>
                     </select>
+
+                    <div style="margin-top: 10px; margin-bottom: 10px;">
+                        <label for="product_description" style="">
+                            Mô tả sản phẩm
+                        </label>
+                        <textarea name="product_description" id="product_description" cols="30" rows="10" required></textarea>
+                    </div>
+                    <div>
+                        <label for="discount">
+                            Giảm giá (%)
+                        </label>
+                        <input type="text" name="discount" id="discount" required>
+                    </div>
                     <div style="margin-top: 10px; margin-bottom: 10px;">
                         <input type="file" name="product_image" id="product_image" accept="image/*" multiple>
                         <label style="font-size: 20px;" for="product_image">
