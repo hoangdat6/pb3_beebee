@@ -1,0 +1,87 @@
+#Pop_ups{
+    padding: 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fff;
+    box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+#Pop_ups .Pop_ups_title{
+    font-size: 20px;
+    font-weight: 500;
+    color: #131415;
+}
+
+#Pop_ups img{
+    width: 60px;
+    height: auto;
+}
+
+#Pop_ups input{
+    width: 270px;
+    padding: 8px 10px;
+    text-align: center;
+    border-radius: 8px;
+    border: 1px solid #CCC;
+}
+
+#Pop_ups .Pop_ups_btn{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    line-height: 30px;
+}
+
+#Pop_ups .Pop_ups_btn .btn{
+    width: 80px;
+    height: 30px;
+    border-radius: 5px;
+}
+
+#Pop_ups .Pop_ups_btn .btn:hover{
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+#Pop_ups .Pop_ups_btn .btn_Cancel{
+    text-align: center;
+    background-color: #D9D9D9 !important;
+}
+
+#Pop_ups .Pop_ups_btn .btn_Send{
+    text-align: center;
+    background-color: #131415 !important;
+    color: #fff;
+}
+
+#Pop_ups input:invalid ~ span{
+    display: block !important;
+    color: red;
+    font-size: 12px;
+}
+
+#Pop_ups input:valid ~ span{
+    display: none !important;
+}
+
+#Pop_ups_code{
+    display: flex;
+    gap: 10px;
+}
+
+#Pop_ups_code input{
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    border-radius: 5px;
+}

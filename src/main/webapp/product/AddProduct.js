@@ -18,7 +18,6 @@ class AddProductTable {
             this.VariationOption2Names = Array.from(document.querySelectorAll(".VGI1 .VI input[name='VI_name']")).map((input) => input.value);
         }
     }
-
     createTable() {
         this.Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]').value;
 
