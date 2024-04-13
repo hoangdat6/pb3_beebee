@@ -1,10 +1,14 @@
+.UI_title {
+    font-size: 36px;
+    font-weight: 500;
+    text-align: center;
+    margin: 30px 0;
+}
+
 .UI_wrap {
     display: flex;
-    width: 100%;
-    gap: 15px;
+    max-width: 1200px;
     align-items: flex-start;
-    padding-top: 40px;
-    padding-bottom: 40px;
 }
 
 .UI_bar {
@@ -12,10 +16,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 25%;
+    max-width: 262px;
     padding: 15px 20px;
     background-color: #F3F5F7;
     gap: 10px;
+    border-radius: 10px;
 }
 
 .UI_bar_top {
@@ -24,7 +29,7 @@
 }
 
 .UI_userName {
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .Avatar_wrapper {
@@ -75,31 +80,54 @@
     flex-grow: 1;
 }
 
-.UI_title {
-    font-size: 20px;
-    font-weight: 500;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
 .UI_form {
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    gap: 12px;
+    margin-bottom: 30px;
+    padding: 20px 30px;
+    border: 1px solid #CBCBCB;
+    border-radius: 10px;
 }
 
 .form_title {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-weight: 500;
 }
 
 .UI_form input {
     font-size: 16px;
-    padding: 7px 16px;
+    line-height: 1.7;
+    padding: 3px 16px;
     width: 100%;
-    border-radius: 6px;
+    border-radius: 5px;
     border: 1px solid #CBCBCB;
-    margin-bottom: 20px;
-    color: #6C7275;
+    color: #131415;
+}
+
+.UI_form_element span{
+    color: red;
+    display: none;
+}
+
+input:invalid ~ #error-message {
+    color: red;
+    display: block;
+}
+
+input:valid~#error-message{
+    display: none;
+}
+
+.Email_input {
+    position: relative;
+}
+
+.Email_input_Btn {
+    position: absolute;
+    right: 20px;
+    top: 35px;
 }
 
 /*.UI_form input:invalid {*/
@@ -109,6 +137,10 @@
 .UI_form input[type="submit"] {
     color: #131415;
     border-color: #131415;
+    max-width: 171px;
+    padding: 4px 20px;
+    font-size: 16px;
+    margin-top: 10px;
 }
 
 .UI_form input[type="submit"]:hover {
@@ -118,9 +150,9 @@
 
 .UI_form label {
     display: block;
-    margin-bottom: 12px;
-    font-size: 12px;
-    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 400;
     color: #6C7275;
 }
 
