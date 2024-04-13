@@ -21,7 +21,8 @@
 
 <body class="Color-White">
     <%@ include file="Top-Bar.jsp" %>
-        <fmt:setLocale value="vi_VN" />
+    <fmt:setLocale value="vi_VN" />
+    <c:set var="User" value="${sessionScope.get('USERMODEL')}"/>
         <h1 class="UI_title">
             Tài khoản của tôi
         </h1>
@@ -31,19 +32,16 @@
                     <div class="Avatar_wrapper">
                         <img class="UI_avatar" id="Avatar" src="./img/Product-Details/Review-Avatar-1.jpeg" alt="#">
                         <input type="file" name="fileInput" id="fileInput" style="display: none;">
-                        <img class="UI_camera" src="./img/User_information/Camera.svg" id="cameraImage" alt="#">
+                        <img class="UI_camera"  src="./img/User_information/Camera.svg" id="cameraImage" alt="#">
                     </div>
-                    <h3 class="UI_userName">Tên người dùng</h3>
+                    <h3 class="UI_userName">${User.username}</h3>
                 </div>
                 <ul class="UI_bar_bot">
                     <li class="UI_bar_bot_item"><img src="./img/User_information/User.png" alt="#">Tài khoản</li>
-                    <li class="UI_bar_bot_item"><img src="./img/User_information/Location.svg" alt="#">Địa chỉ của tôi
-                    </li>
-                    <li class="UI_bar_bot_item"><img src="./img/User_information/order.png" alt="#">Đơn hàng của tôi
-                    </li>
-                    <li class="UI_bar_bot_item"><img src="./img/User_information/heart.svg" alt="#">Sản phẩm yêu thích
-                    </li>
-                    <li class="UI_bar_bot_item"><img src="./img/User_information/log out.svg" alt="#">Đăng xuất</li>
+                    <li class="UI_bar_bot_item"><img src="./img/User_information/Location.svg" alt="#">Địa chỉ của tôi</li>
+                    <li class="UI_bar_bot_item"><img src="./img/User_information/order.png" alt="#">Đơn hàng của tôi</li>
+                    <li class="UI_bar_bot_item"><img src="./img/User_information/heart.svg" alt="#">Sản phẩm yêu thích</li>
+                    <li class="UI_bar_bot_item"><a href='<c:url value="/logout"/>'><img src="./img/User_information/log out.svg" alt="#">Đăng xuất</a></li>
                 </ul>
             </aside>
 
@@ -52,28 +50,28 @@
                     <h3 class="form_title">Thông tin cá nhân</h3>
                     <div class="UI_form_element">
                         <label for="UI_name">Họ và tên</label>
-                        <input type="text" id="UI_name" name="UI_name" required>
+                        <input type="text" id="UI_name" name="UI_name" value='<c:if test="${User.fullname != null}">${User.fullname}</c:if>' required>
                     </div>
                     
                     <div class="UI_form_element">
                         <label for="UI_username">Tên đăng nhập</label>
-                        <input type="text" id="UI_username" name="UI_username" required>
+                        <input type="text" id="UI_username" name="UI_username" value='<c:if test="${User.username != null}">${User.username}</c:if>' readonly required>
                     </div>
 
                     <div class="UI_form_element">
                         <label for="UI_dob">Ngày tháng năm sinh</label>
-                        <input type="date" id="UI_dob" name="UI_dob" required max="2024-12-31" onkeydown="return false;" onfocus="this.click();">
+                        <input type="date" id="UI_dob" name="UI_dob" required max="2024-12-31" onkeydown="return false;" onfocus="this.click();" value='<c:if test="${User.dob != null}">${User.dob}</c:if>'>
                     </div>
 
                     <div class="UI_form_element">
                         <label for="UI_phone">Số điện thoại</label>
-                        <input type="tel" id="UI_phone" name="UI_phone" pattern="([0-9]{10})" required>
+                        <input type="tel" id="UI_phone" name="UI_phone" pattern="([0-9]{10})"  value='<c:if test="${User.phone != null}">${User.phone}</c:if>' readonly required>
                         <span id="error-message">Số điện thoại không hợp lệ</span>
                     </div>
 
                     <div class="Email_input">
                         <label for="UI_email">Email</label>
-                        <input type="email" id="UI_email" name="UI_email" value="vulinh***@gmail.com" required readonly>
+                        <input type="email" id="UI_email" name="UI_email" value='<c:if test="${User.email != null}">${User.email}</c:if>' required readonly>
                         <button onclick="EmailIdentify()" class="btn Email_input_Btn"><i class="fa-regular fa-pen-to-square"></i></button>
                     </div>
 
@@ -102,5 +100,6 @@
         </div>
         <%@ include file="Footer.jsp" %>
         <script type="text/javascript" src="./Pop-ups.js"></script>
+        <script src="UserInformation.js"></script>
 </body>
 </html>
