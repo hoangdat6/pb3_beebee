@@ -6,4 +6,8 @@ import java.util.List;
 
 public interface VariationOptionDAO {
     public List<VariationOption> getVariationOptionsByVariationId(Long id);
+
+    Long addVariationOption(VariationOption variationOption);
+
+    Long checkVariationOptionExist(VariationOption variationOption);
 }

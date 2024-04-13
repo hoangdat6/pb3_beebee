@@ -1,27 +1,27 @@
 class AddProductTable {
     constructor() {
         this.table = document.querySelector('#myTable');
-        this.Category1Name = document.querySelector('.VGI0 input[name="varient_group_name"]').value;
+        this.Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]').value;
 
-        this.category1NamesAndSrcImages = Array.from(document.querySelectorAll(".VGI0 .VI")).map((vi) => {
+        this.VariationOption1NamesAndSrcImages = Array.from(document.querySelectorAll(".VGI0 .VI")).map((vi) => {
             return {
                 name: vi.querySelector("input[name='VI_name']").value,
                 imgSrc: vi.querySelector("img").src
             };
         });
 
-        this.Category2Name = "";
-        this.category2Names = null;
+        this.Variation2Name = "";
+        this.VariationOption2Names = null;
 
         if (document.querySelector('.VGI1') != null) {
-            this.Category2Name = document.querySelector('.VGI1 input[name="varient_group_name"]').value;
-            this.category2Names = Array.from(document.querySelectorAll(".VGI1 .VI input[name='VI_name']")).map((input) => input.value);
+            this.Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]').value;
+            this.VariationOption2Names = Array.from(document.querySelectorAll(".VGI1 .VI input[name='VI_name']")).map((input) => input.value);
         }
     }
     createTable() {
-        this.Category1Name = document.querySelector('.VGI0 input[name="varient_group_name"]').value;
+        this.Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]').value;
 
-        this.category1NamesAndSrcImages = Array.from(document.querySelectorAll(".VGI0 .VI")).map((vi) => {
+        this.VariationOption1NamesAndSrcImages = Array.from(document.querySelectorAll(".VGI0 .VI")).map((vi) => {
             return {
                 name: vi.querySelector("input[name='VI_name']").value,
                 imgSrc: vi.querySelector("img").src
@@ -29,40 +29,40 @@ class AddProductTable {
         });
         this.rows = [];
 
-        this.Category2Name = "";
-        this.category2Names = null;
+        this.Variation2Name = "";
+        this.VariationOption2Names = null;
 
         if (document.querySelector('.VGI1') != null) {
-            this.Category2Name = document.querySelector('.VGI1 input[name="varient_group_name"]').value;
-            this.category2Names = Array.from(document.querySelectorAll(".VGI1 .VI input[name='VI_name']")).map((input) => input.value);
+            this.Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]').value;
+            this.VariationOption2Names = Array.from(document.querySelectorAll(".VGI1 .VI input[name='VI_name']")).map((input) => input.value);
         }
 
-        if (this.category2Names != null && this.category2Names != undefined && this.category2Names.length > 0) {
+        if (this.VariationOption2Names !== null && this.VariationOption2Names !== undefined && this.VariationOption2Names.length > 0) {
             // Xóa toàn bộ bảng chỉ giữ lại header
             this.table.innerHTML = `<tr>
-            <th>${this.Category1Name}</th>
-            <th>${this.Category2Name}</th>
+            <th>${this.Variation1Name}</th>
+            <th>${this.Variation2Name}</th>
             <th>Kho Hàng</th>
             <th>Giá tiền</th>
             </tr>`;
 
             // Lặp qua tất cả phân loại 1
-            for (let i = 0; i < this.category1NamesAndSrcImages.length; i++) {
+            for (let i = 0; i < this.VariationOption1NamesAndSrcImages.length; i++) {
                 // Lặp qua tất cả phân loại 2
-                for (let j = 0; j < this.category2Names.length; j++) {
+                for (let j = 0; j < this.VariationOption2Names.length; j++) {
                     // Tạo hàng mới
                     let row = this.table.insertRow();
                     // Thêm rowspan cho phân loại 1 nếu là hàng đầu tiên của phân loại 2
                     if (j === 0) {
                         // Add the category1 element
                         let cell1 = row.insertCell();
-                        cell1.innerHTML = `${this.category1NamesAndSrcImages[i].name}  <img src="${this.category1NamesAndSrcImages[i].imgSrc}" alt="${this.category1NamesAndSrcImages[i].name}">`;
-                        cell1.rowSpan = this.category2Names.length;
+                        cell1.innerHTML = `${this.VariationOption1NamesAndSrcImages[i].name}  <img src="${this.VariationOption1NamesAndSrcImages[i].imgSrc}" alt="${this.VariationOption1NamesAndSrcImages[i].name}">`;
+                        cell1.rowSpan = this.VariationOption2Names.length;
                     }
 
                     // Thêm phân loại 2
                     let cell2 = row.insertCell();
-                    cell2.innerHTML = this.category2Names[j];
+                    cell2.innerHTML = this.VariationOption2Names[j];
 
                     // Thêm hàng kho hàng và giá tiền
                     let cell3 = row.insertCell();
@@ -74,18 +74,18 @@ class AddProductTable {
         }
         else {
             this.table.innerHTML = `<tr>
-            <th>${this.Category1Name}</th>
+            <th>${this.Variation1Name}</th>
             <th>Kho Hàng</th>
             <th>Giá tiền</th>
             </tr>`;
             // Iterate over category1
-            for (let i = 0; i < this.category1NamesAndSrcImages.length; i++) {
+            for (let i = 0; i < this.VariationOption1NamesAndSrcImages.length; i++) {
                 // Create a new row
                 let row = this.table.insertRow();
 
                 // Add the category1 element
                 let cell1 = row.insertCell();
-                cell1.innerHTML = `${this.category1NamesAndSrcImages[i].name}  <img src="${this.category1NamesAndSrcImages[i].imgSrc}" alt="${this.category1NamesAndSrcImages[i].name}">`;
+                cell1.innerHTML = `${this.VariationOption1NamesAndSrcImages[i].name}  <img src="${this.VariationOption1NamesAndSrcImages[i].imgSrc}" alt="${this.VariationOption1NamesAndSrcImages[i].name}">`;
 
                 // Add cells for Kho Hàng and Giá tiền
                 let cell2 = row.insertCell();
@@ -110,9 +110,9 @@ class AddProductTable {
     }
 
     addVI0toTable(VIname, VISrcImage) {
-        this.category2Names = Array.from(document.querySelectorAll(".VGI1 .VI input[name='VI_name']")).map((input) => input.value);
+        this.VariationOption2Names = Array.from(document.querySelectorAll(".VGI1 .VI input[name='VI_name']")).map((input) => input.value);
 
-        if (this.category2Names == null || this.category2Names == undefined || this.category2Names.length == 0) {
+        if (this.VariationOption2Names === null || this.VariationOption2Names === undefined || this.VariationOption2Names.length === 0) {
             let row = this.table.insertRow();
             let cell1 = row.insertCell();
             cell1.innerHTML = `${VIname}  <img src="${VISrcImage}" alt="${VIname}">`;
@@ -124,16 +124,16 @@ class AddProductTable {
             cell4.innerHTML = '<input type="number" placeholder="Giá tiền" value = 0>'; // Replace with actual data
         }
         else {
-            for (let j = 0; j < this.category2Names.length; j++) {
+            for (let j = 0; j < this.VariationOption2Names.length; j++) {
                 let row = this.table.insertRow();
                 if (j == 0) {
                     let cell1 = row.insertCell();
                     cell1.innerHTML = `${VIname}  <img src="${VISrcImage}" alt="${VIname}">`;
-                    cell1.rowSpan = this.category2Names.length;
+                    cell1.rowSpan = this.VariationOption2Names.length;
                 }
 
                 let cell2 = row.insertCell();
-                cell2.innerHTML = this.category2Names[j];
+                cell2.innerHTML = this.VariationOption2Names[j];
                 // Add cells for Kho Hàng and Giá tiền
                 let cell3 = row.insertCell();
                 cell3.innerHTML = '<input type="number" placeholder="Kho Hàng" value = "0">'; // Replace with actual data
@@ -144,7 +144,7 @@ class AddProductTable {
     }
     //Thêm phân loại thứ 2
     addVI1toTable(VIname) {
-        this.category1NamesAndSrcImages = this.category1NamesAndSrcImages = Array.from(document.querySelectorAll(".VGI0 .VI input[name='VI_name']")).map((input) => input.value);
+        this.VariationOption1NamesAndSrcImages = this.VariationOption1NamesAndSrcImages = Array.from(document.querySelectorAll(".VGI0 .VI input[name='VI_name']")).map((input) => input.value);
 
         let curRowspan = this.table.rows[1].cells[0].rowSpan;
 
@@ -195,7 +195,7 @@ class AddProductTable {
     renameVI1ByIndex(index, newName) {
         let curRowspan = this.table.rows[1].cells[0].rowSpan;
         for (let i = index + 1; i < this.table.rows.length; i += curRowspan) {
-            if ((i - 1) % curRowspan == 0) {
+            if ((i - 1) % curRowspan === 0) {
                 this.table.rows[i].cells[1].innerHTML = newName;
             }
             else {
@@ -345,7 +345,7 @@ function AddVarient(id) {
         VI_wrap.insertAdjacentHTML('beforeend', `
         <div class="VI" id="VI0${VI_id_wrap0}">
               <label for="VI_img${cntVGI0element}">
-                <img src="./img/Logo/insert-picture-icon.png" alt="preview">
+                <img src="../img/Logo/insert-picture-icon.png" alt="preview">
               </label>
               <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
@@ -363,7 +363,7 @@ function AddVarient(id) {
             <button class="btn Remove_VI" onclick="removeVI1(this)"><i class="fa-solid fa-x"></i></button>
         </div>
         `);
-        if (cntVGI1element == 0)
+        if (cntVGI1element === 0)
             createTable();
         else table.addVI1toTable("");
         ++VI_id_wrap1;
@@ -417,37 +417,65 @@ function ChangeImagePreview(div) {
     reader.readAsDataURL(input.files[0]);
 }
 
+
+
 function AddProduct() {
     let data = [];
     let ProductName = document.querySelector('#product_name').value;
+    let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
+    let ProductImage = document.querySelector('#product_image').src;
     let ProductCategory = document.querySelector('#category').value;
+    let ProductDescription= document.querySelector('#product_description').value;
+
+    let Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]') != null ?
+        document.querySelector('.VGI0 input[name="varient_group_name"]').value : "";
+
+    let Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]') != null ?
+        document.querySelector('.VGI1 input[name="varient_group_name"]').value : "";
+
     // let ProductImage = document.getElementById('ProductImage').src;
     data.push({
         ProductName: ProductName,
-        // ProductImage: ProductImage,
+        ProductImage: ProductImage,
         ProductCategory: ProductCategory,
+        ProductDescription: ProductDescription,
+        Discount : discount,
+        Variation1 : Variation1Name,
+        Variation2 : Variation2Name,
     });
-    let ProductRows = table.table.rows;
-    let Category1Name = "";
-    for (let i = 1; i < ProductRows.length; i++) {
-        let cells = ProductRows[i].cells;
-        if (cells.length == 4) {
-            Category1Name = cells[0].innerText;
-        }
-        let Category1 = Category1Name;
-        let Category2 = cells[cells.length - 3].innerText;
-        let Inventory = cells[cells.length - 2].children[0].value;
-        let Price = cells[cells.length - 1].children[0].value;
+    let table = document.getElementById("myTable");
+    if(table.rows.length > 0) {
+        let ProductRows = table.table.rows;
+        let VariationOption1Name = "";
+        for (let i = 1; i < ProductRows.length; i++) {
+            let cells = ProductRows[i].cells;
+            if (cells.length === 4) {
+                VariationOption1Name = cells[0].innerText;
+            }
+            let VariationOption1 = VariationOption1Name;
+            let VariationOption2 = cells[cells.length - 3].innerText;
+            let QtyInStock = cells[cells.length - 2].children[0].value;
+            let Price = cells[cells.length - 1].children[0].value;
 
+            data.push({
+                VariationOption1: VariationOption1,
+                VariationOption2: VariationOption2,
+                QtyInStock: QtyInStock,
+                Price: Price
+            });
+        }
+    }else {
+        let QtyInStock = document.getElementById("KhoHang").value;
+        let Price = document.getElementById("Gia").value;
         data.push({
-            Category1: Category1,
-            Category2: Category2,
-            Inventory: Inventory,
+            VariationOption1: "",
+            VariationOption2: "",
+            QtyInStock: QtyInStock,
             Price: Price
         });
     }
     console.log(JSON.stringify(data));
-    fetch('http://sualinknay', {
+    fetch('/PBL3_1_war_exploded/product/save', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -457,7 +485,13 @@ function AddProduct() {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('Success:', data);
+            let response = JSON.parse(data);
+            console.log(response);
+            if(response.status === "200") {
+                showSuccessToast("Success", "Thêm sản phẩm thành công");
+            }else {
+                showErrorToast("Warning", "Thêm sản phẩm thất bại");
+            }
         })
         .catch((error) => {
             console.error('Error:', error);

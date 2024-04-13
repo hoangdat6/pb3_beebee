@@ -9,6 +9,7 @@ import jakarta.inject.Inject;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class AbstractDAOImpl<T> implements GenericDAO<T> {
 
@@ -30,6 +31,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
             con.commit();
             return id;
         } catch (SQLException e) {
+            e.printStackTrace();
             if (con != null) {
                 try {
                     con.rollback();
@@ -63,7 +65,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
         try {
             ps = (con == null) ? null : con.prepareStatement(sql);
             setParameter(ps, 0, parameters);
-            rs = ps.executeQuery();
+            rs = Objects.requireNonNull(ps).executeQuery();
 
             if(rs.next()){
                 return rs.getLong(1);
@@ -88,7 +90,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
     }
 
     @Override
-    public Long saveAll(String sql, List<T> parameters) {
+    public Object saveAll(String sql, List<T> parameters) {
         Connection con = null;
         PreparedStatement ps = null;
 
@@ -98,12 +100,12 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
             ps = con.prepareStatement(sql);
             for (int i = 0; i < parameters.size(); i++){
                 setObject(ps, i, parameters.get(i));
-//                ps.addBatch();
             }
             Integer i = ps.executeUpdate();
             con.commit();
-            return 1L;
+            return i;
         } catch (SQLException e) {
+            e.printStackTrace();
             if (con != null) {
                 try {
                     con.rollback();
@@ -122,6 +124,34 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
                 }
             } catch (SQLException e2) {
                 e2.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public Object delete(String sql, Object... parameters) {
+        Connection con = JDBCUtil.getInstance().getConnection();
+        PreparedStatement ps = null;
+        try {
+            con = JDBCUtil.getInstance().getConnection();
+            con.setAutoCommit(false);
+            ps = con.prepareStatement(sql);
+            setParameter(ps, 0,  parameters);
+            Object rowCnt = Objects.requireNonNull(ps).executeUpdate();
+            con.commit();
+            return rowCnt;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                if(ps != null)
+                    ps.close();
+                if(con != null) {
+                    con.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         }
         return null;

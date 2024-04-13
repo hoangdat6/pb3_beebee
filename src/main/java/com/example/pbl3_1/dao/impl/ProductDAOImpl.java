@@ -63,7 +63,7 @@ public class ProductDAOImpl implements ProductDAO {
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
         sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
         sql.append("GROUP BY p.id\n");
-        sql.append("LIMIT 20 OFFSET 0");
+//        sql.append("LIMIT 20 OFFSET 0");
 
 
         return abstractDAO.query(sql.toString(), resultSet -> {
@@ -122,6 +122,25 @@ public class ProductDAOImpl implements ProductDAO {
         }, id).get(0);
     }
 
+    @Override
+    public void increaseView(Long id) {
+        String sql = "UPDATE products SET views = views + 1 WHERE id = ?";
+        abstractDAO.update(sql, id);
+    }
 
-
+    @Override
+    public Long addProduct(Product product) {
+        String sql = "INSERT INTO products (name, description, product_img_path, category_id, seller_id, created_at, discount, views) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        return abstractDAO.save(
+                sql,
+                product.getName(),
+                product.getDescription(),
+                product.getProductImgPath(),
+                product.getCategoryId(),
+                product.getSellerId(),
+                new Timestamp(System.currentTimeMillis()),
+                product.getDiscount(),
+                0
+        );
+    }
 }

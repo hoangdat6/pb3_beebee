@@ -5,6 +5,7 @@ import com.example.pbl3_1.Util.PasswordEncryption;
 import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.AccountFunction.*;
+import com.example.pbl3_1.controller.dto.product.ProductForHomeDTO;
 import com.example.pbl3_1.service.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/userinfor", "/confirmemail", "/logout", "/forgotpass", "/resetpass"})
 public class HomeController extends HttpServlet {
@@ -90,7 +92,7 @@ public class HomeController extends HttpServlet {
             int check = ConfirmEmailFunction.ConfirmEmail(request, userService);
             if(check == 1) response.sendRedirect(request.getContextPath() + "/login");
             else if(check == 2) response.sendRedirect(request.getContextPath() + "/resetpass");
-            else if(check == 3) response.sendRedirect(request.getContextPath() + "/confirmemail");
+            else if (check == 3) response.sendRedirect(request.getContextPath() + "/confirmemail");
         }else if(action != null && action.equals("/forgotpass"))
         {
             boolean check = ForgotPassFunction.ForgotPass(request, userService);
@@ -105,7 +107,8 @@ public class HomeController extends HttpServlet {
     }
 
     public void showHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setAttribute("products", productService.getProductsForHome());
+        List<ProductForHomeDTO> products = productService.getProductsForHome();
+        request.setAttribute("products", products);
         request.setAttribute("categories", categoryService.getCategories());
 
         request.getRequestDispatcher("index.jsp").forward(request, response);

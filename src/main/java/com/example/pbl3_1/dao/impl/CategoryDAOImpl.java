@@ -46,4 +46,10 @@ public class CategoryDAOImpl implements CategoryDAO {
         return abstractDAO.query(sql, new CategoryMapper());
     }
 
+    @Override
+    public int getCategoryByName(String name) {
+        String sql = "SELECT id FROM categories WHERE name = ?";
+        return abstractDAO.query(sql, new CategoryMapper(), name).get(0).getId();
+    }
+
 }
