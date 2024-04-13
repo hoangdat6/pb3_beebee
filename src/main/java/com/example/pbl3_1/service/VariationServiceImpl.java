@@ -7,6 +7,7 @@ import com.example.pbl3_1.dao.impl.VariationOptionDAOImpl;
 import com.example.pbl3_1.entity.Variation;
 
 import java.util.List;
+import java.util.Objects;
 
 public class VariationServiceImpl implements VariationService{
     VariationDAO variationDAO = new VariationDAOImpl();
@@ -22,6 +23,10 @@ public class VariationServiceImpl implements VariationService{
 
     @Override
     public Long addVariation(Variation variation) {
-        return variationDAO.addVariation(variation);
+        // nếu tên variation không rỗng thì thêm vào database
+        if(!Objects.equals(variation.getName(), "")){
+            return variationDAO.addVariation(variation);
+        }
+        return null;
     }
 }

@@ -10,4 +10,6 @@ public interface CategoryDAO {
     public void deleteById(Long id);
     public Category findById(int id);
     public List<Category> findAll();
+
+    int getCategoryByName(String name);
 }
