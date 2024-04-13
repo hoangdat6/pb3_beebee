@@ -47,4 +47,9 @@ public class ProductServiceImpl implements ProductService{
 
         return productDetailDTO;
     }
+
+    @Override
+    public void increaseView(Long id) {
+        productDAO.increaseView(id);
+    }
 }

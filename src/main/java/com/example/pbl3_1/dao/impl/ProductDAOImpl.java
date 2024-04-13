@@ -122,6 +122,9 @@ public class ProductDAOImpl implements ProductDAO {
         }, id).get(0);
     }
 
-
-
+    @Override
+    public void increaseView(Long id) {
+        String sql = "UPDATE products SET views = views + 1 WHERE id = ?";
+        abstractDAO.update(sql, id);
+    }
 }

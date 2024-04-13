@@ -90,7 +90,7 @@ public class HomeController extends HttpServlet {
             int check = ConfirmEmailFunction.ConfirmEmail(request, userService);
             if(check == 1) response.sendRedirect(request.getContextPath() + "/login");
             else if(check == 2) response.sendRedirect(request.getContextPath() + "/resetpass");
-            else if(check == 3) response.sendRedirect(request.getContextPath() + "/confirmemail");
+            else if (check == 3) response.sendRedirect(request.getContextPath() + "/confirmemail");
         }else if(action != null && action.equals("/forgotpass"))
         {
             boolean check = ForgotPassFunction.ForgotPass(request, userService);

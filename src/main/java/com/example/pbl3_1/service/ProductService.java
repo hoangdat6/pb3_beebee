@@ -10,4 +10,5 @@ public interface ProductService {
     Long addProduct(Product product);
     List<ProductForHomeDTO> getProductsForHome();
     ProductDetailDTO getProductDetail(Long id);
+    void increaseView(Long id);
 }

@@ -244,3 +244,11 @@ input[type="file"] {
     background-color: #000 !important;
     color: #fff;
 }
+
+#Basic_info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    flex-direction: row;
+
+}

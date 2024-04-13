@@ -10,4 +10,5 @@ public interface GenericDAO<T> {
     Long save (String sql, Object... parameters);
     Long count(String sql, Object... parameters);
     Object saveAll(String sql, List<T> parameters);
+    Object delete(String sql, Object... parameters);
 }

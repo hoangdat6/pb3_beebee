@@ -6,7 +6,6 @@ import java.sql.SQLException;
 
 public class JDBCUtil {
     private static JDBCUtil jdbcUtil = null;
-//    private static Connection con = null;
     public  static JDBCUtil getInstance(){
         if(jdbcUtil == null){
             jdbcUtil = new JDBCUtil();
@@ -15,7 +14,6 @@ public class JDBCUtil {
     }
 
     public Connection getConnection(){
-//        if(con != null) return con;
         try {
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
