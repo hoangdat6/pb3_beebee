@@ -51,4 +51,9 @@ public class ProductServiceImpl implements ProductService{
     public void increaseView(Long id) {
         productDAO.increaseView(id);
     }
+
+    @Override
+    public void updateProductImage(Long productId, String images) {
+        productDAO.updateProductImage(productId, images);
+    }
 }

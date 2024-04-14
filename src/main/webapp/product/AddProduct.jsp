@@ -2,7 +2,6 @@
 <%@ include file="../common/taglib.jsp" %>
         <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
 
-</html>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -144,9 +143,9 @@
                     </div>
 
                     <div class="Cover_image">
-                        <h3 class="item_title" style="width: max-content;">Ảnh bìa 
+                        <h3 class="item_title" style="width: max-content;">Ảnh bìa
                             <span style="font-size: 11px; font-weight: 400; color: #6C7275;">
-                                <span style="color: #EA580C;">*</span> 
+                                <span style="color: #EA580C;">*</span>
                                 Ảnh bìa sẽ được hiển thị tại các trang kết quả tìm kiếm.</span></h3>
                         <input onchange="AddCoverImage(this)" type="file" name="cover_image" id="cover_image" accept="image/*" multiple>
                         <label for="cover_image">
@@ -163,7 +162,7 @@
                     </label>
                     <input type="text" name="product_name" id="product_name" required>
                 </div>
-                
+
                 <div style="display: flex;">
                     <div class="Basic_info_item">
                         <label class="item_title" for="category">
@@ -249,6 +248,7 @@
                         <label for="KhoHang" class="item_title">Kho hàng</label>
                         <input type="number" name="Kho Hang" id="KhoHang" placeholder="Kho hàng">
                     </div>
+
                 </div>
             </section>
             <section class="btn_wrap">

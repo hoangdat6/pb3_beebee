@@ -187,9 +187,9 @@ class AddProductTable {
         }
     }
 
-    renameVI0ByIndex(index, newItem) {
+    renameVI0ByIndex(index, newName) {
         let curRowspan = this.table.rows[1].cells[0].rowSpan;
-        this.table.rows[index * curRowspan + 1].cells[0].innerHTML = `${newItem.name}  <img src="${newItem.srcImg}" alt="${newItem.name}">`;
+        this.table.rows[index * curRowspan + 1].cells[0].innerHTML = newName + this.table.rows[index * curRowspan + 1].cells[0].innerHTML;
     }
 
     renameVI1ByIndex(index, newName) {
@@ -480,47 +480,52 @@ function AddProduct() {
     let data = [];
     let ProductName = document.querySelector('#product_name').value;
     let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
-    let ProductImage = document.querySelector('#product_image').src;
     let ProductCategory = document.querySelector('#category').value;
-    let ProductDescription = document.querySelector('#product_description').value;
-
+    let ProductDescription= document.querySelector('#product_description').value;
     let Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]') != null ?
         document.querySelector('.VGI0 input[name="varient_group_name"]').value : "";
-
     let Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]') != null ?
         document.querySelector('.VGI1 input[name="varient_group_name"]').value : "";
-
+    let images = document.querySelectorAll('#container img');
+    let imageSrc = [];
+    images.forEach((image) => {
+        imageSrc.push(image.src.split(',')[1]);
+    });
+    // let ProductImage = document.getElementById('ProductImage').src;
     data.push({
         ProductName: ProductName,
-        ProductImage: ProductImage,
         ProductCategory: ProductCategory,
         ProductDescription: ProductDescription,
-        Discount: discount,
-        Variation1: Variation1Name,
-        Variation2: Variation2Name,
+        Discount : discount,
+        Variation1 : Variation1Name,
+        Variation2 : Variation2Name,
+        Images: imageSrc
     });
-    let table = document.getElementById("myTable");
-    if (table.rows.length > 0) {
+
+    if(document.getElementById("myTable").rows.length > 0) {
         let ProductRows = table.table.rows;
         let VariationOption1Name = "";
         for (let i = 1; i < ProductRows.length; i++) {
             let cells = ProductRows[i].cells;
+            let ProductItemImage = "";
             if (cells.length === 4) {
                 VariationOption1Name = cells[0].innerText;
             }
             let VariationOption1 = VariationOption1Name;
             let VariationOption2 = cells[cells.length - 3].innerText;
+
             let QtyInStock = cells[cells.length - 2].children[0].value;
             let Price = cells[cells.length - 1].children[0].value;
 
             data.push({
                 VariationOption1: VariationOption1,
                 VariationOption2: VariationOption2,
+                ProductItemImage : ProductItemImage,
                 QtyInStock: QtyInStock,
                 Price: Price
             });
         }
-    } else {
+    }else {
         let QtyInStock = document.getElementById("KhoHang").value;
         let Price = document.getElementById("Gia").value;
         data.push({
