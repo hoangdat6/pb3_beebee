@@ -189,7 +189,7 @@ class AddProductTable {
 
     renameVI0ByIndex(index, newName) {
         let curRowspan = this.table.rows[1].cells[0].rowSpan;
-        this.table.rows[index * curRowspan + 1].cells[0].innerHTML = newName + this.table.rows[index * curRowspan + 1].cells[0].innerHTML;
+        this.table.rows[index * curRowspan + 1].cells[0].innerHTML = `${newName.name}  <img src="${newName.srcImg}" alt="${newName.name}">`;
     }
 
     renameVI1ByIndex(index, newName) {
@@ -269,7 +269,7 @@ function UpdateProductImageAfterChangeImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        VI.querySelector(`label img`).src = "./img/Logo/Black Img.png";
+        VI.querySelector(`label img`).src = "../img/Logo/Black Img.png";
     }
 }
 
@@ -360,7 +360,7 @@ function AddVarient(id) {
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
-        table.addVI0toTable("", './img/Logo/insert-picture-icon.png');
+        table.addVI0toTable("", '../img/Logo/Black Img.png');
         ++cntVGI0element;
         ++VI_id_wrap0;
     }
@@ -379,6 +379,8 @@ function AddVarient(id) {
     }
     // table.createTableByRows();
 }
+
+
 
 //Xóa Varient Group Item (Nhóm phân loại)
 function removeVGI() {
@@ -450,7 +452,7 @@ function AddProductImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        img.src = "./img/Logo/Black Img.png";
+        img.src = "../img/Logo/Black Img.png";
         container.appendChild(imgobj);
     }
     img.addEventListener('click', function () {
@@ -472,7 +474,7 @@ function AddCoverImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        document.querySelector('.cover_image img').src = "./img/Logo/Black Img.png";
+        document.querySelector('.cover_image img').src = "../img/Logo/Black Img.png";
     }
 }
 
@@ -486,12 +488,12 @@ function AddProduct() {
         document.querySelector('.VGI0 input[name="varient_group_name"]').value : "";
     let Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]') != null ?
         document.querySelector('.VGI1 input[name="varient_group_name"]').value : "";
-    let images = document.querySelectorAll('#container img');
+    let images = document.querySelectorAll('.imgObject img');
     let imageSrc = [];
     images.forEach((image) => {
         imageSrc.push(image.src.split(',')[1]);
     });
-    // let ProductImage = document.getElementById('ProductImage').src;
+
     data.push({
         ProductName: ProductName,
         ProductCategory: ProductCategory,
@@ -511,6 +513,7 @@ function AddProduct() {
             if (cells.length === 4) {
                 VariationOption1Name = cells[0].innerText;
             }
+            ProductItemImage = cells[0].querySelector('img').src.split(',')[1];
             let VariationOption1 = VariationOption1Name;
             let VariationOption2 = cells[cells.length - 3].innerText;
 

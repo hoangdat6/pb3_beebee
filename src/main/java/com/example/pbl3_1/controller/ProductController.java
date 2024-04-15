@@ -93,13 +93,15 @@ public class ProductController extends HttpServlet {
         BufferedReader reader = request.getReader();
         String images = "";
 
+
         String root = getServletContext().getRealPath("/");
+
 
         root = root.replace("target" + File.separator +"PBL3_1-1.0-SNAPSHOT" + File.separator,
                 "src" + File.separator + "main" + File.separator + "webapp" + File.separator );
 
         String rootPath = root + "ImageProduct"  + File.separator;
-
+        String webappDirectoryRoot = getServletContext().getRealPath("/") + File.separator + "ImageProduct" + File.separator;
 
         System.out.println(rootPath);
         List<Map<String, Object>> data = objectMapper.readValue(reader, List.class);
@@ -120,6 +122,7 @@ public class ProductController extends HttpServlet {
         List<String> imageStrings = (List<String>) data.get(0).get("Images") ;
 
         images = saveImages(rootPath, productId.toString(),"", imageStrings);
+        saveImages(webappDirectoryRoot, productId.toString(),"", imageStrings);
 
         // Cập nhật đường dẫn ảnh vào database
         productService.updateProductImage(productId, images);
@@ -137,8 +140,9 @@ public class ProductController extends HttpServlet {
             ProductItem item = new ProductItem();
             item.setProductId(productId);
             if(data.get(i).getOrDefault("ProductItemImage", null) != null){
-                List<String> itemImages = (List<String>) data.get(i).get("ProductItemImage");
-                String imgPath = saveImages(rootPath, productId.toString(), "i", itemImages);
+                String itemImages = data.get(i).get("ProductItemImage").toString();
+                String imgPath = saveImages(rootPath, productId.toString(), Integer.toString(i), List.of(itemImages));
+                saveImages(webappDirectoryRoot, productId.toString(), Integer.toString(i), List.of(itemImages));
                 item.setProductImgPath(imgPath);
                 System.out.println(imgPath);
             }
@@ -177,7 +181,7 @@ public class ProductController extends HttpServlet {
     }
 
     String saveImages(String rootPath, String productId, String item, List<String> imageStrings) throws IOException {
-        String images = "";
+        StringBuilder images = new StringBuilder();
         String dir = "";
         String filename = "";
         for (int i = 0; i < imageStrings.size(); i++) {
@@ -190,15 +194,18 @@ public class ProductController extends HttpServlet {
                 Files.createDirectories(path);
             }
 
-            filename = productId + "_" +  i  + item + ".jpg";
+            filename = productId + "_" +  i  + item + ".png";
             // Define path to save image
             Path pathImg = Paths.get(path + File.separator + filename);
 
             // Write byte array to file
             Files.write(pathImg, data1);
 
-            images += "ImageProduct/" + dir + filename + ",";
+            if(i == imageStrings.size() - 1)
+                images.append("ImageProduct/").append(dir).append(filename);
+            else
+                images.append("ImageProduct/").append(dir).append(filename).append(",");
         }
-        return images;
+        return images.toString();
     }
 }

@@ -179,7 +179,7 @@
                         <label style="margin-bottom: 0; width: 100px;" class="item_title" for="discount">
                             Giảm giá (%)
                         </label>
-                        <input type="number" name="discount" id="discount" placeholder="<= 90%" required>
+                        <input type="number" name="discount" id="discount" placeholder="<= 99%" min="0" max="99" required>
                     </div>
                 </div>
 
@@ -256,13 +256,7 @@
                 <div class="btn btnCancel">Hủy</div>
             </section>
         </main>
-    <script>
-        document.getElementById('discount').addEventListener('input', function () {
-            if (this.value.length > 2) {
-                this.value = this.value.slice(0, 2);
-            }
-        });
-    </script>
+
 
     <script src="AddProduct.js"></script>
     <script src="../Common.js"></script>
