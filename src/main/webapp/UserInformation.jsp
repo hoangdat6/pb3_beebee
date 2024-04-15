@@ -46,7 +46,7 @@
             </aside>
 
             <main class="UI_content">
-                <form action="" class="UI_form">
+                <form action="#" class="UI_form">
                     <h3 class="form_title">Thông tin cá nhân</h3>
                     <div class="UI_form_element">
                         <label for="UI_name">Họ và tên</label>
@@ -72,7 +72,7 @@
                     <div class="Email_input">
                         <label for="UI_email">Email</label>
                         <input type="email" id="UI_email" name="UI_email" value='<c:if test="${User.email != null}">${User.email}</c:if>' required readonly>
-                        <button onclick="EmailIdentify()" class="btn Email_input_Btn"><i class="fa-regular fa-pen-to-square"></i></button>
+                        <div class="btn Email_input_Btn"><i class="fa-regular fa-pen-to-square" onclick="EmailIdentify()"></i></div>
                     </div>
 
                     <input class="btn" type="submit" value="Lưu thay đổi">

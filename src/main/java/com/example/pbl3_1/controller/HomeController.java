@@ -42,7 +42,8 @@ public class HomeController extends HttpServlet {
                         request.getRequestDispatcher("Login.jsp").forward(request, response);
                     break;
                 case "/userinfor":
-                    response.sendRedirect(request.getContextPath() + "/UserInformation.jsp");
+//                    response.sendRedirect(request.getContextPath() + "/UserInformation.jsp");
+                    request.getRequestDispatcher("UserInformation.jsp").forward(request, response);
                     break;
                 case "/register":
                     if(sessionUtil.getValue(request, "USERMODEL") != null)
