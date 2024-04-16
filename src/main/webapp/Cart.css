@@ -132,7 +132,7 @@ p.Item-Category {
 .Item-Qty{
     padding: 5px 5px;
     border-radius: 3px;
-    border: 1px solid #6C7275;
+    /*border: 1px solid #6C7275;*/
     background-color: #fff;
 }
 

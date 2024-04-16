@@ -24,6 +24,7 @@ public class ProductMapper implements RowMapper<Product>{
                     .discount(rs.getFloat("discount"))
 //                    .sellerId(rs.getLong("seller_id"))
                     .createdAt(rs.getTimestamp("created_at"))
+
                     .build();
         } catch (Exception e) {
             e.printStackTrace();

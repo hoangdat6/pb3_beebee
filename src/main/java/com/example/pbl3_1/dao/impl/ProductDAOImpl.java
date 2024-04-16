@@ -34,12 +34,13 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public Object deleteById(Long id) {
 
+        return null;
     }
 
     @Override
-    public Product findById(int id) {
+    public Product findById(Long id) {
         return null;
     }
 

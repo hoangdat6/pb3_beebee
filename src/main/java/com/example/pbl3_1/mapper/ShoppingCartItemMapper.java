@@ -12,7 +12,7 @@ public class ShoppingCartItemMapper implements RowMapper<ShoppingCartItem>{
             return new ShoppingCartItem(rs.getLong("id"),
                     rs.getLong("cart_id"),
                     rs.getLong("product_item_id"),
-                    rs.getInt("qty"),
+                    rs.getInt("quantity"),
                     rs.getTimestamp("created_at"));
         } catch (SQLException e) {
             e.printStackTrace();

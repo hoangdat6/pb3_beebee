@@ -4,6 +4,7 @@ import com.example.pbl3_1.dao.UserDAO;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.mapper.UserMapper;
 
+import java.sql.Date;
 import java.util.AbstractMap;
 import java.util.List;
 
@@ -21,8 +22,14 @@ public class UserDAOimpl implements UserDAO {
     }
 
     @Override
-    public void deleteById(Long object) {
+    public Object deleteById(Long object) {
 
+        return null;
+    }
+
+    @Override
+    public User findById(Long id) {
+        return null;
     }
 
     @Override
@@ -70,5 +77,11 @@ public class UserDAOimpl implements UserDAO {
     public Integer updatePass(String username, String password) {
         StringBuilder sql = new StringBuilder("UPDATE users SET password = ? WHERE username = ?");
         return abstractDAO.update(sql.toString(), password, username);
+    }
+
+    @Override
+    public Integer updateInfor(User user) {
+        StringBuilder sql = new StringBuilder("UPDATE users SET fullname = ?, phone = ?, email = ?, dob = ? WHERE username = ?");
+        return abstractDAO.update(sql.toString(), user.getFullname(), user.getPhone(), user.getEmail(), user.getDob(), user.getUsername());
     }
 }

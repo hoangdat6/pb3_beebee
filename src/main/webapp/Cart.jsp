@@ -61,50 +61,57 @@
             </div>
 
             <div class="Table_Content">
-                <% for (int i = 0; i < 3; i++) { %>
+                <c:forEach items="${shoppingcarts}" var="shoppingcart">
                 <div class="Shop_Products">
                     <div class="Shop_Products-Header">
                         <input type="checkbox" name="Shop" id="ShopPick">
-                        <img src="img/Brand/Coffee.jpeg" alt="Shop">
-                        <span class="Shop_Name">Ten Shop</span>
+                        <img src="${shoppingcart.imgPath}" alt="Shop">
+                        <span class="Shop_Name">${shoppingcart.shopName}</span>
                         <i></i>
                     </div>
                     <div class="Shop_Products-Content">
 
-                        <% for (int j = 0; j < 3; j++) { %>
+                        <c:forEach items="${shoppingcart.productForShoppingCarts}" var="productcart">
                         <div class="Shop_Products-Cell">
                             <input type="checkbox" name="Cart_CB">
                             <img class="Cell_Col_1" src="img/Product-Details/Category-1.jpeg" alt="Product Imge">
                             <div class="Cell_Col_2">
-                                <p class="Item-Name">Bàn xách tay</p>
+                                <p class="Item-Name">${productcart.name}</p>
                                 <p class="Item-Category">
-                                    Loại: Đen
+                                    ${productcart.nameVariation1}: ${productcart.valueVariation1} <br>
+                                    ${productcart.nameVariation2}: ${productcart.valueVariation2}
                                 </p>
-                                <a class="Item-Remove" href="">
+                                <a class="Item-Remove" href='<c:url value="/cart?type=delete&id=${sessionScope.get('USERMODEL').id}&idItem=${productcart.id}"/>'>
                                     <i class="fa-solid fa-x"></i>
                                     Xóa khỏi giỏ hàng
                                 </a>
                             </div>
                             <div class="Cell_Col_3">
                                 <div class="Item-Qty">
-                                    <button class="Item-Qty--Plus btn" onclick="increaseQuantity(this)"><i class="fa-solid fa-plus"></i></button>
-                                    <input class="btn Qty__Input" value="1" min="1">
-                                    <button class="Item-Qty--Minus btn" onclick="decreaseQuantity(this)"><i class="fa-solid fa-minus"></i></button>
-                                </div>
+                                    <form class="Update-Cart" action="/PBL3_1_war_exploded/cart" method="get">
+                                        <input type="hidden" name="type" value="update">
+                                        <input type="hidden" name="id" value="${sessionScope.get('USERMODEL').id}">
+                                        <input type="hidden" name="idItem" value="${productcart.id}">
+                                        <input type="hidden" name="quantity" id="quantity_${productcart.id}" value="${productcart.quantity}">
 
+                                        <button type="submit" name="action" value="increase">+</button>
+                                        <input class="Qty__Input" value="${productcart.quantity}" min="1" readonly>
+                                        <button type="submit" name="action" value="decrease">-</button>
+                                    </form>
+                                </div>
                                 <span class="Item-Unit_Price">
-                                    150.000₫
+                                    ${productcart.price}
                                 </span>
 
                                 <span class="Item-Total_Price">
-                                    300.000₫
+                                        ${productcart.price * productcart.quantity}
                                 </span>
                             </div>
                         </div>
-                        <% } %>
+                        </c:forEach>
                     </div>
                 </div>
-                <% } %>
+                </c:forEach>
             </div>
         </main>
 

@@ -22,7 +22,7 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
 
     @Override
     public Integer update(ShoppingCartItem object) {
-        String sql = "UPDATE shop_bee.shopping_cart_item SET cart_id = ?, product_item_id = ?, qty = ?, created_at = ? WHERE id = ?";
+        String sql = "UPDATE shop_bee.shopping_cart_item SET cart_id = ?, product_item_id = ?, quantity = ?, created_at = ? WHERE id = ?";
         return genericDAO.update(sql,
                 object.getCartId(),
                 object.getProductItemId(),
@@ -32,13 +32,16 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
     }
 
     @Override
-    public void deleteById(Long object) {
-
+    public Object deleteById(Long object) {
+        String sql = "DELETE FROM shopping_cart_item  WHERE id = ?";
+        return  genericDAO.delete(sql,object);
     }
 
     @Override
-    public ShoppingCartItem findById(int id) {
-        return null;
+    public ShoppingCartItem findById(Long id) {
+        String sql = "SELECT * FROM shopping_cart_item WHERE id =? ";
+        List<ShoppingCartItem> list= genericDAO.query(sql,new ShoppingCartItemMapper(),id);
+        return list.isEmpty() ? null : list.get(0);
     }
 
     @Override
@@ -55,5 +58,11 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
             }
         }, cartId, productItemId);
         return cartItems.isEmpty() ? null : cartItems.get(0);
+    }
+
+    @Override
+    public List<ShoppingCartItem> findByIdCart(Long Id) {
+        String sql = "SELECT * FROM shopping_cart_item WHERE cart_id =? ";
+        return genericDAO.query(sql,new ShoppingCartItemMapper(),Id);
     }
 }

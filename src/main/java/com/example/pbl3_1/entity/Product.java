@@ -21,6 +21,7 @@ public class Product {
     private Long sellerId;
     private Timestamp createdAt;
 
+
     public Product(){
 
     }

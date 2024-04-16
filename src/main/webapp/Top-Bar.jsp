@@ -98,7 +98,7 @@
                     </span>
                   </div>
                   <a class="Checkout-Btn btn" href="Checkout.jsp">Thanh toán</a>
-                  <a class="Cart-Btn btn" href="Cart.jsp">Xem giỏ hàng</a>
+                  <a class="Cart-Btn btn" href='<c:url value="/cart?type=load&id=${sessionScope.get('USERMODEL').id}"/>'>Xem giỏ hàng</a>
                 </div>
               </div>
             </li>
