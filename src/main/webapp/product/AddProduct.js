@@ -189,7 +189,7 @@ class AddProductTable {
 
     renameVI0ByIndex(index, newName) {
         let curRowspan = this.table.rows[1].cells[0].rowSpan;
-        this.table.rows[index * curRowspan + 1].cells[0].innerHTML = newName + this.table.rows[index * curRowspan + 1].cells[0].innerHTML;
+        this.table.rows[index * curRowspan + 1].cells[0].innerHTML = `${newName.name}  <img src="${newName.srcImg}" alt="${newName.name}">`;
     }
 
     renameVI1ByIndex(index, newName) {
@@ -265,11 +265,12 @@ function UpdateProductImageAfterChangeImage(input) {
     let VI = input.parentElement;
     reader.onloadend = function () {
         VI.querySelector(`label img`).src = reader.result;
+        renameVI0(input);
     }
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        VI.querySelector(`label img`).src = "./img/Logo/insert-picture-icon.png";
+        VI.querySelector(`label img`).src = "../img/Logo/Black Img.png";
     }
 }
 
@@ -314,7 +315,15 @@ function removeVI1(element) {
 
 function renameVI0(input) {
     let index = getVI0Index(input);
-    table.renameVI0ByIndex(index, input.value);
+    UpdateProductImageAfterChangeImage(input.parentElement.querySelector('input[type="file"]'));
+    let name = input.parentElement.querySelector('input[type="text"]').value;
+    let srcImg = input.parentElement.querySelector('img').src;
+    let info = {
+        name,
+        srcImg
+    };
+
+    table.renameVI0ByIndex(index, info);
 }
 
 function renameVI1(input) {
@@ -345,14 +354,14 @@ function AddVarient(id) {
         VI_wrap.insertAdjacentHTML('beforeend', `
         <div class="VI" id="VI0${VI_id_wrap0}">
               <label for="VI_img${cntVGI0element}">
-                <img src="../img/Logo/insert-picture-icon.png" alt="preview">
+                <img src="../img/Logo/Black Img.png" alt="preview">
               </label>
               <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
-        table.addVI0toTable("", './img/Logo/insert-picture-icon.png');
+        table.addVI0toTable("", '../img/Logo/Black Img.png');
         ++cntVGI0element;
         ++VI_id_wrap0;
     }
@@ -371,6 +380,8 @@ function AddVarient(id) {
     }
     // table.createTableByRows();
 }
+
+
 
 //Xóa Varient Group Item (Nhóm phân loại)
 function removeVGI() {
@@ -396,16 +407,16 @@ function removeVGI() {
 }
 
 //Thay đổi ảnh bìa sau khi được chọn
-document.getElementById('product_image').addEventListener('change', function (e) {
-    var file = e.target.files[0];
-    var reader = new FileReader();
-    reader.onloadend = function () {
-        document.querySelector('label[for="product_image"] img').src = reader.result;
-    }
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-});
+// document.getElementById('product_image').addEventListener('change', function (e) {
+//     let file = e.target.files[0];
+//     let reader = new FileReader();
+//     reader.onloadend = function () {
+//         document.querySelector('label[for="product_image"] img').src = reader.result;
+//     }
+//     if (file) {
+//         reader.readAsDataURL(file);
+//     }
+// });
 
 function ChangeImagePreview(div) {
     let input = div.querySelector('input');
@@ -417,49 +428,103 @@ function ChangeImagePreview(div) {
     reader.readAsDataURL(input.files[0]);
 }
 
+function AddProductImage(input) {
+    let container = document.getElementById('image_preview');
+    let file = input.files[0];
+    let reader = new FileReader();
+    let imgobj = document.createElement('div');
+    imgobj.className = "imgObject";
+    let img = document.createElement('img');
+    let btnrRemove = document.createElement('button');
+    btnrRemove.className = "btnRemove";
+    btnrRemove.innerHTML = '<i class="fa-solid fa-x"></i>';
+    btnPreview = document.createElement('button');
+    btnPreview.className = "btnPreview";
+    btnPreview.innerHTML = '<i class="fa-solid fa-search"></i>';
 
+    imgobj.appendChild(img);
+    imgobj.appendChild(btnrRemove);
+    imgobj.appendChild(btnPreview);
+
+    reader.onload = function (e) {
+        img.src = e.target.result;
+        container.appendChild(imgobj);
+    }
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        img.src = "../img/Logo/Black Img.png";
+        container.appendChild(imgobj);
+    }
+    img.addEventListener('click', function () {
+        createImagePreview(img.src);
+    });
+}
+
+function AddCoverImage(input) {
+    let label = input.parentElement.querySelector('label');
+    let file = input.files[0];
+    let reader = new FileReader();
+    reader.onloadend = function () {
+        label.querySelector('span').style.display = 'none';
+        label.querySelector('img').src = reader.result;
+        label.querySelector('img').style.width = '60px';
+        label.querySelector('img').style.height = '60px';
+        label.querySelector('img').style.objectFit = 'cover';
+    }
+    if (file) {
+        reader.readAsDataURL(file);
+    } else {
+        document.querySelector('.cover_image img').src = "../img/Logo/Black Img.png";
+    }
+}
 
 function AddProduct() {
     let data = [];
     let ProductName = document.querySelector('#product_name').value;
     let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
-    let ProductImage = document.querySelector('#product_image').src;
     let ProductCategory = document.querySelector('#category').value;
     let ProductDescription= document.querySelector('#product_description').value;
-
     let Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]') != null ?
         document.querySelector('.VGI0 input[name="varient_group_name"]').value : "";
-
     let Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]') != null ?
         document.querySelector('.VGI1 input[name="varient_group_name"]').value : "";
+    let images = document.querySelectorAll('.imgObject img');
+    let imageSrc = [];
+    images.forEach((image) => {
+        imageSrc.push(image.src.split(',')[1]);
+    });
 
-    // let ProductImage = document.getElementById('ProductImage').src;
     data.push({
         ProductName: ProductName,
-        ProductImage: ProductImage,
         ProductCategory: ProductCategory,
         ProductDescription: ProductDescription,
         Discount : discount,
         Variation1 : Variation1Name,
         Variation2 : Variation2Name,
+        Images: imageSrc
     });
-    let table = document.getElementById("myTable");
-    if(table.rows.length > 0) {
+
+    if(document.getElementById("myTable").rows.length > 0) {
         let ProductRows = table.table.rows;
         let VariationOption1Name = "";
         for (let i = 1; i < ProductRows.length; i++) {
             let cells = ProductRows[i].cells;
+            let ProductItemImage = "";
             if (cells.length === 4) {
                 VariationOption1Name = cells[0].innerText;
             }
+            ProductItemImage = cells[0].querySelector('img').src.split(',')[1];
             let VariationOption1 = VariationOption1Name;
             let VariationOption2 = cells[cells.length - 3].innerText;
+
             let QtyInStock = cells[cells.length - 2].children[0].value;
             let Price = cells[cells.length - 1].children[0].value;
 
             data.push({
                 VariationOption1: VariationOption1,
                 VariationOption2: VariationOption2,
+                ProductItemImage : ProductItemImage,
                 QtyInStock: QtyInStock,
                 Price: Price
             });
@@ -487,9 +552,9 @@ function AddProduct() {
         .then(data => {
             let response = JSON.parse(data);
             console.log(response);
-            if(response.status === "200") {
+            if (response.status === "200") {
                 showSuccessToast("Success", "Thêm sản phẩm thành công");
-            }else {
+            } else {
                 showErrorToast("Warning", "Thêm sản phẩm thất bại");
             }
         })
@@ -497,3 +562,42 @@ function AddProduct() {
             console.error('Error:', error);
         });
 }
+
+function createOverlay() {
+    let overlay = document.createElement('div');
+    overlay.id = "overlay";
+    overlay.style.position = "fixed";
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "3";
+    overlay.addEventListener('click', function () {
+        overlay.parentElement.removeChild(overlay);
+    });
+    document.body.appendChild(overlay);
+    return overlay;
+}
+
+function createImagePreview(src) {
+    let overlay = createOverlay();
+    let imagePreview = document.createElement('div');
+    imagePreview.id = "imagePreview";
+    imagePreview.innerHTML = `
+        <img src="${src}" alt="preview">
+    `;
+    overlay.appendChild(imagePreview);
+}
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+});
+
+
+

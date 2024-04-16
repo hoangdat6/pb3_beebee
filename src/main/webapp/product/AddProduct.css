@@ -1,4 +1,72 @@
-:is(#Sale_info, #Basic_info) h3{
+.Seller_Header {
+}
+
+.status {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.Main_Header_wrap{
+    background-color: #fff; filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.25));
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.Main_Header {
+    background-color: #fff;
+    display: flex;
+    top: 0;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 500;
+    height: 54px;
+}
+
+.Main_Header .left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.Main_Header .left .title {
+    font-size: 24px;
+}
+
+.Main_Header .right {
+    display: flex;
+    align-items: center;
+}
+
+.Main_Header .right .item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 127px;
+    height: 54px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.Main_Header .right .item:hover {
+    color: #ee4d2d;
+}
+
+.Main_Header .right .Account_option {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    min-width: 190px;
+    height: 54px;
+    padding: 5px 10px;
+}
+
+:is(#Sale_info, #Basic_info) h3 {
     font-weight: 500;
 }
 
@@ -10,13 +78,12 @@ input[type="file"] {
     width: 200px;
     position: fixed;
     z-index: 1;
-    top: 20px;
-    left: 20px;
-    overflow-x: hidden;
-    padding: 20px;
+    top: 15%;
+    right: 9%;
+    padding: 10px;
     display: block;
-    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
     background-color: #fff;
+    border-radius: 12px;
 }
 
 .Side_nav a {
@@ -24,19 +91,72 @@ input[type="file"] {
     margin: 10px 0;
 }
 
-.AddProduct_wrap {
-    margin-left: 250px;
+.Side_nav a:hover {
+    color: #ee4d2d;
 }
 
-.AddProduct_content {}
+.side_bar {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    position: fixed;
+    left: 9%;
+    top: 15%;
+    border-radius: 10px;
+}
+
+.side_bar .item {
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.side_bar .subitem {
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-left: 30px;
+    font-weight: 400;
+}
+
+.side_bar i {
+    margin-right: 5px;
+    width: 15px;
+}
+
+.side_bar a {
+    cursor: pointer;
+}
+
+.side_bar a:hover {
+    color: #ee4d2d;
+}
+
+.side_nav p {
+    color: #6C7275;
+    font-size: 13px;
+}
+
+.AddProduct_content {
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    flex-grow: 1;
+    width: 100%;
+}
 
 #Basic_info,
 #Sale_info {
-    padding: 20px;
+    width: 790px;
     background-color: #fff;
+    padding: 20px;
     border-radius: 10px;
-    margin-right: 170px;
-    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 #Basic_info .section_title,
@@ -46,46 +166,92 @@ input[type="file"] {
     margin-bottom: 20px;
 }
 
-:is(#Basic_info, #Sale_info) :is(input[type="text"],
-    input[type="number"], select) {
-    width: 40%;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-:where(#Basic_info, #Sale_info) label
-{
-    margin-right: 10px;
-    min-width: 100px;
-    display: inline-block;
+#Basic_info .item_title,
+#Sale_info .item_title{
+    font-size: 14px;
     font-weight: 500;
+    margin-bottom: 10px;
+    width: 120px;
+    text-align: left;
+    display: inline-block;
 }
 
-#Basic_info input,
-#Basic_info select {
-    margin-right: 20px;
+#Sale_info .item_title{
+    width: max-content;
 }
 
-#Basic_info label[for="product_image"] img{
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 2px;
+.Basic_info_image{
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.Basic_info_image .Product_Image{
+    min-width: 30%;
+}
+
+.Basic_info_image label,
+#image_preview > .imgObject img,
+.Cover_image > img{
+    width: 80px;
+    height: 80px;
+    padding: 5px;
     display: block;
-    margin-left: 110px;
+    border-radius: 6px;
+    border: 1px dashed #38CB89;
 }
 
-#Basic_info label[for="product_image"]{
+.Basic_info_image label{
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-#image_preview img {
-    width: 50px;
-    height: 50px;
+.Basic_info_image label img{
+    width: 25px;
+    height: 25px;
     object-fit: cover;
-    margin: 10px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.Basic_info_image label span{
+    font-size: 11px;
+    max-width: 52px;
+    text-align: center;
+}
+
+.Basic_info_image label:hover{
+    background-color: #f2f2f2;
+    cursor: pointer;
+}
+
+.Basic_info_image #image_preview{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;
+}
+
+#Basic_info .Basic_info_item{
+    display: flex;
+    align-items: center;
+}
+
+#Basic_info .Basic_info_item input,
+#Basic_info .Basic_info_item textarea{
+    width: 70%;
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 0.75px solid #6C7275;
+    font-family: 'SFProDisplay', 'Roboto', sans-serif;
+}
+
+#Basic_info .Basic_info_item select{
+    font-size: 14px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 0.75px solid #6C7275;
 }
 
 #Sale_info {}
@@ -95,11 +261,6 @@ input[type="file"] {
     font-size: 20px;
     font-weight: bold;
     margin-bottom: 20px;
-}
-
-#Sale_info .Item_title {
-    font-size: 16px;
-    font-weight: 500;
 }
 
 #Sale_info .SII_content_wrap {
@@ -146,7 +307,11 @@ input[type="file"] {
 }
 
 #Sale_info .VI label {
-    min-width: auto; display: block; padding: 5px; border: 1px dashed #131417; border-radius: 5px;
+    min-width: auto;
+    display: block;
+    padding: 5px;
+    border: 1px dashed #131417;
+    border-radius: 5px;
 }
 
 #Sale_info .VI label:hover {
@@ -165,15 +330,21 @@ input[type="file"] {
 }
 
 #myTable {
-    width: 100%; /* Chiều rộng của bảng */
-    border-collapse: collapse; /* Gộp các đường viền của ô lại với nhau */
+    width: 100%;
+    /* Chiều rộng của bảng */
+    border-collapse: collapse;
+    /* Gộp các đường viền của ô lại với nhau */
     margin-top: 15px;
 }
 
-#myTable th, #myTable td {
-    border: 1px solid black; /* Đường viền cho các ô */
-    padding: 10px; /* Khoảng cách từ nội dung bên trong ô đến đường viền */
-    text-align: left; /* Căn lề cho văn bản */
+#myTable th,
+#myTable td {
+    border: 1px solid black;
+    /* Đường viền cho các ô */
+    padding: 10px;
+    /* Khoảng cách từ nội dung bên trong ô đến đường viền */
+    text-align: left;
+    /* Căn lề cho văn bản */
 }
 
 #myTable td {
@@ -181,14 +352,14 @@ input[type="file"] {
     text-align: center;
 }
 
-#myTable td > input[type="number"] {
+#myTable td>input[type="number"] {
     width: 100%;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-#myTable td img{
+#myTable td img {
     margin-top: 10px;
     width: 50px;
     height: 50px;
@@ -199,56 +370,77 @@ input[type="file"] {
 }
 
 #myTable th {
-    background-color: #f2f2f2; /* Màu nền cho tiêu đề bảng */
+    background-color: #f2f2f2;
+    /* Màu nền cho tiêu đề bảng */
 }
 
-.SII{
+.SII {
     margin: 10px 0;
 }
 
-.SII_content_wrap .SII_list_top{
+.SII_content_wrap .SII_list_top {
     display: none;
     gap: 10px;
     padding: 5px 20px;
 }
 
-.SII_content_wrap .SII_list_top_btn
-{
+.SII_content_wrap .SII_list_top_btn {
     padding: 5px 10px;
     border: 1px solid #141718;
     border-radius: 5px;
     background-color: #fff;
 }
 
-.SII_content_wrap .SII_list_top_btn:hover
-{
+.SII_content_wrap .SII_list_top_btn:hover {
     background-color: #141718;
     color: #fff;
 }
 
-.SII label{
+.SII label {
     margin-right: 10px;
     min-width: 100px;
     display: inline-block;
     font-weight: 500;
 }
 
-.btnSubmit{
-    padding: 8px 20px;
-    color: #000;
-    border-radius: 8px;
-    border: 1px solid #000 !important;
+.btnSubmit, 
+.btnCancel {
+    padding: 8px 30px;
 }
 
-.btnSubmit:hover{
-    background-color: #000 !important;
+.btnSubmit {
     color: #fff;
+    background-color: #131417 !important;
 }
 
-#Basic_info {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    flex-direction: row;
+.btnCancel{
+    color: #131417;
+    background-color: #fff !important;
+    border: 1px solid #131417 !important;
+}
 
+.btn:hover {
+    opacity: 0.8;
+}
+
+#imagePreview{
+    position: fixed;
+    z-index: 4;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#imagePreview img{
+    max-width: 70%;
+    max-height: 70%;
+    object-fit: cover;
+}
+
+.btn_wrap{
+    width: 790px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 30px
 }
