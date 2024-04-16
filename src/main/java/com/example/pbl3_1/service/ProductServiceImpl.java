@@ -14,9 +14,7 @@ import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.Product;
 import com.example.pbl3_1.entity.Variation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProductServiceImpl implements ProductService{
     private final ProductDAO productDAO = new ProductDAOImpl();
@@ -43,7 +41,9 @@ public class ProductServiceImpl implements ProductService{
         ProductDetailDTO productDetailDTO = productDAO.getProductDetailById(id);
         List<Variation> variations = variationService.getVariationsByProductId(id);
         List<String> imgPaths = productItemDAO.getImgPathByProductId(id);
-        imgPaths.add(0, productDetailDTO.getProductImgPath().get(0));
+
+        String[] imgPath = productDetailDTO.getProductImgPath().get(0).split(",");
+        imgPaths.addAll(0, Arrays.asList(imgPath));
 
         productDetailDTO.setVariations(variations);
         productDetailDTO.setProductImgPath(imgPaths);

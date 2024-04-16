@@ -265,6 +265,7 @@ function UpdateProductImageAfterChangeImage(input) {
     let VI = input.parentElement;
     reader.onloadend = function () {
         VI.querySelector(`label img`).src = reader.result;
+        renameVI0(input);
     }
     if (file) {
         reader.readAsDataURL(file);
@@ -355,7 +356,7 @@ function AddVarient(id) {
               <label for="VI_img${cntVGI0element}">
                 <img src="../img/Logo/Black Img.png" alt="preview">
               </label>
-              <input type="file" name="VI_img" class="VI_img" onchange="renameVI0(this)" id="VI_img${cntVGI0element}">
+              <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
@@ -406,16 +407,16 @@ function removeVGI() {
 }
 
 //Thay đổi ảnh bìa sau khi được chọn
-document.getElementById('product_image').addEventListener('change', function (e) {
-    let file = e.target.files[0];
-    let reader = new FileReader();
-    reader.onloadend = function () {
-        document.querySelector('label[for="product_image"] img').src = reader.result;
-    }
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-});
+// document.getElementById('product_image').addEventListener('change', function (e) {
+//     let file = e.target.files[0];
+//     let reader = new FileReader();
+//     reader.onloadend = function () {
+//         document.querySelector('label[for="product_image"] img').src = reader.result;
+//     }
+//     if (file) {
+//         reader.readAsDataURL(file);
+//     }
+// });
 
 function ChangeImagePreview(div) {
     let input = div.querySelector('input');
@@ -592,7 +593,11 @@ function createImagePreview(src) {
     overlay.appendChild(imagePreview);
 }
 
-function CountCharacterInTextArea(textarea) {
-    let charCount = textarea.value.length;
-    textarea.parentElement.lastElementChild.textContent = `${charCount}/3000`;
-};
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+});
+
+
+
