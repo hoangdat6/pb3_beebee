@@ -25,18 +25,33 @@ function IndentifyPopUps(title, srcIcon, placeholder, btn1Content, btn2Content) 
     let PopUps = document.createElement('div');
     PopUps.id = "Pop_ups";
     PopUps.innerHTML = `
-        <h3 class="Pop_ups_title">${title}</h3>
-        <img src="${srcIcon}" alt="">
-        <div style="width: 100%;">
-            <input type="email" placeholder="${placeholder}" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})+$">
-            <span>Địa chỉ bạn nhập không đúng định dạng</span>
-        </div>
-        <div class="Pop_ups_btn">
-            <div class="btn btn_Cancel" onclick="PopUpOff()">${btn1Content}</div>
-            <a class="btn btn_Send" onclick='EnterCodePopUps("Hủy", "Kế tiếp")'>${btn2Content}</a>
-        </div>
+            <h3 class="Pop_ups_title">${title}</h3>
+            <img src="${srcIcon}" alt="">
+            <div style="width: 100%;">
+                <input type="email" placeholder ="${placeholder}" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+(\.[a-zA-Z]{2,})+$">
+                <span id="NotValid">Địa chỉ bạn nhập không đúng định dạng</span>
+                <span style="display: none;" id="Pop_ups_error">Email khong trung khop</span>
+            </div>
+            <div class="Pop_ups_btn">
+                <div class="btn btn_Cancel" onclick="PopUpOff()">${btn1Content}</div>
+                <a class="btn btn_Send" onclick='check(this)'>${btn2Content}</a>
+            </div>
     `;
     overlay.appendChild(PopUps);
+}
+
+function check(a){
+    let PopUps = a.parentElement.parentElement;
+    let email = PopUps.querySelector('input[type="email"]').value;
+    let oldEmail = document.querySelector('#UI_email').value;
+    if (email == oldEmail)
+    {
+        EnterCodePopUps("Hủy", "Kế tiếp");
+    }
+    else
+    {
+        PopUps.querySelector('#Pop_ups_error').style.display = "block";
+    }
 }
 
 function EmailIdentify() {
@@ -59,6 +74,29 @@ function PopUpOff() {
 }
 
 function EnterCodePopUps(btn1Content, btn2Content) {
+    let pop_ups = document.querySelector("#Pop_ups").querySelector("input").value;
+    fetch('/PBL3_1_war_exploded/cfoldemail', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'text/html; charset=UTF-8',
+        },
+        body:
+            {Email : pop_ups},
+    })
+        .then(response => response.json())
+        .then(data => {
+            let response = JSON.parse(data);
+            console.log(response);
+            if(response.status === "200") {
+                showSuccessToast("Success", "Thêm sản phẩm thành công");
+            }else {
+                showErrorToast("Warning", "Thêm sản phẩm thất bại");
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+
     let Oldoverlay = document.getElementById('overlay');
     let email = Oldoverlay.querySelector('input[type = "email"]').value;
     document.body.removeChild(Oldoverlay);

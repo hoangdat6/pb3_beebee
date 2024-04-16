@@ -64,13 +64,13 @@
     color: #fff;
 }
 
-#Pop_ups input:invalid ~ span{
+#Pop_ups input:invalid ~ #NotValid{
     display: block !important;
     color: red;
     font-size: 12px;
 }
 
-#Pop_ups input:valid ~ span{
+#Pop_ups input:valid ~ #NotValid{
     display: none !important;
 }
 

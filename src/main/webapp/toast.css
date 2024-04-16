@@ -1,7 +1,7 @@
 #toast{
     position: fixed;
-    top: 32px;
-    right: 32px;
+    top: 10%;
+    right: 10%;
     z-index: 99999;
 }
 

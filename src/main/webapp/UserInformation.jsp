@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="UserInformation.css">
     <link rel="stylesheet" href="Pop_ups.css">
     <script type="text/javascript" src="main.js"></script>
+    <script src="toast.js"></script>
+    <link rel="stylesheet" href="toast.css">
 </head>
 
 <body class="Color-White">
@@ -26,7 +28,14 @@
         <h1 class="UI_title">
             Tài khoản của tôi
         </h1>
+    <div id="toast"></div>
         <div class="UI_wrap pad-l-r-170">
+            <c:if test="${sessionScope.get('changePassStatus') == false}">
+                <script>
+                    showSuccessToast('Thay đổi mật khẩu thành công', ' ');
+                </script>
+                <c:remove var="changePassStatus" scope="session" />
+            </c:if>
             <aside class="UI_bar">
                 <div class="UI_bar_top">
                     <div class="Avatar_wrapper">
@@ -46,7 +55,7 @@
             </aside>
 
             <main class="UI_content">
-                <form action="#" class="UI_form">
+                <form action='<c:url value="/changeinfor"/>' class="UI_form" method="post">
                     <h3 class="form_title">Thông tin cá nhân</h3>
                     <div class="UI_form_element">
                         <label for="UI_name">Họ và tên</label>
@@ -71,28 +80,34 @@
 
                     <div class="Email_input">
                         <label for="UI_email">Email</label>
-                        <input type="email" id="UI_email" name="UI_email" value='<c:if test="${User.email != null}">${User.email}</c:if>' required readonly>
-                        <div class="btn Email_input_Btn"><i class="fa-regular fa-pen-to-square" onclick="EmailIdentify()"></i></div>
+                        <input type="email" id="UI_email" name="UI_email" value='<c:if test="${User.email != null}">${User.email}</c:if>' readonly>
+                        <div onclick="EmailIdentify()" class="btn Email_input_Btn"><i class="fa-regular fa-pen-to-square"></i></div>
                     </div>
 
                     <input class="btn" type="submit" value="Lưu thay đổi">
                 </form>
 
-                <form action="" class="UI_form">
+                <form action='<c:url value="/changepass"/>' class="UI_form" method="post">
                     <h3 class="form_title">Thay đổi mật khẩu</h3>
                     <div class="UI_form_element">
                         <label for="UI_oldPass">Mật khẩu cũ</label>
-                        <input type="password" id="UI_oldPass">
+                        <input type="password" name="oldpass" id="UI_oldPass" value='<c:if test="${sessionScope.get('oldpass') != null}">${sessionScope.get('oldpass')}</c:if>' required>
+                        <c:if test="${sessionScope.get('opstatus') == false}">
+                            <span style="color: red; display: block !important;">Mật khẩu không đúng</span>
+                        </c:if>
                     </div>
 
                     <div class="UI_form_element">
                         <label for="UI_newPass">Mật khẩu mới</label>
-                        <input type="password" id="UI_newPass">
+                        <input type="password" name="newpass" id="UI_newPass" value='<c:if test="${sessionScope.get('newpass') != null}">${sessionScope.get('newpass')}</c:if>' pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\S{8,}" required placeholder="Mật khẩu (ít nhất 8 kí tự, bao gồm số, chữ viết thường, chữ in hoa và dấu cách)">
                     </div>
 
                     <div class="UI_form_element">
                         <label for="UI_confirmPass">Xác nhận mật khẩu mới</label>
-                        <input type="password" id="UI_confirmPass">
+                        <input type="password" name="cfnewpass" value='<c:if test="${sessionScope.get('cfnewpass') != null}">${sessionScope.get('cfnewpass')}</c:if>' id="UI_confirmPass" required>
+                        <c:if test="${sessionScope.get('cfpstatus') == false}">
+                            <span style="color: red; display: block !important;">Mật khẩu không khớp</span>
+                        </c:if>
                     </div>
                     <input class="btn" type="submit" value="Lưu thay đổi">
                 </form>
