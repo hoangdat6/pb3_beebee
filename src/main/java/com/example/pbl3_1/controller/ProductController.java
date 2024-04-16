@@ -10,11 +10,15 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.jetbrains.annotations.NotNull;
+
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.*;
 
@@ -44,9 +48,20 @@ public class ProductController extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        saveProduct(req, resp);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        String path = request.getServletPath();
+
+        switch (path) {
+            case "/product/save":
+                saveProduct(request, response);
+                break;
+        }
     }
+
+
 
     public void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // get user from session
@@ -76,24 +91,45 @@ public class ProductController extends HttpServlet {
         // Tạo đối tượng ObjectMapper để chuyển đổi giữa đối tượng Java và JSON
         ObjectMapper objectMapper = new ObjectMapper();
         BufferedReader reader = request.getReader();
+        String images = "";
+
+
+        String root = getServletContext().getRealPath("/");
+
+
+        root = root.replace("target" + File.separator +"PBL3_1-1.0-SNAPSHOT" + File.separator,
+                "src" + File.separator + "main" + File.separator + "webapp" + File.separator );
+
+        String rootPath = root + "ImageProduct"  + File.separator;
+        String webappDirectoryRoot = getServletContext().getRealPath("/") + File.separator + "ImageProduct" + File.separator;
+
+        System.out.println(rootPath);
+        List<Map<String, Object>> data = objectMapper.readValue(reader, List.class);
         // Chuyển đổi JSON thành list
-        List<Map<String, String>> data = objectMapper.readValue(reader, List.class);
+
 
         // Tạo đối tượng Product
         Product product = new Product();
-        product.setName(data.get(0).get("ProductName"));
-        product.setDescription(data.get(0).get("ProductDescription"));
-        product.setProductImgPath(data.get(0).get("ProductImgPath"));
+        product.setName(data.get(0).get("ProductName").toString());
+        product.setDescription(data.get(0).get("ProductDescription").toString());
         product.setDiscount(Float.parseFloat(Objects.toString(data.get(0).get("Discount"))));
-        product.setCategoryId(Integer.parseInt(data.get(0).get("ProductCategory")));
+        product.setCategoryId(Integer.parseInt(data.get(0).get("ProductCategory").toString()));
 //        product.setSellerId(Long.parseLong(data.get(0).get("SellerId"))); // seller xử lý sau
 
         // Thêm sản phẩm vào database
         Long productId = productService.addProduct(product);
 
+        List<String> imageStrings = (List<String>) data.get(0).get("Images") ;
+
+        images = saveImages(rootPath, productId.toString(),"", imageStrings);
+        saveImages(webappDirectoryRoot, productId.toString(),"", imageStrings);
+
+        // Cập nhật đường dẫn ảnh vào database
+        productService.updateProductImage(productId, images);
+
         // Thêm các biến thể và các biến thể của biến thể vào database
-        Long variation1 = variationService.addVariation(Variation.builder().name(data.get(0).get("Variation1")).productId(productId).build());
-        Long variation2 = variationService.addVariation(Variation.builder().name(data.get(0).get("Variation2")).productId(productId).build());
+        Long variation1 = variationService.addVariation(Variation.builder().name(data.get(0).get("Variation1").toString()).productId(productId).build());
+        Long variation2 = variationService.addVariation(Variation.builder().name(data.get(0).get("Variation2").toString()).productId(productId).build());
 
         // Tạo danh sách các sản phẩm con
         List<ProductItem> items = new LinkedList<>();
@@ -103,11 +139,18 @@ public class ProductController extends HttpServlet {
         for(int i = 1; i < data.size(); i++){
             ProductItem item = new ProductItem();
             item.setProductId(productId);
-            item.setProductImgPath(data.get(i).get("ProductImgPath"));
+            if(data.get(i).getOrDefault("ProductItemImage", null) != null){
+                String itemImages = data.get(i).get("ProductItemImage").toString();
+                String imgPath = saveImages(rootPath, productId.toString(), Integer.toString(i), List.of(itemImages));
+                saveImages(webappDirectoryRoot, productId.toString(), Integer.toString(i), List.of(itemImages));
+                item.setProductImgPath(imgPath);
+                System.out.println(imgPath);
+            }
+
             if(variation1 != null){
                 // nếu variation1 không rỗng thì thêm vào database
                 variationOption1 = variationOptionService.addVariationOptionOrGet(VariationOption.builder().
-                        value(data.get(i).get("VariationOption2")).
+                        value(data.get(i).get("VariationOption2").toString()).
                         variationId(variation1).
                         build()
                 );
@@ -115,14 +158,14 @@ public class ProductController extends HttpServlet {
             if(variation2 != null){
                 // nếu variation2 không rỗng thì thêm vào database
                 variationOption2 = variationOptionService.addVariationOptionOrGet(VariationOption.builder().
-                        value(data.get(i).get("VariationOption1")).
+                        value(data.get(i).get("VariationOption1").toString()).
                         variationId(variation2).build());
             }
 
             item.setVariation1(variationOption1);
             item.setVariation2(variationOption2);
-            item.setQtyInStock(Integer.parseInt(data.get(i).get("QtyInStock")));
-            item.setPrice(Float.parseFloat(data.get(i).get("Price")));
+            item.setQtyInStock(Integer.parseInt(data.get(i).get("QtyInStock").toString()));
+            item.setPrice(Float.parseFloat(data.get(i).get("Price").toString()));
             items.add(item);
         }
 
@@ -135,5 +178,34 @@ public class ProductController extends HttpServlet {
             json = "{\"status\" : \"500\"}";
         }
         objectMapper.writeValue(response.getOutputStream(), json);
+    }
+
+    String saveImages(String rootPath, String productId, String item, List<String> imageStrings) throws IOException {
+        StringBuilder images = new StringBuilder();
+        String dir = "";
+        String filename = "";
+        for (int i = 0; i < imageStrings.size(); i++) {
+            // Decode base64 string to byte array
+            byte[] data1 = Base64.getDecoder().decode(imageStrings.get(i));
+
+            dir = productId + File.separator;
+            Path path = Paths.get(rootPath + File.separator + dir);
+            if(!Files.exists(path)){
+                Files.createDirectories(path);
+            }
+
+            filename = productId + "_" +  i  + item + ".png";
+            // Define path to save image
+            Path pathImg = Paths.get(path + File.separator + filename);
+
+            // Write byte array to file
+            Files.write(pathImg, data1);
+
+            if(i == imageStrings.size() - 1)
+                images.append("ImageProduct/").append(dir).append(filename);
+            else
+                images.append("ImageProduct/").append(dir).append(filename).append(",");
+        }
+        return images.toString();
     }
 }

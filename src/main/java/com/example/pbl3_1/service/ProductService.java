@@ -11,4 +11,6 @@ public interface ProductService {
     List<ProductForHomeDTO> getProductsForHome();
     ProductDetailDTO getProductDetail(Long id);
     void increaseView(Long id);
+
+    void updateProductImage(Long productId, String images);
 }

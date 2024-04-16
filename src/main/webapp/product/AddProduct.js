@@ -187,9 +187,9 @@ class AddProductTable {
         }
     }
 
-    renameVI0ByIndex(index, newItem) {
+    renameVI0ByIndex(index, newName) {
         let curRowspan = this.table.rows[1].cells[0].rowSpan;
-        this.table.rows[index * curRowspan + 1].cells[0].innerHTML = `${newItem.name}  <img src="${newItem.srcImg}" alt="${newItem.name}">`;
+        this.table.rows[index * curRowspan + 1].cells[0].innerHTML = `${newName.name}  <img src="${newName.srcImg}" alt="${newName.name}">`;
     }
 
     renameVI1ByIndex(index, newName) {
@@ -265,11 +265,12 @@ function UpdateProductImageAfterChangeImage(input) {
     let VI = input.parentElement;
     reader.onloadend = function () {
         VI.querySelector(`label img`).src = reader.result;
+        renameVI0(input);
     }
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        VI.querySelector(`label img`).src = "./img/Logo/Black Img.png";
+        VI.querySelector(`label img`).src = "../img/Logo/Black Img.png";
     }
 }
 
@@ -355,12 +356,12 @@ function AddVarient(id) {
               <label for="VI_img${cntVGI0element}">
                 <img src="../img/Logo/Black Img.png" alt="preview">
               </label>
-              <input type="file" name="VI_img" class="VI_img" onchange="renameVI0(this)" id="VI_img${cntVGI0element}">
+              <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
-        table.addVI0toTable("", './img/Logo/insert-picture-icon.png');
+        table.addVI0toTable("", '../img/Logo/Black Img.png');
         ++cntVGI0element;
         ++VI_id_wrap0;
     }
@@ -379,6 +380,8 @@ function AddVarient(id) {
     }
     // table.createTableByRows();
 }
+
+
 
 //Xóa Varient Group Item (Nhóm phân loại)
 function removeVGI() {
@@ -404,16 +407,16 @@ function removeVGI() {
 }
 
 //Thay đổi ảnh bìa sau khi được chọn
-document.getElementById('product_image').addEventListener('change', function (e) {
-    let file = e.target.files[0];
-    let reader = new FileReader();
-    reader.onloadend = function () {
-        document.querySelector('label[for="product_image"] img').src = reader.result;
-    }
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-});
+// document.getElementById('product_image').addEventListener('change', function (e) {
+//     let file = e.target.files[0];
+//     let reader = new FileReader();
+//     reader.onloadend = function () {
+//         document.querySelector('label[for="product_image"] img').src = reader.result;
+//     }
+//     if (file) {
+//         reader.readAsDataURL(file);
+//     }
+// });
 
 function ChangeImagePreview(div) {
     let input = div.querySelector('input');
@@ -450,7 +453,7 @@ function AddProductImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        img.src = "./img/Logo/Black Img.png";
+        img.src = "../img/Logo/Black Img.png";
         container.appendChild(imgobj);
     }
     img.addEventListener('click', function () {
@@ -472,7 +475,7 @@ function AddCoverImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        document.querySelector('.cover_image img').src = "./img/Logo/Black Img.png";
+        document.querySelector('.cover_image img').src = "../img/Logo/Black Img.png";
     }
 }
 
@@ -480,47 +483,53 @@ function AddProduct() {
     let data = [];
     let ProductName = document.querySelector('#product_name').value;
     let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
-    let ProductImage = document.querySelector('#product_image').src;
     let ProductCategory = document.querySelector('#category').value;
-    let ProductDescription = document.querySelector('#product_description').value;
-
+    let ProductDescription= document.querySelector('#product_description').value;
     let Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]') != null ?
         document.querySelector('.VGI0 input[name="varient_group_name"]').value : "";
-
     let Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]') != null ?
         document.querySelector('.VGI1 input[name="varient_group_name"]').value : "";
+    let images = document.querySelectorAll('.imgObject img');
+    let imageSrc = [];
+    images.forEach((image) => {
+        imageSrc.push(image.src.split(',')[1]);
+    });
 
     data.push({
         ProductName: ProductName,
-        ProductImage: ProductImage,
         ProductCategory: ProductCategory,
         ProductDescription: ProductDescription,
-        Discount: discount,
-        Variation1: Variation1Name,
-        Variation2: Variation2Name,
+        Discount : discount,
+        Variation1 : Variation1Name,
+        Variation2 : Variation2Name,
+        Images: imageSrc
     });
-    let table = document.getElementById("myTable");
-    if (table.rows.length > 0) {
+
+    if(document.getElementById("myTable").rows.length > 0) {
         let ProductRows = table.table.rows;
         let VariationOption1Name = "";
         for (let i = 1; i < ProductRows.length; i++) {
             let cells = ProductRows[i].cells;
+            let ProductItemImage = "";
             if (cells.length === 4) {
                 VariationOption1Name = cells[0].innerText;
             }
+            ProductItemImage = cells[0].querySelector('img').src.split(',')[1];
             let VariationOption1 = VariationOption1Name;
             let VariationOption2 = cells[cells.length - 3].innerText;
+
             let QtyInStock = cells[cells.length - 2].children[0].value;
             let Price = cells[cells.length - 1].children[0].value;
 
             data.push({
                 VariationOption1: VariationOption1,
                 VariationOption2: VariationOption2,
+                ProductItemImage : ProductItemImage,
                 QtyInStock: QtyInStock,
                 Price: Price
             });
         }
-    } else {
+    }else {
         let QtyInStock = document.getElementById("KhoHang").value;
         let Price = document.getElementById("Gia").value;
         data.push({
@@ -584,7 +593,11 @@ function createImagePreview(src) {
     overlay.appendChild(imagePreview);
 }
 
-function CountCharacterInTextArea(textarea) {
-    let charCount = textarea.value.length;
-    textarea.parentElement.lastElementChild.textContent = `${charCount}/3000`;
-};
+
+
+document.addEventListener("DOMContentLoaded", () => {
+
+});
+
+
+

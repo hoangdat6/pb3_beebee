@@ -2,7 +2,6 @@
 <%@ include file="../common/taglib.jsp" %>
         <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
 
-</html>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -134,7 +133,7 @@
                         <h3 class="item_title">Hình ảnh sản phẩm</h3>
                         <div class="Product_Image_Container">
                             <div id="image_preview">
-                                <input onchange="AddProductImage(this)" type="file" name="product_image" id="product_image" accept="image/*" multiple onchange="">
+                                <input onchange="AddProductImage(this)" type="file" name="product_image" id="product_image" accept="image/*" multiple>
                                 <label for="product_image">
                                     <img id="ProductImage" src="../img/Logo/Image.png" alt="">
                                     <span>Thêm hình ảnh</span>
@@ -144,9 +143,9 @@
                     </div>
 
                     <div class="Cover_image">
-                        <h3 class="item_title" style="width: max-content;">Ảnh bìa 
+                        <h3 class="item_title" style="width: max-content;">Ảnh bìa
                             <span style="font-size: 11px; font-weight: 400; color: #6C7275;">
-                                <span style="color: #EA580C;">*</span> 
+                                <span style="color: #EA580C;">*</span>
                                 Ảnh bìa sẽ được hiển thị tại các trang kết quả tìm kiếm.</span></h3>
                         <input onchange="AddCoverImage(this)" type="file" name="cover_image" id="cover_image" accept="image/*" multiple>
                         <label for="cover_image">
@@ -158,14 +157,24 @@
                 </div>
 
                 <div class="Basic_info_item">
-                    <label class="item_title" for="product_name">
-                        Tên sản phẩm
-                    </label>
-                    <input type="text" name="product_name" id="product_name" required>
+                    <div >
+                        <label class="item_title" for="product_name">
+                            Tên sản phẩm
+                        </label>
+                    </div>
+                    <div style="display: block; width: 100%;">
+                        <div class="Basic_info_item">
+                            <input type="text" name="product_name" id="product_name" required>
+                            <span id="span_for_name" style="padding: 10px; color: #9CA3AF">0/120</span>
+                        </div>
+                        <div id="warning_name">
+                        </div>
+                    </div>
                 </div>
-                
+
+
                 <div style="display: flex;">
-                    <div class="Basic_info_item">
+                    <div class="Basic_info_item" style="margin-right: 80px;">
                         <label class="item_title" for="category">
                             Danh mục
                         </label>
@@ -176,21 +185,36 @@
                         </select>
                     </div>
 
-                    <div class="Basic_info_item" style="display: flex; margin-left: 20px; align-items: center; gap: 10px;">
-                        <label style="margin-bottom: 0; width: 100px;" class="item_title" for="discount">
-                            Giảm giá (%)
-                        </label>
-                        <input type="number" name="discount" id="discount" placeholder="<= 90%" required>
+                    <div class="Basic_info_item">
+                        <div >
+                            <label style="margin-bottom: 0; width: 100px;" class="item_title" for="discount">
+                                Giảm giá (%)
+                            </label>
+                        </div>
+                        <div  style="display: block; width: 100%;">
+                            <div class="Basic_info_item" style="align-items: flex-start; position: relative; z-index: 0;">
+                                <input type="number" name="discount" id="discount" placeholder="<= 99%" required>
+                            </div>
+                            <div id="warning_discount">
+                            </div>
+                        </div>
                     </div>
                 </div>
-
-                <div class="Basic_info_item" style="align-items: flex-start; position: relative; z-index: 0;">
-                    <label class="item_title" for="product_description">
-                        Mô tả sản phẩm
-                    </label>
-                    <textarea oninput="CountCharacterInTextArea(this)" name="product_description" id="product_description" cols="30" rows="10"
-                    style="resize: none;"  required></textarea>
-                    <span style="position: absolute; bottom: 10px; right: 15%; font-size: 12px">0/3000</span>
+                <div class="Basic_info_item">
+                    <div>
+                        <label class="item_title" for="product_description">
+                            Mô tả sản phẩm
+                        </label>
+                    </div>
+                    <div style="display: block; width: 100%;">
+                        <div class="Basic_info_item" style="align-items: flex-start; position: relative; z-index: 0;">
+                            <textarea name="product_description" id="product_description" cols="30" rows="10"
+                            style="resize: none;"  required></textarea>
+                            <span id="span_for_description" style="position: absolute; bottom: 10px; right: 15%; font-size: 12px; color: #9CA3AF">0/3000</span>
+                        </div>
+                        <div id="warning_description">
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -249,6 +273,7 @@
                         <label for="KhoHang" class="item_title">Kho hàng</label>
                         <input type="number" name="Kho Hang" id="KhoHang" placeholder="Kho hàng">
                     </div>
+
                 </div>
             </section>
             <section class="btn_wrap">
@@ -256,15 +281,8 @@
                 <div class="btn btnCancel">Hủy</div>
             </section>
         </main>
-    <script>
-        document.getElementById('discount').addEventListener('input', function () {
-            if (this.value.length > 2) {
-                this.value = this.value.slice(0, 2);
-            }
-        });
-    </script>
-
     <script src="AddProduct.js"></script>
+    <script src="AddProductEvent.js"></script>
     <script src="../Common.js"></script>
 </body>
 
