@@ -263,13 +263,24 @@ function UpdateProductImageAfterChangeImage(input) {
     let file = input.files[0];
     let reader = new FileReader();
     let VI = input.parentElement;
+
     reader.onloadend = function () {
         VI.querySelector(`label img`).src = reader.result;
+        renameVI0(input);
     }
+
+    reader.onerror = function () {
+        console.error("An error occurred while reading the file.");
+    }
+
     if (file) {
-        reader.readAsDataURL(file);
+        if (file.type.startsWith("image/")) {
+            reader.readAsDataURL(file);
+        } else {
+            console.error("The selected file is not an image.");
+        }
     } else {
-        VI.querySelector(`label img`).src = "./img/Logo/Black Img.png";
+        VI.querySelector(`label img`).src = ".././img/Logo/Black Img.png";
     }
 }
 
@@ -313,8 +324,7 @@ function removeVI1(element) {
 }
 
 function renameVI0(input) {
-    let index = getVI0Index(input);
-    UpdateProductImageAfterChangeImage(input.parentElement.querySelector('input[type="file"]'));
+    let index = getVI0Index(input.parentElement);
     let name = input.parentElement.querySelector('input[type="text"]').value;
     let srcImg = input.parentElement.querySelector('img').src;
     let info = {
@@ -324,6 +334,7 @@ function renameVI0(input) {
 
     table.renameVI0ByIndex(index, info);
 }
+
 
 function renameVI1(input) {
     let index = getVI1Index(input);
@@ -355,12 +366,12 @@ function AddVarient(id) {
               <label for="VI_img${cntVGI0element}">
                 <img src="../img/Logo/Black Img.png" alt="preview">
               </label>
-              <input type="file" name="VI_img" class="VI_img" onchange="renameVI0(this)" id="VI_img${cntVGI0element}">
+              <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
-        table.addVI0toTable("", './img/Logo/insert-picture-icon.png');
+        table.addVI0toTable("", '.././img/Logo/Black Img.png');
         ++cntVGI0element;
         ++VI_id_wrap0;
     }
@@ -432,15 +443,17 @@ function AddProductImage(input) {
     let imgobj = document.createElement('div');
     imgobj.className = "imgObject";
     let img = document.createElement('img');
-    let btnrRemove = document.createElement('button');
-    btnrRemove.className = "btnRemove";
-    btnrRemove.innerHTML = '<i class="fa-solid fa-x"></i>';
-    btnPreview = document.createElement('button');
-    btnPreview.className = "btnPreview";
+    let btnRemove = document.createElement('button');
+    btnRemove.classList.add('btnRemove');
+    btnRemove.classList.add('btn');
+    btnRemove.innerHTML = '<i class="fa-solid fa-x"></i>';
+    let btnPreview = document.createElement('button');
+    btnPreview.classList.add('btnPreview');
+    btnPreview.classList.add('btn');
     btnPreview.innerHTML = '<i class="fa-solid fa-search"></i>';
 
     imgobj.appendChild(img);
-    imgobj.appendChild(btnrRemove);
+    imgobj.appendChild(btnRemove);
     imgobj.appendChild(btnPreview);
 
     reader.onload = function (e) {
@@ -557,16 +570,19 @@ function AddProduct() {
 function createOverlay() {
     let overlay = document.createElement('div');
     overlay.id = "overlay";
-    overlay.style.position = "fixed";
-    overlay.style.top = 0;
-    overlay.style.left = 0;
-    overlay.style.width = "100%";
-    overlay.style.height = "100%";
-    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
-    overlay.style.display = "flex";
-    overlay.style.justifyContent = "center";
-    overlay.style.alignItems = "center";
-    overlay.style.zIndex = "3";
+    Object.assign(overlay.style, {
+        position: "fixed",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0,0,0,0.5)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: "5"
+    });
     overlay.addEventListener('click', function () {
         overlay.parentElement.removeChild(overlay);
     });
