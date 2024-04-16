@@ -1,7 +1,7 @@
 package com.example.pbl3_1.service;
 
 import com.example.pbl3_1.entity.User;
-
+import java.sql.Date;
 import java.util.AbstractMap;
 
 public interface UserService {
@@ -20,4 +20,5 @@ public interface UserService {
     public Long save(User object);
     public boolean findEmail(String email);
     public Integer updatePass(String username, String password);
+    public Integer updateInfor(User user);
 }

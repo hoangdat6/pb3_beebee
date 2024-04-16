@@ -17,6 +17,7 @@ public class ConfirmEmailFunction {
             String status = sessionUtil.getValue(request, "cfstatus").toString();
             if(status.equals("register"))
             {
+                System.out.println("Da dk thanh cong");
                 sessionUtil.removeValue(request, "codestatus");
                 User user = (User)sessionUtil.getValue(request, "newUser");
                 userService.save(user);

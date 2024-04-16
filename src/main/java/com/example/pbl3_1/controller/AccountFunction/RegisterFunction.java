@@ -41,7 +41,6 @@ public class RegisterFunction {
                 for (int i = 0; i < 6; i++) {
                     Random rand = new Random();
                     int randomNumber = Math.abs((rand.nextInt()) % 10);
-                    System.out.println(randomNumber);
                     code += randomNumber;
                 }
                 sessionUtil.removeValue(request, "newUser");
@@ -55,6 +54,7 @@ public class RegisterFunction {
                 sessionUtil.putValue(request, "cfstatus", "register");
                 sessionUtil.putValue(request, "rsstatus", true);
                 String Code = code;
+                System.out.println(Code);
                 // Tạo một luồng mới để gửi email bất đồng bộ
                 Thread sendMailThread = new Thread(new Runnable() {
                     @Override
