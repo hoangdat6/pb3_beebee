@@ -4,6 +4,7 @@ import com.example.pbl3_1.dao.impl.UserDAOimpl;
 import com.example.pbl3_1.dao.UserDAO;
 import com.example.pbl3_1.entity.User;
 
+import java.sql.Date;
 import java.util.AbstractMap;
 
 public class UserServiceImpl implements UserService{
@@ -39,4 +40,10 @@ public class UserServiceImpl implements UserService{
     public Integer updatePass(String username, String password) {
         return userDAO.updatePass(username, password);
     }
+
+    @Override
+    public Integer updateInfor(User user) {
+        return userDAO.updateInfor(user);
+    }
+
 }

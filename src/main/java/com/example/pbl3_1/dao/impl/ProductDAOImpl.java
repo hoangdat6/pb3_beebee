@@ -143,4 +143,10 @@ public class ProductDAOImpl implements ProductDAO {
                 0
         );
     }
+
+    @Override
+    public void updateProductImage(Long productId, String images) {
+        String sql = "UPDATE products SET product_img_path = ? WHERE id = ?";
+        abstractDAO.update(sql, images, productId);
+    }
 }

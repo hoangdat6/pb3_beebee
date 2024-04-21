@@ -14,9 +14,7 @@ import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.Product;
 import com.example.pbl3_1.entity.Variation;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProductServiceImpl implements ProductService{
     private final ProductDAO productDAO = new ProductDAOImpl();
@@ -31,7 +29,11 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<ProductForHomeDTO> getProductsForHome() {
-        return productDAO.getProductForHomeDtos();
+        List<ProductForHomeDTO> productForHomeDTO = productDAO.getProductForHomeDtos();
+        for (ProductForHomeDTO product : productForHomeDTO){
+            product.setProductImgPath(product.getProductImgPath().split(",")[0]);
+        }
+        return productForHomeDTO;
     }
 
     @Override
@@ -39,7 +41,9 @@ public class ProductServiceImpl implements ProductService{
         ProductDetailDTO productDetailDTO = productDAO.getProductDetailById(id);
         List<Variation> variations = variationService.getVariationsByProductId(id);
         List<String> imgPaths = productItemDAO.getImgPathByProductId(id);
-        imgPaths.add(0, productDetailDTO.getProductImgPath().get(0));
+
+        String[] imgPath = productDetailDTO.getProductImgPath().get(0).split(",");
+        imgPaths.addAll(0, Arrays.asList(imgPath));
 
         productDetailDTO.setVariations(variations);
         productDetailDTO.setProductImgPath(imgPaths);
@@ -50,5 +54,10 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void increaseView(Long id) {
         productDAO.increaseView(id);
+    }
+
+    @Override
+    public void updateProductImage(Long productId, String images) {
+        productDAO.updateProductImage(productId, images);
     }
 }

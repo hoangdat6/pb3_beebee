@@ -2,7 +2,7 @@ function toast(
     {title='', 
     message ='', 
     type = 'info', 
-    duration = 3000}){
+    duration = 5000}){
     const main = document.getElementById('toast');
     if (main)
     {
@@ -50,7 +50,7 @@ function showSuccessToast(title, message){
         title: title,
         message: message,
         type: 'success',
-        duration: 3000
+        duration: 5000
     })
 }
 
@@ -59,6 +59,6 @@ function showErrorToast(title, message){
         title: title,
         message: message,
         type: 'error',
-        duration: 3000
+        duration: 5000
     })
 }

@@ -6,7 +6,7 @@
           <div class="Header-Top__item1">Chúng tôi giao hàng mỗi ngày từ <span class="orange-bold">7:00</span> đến
             <span class="orange-bold">23:00</span>
           </div>
-          <div class="Header-Top__item2">Bạn đang ở kênh mua hàng! <a href="<c:url value="/product/save"/>" class="orange-bold">Chuyển qua kênh người
+          <div class="Header-Top__item2">Bạn đang ở kênh mua hàng! <a href="<c:url value="/Seller/product/save"/>" class="orange-bold">Chuyển qua kênh người
               bán?</a></div>
 
         </div>
@@ -42,7 +42,7 @@
                 <div class="Line"></div>
                 <div class="Account_option">
                   <h3>Tài khoản của bạn</h3>
-                  <a href="UserInformation.jsp"><img src="./img/Shop/TKCuaToi.svg" alt="">Tài khoản của tôi</a>
+                  <a href='<c:url value="/userinfor"/>'><img src="./img/Shop/TKCuaToi.svg" alt="">Tài khoản của tôi</a>
                   <a href="#"><img src="./img/Shop/DiaChiCT.svg" alt="">Địa chỉ của tôi</a>
                   <a href="#"><img src="./img/Shop/DonMua.svg" alt="">Đơn mua</a>
                   <a href='<c:url value="/logout"/>'><img src="./img/Shop/DangXuar.svg" alt="">Đăng xuất</a>
