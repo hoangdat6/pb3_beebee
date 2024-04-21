@@ -377,3 +377,32 @@ input[type="file"] {
     flex-direction: row-reverse;
     gap: 30px
 }
+
+.imgObject{
+    position: relative;
+}
+
+.imgObject .btn{
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    padding: 5px;
+    display: none;
+}
+
+.imgObject:hover .btn{
+    display: inline-block;
+}
+
+.imgObject .btn:hover{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.imgObject .btnRemove{
+    left: 0;
+}
+
+.imgObject .btnPreview{
+    right: 0;
+}
