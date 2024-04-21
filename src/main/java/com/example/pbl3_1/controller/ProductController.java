@@ -22,7 +22,7 @@ import java.nio.file.Paths;
 import java.sql.Timestamp;
 import java.util.*;
 
-@WebServlet(name = "product", urlPatterns = {"/product", "/product/save"})
+@WebServlet(name = "product", urlPatterns = {"/product", "/Seller/product/save"})
 public class ProductController extends HttpServlet {
     public final ProductService productService = new ProductServiceImpl();
     public final CategoryService categoryService = new CategoryServiceImpl();
@@ -41,7 +41,7 @@ public class ProductController extends HttpServlet {
             case "/product":
                 showProductDetails(request, response);
                 break;
-            case "/product/save":
+            case "/Seller/product/save":
                 showCategoryForAddProduct(request, response);
                 break;
         }
@@ -55,7 +55,7 @@ public class ProductController extends HttpServlet {
         String path = request.getServletPath();
 
         switch (path) {
-            case "/product/save":
+            case "/Seller/product/save":
                 saveProduct(request, response);
                 break;
         }

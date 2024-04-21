@@ -1,0 +1,89 @@
+.SR_main_content {
+    width: 100%;
+}
+
+.SR_form {
+    width: 100%;
+}
+
+
+.SR_form_item_cover {
+    width: 80%;
+}
+
+.SR_form_item label {
+    border: 2px dashed #38CB89;
+    border-radius: 5px;
+    padding: 10px;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+}
+
+.SR_form_item h3{
+    margin-bottom: 20px;
+}
+
+.SR_form_item label > span{
+    color: #38CB89;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.SR_form_item label[for="Cover"] {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.SR_form_item.active label[for="Cover"] img{
+    width: 800px;
+    height: 200px;
+    object-fit: cover;
+}
+
+.SR_form_item label[for="Avatar"] {
+    width: 132px;
+    height: 132px;
+    object-fit: cover;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.SR_form_item .active label[for="Avatar"] img{
+    width: 98%;
+    height: 98%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.SR_form_item label[for="Avatar"] img {
+    width: 46px;
+    height: 46px;
+    object-fit: cover;
+    display: block;
+}
+
+.SR_form_item--avatar{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+}
+
+.SR_form_item_notation{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 450px;
+    color: #6C7275;
+}
+
+.SR_form_item_notation p span{
+    color: #FF5630;
+}
+

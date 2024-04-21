@@ -1,6 +1,6 @@
-<!-- <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-<%@ include file="../common/taglib.jsp" %>
-        <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ include file="../../common/taglib.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -9,47 +9,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add new product</title>
-    <link rel="stylesheet" href="AddProduct.css">
-    <link rel="stylesheet" type="text/css" href="../CommonCSS.css">
-    <link rel="stylesheet" type="text/css" href="../Top-Bar.css">
-    <link rel="stylesheet" type="text/css" href="../Footer.css">
-    <script src="../toast.js"></script>
-    <script src="AddProduct.js"></script>
-    <link rel="stylesheet" href="../toast.css" />
+    <link rel="stylesheet" href="./AddProduct.css">
+    <link rel="stylesheet" href="../Common/SellerCommon.css">
+    <link rel="stylesheet" type="text/css" href="../../CommonCSS.css">
+    <link rel="stylesheet" type="text/css" href="../../Top-Bar.css">
+    <link rel="stylesheet" type="text/css" href="../../Footer.css">
+    <script src="../../toast.js"></script>
+    <script src="./AddProduct.js"></script>
+    <link rel="stylesheet" href="../../toast.css" />
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    <div class="status">
-        Chào mừng bạn đến với <span style="font-weight: 500;">Kênh người bán!</span> <span
-            style="color: #EA580C;">Về lại giao diện mua hàng?</span>
-    </div>
-
-    <div class="Main_Header_wrap">
-            <div class="Main_Header">
-                <div class="left">
-                    <img src=".././img/Logo/Logo Ispum.png" alt="">
-                    <h3 class="title" style="color:#EA580C;">Kênh người bán</h3>
-                </div>
-                <div class="right">
-                    <div class="item btn">
-                        <i class="fa-regular fa-bookmark"></i>
-                        <span>Đăng bài</span>
-                    </div>
-                    <div class="item btn">
-                        <i class="fa-regular fa-bell"></i>
-                        <span>Thông báo</span>
-                    </div>
-                    <div class="Account_option btn">
-                        <img src="../img/Logo/Avatar.png" alt="">
-                        <span>Tên tài khoản</span>
-                        <i class="fa-solid fa-chevron-down"></i>
-                    </div>
-                </div>
-            </div>
-    </div>
-
+    <%@ include file="../Common/SellerCommon.jsp" %>
+    <fmt:setLocale value = "vi_VN"/>
     <div class="Side_nav">
         <a class="btn" href="#Basic_info">
             Thông tin cơ bản
@@ -135,7 +109,7 @@
                             <div id="image_preview">
                                 <input onchange="AddProductImage(this)" type="file" name="product_image" id="product_image" accept="image/*" multiple>
                                 <label for="product_image">
-                                    <img id="ProductImage" src="../img/Logo/Image.png" alt="">
+                                    <img id="ProductImage" src="../../img/Logo/Image.png" alt="">
                                     <span>Thêm hình ảnh</span>
                                 </label>
                             </div>
@@ -149,7 +123,7 @@
                                 Ảnh bìa sẽ được hiển thị tại các trang kết quả tìm kiếm.</span></h3>
                         <input onchange="AddCoverImage(this)" type="file" name="cover_image" id="cover_image" accept="image/*" multiple>
                         <label for="cover_image">
-                            <img id="coverImage" src="../img/Logo/Image.png" alt="">
+                            <img id="coverImage" src="../../img/Logo/Image.png" alt="">
                             <span>Thêm hình ảnh</span>
                         </label>
                         <span style="font-size: 11px; font-weight: 400; color: #6C7275; margin-top: 10px; display: block;"><span style="color: #EA580C;">*</span>  <span style="color:#131417">Tips:</span> Việc sử dụng ảnh bìa đẹp sẽ thu hút thêm lượt truy cập vào sản phẩm của bạn</span>
@@ -281,9 +255,10 @@
                 <div class="btn btnCancel">Hủy</div>
             </section>
         </main>
-    <script src="AddProduct.js"></script>
-    <script src="AddProductEvent.js"></script>
-    <script src="../Common.js"></script>
+    <script src="./AddProduct.js"></script>
+    <script src="./AddProductEvent.js"></script>
+    <script src="../../Common.js"></script>
+    <script src=../Common/SellerCommon.js"></script>
 </body>
 
 </html>

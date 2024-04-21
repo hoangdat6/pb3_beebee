@@ -1,15 +1,13 @@
-import axios from "axios";
-
-var citis = document.getElementById("city");
-var districts = document.getElementById("district");
-var wards = document.getElementById("ward");
-var Parameter = {
-  url: "data.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
+let citis = document.getElementById("city");
+let districts = document.getElementById("district");
+let wards = document.getElementById("ward");
+let Parameter = {
+  url: "./data.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
   method: "GET", //do backend cung cấp
   responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
 };
 //gọi ajax = axios => nó trả về cho chúng ta là một promise
-var promise = axios(Parameter);
+let promise = axios(Parameter);
 //Xử lý khi request thành công
 promise.then(function (result) {
   renderCity(result.data);
@@ -24,7 +22,7 @@ function renderCity(data) {
   citis.onchange = function () {
     districts.length = 1;
     wards.length = 1;
-    if(this.value !== ""){
+    if (this.value !== "") {
       const result = data.filter(n => n.Id === this.value);
 
       for (const k of result[0].Districts) {
@@ -33,7 +31,7 @@ function renderCity(data) {
     }
   };
 
-   // xứ lý khi thay đổi quận huyện thì sẽ hiển thị ra phường xã thuộc quận huyện đó
+  // xứ lý khi thay đổi quận huyện thì sẽ hiển thị ra phường xã thuộc quận huyện đó
   districts.onchange = function () {
     wards.length = 1;
     const dataCity = data.filter((n) => n.Id === citis.value);

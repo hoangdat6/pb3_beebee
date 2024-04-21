@@ -167,10 +167,6 @@ class AddProductTable {
             if (index != 0)
                 this.table.deleteRow(i + index);
             else {
-                // Update the last 3 cells of the first row with the values of the next row
-                // for (let j = 1; j <= 3; j++) {
-                //     this.table.rows[i].cells[this.table.rows[i].cells.length - j].innerHTML = this.table.rows[i + 1].cells[this.table.rows[i + 1].cells.length - j].innerHTML;
-                // }
                 this.table.rows[i].cells[1].innerHTML = this.table.rows[i + 1].cells[0].innerHTML;
                 this.table.rows[i].cells[2].children[0].value = this.table.rows[i + 1].cells[1].children[0].value;
                 this.table.rows[i].cells[3].children[0].value = this.table.rows[i + 1].cells[2].children[0].value;
@@ -263,17 +259,26 @@ function UpdateProductImageAfterChangeImage(input) {
     let file = input.files[0];
     let reader = new FileReader();
     let VI = input.parentElement;
+
     reader.onloadend = function () {
         VI.querySelector(`label img`).src = reader.result;
         renameVI0(input);
     }
+
+    reader.onerror = function () {
+        console.error("An error occurred while reading the file.");
+    }
+
     if (file) {
-        reader.readAsDataURL(file);
+        if (file.type.startsWith("image/")) {
+            reader.readAsDataURL(file);
+        } else {
+            console.error("The selected file is not an image.");
+        }
     } else {
-        VI.querySelector(`label img`).src = "../img/Logo/Black Img.png";
+        VI.querySelector(`label img`).src = ".././img/Logo/Black Img.png";
     }
 }
-
 function getVI0Index(element) {
     let VI = element.closest('.VI');
     let VI_wrap = document.getElementById('VI_wrap0');
@@ -314,8 +319,7 @@ function removeVI1(element) {
 }
 
 function renameVI0(input) {
-    let index = getVI0Index(input);
-    UpdateProductImageAfterChangeImage(input.parentElement.querySelector('input[type="file"]'));
+    let index = getVI0Index(input.parentElement);
     let name = input.parentElement.querySelector('input[type="text"]').value;
     let srcImg = input.parentElement.querySelector('img').src;
     let info = {
@@ -325,6 +329,7 @@ function renameVI0(input) {
 
     table.renameVI0ByIndex(index, info);
 }
+
 
 function renameVI1(input) {
     let index = getVI1Index(input);
@@ -361,7 +366,7 @@ function AddVarient(id) {
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
-        table.addVI0toTable("", '../img/Logo/Black Img.png');
+        table.addVI0toTable("", '.././img/Logo/Black Img.png');
         ++cntVGI0element;
         ++VI_id_wrap0;
     }
@@ -406,18 +411,6 @@ function removeVGI() {
     }
 }
 
-//Thay đổi ảnh bìa sau khi được chọn
-// document.getElementById('product_image').addEventListener('change', function (e) {
-//     let file = e.target.files[0];
-//     let reader = new FileReader();
-//     reader.onloadend = function () {
-//         document.querySelector('label[for="product_image"] img').src = reader.result;
-//     }
-//     if (file) {
-//         reader.readAsDataURL(file);
-//     }
-// });
-
 function ChangeImagePreview(div) {
     let input = div.querySelector('input');
     let img = div.querySelector('.img_Preview');
@@ -435,15 +428,17 @@ function AddProductImage(input) {
     let imgobj = document.createElement('div');
     imgobj.className = "imgObject";
     let img = document.createElement('img');
-    let btnrRemove = document.createElement('button');
-    btnrRemove.className = "btnRemove";
-    btnrRemove.innerHTML = '<i class="fa-solid fa-x"></i>';
-    btnPreview = document.createElement('button');
-    btnPreview.className = "btnPreview";
+    let btnRemove = document.createElement('button');
+    btnRemove.classList.add('btnRemove');
+    btnRemove.classList.add('btn');
+    btnRemove.innerHTML = '<i class="fa-solid fa-x"></i>';
+    let btnPreview = document.createElement('button');
+    btnPreview.classList.add('btnPreview');
+    btnPreview.classList.add('btn');
     btnPreview.innerHTML = '<i class="fa-solid fa-search"></i>';
 
     imgobj.appendChild(img);
-    imgobj.appendChild(btnrRemove);
+    imgobj.appendChild(btnRemove);
     imgobj.appendChild(btnPreview);
 
     reader.onload = function (e) {
@@ -484,7 +479,7 @@ function AddProduct() {
     let ProductName = document.querySelector('#product_name').value;
     let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
     let ProductCategory = document.querySelector('#category').value;
-    let ProductDescription= document.querySelector('#product_description').value;
+    let ProductDescription = document.querySelector('#product_description').value;
     let Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]') != null ?
         document.querySelector('.VGI0 input[name="varient_group_name"]').value : "";
     let Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]') != null ?
@@ -499,13 +494,13 @@ function AddProduct() {
         ProductName: ProductName,
         ProductCategory: ProductCategory,
         ProductDescription: ProductDescription,
-        Discount : discount,
-        Variation1 : Variation1Name,
-        Variation2 : Variation2Name,
+        Discount: discount,
+        Variation1: Variation1Name,
+        Variation2: Variation2Name,
         Images: imageSrc
     });
 
-    if(document.getElementById("myTable").rows.length > 0) {
+    if (document.getElementById("myTable").rows.length > 0) {
         let ProductRows = table.table.rows;
         let VariationOption1Name = "";
         for (let i = 1; i < ProductRows.length; i++) {
@@ -524,12 +519,12 @@ function AddProduct() {
             data.push({
                 VariationOption1: VariationOption1,
                 VariationOption2: VariationOption2,
-                ProductItemImage : ProductItemImage,
+                ProductItemImage: ProductItemImage,
                 QtyInStock: QtyInStock,
                 Price: Price
             });
         }
-    }else {
+    } else {
         let QtyInStock = document.getElementById("KhoHang").value;
         let Price = document.getElementById("Gia").value;
         data.push({
@@ -566,16 +561,19 @@ function AddProduct() {
 function createOverlay() {
     let overlay = document.createElement('div');
     overlay.id = "overlay";
-    overlay.style.position = "fixed";
-    overlay.style.top = 0;
-    overlay.style.left = 0;
-    overlay.style.width = "100%";
-    overlay.style.height = "100%";
-    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
-    overlay.style.display = "flex";
-    overlay.style.justifyContent = "center";
-    overlay.style.alignItems = "center";
-    overlay.style.zIndex = "3";
+    Object.assign(overlay.style, {
+        position: "fixed",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: "100%",
+        backgroundColor: "rgba(0,0,0,0.5)",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        zIndex: "5"
+    });
     overlay.addEventListener('click', function () {
         overlay.parentElement.removeChild(overlay);
     });
