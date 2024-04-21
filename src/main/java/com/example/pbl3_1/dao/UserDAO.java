@@ -5,12 +5,13 @@ import com.example.pbl3_1.entity.User;
 
 import java.sql.Date;
 import java.util.AbstractMap;
+import java.util.List;
 
 public interface UserDAO extends CommonDAO<User> {
     User findByUsername(String username);
     User findByUsernameAndPassword(String username, String password);
     String findUsernameByEmail(String email);
-    AbstractMap.SimpleEntry<Boolean, Boolean> findByUsernameOrEmail(String username, String email);
+    List<AbstractMap.SimpleEntry<String, String>> findByUsernameOrEmail(String username, String email);
     boolean findEmail(String email);
     Integer updatePass(String username, String password);
     Integer updateInfor(User user);
