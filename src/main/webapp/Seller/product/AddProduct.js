@@ -406,18 +406,6 @@ function removeVGI() {
     }
 }
 
-//Thay đổi ảnh bìa sau khi được chọn
-// document.getElementById('product_image').addEventListener('change', function (e) {
-//     let file = e.target.files[0];
-//     let reader = new FileReader();
-//     reader.onloadend = function () {
-//         document.querySelector('label[for="product_image"] img').src = reader.result;
-//     }
-//     if (file) {
-//         reader.readAsDataURL(file);
-//     }
-// });
-
 function ChangeImagePreview(div) {
     let input = div.querySelector('input');
     let img = div.querySelector('.img_Preview');
@@ -484,7 +472,7 @@ function AddProduct() {
     let ProductName = document.querySelector('#product_name').value;
     let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
     let ProductCategory = document.querySelector('#category').value;
-    let ProductDescription= document.querySelector('#product_description').value;
+    let ProductDescription = document.querySelector('#product_description').value;
     let Variation1Name = document.querySelector('.VGI0 input[name="varient_group_name"]') != null ?
         document.querySelector('.VGI0 input[name="varient_group_name"]').value : "";
     let Variation2Name = document.querySelector('.VGI1 input[name="varient_group_name"]') != null ?
@@ -499,13 +487,13 @@ function AddProduct() {
         ProductName: ProductName,
         ProductCategory: ProductCategory,
         ProductDescription: ProductDescription,
-        Discount : discount,
-        Variation1 : Variation1Name,
-        Variation2 : Variation2Name,
+        Discount: discount,
+        Variation1: Variation1Name,
+        Variation2: Variation2Name,
         Images: imageSrc
     });
 
-    if(document.getElementById("myTable").rows.length > 0) {
+    if (document.getElementById("myTable").rows.length > 0) {
         let ProductRows = table.table.rows;
         let VariationOption1Name = "";
         for (let i = 1; i < ProductRows.length; i++) {
@@ -524,12 +512,12 @@ function AddProduct() {
             data.push({
                 VariationOption1: VariationOption1,
                 VariationOption2: VariationOption2,
-                ProductItemImage : ProductItemImage,
+                ProductItemImage: ProductItemImage,
                 QtyInStock: QtyInStock,
                 Price: Price
             });
         }
-    }else {
+    } else {
         let QtyInStock = document.getElementById("KhoHang").value;
         let Price = document.getElementById("Gia").value;
         data.push({

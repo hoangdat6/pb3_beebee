@@ -14,6 +14,7 @@
   <link rel="stylesheet" type="text/css" href="style.css">
   <script type="text/javascript" src="main.js"></script>
   <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+  <script src="Card.js"></script>
 </head>
 
 <!--Header contain navigation-->
@@ -73,56 +74,21 @@
       </div>
       <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
     </div>
-    <div class="Product_list pad-l-r-170 pad-t-b-30">
-      <c:forEach items="${products}" var="product">
-      <div class="Card">
-        <a href='<c:url value="/product?id=${product.id}" />'>
-          <img class="Card-Image" src="${product.productImgPath}">
-          <span class="Hot">Hot</span>
-          <span class="Sale">-${product.discount}%</span>
-        </a>
-        <div class="Card_top">
-          <a href='<c:url value="/product?id=${product.id}" />'>
-            <h3>${product.name}</h3>
-          </a>
-          <a class="Card_shop" href="Shop.jsp">
-            <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
-            <c:if test="${product.sellerName != null}">
-              <span>${product.sellerName}</span>
-            </c:if>
-            <c:if test="${product.sellerName == null}">
-              <span>Tên Shop</span>
-            </c:if>
-          </a>
-        </div>
-        <div class="Card_bot">
-          <div class="Card_price">
-            <span class="oldPrice">
-              <fmt:formatNumber value = "${product.price}" type = "currency"/>
-            </span>
-            <span class="newPrice">
-              <fmt:formatNumber value = "${product.price * (1 - product.discount / 100)}" type = "currency"/>
-            </span>
-          </div>
-
-          <div class="Card_rating">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <span class="Card_ratingCount">(62.5k đánh giá) </span>
-          </div>
-
-          <div class="Card_logo">
-            <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
-            <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
-          </div>
-        </div>
-      </div>
-      </c:forEach>
-
-    </div>
+    <div class="Product_list pad-l-r-170 pad-t-b-30"></div>
+      <script>
+    <c:forEach items="${products}" var="product">
+    var productUrl = '<c:url value="/product?id=${product.id}" />';
+    var sellerName = "${product.sellerName != null ? product.sellerName : 'Tên Shop'}";
+        document.querySelector('.Product .Product_list').innerHTML += createCard({
+          name: "${product.name}",
+          price: "${product.price}",
+          discount: "${product.discount}",
+          productImgPath: "${product.productImgPath}",
+          sellerName: sellerName,
+          productUrl: productUrl
+        });
+    </c:forEach>
+      </script>
   </div>
 
   <div class="Title-Container">
@@ -135,6 +101,7 @@
 
   <div class="Product_list pad-l-r-170 pad-t-b-30">
     <% for (int i = 0; i < 20; i++) { %>
+
     <div class="Card">
       <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
       <span class="Hot">Hot</span>
@@ -159,11 +126,6 @@
           <i class="fa-solid fa-star"></i>
           <i class="fa-solid fa-star"></i>
           <span class="Card_ratingCount">(62.5k đánh giá) </span>
-        </div>
-
-        <div class="Card_logo">
-          <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
-          <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
         </div>
       </div>
     </div>

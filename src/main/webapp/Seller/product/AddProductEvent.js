@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#product_name").addEventListener('input', function () {
         let charCount = this.value.length;
         document.querySelector("#span_for_name").textContent = `${charCount}/120`;

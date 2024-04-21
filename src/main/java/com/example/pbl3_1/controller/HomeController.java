@@ -54,7 +54,7 @@ public class HomeController extends HttpServlet {
                 case "/changepass":
                 case "/changeinfor":
                     sessionUtil.putValue(request, "EmailStatus", true);
-                    response.sendRedirect(request.getContextPath() + "/UserInformation.jsp");
+                    response.sendRedirect(request.getContextPath() + "/UserAccountAndSetting/UserInformation.jsp");
                     break;
                 case "/register":
                     if(sessionUtil.getValue(request, "USERMODEL") != null)
