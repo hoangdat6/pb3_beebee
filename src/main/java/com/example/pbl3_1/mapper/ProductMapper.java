@@ -21,7 +21,7 @@ public class ProductMapper implements RowMapper<Product>{
                     .description(rs.getString("description"))
                     .productImgPath(rs.getString("product_img_path"))
 //                    .categoryId(categoryDAO.findById(rs.getInt("category_id")))
-                    .discount(rs.getFloat("discount"))
+                    .discount(rs.getInt("discount"))
 //                    .sellerId(rs.getLong("seller_id"))
                     .createdAt(rs.getTimestamp("created_at"))
                     .build();

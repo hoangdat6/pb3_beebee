@@ -17,13 +17,13 @@
 <body>
 <%@ include file="Top-Bar.jsp" %>
 <div id="Shop_header">
-    <img src="./img/Shop/Background.png" alt="Ảnh bìa" class="Shop_background">
+    <img src="./img/Shop/Background.png" loading="lazy" alt="Ảnh bìa" class="Shop_background">
     <div class="Shop_infor">
-        <img src="./img/Shop/Avatar.png" alt="Ảnh đại diện" class="Shop_image">
+        <img src="./img/Shop/Avatar.png" loading="lazy" alt="Ảnh đại diện" class="Shop_image">
         <div class="Shop_desc">
             <div class="col">
                 <h3 class="Shop_name">Tên Shop</h3>
-                <p class="Shop_evaluate"><img src="./img/Shop/Star Icon.svg" alt=""> 4.9 | 60k lượt theo dõi
+                <p class="Shop_evaluate"><img src="./img/Shop/Star Icon.svg" loading="lazy" alt=""> 4.9 | 60k lượt theo dõi
                 </p>
             </div>
             <div class="col">
@@ -63,7 +63,7 @@
         </a>
     </div>
 
-    <img class="Big_image" src="./img/Shop/Slider.png" alt="Big Image">
+    <img class="Big_image" src="./img/Shop/Slider.png" loading="lazy" alt="Big Image">
 
     <div class="Product_list pad-l-r-170">
         <div class="Card">
@@ -102,147 +102,11 @@
         </div>
 
         <div class="Card">
-            <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
+            <img class="Card-Image"  src="./img_product/123457.png" alt="Ảnh sản phẩm">
             <span class="Hot">Hot</span>
             <span class="Sale">-50%</span>
             <div class="Card_top">
                 <h3>Áo thun nữ co dán sfd fsd fsd sfd sfd sfd sdf fsd sfd sdf sdf sdf s sfd s fsdf sdf </h3>
-                <div class="Card_shop">
-                    <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
-                    <span>Tên shop</span>
-                </div>
-            </div>
-            <div class="Card_bot">
-                <div class="Card_bot-left">
-                    <div class="Card_price">
-                        <span class="oldPrice">238.000đ</span>
-                        <span class="newPrice">150.000đ</span>
-                    </div>
-
-                    <div class="Card_rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <span class="Card_ratingCount">(62.5k đánh giá) </span>
-                    </div>
-                </div>
-
-                <div class="Card_logo">
-                    <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
-                    <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
-                </div>
-            </div>
-        </div>
-        <div class="Card">
-            <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
-            <span class="Hot">Hot</span>
-            <span class="Sale">-50%</span>
-            <div class="Card_top">
-                <h3>Áo thun nữ co dán</h3>
-                <div class="Card_shop">
-                    <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
-                    <span>Tên shop</span>
-                </div>
-            </div>
-            <div class="Card_bot">
-                <div class="Card_bot-left">
-                    <div class="Card_price">
-                        <span class="oldPrice">238.000đ</span>
-                        <span class="newPrice">150.000đ</span>
-                    </div>
-
-                    <div class="Card_rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <span class="Card_ratingCount">(62.5k đánh giá) </span>
-                    </div>
-                </div>
-
-                <div class="Card_logo">
-                    <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
-                    <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
-                </div>
-            </div>
-        </div>
-        <div class="Card">
-            <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
-            <span class="Hot">Hot</span>
-            <span class="Sale">-50%</span>
-            <div class="Card_top">
-                <h3>Áo thun nữ co dán</h3>
-                <div class="Card_shop">
-                    <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
-                    <span>Tên shop</span>
-                </div>
-            </div>
-            <div class="Card_bot">
-                <div class="Card_bot-left">
-                    <div class="Card_price">
-                        <span class="oldPrice">238.000đ</span>
-                        <span class="newPrice">150.000đ</span>
-                    </div>
-
-                    <div class="Card_rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <span class="Card_ratingCount">(62.5k đánh giá) </span>
-                    </div>
-                </div>
-
-                <div class="Card_logo">
-                    <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
-                    <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
-                </div>
-            </div>
-        </div>
-        <div class="Card">
-            <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
-            <span class="Hot">Hot</span>
-            <span class="Sale">-50%</span>
-            <div class="Card_top">
-                <h3>Áo thun nữ co dán</h3>
-                <div class="Card_shop">
-                    <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
-                    <span>Tên shop</span>
-                </div>
-            </div>
-            <div class="Card_bot">
-                <div class="Card_bot-left">
-                    <div class="Card_price">
-                        <span class="oldPrice">238.000đ</span>
-                        <span class="newPrice">150.000đ</span>
-                    </div>
-
-                    <div class="Card_rating">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <span class="Card_ratingCount">(62.5k đánh giá) </span>
-                    </div>
-                </div>
-
-                <div class="Card_logo">
-                    <img src="./img/Shop/heart.svg" alt="Thêm vào mục yêu thích">
-                    <img src="./img/Shop/Cart.svg" alt="Thêm vào giỏ hàng">
-                </div>
-            </div>
-        </div>
-        <div class="Card">
-            <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
-            <span class="Hot">Hot</span>
-            <span class="Sale">-50%</span>
-            <div class="Card_top">
-                <h3>Áo thun nữ co dán</h3>
                 <div class="Card_shop">
                     <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
                     <span>Tên shop</span>

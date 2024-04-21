@@ -17,9 +17,9 @@ import java.util.Map;
 public class ProductDetailDTO {
     private Long id;
     private String name;
-    private Float maxPrice;
-    private Float minPrice;
-    private Float discount;
+    private Integer maxPrice;
+    private Integer minPrice;
+    private Integer discount;
     private List<String> productImgPath;
     private String description;
     private int categoryId;
@@ -35,7 +35,7 @@ public class ProductDetailDTO {
 
     }
 
-    public ProductDetailDTO(Product product, List<String> productImgPath, Map.Entry<Float, Float> maxAndMinPrice, Category category, int quantity, Seller seller, List<Variation> variations){
+    public ProductDetailDTO(Product product, List<String> productImgPath, Map.Entry<Integer, Integer> maxAndMinPrice, Category category, int quantity, Seller seller, List<Variation> variations){
         this.id = product.getId();
         this.name = product.getName();
         this.maxPrice = maxAndMinPrice.getKey();
