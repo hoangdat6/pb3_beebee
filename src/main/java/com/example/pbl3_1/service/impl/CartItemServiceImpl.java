@@ -1,4 +1,4 @@
-package com.example.pbl3_1.service;
+package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.dao.ShoppingCartDAO;
 import com.example.pbl3_1.dao.ShoppingCartItemDAO;
@@ -7,11 +7,12 @@ import com.example.pbl3_1.dao.impl.ShoppingCartDAOImpl;
 import com.example.pbl3_1.dao.impl.ShoppingCartItemDAOImpl;
 import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
 import com.example.pbl3_1.entity.ShoppingCartItem;
+import com.example.pbl3_1.service.CartItemService;
 
 import java.sql.Timestamp;
 import java.util.Objects;
 
-public class CartItemServiceImpl implements CartItemService{
+public class CartItemServiceImpl implements CartItemService {
     ShoppingCartItemDAO cartItemDAO = new ShoppingCartItemDAOImpl();
     ProductItemDAO productItemDAO = new ProductItemDAOImpl();
     private final ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAOImpl();

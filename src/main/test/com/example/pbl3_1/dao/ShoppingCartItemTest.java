@@ -1,7 +1,7 @@
 package com.example.pbl3_1.dao;
 
 import com.example.pbl3_1.service.CartItemService;
-import com.example.pbl3_1.service.CartItemServiceImpl;
+import com.example.pbl3_1.service.impl.CartItemServiceImpl;
 import org.junit.Test;
 
 public class ShoppingCartItemTest {

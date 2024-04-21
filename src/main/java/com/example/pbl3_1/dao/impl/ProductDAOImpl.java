@@ -71,8 +71,8 @@ public class ProductDAOImpl implements ProductDAO {
                 return new ProductForHomeDTO(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
-                        resultSet.getFloat("min_price"),
-                        resultSet.getFloat("discount"),
+                        resultSet.getInt("min_price"),
+                        resultSet.getInt("discount"),
                         resultSet.getString("product_img_path"),
                         resultSet.getLong("seller_id"),
                         resultSet.getString("shop_name"),
@@ -102,9 +102,9 @@ public class ProductDAOImpl implements ProductDAO {
                 return new ProductDetailDTO(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
-                        resultSet.getFloat("max_price"),
-                        resultSet.getFloat("min_price"),
-                        resultSet.getFloat("discount"),
+                        resultSet.getInt("max_price"),
+                        resultSet.getInt("min_price"),
+                        resultSet.getInt("discount"),
                         new ArrayList<>(List.of(resultSet.getString("product_img_path"))),
                         resultSet.getString("description"),
                         resultSet.getInt("category_id"),

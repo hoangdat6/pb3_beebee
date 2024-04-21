@@ -1,13 +1,14 @@
-package com.example.pbl3_1.service;
+package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.dao.impl.UserDAOimpl;
 import com.example.pbl3_1.dao.UserDAO;
 import com.example.pbl3_1.entity.User;
+import com.example.pbl3_1.service.UserService;
 
 import java.sql.Date;
 import java.util.AbstractMap;
 
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 //    @Inject
     UserDAO userDAO = new UserDAOimpl();
 

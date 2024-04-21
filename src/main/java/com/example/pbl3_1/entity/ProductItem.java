@@ -17,7 +17,7 @@ public class ProductItem {
     private Long variation2;
     private Integer qtyInStock;
     private String productImgPath;
-    private Float price;
+    private Integer price;
 
     public ProductItem() {
     }
