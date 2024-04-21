@@ -270,7 +270,7 @@ function UpdateProductImageAfterChangeImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        VI.querySelector(`label img`).src = "../img/Logo/Black Img.png";
+        VI.querySelector(`label img`).src = blackImgPath;
     }
 }
 
@@ -354,14 +354,14 @@ function AddVarient(id) {
         VI_wrap.insertAdjacentHTML('beforeend', `
         <div class="VI" id="VI0${VI_id_wrap0}">
               <label for="VI_img${cntVGI0element}">
-                <img src="../img/Logo/Black Img.png" alt="preview">
+                <img src=${blackImgPath} alt="preview">
               </label>
               <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
-        table.addVI0toTable("", '../img/Logo/Black Img.png');
+        table.addVI0toTable("", blackImgPath);
         ++cntVGI0element;
         ++VI_id_wrap0;
     }
@@ -441,7 +441,7 @@ function AddProductImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        img.src = "../img/Logo/Black Img.png";
+        img.src = "../img/Logo/BlackImg.png";
         container.appendChild(imgobj);
     }
     img.addEventListener('click', function () {
@@ -463,7 +463,7 @@ function AddCoverImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        document.querySelector('.cover_image img').src = "../img/Logo/Black Img.png";
+        document.querySelector('.cover_image img').src = blackImgPath;
     }
 }
 
