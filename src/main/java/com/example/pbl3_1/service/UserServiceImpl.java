@@ -6,6 +6,7 @@ import com.example.pbl3_1.entity.User;
 
 import java.sql.Date;
 import java.util.AbstractMap;
+import java.util.List;
 
 public class UserServiceImpl implements UserService{
 //    @Inject
@@ -18,7 +19,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public AbstractMap.SimpleEntry<Boolean, Boolean> findByUsernameOrEmail(String username, String email) {
-        return userDAO.findByUsernameOrEmail(username, email);
+        List<AbstractMap.SimpleEntry<String, String>> users = userDAO.findByUsernameOrEmail(username, email);
+        if(users.size() == 2)
+        {
+            return new AbstractMap.SimpleEntry<>(false, false);
+        }else if(users.isEmpty())
+        {
+            return new AbstractMap.SimpleEntry<>(true, true);
+        }else
+        {
+            return new AbstractMap.SimpleEntry<>(!users.get(0).getKey().equals(username), !users.get(0).getValue().equals(email));
+        }
     }
 
     @Override

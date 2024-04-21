@@ -4,7 +4,6 @@ package com.example.pbl3_1.controller;
 import com.example.pbl3_1.Util.PasswordEncryption;
 import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
-import com.example.pbl3_1.controller.AccountFunction.*;
 import com.example.pbl3_1.controller.dto.product.ProductForHomeDTO;
 import com.example.pbl3_1.entity.Egender;
 import com.example.pbl3_1.entity.User;
@@ -54,7 +53,7 @@ public class HomeController extends HttpServlet {
                 case "/changepass":
                 case "/changeinfor":
                     sessionUtil.putValue(request, "EmailStatus", true);
-                    response.sendRedirect(request.getContextPath() + "/UserInformation.jsp");
+                    request.getRequestDispatcher("UserInformation.jsp").forward(request, response);
                     break;
                 case "/register":
                     if(sessionUtil.getValue(request, "USERMODEL") != null)
@@ -98,7 +97,7 @@ public class HomeController extends HttpServlet {
         }else if (action != null && action.equals("/register")){
             boolean check = Register(request);
             if(check) response.sendRedirect(request.getContextPath() + "/confirmemail");
-            else response.sendRedirect(request.getContextPath() + "/register");
+                else response.sendRedirect(request.getContextPath() + "/register#");
         }else if(action != null && action.equals("/confirmemail"))
         {
             int check = ConfirmEmail(request);
