@@ -4,6 +4,7 @@ import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
 import com.example.pbl3_1.entity.*;
 import com.example.pbl3_1.service.*;
+import com.example.pbl3_1.service.impl.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,11 +16,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Timestamp;
 import java.util.*;
 
 @WebServlet(name = "product", urlPatterns = {"/product", "/Seller/product/save"})
@@ -61,8 +60,6 @@ public class ProductController extends HttpServlet {
         }
     }
 
-
-
     public void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // get user from session
         User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
@@ -93,9 +90,7 @@ public class ProductController extends HttpServlet {
         BufferedReader reader = request.getReader();
         String images = "";
 
-
         String root = getServletContext().getRealPath("/");
-
 
         root = root.replace("target" + File.separator +"PBL3_1-1.0-SNAPSHOT" + File.separator,
                 "src" + File.separator + "main" + File.separator + "webapp" + File.separator );
@@ -112,7 +107,7 @@ public class ProductController extends HttpServlet {
         Product product = new Product();
         product.setName(data.get(0).get("ProductName").toString());
         product.setDescription(data.get(0).get("ProductDescription").toString());
-        product.setDiscount(Float.parseFloat(Objects.toString(data.get(0).get("Discount"))));
+        product.setDiscount(Integer.parseInt(Objects.toString(data.get(0).get("Discount"))));
         product.setCategoryId(Integer.parseInt(data.get(0).get("ProductCategory").toString()));
 //        product.setSellerId(Long.parseLong(data.get(0).get("SellerId"))); // seller xử lý sau
 
@@ -165,7 +160,7 @@ public class ProductController extends HttpServlet {
             item.setVariation1(variationOption1);
             item.setVariation2(variationOption2);
             item.setQtyInStock(Integer.parseInt(data.get(i).get("QtyInStock").toString()));
-            item.setPrice(Float.parseFloat(data.get(i).get("Price").toString()));
+            item.setPrice(Integer.parseInt(data.get(i).get("Price").toString()));
             items.add(item);
         }
 

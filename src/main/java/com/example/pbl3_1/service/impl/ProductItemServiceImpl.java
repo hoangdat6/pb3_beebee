@@ -1,10 +1,11 @@
-package com.example.pbl3_1.service;
+package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.dao.ProductItemDAO;
 import com.example.pbl3_1.dao.ShoppingCartDAO;
 import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
 import com.example.pbl3_1.dao.impl.ShoppingCartDAOImpl;
 import com.example.pbl3_1.entity.ProductItem;
+import com.example.pbl3_1.service.ProductItemService;
 
 import java.util.List;
 import java.util.Objects;

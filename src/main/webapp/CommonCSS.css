@@ -254,7 +254,8 @@ input[type="checkbox"]:checked::before {
 
 .Card-Image {
     width: 100%;
-    min-height: 170px;
+    /*min-height: 170px;*/
+    height: 295px;
     object-fit: cover;
 }
 

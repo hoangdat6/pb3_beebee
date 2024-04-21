@@ -2,7 +2,7 @@ package com.example.pbl3_1.dao;
 
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.UserService;
-import com.example.pbl3_1.service.UserServiceImpl;
+import com.example.pbl3_1.service.impl.UserServiceImpl;
 import org.junit.Test;
 
 public class UserDAOimplTest {

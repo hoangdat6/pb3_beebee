@@ -136,9 +136,9 @@
 
                             </div>
                             <div class="Shop">
-                                <img src="img/Brand/Coffee.jpeg" alt="Logo Shop">
+                                <img src="${productDetail.sellerAvatar}" alt="Logo Shop">
                                 <div class="Shop-Content">
-                                    <h3>Tên Shop</h3>
+                                    <h3>${productDetail.sellerName}</h3>
                                     <div class="Shop-Evaluation">
                                         <i class="fa-solid fa-star"></i>
                                         <i class="fa-solid fa-star"></i>

@@ -1,15 +1,16 @@
-package com.example.pbl3_1.service;
+package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.dao.VariationDAO;
 import com.example.pbl3_1.dao.VariationOptionDAO;
 import com.example.pbl3_1.dao.impl.VariationDAOImpl;
 import com.example.pbl3_1.dao.impl.VariationOptionDAOImpl;
 import com.example.pbl3_1.entity.Variation;
+import com.example.pbl3_1.service.VariationService;
 
 import java.util.List;
 import java.util.Objects;
 
-public class VariationServiceImpl implements VariationService{
+public class VariationServiceImpl implements VariationService {
     VariationDAO variationDAO = new VariationDAOImpl();
     VariationOptionDAO variationOptionDAO =  new VariationOptionDAOImpl();
     @Override
