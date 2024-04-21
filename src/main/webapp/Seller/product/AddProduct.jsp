@@ -9,14 +9,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add new product</title>
-    <link rel="stylesheet" href="./AddProduct.css">
-    <link rel="stylesheet" href="../Common/SellerCommon.css">
-    <link rel="stylesheet" type="text/css" href="../../CommonCSS.css">
-    <link rel="stylesheet" type="text/css" href="../../Top-Bar.css">
-    <link rel="stylesheet" type="text/css" href="../../Footer.css">
-    <script src="../../toast.js"></script>
-    <script src="./AddProduct.js"></script>
-    <link rel="stylesheet" href="../../toast.css" />
+    <link rel="stylesheet" href="<c:url value="/Seller/product/AddProduct.css"/>">
+    <link rel="stylesheet" href="<c:url value="/Seller/Common/SellerCommon.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
+    <script src="<c:url value="/toast.js"/>"></script>
+    <script src="<c:url value="/Seller/product/AddProduct.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/toast.css"/>" />
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
 
 </head>
@@ -255,6 +255,9 @@
                 <div class="btn btnCancel">Hủy</div>
             </section>
         </main>
+    <script>
+        var blackImgPath = "<c:url value="/img/Logo/BlackImg.png"/>";
+    </script>
     <script src="./AddProduct.js"></script>
     <script src="./AddProductEvent.js"></script>
     <script src="../../Common.js"></script>

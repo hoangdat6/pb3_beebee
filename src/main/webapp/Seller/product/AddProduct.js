@@ -167,6 +167,10 @@ class AddProductTable {
             if (index != 0)
                 this.table.deleteRow(i + index);
             else {
+                // Update the last 3 cells of the first row with the values of the next row
+                // for (let j = 1; j <= 3; j++) {
+                //     this.table.rows[i].cells[this.table.rows[i].cells.length - j].innerHTML = this.table.rows[i + 1].cells[this.table.rows[i + 1].cells.length - j].innerHTML;
+                // }
                 this.table.rows[i].cells[1].innerHTML = this.table.rows[i + 1].cells[0].innerHTML;
                 this.table.rows[i].cells[2].children[0].value = this.table.rows[i + 1].cells[1].children[0].value;
                 this.table.rows[i].cells[3].children[0].value = this.table.rows[i + 1].cells[2].children[0].value;
@@ -259,26 +263,17 @@ function UpdateProductImageAfterChangeImage(input) {
     let file = input.files[0];
     let reader = new FileReader();
     let VI = input.parentElement;
-
     reader.onloadend = function () {
         VI.querySelector(`label img`).src = reader.result;
         renameVI0(input);
     }
-
-    reader.onerror = function () {
-        console.error("An error occurred while reading the file.");
-    }
-
     if (file) {
-        if (file.type.startsWith("image/")) {
-            reader.readAsDataURL(file);
-        } else {
-            console.error("The selected file is not an image.");
-        }
+        reader.readAsDataURL(file);
     } else {
-        VI.querySelector(`label img`).src = ".././img/Logo/Black Img.png";
+        VI.querySelector(`label img`).src = blackImgPath;
     }
 }
+
 function getVI0Index(element) {
     let VI = element.closest('.VI');
     let VI_wrap = document.getElementById('VI_wrap0');
@@ -319,7 +314,8 @@ function removeVI1(element) {
 }
 
 function renameVI0(input) {
-    let index = getVI0Index(input.parentElement);
+    let index = getVI0Index(input);
+    UpdateProductImageAfterChangeImage(input.parentElement.querySelector('input[type="file"]'));
     let name = input.parentElement.querySelector('input[type="text"]').value;
     let srcImg = input.parentElement.querySelector('img').src;
     let info = {
@@ -329,7 +325,6 @@ function renameVI0(input) {
 
     table.renameVI0ByIndex(index, info);
 }
-
 
 function renameVI1(input) {
     let index = getVI1Index(input);
@@ -359,14 +354,14 @@ function AddVarient(id) {
         VI_wrap.insertAdjacentHTML('beforeend', `
         <div class="VI" id="VI0${VI_id_wrap0}">
               <label for="VI_img${cntVGI0element}">
-                <img src="../img/Logo/Black Img.png" alt="preview">
+                <img src=${blackImgPath} alt="preview">
               </label>
               <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
-        table.addVI0toTable("", '.././img/Logo/Black Img.png');
+        table.addVI0toTable("", blackImgPath);
         ++cntVGI0element;
         ++VI_id_wrap0;
     }
@@ -428,17 +423,15 @@ function AddProductImage(input) {
     let imgobj = document.createElement('div');
     imgobj.className = "imgObject";
     let img = document.createElement('img');
-    let btnRemove = document.createElement('button');
-    btnRemove.classList.add('btnRemove');
-    btnRemove.classList.add('btn');
-    btnRemove.innerHTML = '<i class="fa-solid fa-x"></i>';
-    let btnPreview = document.createElement('button');
-    btnPreview.classList.add('btnPreview');
-    btnPreview.classList.add('btn');
+    let btnrRemove = document.createElement('button');
+    btnrRemove.className = "btnRemove";
+    btnrRemove.innerHTML = '<i class="fa-solid fa-x"></i>';
+    btnPreview = document.createElement('button');
+    btnPreview.className = "btnPreview";
     btnPreview.innerHTML = '<i class="fa-solid fa-search"></i>';
 
     imgobj.appendChild(img);
-    imgobj.appendChild(btnRemove);
+    imgobj.appendChild(btnrRemove);
     imgobj.appendChild(btnPreview);
 
     reader.onload = function (e) {
@@ -448,7 +441,7 @@ function AddProductImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        img.src = "../img/Logo/Black Img.png";
+        img.src = "../img/Logo/BlackImg.png";
         container.appendChild(imgobj);
     }
     img.addEventListener('click', function () {
@@ -470,7 +463,7 @@ function AddCoverImage(input) {
     if (file) {
         reader.readAsDataURL(file);
     } else {
-        document.querySelector('.cover_image img').src = "../img/Logo/Black Img.png";
+        document.querySelector('.cover_image img').src = blackImgPath;
     }
 }
 
@@ -561,19 +554,16 @@ function AddProduct() {
 function createOverlay() {
     let overlay = document.createElement('div');
     overlay.id = "overlay";
-    Object.assign(overlay.style, {
-        position: "fixed",
-        position: "fixed",
-        top: 0,
-        left: 0,
-        width: "100%",
-        height: "100%",
-        backgroundColor: "rgba(0,0,0,0.5)",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        zIndex: "5"
-    });
+    overlay.style.position = "fixed";
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = "100%";
+    overlay.style.height = "100%";
+    overlay.style.backgroundColor = "rgba(0,0,0,0.5)";
+    overlay.style.display = "flex";
+    overlay.style.justifyContent = "center";
+    overlay.style.alignItems = "center";
+    overlay.style.zIndex = "3";
     overlay.addEventListener('click', function () {
         overlay.parentElement.removeChild(overlay);
     });
