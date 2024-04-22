@@ -26,7 +26,7 @@
                 Thêm ảnh đại diện và ảnh bìa
             </h3>
             <div class="SR_main_content">
-                <form action="CompleteRegister.jsp" class="SR_form" action="" method="">
+                <form action="/seller/account/avatar" class="SR_form" method="post">
                     <div class="SR_form_item SR_form_item_cover">
                         <h3>Ảnh bìa</h3>
                         <label for="Cover">
@@ -54,7 +54,7 @@
                     </div>
                     <div style="display: flex; flex-direction:row-reverse; gap: 15px" class="SR_form_item">
                         <input class="btn btn_Send" value="Hoàn tất" type="submit" require>
-                        <input class="btn btn_Cancel" value="Hủy" type="submit" require>
+                        <input class="btn btn_Cancel" value="Quay lại" type="submit" require>
                     </div>
                 </form>
             </div>
