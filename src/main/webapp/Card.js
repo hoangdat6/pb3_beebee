@@ -14,8 +14,8 @@ function createCard(product) {
                 <a href='${product.productUrl}'>
             <h3>${product.name}</h3>
           </a>
-              <a class="Card_shop" href="Shop.jsp">
-                <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
+              <a class="Card_shop" href=${product.sellerUrl}>
+                <img src="${product.sellerAvatar}" alt="Ảnh cửa hàng">
                 <span>${product.sellerName}</span>
               </a>
             </div>
@@ -40,3 +40,6 @@ function createCard(product) {
         </div>
     `;
 }
+
+
+

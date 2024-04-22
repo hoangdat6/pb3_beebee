@@ -2,6 +2,7 @@ package com.example.pbl3_1.controller;
 
 import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
+import com.example.pbl3_1.controller.user_login.CheckLoggedUser;
 import com.example.pbl3_1.entity.*;
 import com.example.pbl3_1.service.*;
 import com.example.pbl3_1.service.impl.*;
@@ -38,7 +39,8 @@ public class ProductController extends HttpServlet {
         System.out.println(path);
         switch (path) {
             case "/product":
-                showProductDetails(request, response);
+                String url = path + "?id=" + request.getParameter("id");
+                showProductDetails(request, response, url);
                 break;
             case "/Seller/product/save":
                 showCategoryForAddProduct(request, response);
@@ -52,7 +54,6 @@ public class ProductController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         String path = request.getServletPath();
-
         switch (path) {
             case "/Seller/product/save":
                 saveProduct(request, response);
@@ -60,21 +61,13 @@ public class ProductController extends HttpServlet {
         }
     }
 
-    public void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // get user from session
-        User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-        // check if the user is logged in or not
-        Long id = Long.parseLong(request.getParameter("id"));
-        if(user == null){
-            // if not, redirect to the login page
-            SessionUtil.getInstance().putValue(request, "redirect", "/product?id=" + id);
-            response.sendRedirect(request.getContextPath() + "/login?action=login&message=login_required&alert=danger");
-            return;
+    public void showProductDetails(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
+        if(CheckLoggedUser.checkLoggedUser(request, response, url)){
+            Long id = Long.parseLong(request.getParameter("id"));
+            ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
+            request.setAttribute("productDetail", productDetailDTO);
+            request.getRequestDispatcher("Product_Details.jsp").forward(request, response);
         }
-        ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
-        request.setAttribute("productDetail", productDetailDTO);
-
-        request.getRequestDispatcher("Product_Details.jsp").forward(request, response);
     }
 
     public void showCategoryForAddProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
