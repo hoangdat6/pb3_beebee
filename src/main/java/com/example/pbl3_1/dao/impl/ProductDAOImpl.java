@@ -1,7 +1,7 @@
 package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
-import com.example.pbl3_1.controller.dto.product.ProductForHomeDTO;
+import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.dao.ProductDAO;
 import com.example.pbl3_1.entity.Product;
 import com.example.pbl3_1.mapper.ProductMapper;
@@ -57,7 +57,7 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<ProductForHomeDTO> getProductForHomeDtos() {
+    public List<ProductPreviewDTO> getProductForHomeDtos() {
         StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.product_img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
@@ -68,7 +68,7 @@ public class ProductDAOImpl implements ProductDAO {
 
         return abstractDAO.query(sql.toString(), resultSet -> {
             try {
-                return new ProductForHomeDTO(
+                return new ProductPreviewDTO(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
                         resultSet.getInt("min_price"),

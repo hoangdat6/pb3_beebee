@@ -1,7 +1,7 @@
 package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
-import com.example.pbl3_1.controller.dto.product.ProductForHomeDTO;
+import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.dao.CategoryDAO;
 import com.example.pbl3_1.dao.ProductDAO;
 import com.example.pbl3_1.dao.ProductItemDAO;
@@ -27,10 +27,10 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductForHomeDTO> getProductsForHome() {
-        List<ProductForHomeDTO> productForHomeDTO = productDAO.getProductForHomeDtos();
-        for (ProductForHomeDTO product : productForHomeDTO){
-            product.setProductImgPath(product.getProductImgPath().split(",")[0]);
+    public List<ProductPreviewDTO> getProductsForHome() {
+        List<ProductPreviewDTO> productForHomeDTO = productDAO.getProductForHomeDtos();
+        for (ProductPreviewDTO product : productForHomeDTO){
+            product.setMainImage();
         }
         return productForHomeDTO;
     }
