@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<c:set var="User" value="${sessionScope.get('USERMODEL')}" />
     <div class="SR_wrap">
         <!-- SR - Seller register -->
         <script>
@@ -24,36 +25,36 @@
                 Đăng ký trở thành người bán
             </h3>
             <div class="SR_main_content">
-                <form action="AvatarAndCover.jsp" class="SR_form" action="" method="">
+                    <form action='<c:url value="/seller/account/register"/>' class="SR_form" method="post">
                     <div class="SR_form_item">
                         <label for="ShopName">Tên Shop</label>
-                        <input placeholder="Nhập tên Shop vào đây" id="ShopName" type="text" require>
+                        <input placeholder="Nhập tên Shop vào đây" value='<c:if test="${sessionScope.get('nameshop') != null}">${sessionScope.get('nameshop')}</c:if>' name="nameshop" id="ShopName" type="text" required>
                     </div>
                     <div class="SR_form_item">
                         <label for="ShopEmail">Email</label>
-                        <input id="ShopEmail" type="text" readonly>
-                    </div>
+                        <input id="ShopEmail" name="shopemail" type="text" value='<c:if test="${User.email != null}">${User.email}</c:if>' readonly>
+                    </div>  
                     <div class="SR_form_item">
                         <label>Địa chỉ lấy hàng</label>
                         <div class="container">
-                            <select class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">
+                            <select class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm" required>
                                 <option value="" selected>Chọn tỉnh thành</option>
                             </select>
-                            <select class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm">
+                            <select class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm" required>
                                 <option value="" selected>Chọn quận huyện</option>
                             </select>
-                            <select class="form-select form-select-sm" id="ward" aria-label=".form-select-sm">
+                            <select class="form-select form-select-sm" id="ward" aria-label=".form-select-sm" required>
                                 <option value="" selected>Chọn phường xã</option>
                             </select>
 
                             <label for="Address-Desc">Địa chỉ chi tiết</label>
                             <input type="text" name="Dia chi" id="Address-Desc"
-                                placeholder="Số đường, thôn, kiệt, hẻm,...">
+                                placeholder="Số đường, thôn, kiệt, hẻm,..." required>
                         </div>
                     </div>
                     <div style="display: flex; flex-direction:row-reverse; gap: 15px" class="SR_form_item">
-                        <input class="btn btn_Send" value="Xác minh" type="submit" require>
-                        <input class="btn btn_Cancel" value="Hủy" type="submit" require>
+                        <input class="btn btn_Send" name="button" value="Xác minh" type="submit" require>
+                        <input class="btn btn_Cancel" name="button" value="Hủy" type="submit" require>
                     </div>
                 </form>
             </div>
