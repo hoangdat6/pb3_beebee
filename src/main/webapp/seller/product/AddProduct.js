@@ -354,14 +354,22 @@ function AddVarient(id) {
         VI_wrap.insertAdjacentHTML('beforeend', `
         <div class="VI" id="VI0${VI_id_wrap0}">
               <label for="VI_img${cntVGI0element}">
+<<<<<<< HEAD
                 <img src=${blackImgPath} alt="preview">
+=======
+                <img src="../..//img/Logo/Black Img.png" alt="preview">
+>>>>>>> 0fe1b5d (Add Location into usersetting)
               </label>
               <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
+<<<<<<< HEAD
         table.addVI0toTable("", blackImgPath);
+=======
+        table.addVI0toTable("", '../../img/Logo/Black Img.png');
+>>>>>>> 0fe1b5d (Add Location into usersetting)
         ++cntVGI0element;
         ++VI_id_wrap0;
     }

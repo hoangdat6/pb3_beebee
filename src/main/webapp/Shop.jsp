@@ -158,7 +158,7 @@
     <div class="num_item" id="Page_next"><i class="fa-solid fa-chevron-right"></i></div>
 </div>
 
-<%@ include file="Footer.jsp" %>
-</body>
+            <%@ include file="Footer.jsp" %>
+    </body>
 
-</html>
+    </html>
