@@ -5,7 +5,7 @@ import com.example.pbl3_1.Util.PasswordEncryption;
 import com.example.pbl3_1.Util.RandomCode;
 import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
-import com.example.pbl3_1.controller.dto.product.ProductForHomeDTO;
+import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.entity.Egender;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.*;
@@ -360,7 +360,7 @@ public class HomeController extends HttpServlet {
         userService.updateInfor(user);
     }
     public void showHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<ProductForHomeDTO> products = productService.getProductsForHome();
+        List<ProductPreviewDTO> products = productService.getProductsForHome();
         request.setAttribute("products", products);
         request.setAttribute("categories", categoryService.getCategories());
 

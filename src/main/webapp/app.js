@@ -1,19 +1,9 @@
-let citis = document.getElementById("city");
-let districts = document.getElementById("district");
-let wards = document.getElementById("ward");
-let Parameter = {
-  url: "./data.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
-  method: "GET", //do backend cung cấp
-  responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
-};
-//gọi ajax = axios => nó trả về cho chúng ta là một promise
-let promise = axios(Parameter);
-//Xử lý khi request thành công
-promise.then(function (result) {
-  renderCity(result.data);
-});
-
+//Hàm để lấy dữ liệu sau khi promise được trả về
 function renderCity(data) {
+  let citis = document.getElementById("city");
+  let districts = document.getElementById("district");
+  let wards = document.getElementById("ward");
+
   for (const x of data) {
     citis.options[citis.options.length] = new Option(x.Name, x.Id);
   }
@@ -44,3 +34,26 @@ function renderCity(data) {
     }
   };
 }
+
+var Parameter;
+
+if (typeof Parameter == 'undefined') {
+  Parameter = {
+    url: "./data.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
+    method: "GET", //do backend cung cấp
+    responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
+  };
+}
+
+//gọi ajax = axios => nó trả về cho chúng ta là một promise
+var promise;
+
+if (typeof promise === 'undefined') {
+  //gọi ajax = axios => nó trả về cho chúng ta là một promise
+  promise = axios(Parameter);
+}
+
+//Xử lý khi request thành công
+promise.then(function (result) {
+  renderCity(result.data);
+});

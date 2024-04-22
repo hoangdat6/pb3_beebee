@@ -3,6 +3,8 @@ package com.example.pbl3_1.controller;
 import com.example.pbl3_1.Util.RandomCode;
 import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
+import com.example.pbl3_1.controller.dto.product.SellerDTO;
+import com.example.pbl3_1.controller.user_login.CheckLoggedUser;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.SellerService;
 import com.example.pbl3_1.service.impl.SellerServiceImpl;
@@ -14,6 +16,8 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 @WebServlet(name = "seller", urlPatterns = {"/seller/account/register", "/seller", "/seller/account/avatar"})
+
+
 public class SellerController extends HttpServlet {
     private final SellerService sellerService = new SellerServiceImpl();
     @Override
@@ -25,7 +29,8 @@ public class SellerController extends HttpServlet {
         switch (path) {
             case "/shop":
                 String shopId = request.getParameter("id");
-                showShop(request, response, shopId);
+                String urlRedirect = path + "?id=" + shopId;
+                showShop(request, response, shopId, urlRedirect);
                 break;
             case "/seller":
                 checkAccount(request, response);
@@ -87,10 +92,13 @@ public class SellerController extends HttpServlet {
         }
     }
 
-    private void showShop(HttpServletRequest request, HttpServletResponse response, String shopId) {
+    private void showShop(HttpServletRequest request, HttpServletResponse response, String shopId, String urlRedirect) {
         try {
-            request.setAttribute("shop", sellerService.getShopById(Long.parseLong(shopId)));
-            request.getRequestDispatcher("/shop.jsp").forward(request, response);
+//            if(CheckLoggedUser.checkLoggedUser(request, response, urlRedirect)){
+                User user = (User) request.getSession().getAttribute("USERMODEL");
+                request.setAttribute("seller", sellerService.getShopById(Long.parseLong(shopId), 3L));
+                request.getRequestDispatcher("Shop.jsp").forward(request, response);
+//            }
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
