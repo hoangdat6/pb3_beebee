@@ -165,7 +165,7 @@ public class ProductController extends HttpServlet {
             item.setVariation1(variationOption1);
             item.setVariation2(variationOption2);
             item.setQtyInStock(Integer.parseInt(data.get(i).get("QtyInStock").toString()));
-            item.setPrice(Float.parseFloat(data.get(i).get("Price").toString()));
+            item.setPrice(Integer.parseInt(data.get(i).get("Price").toString()));
             items.add(item);
         }
 

@@ -20,8 +20,7 @@ public class Product {
     private int categoryId;
     private Long sellerId;
     private Timestamp createdAt;
-
-
+    private Long views;
     public Product(){
 
     }

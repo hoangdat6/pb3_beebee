@@ -22,8 +22,7 @@ public class UserMapper implements RowMapper<User>{
             user.setGender(Egender.fromString(rs.getString("gender")));
             user.setFullname(rs.getString("fullname"));
             user.setCreatedAt(rs.getTimestamp("created_at"));
-//            user.setImgPath(rs.getString("avatar"));
-
+            user.setAvatar(rs.getString("avatar"));
         } catch (SQLException e) {
             e.printStackTrace();
         }

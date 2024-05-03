@@ -12,6 +12,7 @@ public class VariationMapper implements RowMapper<Variation> {
             variation = Variation.builder()
                     .id(rs.getLong("id"))
                     .name(rs.getString("name"))
+
                     .build();
             return variation;
         } catch (Exception e) {

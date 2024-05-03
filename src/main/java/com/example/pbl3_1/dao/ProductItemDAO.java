@@ -12,5 +12,5 @@ public interface ProductItemDAO {
     public Long getProductItemIdByVariations(Long v1, Long v2);
     public int getQuantityByProductId(Long id);
     public ProductItem findById(long productItemId);
-
+    public Object addProductItems(List<ProductItem> productItems);
 }

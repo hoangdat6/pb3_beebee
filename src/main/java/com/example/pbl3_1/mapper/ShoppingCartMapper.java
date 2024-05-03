@@ -12,6 +12,7 @@ public class ShoppingCartMapper implements RowMapper<ShoppingCart> {
             shoppingCart = ShoppingCart.builder()
                     .id(rs.getLong("id"))
                     .userId(rs.getLong("user_id"))
+                    .createdAt(rs.getTimestamp("created_at"))
                     .build();
             return shoppingCart;
         } catch (Exception e) {

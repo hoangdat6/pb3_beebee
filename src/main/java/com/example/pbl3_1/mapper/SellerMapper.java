@@ -15,13 +15,15 @@ public class SellerMapper implements RowMapper<Seller> {
         try {
             seller=   Seller.builder()
                     .id(rs.getLong("id"))
-                    .imgPath( rs.getString("img_path"))
-                            .shopName(rs.getString("shop_name"))
+                    .avatar( rs.getString("avatar"))
                     .shopName(rs.getString("shop_name"))
                     .description(rs.getString("description"))
-                            .address(rs.getLong("address"))
-                            .userId(userDAO.findById(rs.getInt("id")))
-                            .build();
+                    .address(rs.getLong("address"))
+                    .userId(userDAO.findById(rs.getInt("id")))
+                    .followers(rs.getInt("followers"))
+                    .views(rs.getInt("views"))
+                    .createdAt(rs.getTimestamp("created_at"))
+                    .build();
             return   seller;
         } catch (Exception e) {
             e.printStackTrace();

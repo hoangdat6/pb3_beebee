@@ -1,5 +1,7 @@
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
+<%@ include file="common/taglib.jsp"%>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
@@ -12,11 +14,13 @@
   <link rel="stylesheet" href="Cart.css">
   <script type="text/javascript" src="main.js"></script>
   <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <script src="./Cart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
 <%@ include file="Top-Bar.jsp" %>
-
+<fmt:setLocale value = "vi_VN"/>
 <body class="Color-White">
     <div id="Cart_Header">
         <h3 class="Cart_Title">
@@ -69,42 +73,38 @@
                         <span class="Shop_Name">${shoppingcart.shopName}</span>
                         <i></i>
                     </div>
+                    <input type="hidden" value="${shoppingcart.productForShoppingCarts.size()}" name="number"/>
                     <div class="Shop_Products-Content">
-
                         <c:forEach items="${shoppingcart.productForShoppingCarts}" var="productcart">
                         <div class="Shop_Products-Cell">
+                            <input type="hidden" value="${productcart.id}" name="id"/>
                             <input type="checkbox" name="Cart_CB">
-                            <img class="Cell_Col_1" src="img/Product-Details/Category-1.jpeg" alt="Product Imge">
+                            <img class="Cell_Col_1" src="${productcart.imgPath}" alt="Product Imge">
                             <div class="Cell_Col_2">
                                 <p class="Item-Name">${productcart.name}</p>
                                 <p class="Item-Category">
                                     ${productcart.nameVariation1}: ${productcart.valueVariation1} <br>
                                     ${productcart.nameVariation2}: ${productcart.valueVariation2}
                                 </p>
-                                <a class="Item-Remove" href='<c:url value="/cart?type=delete&id=${sessionScope.get('USERMODEL').id}&idItem=${productcart.id}"/>'>
+                                <a class="Item-Remove" onclick="RemoveCartItem(this)">
                                     <i class="fa-solid fa-x"></i>
                                     Xóa khỏi giỏ hàng
                                 </a>
                             </div>
                             <div class="Cell_Col_3">
                                 <div class="Item-Qty">
-                                    <form class="Update-Cart" action="/PBL3_1_war_exploded/cart" method="get">
-                                        <input type="hidden" name="type" value="update">
-                                        <input type="hidden" name="id" value="${sessionScope.get('USERMODEL').id}">
-                                        <input type="hidden" name="idItem" value="${productcart.id}">
-                                        <input type="hidden" name="quantity" id="quantity_${productcart.id}" value="${productcart.quantity}">
-
-                                        <button type="submit" name="action" value="increase">+</button>
-                                        <input class="Qty__Input" value="${productcart.quantity}" min="1" readonly>
-                                        <button type="submit" name="action" value="decrease">-</button>
-                                    </form>
+                                        <input type="hidden" value="${productcart.id}" name="id"/>
+                                        <input type="hidden" name="quantity" value="${productcart.quantity}">
+                                        <button type="submit" onclick="UpdateCartItem(this)" name="action" value="increase">+</button>
+                                        <input class="Qty__Input"  value="${productcart.quantity}" min="1" readonly>
+                                        <button type="submit" onclick="UpdateCartItem(this)" name="action" value="decrease">-</button>
+                                        <input type="hidden" value ="${productcart.price}" name="price">
                                 </div>
                                 <span class="Item-Unit_Price">
-                                    ${productcart.price}
+                                    <fmt:formatNumber value = "${productcart.price}" type = "currency"/>
                                 </span>
-
                                 <span class="Item-Total_Price">
-                                        ${productcart.price * productcart.quantity}
+                                     <fmt:formatNumber value = "${productcart.price * productcart.quantity}" type = "currency"/>
                                 </span>
                             </div>
                         </div>
