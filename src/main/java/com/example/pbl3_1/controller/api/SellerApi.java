@@ -1,6 +1,8 @@
 package com.example.pbl3_1.controller.api;
 
+import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
+import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.SellerService;
 import com.example.pbl3_1.service.impl.SellerServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -13,7 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet(name = "SellerApi", urlPatterns ={"/api/seller/ctime", "/api/seller/pop", "/api/seller/save"} )
+@WebServlet(name = "SellerApi", urlPatterns ={"/api/seller/ctime", "/api/seller/pop", "/api/seller/save", "/api/shop/follow"} )
 public class SellerApi extends HttpServlet {
     private final SellerService sellerService = new SellerServiceImpl();
 
@@ -23,6 +25,7 @@ public class SellerApi extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
         String path = request.getServletPath();
+        System.out.println(path);
 
         switch (path) {
             case "/api/seller/ctime":
@@ -65,6 +68,33 @@ public class SellerApi extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        super.doPost(request, response);
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+
+        String path = request.getServletPath();
+        System.out.println(path);
+
+        switch (path) {
+            case "/api/shop/follow":
+                updateFollow(request, response);
+                break;
+        }
+    }
+
+    private void updateFollow(HttpServletRequest request, HttpServletResponse response) {
+        String isFollowed1 = request.getParameter("isFollowed");
+        Boolean isFollowed = Boolean.parseBoolean(isFollowed1);
+        Long sellerId = Long.parseLong(request.getParameter("sellerId"));
+        System.out.println(isFollowed1);
+
+        User userLogin = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        sellerService.updateIsFollowed(sellerId,userLogin.getId(), isFollowed);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            objectMapper.writeValue(response.getOutputStream(), !isFollowed);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

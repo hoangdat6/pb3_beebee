@@ -4,7 +4,10 @@
 
 .Shop_background {
     width: calc(100% - 20px);
+    height: 300px;
+    object-fit: cover;
     margin: 0 10px;
+    border-radius: 26px;
 }
 
 .Shop_infor {
@@ -26,6 +29,7 @@
     width: 181px;
     height: 181px;
     object-fit: cover;
+    border-radius: calc(100% / 2);
 }
 
 .Shop_desc {
@@ -57,7 +61,7 @@
     color: #FD1D1D;
 }
 
-.Follow_btn {
+.follow_btn {
     width: 100%;
     font-size: 20px;
     padding: 6px 12px;
@@ -69,7 +73,7 @@
     cursor: pointer;
 }
 
-.Follow_btn:hover {
+.follow_btn:hover {
     background-color: #000;
     color: #fff;
 }
@@ -92,6 +96,8 @@
     .Shop_image {
         width: 60px;
         height: 60px;
+        object-fit: cover;
+
     }
 
     .Shop_desc {
@@ -113,13 +119,13 @@
         height: auto;
     }
 
-    .Follow_btn {
+    .follow_btn {
         /* Mobile-specific styles for .Follow_btn */
         font-size: 14px;
         padding: 5px 10px;
     }
 
-    .Follow_btn:hover {
+    .follow_btn:hover {
         /* Mobile-specific styles for .Follow_btn:hover */
     }
 }

@@ -19,9 +19,9 @@
 <body>
 <%@ include file="Top-Bar.jsp" %>
 <div id="Shop_header">
-    <img src="./img/Shop/Background.png"  alt="Ảnh bìa" class="Shop_background">
+    <img src="${seller.coverImage}"  alt="Ảnh bìa" class="Shop_background">
     <div class="Shop_infor">
-        <img src="./img/Shop/Avatar.png"  alt="Ảnh đại diện" class="Shop_image">
+        <img src="${seller.avatar}"  alt="Ảnh đại diện" class="Shop_image">
         <div class="Shop_desc">
             <div class="col">
                 <h3 class="Shop_name">${seller.shopName}</h3>
@@ -46,13 +46,15 @@
                     <span class="Shop_subVal">5 năm</span>
                 </p>
             </div>
-            <c:if test="${seller.isFollowed == false}">
-                <input class="Follow_btn btn" type="submit" value="+ Theo dõi">
-            </c:if>
+            <div class="follow">
+                <c:if test="${seller.isFollowed == false}">
+                    <input class="btn follow_btn" type="submit" id="follow_btn" value="+ Theo dõi">
+                </c:if>
 
-            <c:if test="${seller.isFollowed == true}">
-                <input class="Follow_btn btn" type="submit" value="Đang theo dõi">
-            </c:if>
+                <c:if test="${seller.isFollowed == true}">
+                    <input class="btn follow_btn" type="submit" id="follow_btn" value="Đang theo dõi">
+                </c:if>
+            </div>
         </div>
     </div>
 </div>
@@ -79,6 +81,8 @@
         var sellerUrl = '<c:url value="/shop?id=${seller.id != null ? seller.id : 0}"/>';
         var sellerName = "${seller.shopName != null ? seller.shopName : 'Tên Shop'}";
         var sellerAvatar = "${seller.avatar != null ? seller.avatar : './img/Brand/Coffee.jpeg'}";
+        var sellerId = ${seller.id};
+        var isFollowed = ${seller.isFollowed};
 
         <c:forEach items="${seller.mostViewedProducts}" var="product">
         var productUrl = '<c:url value="/product?id=${product.id}" />';

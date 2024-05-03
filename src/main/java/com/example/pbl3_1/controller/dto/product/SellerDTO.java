@@ -13,6 +13,7 @@ import java.util.List;
 public class SellerDTO {
     private Long id;
     private String avatar;
+    private String coverImage;
     private String shopName;
     private String province;
     private Integer views;

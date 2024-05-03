@@ -158,36 +158,41 @@ $(document).ready(function () {
         loadProduct(sellerId, url);
     });
 });
-
+let debounceTimer;
 $(window).scroll(function () {
-    if($("#Shop_product .Product_list").html().trim() !== ""){
-        return;
-    }
-    if( $(window).scrollTop() + $(window).height() >= $("#Shop_product").offset().top + $("#Shop_product").height()){
-        let params = new URLSearchParams(window.location.search);
-        let sellerId = params.get('id');
-        let sortValue = $('#Shop_Filter').val();
-
-        if(url === ""){
-            url = "/PBL3_1_war_exploded/api/seller/pop";
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(function () {
+        if ($("#Shop_product .Product_list").html().trim() !== "") {
+            return;
         }
+        if ($(window).scrollTop() + $(window).height() >= $(`#Shop_product`).offset().top) {
+            let params = new URLSearchParams(window.location.search);
+            let sellerId = params.get('id');
+            let sortValue = $('#Shop_Filter').val();
 
-        if(url.includes("?sortBy=")){
-            url = url.substring(0, url.indexOf("?sortBy="));
+            if (url === "") {
+                url = "/PBL3_1_war_exploded/api/seller/pop";
+            }
+
+            if (url.includes("?sortBy=")) {
+                url = url.substring(0, url.indexOf("?sortBy="));
+            }
+            url += `?sortBy=${sortValue}`;
+
+            loadProduct(sellerId, url);
         }
-        url += `?sortBy=${sortValue}`;
-
-        loadProduct(sellerId, url);
-    }
+    }, 100); // Delay in milliseconds
 });
 
 function loadProduct(sellerId, url) {
+    console.log(url);
     $.ajax({
         type: "GET",
         url: url,
         data : {sellerId : sellerId},
         success: function (response) {
             let products = response;
+            console.log(products);
             let productContainer = document.querySelector('#Shop_product .Product_list');
             productContainer.innerHTML = '';
             products.forEach(product => {
@@ -206,5 +211,26 @@ function loadProduct(sellerId, url) {
         }
     });
 }
+
+
+$(document).ready( function () {
+        $(`#follow_btn`).click(function () {
+            $.ajax({
+               type: 'POST',
+                url: `/PBL3_1_war_exploded/api/shop/follow`,
+                data: {sellerId : sellerId, isFollowed : isFollowed},
+                success : function (response) {
+                   console.log(response);
+                   isFollowed = response;
+                    if(response === "false"){
+                        $(`#follow_btn`).val("+ Theo dõi");
+                   }else {
+                       $(`#follow_btn`).val("Đang theo dõi");
+                    }
+                }
+            });
+        });
+    }
+)
 
 

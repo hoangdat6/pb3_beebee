@@ -104,7 +104,7 @@ public class HomeController extends HttpServlet {
             int check = ConfirmEmail(request);
             if(check == 1) response.sendRedirect(request.getContextPath() + "/login");
             else if(check == 2) response.sendRedirect(request.getContextPath() + "/resetpass");
-            else if(check == 3) response.sendRedirect(request.getContextPath() + "/seller/account/avatar");
+            else if(check == 3) response.sendRedirect(request.getContextPath() + "/seller/account/register?action=avatar");
             else if (check == 4) response.sendRedirect(request.getContextPath() + "/confirmemail");
         }else if(action != null && action.equals("/forgotpass"))
         {

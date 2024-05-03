@@ -105,8 +105,8 @@
                     <h3 class="form_title">Thay đổi mật khẩu</h3>
                     <div class="UI_form_element">
                         <label for="UI_oldPass">Mật khẩu cũ</label>
-                        <input type="password" name="oldpass" id="UI_oldPass" value='<c:if test="${sessionScope.get('
-                            oldpass') !=null}">${sessionScope.get('oldpass')}</c:if>' required>
+                        <input type="password" name="oldpass" id="UI_oldPass" value='<c:if test="${sessionScope.get('oldpass') !=null}">
+                        ${sessionScope.get('oldpass')}</c:if>' required>
                         <c:if test="${sessionScope.get('opstatus') == false}">
                             <span style="color: red; display: block !important;">Mật khẩu không đúng</span>
                         </c:if>
@@ -114,8 +114,7 @@
 
                     <div class="UI_form_element">
                         <label for="UI_newPass">Mật khẩu mới</label>
-                        <input type="password" name="newpass" id="UI_newPass" value='<c:if test="${sessionScope.get('
-                            newpass') !=null}">${sessionScope.get('newpass')}</c:if>'
+                        <input type="password" name="newpass" id="UI_newPass" value='<c:if test="${sessionScope.get('newpass') !=null}">${sessionScope.get('newpass')}</c:if>'
                         pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\S{8,}" required placeholder="Mật khẩu (ít
                         nhất 8 kí tự, bao gồm số, chữ viết thường, chữ in hoa và dấu cách)">
                     </div>

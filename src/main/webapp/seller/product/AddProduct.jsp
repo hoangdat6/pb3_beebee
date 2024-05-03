@@ -9,20 +9,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add new product</title>
-    <link rel="stylesheet" href="<c:url value="/Seller/product/AddProduct.css"/>">
-    <link rel="stylesheet" href="<c:url value="/Seller/Common/SellerCommon.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/seller/product/AddProduct.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/seller/common/SellerCommon.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <script src="<c:url value="/toast.js"/>"></script>
-    <script src="<c:url value="/Seller/product/AddProduct.js"/>"></script>
-    <link rel="stylesheet" href="<c:url value="/toast.css"/>" />
+    <link rel="stylesheet" type="text/css" href="<c:url value="/toast.css"/>" />
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
 
 </head>
 
 <body>
-    <%@ include file="../Common/SellerCommon.jsp" %>
+    <%@ include file="../common/SellerCommon.jsp" %>
     <fmt:setLocale value = "vi_VN"/>
     <div class="Side_nav">
         <a class="btn" href="#Basic_info">
@@ -258,10 +257,10 @@
     <script>
         var blackImgPath = "<c:url value="/img/Logo/BlackImg.png"/>";
     </script>
-    <script src="./AddProduct.js"></script>
-    <script src="./AddProductEvent.js"></script>
-    <script src="../../Common.js"></script>
-    <script src=../Common/SellerCommon.js"></script>
+    <script src="<c:url value="/seller/product/AddProduct.js"/>"></script>
+    <script src="<c:url value="/seller/product/AddProductEvent.js"/>"></script>
+    <script src="<c:url value="/Common.js"/>"></script>
+    <script src=<c:url value="/seller/common/SellerCommon.js"/>></script>
 </body>
 
 </html>

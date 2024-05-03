@@ -7,6 +7,7 @@ import com.example.pbl3_1.dao.SellerDAO;
 import com.example.pbl3_1.entity.Seller;
 
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 
 public class SellerDAOImpl implements SellerDAO {
@@ -90,6 +91,13 @@ public class SellerDAOImpl implements SellerDAO {
         sql.append(") as t order by (min_price * (1 -  discount / 100))\n");
         sql.append(priceSortBy);
         return getProductPreviewDTOs(sql.toString(), id, limit, offset);
+    }
+
+    @Override
+    public Long addShop(Seller seller) {
+        String sql = "INSERT INTO sellers (avatar, shop_name, description, address_id, user_id, views, created_at) VALUES (?, ?, ?, ?, ?, ?, ?);";
+        return genericDAO.save(sql, seller.getAvatar(), seller.getShopName(), seller.getDescription(), seller.getAddressId(), seller.getUserId(), 0,
+                new Timestamp(System.currentTimeMillis()));
     }
 
     public List<ProductPreviewDTO> getProductPreviewDTOs(String sql, Long idSeller,Integer limit , Integer offset) {
