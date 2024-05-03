@@ -2,8 +2,10 @@ package com.example.pbl3_1.controller;
 
 import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
+import com.example.pbl3_1.controller.user_login.CheckLoggedUser;
 import com.example.pbl3_1.entity.*;
 import com.example.pbl3_1.service.*;
+import com.example.pbl3_1.service.impl.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -15,14 +17,12 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.sql.Timestamp;
 import java.util.*;
 
-@WebServlet(name = "product", urlPatterns = {"/product", "/product/save"})
+@WebServlet(name = "product", urlPatterns = {"/product", "/seller/product/save"})
 public class ProductController extends HttpServlet {
     public final ProductService productService = new ProductServiceImpl();
     public final CategoryService categoryService = new CategoryServiceImpl();
@@ -39,9 +39,10 @@ public class ProductController extends HttpServlet {
         System.out.println(path);
         switch (path) {
             case "/product":
-                showProductDetails(request, response);
+                String url = path + "?id=" + request.getParameter("id");
+                showProductDetails(request, response, url);
                 break;
-            case "/product/save":
+            case "/seller/product/save":
                 showCategoryForAddProduct(request, response);
                 break;
         }
@@ -53,31 +54,20 @@ public class ProductController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
 
         String path = request.getServletPath();
-
         switch (path) {
-            case "/product/save":
+            case "/seller/product/save":
                 saveProduct(request, response);
                 break;
         }
     }
 
-
-
-    public void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // get user from session
-        User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-        // check if the user is logged in or not
-        Long id = Long.parseLong(request.getParameter("id"));
-        if(user == null){
-            // if not, redirect to the login page
-            SessionUtil.getInstance().putValue(request, "redirect", "/product?id=" + id);
-            response.sendRedirect(request.getContextPath() + "/login?action=login&message=login_required&alert=danger");
-            return;
+    public void showProductDetails(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
+        if(CheckLoggedUser.checkLoggedUser(request, response, url)){
+            Long id = Long.parseLong(request.getParameter("id"));
+            ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
+            request.setAttribute("productDetail", productDetailDTO);
+            request.getRequestDispatcher("Product_Details.jsp").forward(request, response);
         }
-        ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
-        request.setAttribute("productDetail", productDetailDTO);
-
-        request.getRequestDispatcher("Product_Details.jsp").forward(request, response);
     }
 
     public void showCategoryForAddProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -93,9 +83,7 @@ public class ProductController extends HttpServlet {
         BufferedReader reader = request.getReader();
         String images = "";
 
-
         String root = getServletContext().getRealPath("/");
-
 
         root = root.replace("target" + File.separator +"PBL3_1-1.0-SNAPSHOT" + File.separator,
                 "src" + File.separator + "main" + File.separator + "webapp" + File.separator );
@@ -112,9 +100,9 @@ public class ProductController extends HttpServlet {
         Product product = new Product();
         product.setName(data.get(0).get("ProductName").toString());
         product.setDescription(data.get(0).get("ProductDescription").toString());
-        product.setDiscount(Float.parseFloat(Objects.toString(data.get(0).get("Discount"))));
+        product.setDiscount(Integer.parseInt(Objects.toString(data.get(0).get("Discount"))));
         product.setCategoryId(Integer.parseInt(data.get(0).get("ProductCategory").toString()));
-//        product.setSellerId(Long.parseLong(data.get(0).get("SellerId"))); // seller xử lý sau
+//        product.setsellerId(Long.parseLong(data.get(0).get("sellerId"))); // seller xử lý sau
 
         // Thêm sản phẩm vào database
         Long productId = productService.addProduct(product);
@@ -144,7 +132,6 @@ public class ProductController extends HttpServlet {
                 String imgPath = saveImages(rootPath, productId.toString(), Integer.toString(i), List.of(itemImages));
                 saveImages(webappDirectoryRoot, productId.toString(), Integer.toString(i), List.of(itemImages));
                 item.setProductImgPath(imgPath);
-                System.out.println(imgPath);
             }
 
             if(variation1 != null){

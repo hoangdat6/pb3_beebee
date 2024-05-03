@@ -8,4 +8,5 @@ public interface VariationDAO {
     public List<Variation> getVariationsByProductId(Long productId);
     public Long addVariation(Variation variation);
     public Variation getVariationById(Long Id);
+
 }

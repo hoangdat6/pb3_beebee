@@ -14,7 +14,7 @@ import java.sql.Timestamp;
 public class Product {
     private Long id;
     private String name;
-    private Float discount;
+    private Integer discount;
     private String description;
     private String productImgPath;
     private int categoryId;

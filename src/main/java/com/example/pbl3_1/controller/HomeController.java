@@ -2,25 +2,25 @@ package com.example.pbl3_1.controller;
 
 //import com.example.pbl3_1.Util.HttpUtil;
 import com.example.pbl3_1.Util.PasswordEncryption;
+import com.example.pbl3_1.Util.RandomCode;
 import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
-import com.example.pbl3_1.controller.AccountFunction.*;
-import com.example.pbl3_1.controller.dto.product.ProductForHomeDTO;
+import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.entity.Egender;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.*;
+import com.example.pbl3_1.service.impl.CategoryServiceImpl;
+import com.example.pbl3_1.service.impl.ProductServiceImpl;
+import com.example.pbl3_1.service.impl.UserServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import org.apache.commons.mail.Email;
 
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.AbstractMap;
 import java.util.List;
 import java.util.Random;
@@ -54,7 +54,7 @@ public class HomeController extends HttpServlet {
                 case "/changepass":
                 case "/changeinfor":
                     sessionUtil.putValue(request, "EmailStatus", true);
-                    response.sendRedirect(request.getContextPath() + "/UserInformation.jsp");
+                    request.getRequestDispatcher("UserInformation.jsp").forward(request, response);
                     break;
                 case "/register":
                     if(sessionUtil.getValue(request, "USERMODEL") != null)
@@ -98,13 +98,14 @@ public class HomeController extends HttpServlet {
         }else if (action != null && action.equals("/register")){
             boolean check = Register(request);
             if(check) response.sendRedirect(request.getContextPath() + "/confirmemail");
-            else response.sendRedirect(request.getContextPath() + "/register");
+                else response.sendRedirect(request.getContextPath() + "/register#");
         }else if(action != null && action.equals("/confirmemail"))
         {
             int check = ConfirmEmail(request);
             if(check == 1) response.sendRedirect(request.getContextPath() + "/login");
             else if(check == 2) response.sendRedirect(request.getContextPath() + "/resetpass");
-            else if (check == 3) response.sendRedirect(request.getContextPath() + "/confirmemail");
+            else if(check == 3) response.sendRedirect(request.getContextPath() + "/seller/account/register?action=avatar");
+            else if (check == 4) response.sendRedirect(request.getContextPath() + "/confirmemail");
         }else if(action != null && action.equals("/forgotpass"))
         {
             boolean check = ForgotPass(request);
@@ -127,23 +128,20 @@ public class HomeController extends HttpServlet {
         {
             SessionUtil sessionUtil = SessionUtil.getInstance();
             String email = request.getParameter("UI_email");
-            String code = RandomCode();
-            SendMail.Send(email, code);
+            String code = RandomCode.RdCode();
+            // Tạo một luồng mới để gửi email bất đồng bộ
+            Thread sendMailThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    SendMail.Send(email, code);
+                }
+            });
+            sendMailThread.start(); // Bắt đầu chạy luồng để gửi email
+            // Tiếp tục chuyển hướng trang mà không cần chờ việc gửi email hoàn tất
             sessionUtil.putValue(request, "code", code);
         }
     }
 
-    public String RandomCode()
-    {
-        String code = "";
-        for(int i = 0; i < 6; i++)
-        {
-            Random rand = new Random();
-            int randomNumber = Math.abs((rand.nextInt())%10);
-            code += randomNumber;
-        }
-        return code;
-    }
     public boolean ResetPass(HttpServletRequest request) {
         String password = request.getParameter("password");
         String confirmpass = request.getParameter("confirmpass");
@@ -192,12 +190,7 @@ public class HomeController extends HttpServlet {
         if (check.getKey() && check.getValue()) {
             if (password.equals(confirmPassword)) {
                 newUser.setPassword(PasswordEncryption.ToSHA1(newUser.getPassword(), username));
-                String code = "";
-                for (int i = 0; i < 6; i++) {
-                    Random rand = new Random();
-                    int randomNumber = Math.abs((rand.nextInt()) % 10);
-                    code += randomNumber;
-                }
+                String code = RandomCode.RdCode();
                 sessionUtil.removeValue(request, "newUser");
                 sessionUtil.putValue(request, "email", email);
                 sessionUtil.putValue(request, "newUser", newUser);
@@ -208,13 +201,11 @@ public class HomeController extends HttpServlet {
                 sessionUtil.removeValue(request, "cpStatus");
                 sessionUtil.putValue(request, "cfstatus", "register");
                 sessionUtil.putValue(request, "rsstatus", true);
-                String Code = code;
-                System.out.println(Code);
                 // Tạo một luồng mới để gửi email bất đồng bộ
                 Thread sendMailThread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        SendMail.Send(email, Code);
+                        SendMail.Send(email, code);
                     }
                 });
                 sendMailThread.start(); // Bắt đầu chạy luồng để gửi email
@@ -346,13 +337,16 @@ public class HomeController extends HttpServlet {
             }else if(status.equals("forgotpass"))
             {
                 return 2;
+            }else if(status.equals("sellerregister"))
+            {
+                return 3;
             }
         }else
         {
             sessionUtil.putValue(request, "codestatus", false);
-            return 3;
+            return 4;
         }
-        return 3;
+        return 4;
     }
     public void ChangeInfor(HttpServletRequest request)
     {
@@ -366,7 +360,7 @@ public class HomeController extends HttpServlet {
         userService.updateInfor(user);
     }
     public void showHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<ProductForHomeDTO> products = productService.getProductsForHome();
+        List<ProductPreviewDTO> products = productService.getProductsForHome();
         request.setAttribute("products", products);
         request.setAttribute("categories", categoryService.getCategories());
 

@@ -1,11 +1,8 @@
 package com.example.pbl3_1.controller.api;
 
-import com.example.pbl3_1.Util.HttpUtil;
-import com.example.pbl3_1.dao.ProductItemDAO;
-import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
 import com.example.pbl3_1.entity.ProductItem;
 import com.example.pbl3_1.service.ProductItemService;
-import com.example.pbl3_1.service.ProductItemServiceImpl;
+import com.example.pbl3_1.service.impl.ProductItemServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

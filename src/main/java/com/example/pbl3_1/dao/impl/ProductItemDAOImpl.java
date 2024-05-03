@@ -81,6 +81,7 @@ public class ProductItemDAOImpl implements ProductItemDAO {
         }, id);
         return quantity.isEmpty() ? null : quantity.get(0);
     }
+
     @Override
     public ProductItem findById(long productItemId) {
         String sql = "SELECT * FROM product_item WHERE id = ?" ;

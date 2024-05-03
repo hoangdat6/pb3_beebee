@@ -23,33 +23,33 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService{
         List<ShoppingCartItem> shoppingCartItems =  shoppingCartItemDAO.findByIdCart(ID);
         List<ShopForCartDTO> shopForCartDTOs = new ArrayList<>();
 
-for(ShoppingCartItem item : shoppingCartItems){
-    int check =0;
-    ProductItem productItem = productItemDAO.findById(item.getProductItemId());
-    Product product = productDAO.getProductById(productItem.getProductId());
-    Seller seller = sellerDAO.findBySellerId(product.getSellerId());
-    VariationOption variationOption1=null;
-    if (productItem.getVariation1() != null ) variationOption1 = variationOptionDAO.getVariationOptionById(productItem.getVariation1());
-    Variation variation1 = null;
-    if ( variationOption1 != null ) variation1 = variationDAO.getVariationById(variationOption1.getVariationId());
-    VariationOption variationOption2=null;
-    if (productItem.getVariation2() != null ) variationOption2 = variationOptionDAO.getVariationOptionById(productItem.getVariation2());
-    Variation variation2 = null;
-    if ( variationOption2 != null ) variation2 = variationDAO.getVariationById(variationOption2.getVariationId());
+        for(ShoppingCartItem item : shoppingCartItems){
+            int check =0;
+            ProductItem productItem = productItemDAO.findById(item.getProductItemId());
+            Product product = productDAO.getProductById(productItem.getProductId());
+            Seller seller = sellerDAO.findBySellerId(product.getSellerId());
+            VariationOption variationOption1=null;
+            if (productItem.getVariation1() != null ) variationOption1 = variationOptionDAO.getVariationOptionById(productItem.getVariation1());
+            Variation variation1 = null;
+            if ( variationOption1 != null ) variation1 = variationDAO.getVariationById(variationOption1.getVariationId());
+            VariationOption variationOption2=null;
+            if (productItem.getVariation2() != null ) variationOption2 = variationOptionDAO.getVariationOptionById(productItem.getVariation2());
+            Variation variation2 = null;
+            if ( variationOption2 != null ) variation2 = variationDAO.getVariationById(variationOption2.getVariationId());
 
-    for (ShopForCartDTO shop : shopForCartDTOs) {
-         if (shop.getSellerId()==seller.getId()) {
-             check = 1;
+            for (ShopForCartDTO shop : shopForCartDTOs) {
+                 if (shop.getSellerId() == seller.getId()) {
+                     check = 1;
 
-             shop.add(new ProductForShoppingCartDTO(item.getId(),product.getName(),productItem.getProductImgPath(),productItem.getPrice()*(1-product.getDiscount()/100),item.getQuantity(),(variation1 != null) ? variation1.getName() : null, (variationOption1 != null) ? variationOption1.getValue() : null, (variation2 != null) ? variation2.getName() : null, (variationOption2 != null) ? variationOption2.getValue() : null));
-             break;
-         }
-     }
-    if (check==0){
-        shopForCartDTOs.add(new ShopForCartDTO(product.getSellerId(),seller.getAvatar(),seller.getShopName(),new ProductForShoppingCartDTO(item.getId(),product.getName(),productItem.getProductImgPath(),productItem.getPrice()*(1-product.getDiscount()/100), item.getQuantity(),(variation1 != null) ? variation1.getName() : null, (variationOption1 != null) ? variationOption1.getValue() : null, (variation2 != null) ? variation2.getName() : null, (variationOption2 != null) ? variationOption2.getValue() : null)));
-    }
-}
-    return shopForCartDTOs;
+                     shop.add(new ProductForShoppingCartDTO(item.getId(),product.getName(),productItem.getProductImgPath(), (float) (productItem.getPrice()*(1-product.getDiscount()/100)),item.getQuantity(),(variation1 != null) ? variation1.getName() : null, (variationOption1 != null) ? variationOption1.getValue() : null, (variation2 != null) ? variation2.getName() : null, (variationOption2 != null) ? variationOption2.getValue() : null));
+                     break;
+                 }
+             }
+            if (check==0){
+                shopForCartDTOs.add(new ShopForCartDTO(product.getSellerId(),seller.getAvatar(),seller.getShopName(),new ProductForShoppingCartDTO(item.getId(),product.getName(),productItem.getProductImgPath(), (float) (productItem.getPrice()*(1-product.getDiscount()/100)), item.getQuantity(),(variation1 != null) ? variation1.getName() : null, (variationOption1 != null) ? variationOption1.getValue() : null, (variation2 != null) ? variation2.getName() : null, (variationOption2 != null) ? variationOption2.getValue() : null)));
+            }
+        }
+        return shopForCartDTOs;
     }
     public ShoppingCartItem findById(Long id){
         return shoppingCartItemDAO.findById(id);

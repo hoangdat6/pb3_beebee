@@ -18,11 +18,8 @@ public class SellerMapper implements RowMapper<Seller> {
                     .avatar( rs.getString("avatar"))
                     .shopName(rs.getString("shop_name"))
                     .description(rs.getString("description"))
-                    .address(rs.getLong("address"))
-                    .userId(userDAO.findById(rs.getInt("id")))
-                    .followers(rs.getInt("followers"))
-                    .views(rs.getInt("views"))
-                    .createdAt(rs.getTimestamp("created_at"))
+                    .addressId(rs.getLong("address"))
+//                    .userId(userDAO.findById(rs.getInt("id")))
                     .build();
             return   seller;
         } catch (Exception e) {

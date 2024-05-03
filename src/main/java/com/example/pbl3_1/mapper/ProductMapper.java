@@ -20,11 +20,11 @@ public class ProductMapper implements RowMapper<Product>{
                     .name(rs.getString("name"))
                     .description(rs.getString("description"))
                     .productImgPath(rs.getString("product_img_path"))
-                    .categoryId(rs.getInt("category_id"))
-                    .discount(rs.getFloat("discount"))
+//                    .categoryId(categoryDAO.findById(rs.getInt("category_id")))
+                    .discount(rs.getInt("discount"))
                     .sellerId(rs.getLong("seller_id"))
                     .createdAt(rs.getTimestamp("created_at"))
-                    .views(rs.getLong("views"))
+
                     .build();
         } catch (Exception e) {
             e.printStackTrace();

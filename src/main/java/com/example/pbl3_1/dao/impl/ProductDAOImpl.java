@@ -1,7 +1,7 @@
 package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
-import com.example.pbl3_1.controller.dto.product.ProductForHomeDTO;
+import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.dao.ProductDAO;
 import com.example.pbl3_1.entity.Product;
 import com.example.pbl3_1.mapper.ProductMapper;
@@ -34,13 +34,12 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public Object deleteById(Long id) {
+    public void deleteById(Long id) {
 
-        return null;
     }
 
     @Override
-    public Product findById(Long id) {
+    public Product findById(int id) {
         return null;
     }
 
@@ -58,7 +57,7 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<ProductForHomeDTO> getProductForHomeDtos() {
+    public List<ProductPreviewDTO> getProductForHomeDtos() {
         StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.product_img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
@@ -69,11 +68,11 @@ public class ProductDAOImpl implements ProductDAO {
 
         return abstractDAO.query(sql.toString(), resultSet -> {
             try {
-                return new ProductForHomeDTO(
+                return new ProductPreviewDTO(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
-                        resultSet.getFloat("min_price"),
-                        resultSet.getFloat("discount"),
+                        resultSet.getInt("min_price"),
+                        resultSet.getInt("discount"),
                         resultSet.getString("product_img_path"),
                         resultSet.getLong("seller_id"),
                         resultSet.getString("shop_name"),
@@ -103,9 +102,9 @@ public class ProductDAOImpl implements ProductDAO {
                 return new ProductDetailDTO(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
-                        resultSet.getFloat("max_price"),
-                        resultSet.getFloat("min_price"),
-                        resultSet.getFloat("discount"),
+                        resultSet.getInt("max_price"),
+                        resultSet.getInt("min_price"),
+                        resultSet.getInt("discount"),
                         new ArrayList<>(List.of(resultSet.getString("product_img_path"))),
                         resultSet.getString("description"),
                         resultSet.getInt("category_id"),

@@ -1,0 +1,179 @@
+// Biến
+$white: #fff;
+$black: #131417;
+$grey: #6C7275;
+$red: #FF5630;
+$blue: #377DFF;
+$box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.00), 0px 0px 1px 0px rgba(0, 0, 0, 0.01), 0px 0px 1px 0px rgba(0, 0, 0, 0.05), 0px 0px 1px 0px rgba(0, 0, 0, 0.09);
+
+// Mixin
+@mixin flex-column($gap) {
+    display: flex;
+    flex-direction: column;
+    gap: $gap;
+}
+
+/* CSS Pop-up Add new Address  */
+.Add_address {
+    background-color: $white;
+    padding: 25px 45px;
+    max-width: 500px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: $box-shadow;
+
+    :is(input[type="text"], input[type="tel"], select) {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid $grey;
+        border-radius: 3px;
+    }
+
+    .Add_address_form {
+        @include flex-column(20px);
+    }
+
+    .Add_address_form_item {
+        @include flex-column(10px);
+
+        .Contact_info_input_wrap {
+            display: flex;
+            gap: 10px;
+        }
+    }
+
+    .Add_address_btns {
+        @include flex-column(20px);
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            border: 1px solid transparent;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        .btn_Send {
+            background-color: $black;
+            color: $white;
+
+            &:hover {
+                background-color: $white;
+                color: $black;
+                border: 1px solid $black;
+            }
+        }
+
+        .btn_Cancel {
+            &:hover {
+                color: $red;
+            }
+        }
+    }
+}
+
+/*End CSS add new Address */
+
+/*CSS Location Page  (Address page) */
+.UAAS_wrap{
+    width: 100%;
+    max-width: none !important;
+}
+
+.title {
+    text-align: center;
+    font-size: 36px;
+    font-weight: 500;
+    text-align: center;
+    padding: 30px 0;
+}
+
+.LO_content{
+    padding: 0 55px 20px 55px;
+    flex-grow: 1;
+    #LO_content--title{
+        width: 100%;
+        text-align: center;
+        font-size: 36px;
+        font-weight: 500;
+    }   
+    #addAddressBtn{
+        background-color: $black;
+        color: $white;
+        padding: 10px 20px;
+        border: 1px solid transparent;
+        font-size: 16px;
+        font-weight: 500;
+        margin-bottom: 20px;
+        &:hover {
+            background-color: $white;
+            color: $black;
+            border: 1px solid $black;
+        }
+    }
+    
+    .Address_container{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        max-height: 100vh;
+        overflow-y: auto;
+        .Address_item{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 0.5px solid #E8ECEF;
+        }
+
+        .Address_item_left,
+        .Address_item_right{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .Address_item_left{
+            .row1{
+                font-size: 16px;
+            }
+            .row2{
+                color: $grey;
+            }
+            .row3{
+                color: $red;
+                padding: 5px 10px;
+                border: 1px solid $red;
+                width: fit-content;
+            }
+        }
+
+        .Address_item_right{
+            .row1{
+                display: flex;
+                gap: 10px;
+                font-weight: 500;
+                flex-direction: row-reverse;
+                .Address_update_btn{
+                    color: $blue;
+                }
+                .Address_remove_btn{
+                    color: $red;
+                }
+                .btn:hover{
+                    opacity: 0.7;
+                }
+            }
+            .row2{
+                padding: 5px 10px;
+                border: 1px solid $grey;
+                color: $grey;
+                &:hover{
+                    border: 1px solid $black;
+                    color: $black;
+                }
+            }
+        }
+    }
+}

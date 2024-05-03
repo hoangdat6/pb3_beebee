@@ -16,9 +16,13 @@ public class Seller {
     private String avatar;
     private String shopName;
     private String description;
-    private Long address;
-    private User userId;
+    private Long addressId;
+    private Long userId;
     private Integer views;
     private Integer followers;
     private Timestamp createdAt;
+    private Timestamp updatedAt;
+
+    public Seller() {
+    }
 }

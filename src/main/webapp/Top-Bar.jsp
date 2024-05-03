@@ -6,7 +6,7 @@
           <div class="Header-Top__item1">Chúng tôi giao hàng mỗi ngày từ <span class="orange-bold">7:00</span> đến
             <span class="orange-bold">23:00</span>
           </div>
-          <div class="Header-Top__item2">Bạn đang ở kênh mua hàng! <a href="<c:url value="/product/save"/>" class="orange-bold">Chuyển qua kênh người
+          <div class="Header-Top__item2">Bạn đang ở kênh mua hàng! <a href="<c:url value="/seller"/>" class="orange-bold">Chuyển qua kênh người
               bán?</a></div>
 
         </div>
@@ -98,7 +98,7 @@
                     </span>
                   </div>
                   <a class="Checkout-Btn btn" href="Checkout.jsp">Thanh toán</a>
-                  <a class="Cart-Btn btn" href='<c:url value="/cart?type=load&id=${sessionScope.get('USERMODEL').id}"/>'>Xem giỏ hàng</a>
+                  <a class="Cart-Btn btn" href="Cart.jsp">Xem giỏ hàng</a>
                 </div>
               </div>
             </li>

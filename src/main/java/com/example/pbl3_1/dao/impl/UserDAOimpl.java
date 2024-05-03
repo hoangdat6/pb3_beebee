@@ -5,6 +5,7 @@ import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.mapper.UserMapper;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.AbstractMap;
 import java.util.List;
 
@@ -22,14 +23,8 @@ public class UserDAOimpl implements UserDAO {
     }
 
     @Override
-    public Object deleteById(Long object) {
+    public void deleteById(Long object) {
 
-        return null;
-    }
-
-    @Override
-    public User findById(Long id) {
-        return null;
     }
 
     @Override
@@ -59,12 +54,18 @@ public class UserDAOimpl implements UserDAO {
     }
 
     @Override // Kiểm tra xem username và email có tồn tại ở trong CSDL hay không, nếu có cái gì thì trả về false cái đó
-    public AbstractMap.SimpleEntry<Boolean, Boolean> findByUsernameOrEmail(String username, String email) {
-        StringBuilder sql1 = new StringBuilder("SELECT * FROM users WHERE username = ?");
-        StringBuilder sql2 = new StringBuilder("SELECT * FROM users WHERE email = ?");
-        List<User> users1 = abstractDAO.query(sql1.toString(), new UserMapper(), username);
-        List<User> users2 = abstractDAO.query(sql2.toString(), new UserMapper(), email);
-        return new AbstractMap.SimpleEntry<>(users1.isEmpty(), users2.isEmpty());
+    public List<AbstractMap.SimpleEntry<String, String>> findByUsernameOrEmail(String username, String email) {
+        StringBuilder sql1 = new StringBuilder("SELECT username, email FROM users WHERE username = ? OR email = ?");
+        List<AbstractMap.SimpleEntry<String, String>> users = abstractDAO.query(sql1.toString(), resultSet -> {
+            try {
+                return new AbstractMap.SimpleEntry<>(resultSet.getString("username"), resultSet.getString("email"));
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }, username, email);
+
+        return users;
     }
     @Override // kiểm tra xem email có tồn tại ở trong CSDL hay không (trả về true nếu có)
     public boolean findEmail(String email) {

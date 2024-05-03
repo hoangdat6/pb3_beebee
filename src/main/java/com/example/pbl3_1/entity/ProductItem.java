@@ -12,11 +12,13 @@ import lombok.Setter;
 public class ProductItem {
     private Long id;
     private Long productId;
+    private String SKU;
     private Long variation1;
     private Long variation2;
     private Integer qtyInStock;
     private String productImgPath;
-    private int price;
+    private Integer price;
+
 
     public ProductItem() {
     }

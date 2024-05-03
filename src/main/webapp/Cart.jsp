@@ -17,157 +17,159 @@
     <script src="./Cart.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-</head>
-
 <%@ include file="Top-Bar.jsp" %>
 <fmt:setLocale value = "vi_VN"/>
-<body class="Color-White">
-    <div id="Cart_Header">
-        <h3 class="Cart_Title">
-            Cart
-        </h3>
-        <div class="Process_Container">
-            <div class="Process_Item">
-                <span class="Process_Item-Number">1</span>
-                <span class="Process_Item-Title">
-                    Giỏ hàng
-                </span>
-            </div>
-
-            <div class="clear"></div>
-
-            <div class="Process_Item">
-                <span class="Process_Item-Number">2</span>
-                <span class="Process_Item-Title">
-                    Chi tiết thanh toán
-                </span>
-            </div>
-            <div class="clear"></div>
-
-            <div class="Process_Item">
-                <span class="Process_Item-Number">3</span>
-                <span class="Process_Item-Title">
-                    Hoàn tất đơn hàng
-                </span>
-            </div>
-            <div class="clear"></div>
-
-        </div>
-    </div>
-
-    <div id="Cart_Content">
-        <main class="Cart_Table">
-            <div class="Table_Header">
-                <span class="Table_Header-Item Table_Header-Product">Sản phẩm</span>
-                <span class="Table_Header-Item">Số lượng</span>
-                <span class="Table_Header-Item">Đơn giá</span>
-                <span class="Table_Header-Item">Tổng cộng</span>
-            </div>
-
-            <div class="Table_Content">
-                <c:forEach items="${shoppingcarts}" var="shoppingcart">
-                <div class="Shop_Products">
-                    <div class="Shop_Products-Header">
-                        <input type="checkbox" name="Shop" id="ShopPick">
-                        <img src="${shoppingcart.imgPath}" alt="Shop">
-                        <span class="Shop_Name">${shoppingcart.shopName}</span>
-                        <i></i>
+        <body class="Color-White">
+            <div id="Cart_Header">
+                <h3 class="Cart_Title">
+                    Cart
+                </h3>
+                <div class="Process_Container">
+                    <div class="Process_Item">
+                        <span class="Process_Item-Number">1</span>
+                        <span class="Process_Item-Title">
+                            Giỏ hàng
+                        </span>
                     </div>
-                    <input type="hidden" value="${shoppingcart.productForShoppingCarts.size()}" name="number"/>
-                    <div class="Shop_Products-Content">
-                        <c:forEach items="${shoppingcart.productForShoppingCarts}" var="productcart">
-                        <div class="Shop_Products-Cell">
-                            <input type="hidden" value="${productcart.id}" name="id"/>
-                            <input type="checkbox" name="Cart_CB">
-                            <img class="Cell_Col_1" src="${productcart.imgPath}" alt="Product Imge">
-                            <div class="Cell_Col_2">
-                                <p class="Item-Name">${productcart.name}</p>
-                                <p class="Item-Category">
-                                    ${productcart.nameVariation1}: ${productcart.valueVariation1} <br>
-                                    ${productcart.nameVariation2}: ${productcart.valueVariation2}
-                                </p>
-                                <a class="Item-Remove" onclick="RemoveCartItem(this)">
-                                    <i class="fa-solid fa-x"></i>
-                                    Xóa khỏi giỏ hàng
-                                </a>
-                            </div>
-                            <div class="Cell_Col_3">
-                                <div class="Item-Qty">
-                                        <input type="hidden" value="${productcart.id}" name="id"/>
-                                        <input type="hidden" name="quantity" value="${productcart.quantity}">
-                                        <button type="submit" onclick="UpdateCartItem(this)" name="action" value="increase">+</button>
-                                        <input class="Qty__Input"  value="${productcart.quantity}" min="1" readonly>
-                                        <button type="submit" onclick="UpdateCartItem(this)" name="action" value="decrease">-</button>
-                                        <input type="hidden" value ="${productcart.price}" name="price">
+
+                    <div class="clear"></div>
+
+                    <div class="Process_Item">
+                        <span class="Process_Item-Number">2</span>
+                        <span class="Process_Item-Title">
+                            Chi tiết thanh toán
+                        </span>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="Process_Item">
+                        <span class="Process_Item-Number">3</span>
+                        <span class="Process_Item-Title">
+                            Hoàn tất đơn hàng
+                        </span>
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+            </div>
+
+            <div id="Cart_Content">
+                <main class="Cart_Table">
+                    <div class="Table_Header">
+                        <span class="Table_Header-Item Table_Header-Product">Sản phẩm</span>
+                        <span class="Table_Header-Item">Số lượng</span>
+                        <span class="Table_Header-Item">Đơn giá</span>
+                        <span class="Table_Header-Item">Tổng cộng</span>
+                    </div>
+
+                    <div class="Table_Content">
+                        <c:forEach items="${shoppingcarts}" var="shoppingcart">
+                            <div class="Shop_Products">
+                                <div class="Shop_Products-Header">
+                                    <input type="checkbox" name="Shop" id="ShopPick">
+                                    <img src="${shoppingcart.imgPath}" alt="Shop">
+                                    <span class="Shop_Name">${shoppingcart.shopName}</span>
+                                    <i></i>
                                 </div>
-                                <span class="Item-Unit_Price">
-                                    <fmt:formatNumber value = "${productcart.price}" type = "currency"/>
-                                </span>
-                                <span class="Item-Total_Price">
-                                     <fmt:formatNumber value = "${productcart.price * productcart.quantity}" type = "currency"/>
-                                </span>
+                                <div class="Shop_Products-Content">
+
+                                    <c:forEach items="${shoppingcart.productForShoppingCarts}" var="productcart">
+                                        <div class="Shop_Products-Cell">
+                                            <input type="checkbox" name="Cart_CB">
+                                            <img class="Cell_Col_1" src="img/Product-Details/Category-1.jpeg" alt="Product Imge">
+                                            <div class="Cell_Col_2">
+                                                <p class="Item-Name">${productcart.name}</p>
+                                                <p class="Item-Category">
+                                                        ${productcart.nameVariation1}: ${productcart.valueVariation1} <br>
+                                                        ${productcart.nameVariation2}: ${productcart.valueVariation2}
+                                                </p>
+                                                <a class="Item-Remove" href='<c:url value="/cart?type=delete&id=${sessionScope.get('USERMODEL').id}&idItem=${productcart.id}"/>'>
+                                                    <i class="fa-solid fa-x"></i>
+                                                    Xóa khỏi giỏ hàng
+                                                </a>
+                                            </div>
+                                            <div class="Cell_Col_3">
+                                                <div class="Item-Qty">
+                                                    <form class="Update-Cart" action="/PBL3_1_war_exploded/cart" method="get">
+                                                        <input type="hidden" name="type" value="update">
+                                                        <input type="hidden" name="id" value="${sessionScope.get('USERMODEL').id}">
+                                                        <input type="hidden" name="idItem" value="${productcart.id}">
+                                                        <input type="hidden" name="quantity" id="quantity_${productcart.id}" value="${productcart.quantity}">
+
+                                                        <button type="submit" name="action" value="increase">+</button>
+                                                        <input class="Qty__Input" value="${productcart.quantity}" min="1" readonly>
+                                                        <button type="submit" name="action" value="decrease">-</button>
+                                                    </form>
+                                                </div>
+                                                <span class="Item-Unit_Price">
+                                                        ${productcart.price}
+                                                </span>
+
+                                                <span class="Item-Total_Price">
+                                                        ${productcart.price * productcart.quantity}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
                             </div>
-                        </div>
                         </c:forEach>
                     </div>
-                </div>
-                </c:forEach>
+                </main>
+
+                <aside>
+                    <h3 class="Cart_Summary-Title">
+                        Tóm tắt đơn hàng
+                    </h3>
+                    <div class="Cart_Summary-Voucher">
+                        <div class="Cart_Voucher">
+                            <i class="fa-solid fa-ticket"></i>
+                            <span>Voucher</span>
+                            <a href="#" class="Cart_Summary-Add_Voucher">
+                                Chọn hoặc nhập mã
+                            </a>
+                        </div>
+                        <form class="Shipping_Option" action="/submit-form" method="post">
+                            <div class="Shipping_Option-Item">
+                                <input type="radio" id="free-shipping" name="shipping-option" value="free-shipping">
+                                <label for="free-shipping">Miễn phí giao hàng</label>
+                                <span>0đ</span>
+                            </div>
+
+                            <div class="Shipping_Option-Item">
+                                <input type="radio" id="fast-shipping" name="shipping-option" value="fast-shipping">
+                                <label for="fast-shipping">Giao hàng nhanh</label>
+                                <span>0đ</span>
+                            </div>
+
+                            <div class="Shipping_Option-Item">
+                                <input type="radio" id="express-shipping" name="shipping-option"
+                                       value="express-shipping">
+                                <label for="express-shipping">Giao hàng hỏa tốc</label>
+                                <span>0đ</span>
+                            </div>
+
+                            <div class="Shipping_Option-Item">
+                                <input type="radio" id="Self-pickup" name="shipping-option" value="Self-pickup">
+                                <label for="Self-pickup">Tự lấy hàng</label>
+                                <span>0đ</span>
+                            </div>
+
+                            <div class="Total-Price">
+                                <span>Tổng tiền sản phẩm</span>
+                                <span>0₫</span>
+                            </div>
+
+                            <div class="Total-Checkout">
+                                <span>Tổng tiền thanh toán</span>
+                                <span>0₫</span>
+                            </div>
+                            <a href="CheckOut.jsp">
+                                <input class="btn" id="Checkout" type="submit" value="Thanh toán">
+                            </a>
+                        </form>
+                    </div>
+                </aside>
             </div>
-        </main>
-
-        <aside>
-            <h3 class="Cart_Summary-Title">
-                Tóm tắt đơn hàng
-            </h3>
-            <div class="Cart_Summary-Voucher">
-                <div class="Cart_Voucher">
-                    <i class="fa-solid fa-ticket"></i>
-                    <span>Voucher</span>
-                    <a href="#" class="Cart_Summary-Add_Voucher">
-                        Chọn hoặc nhập mã
-                    </a>
-                </div>
-                <form class="Shipping_Option" action="/submit-form" method="post">
-                    <div class="Shipping_Option-Item">
-                        <input type="radio" id="free-shipping" name="shipping-option" value="free-shipping">
-                        <label for="free-shipping">Miễn phí giao hàng</label>
-                        <span>0đ</span>
-                    </div>
-
-                    <div class="Shipping_Option-Item">
-                        <input type="radio" id="fast-shipping" name="shipping-option" value="fast-shipping">
-                        <label for="fast-shipping">Giao hàng nhanh</label>
-                        <span>0đ</span>
-                    </div>
-
-                    <div class="Shipping_Option-Item">
-                        <input type="radio" id="express-shipping" name="shipping-option" value="express-shipping">
-                        <label for="express-shipping">Giao hàng hỏa tốc</label>
-                        <span>0đ</span>
-                    </div>
-
-                    <div class="Shipping_Option-Item">
-                        <input type="radio" id="Self-pickup" name="shipping-option" value="Self-pickup">
-                        <label for="Self-pickup">Tự lấy hàng</label>
-                        <span>0đ</span>
-                    </div>
-
-                    <div class="Total-Price">
-                        <span>Tổng tiền sản phẩm</span>
-                        <span>0₫</span>
-                    </div>
-
-                    <div class="Total-Checkout">
-                        <span>Tổng tiền thanh toán</span>
-                        <span>0₫</span>
-                    </div>
-                    <a href="CheckOut.jsp">
-                        <input class="btn" id="Checkout" type="submit" value="Thanh toán">
-                    </a>
-                </form>
-
-            </div>
-        </aside>
-    </div>
-    <%@ include file="Footer.jsp" %>
-</body>
+            <%@ include file="Footer.jsp" %>
+        </body>

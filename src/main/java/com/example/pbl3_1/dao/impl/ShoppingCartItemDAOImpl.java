@@ -22,7 +22,7 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
 
     @Override
     public Integer update(ShoppingCartItem object) {
-        String sql = "UPDATE shop_bee.shopping_cart_item SET cart_id = ?, product_item_id = ?, quantity = ?, created_at = ? WHERE id = ?";
+        String sql = "UPDATE shop_bee.shopping_cart_item SET cart_id = ?, product_item_id = ?, qty = ?, created_at = ? WHERE id = ?";
         return genericDAO.update(sql,
                 object.getCartId(),
                 object.getProductItemId(),
@@ -32,9 +32,13 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
     }
 
     @Override
-    public Object deleteById(Long object) {
-        String sql = "DELETE FROM shopping_cart_item  WHERE id = ?";
-        return  genericDAO.delete(sql,object);
+    public void deleteById(Long object) {
+
+    }
+
+    @Override
+    public ShoppingCartItem findById(int id) {
+        return null;
     }
 
     @Override

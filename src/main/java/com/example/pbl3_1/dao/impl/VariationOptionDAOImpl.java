@@ -16,6 +16,12 @@ public class VariationOptionDAOImpl implements VariationOptionDAO {
     }
 
     @Override
+    public VariationOption getVariationOptionById(Long id) {
+        String sql = "SELECT * FROM variation_option WHERE id = ?";
+        List<VariationOption> list=genericDAO.query(sql, new VariationOptionMapper(), id);
+        return (list.isEmpty() ? null : list.get(0));
+    }
+    @Override
     public Long addVariationOption(VariationOption variationOption) {
         String sql = "INSERT INTO variation_option(variation_id, value) VALUES(?, ?)";
         return genericDAO.save(sql, variationOption.getVariationId(), variationOption.getValue());
@@ -32,13 +38,8 @@ public class VariationOptionDAOImpl implements VariationOptionDAO {
                     }
                     return null;
                 }
-                , variationOption.getVariationId(), variationOption.getValue());
+            , variationOption.getVariationId(), variationOption.getValue());
         return list.isEmpty() ? null : list.get(0);
-    }
-    public VariationOption getVariationOptionById(Long id) {
-        String sql = "SELECT * FROM variation_option WHERE id = ?";
-        List<VariationOption> list=genericDAO.query(sql, new VariationOptionMapper(), id);
-        return (list.isEmpty() ? null : list.get(0));
     }
 }
 
