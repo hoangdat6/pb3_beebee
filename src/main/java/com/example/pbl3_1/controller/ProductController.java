@@ -22,7 +22,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
-@WebServlet(name = "product", urlPatterns = {"/product", "/Seller/product/save"})
+@WebServlet(name = "product", urlPatterns = {"/product", "/seller/product/save"})
 public class ProductController extends HttpServlet {
     public final ProductService productService = new ProductServiceImpl();
     public final CategoryService categoryService = new CategoryServiceImpl();
@@ -42,7 +42,7 @@ public class ProductController extends HttpServlet {
                 String url = path + "?id=" + request.getParameter("id");
                 showProductDetails(request, response, url);
                 break;
-            case "/Seller/product/save":
+            case "/seller/product/save":
                 showCategoryForAddProduct(request, response);
                 break;
         }
@@ -55,7 +55,7 @@ public class ProductController extends HttpServlet {
 
         String path = request.getServletPath();
         switch (path) {
-            case "/Seller/product/save":
+            case "/seller/product/save":
                 saveProduct(request, response);
                 break;
         }
@@ -102,7 +102,7 @@ public class ProductController extends HttpServlet {
         product.setDescription(data.get(0).get("ProductDescription").toString());
         product.setDiscount(Integer.parseInt(Objects.toString(data.get(0).get("Discount"))));
         product.setCategoryId(Integer.parseInt(data.get(0).get("ProductCategory").toString()));
-//        product.setSellerId(Long.parseLong(data.get(0).get("SellerId"))); // seller xử lý sau
+//        product.setsellerId(Long.parseLong(data.get(0).get("sellerId"))); // seller xử lý sau
 
         // Thêm sản phẩm vào database
         Long productId = productService.addProduct(product);
@@ -132,7 +132,6 @@ public class ProductController extends HttpServlet {
                 String imgPath = saveImages(rootPath, productId.toString(), Integer.toString(i), List.of(itemImages));
                 saveImages(webappDirectoryRoot, productId.toString(), Integer.toString(i), List.of(itemImages));
                 item.setProductImgPath(imgPath);
-                System.out.println(imgPath);
             }
 
             if(variation1 != null){

@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hoàn tất đăng ký</title>
-    <link rel="stylesheet" href="./CompleteRegister.css">
-    <link rel="stylesheet" href="./Register.css">
-    <link rel="stylesheet" href="../Common/SellerCommon.js">
-    <link rel="stylesheet" href="../../CommonCSS.css">
-    <script src="Register.js"></script>
+    <link rel="stylesheet" href="<c:url value="/seller/account/CompleteRegister.css"/>">
+    <link rel="stylesheet" href="<c:url value="/seller/account/Register.css"/>">
+    <link rel="stylesheet" href="<c:url value="/CommonCSS.css"/>">
+    <script src="<c:url value="/seller/account/CommonCSS.css"/>"></script>
+    <script src="<c:url value="/seller/account/CompleteRegister.js"/>"></script>
 </head>
 <body>
     <div class="SR_wrap">

@@ -10,3 +10,11 @@ document.querySelectorAll('input[type="file"]').forEach(input => {
         reader.readAsDataURL(file);
     });
 });
+
+function cancelUpload(input) {
+    // Lấy đối tượng form
+    var form = document.querySelector('#cancel');
+// Kích hoạt form
+    form.submit();
+}
+
