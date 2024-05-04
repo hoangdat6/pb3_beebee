@@ -25,4 +25,8 @@ public class Seller {
 
     public Seller() {
     }
+
+    public String getAvatar(){
+        return avatar.split(",")[0];
+    }
 }

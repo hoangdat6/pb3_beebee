@@ -65,6 +65,7 @@ public class ProductController extends HttpServlet {
         if(CheckLoggedUser.checkLoggedUser(request, response, url)){
             Long id = Long.parseLong(request.getParameter("id"));
             ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
+            SessionUtil.getInstance().putValue(request, "product_id", id);
             request.setAttribute("productDetail", productDetailDTO);
             request.getRequestDispatcher("Product_Details.jsp").forward(request, response);
         }
@@ -131,7 +132,7 @@ public class ProductController extends HttpServlet {
                 String itemImages = data.get(i).get("ProductItemImage").toString();
                 String imgPath = saveImages(rootPath, productId.toString(), Integer.toString(i), List.of(itemImages));
                 saveImages(webappDirectoryRoot, productId.toString(), Integer.toString(i), List.of(itemImages));
-                item.setProductImgPath(imgPath);
+                item.setImgPath(imgPath);
             }
 
             if(variation1 != null){

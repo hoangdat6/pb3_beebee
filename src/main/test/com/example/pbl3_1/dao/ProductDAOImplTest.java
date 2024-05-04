@@ -52,7 +52,7 @@ public class ProductDAOImplTest {
 //        ca.setId(1);
 
 
-        Product product = Product.builder().name(name).description(description).categoryId(0).productImgPath(null).sellerId(null).createdAt(null).build();
+        Product product = Product.builder().name(name).description(description).categoryId(0).imgPath(null).sellerId(null).createdAt(null).build();
 
         ProductDAO productDAO = new ProductDAOImpl();
 

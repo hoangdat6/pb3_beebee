@@ -41,11 +41,11 @@ public class ProductServiceImpl implements ProductService {
         List<Variation> variations = variationService.getVariationsByProductId(id);
         List<String> imgPaths = productItemDAO.getImgPathByProductId(id);
 
-        String[] imgPath = productDetailDTO.getProductImgPath().get(0).split(",");
+        String[] imgPath = productDetailDTO.getImgPath().get(0).split(",");
         imgPaths.addAll(0, Arrays.asList(imgPath));
 
         productDetailDTO.setVariations(variations);
-        productDetailDTO.setProductImgPath(imgPaths);
+        productDetailDTO.setImgPath(imgPaths);
         increaseView(id);
         return productDetailDTO;
     }

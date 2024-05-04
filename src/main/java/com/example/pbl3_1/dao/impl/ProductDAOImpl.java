@@ -15,12 +15,12 @@ public class ProductDAOImpl implements ProductDAO {
     private AbstractDAOImpl<Product> abstractDAO = new AbstractDAOImpl<>();
     @Override
     public Long save(Product product) {
-        String sql = "insert into products (name, description, product_img_path, category_id, seller_id, created_at, discount) values (?, ?, ?, ?, ?, ?)";
+        String sql = "insert into products (name, description, img_path, category_id, seller_id, created_at, discount) values (?, ?, ?, ?, ?, ?)";
         return abstractDAO.save(
                 sql,
                 product.getName(),
                 product.getDescription(),
-                product.getProductImgPath(),
+                product.getImgPath(),
                 product.getCategoryId(),
                 product.getSellerId(),
                 new Timestamp(System.currentTimeMillis()),
@@ -58,7 +58,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public List<ProductPreviewDTO> getProductForHomeDtos() {
-        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.product_img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
+        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
         sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
@@ -73,7 +73,7 @@ public class ProductDAOImpl implements ProductDAO {
                         resultSet.getString("name"),
                         resultSet.getInt("min_price"),
                         resultSet.getInt("discount"),
-                        resultSet.getString("product_img_path"),
+                        resultSet.getString("img_path"),
                         resultSet.getLong("seller_id"),
                         resultSet.getString("shop_name"),
                         resultSet.getString("avatar")
@@ -87,7 +87,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public ProductDetailDTO getProductDetailById(Long id) {
-        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.product_img_path , MIN(pi.price) as min_price, MAX(pi.price) as max_price, p.description,\n");
+        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path , MIN(pi.price) as min_price, MAX(pi.price) as max_price, p.description,\n");
         sql.append("p.seller_id, s.shop_name, s.avatar,\n");
         sql.append("p.category_id ,c.name as category_name,\n");
         sql.append("SUM(qty_in_stock) as total_qty\n");
@@ -105,7 +105,7 @@ public class ProductDAOImpl implements ProductDAO {
                         resultSet.getInt("max_price"),
                         resultSet.getInt("min_price"),
                         resultSet.getInt("discount"),
-                        new ArrayList<>(List.of(resultSet.getString("product_img_path"))),
+                        new ArrayList<>(List.of(resultSet.getString("img_path"))),
                         resultSet.getString("description"),
                         resultSet.getInt("category_id"),
                         resultSet.getString("category_name"),
@@ -130,12 +130,12 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public Long addProduct(Product product) {
-        String sql = "INSERT INTO products (name, description, product_img_path, category_id, seller_id, created_at, discount, views) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products (name, description, img_path, category_id, seller_id, created_at, discount, views) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         return abstractDAO.save(
                 sql,
                 product.getName(),
                 product.getDescription(),
-                product.getProductImgPath(),
+                product.getImgPath(),
                 product.getCategoryId(),
                 product.getSellerId(),
                 new Timestamp(System.currentTimeMillis()),
@@ -146,7 +146,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void updateProductImage(Long productId, String images) {
-        String sql = "UPDATE products SET product_img_path = ? WHERE id = ?";
+        String sql = "UPDATE products SET img_path = ? WHERE id = ?";
         abstractDAO.update(sql, images, productId);
     }
 }

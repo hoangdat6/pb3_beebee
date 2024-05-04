@@ -19,10 +19,10 @@ public class ProductMapper implements RowMapper<Product>{
                     .id(rs.getLong("id"))
                     .name(rs.getString("name"))
                     .description(rs.getString("description"))
-                    .productImgPath(rs.getString("product_img_path"))
+                    .imgPath(rs.getString("img_path").split(",")[0])
 //                    .categoryId(categoryDAO.findById(rs.getInt("category_id")))
                     .discount(rs.getInt("discount"))
-//                    .sellerId(rs.getLong("seller_id"))
+                    .sellerId(rs.getLong("seller_id"))
                     .createdAt(rs.getTimestamp("created_at"))
                     .build();
         } catch (Exception e) {

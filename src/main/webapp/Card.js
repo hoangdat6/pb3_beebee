@@ -6,7 +6,7 @@ function createCard(product) {
     return `
         <div class="Card">
             <a href='${product.productUrl}'>
-              <img class="Card-Image" src="${product.productImgPath}">
+              <img class="Card-Image" src="${product.imgPath}">
               <span class="Hot">Hot</span>
               <span class="Sale">-${product.discount}%</span>
             </a>

@@ -18,18 +18,18 @@ public class CartItemServiceImpl implements CartItemService {
     private final ShoppingCartDAO shoppingCartDAO = new ShoppingCartDAOImpl();
 
     @Override
-    public Object saveToCart(String variation1, String variation2, int i, Long userId) {
+    public Object saveToCart(Long productId, String variation1, String variation2, int i, Long userId) {
         Long productItemId;
         if(!Objects.equals(variation1, "")){
             if(!Objects.equals(variation2, ""))
                 // add to cart with 2 variations
-                productItemId = productItemDAO.getProductItemIdByVariations(Long.parseLong(variation1), Long.parseLong(variation2));
+                productItemId = productItemDAO.getProductItemIdByVariations(productId, Long.parseLong(variation1), Long.parseLong(variation2));
             else
                 // add to cart with 1 variation
-                productItemId = productItemDAO.getProductItemIdByVariations(Long.parseLong(variation1), null);
+                productItemId = productItemDAO.getProductItemIdByVariations(productId, Long.parseLong(variation1), null);
         }else {
             // add to cart without variation
-            productItemId = productItemDAO.getProductItemIdByVariations(null, null);
+            productItemId = productItemDAO.getProductItemIdByVariations(productId, null, null);
         }
 
         Long cartId = shoppingCartDAO.getCartIdByUserId(userId);

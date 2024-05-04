@@ -3,7 +3,6 @@ function createOverlay() {
     overlay.id = "overlay";
     Object.assign(overlay.style, {
         position: "fixed",
-        position: "fixed",
         top: 0,
         left: 0,
         width: "100%",
