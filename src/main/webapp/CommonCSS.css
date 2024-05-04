@@ -232,6 +232,14 @@ input[type="checkbox"]:checked::before {
     color: #fff;
 }
 
+/*input[type="checkbox"]:checked::after {*/
+/*    width: 6px;*/
+/*    height: 2px;*/
+/*    border-left: 1px solid #000;*/
+/*    border-right: 1px solid #000;*/
+/*    rotate: -45deg;*/
+/*}*/
+
 /*Product Card*/
 
 .Product_list {
@@ -293,6 +301,7 @@ input[type="checkbox"]:checked::before {
     /* Số dòng tối đa */
     -webkit-box-orient: vertical;
 }
+
 
 .Card_shop {
     display: flex;

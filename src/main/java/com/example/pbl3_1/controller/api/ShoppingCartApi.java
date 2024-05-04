@@ -1,9 +1,12 @@
 package com.example.pbl3_1.controller.api;
 
 import com.example.pbl3_1.Util.SessionUtil;
+import com.example.pbl3_1.entity.ShoppingCartItem;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.CartItemService;
 import com.example.pbl3_1.service.impl.CartItemServiceImpl;
+import com.example.pbl3_1.service.ShoppingCartItemService;
+import com.example.pbl3_1.service.impl.ShoppingCartItemServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,10 +15,13 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.Objects;
 
-@WebServlet(name = "cartApi", urlPatterns = {"/api/cart", "/api/add-to-cart"})
+@WebServlet(name = "cartApi", urlPatterns = {"/api/cart", "/api/add-to-cart", "/api/remove","/api/update"})
 public class ShoppingCartApi extends HttpServlet {
     private final CartItemService cartItemService = new CartItemServiceImpl();
+    public final ShoppingCartItemService shoppingCartItemService= new ShoppingCartItemServiceImpl();
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -26,34 +32,47 @@ public class ShoppingCartApi extends HttpServlet {
         User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
 
         // if the user is logged in then get the data form view
+        Long productId = (Long) SessionUtil.getInstance().getValue(request, "product_id");
         String variation1 = request.getParameter("variation1");
         String variation2 = request.getParameter("variation2");
         String quantity = request.getParameter("quantity");
 
         // Add to cart logic here
-        Object id = cartItemService.saveToCart(variation1, variation2, Integer.parseInt(quantity), user.getId());
+        Object id = cartItemService.saveToCart(productId, variation1, variation2, Integer.parseInt(quantity), user.getId());
 
         ObjectMapper objectMapper = new ObjectMapper();
         response.setContentType("application/json");
         String json;
         if(id != null){
-             json = "{\"status\" : \"200\"}";
+            json = "{\"status\" : \"200\"}";
         }else {
-             json = "{\"status\" : \"500\"}";
+            json = "{\"status\" : \"500\"}";
         }
         objectMapper.writeValue(response.getOutputStream(), json);
     }
 
-//    @Override
-//    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-//
-//        System.out.println(user);
-//        if(user == null){
-//            response.sendRedirect(request.getContextPath() + "/login?action=login&message=login_required&alert=danger");
-//        }else {
-//            // Show cart
-//            response.sendRedirect(request.getContextPath() + "/Cart.jsp");
-//        }
-//    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String urlPattern = request.getServletPath();
+        System.out.println(urlPattern);
+        switch (urlPattern) {
+            case "/api/remove":
+                String idCartItem = request.getParameter("idCartItem");
+                shoppingCartItemService.deleteById(Long.parseLong(idCartItem));
+                response.setContentType("application/json");
+                response.getWriter().write("{\"status\": \"200\"}");
+                break;
+            case  "/api/update":
+                Long cartId = Long.parseLong(request.getParameter("idCartItem"));
+                int quantity = Integer.parseInt(request.getParameter("quantity"));
+                ShoppingCartItem cartItem =  shoppingCartItemService.findById(cartId);
+                cartItem.setQuantity(quantity);
+                if(quantity==0) shoppingCartItemService.deleteById(cartId);
+                else shoppingCartItemService.update(cartItem);
+                response.setContentType("application/json");
+                response.getWriter().write("{\"status\": \"200\"}");
+                break;
+        }
+    }
+
 }

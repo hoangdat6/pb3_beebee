@@ -5,6 +5,7 @@ import com.example.pbl3_1.controller.dto.product.SellerDTO;
 import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.dao.SellerDAO;
 import com.example.pbl3_1.entity.Seller;
+import com.example.pbl3_1.mapper.SellerMapper;
 
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -65,7 +66,7 @@ public class SellerDAOImpl implements SellerDAO {
     @Override
     public List<ProductPreviewDTO> getMostViewedProducts(Long id, Integer offset,Integer limit, String priceSortBy) {
         StringBuilder sql = new StringBuilder("select * from (\n");
-        sql.append("  SELECT p.id, p.product_img_path, p.name, p.discount, MIN(pi.price) as min_price, p.created_at\n");
+        sql.append("  SELECT p.id, p.img_path, p.name, p.discount, MIN(pi.price) as min_price, p.created_at\n");
         sql.append("  FROM products p\n");
         sql.append("           JOIN product_item pi on p.id = pi.product_id\n");
         sql.append("           JOIN sellers s on p.seller_id = s.id\n");
@@ -81,7 +82,7 @@ public class SellerDAOImpl implements SellerDAO {
     @Override
     public List<ProductPreviewDTO> getShopByTimeDESC(Long id, Integer offset,Integer limit, String priceSortBy) {
         StringBuilder sql = new StringBuilder("select * from (\n");
-        sql.append("  SELECT p.id, p.product_img_path, p.name, p.discount, MIN(pi.price) as min_price, p.created_at\n");
+        sql.append("  SELECT p.id, p.img_path, p.name, p.discount, MIN(pi.price) as min_price, p.created_at\n");
         sql.append("  FROM products p\n");
         sql.append("           JOIN product_item pi on p.id = pi.product_id\n");
         sql.append("           JOIN sellers s on p.seller_id = s.id\n");
@@ -100,13 +101,20 @@ public class SellerDAOImpl implements SellerDAO {
                 new Timestamp(System.currentTimeMillis()));
     }
 
+    @Override
+    public Seller findBySellerId(Long id) {
+        String sql = "select * from sellers where id = ? ";
+        List<Seller> list = genericDAO.query(sql, new SellerMapper(),id);
+        return (list.isEmpty() ? null : list.get(0));
+    }
+
     public List<ProductPreviewDTO> getProductPreviewDTOs(String sql, Long idSeller,Integer limit , Integer offset) {
         return genericDAO.query(sql, resultSet -> {
             try {
                 return ProductPreviewDTO.builder()
                         .id(resultSet.getLong("id"))
                         .name(resultSet.getString("name"))
-                        .productImgPath(resultSet.getString("product_img_path"))
+                        .imgPath(   resultSet.getString("img_path"))
                         .price(resultSet.getInt("min_price"))
                         .discount(resultSet.getInt("discount"))
                         .build();

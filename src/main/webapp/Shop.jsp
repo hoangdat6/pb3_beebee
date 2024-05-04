@@ -91,7 +91,7 @@
             name: "${product.name}",
             price: "${product.price}",
             discount: "${product.discount}",
-            productImgPath: "${product.productImgPath}",
+            imgPath: "${product.imgPath}",
             sellerName: sellerName,
             productUrl: productUrl,
             sellerUrl : sellerUrl,
@@ -118,7 +118,7 @@
     </div>
     <script type="text/javascript" src="./Shop.js"></script>
 
-    <img src="./img/Shop/BaoHanh.png" loading="lazy" alt="Chính sách bảo hành">
+    <img src="./img/Shop/BaoHanh.png" loading="lazy" alt="Chính sách bảo hành"  class="centered-image">
 
     <div id="Shop_product">
         <main>
@@ -146,23 +146,12 @@
                     </select>
                 </div>
             </div>
-            <div class="Product_list pad-l-r-170 pad-t-b-30" ></div>
+            <div class="Product_list pad-l-r-170 pad-t-b-30"></div>
         </main>
     </div>
 </div>
-<div class="Page_num" style="width: 650px;">
-    <div class="num_item" id="Page_pre"><i class="fa-solid fa-chevron-left"></i></div>
-    <div class="num_item">1</div>
-    <div class="num_item">2</div>
-    <div class="num_item">3</div>
-    <div class="num_item">4</div>
-    <div class="num_item">5</div>
-    <div class="num_item">...</div>
-    <div class="num_item">20</div>
-    <div class="num_item" id="Page_next"><i class="fa-solid fa-chevron-right"></i></div>
-</div>
 
-            <%@ include file="Footer.jsp" %>
-    </body>
+    <%@ include file="Footer.jsp" %>
+</body>
 
-    </html>
+</html>

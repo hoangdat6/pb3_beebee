@@ -86,7 +86,7 @@
           name: "${product.name}",
           price: "${product.price}",
           discount: "${product.discount}",
-          productImgPath: "${product.productImgPath}",
+          imgPath: "${product.imgPath}",
           sellerName: sellerName,
           productUrl: productUrl,
           sellerUrl : sellerUrl,

@@ -13,4 +13,5 @@ public interface SellerDAO {
     List<ProductPreviewDTO> getMostViewedProducts(Long id, Integer offset, Integer limit, String priceSortBy);
     List<ProductPreviewDTO> getShopByTimeDESC(Long id, Integer offset, Integer limit, String priceSortBy);
     Long addShop(Seller seller);
+    Seller findBySellerId(Long id);
 }

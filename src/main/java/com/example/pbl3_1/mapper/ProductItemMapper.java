@@ -15,7 +15,7 @@ public class ProductItemMapper implements RowMapper<ProductItem> {
             pi.setVariation2(rs.getLong("variation2"));
             pi.setQtyInStock(rs.getInt("qty_in_stock"));
             pi.setPrice(rs.getInt("price"));
-            pi.setProductImgPath(rs.getString("product_img_path"));
+            pi.setImgPath(rs.getString("img_path"));
             pi.setProductId(rs.getLong("product_id"));
         } catch (Exception e) {
             e.printStackTrace();

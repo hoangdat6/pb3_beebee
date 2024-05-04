@@ -16,7 +16,7 @@ public class Product {
     private String name;
     private Integer discount;
     private String description;
-    private String productImgPath;
+    private String imgPath;
     private int categoryId;
     private Long sellerId;
     private Timestamp createdAt;

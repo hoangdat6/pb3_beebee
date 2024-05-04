@@ -235,7 +235,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
             ProductItem productItem = (ProductItem) obj;
             setParameter(ps , index,
                     productItem.getProductId(),
-                    productItem.getProductImgPath(),
+                    productItem.getImgPath(),
                     productItem.getVariation1(),
                     productItem.getVariation2(),
                     productItem.getQtyInStock(),

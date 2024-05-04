@@ -41,7 +41,7 @@ public class SellerApi extends HttpServlet {
 
     private void getProductByTime(HttpServletRequest request, HttpServletResponse response) {
         Long id = Long.parseLong(request.getParameter("sellerId"));
-        String priceSortBy = request.getParameter("sortBy");
+        String priceSortBy = request.getParameter("sortBy");// DESC / ASC
         System.out.println(priceSortBy);
         List<ProductPreviewDTO> productCtime = sellerService.getShopByTimeDESC(id, 0, 15, priceSortBy);
 
@@ -55,7 +55,7 @@ public class SellerApi extends HttpServlet {
 
     private void getProductByPop(HttpServletRequest request, HttpServletResponse response) {
         Long id = Long.parseLong(request.getParameter("sellerId"));
-        String priceSortBy = request.getParameter("sortBy");
+        String priceSortBy = request.getParameter("sortBy"); // DESC / ASC
 
         List<ProductPreviewDTO> productPop = sellerService.getShopByPopDESC(id, 0, 15, priceSortBy);
         ObjectMapper objectMapper = new ObjectMapper();

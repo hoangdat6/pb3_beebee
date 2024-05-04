@@ -20,4 +20,11 @@ public class VariationDAOImpl implements VariationDAO {
         String sql = "INSERT INTO variation (name, product_id) VALUES (?, ?)";
         return genericDAO.save(sql, variation.getName(), variation.getProductId());
     }
+
+    @Override
+    public Variation getVariationById(Long Id) {
+        String sql = "SELECT * FROM variation  WHERE id = ?";
+        List<Variation> list= genericDAO.query(sql, new VariationMapper(), Id);
+        return (list.isEmpty() ? null : list.get(0));
+    }
 }

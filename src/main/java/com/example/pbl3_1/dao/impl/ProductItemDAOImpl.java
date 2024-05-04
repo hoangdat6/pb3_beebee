@@ -27,10 +27,10 @@ public class ProductItemDAOImpl implements ProductItemDAO {
 
     @Override
     public List<String> getImgPathByProductId(Long id) {
-        String sql = "SELECT product_img_path FROM product_item WHERE product_id = ?";
+        String sql = "SELECT img_path FROM product_item WHERE product_id = ?";
         return genericDAO.query(sql, resultSet -> {
             try {
-                return resultSet.getString("product_img_path");
+                return resultSet.getString("img_path");
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -53,8 +53,8 @@ public class ProductItemDAOImpl implements ProductItemDAO {
     }
 
     @Override
-    public Long getProductItemIdByVariations(Long v1, Long v2) {
-        String sql = "SELECT id FROM product_item WHERE (variation1 = ? OR variation1 IS NULL) AND (variation2 = ? OR variation2 IS NULL)";
+    public Long getProductItemIdByVariations(Long productId, Long v1, Long v2) {
+        String sql = "SELECT id FROM product_item WHERE product_id = ? && ((variation1 = ? OR variation1 IS NULL) AND (variation2 = ? OR variation2 IS NULL))";
 
         List<Long> productItemId = genericDAO.query(sql, resultSet -> {
             try{
@@ -63,7 +63,7 @@ public class ProductItemDAOImpl implements ProductItemDAO {
                 e.printStackTrace();
             }
             return null;
-        }, v1, v2);
+        }, productId, v1, v2);
         return productItemId.isEmpty() ? null : productItemId.get(0);
     }
 
@@ -85,8 +85,15 @@ public class ProductItemDAOImpl implements ProductItemDAO {
     @Override
     public Object addProductItems(List<ProductItem> productItems) {
         return genericDAO.saveAll(
-                "INSERT INTO product_item (product_id, product_img_path, variation1, variation2, qty_in_stock, price) VALUES (?, ?, ?, ?, ?, ?)" + ", (?, ?, ?, ?, ?, ?)"
+                "INSERT INTO product_item (product_id, img_path, variation1, variation2, qty_in_stock, price) VALUES (?, ?, ?, ?, ?, ?)" + ", (?, ?, ?, ?, ?, ?)"
                         .repeat(Math.max(0, productItems.size() - 1)),
                 productItems);
+    }
+
+    @Override
+    public ProductItem findById(long productItemId) {
+        String sql = "SELECT * FROM product_item WHERE id = ?" ;
+        List<ProductItem> productItems = genericDAO.query(sql, new ProductItemMapper(), productItemId);
+        return !productItems.isEmpty() ? productItems.get(0) : null;
     }
 }

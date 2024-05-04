@@ -47,20 +47,28 @@ span.Process_Item-Number {
 
 .Table_Header {
     min-width: 591px;
-    margin-right: 50px;
+    /*margin-right: 50px;*/
     display: flex;
     color: #131415;
     font-size: 16px;
     font-weight: 600;
     padding-bottom: 20px;
     border-bottom: 1px solid #6C7275;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     margin-bottom: 20px;
 }
 
 .Table_Header-Product{
-    margin-right: 80px;
+    flex: 6;
 }
+
+.Table_Header-Price {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 15px;
+    flex: 4;
+}
+
 
 .Table_Content{
 
@@ -99,13 +107,35 @@ span.Process_Item-Number {
 }
 
 .Shop_Products-Cell {
+    width: 100%;
     display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 20px 0;
     border-bottom: 1px solid #ccc;
 }
-a.Item-Remove {
-    color: #6C7275;
-    font-size: 14px;
+
+
+.Item-Name {
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    /* Số dòng tối đa */
+    -webkit-box-orient: vertical;
+}
+
+.Item-Remove {
+    background: none;
+    border: 0;
+    cursor: pointer;
+    margin-left: 10px;
+    flex: 1;
+}
+
+.Item-Remove:hover {
+    color: #ee4d2d;
 }
 
 p.Item-Category {
@@ -121,18 +151,40 @@ p.Item-Category {
     margin: 5px 15px;
 }
 
+.Check_box {
+    flex: 1;
+}
+
+.Product_Info {
+    display: flex;
+    cursor: pointer;
+    flex: 6;
+}
+
 .Cell_Col_3 {
+    width: 30%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-grow: 1;
     padding: 0 15px;
+    flex: 4;
 }
+
+.Product_Info-Item {
+    margin: 10px;
+}
+
+.Detail_Info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
 
 .Item-Qty{
     padding: 5px 5px;
     border-radius: 3px;
-    border: 1px solid #6C7275;
+    border: 1px solid rgba(0, 0, 0, 0.09);
     background-color: #fff;
 }
 
@@ -140,6 +192,7 @@ p.Item-Category {
     max-width: 30px;
     padding: 3px 5px;
     text-align: center;
+    border: none;
 }
 
 .Item-Qty button{
@@ -147,13 +200,11 @@ p.Item-Category {
 }
 
 .Item-Unit_Price{
-    font-size: 18px;
-    font-weight: 500;
-    color: #121212;
+    font-size: 14px;
 }
 
 .Item-Total_Price{
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 600;
     color: #121212
 }

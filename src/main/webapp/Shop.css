@@ -29,7 +29,7 @@
     width: 181px;
     height: 181px;
     object-fit: cover;
-    border-radius: calc(100% / 2);
+    border-radius: 50%;
 }
 
 .Shop_desc {
@@ -133,6 +133,11 @@
 #Shop_content {
     margin-top: 180px;
     background-color: #E8ECEF;
+}
+
+.centered-image {
+    display: block;
+    margin: 0 auto;
 }
 
 .Shop_content--Header {

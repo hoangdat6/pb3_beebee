@@ -154,7 +154,6 @@ $(document).ready(function () {
         }
         url += `?sortBy=${sortValue}`;
 
-        console.log(url);
         loadProduct(sellerId, url);
     });
 });
@@ -192,7 +191,6 @@ function loadProduct(sellerId, url) {
         data : {sellerId : sellerId},
         success: function (response) {
             let products = response;
-            console.log(products);
             let productContainer = document.querySelector('#Shop_product .Product_list');
             productContainer.innerHTML = '';
             products.forEach(product => {
@@ -201,7 +199,7 @@ function loadProduct(sellerId, url) {
                     name: product.name,
                     price: product.price,
                     discount: product.discount,
-                    productImgPath: product.productImgPath,
+                    imgPath: product.imgPath,
                     sellerName: sellerName,
                     productUrl: productUrl1,
                     sellerUrl: sellerUrl,

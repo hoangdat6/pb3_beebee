@@ -75,7 +75,7 @@ function load(response){
     $(".new-Price").text(formattedNewPrice);
     $(".old-Price").text(formattedPrice);
     $("#quantity").text(product.qtyInStock);
-    $(".Main-Image").attr('style', `background: url(${product.productImgPath}) center/cover no-repeat;`);
+    $(".Main-Image").attr('style', `background: url(${product.imgPath}) center/cover no-repeat;`);
 
 }
 

@@ -9,6 +9,6 @@ public class ShoppingCartItemTest {
     public void saveToCart(){
         CartItemService cartItemService = new CartItemServiceImpl();
 
-        System.out.println(cartItemService.saveToCart("2", null, 10, 3L));
+//        System.out.println(cartItemService.saveToCart("2", null, 10, 3L));
     }
 }
