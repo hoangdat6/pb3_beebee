@@ -1,6 +1,6 @@
-<!-- <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ include file="../common/taglib.jsp" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -44,7 +44,7 @@
                                 <p>${address.detail}</p>
                                 <p>${address.ward}, ${address.district}, ${address.province}</p>
                             </div>
-                            <div class="row3 Address_type">
+                            <div class="row3 Address_type item_name">
                                 Mặc định
                             </div>
                         </div>

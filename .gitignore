@@ -4,7 +4,11 @@ target/
 !**/src/test/**/target/
 
 ### IntelliJ IDEA ###
+<<<<<<< HEAD
 !src/main/java/com/example/pbl3_1/Util/JDBCUtil.java
+=======
+/src/main/java/com/example/pbl3_1/Util/JDBCUtil.java
+>>>>>>> 998256a (Addd Order UI, modify Address)
 .idea
 *.iws
 *.iml
