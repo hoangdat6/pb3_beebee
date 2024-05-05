@@ -1,0 +1,211 @@
+$box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.00), 0px 1px 0px 0px rgba(0, 0, 0, 0.01), 0px 1px 0px 0px rgba(0, 0, 0, 0.03);
+$green: #38CB89;
+$img-size: 98px;
+$shop-image: 50px;
+
+.UAAS_wrap{
+    gap: 32px;
+}
+
+.Order_content{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    #nav{
+        display: flex;
+        box-shadow: $box-shadow;
+        .nav-item{
+            padding: 17px 10px;
+            min-width: 166px;
+            text-align: center;
+            font-size: 16px;
+            font-weight: 500;
+            background-color: #fff;
+            border-bottom: 1px solid #fff;
+            &:hover{
+                color: #DC2626;
+                border-bottom: 1px solid #DC2626;
+            }
+        }
+    }
+
+    .search_form{
+        display: block;
+        position: relative;
+        #search{
+            padding: 10px 15px;
+            border-radius: 5px;
+            width: 100%;
+            border: 0.5px solid #ccc;
+        }
+        i{
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+        }
+    }
+
+    .wrap{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        box-shadow: $box-shadow;
+        margin-bottom: 50px;
+        border: 0.5px solid rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        .Order_item{
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .header{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .shop{
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    font-size: 20px;
+                    font-weight: 500;
+                    img{
+                        width: $shop-image;
+                        height: $shop-image;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+                .status{
+                    color: $green;
+                    font-size: 16px;
+                }
+            }
+            .content{
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                max-height: 550px;
+                overflow-y: auto;
+                .product{
+                    padding: 10px 5px;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                    width: 100%;
+                    display: flex;
+                    gap: 10px;
+                    .product_img{
+                        width: $img-size;
+                        height: $img-size;
+                        object-fit: cover;
+                    }
+                    .product_info{
+                        padding: 10px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        flex-grow: 1;
+                        .name{
+                            font-size: 16px;
+                            font-weight: normal;
+                            max-width: 750px;
+                            display: -webkit-box;
+                            -webkit-line-clamp: 2;
+                            -webkit-box-orient: vertical;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                        }
+                        .variant{
+                            font-size: 14px;
+                            color: rgba(0, 0, 0, 0.5);
+                        }
+                        .qty_and_price{
+                            display: flex;
+                            justify-content: space-between;
+                            .qty{
+                                font-size: 14px;
+                                color: rgba(0, 0, 0, 0.7);
+                            }
+                            .price{
+                                .old_price{
+                                    font-size: 14px;
+                                    text-decoration: line-through;
+                                    color: #ccc;
+                                }
+                                .new_price{
+                                    font-size: 16px;
+                                    font-weight: 500;
+                                    color: var(--main-color)
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .footer{
+                .qty_and_total{
+                    border-top: 1px solid rgba(0, 0, 0, 0.1);
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+                    padding: 20px 0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    .qty{
+                        color: #6C7275;
+                        font-size: 14px;
+                    }
+                    .total{
+                        font-size: 16px;
+                        span{
+                            margin-left: 15px;
+                            font-size: 20px;
+                            color: var(--main-color);
+                        }
+                    }
+                }
+                .choice{
+                    padding: 20px 0;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    p{
+                        margin-right: 15px;
+                        width: 40%;
+                        font-size: 13px;
+                        color: rgba(0, 0, 0, 0.6);
+                    }
+                    .action{
+                        display: flex;
+                        gap: 10px;
+                        flex-grow: 1;
+                        button{
+                            padding: 12px 15px;
+                            flex-grow: 1;
+                            border: 0;
+                            font-size: 14px;
+                            font-weight: 500;
+                            cursor: pointer;
+                            border: 1px solid #141718;
+                        }
+                        
+                        .btn1{
+                            background-color: #141718;
+                            color: #fff;
+                            &:hover{
+                                background-color: #fff;
+                                color: #141718;
+                                transition: 0.3s;
+                            }
+                        }
+                        .btn2{
+                            &:hover{
+                                background-color: #141718;
+                                color: #fff;
+                                transition: 0.3s;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
