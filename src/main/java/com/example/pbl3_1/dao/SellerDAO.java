@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SellerDAO {
     SellerDTO getShopById(Long id);
-    Boolean isFollowed(Long userId, Long sellerId);
+    Boolean isFollowed(Long sellerId, Long userId);
     List<ProductPreviewDTO> getMostViewedProducts(Long id, Integer offset, Integer limit, String priceSortBy);
     List<ProductPreviewDTO> getShopByTimeDESC(Long id, Integer offset, Integer limit, String priceSortBy);
     Long addShop(Seller seller);

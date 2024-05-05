@@ -1,5 +1,3 @@
-// import { createAlertPopUp } from './AlertPopUp.js'; // Đường dẫn tới file1.js
-
 
 function RemoveCartItem(button)
 {

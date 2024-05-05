@@ -30,7 +30,7 @@ import java.util.AbstractMap;
 import java.util.List;
 import java.util.Random;
 
-@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/usersetting/userinfor", "/confirmemail", "/logout", "/forgotpass", "/resetpass", "/usersetting/changepass", "/usersetting/changeinfor", "/suggestsearch", "/search"})
+@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/userinfor", "/confirmemail", "/logout", "/forgotpass", "/resetpass", "/changepass", "/changeinfor"})
 public class HomeController extends HttpServlet {
 
     private final UserService userService = new UserServiceImpl();
@@ -55,9 +55,9 @@ public class HomeController extends HttpServlet {
                     else
                         request.getRequestDispatcher("Login.jsp").forward(request, response);
                     break;
-                case "/usersetting/userinfor":
-                case "/usersetting/changepass":
-                case "/usersetting/changeinfor":
+                case "/userinfor":
+                case "/changepass":
+                case "/changeinfor":
                     sessionUtil.putValue(request, "EmailStatus", true);
                     request.getRequestDispatcher("UserInformation.jsp").forward(request, response);
                     break;
@@ -300,22 +300,22 @@ public class HomeController extends HttpServlet {
         SessionUtil sessionUtil = SessionUtil.getInstance();
         if(userService.findEmail(email))
         {
-            String code = RandomCode.RdCode();
-//            for(int i = 0; i < 6; i++)
-//            {
-//                Random rand = new Random();
-//                int randomNumber = Math.abs((rand.nextInt())%10);
-//                code += randomNumber;
-//            }
+            String code = "";
+            for(int i = 0; i < 6; i++)
+            {
+                Random rand = new Random();
+                int randomNumber = Math.abs((rand.nextInt())%10);
+                code += randomNumber;
+            }
             sessionUtil.putValue(request, "code", code);
             sessionUtil.putValue(request, "email", email);
             sessionUtil.putValue(request, "cfstatus", "forgotpass");
-//            String Code = code;
+            String Code = code;
             // Tạo một luồng mới để gửi email bất đồng bộ
             Thread sendMailThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    SendMail.Send(email, code);
+                    SendMail.Send(email, Code);
                 }
             });
             sendMailThread.start(); // Bắt đầu chạy luồng để gửi email

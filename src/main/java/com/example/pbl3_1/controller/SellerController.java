@@ -236,7 +236,9 @@ public class SellerController extends HttpServlet {
         try {
             if(CheckLoggedUser.checkLoggedUser(request, response, urlRedirect)){
                 User user = (User) request.getSession().getAttribute("USERMODEL");
-                request.setAttribute("seller", sellerService.getShopById(Long.parseLong(shopId), user.getId()));
+                SellerDTO sellerDTO = (SellerDTO) sellerService.getShopById(Long.parseLong(shopId), user.getId());
+                System.out.println(sellerDTO.getIsFollowed());
+                request.setAttribute("seller", sellerDTO);
                 request.getRequestDispatcher("Shop.jsp").forward(request, response);
             }
         } catch (ServletException | IOException e) {

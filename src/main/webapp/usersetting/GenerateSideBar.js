@@ -1,4 +1,4 @@
-function GenerateSideBar(type = "UserInformation", username) {
+function GenerateSideBar(type = "UserInformation") {
     // Tạo thẻ aside
     let aside = document.createElement('aside');
     aside.classList.add('UAAS_bar');
@@ -22,7 +22,7 @@ function GenerateSideBar(type = "UserInformation", username) {
             của tôi</li>
         <li class="UAAS_bar_bot_item" id="UAAS_favorite"><i class="fa-solid fa-heart"></i> Sản phẩm
             yêu thích</li>
-        <li class="UAAS_bar_bot_item" id="UAAS_logOut"><a href='/PBL3_1_war_exploded/logout'><i
+        <li class="UAAS_bar_bot_item" id="UAAS_logOut"><a href='<c:url value="/logout"/>'><i
                     class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></li>
     </ul>`;
 

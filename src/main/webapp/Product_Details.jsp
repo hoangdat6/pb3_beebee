@@ -135,9 +135,13 @@
 
     </div>
     <div class="Shop">
-        <img src="${productDetail.sellerAvatar}" alt="Logo Shop">
+        <a href="<c:url value="/shop?id=${productDetail.sellerId}"/>">
+            <img src="${productDetail.sellerAvatar}" alt="Logo Shop">
+        </a>
         <div class="Shop-Content">
-            <h3>${productDetail.sellerName}</h3>
+            <a href="<c:url value="/shop?id=${productDetail.sellerId}"/>">
+                <h3>${productDetail.sellerName}</h3>
+            </a>
             <div class="Shop-Evaluation">
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i>
