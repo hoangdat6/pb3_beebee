@@ -167,14 +167,9 @@ class AddProductTable {
             if (index != 0)
                 this.table.deleteRow(i + index);
             else {
-                // Update the last 3 cells of the first row with the values of the next row
-                // for (let j = 1; j <= 3; j++) {
-                //     this.table.rows[i].cells[this.table.rows[i].cells.length - j].innerHTML = this.table.rows[i + 1].cells[this.table.rows[i + 1].cells.length - j].innerHTML;
-                // }
                 this.table.rows[i].cells[1].innerHTML = this.table.rows[i + 1].cells[0].innerHTML;
                 this.table.rows[i].cells[2].children[0].value = this.table.rows[i + 1].cells[1].children[0].value;
                 this.table.rows[i].cells[3].children[0].value = this.table.rows[i + 1].cells[2].children[0].value;
-                // Delete the next row
                 this.table.deleteRow(i + 1);
             }
         }

@@ -1,6 +1,6 @@
-<!-- <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ include file="../common/taglib.jsp" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -36,13 +36,19 @@
                     <div class="Address_item">
                         <div class="Address_item_left">
                             <div class="row1">
-                                Vũ Văn | 0937******
+                                <span class="item_name"> Vũ Văn </span>
+                                |
+                                <span class="item_phone">0937******</span>
                             </div>
                             <div class="row2">
-                                <p>h15/1 K35 Mẹ Suốt, Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
-                                <p>Phường Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
+                                <p class="item_detail">h15/1 K35 Mẹ Suốt, Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
+                                <p>
+                                    <span class="item_ward">Phường Hòa Khánh Nam</span>,
+                                    <span class="item_district">Liên Chiểu</span>,
+                                    <span class="item_city">Đà Nẵng</span>
+                                </p>
                             </div>
-                            <div class="row3 Address_type">
+                            <div class="row3 Address_type item_name">
                                 Mặc định
                             </div>
                         </div>
