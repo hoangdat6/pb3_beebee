@@ -109,6 +109,18 @@ public class SellerDAOImpl implements SellerDAO {
         return (list.isEmpty() ? null : list.get(0));
     }
 
+    @Override
+    public Long getIdByUserId(Long userId) {
+        String sql = "select id from sellers where user_id = ?";
+        return genericDAO.query(sql, resultSet -> {
+            try {
+                return resultSet.getLong("id");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, userId).stream().findFirst().orElse(null);
+    }
+
     public List<ProductPreviewDTO> getProductPreviewDTOs(String sql, Long idSeller,Integer limit , Integer offset) {
         return genericDAO.query(sql, resultSet -> {
             try {

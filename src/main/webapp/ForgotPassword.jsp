@@ -21,7 +21,7 @@
             <h1>Quên mật khẩu</h1>
             <form action='<c:url value="/forgotpass"/>' method="POST">
                 <label for="email">Email</label>
-                <input type="email" name="email" placeholder="exam@gmail.com">
+                <input type="email" id="email" name="email" placeholder="exam@gmail.com">
                 <input class="btn" type="submit" name="submit" value="Xác nhận">
             </form>
             </div>

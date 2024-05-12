@@ -6,11 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" type="text/css" href = "CommonCSS.css">
-    <link rel="stylesheet" type="text/css" href="Login.css">
-    <link rel="stylesheet" type="text/css" href ="Footer.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Login.css"/>">
+    <link rel="stylesheet" type="text/css" href ="<c:url value="/Footer.css"/>">
     <!-- <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script> -->
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
 
 </head>
@@ -27,7 +27,7 @@
 
 <div id="LG-Logo">
     <div class="LG-Container">
-        <img src="img/Logo/Logo.png" alt="Logo" class="LG-Logo_Image">
+        <img src="<c:url value="/img/Logo/Logo.png"/>" alt="Logo" class="LG-Logo_Image">
         <p class="LG-Logo_Desc">Đăng Nhập</p>
     </div>
 </div>

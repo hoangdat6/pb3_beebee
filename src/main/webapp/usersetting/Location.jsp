@@ -8,18 +8,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Information</title>
-    <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" type="text/css" href="../Top-Bar.css">
-    <link rel="stylesheet" type="text/css" href="../Footer.css">
-    <link rel="stylesheet" type="text/css" href="../CommonCSS.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../main.js"></script>
-    <link rel="stylesheet" href="../Pop_ups.css">
+    <link rel="stylesheet" href="<c:url value="Pop_ups.css"/>">
     <script src="../toast.js"></script>
     <script src="./GenerateSideBar.js"></script>
-    <link rel="stylesheet" href="../toast.css">
-    <link rel="stylesheet" href="./UAASCommon.css">
-    <link rel="stylesheet" href="./assets/css/Location.css">
+    <link rel="stylesheet" href="<c:url value="/toast.css"/>">
+    <link rel="stylesheet" href="<c:url value="UAASCommon.css"/>">
+    <link rel="stylesheet" href="<c:url value="assets/css/Location.css"/>">
 </head>
 
 <body class="Color-White">

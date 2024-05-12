@@ -1,6 +1,7 @@
 package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.dao.UserDAO;
+import com.example.pbl3_1.entity.ERole;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.mapper.UserMapper;
 
@@ -10,11 +11,22 @@ import java.util.AbstractMap;
 import java.util.List;
 
 public class UserDAOimpl implements UserDAO {
-    AbstractDAOImpl<User> abstractDAO = new AbstractDAOImpl<User>();
+    AbstractDAOImpl<User> abstractDAO = new AbstractDAOImpl<>();
     @Override
     public Long save(User object) {
-        String sql = "INSERT INTO users(username, password, email, phone, gender, dob, created_at, fullname) VALUES(?,?,?,?,?,?,?,?)";
-        return abstractDAO.save(sql, object.getUsername(), object.getPassword(), object.getEmail(), object.getPhone(), object.getGender().toString(), object.getDob(), object.getCreatedAt(), object.getFullname());
+        String sql = "INSERT INTO users(username, password, email, phone, gender, dob, created_at, fullname, role) VALUES(?,?,?,?,?,?,?,?,?)";
+        return abstractDAO.save(sql,
+                object.getUsername(),
+                object.getPassword(),
+                object.getEmail(),
+                object.getPhone(),
+                object.getGender().toString(),
+                object.getDob(),
+                object.getCreatedAt(),
+                object.getFullname(),
+                object.getRole().toString()
+        );
+
     }
 
     @Override
@@ -84,5 +96,11 @@ public class UserDAOimpl implements UserDAO {
     public Integer updateInfor(User user) {
         StringBuilder sql = new StringBuilder("UPDATE users SET fullname = ?, phone = ?, email = ?, dob = ? WHERE username = ?");
         return abstractDAO.update(sql.toString(), user.getFullname(), user.getPhone(), user.getEmail(), user.getDob(), user.getUsername());
+    }
+
+    @Override
+    public void updateRole(Long userId, ERole eRole) {
+        String sql = "UPDATE users SET role = ? WHERE id = ?";
+        abstractDAO.update(sql, eRole.toString(), userId);
     }
 }

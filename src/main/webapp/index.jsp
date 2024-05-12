@@ -8,13 +8,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Trang chủ</title>
-  <link rel="stylesheet" type="text/css" href="CommonCSS.css">
-  <link rel="stylesheet" type="text/css" href="Top-Bar.css">
-  <link rel="stylesheet" type="text/css" href = "Footer.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <script type="text/javascript" src="main.js"></script>
+  <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
+  <link rel="stylesheet" type="text/css" href = "<c:url value="/Footer.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
+  <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
   <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
-  <script src="Card.js"></script>
+  <script src="<c:url value="/Card.js"/>"></script>
 </head>
 
 <!--Header contain navigation-->

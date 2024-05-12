@@ -25,7 +25,7 @@
 <body class="Color-White">
 <div id="Cart_Header">
     <h3 class="Cart_Title">
-        Cart
+        Giỏ hàng
     </h3>
     <div class="Process_Container">
         <div class="Process_Item">

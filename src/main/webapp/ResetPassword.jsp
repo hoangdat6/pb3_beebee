@@ -21,9 +21,9 @@
         <form action='<c:url value="/resetpass"/>' method="post">
             <h1>Thay đổi mật khẩu</h1>
             <label for="pw">Mật khẩu</label>
-            <input class="box_input pw" type="password" value='<c:if test="${sessionScope.get('rspass') != null}">${sessionScope.get('rspass')}</c:if>' name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\S{8,}" required>
+            <input class="box_input" id="pw" type="password" value='<c:if test="${sessionScope.get('rspass') != null}">${sessionScope.get('rspass')}</c:if>' name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\S{8,}" required>
             <label for="confirm_pw">Xác nhận mật khẩu</label>
-            <input class="box_input confirm_pw" type="password" value='<c:if test="${sessionScope.get('rscfpass') != null}">${sessionScope.get('rscfpass')}</c:if>' name="confirmpass" required>
+            <input class="box_input" id="confirm_pw" type="password" value='<c:if test="${sessionScope.get('rscfpass') != null}">${sessionScope.get('rscfpass')}</c:if>' name="confirmpass" required>
             <c:if test="${sessionScope.get('rsstatus') == false}">
                 <span style="color: red;">*Mật khẩu không trùng khớp</span>
             </c:if>
