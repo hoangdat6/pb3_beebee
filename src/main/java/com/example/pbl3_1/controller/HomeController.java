@@ -6,12 +6,15 @@ import com.example.pbl3_1.Util.RandomCode;
 import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
+import com.example.pbl3_1.controller.dto.product.SellerDTO;
 import com.example.pbl3_1.entity.Egender;
+import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.*;
 import com.example.pbl3_1.service.impl.CategoryServiceImpl;
 import com.example.pbl3_1.service.impl.ProductServiceImpl;
 import com.example.pbl3_1.service.impl.UserServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,13 +22,15 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.AbstractMap;
 import java.util.List;
 import java.util.Random;
 
-@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/userinfor", "/confirmemail", "/logout", "/forgotpass", "/resetpass", "/changepass", "/changeinfor"})
+@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/usersetting/userinfor", "/confirmemail", "/logout", "/forgotpass", "/resetpass", "/usersetting/changepass", "/usersetting/changeinfor", "/suggestsearch", "/search"})
 public class HomeController extends HttpServlet {
 
     private final UserService userService = new UserServiceImpl();
@@ -50,9 +55,9 @@ public class HomeController extends HttpServlet {
                     else
                         request.getRequestDispatcher("Login.jsp").forward(request, response);
                     break;
-                case "/userinfor":
-                case "/changepass":
-                case "/changeinfor":
+                case "/usersetting/userinfor":
+                case "/usersetting/changepass":
+                case "/usersetting/changeinfor":
                     sessionUtil.putValue(request, "EmailStatus", true);
                     request.getRequestDispatcher("UserInformation.jsp").forward(request, response);
                     break;
@@ -74,6 +79,13 @@ public class HomeController extends HttpServlet {
                     break;
                 case "/resetpass":
                     request.getRequestDispatcher("ResetPassword.jsp").forward(request, response);
+                    break;
+                case "/suggestsearch":
+                    System.out.println("Start");
+                    SuggestSearch(request, response);
+                    break;
+                case "/search":
+                    ShowSearch(request, response);
                     break;
                 default:
                     showHome(request, response);
@@ -116,14 +128,14 @@ public class HomeController extends HttpServlet {
             boolean check = ResetPass(request);
             if(check) response.sendRedirect(request.getContextPath() + "/login");
             else response.sendRedirect(request.getContextPath() + "/resetpass");
-        }else if(action != null && action.equals("/changepass"))
+        }else if(action != null && action.equals("/usersetting/changepass"))
         {
             ChangePass(request);
-            response.sendRedirect(request.getContextPath() + "/userinfor");
-        }else if(action != null && action.equals("/changeinfor"))
+            response.sendRedirect(request.getContextPath() + "/usersetting/userinfor");
+        }else if(action != null && action.equals("/usersetting/changeinfor"))
         {
             ChangeInfor(request);
-            response.sendRedirect(request.getContextPath() + "/userinfor");
+            response.sendRedirect(request.getContextPath() + "/usersetting/userinfor");
         }else if(action != null && action.equals("/cfoldemail"))
         {
             SessionUtil sessionUtil = SessionUtil.getInstance();
@@ -140,6 +152,45 @@ public class HomeController extends HttpServlet {
             // Tiếp tục chuyển hướng trang mà không cần chờ việc gửi email hoàn tất
             sessionUtil.putValue(request, "code", code);
         }
+        else if(action != null && action.equals("/search"))
+        {
+            String keyword = request.getParameter("search");
+            String encodedKeyword = URLEncoder.encode(keyword, StandardCharsets.UTF_8.toString());
+            String Path = request.getContextPath() + "/search?keyword=" + encodedKeyword;
+            response.sendRedirect(Path);
+        }
+    }
+
+    public void SuggestSearch(HttpServletRequest request, HttpServletResponse response)
+    {
+        String textSearch = request.getParameter("searchData");
+        System.out.println(textSearch);
+        List<String> data = productService.getSuggestName(textSearch);
+        ObjectMapper objectMapper = new ObjectMapper();
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        try {
+            String json = objectMapper.writeValueAsString(data);
+            response.getWriter().write(json);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void ShowSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        String keyword = request.getParameter("keyword");
+        SessionUtil sessionUtil = SessionUtil.getInstance();
+        sessionUtil.putValue(request, "keyword", keyword);
+        List<ProductPreviewDTO> products = productService.getProductsForSearch(keyword);
+
+        List<SellerDTO> sellers = productService.getSellersForSearch(keyword);
+        System.out.println("size = " + products.size());
+        request.setAttribute("searchsellers", sellers);
+        request.setAttribute("searchproducts", products);
+        request.getRequestDispatcher("Search.jsp").forward(request, response);
+
     }
 
     public boolean ResetPass(HttpServletRequest request) {
@@ -249,22 +300,22 @@ public class HomeController extends HttpServlet {
         SessionUtil sessionUtil = SessionUtil.getInstance();
         if(userService.findEmail(email))
         {
-            String code = "";
-            for(int i = 0; i < 6; i++)
-            {
-                Random rand = new Random();
-                int randomNumber = Math.abs((rand.nextInt())%10);
-                code += randomNumber;
-            }
+            String code = RandomCode.RdCode();
+//            for(int i = 0; i < 6; i++)
+//            {
+//                Random rand = new Random();
+//                int randomNumber = Math.abs((rand.nextInt())%10);
+//                code += randomNumber;
+//            }
             sessionUtil.putValue(request, "code", code);
             sessionUtil.putValue(request, "email", email);
             sessionUtil.putValue(request, "cfstatus", "forgotpass");
-            String Code = code;
+//            String Code = code;
             // Tạo một luồng mới để gửi email bất đồng bộ
             Thread sendMailThread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    SendMail.Send(email, Code);
+                    SendMail.Send(email, code);
                 }
             });
             sendMailThread.start(); // Bắt đầu chạy luồng để gửi email

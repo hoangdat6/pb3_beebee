@@ -25,4 +25,11 @@ public class SellerDTO {
 
     public SellerDTO() {
     }
+    public SellerDTO(Long id, String avatar, String shopName, Integer views)
+    {
+        this.id = id;
+        this.avatar = avatar;
+        this.shopName = shopName;
+        this.views = views;
+    }
 }

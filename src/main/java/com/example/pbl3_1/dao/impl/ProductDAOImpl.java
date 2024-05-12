@@ -2,8 +2,10 @@ package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
+import com.example.pbl3_1.controller.dto.product.SellerDTO;
 import com.example.pbl3_1.dao.ProductDAO;
 import com.example.pbl3_1.entity.Product;
+import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.mapper.ProductMapper;
 
 import java.sql.SQLException;
@@ -145,8 +147,83 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public List<String> getSuggestName(String textSearch) {
+        System.out.println(textSearch);
+//        String sql = "SELECT TOP 5 name FROM products WHERE name LIKE ? ORDER BY LEN(name) ASC";  // MySQL
+        String sql = "SELECT name FROM products WHERE name LIKE ? ORDER BY LENGTH(name) ASC LIMIT 5"; //MariaDB
+        //String sql = "SELECT name FROM products WHERE name LIKE N? COLLATE utf8_unicode_ci";
+        return abstractDAO.query(sql, resultSet -> {
+            try {
+                return new String(
+                        resultSet.getString("name")
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }, "%" + textSearch + "%");
+    }
+
+    @Override
     public void updateProductImage(Long productId, String images) {
         String sql = "UPDATE products SET img_path = ? WHERE id = ?";
         abstractDAO.update(sql, images, productId);
+    }
+
+    @Override
+    public List<ProductPreviewDTO> getProductsForSearch(String keyword) {
+        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
+        sql.append("FROM products AS p\n");
+        sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+        sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+        sql.append("WHERE p.name LIKE ?\n");
+        sql.append("GROUP BY p.id\n");
+//        sql.append("LIMIT 20 OFFSET 0");
+
+
+        return abstractDAO.query(sql.toString(), resultSet -> {
+            try {
+                return new ProductPreviewDTO(
+                        resultSet.getLong("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("min_price"),
+                        resultSet.getInt("discount"),
+                        resultSet.getString("img_path"),
+                        resultSet.getLong("seller_id"),
+                        resultSet.getString("shop_name"),
+                        resultSet.getString("avatar")
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }, "%" + keyword + "%");
+    }
+
+    @Override
+    public List<SellerDTO> getSellersForSearch(String keyword) {
+        StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(*) as count\n");
+        sql.append("FROM products AS p\n");
+        sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+        sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+        sql.append("WHERE p.name LIKE ?\n");
+        sql.append("GROUP BY s.id, s.avatar, s.shop_name, s.views\n");
+        sql.append("ORDER BY count DESC\n");
+        sql.append("LIMIT 1\n");
+
+
+        return abstractDAO.query(sql.toString(), resultSet -> {
+            try {
+                return new SellerDTO(
+                        resultSet.getLong("id"),
+                        resultSet.getString("avatar"),
+                        resultSet.getString("shop_name"),
+                        resultSet.getInt("views")
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }, "%" + keyword + "%");
     }
 }
