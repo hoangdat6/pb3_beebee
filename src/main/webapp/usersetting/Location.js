@@ -112,7 +112,9 @@ document.getElementById('addAddressBtn').addEventListener('click', function () {
     document.body.appendChild(script);
 });
 
-document.querySelector('.Address_update_btn').addEventListener('click', function () {
+document.querySelector('.Address_update_btn').addEventListener('click',  (e) => {
+    const AddressItem = e.target;
+    let name  = AddressItem.
     AddAddressPopUps();
     document.querySelector('.Add_address_btns .btn_Cancel').addEventListener('click', function () {
         document.body.removeChild(overlay);

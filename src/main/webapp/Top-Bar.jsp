@@ -8,14 +8,62 @@
           </div>
           <div class="Header-Top__item2">Bạn đang ở kênh mua hàng! <a href="<c:url value="/seller"/>" class="orange-bold">Chuyển qua kênh người
               bán?</a></div>
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script>
+            var timeoutId; // Biến để lưu trữ ID của hẹn giờ
 
+            $(document).ready(function(){
+              $('#search').on('input', function(){
+                clearTimeout(timeoutId); // Xóa hẹn giờ trước đó (nếu có)
+                timeoutId = setTimeout(sendToJava, 500); // Hẹn giờ 0.5s và gọi hàm sendToJava
+              });
+              // Xóa nội dung khi click vào một phần tử ngoài ô tìm kiếm và ngoài kết quả tìm kiếm
+              $(document).on('click', function(event) {
+                if (!$(event.target).closest('#search').length && !$(event.target).closest('#suggestSearch').length) {
+                  $('#suggestSearch').empty();
+                }
+              });
+              $('#search').on('focus', function(){
+                // Gọi lại hàm sendToJava để hiển thị lại kết quả tìm kiếm
+                sendToJava();
+              });
+            });
+
+            function sendToJava() {
+              var searchData = $('#search').val().trim();
+              if(!searchData)
+              {
+                $('#suggestSearch').empty();
+                return;
+              } // Nếu không có dữ liệu thì không gửi yêu cầu
+              $.ajax({
+                url: '/PBL3_1_war_exploded/suggestsearch', // URL của servlet bạn muốn gửi yêu cầu đến
+                type: 'GET',
+                data: {searchData: searchData},
+                success: function(response){
+                  // Xử lý phản hồi từ servlet (nếu có)
+                  // Xóa kết quả tìm kiếm cũ
+                  $('#suggestSearch').empty();
+                  // Thêm từng kết quả tìm kiếm vào danh sách
+                  response.forEach(function(suggestion) {
+                    $('#suggestSearch').append('<a role="option" href="/PBL3_1_war_exploded/search?keyword=' + encodeURIComponent(suggestion) + '">' + suggestion + '</a><br>');
+                  });
+                  console.log('Đã nhận phản hồi từ servlet: ' + response);
+                },
+                error: function(){
+                  console.log('Đã xảy ra lỗi khi gửi yêu cầu đến servlet.');
+                }
+              });
+            }
+          </script>
         </div>
         <div class="Header-Bot">
           <div class="Header-Bot__left">
-            <a href='<c:url value="/home"/>' ><img class="Logo" src="img/Logo/Logo.png" alt="Logo"></a>
-            <form action="/search" method="get">
+            <a href='<c:url value="/home"/>' ><img class="Logo" src='<c:url value= "img/Logo/Logo.png"/>' alt="Logo"></a>
+            <form action= '<c:url value="/search"/>' method="post">
               <label for="search"></label>
-              <input type="search" id="search" name="q" placeholder="Tìm kiếm theo sản phẩm, phân loại và thương hiệu">
+              <input type="search" value='<c:if test="${sessionScope.get('keyword') != null}">${sessionScope.get('keyword')}</c:if>' id="search" name="search" placeholder="Tìm kiếm theo sản phẩm, phân loại và thương hiệu">
+              <div id="suggestSearch"></div>
               <i class="fa-solid fa-magnifying-glass"></i>
             </form>
           </div>
@@ -23,7 +71,7 @@
           <ul class="Header-Bot__right">
             <li class="Header-Bot__Account">
               <c:if test="${sessionScope.get('USERMODEL') != null}">
-                <a style="color: #030712" href='<c:url value="/userinfor"/>'><i class="fa-solid fa-user"></i></a>
+                <a style="color: #030712" href='<c:url value="/usersetting/userinfor"/>'><i class="fa-solid fa-user"></i></a>
               </c:if>
               <c:if test="${sessionScope.get('USERMODEL') == null}">
                 <a style="color: #030712" href='<c:url value="/login"/>'><i class="fa-solid fa-user"></i></a>
@@ -42,7 +90,7 @@
                 <div class="Line"></div>
                 <div class="Account_option">
                   <h3>Tài khoản của bạn</h3>
-                  <a href='<c:url value="/userinfor"/>'><img src="./img/Shop/TKCuaToi.svg" alt="">Tài khoản của tôi</a>
+                  <a href='<c:url value="/usersetting/userinfor"/>'><img src="./img/Shop/TKCuaToi.svg" alt="">Tài khoản của tôi</a>
                   <a href="#"><img src="./img/Shop/DiaChiCT.svg" alt="">Địa chỉ của tôi</a>
                   <a href="#"><img src="./img/Shop/DonMua.svg" alt="">Đơn mua</a>
                   <a href='<c:url value="/logout"/>'><img src="./img/Shop/DangXuar.svg" alt="">Đăng xuất</a>

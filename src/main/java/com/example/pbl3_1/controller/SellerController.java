@@ -183,7 +183,7 @@ public class SellerController extends HttpServlet {
         User user = (User)SessionUtil.getInstance().getValue(request, "USERMODEL");
 
         // Lưu ảnh vào thư mục
-        String sellerImagePath = "SellerImages"  + File.separator;
+        String sellerImagePath = "SellerImages/";
 
         String relative = user.getId().toString(); // tên thư mục được lưu theo user.
 
@@ -197,8 +197,8 @@ public class SellerController extends HttpServlet {
             Files.createDirectories(pathWebapp);
         }
 
-        String avatarFilename = File.separator + "avatar.png";
-        String coverFilename = File.separator + "cover.png";
+        String avatarFilename = "/avatar.png";
+        String coverFilename = "/cover.png";
 
         byte[] avatar = partToBytes(imgAvatar);
         byte[] cover =  partToBytes(imgCover);
@@ -211,7 +211,7 @@ public class SellerController extends HttpServlet {
         // lưu ảnh vào thư mục webapp của thư mục đang chạy
         Files.write(Path.of(pathWebapp + avatarFilename), avatar);
         Files.write(Path.of(pathWebapp + coverFilename), cover);
-        return relative + avatarFilename + "," + relative + coverFilename;
+        return sellerImagePath + relative + avatarFilename + "," + sellerImagePath + relative + coverFilename;
     }
 
     public byte[] partToBytes(Part part) throws IOException {
