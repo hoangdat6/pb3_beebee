@@ -29,8 +29,6 @@ import java.util.Random;
 
 @WebServlet(name = "home", urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
-
-    private final UserService userService = new UserServiceImpl();
     private final ProductService productService = new ProductServiceImpl();
     private final CategoryService categoryService = new CategoryServiceImpl();
     @Override
