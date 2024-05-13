@@ -1,15 +1,16 @@
+<%@ include file="common/taglib.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Product Details</title>
-  <link rel="stylesheet" type="text/css" href = "CommonCSS.css">
-  <link rel="stylesheet" type="text/css" href="style.css">
-  <link rel="stylesheet" type="text/css" href="Top-Bar.css">
-  <link rel="stylesheet" type="text/css" href ="Footer.css">
-  <link rel="stylesheet" href="CheckOut.css">
+  <title>THanh toán</title>
+  <link rel="stylesheet" type="text/css" href ="<c:url value="/CommonCSS.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
+  <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
+  <link rel="stylesheet" href="<c:url value="/CheckOut.css"/>">
   <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="main.js"></script>
 </head>
@@ -60,25 +61,22 @@
                     <div class="row1">
                         <label for="CO--Item-Name">Họ và tên</label>
                         <input type="text" name="Tên" id="CO--Item-Name">
-
-                        <label for="CO-Item--Date">Ngày sinh</label>
-                        <input type="date" name="Ngày sinh" id="CO-Item--Date">
                     </div>
 
                     <div class="row2">
                         <label for="CO--Item-PhoneNumber">Số điện thoại</label>
                         <input type="text" name="Số điện thoại" id="CO--Item-PhoneNumber">
-
-                        <label for="CO--Item-Email">Địa chỉ Email</label>
-                        <input type="email" name="Email" id="CO--Item-Email">
                     </div>
                 </form>
             </div>
             <!-- Mục địa chỉ liên lạc và giao hàng -->
             <div class="CO-Form CO-Form2">
-                <h3 class="CO-Form-Item--Title">
-                    Địa chỉ giao hàng
-                </h3>
+                <div class="CO-title-2 flex flex-space_between">
+                    <h3 class="CO-Form-Item--Title">
+                        Địa chỉ giao hàng
+                    </h3>
+                    <input type="button" name="" class="" value="Chọn địa chỉ của bạn">
+                </div>
 
                 <form action="#" method="post" class="CO-Form--Content">
                     <div class="container">

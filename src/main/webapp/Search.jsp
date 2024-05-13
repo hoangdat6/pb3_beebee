@@ -8,7 +8,7 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Search</title>
+                <title><c:if test="${sessionScope.get('keyword') != null}">${sessionScope.get('keyword')}</c:if></title>
                 <link rel="stylesheet" type="text/css" href="style.css">
                 <link rel="stylesheet" type="text/css" href="Top-Bar.css">
                 <link rel="stylesheet" type="text/css" href="Footer.css">

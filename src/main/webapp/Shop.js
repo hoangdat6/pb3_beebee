@@ -210,25 +210,41 @@ function loadProduct(sellerId, url) {
     });
 }
 
+let isFollowed1 = isFollowed;
 
 $(document).ready( function () {
-        $(`#follow_btn`).click(function () {
-            $.ajax({
-               type: 'POST',
-                url: `/PBL3_1_war_exploded/api/shop/follow`,
-                data: {sellerId : sellerId, isFollowed : isFollowed},
-                success : function (response) {
-                   console.log(response);
-                   isFollowed = response;
-                    if(response === "false"){
-                        $(`#follow_btn`).val("+ Theo dõi");
-                   }else {
-                       $(`#follow_btn`).val("Đang theo dõi");
+    $(`#follow_btn`).click(function () {
+        if(isFollowed1 == true){
+            $(`#follow_btn`).val("+ Theo dõi");
+        } else {
+            $(`#follow_btn`).val("Đang theo dõi");
+        }
+
+        isFollowed1 = !isFollowed1;
+
+        // setTimeOut để tránh việc mỗi lần nhấn thì cập nhật 1 lần.
+        // chỉ cần thực hiện sau 1s để tránh spam.
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+            if(isFollowed1 != isFollowed){
+                $.ajax({
+                    type: 'POST',
+                    url: `/PBL3_1_war_exploded/api/shop/follow`,
+                    data: {sellerId : sellerId, isFollowed : isFollowed},
+                    success : function (response) {
+                        console.log(response);
+                        isFollowed1 = response;
+                        isFollowed = response;
+                        if(response === "false"){
+                            $(`#follow_btn`).val("+ Theo dõi");
+                        } else {
+                            $(`#follow_btn`).val("Đang theo dõi");
+                        }
                     }
-                }
-            });
-        });
-    }
-)
+                });
+            }
+        }, 1000); // Delay in milliseconds
+    });
+});
 
 

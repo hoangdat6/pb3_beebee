@@ -80,6 +80,22 @@ span.Process_Item-Number {
     border-radius: 5px;
 }
 
+.flex {
+    display: flex;
+}
+
+.flex-space_between {
+    justify-content: space-between;
+}
+
+.CO-title-2 input{
+    padding: 6px 12px;
+    margin-top: 10px;
+    border: 1px solid #6C7275;
+    border-radius: 6px;
+    margin-bottom: 24px;
+}
+
 .CO-Form-Item--Title {
     font-size: 20px;
     font-weight: 600;

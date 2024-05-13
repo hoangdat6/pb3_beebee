@@ -1,5 +1,6 @@
 package com.example.pbl3_1.service;
 
+import com.example.pbl3_1.entity.ERole;
 import com.example.pbl3_1.entity.User;
 import java.sql.Date;
 import java.util.AbstractMap;
@@ -21,4 +22,6 @@ public interface UserService {
     public boolean findEmail(String email);
     public Integer updatePass(String username, String password);
     public Integer updateInfor(User user);
+
+    void updateRole(Long userId, ERole eRole);
 }
