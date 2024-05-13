@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Đăng nhập</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Login.css"/>">
     <link rel="stylesheet" type="text/css" href ="<c:url value="/Footer.css"/>">

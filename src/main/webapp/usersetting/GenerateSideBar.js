@@ -1,4 +1,4 @@
-function GenerateSideBar(type = "UserInformation") {
+function GenerateSideBar(type = "UserInformation", username) {
     // Tạo thẻ aside
     let aside = document.createElement('aside');
     aside.classList.add('UAAS_bar');

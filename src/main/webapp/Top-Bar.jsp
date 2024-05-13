@@ -59,7 +59,7 @@
         </div>
         <div class="Header-Bot">
           <div class="Header-Bot__left">
-            <a href='<c:url value="/home"/>' ><img class="Logo" src='<c:url value= "img/Logo/Logo.png"/>' alt="Logo"></a>
+            <a href='<c:url value="/home"/>' ><img class="Logo" src='<c:url value= "/img/Logo/Logo.png"/>' alt="Logo"></a>
             <form action= '<c:url value="/search"/>' method="post">
               <label for="search"></label>
               <input type="search" value='<c:if test="${sessionScope.get('keyword') != null}">${sessionScope.get('keyword')}</c:if>' id="search" name="search" placeholder="Tìm kiếm theo sản phẩm, phân loại và thương hiệu">
@@ -71,12 +71,17 @@
           <ul class="Header-Bot__right">
             <li class="Header-Bot__Account">
               <c:if test="${sessionScope.get('USERMODEL') != null}">
-                <a style="color: #030712" href='<c:url value="/usersetting/userinfor"/>'><i class="fa-solid fa-user"></i></a>
+                <a style="color: #030712" href='<c:url value="/usersetting/userinfor"/>'><i class="fa-solid fa-user"></i>
+                    ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
+                </a>
               </c:if>
               <c:if test="${sessionScope.get('USERMODEL') == null}">
-                <a style="color: #030712" href='<c:url value="/login"/>'><i class="fa-solid fa-user"></i></a>
+                <a style="color: #030712" href='<c:url value="/login"/>'><i class="fa-solid fa-user"></i>
+                ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
+                </a>
               </c:if>
-              ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
+
+
               <c:if test="${sessionScope.get('USERMODEL') != null}">
               <div class="User_option">
                 <div class="Shop_option">

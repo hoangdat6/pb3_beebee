@@ -3,10 +3,9 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <title>Shop</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Details</title>
+    <title>${seller.shopName}</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">

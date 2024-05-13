@@ -191,7 +191,7 @@ public class ProductDAOImpl implements ProductDAO {
                         resultSet.getString("img_path"),
                         resultSet.getLong("seller_id"),
                         resultSet.getString("shop_name"),
-                        resultSet.getString("avatar")
+                        resultSet.getString("avatar").split(",")[0]
                 );
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -216,7 +216,7 @@ public class ProductDAOImpl implements ProductDAO {
             try {
                 return new SellerDTO(
                         resultSet.getLong("id"),
-                        resultSet.getString("avatar"),
+                        resultSet.getString("avatar").split(",")[0],
                         resultSet.getString("shop_name"),
                         resultSet.getInt("views")
                 );
