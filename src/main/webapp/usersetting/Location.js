@@ -46,8 +46,8 @@ function AddAddressPopUps(name = "", phone = "", city = "", district = "", ward 
         </div >
 
         <div class="Add_address_btns">
-            <input class="btn btn_Send" value="Xác nhận" type="submit" require>
-                <input class="btn btn_Cancel" value="Hủy" type="submit" require>
+            <input class="btn btn_Send" value="Xác nhận" type="button" required>
+                <input class="btn btn_Cancel" value="Hủy" type="button" required>
                 </div>
             </form>
         `;
@@ -69,7 +69,7 @@ function AddressItem(address) {
         </div>
         <div class="row2">
             <p>${address.detail}</p>
-            <p><span class="Address_item_ward">${address.ward}</span>, <span class="Address_item_district">${address.district}</span>, <span class="Address_item_city">${address.district}</span></p>
+            <p><span class="Address_item_ward">${address.ward}</span>, <span class="Address_item_district">${address.district}</span>, <span class="Address_item_city">${address.city}</span></p>
         </div>
         ${address.type != "" ? `<div class="row3 Address_type"> ${Type[address.type]}</div>` : ``}
     </div>
@@ -87,23 +87,44 @@ function AddressItem(address) {
 }
 
 function createExampleAddressItem() {
+    let citySelect = document.querySelector('#city');
+    let districtSelect = document.querySelector('#district');
+    let wardSelect = document.querySelector('#ward');
     let address = {
-        name: "Vũ Văn",
-        phone: "0937******",
-        detail: "h15/1 K35 Mẹ Suốt, Hòa Khánh Nam, Liên Chiểu, Đà Nẵng",
-        ward: "Phường Hòa Khánh Nam",
-        district: "Liên Chiểu",
-        city: "Đà Nẵng",
-        type: "default"
+        name: document.querySelector('#name').value,
+        phone: document.querySelector('#phone').value,
+        detail: document.querySelector('#Address-Desc').value,
+        ward: wardSelect.options[wardSelect.selectedIndex].text,
+        district: districtSelect.options[districtSelect.selectedIndex].text,
+        city: citySelect.options[citySelect.selectedIndex].text,
+        type: document.querySelector('#Set_default').checked ? "default" : "type"
     };
-
     let addressItem = AddressItem(address);
     document.querySelector('.Address_container').appendChild(addressItem);
+    $.ajax({
+        type: "GET",
+        url: "/PBL3_1_war_exploded/api/address",
+        data: {
+            fullname: address.name,
+            phone: address.phone,
+            detail: address.detail,
+            ward: wardSelect.value,
+            district: districtSelect.value,
+            city: citySelect.value
+        },
+        success: function (response) {
+        }
+    });
 }
 
 document.getElementById('addAddressBtn').addEventListener('click', function () {
     AddAddressPopUps();
-    document.querySelector('.Add_address_btns .btn_Cancel').addEventListener('click', function () {
+    document.querySelector('.btn_Send').addEventListener('click', function () {
+        createExampleAddressItem();
+        document.body.removeChild(overlay);
+        document.body.lastChild.remove();
+    });
+    document.querySelector('.btn_Cancel').addEventListener('click', function () {
         document.body.removeChild(overlay);
         document.body.lastChild.remove();
     });
@@ -112,13 +133,42 @@ document.getElementById('addAddressBtn').addEventListener('click', function () {
     document.body.appendChild(script);
 });
 
-document.querySelector('.Address_update_btn').addEventListener('click', function () {
-    AddAddressPopUps();
-    document.querySelector('.Add_address_btns .btn_Cancel').addEventListener('click', function () {
-        document.body.removeChild(overlay);
-        document.body.lastChild.remove();
-    });
-    let script = document.createElement('script');
-    script.src = "../app.js";
-    document.body.appendChild(script);
+// document.querySelector('.addAddressBtn').addEventListener('click', function () {
+//     AddAddressPopUps();
+//     document.querySelector('.Add_address_btns .btn_Cancel').addEventListener('click', function () {
+//         document.body.removeChild(overlay);
+//         document.body.lastChild.remove();
+//     });
+//     let script = document.createElement('script');
+//     script.src = "../app.js";
+//     document.body.appendChild(script);
+// });
+var Parameter;
+
+if (typeof Parameter == 'undefined') {
+    Parameter = {
+        url: "./data.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
+        method: "GET", //do backend cung cấp
+        responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
+    };
+}
+
+//gọi ajax = axios => nó trả về cho chúng ta là một promise
+var promise;
+
+if (typeof promise === 'undefined') {
+    //gọi ajax = axios => nó trả về cho chúng ta là một promise
+    promise = axios(Parameter);
+}
+
+//Xử lý khi request thành công
+promise.then(function (result) {
+    // Lấy dữ liệu từ phản hồi
+    const data = result.data;
+    Province(data,)
 });
+
+function Province(data, cityId) {
+    const cityData = data.filter(item => item.Id === cityId);
+    return data[0].name;
+}

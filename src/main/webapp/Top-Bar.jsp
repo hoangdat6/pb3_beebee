@@ -43,7 +43,7 @@
                 <div class="Account_option">
                   <h3>Tài khoản của bạn</h3>
                   <a href='<c:url value="/userinfor"/>'><img src="./img/Shop/TKCuaToi.svg" alt="">Tài khoản của tôi</a>
-                  <a href="#"><img src="./img/Shop/DiaChiCT.svg" alt="">Địa chỉ của tôi</a>
+                  <a href='<c:url value="/usersetting/address"/>'><img src="./img/Shop/DiaChiCT.svg" alt="">Địa chỉ của tôi</a>
                   <a href="#"><img src="./img/Shop/DonMua.svg" alt="">Đơn mua</a>
                   <a href='<c:url value="/logout"/>'><img src="./img/Shop/DangXuar.svg" alt="">Đăng xuất</a>
                 </div>
