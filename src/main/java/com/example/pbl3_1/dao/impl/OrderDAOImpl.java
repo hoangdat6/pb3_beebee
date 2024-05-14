@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductForCheckOut;
@@ -92,4 +93,7 @@ public class OrderDAOImpl implements OrderDAO {
                 new Timestamp(System.currentTimeMillis())
         );
     }
+=======
+package com.example.pbl3_1.dao.impl;public class OrderDAO {
+>>>>>>> b58afbb (Change UserController)
 }
