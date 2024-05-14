@@ -143,32 +143,3 @@ document.getElementById('addAddressBtn').addEventListener('click', function () {
 //     script.src = "../app.js";
 //     document.body.appendChild(script);
 // });
-var Parameter;
-
-if (typeof Parameter == 'undefined') {
-    Parameter = {
-        url: "./data.json", //Đường dẫn đến file chứa dữ liệu hoặc api do backend cung cấp
-        method: "GET", //do backend cung cấp
-        responseType: "application/json", //kiểu Dữ liệu trả về do backend cung cấp
-    };
-}
-
-//gọi ajax = axios => nó trả về cho chúng ta là một promise
-var promise;
-
-if (typeof promise === 'undefined') {
-    //gọi ajax = axios => nó trả về cho chúng ta là một promise
-    promise = axios(Parameter);
-}
-
-//Xử lý khi request thành công
-promise.then(function (result) {
-    // Lấy dữ liệu từ phản hồi
-    const data = result.data;
-    Province(data,)
-});
-
-function Province(data, cityId) {
-    const cityData = data.filter(item => item.Id === cityId);
-    return data[0].name;
-}
