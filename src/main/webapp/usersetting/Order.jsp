@@ -21,7 +21,9 @@
 </head>
 
 <body class="Color-White">
-
+    <%@ include file="../Top-Bar.jsp" %>
+    <fmt:setLocale value="vi_VN" />
+    <c:set var="User" value="${sessionScope.get('USERMODEL')}" />
     <div id="toast">
     </div>
     <h3 class="title">ĐƠN MUA</h3>
@@ -176,6 +178,7 @@
             </div>
         </main>
     </div>
+    <%@ include file="../Footer.jsp" %>
 </body>
 
 </html>
