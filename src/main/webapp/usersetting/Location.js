@@ -46,16 +46,23 @@ function AddAddressPopUps(name = "", phone = "", city = "", district = "", ward 
         </div >
 
         <div class="Add_address_btns">
-            <input class="btn btn_Send" value="Xác nhận" type="button" required>
-                <input class="btn btn_Cancel" value="Hủy" type="button" required>
-                </div>
-            </form>
+            <div class="btn btn_Send">
+                Xác nhận
+            </div>
+            <div class="btn btn_Cancel">
+                Hủy
+            </div>
+        </div>
+    </form>
         `;
     overlay.appendChild(AddAddressPopUp);
     document.body.appendChild(overlay);
+    AddAddressPopUp.querySelector('.Add_address_btns .btn_Send').addEventListener('click', () => {
+        AddAddressItem(getAddressInfor());
+    });
 }
 
-function AddressItem(address) {
+function AddAddressItem(address) {
     let Type = {
         "default": "Mặc định",
         "pickup": "Địa chỉ lấy hàng"
@@ -83,7 +90,7 @@ function AddressItem(address) {
         </div>
     </div>
     `;
-    return addressItem;
+    document.querySelector('.Address_container').appendChild(addressItem);
 }
 
 function createExampleAddressItem() {
@@ -145,14 +152,3 @@ document.querySelector('.Address_update_btn').addEventListener('click',  (e) => 
     script.src = "../app.js";
     document.body.appendChild(script);
 });
-
-// document.querySelector('.addAddressBtn').addEventListener('click', function () {
-//     AddAddressPopUps();
-//     document.querySelector('.Add_address_btns .btn_Cancel').addEventListener('click', function () {
-//         document.body.removeChild(overlay);
-//         document.body.lastChild.remove();
-//     });
-//     let script = document.createElement('script');
-//     script.src = "../app.js";
-//     document.body.appendChild(script);
-// });
