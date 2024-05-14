@@ -46,16 +46,23 @@ function AddAddressPopUps(name = "", phone = "", city = "", district = "", ward 
         </div >
 
         <div class="Add_address_btns">
-            <input class="btn btn_Send" value="Xác nhận" type="submit" require>
-                <input class="btn btn_Cancel" value="Hủy" type="submit" require>
-                </div>
-            </form>
+            <div class="btn btn_Send">
+                Xác nhận
+            </div>
+            <div class="btn btn_Cancel">
+                Hủy
+            </div>
+        </div>
+    </form>
         `;
     overlay.appendChild(AddAddressPopUp);
     document.body.appendChild(overlay);
+    AddAddressPopUp.querySelector('.Add_address_btns .btn_Send').addEventListener('click', () => {
+        AddAddressItem(getAddressInfor());
+    });
 }
 
-function AddressItem(address) {
+function AddAddressItem(address) {
     let Type = {
         "default": "Mặc định",
         "pickup": "Địa chỉ lấy hàng"
@@ -83,7 +90,7 @@ function AddressItem(address) {
         </div>
     </div>
     `;
-    return addressItem;
+    document.querySelector('.Address_container').appendChild(addressItem);
 }
 
 function createExampleAddressItem() {
@@ -96,9 +103,25 @@ function createExampleAddressItem() {
         city: "Đà Nẵng",
         type: "default"
     };
+    AddAddressItem(address);
+}
 
-    let addressItem = AddressItem(address);
-    document.querySelector('.Address_container').appendChild(addressItem);
+function getTextFromSelect(selectElement) {
+    return selectElement.options[selectElement.selectedIndex].text;
+}
+
+function getAddressInfor() {
+    let Popups = document.querySelector("#overlay .Add_address");
+    let address = {
+        name: Popups.querySelector('#name').value,
+        phone: Popups.querySelector('#phone').value,
+        city: getTextFromSelect(Popups.querySelector('#city')),
+        district: getTextFromSelect(Popups.querySelector('#district')),
+        ward: getTextFromSelect(Popups.querySelector('#ward')),
+        detail: Popups.querySelector('#Address-Desc').value,
+        type: Popups.querySelector('#Set_default').checked ? "default" : "",
+    };
+    return address;
 }
 
 document.getElementById('addAddressBtn').addEventListener('click', function () {
