@@ -34,6 +34,7 @@ public class ProductItemDAOImpl implements ProductItemDAO {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+
             return null;
         }, id);
     }
