@@ -19,6 +19,12 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
     private  final SellerDAO sellerDAO = new SellerDAOImpl();
     private  final VariationOptionDAO variationOptionDAO= new VariationOptionDAOImpl();
     private final VariationDAO variationDAO = new VariationDAOImpl();
+
+    @Override
+    public List<ProductForShoppingCartDTO> getProductByOrderList(List<Long> shoppingCartItemId) {
+        return null;
+    }
+
     @Override
     public List<ShopForCartDTO> findByIdUser(Long Id) {
         Long ID = shoppingCartDAO.getCartIdByUserId(Id);
@@ -56,7 +62,7 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
                             product.getId(),
                             product.getName(),
                             productItem.getImgPath(),
-                            (float) (productItem.getPrice()*(1-product.getDiscount()/100)),
+                            (float) (productItem.getPrice()*(1-product.getDiscount() / 100)),
                             item.getQuantity(),
                             (variation1 != null) ? variation1.getName() : null,
                             (variationOption1 != null) ? variationOption1.getValue() : null,

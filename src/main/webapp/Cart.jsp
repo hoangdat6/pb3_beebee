@@ -17,7 +17,6 @@
     <script type="text/javascript" src="<c:url value="AlertPopUp.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
-    <script src="<c:url value="/Cart.js"/>"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <%@ include file="Top-Bar.jsp" %>
@@ -60,7 +59,7 @@
     <main class="Cart_Table">
         <div class="Table_Header">
             <div class="Check_box">
-                <input type="checkbox" name="Cart_CB">
+                <input type="checkbox" name="Cart_CB" id="select_all">
             </div>
             <div class="Table_Header-Product">
                 <span class="Table_Header-Item">Sản phẩm</span>
@@ -79,17 +78,17 @@
             <c:forEach items="${shoppingcarts}" var="shoppingcart">
                 <div class="Shop_Products">
                     <a class="Shop_Products-Header" href="<c:url value="/shop?id=${shoppingcart.sellerId}"/>">
-                        <input type="checkbox" name="Shop" id="ShopPick">
+                        <input type="checkbox" name="ShopPick" class="ShopPick">
                         <img src="${shoppingcart.avatar}" alt="Shop">
                         <span class="Shop_Name">${shoppingcart.shopName}</span>
                     </a>
                     <div class="Shop_Products-Content">
-
                         <c:forEach items="${shoppingcart.productForShoppingCarts}" var="productcart">
                             <div class="Shop_Products-Cell">
+                                <input type="hidden" name="sellerId" value="${shoppingcart.sellerId}">
                                 <div class="Check_box">
                                     <label>
-                                        <input type="checkbox" name="Cart_CB">
+                                        <input type="checkbox" name="Cart_CB" class="Cart_CB">
                                     </label>
                                 </div>
                                 <a class="Product_Info" href="<c:url value="/product?id=${productcart.productId}"/>">
@@ -141,31 +140,31 @@
             Tóm tắt đơn hàng
         </h3>
         <div class="Cart_Summary-Voucher">
-            <div class="Cart_Voucher">
-                <i class="fa-solid fa-ticket"></i>
-                <span>Voucher</span>
-                <a href="#" class="Cart_Summary-Add_Voucher">
-                    Chọn hoặc nhập mã
-                </a>
-            </div>
-            <form class="Shipping_Option" action="/submit-form" method="post">
-                <div class="Shipping_Option-Item">
-                    <input type="radio" id="free-shipping" name="shipping-option" value="free-shipping">
-                    <label for="free-shipping">Miễn phí giao hàng</label>
-                    <span>0đ</span>
-                </div>
+<%--            <div class="Cart_Voucher">--%>
+<%--                <i class="fa-solid fa-ticket"></i>--%>
+<%--                <span>Voucher</span>--%>
+<%--                <a href="#" class="Cart_Summary-Add_Voucher">--%>
+<%--                    Chọn hoặc nhập mã--%>
+<%--                </a>--%>
+<%--            </div>--%>
+<%--            <form class="Shipping_Option" action="/submit-form" method="post">--%>
+<%--                <div class="Shipping_Option-Item">--%>
+<%--                    <input type="radio" id="free-shipping" name="shipping-option" value="free-shipping">--%>
+<%--                    <label for="free-shipping">Miễn phí giao hàng</label>--%>
+<%--                    <span>0đ</span>--%>
+<%--                </div>--%>
 
                 <div class="Shipping_Option-Item">
                     <input type="radio" id="fast-shipping" name="shipping-option" value="fast-shipping">
                     <label for="fast-shipping">Giao hàng nhanh</label>
-                    <span>0đ</span>
+                    <span>30000đ</span>
                 </div>
 
                 <div class="Shipping_Option-Item">
                     <input type="radio" id="express-shipping" name="shipping-option"
                            value="express-shipping">
                     <label for="express-shipping">Giao hàng hỏa tốc</label>
-                    <span>0đ</span>
+                    <span>40000đ</span>
                 </div>
 
                 <div class="Shipping_Option-Item">
@@ -176,21 +175,20 @@
 
                 <div class="Total-Price">
                     <span>Tổng tiền sản phẩm</span>
-                    <span>0₫</span>
+                    <span id="total_product_price">0₫</span>
                 </div>
 
                 <div class="Total-Checkout">
                     <span>Tổng tiền thanh toán</span>
-                    <span>0₫</span>
+                    <span id="total_price">0₫</span>
                 </div>
-                <a href="CheckOut.jsp">
-                    <input class="btn" id="Checkout" type="submit" value="Thanh toán">
-                </a>
-            </form>
+                <input class="btn" onclick="getInfo()" id="Checkout" type="submit" value="Thanh toán">
+<%--            </form>--%>
         </div>
     </aside>
 </div>
 
+<script src="<c:url value="/Cart.js"/>"></script>
 
 <%@ include file="Footer.jsp" %>
 </body>
