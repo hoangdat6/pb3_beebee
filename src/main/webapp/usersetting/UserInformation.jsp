@@ -1,26 +1,27 @@
-<!-- <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ include file="../common/taglib.jsp" %>
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %> -->
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information</title>
-    <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" type="text/css" href="../Top-Bar.css">
-    <link rel="stylesheet" type="text/css" href="../Footer.css">
-    <link rel="stylesheet" type="text/css" href="../CommonCSS.css">
+    <title>Thông tin tài khoản</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../main.js"></script>
-    <link rel="stylesheet" href="UserInformation.css">
-    <link rel="stylesheet" href="../Pop_ups.css">
+    <link rel="stylesheet" href="<c:url value="UserInformation.css"/>">
+    <link rel="stylesheet" href="<c:url value="/Pop_ups.css"/>">
     <script type="text/javascript" src="../main.js"></script>
-    <script src="../toast.js"></script>
-    <script src="./GenerateSideBar.js"></script>
-    <link rel="stylesheet" href="../toast.css">
-    <link rel="stylesheet" href="./UAASCommon.css">
+    <script src="<c:url value="/toast.js"/>"></script>
+    <script src="<c:url value="GenerateSideBar.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/toast.css"/>">
+    <link rel="stylesheet" href="<c:url value="UAASCommon.css"/>">
 </head>
 
 <body class="Color-White">
@@ -101,7 +102,7 @@
                     <input class="btn" type="submit" value="Lưu thay đổi">
                 </form>
 
-                <form action='<c:url value="/changepass"/>' class="UI_form" method="post">
+                <form action='<c:url value="/usersetting/changepass"/>' class="UI_form UI_form-right" method="post">
                     <h3 class="form_title">Thay đổi mật khẩu</h3>
                     <div class="UI_form_element">
                         <label for="UI_oldPass">Mật khẩu cũ</label>
@@ -115,8 +116,7 @@
                     <div class="UI_form_element">
                         <label for="UI_newPass">Mật khẩu mới</label>
                         <input type="password" name="newpass" id="UI_newPass" value='<c:if test="${sessionScope.get('newpass') !=null}">${sessionScope.get('newpass')}</c:if>'
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\S{8,}" required placeholder="Mật khẩu (ít
-                        nhất 8 kí tự, bao gồm số, chữ viết thường, chữ in hoa và dấu cách)">
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])\S{8,}" required placeholder="Ít nhất 8 kí tự, bao gồm số, chữ viết thường, chữ in hoa">
                     </div>
 
                     <div class="UI_form_element">
@@ -133,11 +133,11 @@
             </main>
         </div>
         <%@ include file="../Footer.jsp" %>
-            <script>
-                GenerateSideBar("UserInformation");
-            </script>
-            <script type="text/javascript" src="../Pop-ups.js"></script>
-            <script src="UserInformation.js"></script>
+            <script type="text/javascript" src="<c:url value ="/Pop-ups.js"/>"></script>
+        <script defer src="<c:url value = "UserInformation.js"/>"></script>
+        <script defer>
+            GenerateSideBar("UserInformation", "${User.username}");
+        </script>
 </body>
 
 </html>

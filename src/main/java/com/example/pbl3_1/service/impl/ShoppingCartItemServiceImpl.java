@@ -69,7 +69,7 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
             if (check==0){
                 shopForCartDTOs.add(new ShopForCartDTO(
                         product.getSellerId(),
-                        seller.getAvatar(),
+                        seller.getAvatarMain(),
                         seller.getShopName(),
                         new ProductForShoppingCartDTO(
                                 item.getId(),

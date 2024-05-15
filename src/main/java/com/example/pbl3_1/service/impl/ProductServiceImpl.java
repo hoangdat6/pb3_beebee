@@ -2,6 +2,7 @@ package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
+import com.example.pbl3_1.controller.dto.product.SellerDTO;
 import com.example.pbl3_1.dao.CategoryDAO;
 import com.example.pbl3_1.dao.ProductDAO;
 import com.example.pbl3_1.dao.ProductItemDAO;
@@ -9,6 +10,7 @@ import com.example.pbl3_1.dao.impl.CategoryDAOImpl;
 import com.example.pbl3_1.dao.impl.ProductDAOImpl;
 import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
 import com.example.pbl3_1.entity.Product;
+import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.entity.Variation;
 import com.example.pbl3_1.service.ProductService;
 import com.example.pbl3_1.service.VariationService;
@@ -47,6 +49,7 @@ public class ProductServiceImpl implements ProductService {
         productDetailDTO.setVariations(variations);
         productDetailDTO.setImgPath(imgPaths);
         increaseView(id);
+
         return productDetailDTO;
     }
 
@@ -58,5 +61,20 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void updateProductImage(Long productId, String images) {
         productDAO.updateProductImage(productId, images);
+    }
+
+    @Override
+    public List<String> getSuggestName(String textSearch) {
+        return productDAO.getSuggestName(textSearch);
+    }
+
+    @Override
+    public List<ProductPreviewDTO> getProductsForSearch(String keyword) {
+        return productDAO.getProductsForSearch(keyword);
+    }
+
+    @Override
+    public List<SellerDTO> getSellersForSearch(String keyword) {
+        return productDAO.getSellersForSearch(keyword);
     }
 }

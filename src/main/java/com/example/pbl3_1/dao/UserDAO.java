@@ -1,6 +1,7 @@
 package com.example.pbl3_1.dao;
 
 import com.example.pbl3_1.dao.CommonDAO;
+import com.example.pbl3_1.entity.ERole;
 import com.example.pbl3_1.entity.User;
 
 import java.sql.Date;
@@ -15,4 +16,6 @@ public interface UserDAO extends CommonDAO<User> {
     boolean findEmail(String email);
     Integer updatePass(String username, String password);
     Integer updateInfor(User user);
+
+    void updateRole(Long userId, ERole eRole);
 }

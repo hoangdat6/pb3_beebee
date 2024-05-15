@@ -12,4 +12,5 @@ public interface SellerService {
     List<ProductPreviewDTO> getShopByPopDESC(Long id, Integer offset, Integer limit, String priceSortBy);
     Long addShop(Seller seller, Address address);
     void updateIsFollowed(Long userId, Long sellerId, Boolean isFollowed);
+    Long getIdByUserId(Long userId);
 }

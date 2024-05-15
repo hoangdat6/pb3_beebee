@@ -1,4 +1,4 @@
-function GenerateSideBar(type = "UserInformation") {
+function GenerateSideBar(type = "UserInformation", username) {
     // Tạo thẻ aside
     let aside = document.createElement('aside');
     aside.classList.add('UAAS_bar');
@@ -11,7 +11,7 @@ function GenerateSideBar(type = "UserInformation") {
             <input type="file" name="fileInput" id="fileInput" style="display: none;">
             <img class="UAAS_camera" src="../img/User_information/Camera.svg" id="cameraImage" alt="#">
         </div>
-        <h3 class="UAAS_userName">\${User.username}</h3>
+        <h3 class="UAAS_userName">${username}</h3>
     </div>
     <ul class="UAAS_bar_bot ${Type}">
         <li class="UAAS_bar_bot_item" id="UAAS_userInformation"><i class="fa-solid fa-user"></i> Tài khoản

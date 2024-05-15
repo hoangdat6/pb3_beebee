@@ -8,16 +8,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giỏ Hàng</title>
-    <link rel="stylesheet" type="text/css" href="CommonCSS.css">
-    <link rel="stylesheet" type="text/css" href="Top-Bar.css">
-    <link rel="stylesheet" type="text/css" href = "Footer.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <link rel="stylesheet" href="Cart.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
+    <link rel="stylesheet" type="text/css" href ="<c:url value="/Footer.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="/Cart.css"/>">
     <link rel="stylesheet" href="<c:url value="AlertPopUp.css"/>">
     <script type="text/javascript" src="<c:url value="AlertPopUp.js"/>"></script>
-    <script type="text/javascript" src="main.js"></script>
+    <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
-    <script src="./Cart.js"></script>
+    <script src="<c:url value="/Cart.js"/>"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <%@ include file="Top-Bar.jsp" %>
@@ -25,7 +25,7 @@
 <body class="Color-White">
 <div id="Cart_Header">
     <h3 class="Cart_Title">
-        Cart
+        Giỏ hàng
     </h3>
     <div class="Process_Container">
         <div class="Process_Item">

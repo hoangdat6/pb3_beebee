@@ -495,17 +495,21 @@ function AddProduct() {
 
     if (document.getElementById("myTable").rows.length > 0) {
         let ProductRows = table.table.rows;
+        const rowSpan = table.table.rows[1].cells[0].rowSpan;
         let VariationOption1Name = "";
+        let cnt = 1;
         for (let i = 1; i < ProductRows.length; i++) {
             let cells = ProductRows[i].cells;
             let ProductItemImage = "";
             if (cells.length === 4) {
                 VariationOption1Name = cells[0].innerText;
             }
-            ProductItemImage = cells[0].querySelector('img').src.split(',')[1];
+            if(cnt % rowSpan === 1){
+                ProductItemImage = cells[0].querySelector('img').src.split(',')[1];
+            }
+            cnt ++;
             let VariationOption1 = VariationOption1Name;
             let VariationOption2 = cells[cells.length - 3].innerText;
-
             let QtyInStock = cells[cells.length - 2].children[0].value;
             let Price = cells[cells.length - 1].children[0].value;
 
@@ -527,7 +531,11 @@ function AddProduct() {
             Price: Price
         });
     }
-    console.log(JSON.stringify(data));
+
+    data.push({
+        rowSpan: table.table.rows[1].cells[0].rowSpan
+    })
+
     fetch('/PBL3_1_war_exploded/seller/product/save', {
         method: 'POST',
         headers: {

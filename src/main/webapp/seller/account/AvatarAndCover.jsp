@@ -17,7 +17,6 @@
 
 <body>
     <div class="SR_wrap">
-        <!-- SR - Seller register -->
         <script>
             avatarAndCoverSidebar();
         </script>

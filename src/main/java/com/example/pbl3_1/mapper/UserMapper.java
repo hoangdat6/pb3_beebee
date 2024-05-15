@@ -1,5 +1,6 @@
 package com.example.pbl3_1.mapper;
 
+import com.example.pbl3_1.entity.ERole;
 import com.example.pbl3_1.entity.Egender;
 import com.example.pbl3_1.entity.User;
 
@@ -23,6 +24,7 @@ public class UserMapper implements RowMapper<User>{
             user.setFullname(rs.getString("fullname"));
             user.setCreatedAt(rs.getTimestamp("created_at"));
 //            user.setImgPath(rs.getString("avatar"));
+            user.setRole(ERole.fromString(rs.getString("role")));
 
         } catch (SQLException e) {
             e.printStackTrace();

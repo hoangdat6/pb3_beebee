@@ -1,7 +1,8 @@
 .UAAS_wrap {
     display: flex;
-    max-width: 1200px;
+    width: 100%;
     align-items: flex-start;
+    margin-bottom: 110px;
 }
 
 .UAAS_bar {
