@@ -17,6 +17,6 @@ public interface ProductDAO extends CommonDAO<Product>{
     Long addProduct(Product product);
     List<String> getSuggestName(String textSearch);
     void updateProductImage(Long productId, String images);
-    List<ProductPreviewDTO> getProductsForSearch(String keyword);
-    List<SellerDTO> getSellersForSearch(String keyword);
+    List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories);
+    List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories);
 }

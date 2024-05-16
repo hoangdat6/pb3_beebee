@@ -68,12 +68,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductPreviewDTO> getProductsForSearch(String keyword) {
-        return productDAO.getProductsForSearch(keyword);
+    public List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories) {
+        return productDAO.getProductsForSearch(keyword, minPrice, maxPrice, categories);
     }
 
     @Override
-    public List<SellerDTO> getSellersForSearch(String keyword) {
-        return productDAO.getSellersForSearch(keyword);
+    public List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories) {
+        return productDAO.getSellersForSearch(keyword, minPrice, maxPrice, categories);
     }
 }

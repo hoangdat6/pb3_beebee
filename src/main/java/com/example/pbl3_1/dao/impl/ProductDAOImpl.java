@@ -171,59 +171,129 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<ProductPreviewDTO> getProductsForSearch(String keyword) {
-        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
-        sql.append("FROM products AS p\n");
-        sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
-        sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
-        sql.append("WHERE p.name LIKE ?\n");
-        sql.append("GROUP BY p.id\n");
-//        sql.append("LIMIT 20 OFFSET 0");
+    public List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories) {
+        if(categories.isEmpty()) {
+            StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
+            sql.append("FROM products AS p\n");
+            sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+            sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+            sql.append("WHERE p.name LIKE ?\n");
+            sql.append("GROUP BY p.id\n");
+            sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
+            //        sql.append("LIMIT 20 OFFSET 0");
 
-
-        return abstractDAO.query(sql.toString(), resultSet -> {
-            try {
-                return new ProductPreviewDTO(
-                        resultSet.getLong("id"),
-                        resultSet.getString("name"),
-                        resultSet.getInt("min_price"),
-                        resultSet.getInt("discount"),
-                        resultSet.getString("img_path"),
-                        resultSet.getLong("seller_id"),
-                        resultSet.getString("shop_name"),
-                        resultSet.getString("avatar")
-                );
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return null;
+            return abstractDAO.query(sql.toString(), resultSet -> {
+                try {
+                    return new ProductPreviewDTO(
+                            resultSet.getLong("id"),
+                            resultSet.getString("name"),
+                            resultSet.getInt("min_price"),
+                            resultSet.getInt("discount"),
+                            resultSet.getString("img_path"),
+                            resultSet.getLong("seller_id"),
+                            resultSet.getString("shop_name"),
+                            resultSet.getString("avatar")
+                    );
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }, "%" + keyword + "%", minPrice, maxPrice);
+        }else
+        {
+            StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
+            sql.append("FROM products AS p\n");
+            sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+            sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+            sql.append("WHERE p.name LIKE ?\n");
+            sql.append("AND ( p.category_id = " + categories.charAt(0) + "\n");
+            for (int i = 1; i < categories.length(); i++) {
+                sql.append("OR p.category_id = " + categories.charAt(i) + "\n");
             }
-        }, "%" + keyword + "%");
+            sql.append(") ");
+
+            sql.append("GROUP BY p.id\n");
+            sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
+            //        sql.append("LIMIT 20 OFFSET 0");
+
+            return abstractDAO.query(sql.toString(), resultSet -> {
+                try {
+                    return new ProductPreviewDTO(
+                            resultSet.getLong("id"),
+                            resultSet.getString("name"),
+                            resultSet.getInt("min_price"),
+                            resultSet.getInt("discount"),
+                            resultSet.getString("img_path"),
+                            resultSet.getLong("seller_id"),
+                            resultSet.getString("shop_name"),
+                            resultSet.getString("avatar")
+                    );
+                } catch (SQLException e) {
+                    System.out.println(sql);
+                    e.printStackTrace();
+                    return null;
+                }
+            }, "%" + keyword + "%", minPrice, maxPrice);
+        }
     }
 
     @Override
-    public List<SellerDTO> getSellersForSearch(String keyword) {
-        StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(*) as count\n");
-        sql.append("FROM products AS p\n");
-        sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
-        sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
-        sql.append("WHERE p.name LIKE ?\n");
-        sql.append("GROUP BY s.id, s.avatar, s.shop_name, s.views\n");
-        sql.append("ORDER BY count DESC\n");
-        sql.append("LIMIT 1\n");
-
-
-        return abstractDAO.query(sql.toString(), resultSet -> {
-            try {
-                return new SellerDTO(
-                        resultSet.getLong("id"),
-                        resultSet.getString("avatar"),
-                        resultSet.getString("shop_name"),
-                        resultSet.getInt("views")
-                );
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return null;
+    public List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories) {
+        if(categories.isEmpty()) {
+            StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(*) as count\n");
+            sql.append("FROM products AS p\n");
+            sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+            sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+            sql.append("WHERE p.name LIKE ?\n");
+            sql.append("GROUP BY s.id, s.avatar, s.shop_name, s.views, p.discount\n");
+            sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
+            sql.append("ORDER BY count DESC\n");
+            sql.append("LIMIT 1\n");
+            System.out.println("sql: " + sql);
+            return abstractDAO.query(sql.toString(), resultSet -> {
+                try {
+                    return new SellerDTO(
+                            resultSet.getLong("id"),
+                            resultSet.getString("avatar"),
+                            resultSet.getString("shop_name"),
+                            resultSet.getInt("views")
+                    );
+                } catch (SQLException e) {
+                    System.out.println(sql);
+                    e.printStackTrace();
+                    return null;
+                }
+            }, "%" + keyword + "%", minPrice, maxPrice);
+        }else {
+            StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(*) as count\n");
+            sql.append("FROM products AS p\n");
+            sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+            sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+            sql.append("WHERE p.name LIKE ?\n");
+            sql.append("AND ( p.category_id = " + categories.charAt(0) + "\n");
+            for (int i = 1; i < categories.length(); i++) {
+                sql.append("OR p.category_id = " + categories.charAt(i) + "\n");
             }
-        }, "%" + keyword + "%");
+            sql.append(") ");
+            sql.append("GROUP BY s.id, s.avatar, s.shop_name, s.views, p.discount\n");
+            sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
+            sql.append("ORDER BY count DESC\n");
+            sql.append("LIMIT 1\n");
+            System.out.println("sql: " + sql);
+            return abstractDAO.query(sql.toString(), resultSet -> {
+                try {
+                    return new SellerDTO(
+                            resultSet.getLong("id"),
+                            resultSet.getString("avatar"),
+                            resultSet.getString("shop_name"),
+                            resultSet.getInt("views")
+                    );
+                } catch (SQLException e) {
+                    System.out.println(sql);
+                    e.printStackTrace();
+                    return null;
+                }
+            }, "%" + keyword + "%", minPrice, maxPrice);
+        }
     }
 }

@@ -1,10 +1,7 @@
 package com.example.pbl3_1.controller;
 
 //import com.example.pbl3_1.Util.HttpUtil;
-import com.example.pbl3_1.Util.PasswordEncryption;
-import com.example.pbl3_1.Util.RandomCode;
-import com.example.pbl3_1.Util.SendMail;
-import com.example.pbl3_1.Util.SessionUtil;
+import com.example.pbl3_1.Util.*;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.product.SellerDTO;
 import com.example.pbl3_1.entity.Egender;
@@ -22,12 +19,14 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.net.URLDecoder;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.AbstractMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 @WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/usersetting/userinfor", "/confirmemail", "/logout", "/forgotpass", "/resetpass", "/usersetting/changepass", "/usersetting/changeinfor", "/suggestsearch", "/search"})
@@ -163,9 +162,9 @@ public class HomeController extends HttpServlet {
 
     public void SuggestSearch(HttpServletRequest request, HttpServletResponse response)
     {
-        String textSearch = request.getParameter("searchData");
-        System.out.println(textSearch);
-        List<String> data = productService.getSuggestName(textSearch);
+        String keyword = request.getParameter("searchData");
+        System.out.println(keyword);
+        List<String> data = productService.getSuggestName(keyword);
         ObjectMapper objectMapper = new ObjectMapper();
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
@@ -177,19 +176,46 @@ public class HomeController extends HttpServlet {
         }
     }
 
-
     public void ShowSearch(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
         String keyword = request.getParameter("keyword");
+        keyword = URLDecoder.decode(keyword, "UTF-8");
+        boolean fill = request.getParameter("fill") != null;
         SessionUtil sessionUtil = SessionUtil.getInstance();
-        sessionUtil.putValue(request, "keyword", keyword);
-        List<ProductPreviewDTO> products = productService.getProductsForSearch(keyword);
+        if(fill)
+        {
+            System.out.println("co fill");
+            if(request.getParameter("minPrice") != null ) System.out.println(request.getParameter("minPrice"));
+            int minPrice = request.getParameter("minPrice") != null ? Integer.parseInt(request.getParameter("minPrice")) : 0;
+            int maxPrice = request.getParameter("maxPrice") != null ? Integer.parseInt(request.getParameter("maxPrice")) : 1000000000;
+            String categories = request.getParameter("categoryID") != null ? request.getParameter("categoryID") : "";
+            System.out.println("Keyword = " + keyword + "minPrice = " + minPrice + " maxPrice = " + maxPrice + " categories = " + categories);
+            List<ProductPreviewDTO> products = productService.getProductsForSearch(keyword, minPrice, maxPrice, categories);
+            List<SellerDTO> sellers = productService.getSellersForSearch(keyword, minPrice, maxPrice, categories);
+            System.out.println(products);
+            System.out.println(sellers);
+            TwoListContainer data = new TwoListContainer(products, sellers);
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                objectMapper.writeValue(response.getOutputStream(), data);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
-        List<SellerDTO> sellers = productService.getSellersForSearch(keyword);
-        System.out.println("size = " + products.size());
-        request.setAttribute("searchsellers", sellers);
-        request.setAttribute("searchproducts", products);
-        request.getRequestDispatcher("Search.jsp").forward(request, response);
+        }else
+        {
+            sessionUtil.putValue(request, "keyword", keyword);
+            System.out.println("khong fill");
+            List<ProductPreviewDTO> products = productService.getProductsForSearch(keyword, 0, 1000000000, "");
+            List<SellerDTO> sellers = productService.getSellersForSearch(keyword, 0, 1000000000, "");
+            System.out.println("size = " + products.size());
+            request.setAttribute("searchsellers", sellers);
+            request.setAttribute("searchproducts", products);
+            request.getRequestDispatcher("Search.jsp").forward(request, response);
+        }
 
     }
 
