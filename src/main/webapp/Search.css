@@ -116,6 +116,10 @@
     color: #333333;
 }
 
+.Search_empty{
+    margin: auto;
+}
+
 .S_big_title>span {
     font-size: 14px;
     color: #9CA3AF;
