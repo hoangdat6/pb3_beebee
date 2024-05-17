@@ -9,4 +9,10 @@ public class VariationOptionDAOTest {
         VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
         System.out.println(variationOptionDAO.getVariationOptionsByVariationId(3L));
     }
+
+    @Test
+    public void testGetVariationOptionByProductItemId() {
+        VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
+        System.out.println(variationOptionDAO.getVariationDTOByProductItemId(51L));
+    }
 }

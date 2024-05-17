@@ -1,5 +1,6 @@
 package com.example.pbl3_1.controller.filter;
 
+import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.user_login.CheckLoggedUser;
 import com.example.pbl3_1.controller.user_login.CheckRegisteredSeller;
 import com.example.pbl3_1.entity.ERole;
@@ -19,8 +20,11 @@ public class SellerFilter implements Filter {
         HttpServletResponse response = (HttpServletResponse) servletResponse;
 
         User user = (User) request.getSession().getAttribute("USERMODEL");
+        String requestURI = request.getRequestURI();
 
         if(user == null) {
+            String queryString = request.getQueryString();
+            SessionUtil.getInstance().putValue(request, "redirect", requestURI + (queryString == null ? "" : "?" + queryString));
             response.sendRedirect(request.getContextPath() + "/login?message=login_required&alert=danger");
         }else {
             String url = request.getRequestURI();
