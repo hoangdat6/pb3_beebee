@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-@WebServlet(name = "orderApi", urlPatterns = {"/api/order", "/api/order-detail", "/api/order-history"})
+@WebServlet(name = "orderApi", urlPatterns = {"/api/order"})
 public class OrderApi extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

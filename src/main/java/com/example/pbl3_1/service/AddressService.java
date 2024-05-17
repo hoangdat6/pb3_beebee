@@ -8,4 +8,6 @@ public interface AddressService {
     Long add(Address address ,Long id);
     Long addAddress(Address address);
     List<Address> getByIdUser(Long id);
+
+    Address getDefaultAddressByUserId(Long id);
 }

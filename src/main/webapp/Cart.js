@@ -192,6 +192,11 @@ function getInfo(){
         });
     })
 
+    if(data.length === 0){
+        alert("Vui lòng chọn sản phẩm");
+        return;
+    }
+
     $.ajax({
         type: "POST",
         url: "/PBL3_1_war_exploded/api/order",

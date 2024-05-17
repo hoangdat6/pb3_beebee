@@ -21,4 +21,9 @@ public class AddressServiceImpl implements AddressService {
     public List<Address> getByIdUser(Long id) {
         return addressDAO.getByIdUser(id);
     }
+
+    @Override
+    public Address getDefaultAddressByUserId(Long id) {
+        return addressDAO.getDefaultAddressByUserId(id);
+    }
 }

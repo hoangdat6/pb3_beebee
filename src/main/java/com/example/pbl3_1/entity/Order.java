@@ -14,15 +14,17 @@ import java.sql.Timestamp;
 public class Order {
     private Long id;
     private Long userId;
-    private short orderStatusId;
-    private short paymentMethodId;
-    private short shippingMethodId;
-    private Integer total;
+    private Long sellerId;
     private String phone;
     private String fullName;
+    private Integer total;
+    private String detailAddress;
     private String communeAddress;
     private String districtAddress;
     private String provinceAddress;
+    private short orderStatusId;
+    private short paymentMethodId;
+    private short shippingMethodId;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 

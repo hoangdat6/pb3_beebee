@@ -15,6 +15,7 @@ public class OrderDetail {
     private Long id;
     private Long productItemId;
     private Long orderId;
+    private Long sellerId;
     private int quantity;
     private Integer total;
     private Timestamp createdAt;

@@ -12,11 +12,17 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class ProductForCheckOut {
-    Long id;
+    Long shoppingCartItemId;
     Long productItemId;
+    Long productId;
     String name;
+    Integer discount;
+    String sellerId;
+    Boolean isDeleted;
     String imgPath;
+    Integer qtyInStock;
     Float price;
     Integer quantity;
+    Float totalPrice;
     List<VariationDTO> variations;
 }

@@ -1,8 +1,9 @@
 <%@ include file="../../common/taglib.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <div class="status">
-Chào mừng bạn đến với <span style="font-weight: 500;">Kênh người bán!</span> <span
-    style="color: #EA580C;">Về lại giao diện mua hàng?</span>
+Chào mừng bạn đến với <span style="font-weight: 500;">Kênh người bán!</span> <a href="<c:url value="/home"/> ">
+    <span style="color: #EA580C;">Về lại giao diện mua hàng?</span>
+</a>
 </div>
 
 <div class="Main_Header_wrap">

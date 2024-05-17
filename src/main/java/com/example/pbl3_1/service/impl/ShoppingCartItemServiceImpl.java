@@ -1,5 +1,6 @@
 package com.example.pbl3_1.service.impl;
 
+import com.example.pbl3_1.controller.dto.product.ProductForCheckOut;
 import com.example.pbl3_1.controller.dto.product.ProductForShoppingCartDTO;
 import com.example.pbl3_1.controller.dto.product.ShopForCartDTO;
 import com.example.pbl3_1.dao.*;
@@ -19,11 +20,6 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
     private  final SellerDAO sellerDAO = new SellerDAOImpl();
     private  final VariationOptionDAO variationOptionDAO= new VariationOptionDAOImpl();
     private final VariationDAO variationDAO = new VariationDAOImpl();
-
-    @Override
-    public List<ProductForShoppingCartDTO> getProductByOrderList(List<Long> shoppingCartItemId) {
-        return null;
-    }
 
     @Override
     public List<ShopForCartDTO> findByIdUser(Long Id) {
@@ -62,7 +58,7 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
                             product.getId(),
                             product.getName(),
                             productItem.getImgPath(),
-                            (float) (productItem.getPrice()*(1-product.getDiscount() / 100)),
+                            (float) (productItem.getPrice()*(1-product.getDiscount() / 100.0)),
                             item.getQuantity(),
                             (variation1 != null) ? variation1.getName() : null,
                             (variationOption1 != null) ? variationOption1.getValue() : null,
@@ -82,7 +78,7 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
                                 product.getId(),
                                 product.getName(),
                                 productItem.getImgPath(),
-                                (float) (productItem.getPrice() * (1 - product.getDiscount() / 100)),
+                                (float) (productItem.getPrice() * (1 - product.getDiscount() / 100.0)),
                                 item.getQuantity(),
                                 (variation1 != null) ? variation1.getName() : null,
                                 (variationOption1 != null) ? variationOption1.getValue() : null,
