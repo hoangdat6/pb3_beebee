@@ -7,19 +7,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>User Information</title>
-    <link rel="stylesheet" type="text/css" href="../style.css">
-    <link rel="stylesheet" type="text/css" href="../Top-Bar.css">
-    <link rel="stylesheet" type="text/css" href="../Footer.css">
-    <link rel="stylesheet" type="text/css" href="../CommonCSS.css">
+    <title>Địa chỉ</title>
+    <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../main.js"></script>
-    <link rel="stylesheet" href="../Pop_ups.css">
+    <link rel="stylesheet" href="<c:url value="Pop_ups.css"/>">
     <script src="../toast.js"></script>
     <script src="./GenerateSideBar.js"></script>
-    <link rel="stylesheet" href="../toast.css">
-    <link rel="stylesheet" href="./UAASCommon.css">
-    <link rel="stylesheet" href="./assets/css/Location.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="<c:url value="/toast.css"/>">
+    <link rel="stylesheet" href="<c:url value="UAASCommon.css"/>">
+    <link rel="stylesheet" href="<c:url value="assets/css/Location.css"/>">
 </head>
 
 <body class="Color-White">
@@ -33,14 +34,15 @@
             <main class="LO_content">
                 <div id="addAddressBtn" class="btn"><i class="fa-solid fa-plus"></i> Thêm địa chỉ mới</div>
                 <div class="Address_container">
+                    <c:forEach items="${address}" var="address">
                     <div class="Address_item">
                         <div class="Address_item_left">
                             <div class="row1">
-                                Vũ Văn | 0937******
+                                ${address.fullname} | ${address.phone}
                             </div>
                             <div class="row2">
-                                <p>h15/1 K35 Mẹ Suốt, Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
-                                <p>Phường Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
+                                <p>${address.detail}</p>
+                                <p>${address.ward}, ${address.district}, ${address.province}</p>
                             </div>
                             <div class="row3 Address_type">
                                 Mặc định
@@ -56,59 +58,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="Address_item">
-                        <div class="Address_item_left">
-                            <div class="row1">
-                                Vũ Văn | 0937******
-                            </div>
-                            <div class="row2">
-                                <p>h15/1 K35 Mẹ Suốt, Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
-                                <p>Phường Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
-                            </div>
-                            <div class="row3 Address_type">
-                                Mặc định
-                            </div>
-                        </div>
-                        <div class="Address_item_right">
-                            <div class="row1">
-                                <button class="Address_remove_btn btn">Xóa</button>
-                                <button class="Address_update_btn btn">Cập nhật</button>
-                            </div>
-                            <div class="row2 Address_set_default btn">
-                                Đặt làm địa chỉ mặc định
-                            </div>
-                        </div>
-                    </div>
-                    <div class="Address_item">
-                        <div class="Address_item_left">
-                            <div class="row1">
-                                Vũ Văn | 0937******
-                            </div>
-                            <div class="row2">
-                                <p>h15/1 K35 Mẹ Suốt, Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
-                                <p><span class="Address_item_ward">Phường Hòa Khánh Nam</span>, <span
-                                        class="Address_item_district">Liên Chiểu</span>, <span
-                                        class="Address_item_city">Đà Nẵng</span></p>
-                            </div>
-                            <div class="row3 Address_type">
-                                Mặc định
-                            </div>
-                        </div>
-                        <div class="Address_item_right">
-                            <div class="row1">
-                                <button class="Address_remove_btn btn">Xóa</button>
-                                <button class="Address_update_btn btn">Cập nhật</button>
-                            </div>
-                            <div class="row2 Address_set_default btn">
-                                Đặt làm địa chỉ mặc định
-                            </div>
-                        </div>
-                    </div>
-
+                    </c:forEach>
                 </div>
             </main>
         </div>
-        <!-- <%@ include file="../Footer.jsp" %> -->
+        <%@ include file="../Footer.jsp" %>
         <script>
             GenerateSideBar("Location", "${User.username}");
         </script>

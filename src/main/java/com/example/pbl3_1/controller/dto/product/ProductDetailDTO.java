@@ -34,21 +34,4 @@ public class ProductDetailDTO {
     public ProductDetailDTO(){
 
     }
-
-    public ProductDetailDTO(Product product, List<String> imgPath, Map.Entry<Integer, Integer> maxAndMinPrice, Category category, int quantity, Seller seller, List<Variation> variations){
-        this.id = product.getId();
-        this.name = product.getName();
-        this.maxPrice = maxAndMinPrice.getKey();
-        this.minPrice = maxAndMinPrice.getValue();
-        this.discount = product.getDiscount();
-        this.imgPath = imgPath;
-        this.description = product.getDescription();
-        this.categoryId = category.getId();
-        this.categoryName = category.getName();
-        this.quantity = quantity;
-        this.sellerId = seller.getId();
-        this.sellerName = seller.getShopName();
-        this.sellerAvatar = seller.getAvatarMain();
-        this.variations = variations;
-    }
 }

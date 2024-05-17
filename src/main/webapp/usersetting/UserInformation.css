@@ -8,17 +8,28 @@
 .UI_content {
     padding-left: 75px;
     flex-grow: 1;
+    display: flex;
+    align-items: flex-start;
 }
 
 .UI_form {
     display: flex;
     flex-direction: column;
     gap: 12px;
-    margin-bottom: 30px;
     padding: 20px 30px;
     border: 1px solid #CBCBCB;
     border-radius: 10px;
+    flex: 1;
 }
+
+.UI_form-left {
+    margin-right: 30px;
+}
+
+.UI_form-right {
+    margin-left: 30px;
+}
+
 
 .form_title {
     margin-bottom: 10px;

@@ -10,6 +10,7 @@ import com.example.pbl3_1.mapper.SellerMapper;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Objects;
 
 public class SellerDAOImpl implements SellerDAO {
     private final GenericDAO<Seller> genericDAO = new AbstractDAOImpl<>();
@@ -49,7 +50,7 @@ public class SellerDAOImpl implements SellerDAO {
         return sellers.isEmpty() ? null : sellers.get(0);
     }
 
-    public Boolean isFollowed(Long userId, Long sellerId) {
+    public Boolean isFollowed( Long sellerId, Long userId) {
         StringBuilder sql = new StringBuilder("select\n");
         sql.append("    (select IF(COUNT(sf.user_id) = 1, 1, 0)) as is_followed\n");
         sql.append("from  seller_followers sf where sf.seller_id = ? and sf.user_id = ?;");
@@ -60,7 +61,7 @@ public class SellerDAOImpl implements SellerDAO {
                 throw new RuntimeException(e);
             }
         }, sellerId, userId);
-        return !sellers.isEmpty();
+        return sellers.get(0);
     }
 
     @Override
@@ -106,6 +107,18 @@ public class SellerDAOImpl implements SellerDAO {
         String sql = "select * from sellers where id = ? ";
         List<Seller> list = genericDAO.query(sql, new SellerMapper(),id);
         return (list.isEmpty() ? null : list.get(0));
+    }
+
+    @Override
+    public Long getIdByUserId(Long userId) {
+        String sql = "select id from sellers where user_id = ?";
+        return genericDAO.query(sql, resultSet -> {
+            try {
+                return resultSet.getLong("id");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, userId).stream().findFirst().orElse(null);
     }
 
     public List<ProductPreviewDTO> getProductPreviewDTOs(String sql, Long idSeller,Integer limit , Integer offset) {

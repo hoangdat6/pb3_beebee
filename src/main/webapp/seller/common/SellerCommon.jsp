@@ -21,8 +21,19 @@ Chào mừng bạn đến với <span style="font-weight: 500;">Kênh người b
                 <span>Thông báo</span>
             </div>
             <div class="Account_option btn">
-                <img src="../../img/Logo/Avatar.png" alt="">
-                <span>Tên tài khoản</span>
+                <c:if test="${sessionScope.get('USERMODEL') != null}">
+                    <c:if test="${sessionScope.get('USERMODEL').avatar != null}">
+                        <img src="${sessionScope.get("USERMODEL").avatar}" alt="">
+                    </c:if>
+
+                    <c:if test="${sessionScope.get('USERMODEL').avatar == null}">
+                        <img src="<c:url value="/img/Logo/Avatar.png"/>" alt="">
+                    </c:if>
+
+                    <span>${sessionScope.get("USERMODEL").username}</span>
+                </c:if>
+
+
                 <i class="fa-solid fa-chevron-down"></i>
             </div>
         </div>

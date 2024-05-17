@@ -8,7 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add new product</title>
+    <title>Thêm sản phẩm</title>
     <link rel="stylesheet" type="text/css" href="<c:url value="/seller/product/AddProduct.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/seller/common/SellerCommon.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">

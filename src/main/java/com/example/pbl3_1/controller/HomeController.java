@@ -5,19 +5,19 @@ import com.example.pbl3_1.Util.*;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.product.SellerDTO;
 import com.example.pbl3_1.entity.Category;
+import com.example.pbl3_1.entity.ERole;
 import com.example.pbl3_1.entity.Egender;
-import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.*;
 import com.example.pbl3_1.service.impl.CategoryServiceImpl;
 import com.example.pbl3_1.service.impl.ProductServiceImpl;
 import com.example.pbl3_1.service.impl.UserServiceImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.net.URLDecoder;
@@ -30,10 +30,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Random;
 
-@WebServlet(name = "home", urlPatterns = {"/home", "/login", "/register", "/usersetting/userinfor", "/confirmemail", "/logout", "/forgotpass", "/resetpass", "/usersetting/changepass", "/usersetting/changeinfor", "/suggestsearch", "/search"})
+@WebServlet(name = "home", urlPatterns = {"/home"})
 public class HomeController extends HttpServlet {
-
-    private final UserService userService = new UserServiceImpl();
     private final ProductService productService = new ProductServiceImpl();
     private final CategoryService categoryService = new CategoryServiceImpl();
     @Override
@@ -41,102 +39,13 @@ public class HomeController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
-
-        String action2 = request.getServletPath();
-
-        if(action2 == null){
-            request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else {
-            SessionUtil sessionUtil = SessionUtil.getInstance();
-            switch (action2) {
-                case "/login":
-                    if(sessionUtil.getValue(request, "USERMODEL") != null)
-                        response.sendRedirect(request.getContextPath() + "/home");
-                    else
-                        request.getRequestDispatcher("Login.jsp").forward(request, response);
-                    break;
-                case "/usersetting/userinfor":
-                case "/usersetting/changepass":
-                case "/usersetting/changeinfor":
-                    sessionUtil.putValue(request, "EmailStatus", true);
-                    request.getRequestDispatcher("UserInformation.jsp").forward(request, response);
-                    break;
-                case "/register":
-                    if(sessionUtil.getValue(request, "USERMODEL") != null)
-                        response.sendRedirect(request.getContextPath() + "/home");
-                    else
-                        request.getRequestDispatcher("Sign_Up.jsp").forward(request, response);
-                    break;
-                case "/confirmemail":
-                    request.getRequestDispatcher("ConfirmationEmail.jsp").forward(request, response);
-                    break;
-                case "/logout":
-                    sessionUtil.removeValue(request, "USERMODEL");
-                    response.sendRedirect(request.getContextPath() + "/home");
-                    break;
-                case "/forgotpass":
-                    request.getRequestDispatcher("ForgotPassword.jsp").forward(request, response);
-                    break;
-                case "/resetpass":
-                    request.getRequestDispatcher("ResetPassword.jsp").forward(request, response);
-                    break;
-                case "/suggestsearch":
-                    System.out.println("Start");
-                    SuggestSearch(request, response);
-                    break;
-                case "/search":
-                    ShowSearch(request, response);
-                    break;
-                default:
-                    showHome(request, response);
-                    break;
-            }
-        }
+        showHome(request, response);
     }
 
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getServletPath();
-        if(action != null && action.equals("/login")){
-            boolean check = Login(request);
-            if(check) {
-                response.sendRedirect(request.getContextPath() +
-                        (SessionUtil.getInstance().getValue(request, "redirect") != null ?
-                                SessionUtil.getInstance().getValue(request, "redirect").toString() :
-                                "/home"));
-                SessionUtil.getInstance().removeValue(request, "redirect");
-            }
-            else response.sendRedirect(request.getContextPath() + "/login?action=login&message=username_password_invalid&alert=danger");
-        }else if (action != null && action.equals("/register")){
-            boolean check = Register(request);
-            if(check) response.sendRedirect(request.getContextPath() + "/confirmemail");
-                else response.sendRedirect(request.getContextPath() + "/register#");
-        }else if(action != null && action.equals("/confirmemail"))
-        {
-            int check = ConfirmEmail(request);
-            if(check == 1) response.sendRedirect(request.getContextPath() + "/login");
-            else if(check == 2) response.sendRedirect(request.getContextPath() + "/resetpass");
-            else if(check == 3) response.sendRedirect(request.getContextPath() + "/seller/account/register?action=avatar");
-            else if (check == 4) response.sendRedirect(request.getContextPath() + "/confirmemail");
-        }else if(action != null && action.equals("/forgotpass"))
-        {
-            boolean check = ForgotPass(request);
-            if(check) response.sendRedirect(request.getContextPath() + "/confirmemail");
-            else response.sendRedirect(request.getContextPath() + "/forgotpass");
-        }else if(action != null && action.equals("/resetpass"))
-        {
-            boolean check = ResetPass(request);
-            if(check) response.sendRedirect(request.getContextPath() + "/login");
-            else response.sendRedirect(request.getContextPath() + "/resetpass");
-        }else if(action != null && action.equals("/usersetting/changepass"))
-        {
-            ChangePass(request);
-            response.sendRedirect(request.getContextPath() + "/usersetting/userinfor");
-        }else if(action != null && action.equals("/usersetting/changeinfor"))
-        {
-            ChangeInfor(request);
-            response.sendRedirect(request.getContextPath() + "/usersetting/userinfor");
-        }else if(action != null && action.equals("/cfoldemail"))
+        if(action != null && action.equals("/cfoldemail"))
         {
             SessionUtil sessionUtil = SessionUtil.getInstance();
             String email = request.getParameter("UI_email");
@@ -396,51 +305,6 @@ public class HomeController extends HttpServlet {
         }
     }
 
-    public int ConfirmEmail(HttpServletRequest request) {
-        SessionUtil sessionUtil = SessionUtil.getInstance();
-        String code = sessionUtil.getValue(request, "code").toString();
-        String confirmcode = request.getParameter("code");
-//            String code = (String)sessionUtil.getValue(request, "code");
-        sessionUtil.putValue(request, "codestatus", true);
-        if(confirmcode.equals(code))
-        {
-            String status = sessionUtil.getValue(request, "cfstatus").toString();
-            if(status.equals("register"))
-            {
-                System.out.println("Da dk thanh cong");
-                sessionUtil.removeValue(request, "codestatus");
-                User user = (User)sessionUtil.getValue(request, "newUser");
-                userService.save(user);
-                sessionUtil.removeValue(request, "newUser");
-                sessionUtil.removeValue(request, "code");
-                sessionUtil.removeValue(request, "cfstatus");
-                sessionUtil.removeValue(request, "email");
-                return 1;
-            }else if(status.equals("forgotpass"))
-            {
-                return 2;
-            }else if(status.equals("sellerregister"))
-            {
-                return 3;
-            }
-        }else
-        {
-            sessionUtil.putValue(request, "codestatus", false);
-            return 4;
-        }
-        return 4;
-    }
-    public void ChangeInfor(HttpServletRequest request)
-    {
-        SessionUtil sessionUtil = SessionUtil.getInstance();
-        User user = (User)sessionUtil.getValue(request, "USERMODEL");
-        user.setFullname(request.getParameter("UI_name"));
-        user.setDob(Date.valueOf(request.getParameter("UI_dob")));
-        user.setEmail(request.getParameter("UI_email"));
-        user.setPhone(request.getParameter("UI_phone"));
-        sessionUtil.putValue(request, "USERMODEL", user);
-        userService.updateInfor(user);
-    }
     public void showHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<ProductPreviewDTO> products = productService.getProductsForHome();
         request.setAttribute("products", products);

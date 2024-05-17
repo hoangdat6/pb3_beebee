@@ -7,11 +7,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng ký thông tin cơ bản</title>
-    <link rel="stylesheet" href="<c:url value="/seller/account/Register.css"/>">
+    <link rel="stylesheet" href="<c:url value='Register.css'/>">
+<%--    <link rel="stylesheet" href="./Register.css">--%>
     <link rel="stylesheet" href="<c:url value="/seller/common/SellerCommon.css"/>">
     <link rel="stylesheet" href="<c:url value="/CommonCSS.css"/>">
-    <script src="<c:url value="/seller/account/Register.js"/>"></script>
-
+    <script src="<c:url value="Register.js"/>"></script>
 </head>
 
 <body>

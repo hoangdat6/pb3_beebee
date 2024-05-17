@@ -7,9 +7,11 @@ import com.example.pbl3_1.dao.SellerFollowDAO;
 import com.example.pbl3_1.dao.impl.SellerDAOImpl;
 import com.example.pbl3_1.dao.impl.SellerFollowDAOImpl;
 import com.example.pbl3_1.entity.Address;
+import com.example.pbl3_1.entity.ERole;
 import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.SellerService;
+import com.example.pbl3_1.service.UserService;
 
 import java.util.List;
 
@@ -19,22 +21,27 @@ public class SellerServiceImpl implements SellerService {
 
     @Override
     public Object getShopById(Long id, Long userId) {
-        Boolean isFollowed = sellerDAO.isFollowed(id, userId);
-        SellerDTO sellerDTO = sellerDAO.getShopById(id);
-        List<ProductPreviewDTO> products = sellerDAO.getMostViewedProducts(id, 0, 5, "desc");
+        try {
+            Boolean isFollowed = sellerDAO.isFollowed(id, userId);
+            SellerDTO sellerDTO = sellerDAO.getShopById(id);
+            List<ProductPreviewDTO> products = sellerDAO.getMostViewedProducts(id, 0, 5, "desc");
 
-        // lấy ra list ảnh
-        List<String> images = List.of(sellerDTO.getAvatar().split(","));
-        sellerDTO.setAvatar(images.get(0)); // ảnh đầu tiên là avatar
-        sellerDTO.setCoverImage(images.get(1)); // ảnh thứ là ảnh bìa
+            // lấy ra list ảnh
+            List<String> images = List.of(sellerDTO.getAvatar().split(","));
+            sellerDTO.setAvatar(images.get(0)); // ảnh đầu tiên là avatar
+            sellerDTO.setCoverImage(images.get(1)); // ảnh thứ là ảnh bìa
 
-        // set main image for each product
-        for(ProductPreviewDTO productPreviewDTO : products) {
-            productPreviewDTO.setMainImage();
+            // set main image for each product
+            for(ProductPreviewDTO productPreviewDTO : products) {
+                productPreviewDTO.setMainImage();
+            }
+            sellerDTO.setMostViewedProducts(products);
+            sellerDTO.setIsFollowed(isFollowed);
+            return sellerDTO;
+        }catch (Exception e){
+            e.printStackTrace();
         }
-        sellerDTO.setMostViewedProducts(products);
-        sellerDTO.setIsFollowed(isFollowed);
-        return sellerDTO;
+        return null;
     }
 
     @Override
@@ -64,6 +71,8 @@ public class SellerServiceImpl implements SellerService {
         AddressService addressService = new AddressServiceImpl();
         Long addressId = addressService.addAddress(address);
         seller.setAddressId(addressId);
+        UserService userService = new UserServiceImpl();
+        userService.updateRole(seller.getUserId(), ERole.SELLER);
         return sellerDAO.addShop(seller);
     }
 
@@ -74,5 +83,10 @@ public class SellerServiceImpl implements SellerService {
         }else {
             sellerFollowDAO.addFollow(sellerId, userId);
         }
+    }
+
+    @Override
+    public Long getIdByUserId(Long userId) {
+        return sellerDAO.getIdByUserId(userId);
     }
 }

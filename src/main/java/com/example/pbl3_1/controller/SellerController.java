@@ -42,9 +42,6 @@ public class SellerController extends HttpServlet {
                 String urlRedirect = path + "?id=" + shopId;
                 showShop(request, response, shopId, urlRedirect);
                 break;
-            case "/seller":
-                checkAccount(request, response);
-                break;
             case "/seller/account/register":
                 String action = request.getParameter("action");
                 if(action == null){
@@ -203,7 +200,6 @@ public class SellerController extends HttpServlet {
         byte[] avatar = partToBytes(imgAvatar);
         byte[] cover =  partToBytes(imgCover);
 
-
         // lưu ảnh vào local
         Files.write(Path.of(pathRoot + avatarFilename), avatar);
         Files.write(Path.of(pathRoot + coverFilename), cover);
@@ -225,20 +221,13 @@ public class SellerController extends HttpServlet {
         return outputStream.toByteArray();
     }
 
-    private void checkAccount(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        String path = request.getServletPath();
-        if(CheckLoggedUser.checkLoggedUser(request, response, path)){
-            response.sendRedirect(request.getContextPath() + "/seller/account/register");
-        }
-    }
-
     private void showShop(HttpServletRequest request, HttpServletResponse response, String shopId, String urlRedirect) {
         try {
-            if(CheckLoggedUser.checkLoggedUser(request, response, urlRedirect)){
-                User user = (User) request.getSession().getAttribute("USERMODEL");
-                request.setAttribute("seller", sellerService.getShopById(Long.parseLong(shopId), user.getId()));
-                request.getRequestDispatcher("Shop.jsp").forward(request, response);
-            }
+            User user = (User) request.getSession().getAttribute("USERMODEL");
+            SellerDTO sellerDTO = (SellerDTO) sellerService.getShopById(Long.parseLong(shopId), user.getId());
+            System.out.println(sellerDTO.getIsFollowed());
+            request.setAttribute("seller", sellerDTO);
+            request.getRequestDispatcher("Shop.jsp").forward(request, response);
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }

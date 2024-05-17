@@ -13,7 +13,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="CommonPassword.css">
-    <title>Document</title>
+    <title>Quên mật khẩu</title>
 </head>
     <body>
         <div class="wrapper">
@@ -21,7 +21,7 @@
             <h1>Quên mật khẩu</h1>
             <form action='<c:url value="/forgotpass"/>' method="POST">
                 <label for="email">Email</label>
-                <input type="email" name="email" placeholder="exam@gmail.com">
+                <input type="email" id="email" name="email" placeholder="exam@gmail.com">
                 <input class="btn" type="submit" name="submit" value="Xác nhận">
             </form>
             </div>

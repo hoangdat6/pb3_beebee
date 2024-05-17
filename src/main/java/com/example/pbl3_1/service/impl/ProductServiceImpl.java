@@ -50,6 +50,7 @@ public class ProductServiceImpl implements ProductService {
         productDetailDTO.setVariations(variations);
         productDetailDTO.setImgPath(imgPaths);
         increaseView(id);
+
         return productDetailDTO;
     }
 

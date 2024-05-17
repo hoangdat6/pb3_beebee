@@ -23,6 +23,7 @@ public class User {
     private Timestamp createdAt;
     private String avatar;
     private String fullname;
+    private ERole role;
 
     public User() {
     }

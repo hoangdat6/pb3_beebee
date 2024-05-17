@@ -76,10 +76,10 @@ public class ProductDAOImpl implements ProductDAO {
                         resultSet.getString("name"),
                         resultSet.getInt("min_price"),
                         resultSet.getInt("discount"),
-                        resultSet.getString("img_path"),
+                        resultSet.getString("img_path").split(",")[0],
                         resultSet.getLong("seller_id"),
                         resultSet.getString("shop_name"),
-                        resultSet.getString("avatar")
+                        resultSet.getString("avatar").split(",")[0]
                 );
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -114,7 +114,7 @@ public class ProductDAOImpl implements ProductDAO {
                         resultSet.getString("category_name"),
                         resultSet.getLong("seller_id"),
                         resultSet.getString("shop_name"),
-                        resultSet.getString("avatar"),
+                        resultSet.getString("avatar").split(",")[0],
                         resultSet.getInt("total_qty"),
                         null
                 );
@@ -227,7 +227,7 @@ public class ProductDAOImpl implements ProductDAO {
                             resultSet.getString("img_path"),
                             resultSet.getLong("seller_id"),
                             resultSet.getString("shop_name"),
-                            resultSet.getString("avatar")
+                            resultSet.getString("avatar").split(",")[0]
                     );
                 } catch (SQLException e) {
                     System.out.println(sql);
