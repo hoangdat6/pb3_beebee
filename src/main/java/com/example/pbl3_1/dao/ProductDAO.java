@@ -3,6 +3,7 @@ package com.example.pbl3_1.dao;
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.product.SellerDTO;
+import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.Product;
 import com.example.pbl3_1.entity.Seller;
 
@@ -19,4 +20,5 @@ public interface ProductDAO extends CommonDAO<Product>{
     void updateProductImage(Long productId, String images);
     List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories);
     List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories);
+    List<Category> getAllCategories();
 }

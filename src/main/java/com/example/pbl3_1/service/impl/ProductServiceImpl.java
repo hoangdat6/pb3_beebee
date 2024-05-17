@@ -9,6 +9,7 @@ import com.example.pbl3_1.dao.ProductItemDAO;
 import com.example.pbl3_1.dao.impl.CategoryDAOImpl;
 import com.example.pbl3_1.dao.impl.ProductDAOImpl;
 import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
+import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.Product;
 import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.entity.Variation;
@@ -75,5 +76,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories) {
         return productDAO.getSellersForSearch(keyword, minPrice, maxPrice, categories);
+    }
+
+    @Override
+    public List<Category> getAllCategories() {
+        return productDAO.getAllCategories();
     }
 }

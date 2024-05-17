@@ -4,6 +4,7 @@ package com.example.pbl3_1.controller;
 import com.example.pbl3_1.Util.*;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.product.SellerDTO;
+import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.Egender;
 import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.entity.User;
@@ -211,9 +212,13 @@ public class HomeController extends HttpServlet {
             System.out.println("khong fill");
             List<ProductPreviewDTO> products = productService.getProductsForSearch(keyword, 0, 1000000000, "");
             List<SellerDTO> sellers = productService.getSellersForSearch(keyword, 0, 1000000000, "");
-            System.out.println("size = " + products.size());
+            List<Category> SearchCategories = productService.getAllCategories();
+            System.out.println(SearchCategories.get(0).getId() + "   " + SearchCategories.get(0).getName());
+            System.out.println(sellers);
+            System.out.println(products);
             request.setAttribute("searchsellers", sellers);
             request.setAttribute("searchproducts", products);
+            request.setAttribute("searchcategories", SearchCategories);
             request.getRequestDispatcher("Search.jsp").forward(request, response);
         }
 
