@@ -18,5 +18,4 @@ export function createAlertPopUp(title, message, buttons){
     `;
 
     overlay.appendChild(alertPopup);
-
 }

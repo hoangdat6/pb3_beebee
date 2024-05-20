@@ -1,0 +1,125 @@
+body {
+  background-color: #f3f5f7;
+}
+
+#wrap {
+  display: flex;
+  gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  align-items: flex-start;
+}
+#wrap aside {
+  padding: 40px 20px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  background-color: #fff;
+  border-radius: 10px;
+}
+#wrap aside a {
+  text-decoration: none;
+  color: #343839;
+}
+#wrap aside a:hover {
+  color: #FF5630;
+}
+#wrap aside i {
+  width: 20px;
+  padding: 4px;
+  text-align: center;
+}
+#wrap .container {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+  background-color: #fff;
+  border-radius: 10px;
+  flex-grow: 1;
+  padding: 10px 20px;
+}
+#wrap .container nav {
+  display: flex;
+}
+#wrap .container nav .nav_item {
+  padding: 10px 20px;
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+#wrap .container nav .nav_item:hover {
+  color: #FF5630;
+  border-bottom-color: #FF5630;
+}
+#wrap .container .content {
+  padding: 10px 0;
+}
+#wrap .container .content .search {
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+}
+#wrap .container .content .search .status {
+  padding: 0;
+}
+#wrap .container .content .search .status select {
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 20px;
+}
+#wrap .container .content .search .search_bar {
+  flex-grow: 1;
+  margin-right: 50px;
+}
+#wrap .container .content .search .search_bar input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  margin-left: 20px;
+}
+#wrap .container .content .search .search_bar button {
+  background-color: #141718;
+  color: #fff;
+  border: 1px solid #141718;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+#wrap .container .content .search .search_bar button:hover {
+  background-color: transparent;
+  border-color: #FF5630;
+  color: #FF5630;
+}
+#wrap .container .content .search_result {
+  padding: 10px 20px;
+}
+#wrap .container .content .search_result h3 {
+  padding: 20px 0;
+}
+#wrap .container .content .search_result table {
+  width: 100%;
+  border-collapse: collapse;
+}
+#wrap .container .content .search_result table thead {
+  background-color: #f3f5f7;
+  text-align: center;
+}
+#wrap .container .content .search_result table thead th {
+  padding: 10px 20px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+#wrap .container .content .search_result table tbody tr {
+  cursor: pointer;
+}
+#wrap .container .content .search_result table tbody tr:hover {
+  background-color: #ccc;
+}
+#wrap .container .content .search_result table tbody tr td {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+/*# sourceMappingURL=adminCommon.css.map */
