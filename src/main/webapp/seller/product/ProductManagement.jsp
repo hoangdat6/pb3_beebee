@@ -1,20 +1,13 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ include file="../../common/taglib.jsp" %>
-
-<%--
-  Created by IntelliJ IDEA.
-  User: dathv1612
-  Date: 5/13/24
-  Time: 11:38 AM
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="ProductManagement.css"/>">
+    <link rel="stylesheet" href="<c:url value="SideBar.css"/>">
     <script src="<c:url value="ProductManagement.js"/>"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>Quản lý sản phẩm</title>
@@ -22,16 +15,7 @@
 <body>
 <%@ include file="../common/SellerCommon.jsp" %>
 <fmt:setLocale value = "vi_VN"/>
-<div class="Side_nav">
-    <a class="btn" href="#Basic_info">
-        Thông tin cơ bản
-    </a>
-    <a class="btn" href="#Sale_info">
-        Thông tin bán hàng
-    </a>
-    <p>Vui lòng điền đầy đủ thông tin</p>
-    <p>Nếu sản phẩm không có phân loại. Bạn không bắt buộc phải thêm phân loại</p>
-</div>
+
 
 <div class="side_bar">
     <a href="" class="btn item">
