@@ -146,7 +146,7 @@ html {
     font-size: var(--font-size-s);
     font-family: 'SF Pro Display', sans-serif;
     color: #030712;
-    user-select: none;
+    /*user-select: none;*/
     scroll-behavior: smooth;
 }
 

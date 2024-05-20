@@ -225,6 +225,13 @@ h3.Main--Name {
     margin-bottom: 10px;
     font-size: 14px;
     font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    /* Số dòng tối đa */
+    -webkit-box-orient: vertical;
+    width: 200px;
 }
 
 .Main--Qty_and_Category {

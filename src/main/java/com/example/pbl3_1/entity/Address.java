@@ -11,14 +11,14 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class Address {
     Long id;
+    String fullname;
+    String phone;
     String detail;
     String ward;
     String district;
     String province;
     Timestamp createdAt;
     Timestamp updatedAt;
-    String fullname;
-    String phone;
     public Address() {
     }
 
