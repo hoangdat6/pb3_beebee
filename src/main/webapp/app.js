@@ -22,7 +22,13 @@ promise.then(function (result) {
   const data = result.data;
 
   // Tìm các đối tượng trong dữ liệu có Id phù hợp
-  renderAddress(data, '01', '002', '00043');
+  let citis = document.getElementById("city");
+  let districts = document.getElementById("district");
+  let wards = document.getElementById("ward");
+  if (citis.value !=="" && districts.value !=="" && wards.value !=="")
+    renderAddress(data,citis.value,districts.value,wards.value);
+  else
+   renderAddress(data, '01', '001', '00001');
 });
 
 
@@ -60,21 +66,21 @@ function renderAddress(data, cityId, districtId, wardId) {
 
   // Lấy dữ liệu của thành phố, tỉnh thành
   const cityData = data.filter(item => item.Id === cityId);
-
+  citis.options[0].value='';
   for (const x of data) {
     let option = new Option(x.Name, x.Id);
     citis.options[citis.options.length] = option;
   }
   // set giá trị mặc định cho thành phố
   citis.value = cityId;
-
   let districtData = cityData[0].Districts;
+  districts.options[0].value='';
   for (const k of districtData) {
     districts.options[districts.options.length] = new Option(k.Name, k.Id);
   }
   // set giá trị mặc định cho quận huyện
   districts.value = districtId;
-
+  wards.options[0].value='';
   // lấy dữ liệu phường xã từ quận huyện
   let wardData = districtData.filter(item => item.Id === districtId)[0].Wards;
   for (const w of wardData) {
