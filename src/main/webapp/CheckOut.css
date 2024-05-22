@@ -65,6 +65,7 @@ span.Process_Item-Number {
     flex-wrap: wrap;
     justify-content: center;
     padding-bottom: 60px;
+    align-items: flex-start;
 }
 
 .CO_Content-Col1 {
@@ -123,6 +124,10 @@ span.Process_Item-Number {
     padding: 10px 12px;
 }
 
+.Payment_Method label, input {
+    cursor: pointer;
+}
+
 .Col1--Button{
     width: 100%;
     text-align: center;
@@ -145,7 +150,7 @@ span.Process_Item-Number {
     margin-bottom: 24px;
     border-radius: 5px;
     min-width: 420px;
-    height: 768px;
+    max-height: 768px;
 }
 
 .CO_Content-Col2 .CO-Col2--Title{
@@ -159,7 +164,7 @@ span.Process_Item-Number {
     margin-top: 16px;
     display: flex;
     flex-direction: column;
-    height: 480px;
+    max-height: 480px;
     overflow-y: scroll;
 }
 
@@ -171,11 +176,13 @@ span.Process_Item-Number {
 }
 
 .CO-Col2-Product img{
-    max-width: 80px;
+    max-width: 90px;
+    flex: 1;
 }
 
 .Col2-Product-Item--Main{
     margin: 0 10px;
+    flex: 2;
 }
 
 .Col2-Main--Qty{
@@ -198,6 +205,7 @@ span.Process_Item-Number {
 .Col2-Product-Item--Price{
     font-size: 14px;
     font-weight: 600;
+    flex: 1;
 }
 
 .CO-Same{

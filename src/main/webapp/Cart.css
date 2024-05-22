@@ -250,7 +250,7 @@ p.Item-Category {
     text-align: end;
 }
 
-.Shipping_Option{
+.Cart_Summary-Voucher{
     margin-bottom: 20px;
 }
 
@@ -262,20 +262,20 @@ p.Item-Category {
     
 }
 
-.Shipping_Option .Total-Price{
+.Cart_Summary-Voucher .Total-Price{
     font-size: 16px;
     color: #141718;
     padding-bottom: 15px;
     border-bottom: 1px solid #EAEAEA;
 }
 
-.Shipping_Option .Total-Checkout{
+.Cart_Summary-Voucher .Total-Checkout{
     font-size: 16px;
     font-weight: 600;
     margin-top: 15px;
 }
 
-.Shipping_Option input[type="submit"]{
+#Checkout{
     padding: 12px;
     text-align: center;
     width: 100%;
@@ -285,7 +285,7 @@ p.Item-Category {
     margin: 15px 0;
 }
 
-.Shipping_Option input[type="submit"]:hover{
+#Checkout:hover{
     opacity: 0.7;
     cursor: pointer;
 }

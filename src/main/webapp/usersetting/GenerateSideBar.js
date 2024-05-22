@@ -14,15 +14,21 @@ function GenerateSideBar(type = "UserInformation", username) {
         <h3 class="UAAS_userName">${username}</h3>
     </div>
     <ul class="UAAS_bar_bot ${Type}">
-        <li class="UAAS_bar_bot_item" id="UAAS_userInformation"><i class="fa-solid fa-user"></i> Tài khoản
+        <li class="UAAS_bar_bot_item" id="UAAS_userInformation">
+        <a href="/PBL3_1_war_exploded/usersetting/userinfor">
+            <i class="fa-solid fa-user"></i> Tài khoản
+        </a>
         </li>
-        <li class="UAAS_bar_bot_item" id="UAAS_location"><i class="fa-solid fa-location-dot"></i> Địa
-            chỉ của tôi</li>
+        <li class="UAAS_bar_bot_item" id="UAAS_location">
+            <a href="/PBL3_1_war_exploded/usersetting/address">
+                <i class="fa-solid fa-location-dot"></i> 
+                Địa chỉ của tôi</li>
+            </a>
         <li class="UAAS_bar_bot_item" id="UAAS_order"><i class="fa-solid fa-box"></i> Đơn hàng
             của tôi</li>
         <li class="UAAS_bar_bot_item" id="UAAS_favorite"><i class="fa-solid fa-heart"></i> Sản phẩm
             yêu thích</li>
-        <li class="UAAS_bar_bot_item" id="UAAS_logOut"><a href='<c:url value="/logout"/>'><i
+        <li class="UAAS_bar_bot_item" id="UAAS_logOut"><a href='/PBL3_1_war_exploded/logout'><i
                     class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a></li>
     </ul>`;
 

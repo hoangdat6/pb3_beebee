@@ -20,6 +20,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
+// <<<<<<< hanh
     public void delete(Long id) {
         addressDAO.delete(id);
     }
@@ -27,5 +28,9 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public Integer update(Address address) {
         return addressDAO.update(address);
+// =======
+    public Address getDefaultAddressByUserId(Long id) {
+        return addressDAO.getDefaultAddressByUserId(id);
+// >>>>>>> main
     }
 }

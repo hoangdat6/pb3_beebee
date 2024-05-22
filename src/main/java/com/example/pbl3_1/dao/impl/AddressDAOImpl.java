@@ -53,6 +53,7 @@ public class AddressDAOImpl implements AddressDAO {
         }
         },id);
     }
+// <<<<<<< hanh
     public void delete(Long id){
         String sql = "DELETE FROM address WHERE id = ?";
         genericDAO.delete(sql,id);
@@ -70,5 +71,38 @@ public class AddressDAOImpl implements AddressDAO {
                 address.getFullname(),
                 address.getPhone(),
                 address.getId());
+// =======
+
+    @Override
+    public Address getDefaultAddressByUserId(Long id) {
+        StringBuilder sb = new StringBuilder("select a.id as id,\n" +
+                "       a.detail as detail,\n" +
+                "       a.phone as phone,\n" +
+                "       a.fullname as fullname,\n" +
+                "       a.ward as ward,\n" +
+                "       a.district as district,\n" +
+                "       a.province as province,\n" +
+                "       ua.is_default as is_default\n" +
+                "from address as a\n" +
+                "join user_address as ua on a.id = ua.address_id\n" +
+                "where ua.user_id = ? and ua.is_default = 1;");
+
+        List<Address> address = genericDAO.query(sb.toString(), resultSet -> {
+            try {
+                return Address.builder()
+                        .id(resultSet.getLong("id"))
+                        .detail(resultSet.getString("detail"))
+                        .phone(resultSet.getString("phone"))
+                        .fullname(resultSet.getString("fullname"))
+                        .ward(resultSet.getString("ward"))
+                        .district(resultSet.getString("district"))
+                        .province(resultSet.getString("province"))
+                        .build();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, id);
+        return address.isEmpty() ? null : address.get(0);
+// >>>>>>> main
     }
 }

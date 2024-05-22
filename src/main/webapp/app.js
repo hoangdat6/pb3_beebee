@@ -22,6 +22,7 @@ promise.then(function (result) {
   const data = result.data;
 
   // Tìm các đối tượng trong dữ liệu có Id phù hợp
+// <<<<<<< hanh
   let citis = document.getElementById("city");
   let districts = document.getElementById("district");
   let wards = document.getElementById("ward");
@@ -29,10 +30,15 @@ promise.then(function (result) {
     renderAddress(data,citis.value,districts.value,wards.value);
   else
    renderAddress(data, '01', '001', '00001');
+// =======
+//   renderAddress(data,province === "" ? "00" : province, district === "" ? "000" : district, ward === "" ? "00000" : ward);
+// >>>>>>> main
 });
 
 
 function renderAddress(data, cityId, districtId, wardId) {
+  console.log(cityId, districtId, wardId);
+
   let citis = document.getElementById("city");
   let districts = document.getElementById("district");
   let wards = document.getElementById("ward");
@@ -86,6 +92,8 @@ function renderAddress(data, cityId, districtId, wardId) {
   for (const w of wardData) {
     wards.options[wards.options.length] = new Option(w.Name, w.Id);
   }
+
+  console.log(wardId);
   // set giá trị mặc định cho phường xã
   wards.value = wardId;
 }
