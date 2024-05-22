@@ -28,6 +28,18 @@ public class OrderServiceImpl implements OrderService {
             productForCheckOut.setVariations(variationDTO);
         }
 
+        productForShoppingCartDTOS.sort((o1, o2) -> {
+            if (o1.getSellerId() > o2.getSellerId()) {
+                return 1;
+            } else if (o1.getSellerId() < o2.getSellerId()) {
+                return -1;
+            } else {
+                return 0;
+            }
+        });
+
+        
+
         return productForShoppingCartDTOS;
     }
 

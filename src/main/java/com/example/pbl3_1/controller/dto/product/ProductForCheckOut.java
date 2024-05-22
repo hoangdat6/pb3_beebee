@@ -15,9 +15,9 @@ public class ProductForCheckOut {
     Long shoppingCartItemId;
     Long productItemId;
     Long productId;
+    Long sellerId;
     String name;
     Integer discount;
-    String sellerId;
     Boolean isDeleted;
     String imgPath;
     Integer qtyInStock;

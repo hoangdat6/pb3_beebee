@@ -1,5 +1,6 @@
 package com.example.pbl3_1.controller;
 
+import com.example.pbl3_1.Util.AddressUtils;
 import com.example.pbl3_1.controller.dto.product.ProductForCheckOut;
 import com.example.pbl3_1.controller.dto.product.ProductForShoppingCartDTO;
 import com.example.pbl3_1.dao.AddressDAO;
@@ -62,8 +63,16 @@ public class OrderController extends HttpServlet {
             return;
         }
 
+        String appPath = request.getServletContext().getRealPath("/");
+        String filePath = appPath + "usersetting/data.json";
+        AddressUtils addressUtils = new AddressUtils(filePath);
+
+        address.setWard(addressUtils.getWardName(address.getProvince(),address.getDistrict(),address.getWard()));
+        address.setDistrict(addressUtils.getDistrictName(address.getProvince(),address.getDistrict()));
+        address.setProvince(addressUtils.getCityName(address.getProvince()));
+
         request.setAttribute("address", address);
-        request.setAttribute("productForCheckOuts", productForCheckOuts);
+//        request.setAttribute("productForCheckOuts", productForCheckOuts);
         request.getRequestDispatcher("CheckOut.jsp").forward(request, response);
     }
 }

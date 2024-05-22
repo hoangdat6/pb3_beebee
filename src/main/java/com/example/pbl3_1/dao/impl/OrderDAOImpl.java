@@ -17,12 +17,12 @@ public class OrderDAOImpl implements OrderDAO {
                 "       pi.id as product_item_id,\n" +
                 "       p.id as product_id,\n" +
                 "       p.name as product_name,\n" +
-                "       p.discount as discount,\n" +
                 "       p.seller_id as seller_id,\n" +
-                "       p.is_deleted as is_deleted,\n" +
+                "       p.discount as discount,\n" +
                 "       pi.img_path,\n" +
                 "       pi.price as price,\n" +
                 "       pi.qty_in_stock as qty_in_stock,\n" +
+                "       p.is_deleted as is_deleted,\n" +
                 "       sci.quantity as quantity,\n" +
                 "       pi.price * (1 - p.discount / 100) * sci.quantity as total_price\n" +
                 "from shopping_cart_item as sci\n" +
@@ -43,7 +43,7 @@ public class OrderDAOImpl implements OrderDAO {
                         productId(resultSet.getLong("product_id")).
                         name(resultSet.getString("product_name")).
                         discount(resultSet.getInt("discount")).
-                        sellerId(resultSet.getString("seller_id")).
+                        sellerId(resultSet.getLong("seller_id")).
                         isDeleted(resultSet.getBoolean("is_deleted")).
                         imgPath(resultSet.getString("img_path")).
                         price(resultSet.getFloat("price")).

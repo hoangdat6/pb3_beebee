@@ -17,6 +17,7 @@ public class Address {
     String ward;
     String district;
     String province;
+    Boolean isDefault;
     Timestamp createdAt;
     Timestamp updatedAt;
     public Address() {
