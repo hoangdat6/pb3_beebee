@@ -1,6 +1,7 @@
 package com.example.pbl3_1.controller;
 
 import com.example.pbl3_1.Util.SessionUtil;
+import com.example.pbl3_1.controller.dto.product.AddressDTO;
 import com.example.pbl3_1.controller.user_login.CheckLoggedUser;
 import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.User;
@@ -28,14 +29,14 @@ public class AddressController extends HttpServlet {
 
         if (CheckLoggedUser.checkLoggedUser(request, response, "/usersetting/address")) {
             User userLogin = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-            List<Address> list = addressService.getByIdUser(userLogin.getId());
+            List<AddressDTO> list = addressService.getByIdUser(userLogin.getId());
             String appPath = request.getServletContext().getRealPath("/");
             String filePath = appPath + "usersetting/data.json";
             AddressUtils addressUtils = new AddressUtils(filePath);
-            for (Address item : list){
-                item.setWard(addressUtils.getWardName(item.getProvince(),item.getDistrict(),item.getWard()));
-                item.setDistrict(addressUtils.getDistrictName(item.getProvince(),item.getDistrict()));
-                item.setProvince(addressUtils.getCityName(item.getProvince()));
+            for (AddressDTO item : list){
+                item.setWard_value(addressUtils.getWardName(item.getProvince(),item.getDistrict(),item.getWard()));
+                item.setDistrict_value(addressUtils.getDistrictName(item.getProvince(),item.getDistrict()));
+                item.setProvince_value(addressUtils.getCityName(item.getProvince()));
             }
             request.setAttribute("address", list);
             request.getRequestDispatcher("/usersetting/Location.jsp").forward(request, response);
