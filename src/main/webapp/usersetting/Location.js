@@ -124,7 +124,7 @@ function createExampleAddressItem() {
     };
     console.log(address.isDefault);
      $.ajax({
-        type: "GET",
+        type: "POST",
         url: "/PBL3_1_war_exploded/api/address",
 
         data: {

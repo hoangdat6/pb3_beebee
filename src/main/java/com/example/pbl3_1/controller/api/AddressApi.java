@@ -53,7 +53,7 @@ public class AddressApi extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String urlPattern = request.getServletPath();
         User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-        
+
 
         switch (urlPattern){
             case "/api/address" :
@@ -73,19 +73,19 @@ public class AddressApi extends HttpServlet {
                 }
                 break;
             case "/api/remove-address":
-                Long idAddress =Long.parseLong(request.getParameter("addressId"));
-                userAddressService.delete(user.getId(),idAddress);
-                addressService.delete(idAddress);
+                Long id =Long.parseLong(request.getParameter("addressId"));
+                userAddressService.delete(user.getId(),id);
+                addressService.delete(id);
                 break;
             case "/api/update-address" :
-                    Address address = new Address(Long.parseLong(request.getParameter("addressId")),request.getParameter("name"),request.getParameter("phone"),request.getParameter("detail"),request.getParameter("ward"),request.getParameter("district"),request.getParameter("city"));
-                    addressService.update(address);
-                    boolean isDefault = Boolean.parseBoolean(request.getParameter("is_default"));
-                        userAddressService.setDefault(user.getId(),Long.parseLong(request.getParameter("addressId")),isDefault);
-                    response.setContentType("application/json");
-                    break;
-                case "/api/set-default":
-                    userAddressService.setDefault(user.getId(),Long.parseLong(request.getParameter("addressId")),true);
-                }
+                Address updateAddress = new Address(Long.parseLong(request.getParameter("addressId")),request.getParameter("name"),request.getParameter("phone"),request.getParameter("detail"),request.getParameter("ward"),request.getParameter("district"),request.getParameter("city"));
+                addressService.update(updateAddress);
+                boolean isDefault = Boolean.parseBoolean(request.getParameter("is_default"));
+                    userAddressService.setDefault(user.getId(),Long.parseLong(request.getParameter("addressId")),isDefault);
+                response.setContentType("application/json");
+                break;
+            case "/api/set-default":
+                userAddressService.setDefault(user.getId(),Long.parseLong(request.getParameter("addressId")),true);
+        }
     }
 }

@@ -32,7 +32,7 @@ public class UserAddressDAOImpl implements UserAddressDAO {
     @Override
     public void setDefault(Long id, Long idAddress,boolean isDefault) {
         if(isDefault) {
-            String sql ="UPDATE user_address SET is_default = ? WHERE user_id = ? is_default= ?";
+            String sql ="UPDATE user_address SET is_default = ? WHERE user_id = ? and is_default= ?";
         genericDAO.update(sql,false,id,true);
         }
         String sql ="UPDATE user_address SET is_default = ? WHERE user_id = ? AND address_id = ?";
