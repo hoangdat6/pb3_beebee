@@ -6,7 +6,7 @@ import com.example.pbl3_1.entity.Order;
 import com.example.pbl3_1.entity.OrderDetail;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.OrderService;
-import com.example.pbl3_1.service.impl.OrderServiceImpl;
+import com.example.pbl3_1.service.impl.orderServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,7 +22,7 @@ import java.util.Objects;
 
 @WebServlet(name = "checkOutApi", urlPatterns = {"/api/checkout"})
 public class CheckOutApi extends HttpServlet {
-    private final OrderService orderService = new OrderServiceImpl();
+    private final OrderService orderService = new orderServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

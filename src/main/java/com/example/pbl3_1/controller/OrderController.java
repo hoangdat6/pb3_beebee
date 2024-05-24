@@ -10,7 +10,7 @@ import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.OrderService;
 import com.example.pbl3_1.service.ShoppingCartItemService;
 import com.example.pbl3_1.service.impl.AddressServiceImpl;
-import com.example.pbl3_1.service.impl.OrderServiceImpl;
+import com.example.pbl3_1.service.impl.orderServiceImpl;
 import com.example.pbl3_1.service.impl.ShoppingCartItemServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -25,7 +25,7 @@ import java.util.Map;
 
 @WebServlet(name = "orderController", urlPatterns = {"/check-out", "/order-detail", "/order-history"})
 public class OrderController extends HttpServlet {
-    private final OrderService orderService = new OrderServiceImpl();
+    private final OrderService orderService = new orderServiceImpl();
 
     private final AddressService addressService = new AddressServiceImpl();
     @Override

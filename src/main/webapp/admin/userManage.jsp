@@ -11,42 +11,42 @@
     <title>Quản lý người dùng</title>
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="./adminCommon/adminCommon.js"></script>
+    <script src="<c:url value="adminCommon/adminCommon.js"/>"></script>
     <link rel="stylesheet" href="../CommonCSS.css">
-    <link rel="stylesheet" href="./adminCommon/assets/css/adminCommon.css">
+    <link rel="stylesheet" href="<c:url value="adminCommon/assets/css/adminCommon.css"/>">
+    <script src="<c:url value="userManageAJAX.js"/>" type="text/javascript"></script>
 </head>
 
 <body>
+
     <%@ include file="./adminCommon/adminCommon.jsp" %>
     <div id="wrap">
-
-        <main class="container">
+        <main id="#mainContainer" class="container customer">
             <nav>
-                <div class="customer nav_item">
+                <div id="customer" class="customer nav_item">
                     Người mua
                 </div>
-                <div class="seller nav_item">
+                <div id="seller" class="seller nav_item">
                     Người bán
                 </div>
             </nav>
             <div class="content">
-                <div class="search">
-                    <div class="status">
-                        Trạng thái
-                        <select name="status" id="status">
-                            <option value="all">Tất cả</option>
-                            <option value="active">Đang hoạt động</option>
-                            <option value="inactive">Ngưng hoạt động</option>
-                        </select>
-                    </div>
+                    <div class="search">
+                        <div class="status">
+                            Trạng thái
+                            <select name="status" id="status">
+                                <option value="all">Tất cả</option>
+                                <option value="active">Đang hoạt động</option>
+                                <option value="inactive">Ngưng hoạt động</option>
+                            </select>
+                        </div>
 
-                    <div class="search_bar">
-                        Tìm kiếm
-                        <input type="search" name="user_search" id="user_search">
-                        <button>Tìm kiếm</button>
+                        <form method="get" class="search_bar" action="<c:url value="/searchCustomer"/>">
+                                Tìm kiếm
+                                <input type="text" name="user_search" id="user_search">
+                                <button id="search_customer">Tìm kiếm</button>
+                        </form>
                     </div>
-                </div>
-
                 <div class="search_result">
                     <h3>Kết quả tìm kiếm</h3>
                     <table id="table">
@@ -60,41 +60,52 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>vulinhtruong79@gmail.com</td>
-                                <td>Đang hoạt động</td>
-                                <td>2.000.000 VND</td>
+                        <c:forEach var="ListDataItem" items="${ListData}" varStatus="loop">
+                            <tr id="${ListDataItem.id}">
+                                <td>${loop.index + 1}</td>
+                                <td>${ListDataItem.name}</td>
+                                <td>${ListDataItem.email}</td>
+                                <td><c:choose>
+                                        <c:when test="${ListDataItem.status == true}">
+                                            Đang hoạt động
+                                        </c:when>
+                                        <c:when test="${ListDataItem.status == false}">
+                                            Đã khóa
+                                        </c:when>
+                                    </c:choose>
+                                </td>
+                                <td>${ListDataItem.total}</td>
                             </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>vulinhtruong79@gmail.com</td>
-                                <td>Đang hoạt động</td>
-                                <td>2.000.000 VND</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>vulinhtruong79@gmail.com</td>
-                                <td>Đang hoạt động</td>
-                                <td>2.000.000 VND</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>vulinhtruong79@gmail.com</td>
-                                <td>Đang hoạt động</td>
-                                <td>2.000.000 VND</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>Nguyễn Văn A</td>
-                                <td>vulinhtruong79@gmail.com</td>
-                                <td>Đang hoạt động</td>
-                                <td>2.000.000 VND</td>
-                            </tr>
+                            <script>
+                                // Khai báo các biến trong phạm vi của vòng lặp để đảm bảo chúng có giá trị riêng biệt cho mỗi mục
+                                <%--let imgAvatar${loop.index} = "<c:url value='${ListDataItem.imgPath}'/>";--%>
+                                <%--let imgShop${loop.index} = "<c:url value='${ListDataItem.shopImgPath}'/>";--%>
+
+                                // Xử lý sự kiện click cho hàng tương ứng với mỗi ID
+                                $("#table tbody").on('click', '#${ListDataItem.id}', function (e) {
+                                    let rowId = this.id; // Lấy ID của hàng được nhấp
+                                    $.ajax({
+                                        url: "/PBL3_1_war_exploded/getCustomerByID",
+                                        type: 'GET',
+                                        data: {
+                                            user_id: rowId
+                                        },
+                                        success: function (data) {
+                                            console.log(data);
+                                            <%--data.customer.imgPath = imgAvatar${loop.index};--%>
+                                            <%--if (data.shop != null || data.shop != undefined)--%>
+                                            <%--    data.shop.imgPath = imgShop${loop.index};--%>
+                                            generatePopup(data.customer, data.shop ?? null);
+                                        },
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            console.log('Error:', errorThrown);
+                                            console.log('Status:', textStatus);
+                                            console.log('jqXHR:', jqXHR);
+                                        }
+                                    });
+                                });
+                            </script>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -104,6 +115,7 @@
     <script type="text/javascript">
         generateSidebar('user');
     </script>
+<%--    <script type="text/javascript" src="userManage.js"></script>--%>
 </body>
 
 </html>

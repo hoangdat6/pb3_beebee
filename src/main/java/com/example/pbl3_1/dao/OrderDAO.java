@@ -9,4 +9,6 @@ public interface OrderDAO {
     List<ProductForCheckOut> getProductByOrderList(List<Long> shoppingCartItemId);
 
     Long addOrder(Order addressOrder);
+
+    List<Order> getOrderListByID(int userID);
 }
