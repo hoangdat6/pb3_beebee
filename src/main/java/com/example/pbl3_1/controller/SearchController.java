@@ -3,7 +3,7 @@ package com.example.pbl3_1.controller;
 import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.Util.TwoListContainer;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
-import com.example.pbl3_1.controller.dto.product.SellerDTO;
+import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.service.ProductService;
 import com.example.pbl3_1.service.impl.ProductServiceImpl;

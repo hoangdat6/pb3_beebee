@@ -1,7 +1,6 @@
 package com.example.pbl3_1.service;
 
-import com.example.pbl3_1.controller.dto.product.ProductForCheckOut;
-import com.example.pbl3_1.controller.dto.product.ProductForShoppingCartDTO;
+import com.example.pbl3_1.controller.dto.cart.CartInfoDTO;
 import com.example.pbl3_1.controller.dto.product.ShopForCartDTO;
 import com.example.pbl3_1.entity.ShoppingCartItem;
 
@@ -12,4 +11,5 @@ public interface ShoppingCartItemService {
     public ShoppingCartItem findById(Long id);
     public Integer update(ShoppingCartItem shoppingCartItem);
     public void deleteById(Long object);
+    List<CartInfoDTO> getCartsInfoByUserId(Long userId);
 }

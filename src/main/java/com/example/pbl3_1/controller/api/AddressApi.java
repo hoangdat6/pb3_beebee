@@ -2,8 +2,7 @@ package com.example.pbl3_1.controller.api;
 
 import com.example.pbl3_1.Util.AddressUtils;
 import com.example.pbl3_1.Util.SessionUtil;
-import com.example.pbl3_1.controller.AddressController;
-import com.example.pbl3_1.controller.user_login.CheckLoggedUser;
+import com.example.pbl3_1.controller.dto.address.AddressDTO;
 import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.entity.UserAddress;
@@ -11,7 +10,6 @@ import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.UserAddressService;
 import com.example.pbl3_1.service.impl.AddressServiceImpl;
 import com.example.pbl3_1.service.impl.UserAddressServiceImpl;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,21 +29,19 @@ public class AddressApi extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
 
-//        User userLogin = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-//        List<Address> list = addressService.getByIdUser(userLogin.getId());
-//        String appPath = request.getServletContext().getRealPath("/");
-//        String filePath = appPath + "usersetting/data.json";
-//        AddressUtils addressUtils = new AddressUtils(filePath);
-//        for (Address item : list){
-//            item.setWard(addressUtils.getWardName(item.getProvince(),item.getDistrict(),item.getWard()));
-//            item.setDistrict(addressUtils.getDistrictName(item.getProvince(),item.getDistrict()));
-//            item.setProvince(addressUtils.getCityName(item.getProvince()));
-//        }
-//
-//        list.get(0).setIsDefault(true);
-//
-//        ObjectMapper mapper = new ObjectMapper();
-//        mapper.writeValue(response.getOutputStream(), list);
+        User userLogin = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        List<AddressDTO> list = addressService.getByIdUser(userLogin.getId());
+        String appPath = request.getServletContext().getRealPath("/");
+        String filePath = appPath + "usersetting/data.json";
+        AddressUtils addressUtils = new AddressUtils(filePath);
+        for (AddressDTO item : list){
+            item.setWard(addressUtils.getWardName(item.getProvince(),item.getDistrict(),item.getWard()));
+            item.setDistrict(addressUtils.getDistrictName(item.getProvince(),item.getDistrict()));
+            item.setProvince(addressUtils.getCityName(item.getProvince()));
+        }
+
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writeValue(response.getOutputStream(), list);
     }
 
 

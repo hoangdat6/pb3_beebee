@@ -2,9 +2,8 @@ package com.example.pbl3_1.controller;
 
 import com.example.pbl3_1.Util.AddressUtils;
 import com.example.pbl3_1.Util.SessionUtil;
-import com.example.pbl3_1.controller.dto.product.AddressDTO;
+import com.example.pbl3_1.controller.dto.address.AddressDTO;
 import com.example.pbl3_1.controller.user_login.CheckLoggedUser;
-import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.impl.AddressServiceImpl;
@@ -14,9 +13,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.*;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import java.util.List;
 
 @WebServlet(name ="address", urlPatterns = "/usersetting/address")

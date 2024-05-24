@@ -57,7 +57,7 @@ function getAddress(overlay, PopUps, data){
                                     <span>${data[i].phone}</span>
                                 </div>`;
 
-        if(data[i].isDefault == true){
+        if(data[i].isDefault === true){
             addressListHTML += `<div class="mark">
                                 Mặc định
                             </div>`;

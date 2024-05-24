@@ -1,5 +1,6 @@
-package com.example.pbl3_1.controller.dto.product;
+package com.example.pbl3_1.controller.dto.cart;
 
+import com.example.pbl3_1.controller.dto.product.VariationDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -12,17 +13,14 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 public class ProductForCheckOut {
-    Long shoppingCartItemId;
     Long productItemId;
     Long productId;
-    Long sellerId;
+    String imgPath;
     String name;
+    Integer qtyInStock;
+    Integer quantity;
+    Float price;
     Integer discount;
     Boolean isDeleted;
-    String imgPath;
-    Integer qtyInStock;
-    Float price;
-    Integer quantity;
-    Float totalPrice;
     List<VariationDTO> variations;
 }

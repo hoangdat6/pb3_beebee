@@ -397,3 +397,37 @@ input[type="checkbox"]:checked::before {
     background-color: #141718;
     color: #fff;
 }
+
+.shop_locked {
+    font-size: 16px;
+    font-weight: 500;
+    color: #fff;
+    padding: 5px 10px;
+    background-color: #605F5F;
+    border-radius: 20px;
+}
+
+.sold_out {
+    padding: 0 5px;
+    background-color: #605F5F;
+    color: #fff;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 20px;
+    text-align: center;
+    width: 70px;
+}
+
+.sold-out-product {
+    opacity: 0.5; /* Làm mờ sản phẩm */
+    pointer-events: none; /* Ngăn chặn tương tác với sản phẩm */
+}
+
+.sold-out-product .Item-Remove {
+    pointer-events: auto; /* Cho phép tương tác với nút xóa */
+    opacity: 1; /* Khôi phục độ trong của nút xóa */
+}
+
+.sold-out-product .btn {
+    display: none; /* Ẩn tất cả các nút khác */
+}

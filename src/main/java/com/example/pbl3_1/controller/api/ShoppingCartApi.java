@@ -58,6 +58,7 @@ public class ShoppingCartApi extends HttpServlet {
         switch (urlPattern) {
             case "/api/remove":
                 String idCartItem = request.getParameter("idCartItem");
+                System.out.println(idCartItem);
                 shoppingCartItemService.deleteById(Long.parseLong(idCartItem));
                 response.setContentType("application/json");
                 response.getWriter().write("{\"status\": \"200\"}");
@@ -65,6 +66,7 @@ public class ShoppingCartApi extends HttpServlet {
             case  "/api/update":
                 Long cartId = Long.parseLong(request.getParameter("idCartItem"));
                 int quantity = Integer.parseInt(request.getParameter("quantity"));
+                System.out.println(cartId + " " + quantity);
                 ShoppingCartItem cartItem =  shoppingCartItemService.findById(cartId);
                 cartItem.setQuantity(quantity);
                 if(quantity==0) shoppingCartItemService.deleteById(cartId);

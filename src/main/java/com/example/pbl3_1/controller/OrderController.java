@@ -1,18 +1,13 @@
 package com.example.pbl3_1.controller;
 
 import com.example.pbl3_1.Util.AddressUtils;
-import com.example.pbl3_1.controller.dto.product.ProductForCheckOut;
-import com.example.pbl3_1.controller.dto.product.ProductForShoppingCartDTO;
-import com.example.pbl3_1.dao.AddressDAO;
+import com.example.pbl3_1.controller.dto.cart.CheckOutInfoDTO;
 import com.example.pbl3_1.entity.Address;
-import com.example.pbl3_1.entity.Order;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.OrderService;
-import com.example.pbl3_1.service.ShoppingCartItemService;
 import com.example.pbl3_1.service.impl.AddressServiceImpl;
 import com.example.pbl3_1.service.impl.OrderServiceImpl;
-import com.example.pbl3_1.service.impl.ShoppingCartItemServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -48,16 +43,25 @@ public class OrderController extends HttpServlet {
     public void showCheckOutPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Map<String, String>> orderDetail = (List<Map<String, String>>) request.getSession().getAttribute("orderDetail");
 
-        List<Long> shoppingCartItemId = new ArrayList<>();
+        User user = (User) request.getSession().getAttribute("USERMODEL");
 
-        for (Map<String, String> order : orderDetail) {
-            shoppingCartItemId.add(Long.parseLong(String.valueOf(order.get("shoppingCartItemId"))));
+        List<CheckOutInfoDTO> checkOutInfoDTOs = new ArrayList<>();
+
+        for (Map<String, String> map : orderDetail) {
+            Boolean isLocked = Boolean.parseBoolean(map.get("isLocked"));
+
+            CheckOutInfoDTO checkOutInfoDTO = CheckOutInfoDTO.builder()
+                    .shopId(Long.parseLong(map.get("shopId")))
+                    .shopName(map.get("shopName"))
+                    .shopImg(map.get("shopImg"))
+                    .build();
+
+            checkOutInfoDTOs.add(checkOutInfoDTO);
         }
 
-        User user = (User) request.getSession().getAttribute("USERMODEL");
-        List<ProductForCheckOut> productForCheckOuts = orderService.getProductByOrderList(shoppingCartItemId);
-        Address address = addressService.getDefaultAddressByUserId(user.getId());
 
+
+        Address address = addressService.getDefaultAddressByUserId(user.getId());
         if(address == null){
             response.sendRedirect("usersetting/address");
             return;

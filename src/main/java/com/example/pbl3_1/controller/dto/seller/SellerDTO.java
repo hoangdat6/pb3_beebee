@@ -1,5 +1,6 @@
-package com.example.pbl3_1.controller.dto.product;
+package com.example.pbl3_1.controller.dto.seller;
 
+import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import lombok.*;
 
 import java.sql.Timestamp;

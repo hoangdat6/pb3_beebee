@@ -1,7 +1,6 @@
 package com.example.pbl3_1.dao.impl;
 
-import com.example.pbl3_1.controller.dto.product.ProductForCheckOut;
-import com.example.pbl3_1.dao.GenericDAO;
+import com.example.pbl3_1.controller.dto.cart.ProductForCheckOut;
 import com.example.pbl3_1.dao.OrderDAO;
 import com.example.pbl3_1.entity.Order;
 import com.example.pbl3_1.entity.Product;
@@ -13,18 +12,16 @@ public class OrderDAOImpl implements OrderDAO {
     private AbstractDAOImpl<Product> abstractDAO = new AbstractDAOImpl<>();
     @Override
     public List<ProductForCheckOut> getProductByOrderList(List<Long> shoppingCartItemId) {
-        StringBuilder sql = new StringBuilder("select sci.id as shopping_cart_item_id,\n" +
+        StringBuilder sql = new StringBuilder("select " +
                 "       pi.id as product_item_id,\n" +
                 "       p.id as product_id,\n" +
                 "       p.name as product_name,\n" +
-                "       p.seller_id as seller_id,\n" +
                 "       p.discount as discount,\n" +
                 "       pi.img_path,\n" +
                 "       pi.price as price,\n" +
                 "       pi.qty_in_stock as qty_in_stock,\n" +
                 "       p.is_deleted as is_deleted,\n" +
                 "       sci.quantity as quantity,\n" +
-                "       pi.price * (1 - p.discount / 100) * sci.quantity as total_price\n" +
                 "from shopping_cart_item as sci\n" +
                 "join product_item as pi on sci.product_item_id = pi.id\n" +
                 "join products as p on pi.product_id = p.id\n" +
@@ -38,18 +35,15 @@ public class OrderDAOImpl implements OrderDAO {
         List<ProductForCheckOut> productForCheckOuts = abstractDAO.query(sql.toString(), resultSet -> {
             try {
                 return ProductForCheckOut.builder().
-                        shoppingCartItemId(resultSet.getLong("shopping_cart_item_id")).
                         productItemId(resultSet.getLong("product_item_id")).
                         productId(resultSet.getLong("product_id")).
                         name(resultSet.getString("product_name")).
                         discount(resultSet.getInt("discount")).
-                        sellerId(resultSet.getLong("seller_id")).
                         isDeleted(resultSet.getBoolean("is_deleted")).
                         imgPath(resultSet.getString("img_path")).
                         price(resultSet.getFloat("price")).
                         qtyInStock(resultSet.getInt("qty_in_stock")).
-                        quantity(resultSet.getInt("quantity")).
-                        totalPrice(resultSet.getFloat("total_price")).build();
+                        quantity(resultSet.getInt("quantity")).build();
             }catch (Exception e){
                 e.printStackTrace();
                 return null;
