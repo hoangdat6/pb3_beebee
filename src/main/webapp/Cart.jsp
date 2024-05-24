@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href ="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
     <link rel="stylesheet" href="<c:url value="/Cart.css"/>">
-    <link rel="stylesheet" href="<c:url value="AlertPopUp.css"/>">
+    <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
     <script type="text/javascript" src="<c:url value="AlertPopUp.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
@@ -74,35 +74,105 @@
             </div>
         </div>
 
+<%--        <div class="Table_Content">--%>
+<%--            <c:forEach items="${shoppingcarts}" var="shoppingcart">--%>
+<%--                <div class="Shop_Products">--%>
+<%--                    <input type="hidden" name="isLocked" value="${shoppingcart.isLocked}">--%>
+<%--                    <a class="Shop_Products-Header" href="<c:url value="/shop?id=${shoppingcart.sellerId}"/>">--%>
+<%--                        <input type="hidden" name="sellerId" value="${shoppingcart.sellerId}">--%>
+<%--                        <input type="checkbox" name="ShopPick" class="ShopPick">--%>
+<%--                        <img src="${shoppingcart.avatar}" alt="Shop" class="shop_avatar">--%>
+<%--                        <span class="Shop_Name">${shoppingcart.shopName}</span>--%>
+<%--                    </a>--%>
+<%--                    <div class="Shop_Products-Content">--%>
+<%--                        <c:forEach items="${shoppingcart.productForShoppingCarts}" var="productcart">--%>
+<%--                            <div class="Shop_Products-Cell">--%>
+<%--                                <input type="hidden" class="sellerId" name="sellerId" value="${shoppingcart.sellerId}">--%>
+<%--                                <div class="Check_box">--%>
+<%--                                    <label>--%>
+<%--                                        <input type="checkbox" name="Cart_CB" class="Cart_CB">--%>
+<%--                                    </label>--%>
+<%--                                </div>--%>
+<%--                                <a class="Product_Info" href="<c:url value="/product?id=${productcart.productId}"/>">--%>
+<%--                                    <div class="Product_Info-Item">--%>
+<%--                                        <img class="Cell_Col_1 product_img" src="${productcart.imgPath}" alt="Product Imge">--%>
+<%--                                    </div>--%>
+<%--                                    <div class="Product_Info-Item Detail_Info">--%>
+<%--                                        <div class="Item-Name">--%>
+<%--                                            ${productcart.name}--%>
+<%--                                        </div>--%>
+<%--                                        <div>--%>
+<%--                                            <p class="Item-Category">--%>
+<%--                                                ${productcart.nameVariation1}: ${productcart.valueVariation1} <br>--%>
+<%--                                                ${productcart.nameVariation2}: ${productcart.valueVariation2}--%>
+<%--                                            </p>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </a>--%>
+
+<%--                                <div class="Cell_Col_3">--%>
+<%--                                    <div class="Item-Qty">--%>
+<%--                                        <input type="hidden" name="id" value="${productcart.id}">--%>
+<%--                                        <input type="hidden" name="price" value="${productcart.price}">--%>
+<%--                                        <button class="btn" type="submit" name="action" value="decrease" onclick="UpdateCartItem(this)">-</button>--%>
+<%--                                        <input class="Qty__Input" name="quantity" value="${productcart.quantity}" min="1" readonly>--%>
+<%--                                        <button class="btn" type="submit" name="action" value="increase" onclick="UpdateCartItem(this)">+</button>--%>
+<%--                                    </div>--%>
+<%--                                    <span class="Item-Unit_Price">--%>
+<%--                                        <fmt:formatNumber value="${productcart.price}" type="currency"/>--%>
+<%--                                    </span>--%>
+
+<%--                                    <span class="Item-Total_Price">--%>
+<%--                                        <fmt:formatNumber value="${productcart.price * productcart.quantity}" type="currency"/>--%>
+<%--                                    </span>--%>
+<%--                                </div>--%>
+<%--                                <button class="Item-Remove" onclick="RemoveCartItem(this)" >--%>
+<%--                                    Xóa --%>
+<%--                                </button>--%>
+<%--                            </div>--%>
+<%--                        </c:forEach>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--            </c:forEach>--%>
+<%--        </div>--%>
+
         <div class="Table_Content">
-            <c:forEach items="${shoppingcarts}" var="shoppingcart">
+            <c:forEach items="${shoppingCarts}" var="shoppingcart">
                 <div class="Shop_Products">
-                    <a class="Shop_Products-Header" href="<c:url value="/shop?id=${shoppingcart.sellerId}"/>">
+                    <input type="hidden" name="isLocked" value="${shoppingcart.isLocked}">
+                    <a class="Shop_Products-Header" href="<c:url value="/shop?id=${shoppingcart.shopId}"/>">
+                        <input type="hidden" name="sellerId" value="${shoppingcart.shopId}">
                         <input type="checkbox" name="ShopPick" class="ShopPick">
-                        <img src="${shoppingcart.avatar}" alt="Shop">
+                        <img src="${shoppingcart.shopAvatar}" alt="Shop" class="shop_avatar">
                         <span class="Shop_Name">${shoppingcart.shopName}</span>
                     </a>
                     <div class="Shop_Products-Content">
-                        <c:forEach items="${shoppingcart.productForShoppingCarts}" var="productcart">
+                        <c:forEach items="${shoppingcart.productForCartDTOList}" var="productcart">
                             <div class="Shop_Products-Cell">
-                                <input type="hidden" name="sellerId" value="${shoppingcart.sellerId}">
                                 <div class="Check_box">
+                                    <input type="hidden" value="${productcart.isSoldOut}" class="isSoldOut">
+                                    <input type="hidden" value="${productcart.isDeleted}" class="isDeleted">
+                                    <input type="hidden" value="${productcart.isOutOfStock}" class="isOutOfStock">
+
                                     <label>
                                         <input type="checkbox" name="Cart_CB" class="Cart_CB">
                                     </label>
                                 </div>
                                 <a class="Product_Info" href="<c:url value="/product?id=${productcart.productId}"/>">
                                     <div class="Product_Info-Item">
-                                        <img class="Cell_Col_1" src="${productcart.imgPath}" alt="Product Imge">
+                                        <img class="Cell_Col_1 product_img" src="${productcart.imgPath}" alt="Product Imge">
                                     </div>
                                     <div class="Product_Info-Item Detail_Info">
                                         <div class="Item-Name">
-                                            ${productcart.name}
+                                                ${productcart.name}
                                         </div>
                                         <div>
                                             <p class="Item-Category">
-                                                    ${productcart.nameVariation1}: ${productcart.valueVariation1} <br>
-                                                    ${productcart.nameVariation2}: ${productcart.valueVariation2}
+<%--                                                    ${productcart.nameVariation1}: ${productcart.valueVariation1} <br>--%>
+<%--                                                    ${productcart.nameVariation2}: ${productcart.valueVariation2}--%>
+                                                <c:forEach items="${productcart.variations}" var="variation">
+                                                    ${variation.name}: ${variation.value} <br>
+                                                </c:forEach>
                                             </p>
                                         </div>
                                     </div>
@@ -110,22 +180,23 @@
 
                                 <div class="Cell_Col_3">
                                     <div class="Item-Qty">
-                                        <input type="hidden" name="id" value="${productcart.id}">
+                                        <input type="hidden" name="id" value="${productcart.shoppingCartItemId}">
                                         <input type="hidden" name="price" value="${productcart.price}">
+                                        <input type="hidden" name="discount" value="${productcart.discount}">
                                         <button class="btn" type="submit" name="action" value="decrease" onclick="UpdateCartItem(this)">-</button>
                                         <input class="Qty__Input" name="quantity" value="${productcart.quantity}" min="1" readonly>
                                         <button class="btn" type="submit" name="action" value="increase" onclick="UpdateCartItem(this)">+</button>
                                     </div>
                                     <span class="Item-Unit_Price">
-                                        <fmt:formatNumber value="${productcart.price}" type="currency"/>
+                                        <fmt:formatNumber value="${productcart.price * (1 - productcart.discount / 100.0)}" type="currency"/>
                                     </span>
 
                                     <span class="Item-Total_Price">
-                                        <fmt:formatNumber value="${productcart.price * productcart.quantity}" type="currency"/>
+                                        <fmt:formatNumber value="${(productcart.price * (1 - productcart.discount / 100.0)) * productcart.quantity}" type="currency"/>
                                     </span>
                                 </div>
                                 <button class="Item-Remove" onclick="RemoveCartItem(this)" >
-                                    Xóa 
+                                    Xóa
                                 </button>
                             </div>
                         </c:forEach>
@@ -134,6 +205,7 @@
             </c:forEach>
         </div>
     </main>
+
 
     <aside>
         <h3 class="Cart_Summary-Title">
@@ -187,8 +259,8 @@
         </div>
     </aside>
 </div>
-
+<script src="<c:url value="/Pop-ups.js"/>"></script>
+<script src="<c:url value="/AlertPopUp.js"/>"></script>
 <script src="<c:url value="/Cart.js"/>"></script>
-
 <%@ include file="Footer.jsp" %>
 </body>

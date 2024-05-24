@@ -1,9 +1,9 @@
-package com.example.pbl3_1.controller.dto.product;
+package com.example.pbl3_1.controller.dto.address;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import java.sql.Timestamp;
+
 @Getter
 @Setter
 @Builder
@@ -19,5 +19,5 @@ public class AddressDTO {
     String province;
     String fullname;
     String phone;
-    String isDefault;
+    Boolean isDefault;
 }

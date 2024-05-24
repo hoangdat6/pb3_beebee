@@ -1,7 +1,7 @@
 package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
-import com.example.pbl3_1.controller.dto.product.SellerDTO;
+import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.SellerDAO;
 import com.example.pbl3_1.dao.SellerFollowDAO;
 import com.example.pbl3_1.dao.impl.SellerDAOImpl;

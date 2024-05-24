@@ -2,7 +2,7 @@ package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
-import com.example.pbl3_1.controller.dto.product.SellerDTO;
+import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.CategoryDAO;
 import com.example.pbl3_1.dao.ProductDAO;
 import com.example.pbl3_1.dao.ProductItemDAO;
@@ -11,7 +11,6 @@ import com.example.pbl3_1.dao.impl.ProductDAOImpl;
 import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
 import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.Product;
-import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.entity.Variation;
 import com.example.pbl3_1.service.ProductService;
 import com.example.pbl3_1.service.VariationService;

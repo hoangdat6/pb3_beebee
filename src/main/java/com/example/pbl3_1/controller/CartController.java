@@ -24,7 +24,9 @@ public class CartController extends HttpServlet {
 
         if(CheckLoggedUser.checkLoggedUser(request, response, "/cart")) {
             User userLogin = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-            request.setAttribute("shoppingcarts", shoppingCartItemService.findByIdUser(userLogin.getId()));
+//            request.setAttribute("shoppingcarts", shoppingCartItemService.findByIdUser(userLogin.getId()));
+            request.setAttribute("shoppingCarts", shoppingCartItemService.getCartsInfoByUserId(userLogin.getId()));
+
             request.getRequestDispatcher("Cart.jsp").forward(request, response);
         }
     }

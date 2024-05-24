@@ -1,6 +1,6 @@
 package com.example.pbl3_1.dao.impl;
 
-import com.example.pbl3_1.controller.dto.product.AddressDTO;
+import com.example.pbl3_1.controller.dto.address.AddressDTO;
 import com.example.pbl3_1.dao.AddressDAO;
 import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.dao.UserAddressDAO;
@@ -46,14 +46,13 @@ public class AddressDAOImpl implements AddressDAO {
                         .ward(resultSet.getString("ward"))
                         .province(resultSet.getString("province"))
                         .district(resultSet.getString("district"))
-                        .isDefault(String.valueOf(resultSet.getBoolean("is_default")))
+                        .isDefault(resultSet.getBoolean("is_default"))
                         .build();
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
         },id);
     }
-// <<<<<<< hanh
     public void delete(Long id){
         String sql = "DELETE FROM address WHERE id = ?";
         genericDAO.delete(sql,id);
@@ -71,7 +70,7 @@ public class AddressDAOImpl implements AddressDAO {
                 address.getFullname(),
                 address.getPhone(),
                 address.getId());
-// =======
+    }
 
     @Override
     public Address getDefaultAddressByUserId(Long id) {
@@ -103,6 +102,5 @@ public class AddressDAOImpl implements AddressDAO {
             }
         }, id);
         return address.isEmpty() ? null : address.get(0);
-// >>>>>>> main
     }
 }

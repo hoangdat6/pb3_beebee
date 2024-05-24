@@ -1,6 +1,6 @@
 package com.example.pbl3_1.service.impl;
 
-import com.example.pbl3_1.controller.dto.product.AddressDTO;
+import com.example.pbl3_1.controller.dto.address.AddressDTO;
 import com.example.pbl3_1.dao.AddressDAO;
 import com.example.pbl3_1.dao.impl.AddressDAOImpl;
 import com.example.pbl3_1.entity.Address;
@@ -28,9 +28,10 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public Integer update(Address address) {
         return addressDAO.update(address);
-// =======
+    }
+
     public Address getDefaultAddressByUserId(Long id) {
         return addressDAO.getDefaultAddressByUserId(id);
-// >>>>>>> main
+
     }
 }

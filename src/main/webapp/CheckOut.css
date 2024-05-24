@@ -8,7 +8,7 @@
     color: #6C7275;
 }
 
-#CO_Content label, 
+#CO_Content label,
 #CO_Content .CO-Form2 h4{
     font-weight: bold;
 }
@@ -62,192 +62,261 @@ span.Process_Item-Number {
 
 #CO_Content{
     display: flex;
+    flex-direction: column;
+    gap: 30px;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: center;
     padding-bottom: 60px;
-    align-items: flex-start;
 }
 
-.CO_Content-Col1 {
-    margin-right: 60px;
+.content_item {
+    width: 60%;
+    border: 1px solid #CBCBCB;
+    border-radius: 8px;
+    box-shadow: 7px -3px 10px 0px #CBCBCB;
+    padding: 20px;
 }
 
-.CO-Form {
-    min-width: 643px;
-    padding: 12px 24px;
-    border: 1px solid #6C7275;
-    font-size: 14px;
-    margin-bottom: 24px;
-    border-radius: 5px;
-}
-
-.flex {
-    display: flex;
-}
-
-.flex-space_between {
-    justify-content: space-between;
-}
-
-.CO-title-2 input{
-    padding: 6px 12px;
-    margin-top: 10px;
-    border: 1px solid #6C7275;
-    border-radius: 6px;
-    margin-bottom: 24px;
-}
-
-.CO-Form-Item--Title {
-    font-size: 20px;
-    font-weight: 600;
-    color: #141718;
-    margin-bottom: 24px;
-}
-
-.CO-Form--Content select{
-    width: 100%;
-    padding: 6px 12px;
-    margin-top: 10px;
-    border: 1px solid #6C7275;
-    border-radius: 6px;
-    margin-bottom: 24px;
-}
-
-.CO-Form--Content select option{
-    padding: 8px 12px;
-}
-
-.Payment_Method{
-    font-size: 16px;
-    font-weight: 500;
-    text-transform: uppercase;
-    padding: 10px 12px;
-}
-
-.Payment_Method label, input {
-    cursor: pointer;
-}
-
-.Col1--Button{
-    width: 100%;
-    text-align: center;
-    background-color: #141718;
-    color: #fff;
-    font-size: 16px;
-    font-weight: 500;
-    padding: 14px 14px;
-    border-radius: 6px;
-}
-
-.Col1--Button:hover{
-    opacity: 0.5;
-}
-
-.CO_Content-Col2{
-    padding: 12px 24px;
-    border: 1px solid #6C7275;
-    font-size: 14px;
-    margin-bottom: 24px;
-    border-radius: 5px;
-    min-width: 420px;
-    max-height: 768px;
-}
-
-.CO_Content-Col2 .CO-Col2--Title{
-    font-size: 28px;
-    font-weight: 500;
-    color:#141718;
-}
-
-.CO-Col2-Product{ 
-    margin-bottom: 16px;
-    margin-top: 16px;
+.address_content {
     display: flex;
     flex-direction: column;
-    max-height: 480px;
-    overflow-y: scroll;
+    gap: 20px;
 }
 
-.Col2-Product-Item {
-    display: flex;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #E8ECEF;
-    margin: 10px 0;;
-}
-
-.CO-Col2-Product img{
-    max-width: 90px;
-    flex: 1;
-}
-
-.Col2-Product-Item--Main{
-    margin: 0 10px;
-    flex: 2;
-}
-
-.Col2-Main--Qty{
-    width: 80px;
-    height: 32px;
-    padding: 10px 8px;
-    border: 1px solid #6C7275;
-    border-radius: 4px;
+.title_address {
     display: flex;
     justify-content: space-between;
+}
+
+.title_address .change_address {
+    color: #377DFF;
+}
+
+.sub_title {
+    display: flex;
+    gap: 10px;
+}
+
+.address_content--item {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-left: 20px;
+}
+
+.info_cus {
+    font-weight: bold;
+}
+
+section {
+    width: 80%;
+}
+
+.product_content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border: 1px solid #CBCBCB;
+    border-radius: 8px;
+    box-shadow: 7px -3px 10px 0px #CBCBCB;
+    padding: 20px;
+}
+
+.header_product {
+    display: flex;
     align-items: center;
-    margin-top: 5px;
+    gap: 40px;
+    padding: 0 100px 20px 20px;
+    border-bottom: 1px solid #CBCBCB;
 }
 
-.btn.Qty__Input {
-    max-width: 20px;
-    text-align: center;
+.col1 {
+    flex: 8;
 }
 
-.Col2-Product-Item--Price{
-    font-size: 14px;
-    font-weight: 600;
+.col2 {
+    flex: 3;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product_of_shop {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+}
+
+.shop_content img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    object-fit: cover;
+}
+
+.shop_content {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    gap: 10px;
+}
+
+.product_item img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.product_item {
+    display: flex;
+    border-bottom: 1px solid #CBCBCB;
+    padding: 0 100px 20px 20px;
+    gap: 20px;
+}
+
+.product_img {
     flex: 1;
 }
 
-.CO-Same{
-    padding-bottom: 10px;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #E8ECEF;
-    width: 100%;
-    font-size: 16px;
-    color: #141718;
+.product_info {
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px 0;
+    flex : 7;
 }
 
-.CO-Same .CO-Same--Item{
+.product_name {
+    font-size: 14px;
+    font-weight: 500;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 80%;
+
+
+}
+
+.product_price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 3;
+}
+
+.checkout_of_shop {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 100px 10px 30px;
+}
+
+.shop_voucher {
+    display: flex;
+    gap: 30px;
+}
+
+.shop_voucher a {
+    color: #377DFF;
+}
+
+.shop_voucher a:hover {
+    text-decoration: underline;
+}
+
+.total_payment {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    padding: 10px 0px 30px;
+}
+
+.payment_item {
+    display: flex;
+    justify-content: space-between;
     font-weight: 600;
 }
 
-.CO-Voucher{
-
+.total_pay {
+    font-size: 16px;
+    gap: 20px;
 }
 
-.CO-Voucher i{
-    margin-right: 5px;
+.payment_item > .voucher_money{
+    color: #FF5630;
 }
 
-.CO-Voucher .Voucher-Code{
-    margin-right: 50%;
-}
-
-.CO-Voucher .Voucher-Money{
+.total_pay > .total_money {
+    font-weight: 600;
     color: #38CB89;
+}
+
+.shopbee_voucher {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 100px 10px 30px;
+}
+
+.shopbee_voucher a {
+    color: #377DFF;
+}
+
+.shopbee_voucher a:hover {
+    text-decoration: underline;
+}
+
+.shopbee_voucher span {
+    font-size: 16px;
     font-weight: 600;
 }
 
-.CO-Delivery{
+.payment_method {
+    display: flex;
+    align-items: center;
+    padding-left: 30px;
+    gap: 20px;
+}
+
+.payment_method span {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.radio_payment-item {
+    display: flex;
+    gap: 10px;
+    border: 1px solid #CBCBCB;
+    border-radius: 8px;
+    padding: 5px 10px;
+}
+
+.all_order_total {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.all_order_total-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 10px 100px 10px 30px;
+}
+
+.all_order_total-item {
+    display: flex;
+    gap: 40px;
     justify-content: space-between;
 }
 
-.CO-Price{
-    justify-content: space-between;
+.total_all {
+    font-size: 18px;
 }
 
-.CO-Total{
-    font-size: 20px;
-    justify-content: space-between;
+.total_all-money {
+    font-weight: 600;
+    color: #38CB89;
 }
