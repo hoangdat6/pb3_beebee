@@ -1,6 +1,8 @@
 package com.example.pbl3_1.service.impl;
 
-import com.example.pbl3_1.controller.dto.product.ProductForCheckOut;
+import com.example.pbl3_1.controller.dto.cart.CartInfoDTO;
+import com.example.pbl3_1.controller.dto.cart.ProductForCartDTO;
+import com.example.pbl3_1.controller.dto.cart.ProductItemInfoForCartDTO;
 import com.example.pbl3_1.controller.dto.product.ProductForShoppingCartDTO;
 import com.example.pbl3_1.controller.dto.product.ShopForCartDTO;
 import com.example.pbl3_1.dao.*;
@@ -73,6 +75,7 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
                         product.getSellerId(),
                         seller.getAvatarMain(),
                         seller.getShopName(),
+                        seller.getIsLocked(),
                         new ProductForShoppingCartDTO(
                                 item.getId(),
                                 product.getId(),
@@ -102,4 +105,58 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
     public void deleteById(Long object) {
         shoppingCartItemDAO.deleteById(object);
     }
+
+    @Override
+    public List<CartInfoDTO> getCartsInfoByUserId(Long userId) {
+        List<ProductItemInfoForCartDTO> productItemInfoForCartDTOS = shoppingCartItemDAO.getCartInfoByUserId(userId);
+
+        List<CartInfoDTO> cartInfoDTOS = new ArrayList<>();
+
+        Long prevId = -1L;
+
+        for (ProductItemInfoForCartDTO item : productItemInfoForCartDTOS) {
+            CartInfoDTO cartInfoDTO = null;
+            if (!Objects.equals(item.getShopId(), prevId)) {
+                cartInfoDTO = CartInfoDTO.builder()
+                        .shopId(item.getShopId())
+                        .shopName(item.getShopName())
+                        .shopAvatar(item.getShopImg())
+                        .isLocked(item.getSellerIsLocked())
+                        .productForCartDTOList(new ArrayList<>())
+                        .build();
+                cartInfoDTOS.add(cartInfoDTO);
+            } else {
+                cartInfoDTO = cartInfoDTOS.get(cartInfoDTOS.size() - 1);
+                if(cartInfoDTO.getProductForCartDTOList() == null) {
+                    cartInfoDTO.setProductForCartDTOList(new ArrayList<>());
+                }
+
+            }
+
+            ProductForCartDTO productForCartDTO = ProductForCartDTO.builder()
+                    .shoppingCartItemId(item.getShoppingCartItemId())
+                    .productId(     item.getProductId())
+                    .productItemId( item.getProductItemId())
+                    .name(          item.getProductName())
+                    .imgPath(       item.getImgPath())
+                    .price(         item.getPrice())
+                    .quantity(      item.getQuantity())
+                    .discount(      item.getDiscount())
+                    .qtyInStock(    item.getQtyInStock())
+                    .isDeleted(     item.getProductIsDeleted())
+                    .isOutOfStock(  item.getIsOutOfStock())
+                    .isSoldOut(     item.getIsSoldOut())
+                    .build();
+
+            productForCartDTO.setVariations(variationOptionDAO.getVariationDTOByProductItemId(item.getProductItemId()));
+
+            cartInfoDTO.getProductForCartDTOList().add(productForCartDTO);
+
+            prevId = item.getShopId();
+        }
+
+        return cartInfoDTOS;
+    }
+
+
 }

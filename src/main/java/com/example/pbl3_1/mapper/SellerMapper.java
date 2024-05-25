@@ -20,6 +20,7 @@ public class SellerMapper implements RowMapper<Seller> {
                     .shopName(rs.getString("shop_name"))
                     .description(rs.getString("description"))
                     .addressId(rs.getLong("address_id"))
+                    .isLocked(rs.getBoolean("is_locked"))
 //                    .userId(userDAO.findById(rs.getInt("id")))
                     .build();
             return   seller;

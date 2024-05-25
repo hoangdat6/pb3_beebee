@@ -20,6 +20,7 @@ public class Seller {
     private Long userId;
     private Integer views;
     private Integer followers;
+    private Boolean isLocked;
     private Timestamp createdAt;
     private Timestamp updatedAt;
 

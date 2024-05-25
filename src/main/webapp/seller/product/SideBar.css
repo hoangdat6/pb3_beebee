@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    background-color: #ECEBEE;
+    font-family: 'SF Pro Display', sans-serif;
+}
+
+.Seller_Header {}
+
+.status {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.Main_Header_wrap {
+    background-color: #fff;
+    filter: drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.25));
+    position: sticky;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+
+.Main_Header {
+    background-color: #fff;
+    display: flex;
+    top: 0;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-size: 16px;
+    font-weight: 500;
+    height: 54px;
+}
+
+.Main_Header .left {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.Main_Header .left .title {
+    font-size: 24px;
+}
+
+.Main_Header .right {
+    display: flex;
+    align-items: center;
+}
+
+.Main_Header .right .item {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    width: 127px;
+    height: 54px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.Main_Header .right .item:hover {
+    color: #ee4d2d;
+}
+
+.Main_Header .right .Account_option {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    min-width: 190px;
+    height: 54px;
+    padding: 5px 10px;
+}
+
+input[type="file"] {
+    display: none;
+}
+
+
+/* .Side_nav {
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 15%;
+    right: 9%;
+    padding: 10px;
+    display: block;
+    background-color: #fff;
+    border-radius: 12px;
+}
+
+.Side_nav a {
+    display: block;
+    margin: 10px 0;
+}
+
+.Side_nav a:hover {
+    color: #ee4d2d;
+} */
+
+.side_bar {
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    position: fixed;
+    left: 9%;
+    top: 15%;
+    border-radius: 10px;
+}
+
+.side_bar .item {
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.side_bar .subitem {
+    font-size: 14px;
+    padding: 5px 10px;
+    margin-left: 30px;
+    font-weight: 400;
+}
+
+.side_bar i {
+    margin-right: 5px;
+    width: 15px;
+}
+
+.side_bar a {
+    cursor: pointer;
+}
+
+.side_bar a:hover {
+    color: #ee4d2d;
+}
+
+.side_nav p {
+    color: #6C7275;
+    font-size: 13px;
+}
+
+a {
+    text-decoration: none;
+    color: #000;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.voucher_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px auto;
+    width: 100%;
+    gap: 10px;
+}
+
+.content_item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.flex_section {
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.common_container {
+    margin: 30px 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.common_input {
+    padding: 10px;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.common_input:focus {
+    outline: none;
+    border: 1px solid #ee4d2d;
+}
+
+.common_label {
+    font-size: 12px;
+    color: #6C7275;
+}
+
+.common_span {
+    width: 200px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333333;
+    margin: 10px;
+}
+
+.info_item {
+    display: flex;
+    justify-self: start;
+    align-content: center;
+    margin-bottom: 20px;
+}
+
+.info_item-input {
+    width: 100%;
+}
+
+.info_item-flex {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.info_item-flex input {
+    width: 100%;
+    padding: 8px 10px;
+}
+
+#voucher_opt {
+    padding: 10px;
+    border: 1px solid #E0E0E0;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border-right: none;
+    background-color: #fff;
+}
+
+.info_select-container {
+    display: flex;
+}
+
+.info_select-container-input {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    font-size: 15px;
+    width: 100%;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+#voucher_type,
+#voucher_opt_access {
+    padding: 10px;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.info_item-btn input {
+    padding: 10px;
+    border: 1px solid #ee4d2d;
+    border-radius: 5px;
+    color: #ee4d2d;
+}
+
+.info_item-btn input:hover {
+    background-color: #ee4d2d;
+    color: #fff;
+    cursor: pointer;
+}
+
+.btn {
+    display: inline-block;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.btn_wrap {
+    width: 790px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 30px
+}
+
+.btnSubmit,
+.btnCancel {
+    padding: 8px 30px;
+}
+
+.btnSubmit {
+    color: #fff;
+    background-color: #131417 !important;
+}
+
+.btnCancel {
+    color: #131417;
+    background-color: #fff !important;
+    border: 1px solid #131417 !important;
+}

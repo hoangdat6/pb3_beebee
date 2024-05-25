@@ -2,11 +2,10 @@ package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
-import com.example.pbl3_1.controller.dto.product.SellerDTO;
+import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.ProductDAO;
 import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.Product;
-import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.mapper.ProductMapper;
 
 import java.sql.SQLException;
@@ -193,7 +192,7 @@ public class ProductDAOImpl implements ProductDAO {
                             resultSet.getString("img_path"),
                             resultSet.getLong("seller_id"),
                             resultSet.getString("shop_name"),
-                            resultSet.getString("avatar")
+                            resultSet.getString("avatar").split(",")[0]
                     );
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -254,7 +253,7 @@ public class ProductDAOImpl implements ProductDAO {
                 try {
                     return new SellerDTO(
                             resultSet.getLong("id"),
-                            resultSet.getString("avatar"),
+                            resultSet.getString("avatar").split(",")[0],
                             resultSet.getString("shop_name"),
                             resultSet.getInt("views")
                     );
@@ -282,7 +281,7 @@ public class ProductDAOImpl implements ProductDAO {
                 try {
                     return new SellerDTO(
                             resultSet.getLong("id"),
-                            resultSet.getString("avatar"),
+                            resultSet.getString("avatar").split(",")[0],
                             resultSet.getString("shop_name"),
                             resultSet.getInt("views")
                     );

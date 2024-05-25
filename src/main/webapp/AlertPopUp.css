@@ -10,6 +10,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
+    min-width: 500px;
 }
 
 .card {
@@ -19,14 +20,14 @@
 }
 
 .alert-popup-title {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 600;
     color: #333;
     margin-top: 1.875rem;
 }
 
 .alert-popup-message {
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin-top: 1.875rem;
 }
 

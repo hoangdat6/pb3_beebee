@@ -42,6 +42,7 @@ public class ConfirmEmailController extends HttpServlet {
         if(confirmcode.equals(code))
         {
             String status = sessionUtil.getValue(request, "cfstatus").toString();
+            System.out.println("status" + status);
             if(status.equals("register"))
             {
                 System.out.println("Da dk thanh cong");
