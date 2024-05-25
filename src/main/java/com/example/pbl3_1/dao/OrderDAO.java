@@ -1,6 +1,7 @@
 package com.example.pbl3_1.dao;
 
-import com.example.pbl3_1.controller.dto.cart.ProductForCheckOut;
+import com.example.pbl3_1.controller.dto.cart.ProductItemInfoForCartDTO;
+import com.example.pbl3_1.controller.dto.checkout.ProductForCheckOut;
 import com.example.pbl3_1.entity.Order;
 
 import java.util.List;
@@ -10,5 +11,5 @@ public interface OrderDAO {
 
     Long addOrder(Order addressOrder);
 
-    List<Order> getOrderListByID(int userID);
+    List<ProductItemInfoForCartDTO> getCartInfoByUserId(List<Long> shoppingCartItemId);
 }

@@ -5,6 +5,7 @@ import com.example.pbl3_1.controller.dto.cart.ProductForCartDTO;
 import com.example.pbl3_1.controller.dto.cart.ProductItemInfoForCartDTO;
 import com.example.pbl3_1.controller.dto.product.ProductForShoppingCartDTO;
 import com.example.pbl3_1.controller.dto.product.ShopForCartDTO;
+import com.example.pbl3_1.controller.dto.product.VariationDTO;
 import com.example.pbl3_1.dao.*;
 import com.example.pbl3_1.dao.impl.*;
 import com.example.pbl3_1.entity.*;
@@ -148,7 +149,18 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
                     .isSoldOut(     item.getIsSoldOut())
                     .build();
 
-            productForCartDTO.setVariations(variationOptionDAO.getVariationDTOByProductItemId(item.getProductItemId()));
+            List<VariationDTO> variations = variationOptionDAO.getVariationDTOByProductItemId(item.getProductItemId());
+
+            StringBuilder variationsString = new StringBuilder();
+            for (int i = 0; i < variations.size(); i++) {
+                if(i == variations.size() - 1) {
+                    variationsString.append(variations.get(i).getName()).append(": ").append(variations.get(i).getValue());
+                    break;
+                }
+                variationsString.append(variations.get(i).getName()).append(": ").append(variations.get(i).getValue()).append(", ");
+            }
+
+            productForCartDTO.setVariations(variationsString.toString());
 
             cartInfoDTO.getProductForCartDTOList().add(productForCartDTO);
 

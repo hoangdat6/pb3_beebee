@@ -21,8 +21,6 @@ function AddressPopUp(){
     let PopUps = document.createElement('div');
     PopUps.id = 'AddressPop_ups';
 
-    let addressList = null;
-
     $.ajax({
         url: '/PBL3_1_war_exploded/api/address',
         type: 'GET',
@@ -31,8 +29,6 @@ function AddressPopUp(){
             getAddress(overlay, PopUps, data);
         }
     })
-
-
 }
 
 let addressList = null;

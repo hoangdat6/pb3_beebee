@@ -21,7 +21,7 @@ public class OrderApi extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
 
-        List<Map<String, String>> orderDetail = objectMapper.readValue(request.getReader(), List.class);
+        List<Map<Object, Object>> orderDetail = objectMapper.readValue(request.getReader(), List.class);
         SessionUtil.getInstance().putValue(request, "orderDetail", orderDetail);
 
         System.out.println(orderDetail);
