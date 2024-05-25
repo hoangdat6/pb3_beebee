@@ -60,52 +60,6 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="ListDataItem" items="${ListData}" varStatus="loop">
-                            <tr id="${ListDataItem.id}">
-                                <td>${loop.index + 1}</td>
-                                <td>${ListDataItem.name}</td>
-                                <td>${ListDataItem.email}</td>
-                                <td><c:choose>
-                                        <c:when test="${ListDataItem.status == true}">
-                                            Đang hoạt động
-                                        </c:when>
-                                        <c:when test="${ListDataItem.status == false}">
-                                            Đã khóa
-                                        </c:when>
-                                    </c:choose>
-                                </td>
-                                <td>${ListDataItem.total}</td>
-                            </tr>
-                            <script>
-                                // Khai báo các biến trong phạm vi của vòng lặp để đảm bảo chúng có giá trị riêng biệt cho mỗi mục
-                                <%--let imgAvatar${loop.index} = "<c:url value='${ListDataItem.imgPath}'/>";--%>
-                                <%--let imgShop${loop.index} = "<c:url value='${ListDataItem.shopImgPath}'/>";--%>
-
-                                // Xử lý sự kiện click cho hàng tương ứng với mỗi ID
-                                $("#table tbody").on('click', '#${ListDataItem.id}', function (e) {
-                                    let rowId = this.id; // Lấy ID của hàng được nhấp
-                                    $.ajax({
-                                        url: "/PBL3_1_war_exploded/getCustomerByID",
-                                        type: 'GET',
-                                        data: {
-                                            user_id: rowId
-                                        },
-                                        success: function (data) {
-                                            console.log(data);
-                                            <%--data.customer.imgPath = imgAvatar${loop.index};--%>
-                                            <%--if (data.shop != null || data.shop != undefined)--%>
-                                            <%--    data.shop.imgPath = imgShop${loop.index};--%>
-                                            generatePopup(data.customer, data.shop ?? null);
-                                        },
-                                        error: function (jqXHR, textStatus, errorThrown) {
-                                            console.log('Error:', errorThrown);
-                                            console.log('Status:', textStatus);
-                                            console.log('jqXHR:', jqXHR);
-                                        }
-                                    });
-                                });
-                            </script>
-                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -114,6 +68,13 @@
     </div>
     <script type="text/javascript">
         generateSidebar('user');
+            let buttonClicked = $("#customer");
+            buttonClicked.css("color", "red");
+            buttonClicked.css("borderBottomColor", "red");
+            let URL = "/getAllCustomer";
+            getDataByURL(URL).then(data => {
+                rerenderTable(data, ["STT", "Tên", "Email", "Trạng thái", "Chi tiêu/năm"]);
+            });
     </script>
 <%--    <script type="text/javascript" src="userManage.js"></script>--%>
 </body>
