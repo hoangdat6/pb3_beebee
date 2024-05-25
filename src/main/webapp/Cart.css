@@ -247,7 +247,7 @@ p.Item-Category {
     margin-bottom: 12px;
 }
 
- .Cart_Voucher{
+.Cart_Voucher{
     border-radius: 5px;
     padding: 8px 12px;
     border: 1px solid #121314;
@@ -278,7 +278,7 @@ p.Item-Category {
     border: 1px solid #121314;
     border-radius: 5px;
     margin: 10px 0;
-    
+
 }
 
 .Cart_Summary-Voucher .Total-Price{
