@@ -1,4 +1,4 @@
-package com.example.pbl3_1.controller.dto.cart;
+package com.example.pbl3_1.controller.dto.checkout;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +17,7 @@ public class CheckOutInfoDTO {
     private Long shopId;
     private String shopName;
     private String shopImg;
-    private Boolean isDeleted;
+    private Boolean isLocked;
     private List<ProductForCheckOut> products;
 
     public CheckOutInfoDTO () {

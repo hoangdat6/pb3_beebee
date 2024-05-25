@@ -91,6 +91,7 @@ span.Process_Item-Number {
 
 .title_address .change_address {
     color: #377DFF;
+    cursor: pointer;
 }
 
 .sub_title {
@@ -148,8 +149,8 @@ section {
 }
 
 .shop_content img {
-    width: 50px;
-    height: 50px;
+    width: 30px;
+    height: 30px;
     border-radius: 50px;
     object-fit: cover;
 }
@@ -159,6 +160,8 @@ section {
     align-items: center;
     font-size: 16px;
     gap: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #CBCBCB;
 }
 
 .product_item img{
@@ -220,6 +223,7 @@ section {
 
 .shop_voucher a {
     color: #377DFF;
+    cursor: pointer;
 }
 
 .shop_voucher a:hover {
@@ -231,12 +235,12 @@ section {
     gap: 10px;
     flex-direction: column;
     padding: 10px 0px 30px;
+    font-weight: 600;
 }
 
 .payment_item {
     display: flex;
     justify-content: space-between;
-    font-weight: 600;
 }
 
 .total_pay {

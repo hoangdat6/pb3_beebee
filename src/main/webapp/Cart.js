@@ -56,7 +56,7 @@ $(document).ready(function() {
 function RemoveCartItem(button) {
     let item = button.parentElement;
     let parent = item.parentElement; // Shop_Products-Content
-    let id = item.querySelector("input[name='id']").value;
+    let id = item.querySelector("input[name='shoppingCartItemId']").value;
     $.ajax({
         type: "GET",
         url: "/PBL3_1_war_exploded/api/remove",
@@ -242,46 +242,33 @@ function getPrice(){
 function getSelectedDataByShop(){
     let selectedData = [];
     let shopElements = document.querySelectorAll('.Shop_Products');
-    shopElements.forEach(shopElement => {
-        let selectedItemsInShop = [];
-        let cartCBs = shopElement.querySelectorAll('.Cart_CB');
 
-        cartCBs.forEach(cb => {
-            if(cb.checked){
-                let itemCell = $(cb).closest('.Shop_Products-Cell');
-                // let price = parseInt(itemCell.find("input[name='price']").val());
-                // let quantity = parseInt(itemCell.find("input[name='quantity']").val());
-                let shoppingCartItemId = parseInt(itemCell.find("input[name='id']").val());
-                // let productImg = itemCell.find(".product_img").attr('src');
-                // let productName = itemCell.find(".Item-Name")[0].textContent.trim();
-                // let productVariation = itemCell.find(".Item-Category")[0].textContent.trim();
-                // let isLocked = parseInt(itemCell.find("input[name='isLocked']").val());
-
-                selectedItemsInShop.push({
-                    // productImg : productImg,
-                    // productName : productName,
-                    // productVariation : productVariation,
-                    // price : price,
-                    // quantity : quantity,
-                    shoppingCartItemId : shoppingCartItemId
-                });
-            }
+    let selectedItems = getSelectedItems();
+    selectedItems.forEach(item => {
+        let shoppingCartItemId = parseInt(item.find("input[name='shoppingCartItemId']").val());
+        selectedData.push({
+            shoppingCartItemId : shoppingCartItemId
         });
-        if(selectedItemsInShop.length > 0){
-            let shop = $(shopElement).closest('.Shop_Products');
-            selectedData.push( {
-                shopId : shop.find('.sellerId').attr('value'),
-                shopImg : shop.find('.shop_avatar').attr('src'),
-                shopName : shop.find('.Shop_Name')[0].textContent,
-                isLocked : shop.find('.isLocked').attr('value'),
-                items : selectedItemsInShop
-            });
-        }
     });
+
+    let shippingMethod = getShippingMethod();
+
+    if(shippingMethod === null){
+        createAlertPopUp("Thông báo", "Vui lòng chọn phương thức giao hàng",
+            [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()'}]);
+        return;
+    }
+
+    selectedData.push({
+        shippingMethod : shippingMethod
+    })
 
     return selectedData;
 }
 
+function getShippingMethod(){
+    return document.querySelector('input[name="shippingMethod"]:checked') ? document.querySelector('input[name="shippingMethod"]:checked').value : null;
+}
 
 function getInfo(){
     let selectedData = getSelectedDataByShop();

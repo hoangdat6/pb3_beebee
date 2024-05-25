@@ -23,5 +23,5 @@ public class ProductForCartDTO {
     private Boolean isDeleted;
     private Boolean isSoldOut;
     private Boolean isOutOfStock;
-    private List<VariationDTO> variations;
+    private String variations;
 }

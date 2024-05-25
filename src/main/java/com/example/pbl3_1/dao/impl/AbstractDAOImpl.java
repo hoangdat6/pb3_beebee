@@ -266,6 +266,8 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
                     ps.setDate(i, (Date) parameter);
                 }else if (parameter instanceof Timestamp) {
                     ps.setTimestamp(i, (Timestamp) parameter);
+                }else if(parameter instanceof Short) {
+                    ps.setShort(i, (Short) parameter);
                 }else{
                     ps.setNull(i, Types.NULL);
                 }
