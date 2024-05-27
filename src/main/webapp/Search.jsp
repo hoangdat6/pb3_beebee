@@ -239,7 +239,7 @@
                                 </div>
                             <script>
                                 <c:forEach items="${searchcategories}" var="category">
-                                var categoryID = "catalog-item" + "<c:out value='${category.id}'/>";
+                                var categoryID = "catalog-item-" + "<c:out value='${category.id}'/>";
                                 var categoryName = "<c:out value='${category.name}'/>";
                                     console.log("cateid = " + categoryID);
                                     console.log("catename = " + categoryName);
@@ -263,7 +263,7 @@
                 <script>
                     $(document).ready(function() {
                         $('.S_catalog-item').change(function() {
-                            var categoryID = Array.from(document.querySelectorAll('.S_catalog-item:checked')).map(element => element.id.slice(-1)).join('');
+                            var categoryID = Array.from(document.querySelectorAll('.S_catalog-item:checked')).map(element => element.id.split("-")[2]).join('-');
                             var minPrice = Math.floor(parseFloat(document.getElementById('min-price').value));
                             var maxPrice = Math.floor(parseFloat(document.getElementById('max-price').value));
                             if(isNaN(minPrice)) minPrice = 0;

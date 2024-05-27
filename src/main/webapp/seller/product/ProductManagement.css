@@ -174,7 +174,7 @@
 }
 
 .page_number:hover {
-    background-color: #ee4d2d;
+    background-color: #ee4d2d !important;
     color: #fff;
     cursor: pointer;
 }
