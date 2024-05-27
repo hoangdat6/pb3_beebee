@@ -8,17 +8,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thanh toán</title>
     <link rel="stylesheet" type="text/css" href ="<c:url value="/CommonCSS.css"/>">
-  <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
-  <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
-  <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
-  <link rel="stylesheet" href="<c:url value="/CheckOut.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
+    <link rel="stylesheet" href="<c:url value="/CheckOut.css"/>">
     <link rel="stylesheet" href="<c:url value="/PopupAddress.css"/>">
     <link rel="stylesheet" href="<c:url value="/ApplyVoucher.css"/>">
+    <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
+    <script type="text/javascript" src="<c:url value="AlertPopUp.js"/>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="main.js"></script>
     <script src="<c:url value="CheckOut.js"/>"></script>
-<%--    <script src="<c:url value="Pop-ups.js"/>"></script>--%>
+    <%--    <script src="<c:url value="Pop-ups.js"/>"></script>--%>
     <script src="<c:url value="PopupAddress.js"/>"></script>
     <script src="<c:url value="ApplyVoucher.js"/>"></script>
 
@@ -112,9 +115,14 @@
                         <span class="product_quantity">Số lượng: ${product.quantity}</span>
                     </div>
                     <div class="product_price">
-                        <span class="price_item">
-                            <fmt:formatNumber value="${product.price * (1 - product.discount / 100.0)}" type="currency"/>
-                        </span>
+                        <div class="double_price">
+                            <span class="price_old">
+                                <fmt:formatNumber value="${product.price}" type="currency"/>
+                            </span>
+                            <span class="price_item">
+                                <fmt:formatNumber value="${product.price * (1 - product.discount / 100.0)}" type="currency"/>
+                            </span>
+                        </div>
                         <span class="total_item">
                             <fmt:formatNumber value="${(product.price * (1 - product.discount / 100.0)) * product.quantity}" type="currency"/>
                         </span>
@@ -125,7 +133,10 @@
                 <input type="hidden" name="shippingFee" value="${checkOutInfoDTO.shippingMethod.fee}">
                 <div class="shop_voucher">
                     <span>Voucher của shop</span>
-                    <a onclick="createPopupVoucher()" class="choose_voucher">Chọn Voucher</a>
+                    <div>
+                        <a onclick="createPopupVoucher()" class="choose_voucher">Chọn Voucher</a>
+                        <input type="text" name="voucher_discount">
+                    </div>
                 </div>
                 <div class="total_payment">
                     <div class="payment_item">
@@ -161,15 +172,14 @@
         </div>
         <div class="payment_method">
             <span>Phương thức thanh toán</span>
-            <div class="radio_payment-item">
-                <input type="radio" name="payment_method" id="note_payment">
-                <Label for="note_payment">Thanh toán khi nhận hàng</Label>
-            </div>
-            <div class="radio_payment-item">
-                <input type="radio" name="payment_method" id="online_payment">
-                <Label for="online_payment">Thanh toán bằng Momo</Label>
-            </div>
+            <c:forEach var="paymentMethod" items="${paymentMethods}">
+                <div class="radio_payment-item">
+                    <input type="radio" name="payment_method" id="${paymentMethod.id}" checked>
+                    <Label for="${paymentMethod.id}">${paymentMethod.name}</Label>
+                </div>
+            </c:forEach>
         </div>
+
         <div class="all_order_total">
             <div></div>
             <div class="all_order_total-container">
@@ -191,12 +201,18 @@
                 </div>
             </div>
         </div>
+        <div class="order_btn">
+            <span>
+                Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo Điều khoản của chúng tôi
+            </span>
+            <button onclick="btnOrder()" class="order_button">Đặt hàng</button>
+        </div>
     </section>
 </div>
 <%@ include file="Footer.jsp" %>
-<script>
-    getPriceOrder();
-</script>
+<%--<script>--%>
+<%--    getPriceOrder();--%>
+<%--</script>--%>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="<c:url value="app.js"/>"></script>

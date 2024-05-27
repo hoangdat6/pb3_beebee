@@ -103,4 +103,19 @@ public class AddressDAOImpl implements AddressDAO {
         }, id);
         return address.isEmpty() ? null : address.get(0);
     }
+
+    @Override
+    public Address getAddressById(Long id) {
+        String sql = "SELECT * FROM address WHERE id = ?";
+
+        return genericDAO.query(sql, resultSet -> Address.builder()
+                .id(resultSet.getLong("id"))
+                .fullname(resultSet.getString("fullname"))
+                .phone(resultSet.getString("phone"))
+                .detail(resultSet.getString("detail"))
+                .ward(resultSet.getString("ward"))
+                .district(resultSet.getString("district"))
+                .province(resultSet.getString("province"))
+                .build(), id).get(0);
+    }
 }
