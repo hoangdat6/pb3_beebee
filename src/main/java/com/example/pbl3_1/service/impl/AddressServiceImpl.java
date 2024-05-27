@@ -34,4 +34,9 @@ public class AddressServiceImpl implements AddressService {
         return addressDAO.getDefaultAddressByUserId(id);
 
     }
+
+    @Override
+    public Address getAddressById(Long id) {
+        return addressDAO.getAddressById(id);
+    }
 }

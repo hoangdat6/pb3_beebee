@@ -178,6 +178,12 @@ section {
     gap: 20px;
 }
 
+.price_old {
+    color: #FF5630;
+    text-decoration: line-through;
+    margin-right: 10px;
+}
+
 .product_img {
     flex: 1;
 }
@@ -187,7 +193,7 @@ section {
     flex-direction: column;
     justify-content: space-between;
     padding: 10px 0;
-    flex : 7;
+    flex : 6;
 }
 
 .product_name {
@@ -199,15 +205,21 @@ section {
     overflow: hidden;
     text-overflow: ellipsis;
     width: 80%;
-
-
 }
 
 .product_price {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 100px;
     flex: 3;
+}
+
+.double_price {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100px;
 }
 
 .checkout_of_shop {
@@ -323,4 +335,23 @@ section {
 .total_all-money {
     font-weight: 600;
     color: #38CB89;
+}
+
+.order_btn {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 100px 10px 30px;
+}
+
+.order_button {
+    padding: 10px 20px;
+    background-color: #000;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.order_button:active {
+    transform: scale(0.9);
 }
