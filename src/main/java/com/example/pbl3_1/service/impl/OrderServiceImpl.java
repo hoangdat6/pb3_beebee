@@ -16,6 +16,7 @@ import com.example.pbl3_1.entity.OrderDetail;
 import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.OrderService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -24,7 +25,6 @@ public class OrderServiceImpl implements OrderService {
     private OrderDAO orderDAO = new OrderDAOImpl();
     private VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
     private AddressService addressService = new AddressServiceImpl();
-
 
     @Override
     public List<ProductForCheckOut> getProductByOrderList(List<Long> shoppingCartItemId) {

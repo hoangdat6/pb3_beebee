@@ -1,8 +1,7 @@
 package com.example.pbl3_1.controller;
 
 import com.example.pbl3_1.service.OrderService;
-import com.example.pbl3_1.service.impl.OrderServiceImpI;
-import com.example.pbl3_1.service.impl.orderServiceImpl;
+import com.example.pbl3_1.service.impl.OrderServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +13,7 @@ import java.io.IOException;
 
 @WebServlet(name = "usersetting", urlPatterns = {"/usersetting/order"})
 public class UserController extends HttpServlet {
-    OrderService orderService = new orderServiceImpl();
+    OrderService orderService = new OrderServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

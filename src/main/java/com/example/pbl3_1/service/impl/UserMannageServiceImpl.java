@@ -1,9 +1,6 @@
 package com.example.pbl3_1.service.impl;
 
-<<<<<<< HEAD
 import com.example.pbl3_1.controller.dto.admin.ShopStatisticDTO;
-=======
->>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
 import com.example.pbl3_1.controller.dto.admin.UserStatisticDTO;
 import com.example.pbl3_1.dao.UserManageDAO;
 import com.example.pbl3_1.service.UserManageService;
@@ -23,7 +20,6 @@ public class UserMannageServiceImpl implements UserManageService {
         result = userManage.getAllSeller();
         return result;
     }
-<<<<<<< HEAD
 
     public List<UserStatisticDTO> searchCustomers(String userSearch){
         List<UserStatisticDTO> result = new ArrayList<>();
@@ -67,8 +63,6 @@ public class UserMannageServiceImpl implements UserManageService {
         return userManage.getShopByShopId(id);
     }
 
-=======
->>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
     public void lockCustomerByID(int UserId){
 
     }
