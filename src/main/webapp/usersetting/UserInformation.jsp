@@ -132,7 +132,7 @@
             </main>
         </div>
         <%@ include file="../Footer.jsp" %>
-            <script type="text/javascript" src="<c:url value ="/Pop-ups.js"/>"></script>
+        <script type="text/javascript" src="<c:url value ="/Pop-ups.js"/>"></script>
         <script defer src="<c:url value = "UserInformation.js"/>"></script>
         <script defer>
             GenerateSideBar("UserInformation", "${User.username}");
