@@ -105,38 +105,76 @@ function order(){
 function getPriceOrder(){
     let shops = document.querySelectorAll(".product_of_shop");
     let total_all = 0;
-    let shippingFee = 0;
+    let voucher_discount_all = 0;
+    let shipping_fee_all = 0;
 
     shops.forEach(shop => {
         let products = shop.querySelectorAll(".product_item");
-        let total = 0;
+        let total_order_shop = 0;
 
-        shippingFee += parseInt(shop.querySelector("input[name='shippingFee']").value);
+        let shipping_fee_shop = parseInt(shop.querySelector("input[name='shippingFee']").value);
+        shipping_fee_all += shipping_fee_shop;
         products.forEach(product => {
             let price = parseFloat(product.querySelector("input[name='price']").value);
             let discount = parseFloat(product.querySelector("input[name='discount']").value);
             let quantity = parseFloat(product.querySelector("input[name='quantity']").value);
-            total += price * (1 - discount / 100.0) * quantity;
+            total_order_shop += price * (1 - discount / 100.0) * quantity;
         });
 
-        total_all += total;
+
+        total_all += total_order_shop;
 
         let total_price = shop.querySelector(".total_price");
         let voucher_money = shop.querySelector(".voucher_money");
         let total_money = shop.querySelector(".total_money");
+        // let voucher_discount = parseInt(shop.querySelector("input[name='voucher_discount']").value);
+        let voucher_discount = 100;
 
-        total_price.textContent = (Math.round(total)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-        voucher_money.textContent = (Math.round(0)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-        total_money.textContent = (Math.round(total)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        voucher_discount_all += voucher_discount;
+
+        total_price.textContent = (Math.round(total_order_shop)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        voucher_money.textContent = "-" + (Math.round(voucher_discount)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        total_money.textContent = (Math.round(total_order_shop - voucher_discount + shipping_fee_shop)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     });
+
 
     let total_all_order = document.querySelector("#total_all_order");
     let shipping_fee = document.querySelector("#shipping_fee");
     let voucher_all = document.querySelector("#voucher_all");
-    let total_all_money = document.querySelector("#total_all-   money");
+    let total_all_money = document.querySelector("#total_all-money");
 
     total_all_order.textContent = (Math.round(total_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-    shipping_fee.textContent = (Math.round(shippingFee)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-    voucher_all.textContent = (Math.round(0)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-    total_all_money.textContent = (Math.round(total_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    shipping_fee.textContent = (Math.round(shipping_fee_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    voucher_all.textContent = "-" +  (Math.round(voucher_discount_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    total_all_money.textContent = (Math.round((total_all - voucher_discount_all + shipping_fee_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+}
+
+$(document).ready(function () {
+    getPriceOrder();
+    getPrice();
+});
+
+
+function btnOrder(){
+    getDataForOrder();
+}
+
+
+function getDataForOrder(){
+    let addressId = document.querySelector("#address_id").value;
+    let paymentMethodId = document.querySelector("input[name='payment_method']:checked").id;
+    let data = {
+        addressId : addressId,
+        paymentMethodId : paymentMethodId
+    }
+
+    $.ajax({
+        type: "POST",
+        url: "/PBL3_1_war_exploded/api/checkout",
+        data: JSON.stringify(data),
+        contentType: "application/json",
+        success: function (response) {
+            console.log(response);
+        }
+    });
 }

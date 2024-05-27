@@ -10,8 +10,10 @@ import com.example.pbl3_1.dao.OrderDAO;
 import com.example.pbl3_1.dao.VariationOptionDAO;
 import com.example.pbl3_1.dao.impl.OrderDAOImpl;
 import com.example.pbl3_1.dao.impl.VariationOptionDAOImpl;
+import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.Order;
 import com.example.pbl3_1.entity.OrderDetail;
+import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.OrderService;
 
 import java.util.ArrayList;
@@ -20,8 +22,13 @@ import java.util.Map;
 import java.util.Objects;
 
 public class OrderServiceImpl implements OrderService {
-    OrderDAO orderDAO = new OrderDAOImpl();
-    VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
+// <<<<<<< newLinh
+//     OrderDAO orderDAO = new OrderDAOImpl();
+//     VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
+// =======
+    private OrderDAO orderDAO = new OrderDAOImpl();
+    private VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
+    private AddressService addressService = new AddressServiceImpl();
 
     @Override
     public List<ProductForCheckOut> getProductByOrderList(List<Long> shoppingCartItemId) {
@@ -111,8 +118,75 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void getOrderListByID(int i) {
+// <<<<<<< newLinh
+//     public void getOrderListByID(int i) {
 
+//     }
+
+// =======
+    public List<CartInfoDTO> createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, Short shippingMethodId, Short paymentMethodId, Long userId) {
+        Boolean isOutOfStock = false;
+        Boolean isSoldOut = false;
+
+        Address address = addressService.getAddressById(addressId);
+
+        for(CartInfoDTO checkOutInfo : checkOutInfoDTO) {
+            for(ProductForCartDTO productForCartDTO : checkOutInfo.getProductForCartDTOList()) {
+                Integer quantityInStock =
+                        orderDAO.getQuantityInStock(productForCartDTO.getProductItemId());
+
+                if(quantityInStock == 0) {
+                    productForCartDTO.setIsSoldOut(true);
+                    isSoldOut = true;
+                }
+
+                if(productForCartDTO.getQuantity() > quantityInStock) {
+                    productForCartDTO.setIsOutOfStock(true);
+                    isOutOfStock = true;
+                }
+            }
+        }
+
+        if(isOutOfStock || isSoldOut) {
+            if(isOutOfStock) {
+                throw new RuntimeException("Đã có sản phẩm hết hàng");
+            }
+
+            throw new RuntimeException("Đã có sản phẩm bán hết");
+
+        }else {
+            for(CartInfoDTO checkOutInfo : checkOutInfoDTO) {
+                Order order = Order.builder()
+                        .phone(address.getPhone())
+                        .fullName(address.getFullname())
+                        .communeAddress(address.getWard())
+                        .detailAddress(address.getDetail())
+                        .districtAddress(address.getDistrict())
+                        .provinceAddress(address.getProvince())
+                        .shippingMethodId(shippingMethodId)
+                        .paymentMethodId(paymentMethodId)
+                        .orderStatusId((short) 1)
+                        .userId(userId)
+                        .sellerId(checkOutInfo.getShopId())
+                        .build();
+
+                List<OrderDetail> orderDetails = new ArrayList<>();
+                Long totalPrice = 0L;
+                for(ProductForCartDTO productForCartDTO : checkOutInfo.getProductForCartDTOList()) {
+                    OrderDetail orderDetail = OrderDetail.builder()
+                            .productItemId(productForCartDTO.getProductItemId())
+                            .quantity(productForCartDTO.getQuantity())
+                            .unitPrice((int) Math.round(productForCartDTO.getPrice() * (1 - productForCartDTO.getDiscount() / 100.0)))
+                            .build();
+
+                    totalPrice += Math.round(productForCartDTO.getPrice() * (1 - productForCartDTO.getDiscount() / 100.0)) * productForCartDTO.getQuantity();
+                    orderDetails.add(orderDetail);
+                }
+                order.setTotal(totalPrice);
+                orderDAO.createOrder(order, orderDetails);
+            }
+        }
+        return null;
     }
-
+// >>>>>>> main
 }

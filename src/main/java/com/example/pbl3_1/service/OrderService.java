@@ -16,5 +16,5 @@ public interface OrderService {
 
     List<CartInfoDTO> getCartInfoDTO(List<Long> shoppingCartItemId);
 
-    void getOrderListByID(int i);
+    List<CartInfoDTO> createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, Short shippingMethodId, Short paymentMethodId, Long userId);
 }
