@@ -1,0 +1,114 @@
+body {
+  background-color: #F3F5F7;
+}
+
+#myChart {
+  width: 100%;
+  max-height: 60vh !important;
+}
+
+.chart-container {
+  position: relative;
+  width: 80vw;
+  height: 60vh;
+}
+
+select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+main {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-left: 400px;
+  margin-top: 20px;
+}
+
+main .title {
+  font-size: 16px;
+  margin: 10px;
+}
+
+main nav {
+  display: flex;
+}
+
+main nav a {
+  padding: 10px 20px;
+  font-size: 16px;
+  text-align: center;
+  font-weight: 500;
+  color: red;
+  border-bottom: 1px solid red;
+}
+
+main .wrap {
+  padding: 20px;
+}
+
+main .wrap #time {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin: 10px 0;
+}
+
+main .wrap .statistic #statistic_info {
+  display: flex;
+}
+
+main .wrap .statistic #statistic_info .statis_card {
+  padding: 20px;
+  margin: 10px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  width: 25%;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  position: relative;
+}
+
+main .wrap .statistic #statistic_info .statis_card .card_title {
+  font-size: 16px;
+}
+
+main .wrap .statistic #statistic_info .statis_card .card_value {
+  font-size: 20px;
+  font-weight: 500;
+  color: #38CB89;
+}
+
+main .wrap .statistic #statistic_info .statis_card .card_compare {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main .wrap .statistic #statistic_info .statis_card .card_compare .card_compare_value {
+  color: #38CB89;
+  font-weight: 500;
+}
+
+main .wrap .statistic #statistic_info .statis_card .card_help {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+main .wrap .chart {
+  padding: 20px;
+  border: 1px solid #eee;
+  border-radius: 10px;
+}
+
+main .wrap .chart .chart_title {
+  display: flex;
+  gap: 10px;
+}
+
+/*# sourceMappingURL=statistic.css.map */
