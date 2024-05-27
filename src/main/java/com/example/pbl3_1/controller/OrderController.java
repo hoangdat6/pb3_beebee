@@ -1,17 +1,19 @@
 package com.example.pbl3_1.controller;
 
-import com.example.pbl3_1.controller.dto.product.ProductForCheckOut;
-import com.example.pbl3_1.controller.dto.product.ProductForShoppingCartDTO;
-import com.example.pbl3_1.dao.AddressDAO;
+import com.example.pbl3_1.Util.AddressUtils;
+import com.example.pbl3_1.Util.SessionUtil;
+import com.example.pbl3_1.controller.dto.cart.CartInfoDTO;
+import com.example.pbl3_1.controller.dto.checkout.CheckOutInfoDTO;
+import com.example.pbl3_1.controller.dto.checkout.ProductForCheckOut;
 import com.example.pbl3_1.entity.Address;
-import com.example.pbl3_1.entity.Order;
+import com.example.pbl3_1.entity.ShippingMethod;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.OrderService;
-import com.example.pbl3_1.service.ShoppingCartItemService;
+import com.example.pbl3_1.service.ShippingMethodService;
 import com.example.pbl3_1.service.impl.AddressServiceImpl;
-import com.example.pbl3_1.service.impl.orderServiceImpl;
-import com.example.pbl3_1.service.impl.ShoppingCartItemServiceImpl;
+import com.example.pbl3_1.service.impl.OrderServiceImpl;
+import com.example.pbl3_1.service.impl.ShippingMethodServiceImpl;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -25,9 +27,11 @@ import java.util.Map;
 
 @WebServlet(name = "orderController", urlPatterns = {"/check-out", "/order-detail", "/order-history"})
 public class OrderController extends HttpServlet {
-    private final OrderService orderService = new orderServiceImpl();
+    private final OrderService orderService = new OrderServiceImpl();
 
     private final AddressService addressService = new AddressServiceImpl();
+
+    private final ShippingMethodService shippingMethodService = new ShippingMethodServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String path = request.getServletPath();
@@ -45,25 +49,45 @@ public class OrderController extends HttpServlet {
     }
 
     public void showCheckOutPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Map<String, String>> orderDetail = (List<Map<String, String>>) request.getSession().getAttribute("orderDetail");
-
-        List<Long> shoppingCartItemId = new ArrayList<>();
-
-        for (Map<String, String> order : orderDetail) {
-            shoppingCartItemId.add(Long.parseLong(String.valueOf(order.get("shoppingCartItemId"))));
-        }
+        List<Map<Object, Object>> orderDetail = (List<Map<Object, Object>>) request.getSession().getAttribute("orderDetail");
 
         User user = (User) request.getSession().getAttribute("USERMODEL");
-        List<ProductForCheckOut> productForCheckOuts = orderService.getProductByOrderList(shoppingCartItemId);
-        Address address = addressService.getDefaultAddressByUserId(user.getId());
 
+        List<Long> shoppingCartItemId = new ArrayList<>();
+        for (Map<Object, Object> objectMap : orderDetail) {
+            if (objectMap.get("shoppingCartItemId") != null)
+                shoppingCartItemId.add(Long.parseLong(objectMap.get("shoppingCartItemId").toString()));
+        }
+
+        String shippingMethodId = orderDetail.get(orderDetail.size() - 1).get("shippingMethod").toString();
+
+        Short id = Short.parseShort(shippingMethodId);
+        ShippingMethod shippingMethod = shippingMethodService.getShippingMethodById(id);
+
+        List<CartInfoDTO> checkOutInfoDTOs = orderService.getCartInfoDTO(shoppingCartItemId);
+
+        for (CartInfoDTO checkOutInfoDTO : checkOutInfoDTOs) {
+            checkOutInfoDTO.setShippingMethod(shippingMethod);
+        }
+
+        SessionUtil.getInstance().putValue(request, "checkOutInfoDTOs", checkOutInfoDTOs);
+
+        Address address = addressService.getDefaultAddressByUserId(user.getId());
         if(address == null){
             response.sendRedirect("usersetting/address");
             return;
         }
 
+        String appPath = request.getServletContext().getRealPath("/");
+        String filePath = appPath + "usersetting/data.json";
+        AddressUtils addressUtils = new AddressUtils(filePath);
+
+        address.setWard(addressUtils.getWardName(address.getProvince(),address.getDistrict(),address.getWard()));
+        address.setDistrict(addressUtils.getDistrictName(address.getProvince(),address.getDistrict()));
+        address.setProvince(addressUtils.getCityName(address.getProvince()));
+
         request.setAttribute("address", address);
-        request.setAttribute("productForCheckOuts", productForCheckOuts);
+        request.setAttribute("checkOutInfoDTOs", checkOutInfoDTOs);
         request.getRequestDispatcher("CheckOut.jsp").forward(request, response);
     }
 }

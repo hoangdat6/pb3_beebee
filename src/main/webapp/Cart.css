@@ -75,6 +75,7 @@ span.Process_Item-Number {
 }
 
 .Shop_Products {
+    position: relative;
     padding: 20px 0;
     border-bottom: 1px solid #171819;
 }
@@ -103,8 +104,26 @@ span.Process_Item-Number {
     flex-wrap: nowrap;
     flex-direction: column;
     max-height: 700px;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
+
+.Shop_Products-Content::-webkit-scrollbar {
+    width: 5px;
+}
+
+.Shop_Products-Content::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 5px;
+}
+
+.Shop_Products-Content::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.Shop_Products-Content::-webkit-scrollbar-thumb:hover {
+    background-color: #aaa;
+}
+
 
 .Shop_Products-Cell {
     width: 100%;
@@ -121,7 +140,7 @@ span.Process_Item-Number {
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
-    -webkit-line-clamp: 1;
+    -webkit-line-clamp: 2;
     /* Số dòng tối đa */
     -webkit-box-orient: vertical;
 }
@@ -228,7 +247,7 @@ p.Item-Category {
     margin-bottom: 12px;
 }
 
- .Cart_Voucher{
+.Cart_Voucher{
     border-radius: 5px;
     padding: 8px 12px;
     border: 1px solid #121314;
@@ -259,7 +278,7 @@ p.Item-Category {
     border: 1px solid #121314;
     border-radius: 5px;
     margin: 10px 0;
-    
+
 }
 
 .Cart_Summary-Voucher .Total-Price{

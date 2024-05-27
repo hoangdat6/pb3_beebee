@@ -64,7 +64,7 @@
             </aside> -->
 
             <main class="UI_content">
-                <form action='<c:url value="/changeinfor"/>' class="UI_form" method="post">
+                <form action='<c:url value="/usersetting/changeinfor"/>' class="UI_form" method="post">
                     <h3 class="form_title">Thông tin cá nhân</h3>
                     <div class="UI_form_element">
                         <label for="UI_name">Họ và tên</label>
@@ -106,8 +106,7 @@
                     <h3 class="form_title">Thay đổi mật khẩu</h3>
                     <div class="UI_form_element">
                         <label for="UI_oldPass">Mật khẩu cũ</label>
-                        <input type="password" name="oldpass" id="UI_oldPass" value='<c:if test="${sessionScope.get('oldpass') !=null}">
-                        ${sessionScope.get('oldpass')}</c:if>' required>
+                        <input type="password" name="oldpass" id="UI_oldPass" value='<c:if test="${sessionScope.get('oldpass') != null}">${sessionScope.get('oldpass')}</c:if>' required>
                         <c:if test="${sessionScope.get('opstatus') == false}">
                             <span style="color: red; display: block !important;">Mật khẩu không đúng</span>
                         </c:if>

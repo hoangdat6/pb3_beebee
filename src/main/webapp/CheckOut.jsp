@@ -4,197 +4,208 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Thanh toán</title>
-  <link rel="stylesheet" type="text/css" href ="<c:url value="/CommonCSS.css"/>">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thanh toán</title>
+    <link rel="stylesheet" type="text/css" href ="<c:url value="/CommonCSS.css"/>">
   <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
   <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
   <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
   <link rel="stylesheet" href="<c:url value="/CheckOut.css"/>">
-  <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="main.js"></script>
-    <script src="CheckOut.js"></script>
+    <link rel="stylesheet" href="<c:url value="/PopupAddress.css"/>">
+    <link rel="stylesheet" href="<c:url value="/ApplyVoucher.css"/>">
+
+    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="main.js"></script>
+    <script src="<c:url value="CheckOut.js"/>"></script>
+<%--    <script src="<c:url value="Pop-ups.js"/>"></script>--%>
+    <script src="<c:url value="PopupAddress.js"/>"></script>
+    <script src="<c:url value="ApplyVoucher.js"/>"></script>
+
 
 </head>
-<%-- Header  --%>
 <%@ include file="Top-Bar.jsp" %>
 <fmt:setLocale value = "vi_VN"/>
-
 <body class="Color-White">
 
-    <div id="CO_Header">
-        <h3 class="CO_Title">
-            Thanh Toán
-        </h3>
-        <div class="Process_Container">
-            <div class="Process_Item">
-                <span class="Process_Item-Number">1</span>
-                <span class="Process_Item-Title">
+<div id="CO_Header">
+    <h3 class="CO_Title">
+        Thanh Toán
+    </h3>
+    <div class="Process_Container">
+        <div class="Process_Item">
+            <span class="Process_Item-Number">1</span>
+            <span class="Process_Item-Title">
                     Giỏ hàng
                 </span>
-            </div>
-            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
 
-            <div class="Process_Item">
-                <span class="Process_Item-Number">2</span>
-                <span class="Process_Item-Title">
+        <div class="Process_Item">
+            <span class="Process_Item-Number">2</span>
+            <span class="Process_Item-Title">
                     Chi tiết thanh toán
                 </span>
-            </div>
-            <div class="clear"></div>
+        </div>
+        <div class="clear"></div>
 
-            <div class="Process_Item">
-                <span class="Process_Item-Number">3</span>
-                <span class="Process_Item-Title">
+        <div class="Process_Item">
+            <span class="Process_Item-Number">3</span>
+            <span class="Process_Item-Title">
                     Hoàn tất đơn hàng
                 </span>
-            </div>
-            <div class="clear"></div>
         </div>
+        <div class="clear"></div>
     </div>
-    
-    <div id="CO_Content">
-        <div class="CO_Content-Col1 CO-Content--Item">
-            <!--Mục Thông tin liên hệ -->
-            <div class="CO-Form CO-Form1">
-                <h3 class="CO-Form-Item--Title">
-                    Thông tin liên hệ
-                </h3>
-                <form action="#" method="post" class="CO-Form--Content">
-                    <div class="row1">
-                        <label for="CO--Item-Name">Họ và tên</label>
-                        <input type="text" name="Tên" value="${address.fullname}"  id="CO--Item-Name">
-                    </div>
+</div>
 
-                    <div class="row2">
-                        <label for="CO--Item-PhoneNumber">Số điện thoại</label>
-                        <input type="text" name="Số điện thoại" value="${address.phone}" id="CO--Item-PhoneNumber">
-                    </div>
-                </form>
+<div id="CO_Content">
+    <section class="content_item address_content">
+        <div class="title_address">
+            <div class="sub_title">
+                <i class="fa-solid fa-location-dot"></i>
+                <h3>Địa chỉ nhận hàng</h3>
             </div>
-            <!-- Mục địa chỉ liên lạc và giao hàng -->
-            <div class="CO-Form CO-Form2">
-                <div class="CO-title-2 flex flex-space_between">
-                    <h3 class="CO-Form-Item--Title">
-                        Địa chỉ giao hàng
-                    </h3>
-                    <input type="button" name="" class="" value="Chọn địa chỉ của bạn">
-                </div>
-
-                <form action="#" method="post" class="CO-Form--Content">
-                    <div class="container">
-                        <h4>Tỉnh/Thành Phố</h4>
-                        <select class="form-select form-select-sm mb-3" id="city" aria-label=".form-select-sm">
-                            <option value="00" selected>Chọn tỉnh thành</option>
-                        </select>
-                        
-                        <h4>Quận/Huyện</h4>
-                        <select class="form-select form-select-sm mb-3" id="district" aria-label=".form-select-sm">
-                            <option value="000" selected>Chọn quận huyện</option>
-                        </select>
-                        
-                        <h4>Xã/Phường</h4>
-                        <select class="form-select form-select-sm" id="ward" aria-label=".form-select-sm">
-                            <option value="0000" selected>Chọn phường xã</option>
-                        </select> 
-                        
-                        <label for="Address-Desc">Địa chỉ chi tiết</label>
-                        <input type="text" name="Dia chi" id="Address-Desc" value="${address.detail}" placeholder="Số đường, thôn, kiệt, hẻm,...">
-                    </div>
-                </form>
-
-            </div>
-            <!-- Mục chọn phương thức thanh toán -->
-            <div class="CO-Form CO-Form3">
-                <h3 class="CO-Form-Item--Title">
-                    Phương thức thanh toán
-                </h3>
-                
-                <div class="Payment_Method">
-                    <label for="Bank-Method"> <input type="radio"  name="payment" id="Bank-Method"> Thanh toán bằng tài khoản ngân hàng</label>
-                </div>
-                <div class="Payment_Method">
-                    <label for="Cash-Method"> <input type="radio" name="payment" id="Cash-Method"> Thanh toán bằng tiền mặt</label>
-                </div>
-            </div>    
-
-            <button class="Col1--Button btn" id="Col1--Button" onclick="order()" type="submit">Xác nhận đơn hàng</button>
+            <div onclick="AddressPopUp()"  class="change_address">Thay đổi</div>
         </div>
-
-        <div class="CO_Content-Col2 CO-Content--Item">
-            <h3 class="CO-Col2--Title">
-                Tóm tắt thanh toán
-            </h3>
-            <div class="CO-Col2--Content">
-                <div class="CO-Col2-Product">
-                    <c:forEach var="productForCheckOut" items="${productForCheckOuts}">
-                        <div class="Col2-Product-Item">
-                            <input type="hidden" name="productItemId" id="productItemId" value="${productForCheckOut.productItemId}">
-                            <input type="hidden" name="productItemId" id="sellerId" value="${productForCheckOut.sellerId}">
-                            <img class="Col2-Product-Item--Image" src="${productForCheckOut.imgPath}" alt="Product">
-                            <div class="Col2-Product-Item--Main">
-                                <h3 class="Main--Name">${productForCheckOut.name}</h3>
-                                <div class="Col2-Main--Qty_and_Category">
-                                    <c:forEach var="variation" items="${productForCheckOut.variations}">
-                                        <span class="Main--Category">${variation.name} : ${variation.value} </span>
-                                        <br>
-                                    </c:forEach>
-                                    <div class="Col2-Main--Qty Qty">
-                                        <button class="btn Qty__Minus" value="decrease" onclick="UpdateQuantity(this)"><i class="fa-solid fa-minus"></i></button>
-                                        <input class="btn Qty__Input" value="${productForCheckOut.quantity}" min="1">
-                                        <button class="btn Qty__Plus" value="increase" onclick="UpdateQuantity(this)"><i class="fa-solid fa-plus"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                            <input type="hidden" id="price" value="${productForCheckOut.price}">
-                            <div class="Col2-Product-Item--Price">
-                              <p><fmt:formatNumber value="${productForCheckOut.price * productForCheckOut.quantity}" type="currency"/></p>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </div>
-                
-                <div class="CO-Voucher CO-Same">
-                    <i class="fa-solid fa-ticket"></i>
-                    <span class="Voucher-Code">Mã giảm giá</span>
-                    <span class="Voucher-Money">-50.000₫</span>
-                </div>
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        getPrice();
-                    });
-                </script>
-
-                <div class="CO-Delivery CO-Same">
-                    <h4>Vận chuyển</h4>
-                    <span class="CO-Same--Item">Free</span>
-                </div>
-
-                <div class="CO-Price CO-Same">
-                    <h4>Tổng tiền sản phẩm</h4>
-                    <span class="CO-Same--Item" id="product_price">850.000₫</span>
-                </div>
-
-                <div class="CO-Total CO-Same">
-                    <h3>Tổng tiền thanh toán</h3>
-                    <span class="CO-Same--Item" id="total_price">850.000₫</span>
-                </div> 
+        <div class="address_content--item" id="delivery_address">
+            <input type="hidden" id="address_id" value="${address.id}">
+            <div class="info_cus">
+                ${address.fullname}, ${address.phone}
+            </div>
+            <div class="address_info">
+                ${address.detail}, ${address.ward}, ${address.district}, ${address.province}
             </div>
         </div>
-    </div>
+    </section>
+    <section class="content_item product_content">
+        <div class="header_product">
+            <div class="col1">
+                Sản phẩm
+            </div>
+            <div class="col2">
+                <span>Đơn giá</span>
+                <span>Thành tiền</span>
+            </div>
+        </div>
+        <c:forEach var="checkOutInfoDTO" items="${checkOutInfoDTOs}">
 
-    <script>
-        var ward = "${address.ward}";
-        var district = "${address.district}";
-        var province = "${address.province}";
-    </script>
+        <div class="product_of_shop">
+            <div class="shop_content">
+                <img src="${checkOutInfoDTO.shopAvatar}" alt="shop">
+                <span>${checkOutInfoDTO.shopName}</span>
+                <input type="hidden" name="shopIsLocked" value="${checkOutInfoDTO.isLocked}">
+            </div>
 
-    <%@ include file="Footer.jsp" %>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-    <script type="text/javascript" src="app.js"></script>
+            <c:forEach var="product" items="${checkOutInfoDTO.productForCartDTOList}">
+                <div class="product_item">
+                    <input type="hidden" name="price" value="${product.price}">
+                    <input type="hidden" name="discount" value="${product.discount}">
+                    <input type="hidden" name="quantity" value="${product.quantity}">
+
+                    <div class="product_img">
+                        <img src="${product.imgPath}" alt="">
+                    </div>
+                    <div class="product_info">
+                        <span class="product_name">${product.name}</span>
+                        <span class="product_variation">${product.variations}</span>
+                        <span class="product_quantity">Số lượng: ${product.quantity}</span>
+                    </div>
+                    <div class="product_price">
+                        <span class="price_item">
+                            <fmt:formatNumber value="${product.price * (1 - product.discount / 100.0)}" type="currency"/>
+                        </span>
+                        <span class="total_item">
+                            <fmt:formatNumber value="${(product.price * (1 - product.discount / 100.0)) * product.quantity}" type="currency"/>
+                        </span>
+                    </div>
+                </div>
+            </c:forEach>
+            <div class="checkout_of_shop">
+                <input type="hidden" name="shippingFee" value="${checkOutInfoDTO.shippingMethod.fee}">
+                <div class="shop_voucher">
+                    <span>Voucher của shop</span>
+                    <a onclick="createPopupVoucher()" class="choose_voucher">Chọn Voucher</a>
+                </div>
+                <div class="total_payment">
+                    <div class="payment_item">
+                        <span>Tổng số tiền</span>
+                        <span class="total_price">211000đ</span>
+                    </div>
+                    <div class="all_order_total-item">
+                        <span>Phí vận chuyển</span>
+                        <c:if test="${checkOutInfoDTO.shippingMethod.fee == 0}">
+                            <span class="shipping_fee">Miễn phí</span>
+                        </c:if>
+                        <c:if test="${checkOutInfoDTO.shippingMethod.fee != 0}">
+                            <span class="shipping_fee">${checkOutInfoDTO.shippingMethod.fee}đ</span>
+                        </c:if>
+                    </div>
+                    <div class="payment_item">
+                        <span>Voucher</span>
+                        <span class="voucher_money">-211000đ</span>
+                    </div>
+                    <div class="payment_item total_pay">
+                        <span>Tổng thanh toán</span>
+                        <span class="total_money">211000đ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </c:forEach>
+    </section>
+    <section class="content_item payment_content">
+        <div class="shopbee_voucher">
+            <span>Voucher của sàn</span>
+            <a href="#" class="shopbee_voucher--choose">Chọn Voucher</a>
+        </div>
+        <div class="payment_method">
+            <span>Phương thức thanh toán</span>
+            <div class="radio_payment-item">
+                <input type="radio" name="payment_method" id="note_payment">
+                <Label for="note_payment">Thanh toán khi nhận hàng</Label>
+            </div>
+            <div class="radio_payment-item">
+                <input type="radio" name="payment_method" id="online_payment">
+                <Label for="online_payment">Thanh toán bằng Momo</Label>
+            </div>
+        </div>
+        <div class="all_order_total">
+            <div></div>
+            <div class="all_order_total-container">
+                <div class="all_order_total-item">
+                    <span>Tổng số tiền</span>
+                    <span id="total_all_order">211000đ</span>
+                </div>
+                <div class="all_order_total-item">
+                    <span>Phí vận chuyển</span>
+                    <span id="shipping_fee">21000đ</span>
+                </div>
+                <div class="all_order_total-item">
+                    <span>Voucher</span>
+                    <span id="voucher_all">-211000đ</span>
+                </div>
+                <div class="all_order_total-item total_all">
+                    <span>Tổng thanh toán</span>
+                    <span id="total_all-money">211000đ</span>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<%@ include file="Footer.jsp" %>
+<script>
+    getPriceOrder();
+</script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="<c:url value="app.js"/>"></script>
+<script src="<c:url value="RemovePopup.js"/>"></script>
+
+
 </body>
+
+
+
 
 

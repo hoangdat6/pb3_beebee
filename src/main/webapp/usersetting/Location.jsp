@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="../main.js"></script>
-    <link rel="stylesheet" href="<c:url value="Pop_ups.css"/>">
+    <link rel="stylesheet" href="<c:url value="/Pop_ups.css"/>">
     <script src="../toast.js"></script>
     <script src="./GenerateSideBar.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -38,38 +38,36 @@
                     <div class="Address_item">
                         <div class="Address_item_left">
                             <div class="row1">
-<<<<<<< HEAD
                                 ${address.fullname} | ${address.phone}
                             </div>
                             <div class="row2">
                                 <p>${address.detail}</p>
                                 <p>${address.ward}, ${address.district}, ${address.province}</p>
-=======
-                                <span class="item_name"> Vũ Văn </span>
-                                |
-                                <span class="item_phone">0937******</span>
                             </div>
-                            <div class="row2">
-                                <p class="item_detail">h15/1 K35 Mẹ Suốt, Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
-                                <p>
-                                    <span class="item_ward">Phường Hòa Khánh Nam</span>,
-                                    <span class="item_district">Liên Chiểu</span>,
-                                    <span class="item_city">Đà Nẵng</span>
-                                </p>
->>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
+                            <c:if test="${address.isDefault}">
+                            <div class="row3 Address_type">
+                               Mặc định
                             </div>
-                            <div class="row3 Address_type item_name">
-                                Mặc định
-                            </div>
+                            </c:if>
                         </div>
                         <div class="Address_item_right">
                             <div class="row1">
-                                <button class="Address_remove_btn btn">Xóa</button>
-                                <button class="Address_update_btn btn">Cập nhật</button>
+                                <input type="hidden" name="addressId" value="${address.id}">
+                                <input type="hidden" name="addressName" value="${address.fullname}">
+                                <input type="hidden" name="addressDetail" value="${address.detail}">
+                                <input type="hidden" name="addressPhone" value="${address.phone}">
+                                <input type="hidden" name="addressWard" value="${address.ward}">
+                                <input type="hidden" name="addressDistrict" value="${address.district}">
+                                <input type="hidden" name="addressProvince" value="${address.province}">
+                                <input type="hidden" name="addressIsDefault" value="${address.isDefault}">
+                                <button class="Address_remove_btn btn" onclick="removeAddress(this)">Xóa</button>
+                                <button class="Address_update_btn btn" onclick="updateAddress(this)">Cập nhật</button>
                             </div>
-                            <div class="row2 Address_set_default btn">
-                                Đặt làm địa chỉ mặc định
-                            </div>
+                            <c:if test="${!address.isDefault}">
+                                <div class="row2 Address_set_default btn" onclick="SetDefault(this)">
+                                    Đặt làm địa chỉ mặc định
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                     </c:forEach>

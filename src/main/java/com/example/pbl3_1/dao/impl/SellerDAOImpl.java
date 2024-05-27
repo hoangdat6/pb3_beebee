@@ -1,7 +1,7 @@
 package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
-import com.example.pbl3_1.controller.dto.product.SellerDTO;
+import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.dao.SellerDAO;
 import com.example.pbl3_1.entity.Seller;
@@ -10,7 +10,6 @@ import com.example.pbl3_1.mapper.SellerMapper;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
-import java.util.Objects;
 
 public class SellerDAOImpl implements SellerDAO {
     private final GenericDAO<Seller> genericDAO = new AbstractDAOImpl<>();

@@ -125,6 +125,13 @@
     </div>
     <script type="text/javascript">
         generateSidebar('user');
+            let buttonClicked = $("#customer");
+            buttonClicked.css("color", "red");
+            buttonClicked.css("borderBottomColor", "red");
+            let URL = "/getAllCustomer";
+            getDataByURL(URL).then(data => {
+                rerenderTable(data, ["STT", "Tên", "Email", "Trạng thái", "Chi tiêu/năm"]);
+            });
     </script>
 </body>
 

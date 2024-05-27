@@ -1,9 +1,62 @@
+$(document).ready(function() {
+    // Lấy tất cả các phần tử .Shop_Products
+    let shopProducts = document.querySelectorAll('.Shop_Products');
+    // Lặp qua tất cả các phần tử .Shop_Products
+    shopProducts.forEach(shopProduct => {
+        // Lấy giá trị của thuộc tính isLocked
+        let isLocked = shopProduct.querySelector('input[name="isLocked"]').value;
 
-function RemoveCartItem(button)
-{
+        // Kiểm tra nếu isLocked == true
+        if (isLocked == 'true') {
+            let shopPick = shopProduct.querySelector('.ShopPick');
+            shopPick.remove();
+            let cartCB = shopProduct.querySelectorAll('.Cart_CB');
+            cartCB.forEach(cb => {
+                let checkbox = cb.closest('.Check_box');
+                cb.remove();
+                checkbox.innerHTML += '<div class="sold_out">Ngừng bán</div>';
+            });
+
+            let header = shopProduct.querySelector('.Shop_Products-Header');
+            header.removeAttribute('href');
+            header.innerHTML = '';
+            header.innerHTML += '<div class="shop_locked">shop không còn hoạt động</div>'
+
+            let productCells = shopProduct.querySelectorAll('.Shop_Products-Cell');
+            productCells.forEach(cell => {
+                cell.classList.add("sold-out-product");
+            });
+        }
+    });
+});
+
+$(document).ready(function() {
+    let cartCBs = $(document).find('.Cart_CB');
+
+    cartCBs.each(function() {
+        let cell = $(this).closest('.Shop_Products-Cell');
+        let isDeleted = cell.find('.isDeleted').val();
+        if (isDeleted == 'true') {
+            cell.find(".Cart_CB").remove();
+            cell.find(".Check_box").append('<div class="sold_out">Ngừng bán</div>');
+            cell.classList.add("sold-out-product");
+        }else{
+            let isSoldOut = cell.find('.isSoldOut').val();
+            if (isSoldOut == 'true') {
+                let checkBox = cell.find('.Check_box');
+                checkBox.find('.Cart_CB').remove();
+                checkBox.append('<div class="sold_out">Hết hàng</div>');
+                cell.addClass('sold-out-product');
+            }
+        }
+    });
+});
+
+
+function RemoveCartItem(button) {
     let item = button.parentElement;
     let parent = item.parentElement; // Shop_Products-Content
-    let id = item.querySelector("input[name='id']").value;
+    let id = item.querySelector("input[name='shoppingCartItemId']").value;
     $.ajax({
         type: "GET",
         url: "/PBL3_1_war_exploded/api/remove",
@@ -25,6 +78,7 @@ function UpdateCartItem(button) {
     let item = button.parentElement.parentElement;
     let quantity = parseInt(item.querySelector("input[name='quantity']").value);
     let price = parseInt(item.querySelector("input[name='price']").value);
+    let discount = parseInt(item.querySelector("input[name='discount']").value);
     if (action === "increase") {
         quantity++;
     } else if (action === "decrease" && quantity > 0) {
@@ -32,34 +86,40 @@ function UpdateCartItem(button) {
     }
 
     if(quantity === 0){
-        // createAlertPopUp("Bạn chắc chắn muốn bỏ sản phẩm này?", "qweqwe", null);
-        if(confirm("Bạn chắc chắn muốn bỏ sản phẩm này?") === true){
-            RemoveCartItem(button.parentElement.parentElement);
-            return;
-        }else {
-            quantity++;
-        }
-    }
-
-    item.querySelector("input[name='quantity']").value = quantity;
-    item.querySelector("input[class='Qty__Input']").value = quantity;
-    item.parentElement.querySelector(".Item-Total_Price").textContent = (quantity * price).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-
-    getPrice();
-    // delay 1s : 1s mới update 1 lần
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(function () {
-        let id = item.querySelector("input[name='id']").value;
-        console.log("Action:", action);
-        $.ajax({
-            type: "GET",
-            url: "/PBL3_1_war_exploded/api/update",
-            data: {idCartItem : id,quantity : quantity, action : action},
-            success: function(response){
+        let check = createAlertPopUp("Thông báo", "Bạn chắc chắn muốn bỏ sản phẩm này?", [
+            {text: 'Có', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: true},
+            {text: 'Không', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: false}]
+        ).then((value) => {
+            if(value === true){
+                RemoveCartItem(button.parentElement.parentElement);
+            }else {
+                quantity++;
             }
         });
-    }, 1000); // Delay in milliseconds
+    }else {
+        item.querySelector("input[name='quantity']").value = quantity;
+        item.querySelector("input[class='Qty__Input']").value = quantity;
+        item.parentElement.querySelector(".Item-Total_Price").textContent =
+            (Math.round(quantity * price * (1 - discount / 100.0))).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
+        getPrice();
+
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(function () {
+            let id = item.querySelector("input[name='id']").value;
+            console.log("Action:", action);
+            $.ajax({
+                type: "GET",
+                url: "/PBL3_1_war_exploded/api/update",
+                data: {idCartItem : id,quantity : quantity, action : action},
+                success: function(response){
+                }
+            });
+        }, 1000); // Delay in milliseconds
+
+    }
 }
+
 
 
 $(document).ready(function () {
@@ -70,10 +130,12 @@ $(document).ready(function () {
 });
 
 function setCheckAll(checked){
-    let shopElements = document.querySelectorAll('.Shop_Products');
-    shopElements.forEach(shopElement => {
-        shopElement.querySelector('.ShopPick').checked = checked;
-        shopElement.querySelectorAll('.Cart_CB').forEach(cb => cb.checked = checked);
+    let shopElements = $(document).find('.Shop_Products');
+    shopElements.each(function () {
+        $(this).find('.ShopPick').prop('checked', checked);
+        $(this).find('.Cart_CB').each(function (){
+            $(this).prop('checked', checked);
+        });
     });
 }
 
@@ -82,14 +144,18 @@ $(document).ready(function () {
         setCheckAllShop(this, $(this).is(':checked'));
         checkAllCartCB(this);
         getPrice();
-
     });
 });
 
-function setCheckAllShop(element, checked){
+function setCheckAllShop(element){
     let isChecked = $(element).is(':checked');
     let shopElement = $(element).closest('.Shop_Products');
-    shopElement.find("input[name='Cart_CB']").prop('checked', isChecked);
+    let cartCB = shopElement.find("input[name='Cart_CB']");
+
+    cartCB.each(function (){
+        $(this).prop('checked', isChecked);
+    });
+
 }
 
 $(document).ready(function () {
@@ -143,10 +209,10 @@ function checkAllCartCB(element){
 
 function getSelectedItems(){
     let selectedItems = [];
-    let cartCBs = document.querySelectorAll('.Cart_CB');
-    cartCBs.forEach(cb => {
-        if(cb.checked){
-            let itemCell = $(cb).closest('.Shop_Products-Cell');
+    let cartCBs = $(document).find('.Cart_CB');
+    cartCBs.each(function() {
+        if($(this).is(':checked')){
+            let itemCell = $(this).closest('.Shop_Products-Cell');
             selectedItems.push(itemCell);
         }
     });
@@ -155,52 +221,68 @@ function getSelectedItems(){
 
 function getPrice(){
     let cartCBs = getSelectedItems();
-    console.log(cartCBs);
     let total = 0;
 
     cartCBs.forEach(cb => {
         let price = parseInt(cb.find("input[name='price']").val());
         let quantity = parseInt(cb.find("input[name='quantity']").val());
-        total += price * quantity;
+        let discount = parseInt(cb.find("input[name='discount']").val());
+        total += price * (1 - discount / 100.0) * quantity;
     })
 
     let total_product_price = document.querySelector("#total_product_price");
     let total_price = document.querySelector("#total_price");
 
-    total_product_price.textContent = total + "₫";
-    total_price.textContent = total + "₫";
+    total_product_price.textContent = (Math.round(total)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    total_price.textContent = (Math.round(total)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 
-    console.log(total_price.textContent);
     return total;
 }
 
-function getInfo(){
+function getSelectedDataByShop(){
+    let selectedData = [];
+    let shopElements = document.querySelectorAll('.Shop_Products');
+
     let selectedItems = getSelectedItems();
-    let data = [];
-
     selectedItems.forEach(item => {
-        let price = parseInt(item.find("input[name='price']").val());
-        let quantity = parseInt(item.find("input[name='quantity']").val());
-        let shoppingCartItemId = parseInt(item.find("input[name='id']").val());
-        let sellerId = parseInt(item.find("input[name='sellerId']").val());
-
-        data.push({
-            // price : price,
-            // quantity : quantity,
-            sellerId : sellerId,
+        let shoppingCartItemId = parseInt(item.find("input[name='shoppingCartItemId']").val());
+        selectedData.push({
             shoppingCartItemId : shoppingCartItemId
         });
+    });
+
+    let shippingMethod = getShippingMethod();
+
+    if(shippingMethod === null){
+        createAlertPopUp("Thông báo", "Vui lòng chọn phương thức giao hàng",
+            [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()'}]);
+        return;
+    }
+
+    selectedData.push({
+        shippingMethod : shippingMethod
     })
 
-    if(data.length === 0){
-        alert("Vui lòng chọn sản phẩm");
+    return selectedData;
+}
+
+function getShippingMethod(){
+    return document.querySelector('input[name="shippingMethod"]:checked') ? document.querySelector('input[name="shippingMethod"]:checked').value : null;
+}
+
+function getInfo(){
+    let selectedData = getSelectedDataByShop();
+    
+    if(selectedData.length === 0){
+        createAlertPopUp("Thông báo", "Vui lòng chọn sản phẩm",
+            [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()'}]);
         return;
     }
 
     $.ajax({
         type: "POST",
         url: "/PBL3_1_war_exploded/api/order",
-        data: JSON.stringify(data),
+        data: JSON.stringify(selectedData),
         contentType: "application/json",
         success: function(response){
             console.log(response);

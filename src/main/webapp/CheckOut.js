@@ -100,3 +100,43 @@ function order(){
         }
     });
 }
+
+
+function getPriceOrder(){
+    let shops = document.querySelectorAll(".product_of_shop");
+    let total_all = 0;
+    let shippingFee = 0;
+
+    shops.forEach(shop => {
+        let products = shop.querySelectorAll(".product_item");
+        let total = 0;
+
+        shippingFee += parseInt(shop.querySelector("input[name='shippingFee']").value);
+        products.forEach(product => {
+            let price = parseFloat(product.querySelector("input[name='price']").value);
+            let discount = parseFloat(product.querySelector("input[name='discount']").value);
+            let quantity = parseFloat(product.querySelector("input[name='quantity']").value);
+            total += price * (1 - discount / 100.0) * quantity;
+        });
+
+        total_all += total;
+
+        let total_price = shop.querySelector(".total_price");
+        let voucher_money = shop.querySelector(".voucher_money");
+        let total_money = shop.querySelector(".total_money");
+
+        total_price.textContent = (Math.round(total)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        voucher_money.textContent = (Math.round(0)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        total_money.textContent = (Math.round(total)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    });
+
+    let total_all_order = document.querySelector("#total_all_order");
+    let shipping_fee = document.querySelector("#shipping_fee");
+    let voucher_all = document.querySelector("#voucher_all");
+    let total_all_money = document.querySelector("#total_all-   money");
+
+    total_all_order.textContent = (Math.round(total_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    shipping_fee.textContent = (Math.round(shippingFee)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    voucher_all.textContent = (Math.round(0)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+    total_all_money.textContent = (Math.round(total_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+}
