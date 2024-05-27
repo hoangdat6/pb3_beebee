@@ -1,5 +1,6 @@
 package com.example.pbl3_1.service.impl;
 
+<<<<<<< HEAD
 import com.example.pbl3_1.controller.dto.admin.ShopStatisticDTO;
 import com.example.pbl3_1.controller.dto.admin.UserStatisticDTO;
 import com.example.pbl3_1.dao.GenericDAO;
@@ -8,10 +9,16 @@ import com.example.pbl3_1.dao.impl.AbstractDAOImpl;
 import lombok.ToString;
 
 import java.sql.SQLException;
+=======
+import com.example.pbl3_1.controller.dto.admin.UserStatisticDTO;
+import com.example.pbl3_1.dao.UserManageDAO;
+
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserManageDAOImpl implements UserManageDAO {
+<<<<<<< HEAD
     GenericDAO genericDAO = new AbstractDAOImpl();
     @Override
     public List<UserStatisticDTO> getAllCustomer() {
@@ -292,5 +299,16 @@ public class UserManageDAOImpl implements UserManageDAO {
         }, id);
         if (list.size() == 0) return null;
         return list.get(0);
+=======
+
+    @Override
+    public List<UserStatisticDTO> getAllCustomer() {
+        return new ArrayList<UserStatisticDTO>();
+    }
+
+    @Override
+    public List<UserStatisticDTO> getAllSeller() {
+        return new ArrayList<UserStatisticDTO>();
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
     }
 }

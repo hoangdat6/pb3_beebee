@@ -1,5 +1,6 @@
 package com.example.pbl3_1.controller;
 
+
 import com.example.pbl3_1.controller.dto.admin.ShopStatisticDTO;
 import com.example.pbl3_1.controller.dto.admin.UserStatisticDTO;
 import com.example.pbl3_1.service.UserManageService;
@@ -119,6 +120,9 @@ public class AdminController extends HttpServlet {
                 // code to handle product management
                 break;
             default:
+                // code to handle default acton
+                RequestDispatcher dispatcher = req.getRequestDispatcher("");
+                dispatcher.forward(req, resp);
                 break;
         }
     }

@@ -31,22 +31,40 @@
                 </div>
             </nav>
             <div class="content">
-                    <div class="search">
-                        <div class="status">
-                            Trạng thái
-                            <select name="status" id="status">
-                                <option value="all">Tất cả</option>
-                                <option value="active">Đang hoạt động</option>
-                                <option value="inactive">Ngưng hoạt động</option>
-                            </select>
-                        </div>
+<%--<<<<<<< HEAD--%>
+<%--                    <div class="search">--%>
+<%--                        <div class="status">--%>
+<%--                            Trạng thái--%>
+<%--                            <select name="status" id="status">--%>
+<%--                                <option value="all">Tất cả</option>--%>
+<%--                                <option value="active">Đang hoạt động</option>--%>
+<%--                                <option value="inactive">Ngưng hoạt động</option>--%>
+<%--                            </select>--%>
+<%--                        </div>--%>
 
-                        <form method="get" class="search_bar" action="<c:url value="/searchCustomer"/>">
-                                Tìm kiếm
-                                <input type="text" name="user_search" id="user_search">
-                                <button id="search_customer">Tìm kiếm</button>
-                        </form>
+<%--                        <form method="get" class="search_bar" action="<c:url value="/searchCustomer"/>">--%>
+<%--                                Tìm kiếm--%>
+<%--                                <input type="text" name="user_search" id="user_search">--%>
+<%--                                <button id="search_customer">Tìm kiếm</button>--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
+                <div class="search">
+                    <div class="status">
+                        Trạng thái
+                        <select name="status" id="status">
+                            <option value="all">Tất cả</option>
+                            <option value="active">Đang hoạt động</option>
+                            <option value="inactive">Ngưng hoạt động</option>
+                        </select>
                     </div>
+
+                    <div class="search_bar">
+                        Tìm kiếm
+                        <input type="search" name="user_search" id="user_search">
+                        <button>Tìm kiếm</button>
+                    </div>
+                </div>
+
                 <div class="search_result">
                     <h3>Kết quả tìm kiếm</h3>
                     <table id="table">
@@ -77,10 +95,6 @@
                                 <td>${ListDataItem.total}</td>
                             </tr>
                             <script>
-                                // Khai báo các biến trong phạm vi của vòng lặp để đảm bảo chúng có giá trị riêng biệt cho mỗi mục
-                                <%--let imgAvatar${loop.index} = "<c:url value='${ListDataItem.imgPath}'/>";--%>
-                                <%--let imgShop${loop.index} = "<c:url value='${ListDataItem.shopImgPath}'/>";--%>
-
                                 // Xử lý sự kiện click cho hàng tương ứng với mỗi ID
                                 $("#table tbody").on('click', '#${ListDataItem.id}', function (e) {
                                     let rowId = this.id; // Lấy ID của hàng được nhấp
@@ -92,9 +106,6 @@
                                         },
                                         success: function (data) {
                                             console.log(data);
-                                            <%--data.customer.imgPath = imgAvatar${loop.index};--%>
-                                            <%--if (data.shop != null || data.shop != undefined)--%>
-                                            <%--    data.shop.imgPath = imgShop${loop.index};--%>
                                             generatePopup(data.customer, data.shop ?? null);
                                         },
                                         error: function (jqXHR, textStatus, errorThrown) {
@@ -115,7 +126,6 @@
     <script type="text/javascript">
         generateSidebar('user');
     </script>
-<%--    <script type="text/javascript" src="userManage.js"></script>--%>
 </body>
 
 </html>

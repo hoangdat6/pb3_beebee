@@ -106,6 +106,7 @@ function createExampleAddressItem() {
         city: citySelect.options[citySelect.selectedIndex].text,
         type: document.querySelector('#Set_default').checked ? "default" : "type"
     };
+<<<<<<< HEAD
     let addressItem = AddressItem(address);
     document.querySelector('.Address_container').appendChild(addressItem);
     $.ajax({
@@ -122,6 +123,27 @@ function createExampleAddressItem() {
         success: function (response) {
         }
     });
+=======
+    AddAddressItem(address);
+}
+
+function getTextFromSelect(selectElement) {
+    return selectElement.options[selectElement.selectedIndex].text;
+}
+
+function getAddressInfor() {
+    let Popups = document.querySelector("#overlay .Add_address");
+    let address = {
+        name: Popups.querySelector('#name').value,
+        phone: Popups.querySelector('#phone').value,
+        city: getTextFromSelect(Popups.querySelector('#city')),
+        district: getTextFromSelect(Popups.querySelector('#district')),
+        ward: getTextFromSelect(Popups.querySelector('#ward')),
+        detail: Popups.querySelector('#Address-Desc').value,
+        type: Popups.querySelector('#Set_default').checked ? "default" : "",
+    };
+    return address;
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
 }
 
 document.getElementById('addAddressBtn').addEventListener('click', function () {

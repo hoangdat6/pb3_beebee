@@ -3,7 +3,11 @@ const items = [
         class: 'user_nav',
         name: 'Quản lý người dùng',
         icon: 'fa-user',
+<<<<<<< HEAD
         href: 'http://localhost:8080/PBL3_1_war_exploded/admin/usermanage'
+=======
+        href: ''
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
     },
     {
         class: 'statis_nav',

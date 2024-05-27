@@ -38,11 +38,25 @@
                     <div class="Address_item">
                         <div class="Address_item_left">
                             <div class="row1">
+<<<<<<< HEAD
                                 ${address.fullname} | ${address.phone}
                             </div>
                             <div class="row2">
                                 <p>${address.detail}</p>
                                 <p>${address.ward}, ${address.district}, ${address.province}</p>
+=======
+                                <span class="item_name"> Vũ Văn </span>
+                                |
+                                <span class="item_phone">0937******</span>
+                            </div>
+                            <div class="row2">
+                                <p class="item_detail">h15/1 K35 Mẹ Suốt, Hòa Khánh Nam, Liên Chiểu, Đà Nẵng</p>
+                                <p>
+                                    <span class="item_ward">Phường Hòa Khánh Nam</span>,
+                                    <span class="item_district">Liên Chiểu</span>,
+                                    <span class="item_city">Đà Nẵng</span>
+                                </p>
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
                             </div>
                             <div class="row3 Address_type item_name">
                                 Mặc định
