@@ -32,7 +32,6 @@ public class OrderServiceImpl implements OrderService {
 
         for (ProductForCheckOut productForCheckOut : productForShoppingCartDTOS) {
             List<VariationDTO> variationDTO = variationOptionDAO.getVariationDTOByProductItemId(productForCheckOut.getProductItemId());
-//            productForCheckOut.setVariations(variationDTO);
             StringBuilder variations = new StringBuilder();
             for (VariationDTO variationDTO1 : variationDTO) {
                 variations.append(variationDTO1.getName()).append(": ").append(variationDTO1.getValue()).append(", ");

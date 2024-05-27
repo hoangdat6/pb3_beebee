@@ -36,5 +36,3 @@ function GenerateSideBar(type = "UserInformation", username) {
     let wrap = document.querySelector('.UAAS_wrap');
     wrap.prepend(aside);
 }
-
-export default GenerateSideBar;
