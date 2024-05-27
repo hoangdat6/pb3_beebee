@@ -1,5 +1,6 @@
 package com.example.pbl3_1.controller;
 
+
 import com.example.pbl3_1.controller.dto.admin.ShopStatisticDTO;
 import com.example.pbl3_1.controller.dto.admin.UserStatisticDTO;
 import com.example.pbl3_1.service.UserManageService;
@@ -73,10 +74,8 @@ public class AdminController extends HttpServlet {
                 ShopStatisticDTO shop;
 
                 if (isUserID) {
-                    // Get the customer by ID (if it exists)
                     customer = ums.getCustomerById(id);
                     shop = ums.getShopById(id);
-                    // Create a new Map to hold both objects
                 }
                 else{
                     customer = ums.getCustomerByShopId(id);
@@ -116,9 +115,11 @@ public class AdminController extends HttpServlet {
                 resp.getWriter().write(lockShopJson);
                 break;
             case "/productmanage":
-                // code to handle product management
                 break;
             default:
+                // code to handle default acton
+                RequestDispatcher dispatcher = req.getRequestDispatcher("");
+                dispatcher.forward(req, resp);
                 break;
         }
     }

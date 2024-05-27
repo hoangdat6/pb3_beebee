@@ -7,6 +7,7 @@ $red: #FF5630;
     border-radius: 10px;
 }
 
+<<<<<<< HEAD
 .pop_up {
     position: fixed;
     top: 50%;
@@ -127,6 +128,8 @@ $red: #FF5630;
     margin-right: 20px;
 }
 
+=======
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
 body{
     background-color: #f3f5f7;
 }
@@ -226,6 +229,7 @@ body{
                         th{
                             padding: 10px 20px;
                             text-align: left;
+<<<<<<< HEAD
                             border: 1px solid #fff;
                             background-color: #141718;
                             color: #fff;
@@ -249,6 +253,20 @@ body{
                                 font-size: 14px;
                                 font-weight: 400;
                                 text-align: center;
+=======
+                            border-bottom: 1px solid #ccc;
+                        }
+                    }
+                    tbody{
+                        tr{
+                            cursor: pointer;
+                            &:hover{
+                                background-color: #ccc;
+                            }
+                            td{
+                                padding: 10px 20px;
+                                border-bottom: 1px solid #ccc;
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
                             }
                         }
                     }

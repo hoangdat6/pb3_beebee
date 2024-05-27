@@ -1,6 +1,7 @@
 package com.example.pbl3_1.controller.api;
 
 import com.example.pbl3_1.Util.SessionUtil;
+import com.example.pbl3_1.controller.dto.cart.CartInfoDTO;
 import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.Order;
 import com.example.pbl3_1.entity.OrderDetail;
@@ -30,37 +31,20 @@ public class CheckOutApi extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("application/json");
 
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper mapper = new ObjectMapper();
 
-        List<Map<String, String>> orderDetail = objectMapper.readValue(request.getReader(), List.class);
+        Map<String, Object> dataOrder = mapper.readValue(request.getReader(), Map.class);
+
+        Long addressId = dataOrder.get("addressId") != null ? Long.parseLong(dataOrder.get("addressId").toString()) : null;
+        Short paymentMethodId = dataOrder.get("paymentMethodId") != null ? Short.parseShort(dataOrder.get("paymentMethodId").toString()) : null;
+        Short shippingMethodId = SessionUtil.getInstance().getValue(
+                request, "shippingMethodId") != null
+                ? Short.parseShort(SessionUtil.getInstance().getValue(request, "shippingMethodId").toString())
+                : null;
+
+        List<CartInfoDTO> checkOutInfoDTOs = (List<CartInfoDTO>) SessionUtil.getInstance().getValue(request, "checkOutInfoDTOs");
 
         User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-
-        System.out.println(orderDetail.get(0).get("phone"));
-        Order addressOrder = Order.builder()
-                .userId(user.getId())
-                .fullName(orderDetail.get(0).get("fullname"))
-                .phone(orderDetail.get(0).get("phone"))
-                .total(Integer.parseInt(Objects.toString(orderDetail.get(0).get("total"))))
-                .detailAddress(orderDetail.get(0).get("detail"))
-                .communeAddress(orderDetail.get(0).get("ward"))
-                .districtAddress(orderDetail.get(0).get("district"))
-                .provinceAddress(orderDetail.get(0).get("province"))
-                .build();
-
-        List<OrderDetail> orderDetails = new ArrayList<>();
-
-        for (int i = 1; i < orderDetail.get(1).size(); ++i) {
-            OrderDetail orderDetail1 = OrderDetail.builder()
-                    .sellerId(Long.parseLong(orderDetail.get(1).get("sellerId")))
-                    .productItemId(Long.parseLong(orderDetail.get(1).get("productItemId")))
-                    .quantity(Integer.parseInt(orderDetail.get(1).get("quantity")))
-                    .total(Integer.parseInt(orderDetail.get(1).get("price")))
-                    .build();
-            orderDetails.add(orderDetail1);
-        }
-        Long id = orderService.addOrder(addressOrder, orderDetails);
-
-        System.out.println(id);
+        orderService.createOrder(checkOutInfoDTOs, addressId, shippingMethodId, paymentMethodId, user.getId());
     }
 }

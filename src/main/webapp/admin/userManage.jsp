@@ -47,6 +47,7 @@
                                 <button id="search_customer">Tìm kiếm</button>
                         </form>
                     </div>
+
                 <div class="search_result">
                     <h3>Kết quả tìm kiếm</h3>
                     <table id="table">
@@ -76,7 +77,6 @@
                 rerenderTable(data, ["STT", "Tên", "Email", "Trạng thái", "Chi tiêu/năm"]);
             });
     </script>
-<%--    <script type="text/javascript" src="userManage.js"></script>--%>
 </body>
 
 </html>

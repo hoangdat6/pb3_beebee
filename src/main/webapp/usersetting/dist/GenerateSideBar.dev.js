@@ -1,3 +1,4 @@
+
 "use strict";
 
 function GenerateSideBar() {
@@ -12,5 +13,3 @@ function GenerateSideBar() {
   var wrap = document.querySelector('.UAAS_wrap');
   wrap.prepend(aside);
 }
-
-GenerateSideBar("Order");

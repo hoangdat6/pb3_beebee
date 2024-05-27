@@ -1,3 +1,4 @@
+
 .pop_up {
   position: fixed;
   top: 50%;
@@ -117,7 +118,6 @@
   margin-bottom: 20px;
   margin-right: 20px;
 }
-
 body {
   background-color: #f3f5f7;
 }
@@ -228,7 +228,6 @@ body {
 }
 #wrap .container .content .search_result table thead th {
   padding: 10px 20px;
-  text-align: left;
   border: 1px solid #fff;
   background-color: #141718;
   color: #fff;
