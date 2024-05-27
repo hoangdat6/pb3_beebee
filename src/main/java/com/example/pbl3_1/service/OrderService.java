@@ -15,4 +15,6 @@ public interface OrderService {
     Long addOrder(Order addressOrder, List<OrderDetail> orderDetails);
 
     List<CartInfoDTO> getCartInfoDTO(List<Long> shoppingCartItemId);
+
+    void getOrderListByID(int i);
 }
