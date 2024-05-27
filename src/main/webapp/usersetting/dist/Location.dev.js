@@ -20,12 +20,15 @@ function AddAddressPopUps() {
   });
   var AddAddressPopUp = document.createElement('div');
   AddAddressPopUp.className = 'Add_address';
-  AddAddressPopUp.innerHTML = "\n    <h3 class=\"Add_address_title\">Th\xEAm \u0111\u1ECBa ch\u1EC9 m\u1EDBi</h3>\n    <form action=\"\" class=\"Add_address_form\">\n        <div class=\"Contact_info Add_address_form_item\">\n            <h4>Th\xF4ng tin li\xEAn l\u1EA1c</h4>\n            <div class=\"Contact_info_input_wrap\">\n                <div class=\"Contact_info_input_item\">\n                    <input placeholder=\"H\u1ECD v\xE0 t\xEAn\" type=\"text\" id=\"name\" name=\"name\" value=\"".concat(name, "\">\n                </div>\n                <div class=\"Contact_info_input_item\">\n                    <input placeholder=\"S\u1ED1 \u0111i\u1EC7n tho\u1EA1i\" type=\"tel\" id=\"phone\" name=\"phone\" pattern=\"[0..9]{10}\" value=\"").concat(phone, "\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"Pickup_info Add_address_form_item\">\n            <h4>\u0110\u1ECBa ch\u1EC9 nh\u1EADn h\xE0ng</h4>\n            <select class=\"form-select form-select-sm mb-3\" id=\"city\" aria-label=\".form-select-sm\">\n                <option value=\"\" selected>Ch\u1ECDn t\u1EC9nh th\xE0nh</option>\n            </select>\n            <select class=\"form-select form-select-sm mb-3\" id=\"district\" aria-label=\".form-select-sm\">\n                <option value=\"\" selected>Ch\u1ECDn qu\u1EADn huy\u1EC7n</option>\n            </select>\n            <select class=\"form-select form-select-sm\" id=\"ward\" aria-label=\".form-select-sm\">\n                <option value=\"\" selected>Ch\u1ECDn ph\u01B0\u1EDDng x\xE3</option>\n            </select>\n            <input type=\"text\" name=\"Dia chi\" id=\"Address-Desc\"\n                placeholder=\"S\u1ED1 \u0111\u01B0\u1EDDng, th\xF4n, ki\u1EC7t, h\u1EBBm,...\" value=\"").concat(address, "\">\n        </div>\n        <div class=\"Set_default\">\n            <input type=\"checkbox\" id=\"Set_default\" name=\"Set_default\" ").concat(defaultAddress ? 'checked' : '', ">\n            <label for=\"Set_default\">\u0110\u1EB7t l\xE0m \u0111\u1ECBa ch\u1EC9 m\u1EB7c \u0111\u1ECBnh</label>\n        </div >\n\n        <div class=\"Add_address_btns\">\n            <input class=\"btn btn_Send\" value=\"X\xE1c nh\u1EADn\" type=\"submit\" require>\n                <input class=\"btn btn_Cancel\" value=\"H\u1EE7y\" type=\"submit\" require>\n                </div>\n            </form>\n        ");
+  AddAddressPopUp.innerHTML = "\n    <h3 class=\"Add_address_title\">Th\xEAm \u0111\u1ECBa ch\u1EC9 m\u1EDBi</h3>\n    <form action=\"\" class=\"Add_address_form\">\n        <div class=\"Contact_info Add_address_form_item\">\n            <h4>Th\xF4ng tin li\xEAn l\u1EA1c</h4>\n            <div class=\"Contact_info_input_wrap\">\n                <div class=\"Contact_info_input_item\">\n                    <input placeholder=\"H\u1ECD v\xE0 t\xEAn\" type=\"text\" id=\"name\" name=\"name\" value=\"".concat(name, "\">\n                </div>\n                <div class=\"Contact_info_input_item\">\n                    <input placeholder=\"S\u1ED1 \u0111i\u1EC7n tho\u1EA1i\" type=\"tel\" id=\"phone\" name=\"phone\" pattern=\"[0..9]{10}\" value=\"").concat(phone, "\">\n                </div>\n            </div>\n        </div>\n\n        <div class=\"Pickup_info Add_address_form_item\">\n            <h4>\u0110\u1ECBa ch\u1EC9 nh\u1EADn h\xE0ng</h4>\n            <select class=\"form-select form-select-sm mb-3\" id=\"city\" aria-label=\".form-select-sm\">\n                <option value=\"\" selected>Ch\u1ECDn t\u1EC9nh th\xE0nh</option>\n            </select>\n            <select class=\"form-select form-select-sm mb-3\" id=\"district\" aria-label=\".form-select-sm\">\n                <option value=\"\" selected>Ch\u1ECDn qu\u1EADn huy\u1EC7n</option>\n            </select>\n            <select class=\"form-select form-select-sm\" id=\"ward\" aria-label=\".form-select-sm\">\n                <option value=\"\" selected>Ch\u1ECDn ph\u01B0\u1EDDng x\xE3</option>\n            </select>\n            <input type=\"text\" name=\"Dia chi\" id=\"Address-Desc\"\n                placeholder=\"S\u1ED1 \u0111\u01B0\u1EDDng, th\xF4n, ki\u1EC7t, h\u1EBBm,...\" value=\"").concat(address, "\">\n        </div>\n        <div class=\"Set_default\">\n            <input type=\"checkbox\" id=\"Set_default\" name=\"Set_default\" ").concat(defaultAddress ? 'checked' : '', ">\n            <label for=\"Set_default\">\u0110\u1EB7t l\xE0m \u0111\u1ECBa ch\u1EC9 m\u1EB7c \u0111\u1ECBnh</label>\n        </div >\n\n        <div class=\"Add_address_btns\">\n            <div class=\"btn btn_Send\">\n                X\xE1c nh\u1EADn\n            </div>\n            <div class=\"btn btn_Cancel\">\n                H\u1EE7y\n            </div>\n        </div>\n    </form>\n        ");
   overlay.appendChild(AddAddressPopUp);
   document.body.appendChild(overlay);
+  AddAddressPopUp.querySelector('.Add_address_btns .btn_Send').addEventListener('click', function () {
+    AddAddressItem(getAddressInfor());
+  });
 }
 
-function AddressItem(address) {
+function AddAddressItem(address) {
   var Type = {
     "default": "Mặc định",
     "pickup": "Địa chỉ lấy hàng"
@@ -33,7 +36,7 @@ function AddressItem(address) {
   var addressItem = document.createElement('div');
   addressItem.className = 'Address_item';
   addressItem.innerHTML = "\n    <div class=\"Address_item_left\">\n        <div class=\"row1\">\n            ".concat(address.name, " | ").concat(address.phone, "\n        </div>\n        <div class=\"row2\">\n            <p>").concat(address.detail, "</p>\n            <p><span class=\"Address_item_ward\">").concat(address.ward, "</span>, <span class=\"Address_item_district\">").concat(address.district, "</span>, <span class=\"Address_item_city\">").concat(address.district, "</span></p>\n        </div>\n        ").concat(address.type != "" ? "<div class=\"row3 Address_type\"> ".concat(Type[address.type], "</div>") : "", "\n    </div>\n    <div class=\"Address_item_right\">\n            <div class=\"row1\">\n                ").concat(address.type == "default" ? "" : "<button class=\"Address_remove_btn btn\">X\xF3a</button>", "\n                <button class=\"Address_update_btn btn\">C\u1EADp nh\u1EADt</button>\n            </div>\n        <div class=\"row2 Address_set_default btn\" ").concat(address.type == "default" ? 'pointer-events = "none"' : '', ">\n            \u0110\u1EB7t l\xE0m \u0111\u1ECBa ch\u1EC9 m\u1EB7c \u0111\u1ECBnh\n        </div>\n    </div>\n    ");
-  return addressItem;
+  document.querySelector('.Address_container').appendChild(addressItem);
 }
 
 function createExampleAddressItem() {
@@ -46,8 +49,25 @@ function createExampleAddressItem() {
     city: "Đà Nẵng",
     type: "default"
   };
-  var addressItem = AddressItem(address);
-  document.querySelector('.Address_container').appendChild(addressItem);
+  AddAddressItem(address);
+}
+
+function getTextFromSelect(selectElement) {
+  return selectElement.options[selectElement.selectedIndex].text;
+}
+
+function getAddressInfor() {
+  var Popups = document.querySelector("#overlay .Add_address");
+  var address = {
+    name: Popups.querySelector('#name').value,
+    phone: Popups.querySelector('#phone').value,
+    city: getTextFromSelect(Popups.querySelector('#city')),
+    district: getTextFromSelect(Popups.querySelector('#district')),
+    ward: getTextFromSelect(Popups.querySelector('#ward')),
+    detail: Popups.querySelector('#Address-Desc').value,
+    type: Popups.querySelector('#Set_default').checked ? "default" : ""
+  };
+  return address;
 }
 
 document.getElementById('addAddressBtn').addEventListener('click', function () {

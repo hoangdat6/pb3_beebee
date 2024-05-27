@@ -16,10 +16,10 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `address`
+-- Table structure for table address
 --
 
-DROP TABLE IF EXISTS `address`;
+DROP TABLE IF EXISTS address;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address` (
@@ -37,7 +37,7 @@ CREATE TABLE `address` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `address`
+-- Dumping data for table address
 --
 
 LOCK TABLES `address` WRITE;
@@ -47,28 +47,28 @@ INSERT INTO `address` VALUES (1,NULL,'Hòa Khánh Nam','Liên chiều','Đà N�
 UNLOCK TABLES;
 
 --
--- Table structure for table `categories`
+-- Table structure for table categories
 --
 
-DROP TABLE IF EXISTS `categories`;
+DROP TABLE IF EXISTS categories;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `categories` (
-                              `id` int NOT NULL AUTO_INCREMENT,
-                              `name` varchar(50) DEFAULT NULL,
-                              `img_path` varchar(255) DEFAULT NULL,
-                              PRIMARY KEY (`id`)
+CREATE TABLE categories (
+                            id int NOT NULL AUTO_INCREMENT,
+                            name varchar(50) DEFAULT NULL,
+                            img_path varchar(255) DEFAULT NULL,
+                            PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `categories`
+-- Dumping data for table categories
 --
 
-LOCK TABLES `categories` WRITE;
-/*!40000 ALTER TABLE `categories` DISABLE KEYS */;
-INSERT INTO `categories` VALUES (1,'Thời trang',NULL),(2,'Beverages',NULL),(4,'Confections',NULL),(5,'Dairy Products',NULL),(6,'Grains/Cereals',NULL),(7,'Meat/Poultry',NULL);
-/*!40000 ALTER TABLE `categories` ENABLE KEYS */;
+LOCK TABLES categories WRITE;
+/*!40000 ALTER TABLE categories DISABLE KEYS */;
+INSERT INTO categories VALUES (1,'Thời trang',NULL),(2,'Beverages',NULL),(4,'Confections',NULL),(5,'Dairy Products',NULL),(6,'Grains/Cereals',NULL),(7,'Meat/Poultry',NULL);
+/*!40000 ALTER TABLE categories ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -201,7 +201,7 @@ UNLOCK TABLES;
 -- Table structure for table `product_item`
 --
 
-DROP TABLE IF EXISTS `product_item`;
+DROP TABLE IF EXISTS product_item;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product_item` (
@@ -224,7 +224,7 @@ CREATE TABLE `product_item` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `product_item`
+-- Dumping data for table product_item
 --
 
 LOCK TABLES `product_item` WRITE;
@@ -234,10 +234,10 @@ INSERT INTO `product_item` VALUES (1,2,NULL,'img_product/quan_002.png',7,10,100,
 UNLOCK TABLES;
 
 --
--- Table structure for table `products`
+-- Table structure for table products
 --
 
-DROP TABLE IF EXISTS `products`;
+DROP TABLE IF EXISTS products;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `products` (
@@ -261,7 +261,7 @@ CREATE TABLE `products` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `products`
+-- Dumping data for table products
 --
 
 LOCK TABLES `products` WRITE;
@@ -298,10 +298,10 @@ INSERT INTO `seller_followers` VALUES (3,2),(5,2);
 UNLOCK TABLES;
 
 --
--- Table structure for table `sellers`
+-- Table structure for table seller_followers
 --
 
-DROP TABLE IF EXISTS `sellers`;
+DROP TABLE IF EXISTS seller_followers;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sellers` (
@@ -323,7 +323,7 @@ CREATE TABLE `sellers` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sellers`
+-- Dumping data for table seller_followers
 --
 
 LOCK TABLES `sellers` WRITE;
@@ -361,7 +361,7 @@ UNLOCK TABLES;
 -- Table structure for table `shopping_cart`
 --
 
-DROP TABLE IF EXISTS `shopping_cart`;
+DROP TABLE IF EXISTS sellers;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shopping_cart` (
@@ -375,7 +375,7 @@ CREATE TABLE `shopping_cart` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `shopping_cart`
+-- Dumping data for table shopping_cart
 --
 
 LOCK TABLES `shopping_cart` WRITE;
@@ -385,10 +385,10 @@ INSERT INTO `shopping_cart` VALUES (1,3,NULL),(2,5,'2024-03-24 23:27:14'),(3,6,'
 UNLOCK TABLES;
 
 --
--- Table structure for table `shopping_cart_item`
+-- Table structure for table shopping_cart_item
 --
 
-DROP TABLE IF EXISTS `shopping_cart_item`;
+DROP TABLE IF EXISTS shopping_cart_item;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shopping_cart_item` (
@@ -522,7 +522,7 @@ CREATE TABLE `variation_option` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `variation_option`
+-- Dumping data for table shopping_cart_item
 --
 
 LOCK TABLES `variation_option` WRITE;
@@ -540,4 +540,9 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-24 15:17:45
+
+ALTER TABLE users ADD COLUMN status bit;
+ALTER TABLE sellers ADD COLUMN status bit;
+
+update users set status = 1 where status = 0 or status is null;
+update sellers set status = 1 where status = 0 or status is null;

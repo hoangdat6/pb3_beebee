@@ -138,7 +138,14 @@
                     <div style="display: block; width: 100%;">
                         <div class="Basic_info_item">
                             <input type="text" name="product_name" id="product_name" required>
-                            <span id="span_for_name" style="padding: 10px; color: #9CA3AF">0/120</span>
+                            <span id="span_for_name" style="
+                                    padding: 10px;
+                                    color: #9CA3AF;
+                                    position: absolute;
+                                    right: 0;
+                                    top: 50%;
+                                    transform: translateY(-50%);">0/120
+                            </span>
                         </div>
                         <div id="warning_name">
                         </div>
@@ -146,8 +153,8 @@
                 </div>
 
 
-                <div style="display: flex;">
-                    <div class="Basic_info_item" style="margin-right: 80px;">
+                <div style="display: flex; flex-wrap: wrap; gap: 40px">
+                    <div class="Basic_info_item">
                         <label class="item_title" for="category">
                             Danh mục
                         </label>
@@ -160,7 +167,7 @@
 
                     <div class="Basic_info_item">
                         <div >
-                            <label style="margin-bottom: 0; width: 100px;" class="item_title" for="discount">
+                            <label style="display: flex;justify-content: space-between;gap: 40px;" class="item_title" for="discount">
                                 Giảm giá (%)
                             </label>
                         </div>

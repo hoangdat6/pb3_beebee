@@ -107,6 +107,7 @@ input[type="file"] {
     width: 120px;
     text-align: left;
     display: inline-block;
+    line-height: 1.6;
 }
 
 #Sale_info .item_title{
@@ -167,12 +168,14 @@ input[type="file"] {
 
 #Basic_info .Basic_info_item{
     display: flex;
-    align-items: center;
+    align-items: flex-start;
+    position: relative;
+    flex-grow: 1;
 }
 
 #Basic_info .Basic_info_item input,
 #Basic_info .Basic_info_item textarea{
-    width: 70%;
+    width: 100%;
     font-size: 14px;
     padding: 5px 10px;
     border-radius: 5px;
@@ -185,6 +188,8 @@ input[type="file"] {
     padding: 5px 10px;
     border-radius: 5px;
     border: 0.75px solid #6C7275;
+    display: block;
+    flex-grow: 1;
 }
 
 #Sale_info {}
