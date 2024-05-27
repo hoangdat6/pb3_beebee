@@ -31,22 +31,40 @@
                 </div>
             </nav>
             <div class="content">
-                    <div class="search">
-                        <div class="status">
-                            Trạng thái
-                            <select name="status" id="status">
-                                <option value="all">Tất cả</option>
-                                <option value="active">Đang hoạt động</option>
-                                <option value="inactive">Ngưng hoạt động</option>
-                            </select>
-                        </div>
+<%--<<<<<<< HEAD--%>
+<%--                    <div class="search">--%>
+<%--                        <div class="status">--%>
+<%--                            Trạng thái--%>
+<%--                            <select name="status" id="status">--%>
+<%--                                <option value="all">Tất cả</option>--%>
+<%--                                <option value="active">Đang hoạt động</option>--%>
+<%--                                <option value="inactive">Ngưng hoạt động</option>--%>
+<%--                            </select>--%>
+<%--                        </div>--%>
 
-                        <form method="get" class="search_bar" action="<c:url value="/searchCustomer"/>">
-                                Tìm kiếm
-                                <input type="text" name="user_search" id="user_search">
-                                <button id="search_customer">Tìm kiếm</button>
-                        </form>
+<%--                        <form method="get" class="search_bar" action="<c:url value="/searchCustomer"/>">--%>
+<%--                                Tìm kiếm--%>
+<%--                                <input type="text" name="user_search" id="user_search">--%>
+<%--                                <button id="search_customer">Tìm kiếm</button>--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
+                <div class="search">
+                    <div class="status">
+                        Trạng thái
+                        <select name="status" id="status">
+                            <option value="all">Tất cả</option>
+                            <option value="active">Đang hoạt động</option>
+                            <option value="inactive">Ngưng hoạt động</option>
+                        </select>
                     </div>
+
+                    <div class="search_bar">
+                        Tìm kiếm
+                        <input type="search" name="user_search" id="user_search">
+                        <button>Tìm kiếm</button>
+                    </div>
+                </div>
+
                 <div class="search_result">
                     <h3>Kết quả tìm kiếm</h3>
                     <table id="table">
@@ -60,6 +78,45 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <c:forEach var="ListDataItem" items="${ListData}" varStatus="loop">
+                            <tr id="${ListDataItem.id}">
+                                <td>${loop.index + 1}</td>
+                                <td>${ListDataItem.name}</td>
+                                <td>${ListDataItem.email}</td>
+                                <td><c:choose>
+                                        <c:when test="${ListDataItem.status == true}">
+                                            Đang hoạt động
+                                        </c:when>
+                                        <c:when test="${ListDataItem.status == false}">
+                                            Đã khóa
+                                        </c:when>
+                                    </c:choose>
+                                </td>
+                                <td>${ListDataItem.total}</td>
+                            </tr>
+                            <script>
+                                // Xử lý sự kiện click cho hàng tương ứng với mỗi ID
+                                $("#table tbody").on('click', '#${ListDataItem.id}', function (e) {
+                                    let rowId = this.id; // Lấy ID của hàng được nhấp
+                                    $.ajax({
+                                        url: "/PBL3_1_war_exploded/getCustomerByID",
+                                        type: 'GET',
+                                        data: {
+                                            user_id: rowId
+                                        },
+                                        success: function (data) {
+                                            console.log(data);
+                                            generatePopup(data.customer, data.shop ?? null);
+                                        },
+                                        error: function (jqXHR, textStatus, errorThrown) {
+                                            console.log('Error:', errorThrown);
+                                            console.log('Status:', textStatus);
+                                            console.log('jqXHR:', jqXHR);
+                                        }
+                                    });
+                                });
+                            </script>
+                        </c:forEach>
                         </tbody>
                     </table>
                 </div>
@@ -76,7 +133,6 @@
                 rerenderTable(data, ["STT", "Tên", "Email", "Trạng thái", "Chi tiêu/năm"]);
             });
     </script>
-<%--    <script type="text/javascript" src="userManage.js"></script>--%>
 </body>
 
 </html>

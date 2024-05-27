@@ -42,7 +42,7 @@
                             </div>
                             <div class="row2">
                                 <p>${address.detail}</p>
-                                <p>${address.ward_value}, ${address.district_value}, ${address.province_value}</p>
+                                <p>${address.ward}, ${address.district}, ${address.province}</p>
                             </div>
                             <c:if test="${address.isDefault}">
                             <div class="row3 Address_type">

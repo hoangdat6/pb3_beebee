@@ -112,60 +112,37 @@ function AddAddressItem(address) {
         document.querySelector('.Address_container').appendChild(addressItem);
     }
 
-    function createExampleAddressItem() {
-        let citySelect = document.querySelector('#city');
-        let districtSelect = document.querySelector('#district');
-        let wardSelect = document.querySelector('#ward');
-        let address = {
-            name: document.querySelector('#name').value,
-            phone: document.querySelector('#phone').value,
-            detail: document.querySelector('#Address-Desc').value,
-            ward: wardSelect.options[wardSelect.selectedIndex].text,
-            district: districtSelect.options[districtSelect.selectedIndex].text,
-            city: citySelect.options[citySelect.selectedIndex].text,
-            wardValue: wardSelect.value,
-            districtValue: districtSelect.value,
-            cityValue: citySelect.value,
-            isDefault: document.querySelector('#Set_default').checked,
-            id: null
-        };
-        console.log(address.isDefault);
-        $.ajax({
-            type: "POST",
-            url: "/PBL3_1_war_exploded/api/address",
-
-            data: {
-                fullname: address.name,
-                phone: address.phone,
-                detail: address.detail,
-                ward: wardSelect.value,
-                district: districtSelect.value,
-                city: citySelect.value,
-                is_default: document.querySelector('#Set_default').checked
-            },
-            dataType: 'json',
-            success: function (response) {
-                if (address.isDefault) {
-                    let defaultNow = document.querySelector(".row3.Address_type");
-                    if (defaultNow !== null) {
-                        let Address = document.createElement('div');
-                        Address.className = 'row2 Address_set_default btn';
-                        Address.innerText = 'Đặt làm địa chỉ mặc định'
-                        Address.setAttribute('onclick', 'SetDefault(this)');
-                        defaultNow.parentElement.parentElement.querySelector('.Address_item_right').appendChild(Address);
-                        defaultNow.parentElement.parentElement.querySelector("input[name='addressIsDefault']").value = false;
-                        defaultNow.remove();
-                    }
-                }
-                address.id = response;
-                let addressItem = AddressItem(address);
-                document.querySelector('.Address_container').appendChild(addressItem);
-
-            }
-        });
-
-
-    }
+function createExampleAddressItem() {
+    let citySelect = document.querySelector('#city');
+    let districtSelect = document.querySelector('#district');
+    let wardSelect = document.querySelector('#ward');
+    let address = {
+        name: document.querySelector('#name').value,
+        phone: document.querySelector('#phone').value,
+        detail: document.querySelector('#Address-Desc').value,
+        ward: wardSelect.options[wardSelect.selectedIndex].text,
+        district: districtSelect.options[districtSelect.selectedIndex].text,
+        city: citySelect.options[citySelect.selectedIndex].text,
+        type: document.querySelector('#Set_default').checked ? "default" : "type"
+    };
+    let addressItem = AddressItem(address);
+    document.querySelector('.Address_container').appendChild(addressItem);
+    $.ajax({
+        type: "GET",
+        url: "/PBL3_1_war_exploded/api/address",
+        data: {
+            fullname: address.name,
+            phone: address.phone,
+            detail: address.detail,
+            ward: wardSelect.value,
+            district: districtSelect.value,
+            city: citySelect.value
+        },
+        success: function (response) {
+        }
+    });
+}
+}
 
     document.getElementById('addAddressBtn').addEventListener('click', function () {
         AddAddressPopUps();
@@ -174,22 +151,15 @@ function AddAddressItem(address) {
             document.body.removeChild(overlay);
             document.body.lastChild.remove();
         });
-// <<<<<<< hanh
         document.querySelector('.btn_Cancel').addEventListener('click', function () {
             document.body.removeChild(overlay);
             document.body.lastChild.remove();
         });
-// =======
-// // // <<<<<<< hanh
-// //     document.querySelector('.btn_Cancel').addEventListener('click', function () {
-// // // =======
-// >>>>>>> main
         let script = document.createElement('script');
         script.src = "../app.js";
         document.body.appendChild(script);
     });
 
-// <<<<<<< hanh
     function removeAddress(button) {
         let item = button.parentElement.parentElement.parentElement;
         let addressId = item.querySelector("input[name='addressId']").value;
@@ -199,17 +169,6 @@ function AddAddressItem(address) {
             data: {addressId: addressId},
             success: function (response) {
             }
-// =======
-
-// document.querySelector('.Address_update_btn').addEventListener('click',  (e) => {
-//     const AddressItem = e.target;
-//     // let name  = AddressItem.
-//     AddAddressPopUps();
-//     document.querySelector('.Add_address_btns .btn_Cancel').addEventListener('click', function () {
-// // >>>>>>> main
-//         document.body.removeChild(overlay);
-//         document.body.lastChild.remove();
-// >>>>>>> main
         });
         item.remove();
 
@@ -324,5 +283,4 @@ function AddAddressItem(address) {
             success: function (response) {
             }
         });
-    }
 }

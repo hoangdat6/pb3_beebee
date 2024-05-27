@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .pop_up {
   position: fixed;
   top: 50%;
@@ -118,6 +119,8 @@
   margin-right: 20px;
 }
 
+=======
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
 body {
   background-color: #f3f5f7;
 }
@@ -229,6 +232,7 @@ body {
 #wrap .container .content .search_result table thead th {
   padding: 10px 20px;
   text-align: left;
+<<<<<<< HEAD
   border: 1px solid #fff;
   background-color: #141718;
   color: #fff;
@@ -239,11 +243,15 @@ body {
 #wrap .container .content .search_result table tbody {
   max-height: 800px;
   overflow-y: scroll;
+=======
+  border-bottom: 1px solid #ccc;
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
 }
 #wrap .container .content .search_result table tbody tr {
   cursor: pointer;
 }
 #wrap .container .content .search_result table tbody tr:hover {
+<<<<<<< HEAD
   color: red;
   cursor: pointer;
 }
@@ -253,6 +261,13 @@ body {
   font-size: 14px;
   font-weight: 400;
   text-align: center;
+=======
+  background-color: #ccc;
+}
+#wrap .container .content .search_result table tbody tr td {
+  padding: 10px 20px;
+  border-bottom: 1px solid #ccc;
+>>>>>>> ec6ebfdd9af63626937b38aeaaeca81a1f863f9c
 }
 
 /*# sourceMappingURL=adminCommon.css.map */
