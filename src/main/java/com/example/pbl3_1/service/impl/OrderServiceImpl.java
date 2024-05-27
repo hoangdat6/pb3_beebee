@@ -22,6 +22,10 @@ import java.util.Map;
 import java.util.Objects;
 
 public class OrderServiceImpl implements OrderService {
+// <<<<<<< newLinh
+//     OrderDAO orderDAO = new OrderDAOImpl();
+//     VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
+// =======
     private OrderDAO orderDAO = new OrderDAOImpl();
     private VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
     private AddressService addressService = new AddressServiceImpl();
@@ -47,12 +51,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Long addOrder(Order addressOrder, List<OrderDetail> orderDetails) {
-//        List<List<OrderDetail>> orderDetailsList = new ArrayList<>();
-//        for (OrderDetail orderDetail : orderDetails) {
-//
-//        }
-
-        return orderDAO.addOrder(addressOrder);
+        return null;
     }
 
     @Override
@@ -119,6 +118,12 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+// <<<<<<< newLinh
+//     public void getOrderListByID(int i) {
+
+//     }
+
+// =======
     public List<CartInfoDTO> createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, Short shippingMethodId, Short paymentMethodId, Long userId) {
         Boolean isOutOfStock = false;
         Boolean isSoldOut = false;
@@ -183,4 +188,5 @@ public class OrderServiceImpl implements OrderService {
         }
         return null;
     }
+// >>>>>>> main
 }

@@ -6,6 +6,8 @@ import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.service.*;
 import com.example.pbl3_1.service.impl.CategoryServiceImpl;
 import com.example.pbl3_1.service.impl.ProductServiceImpl;
+import com.example.pbl3_1.service.impl.UserServiceImpl;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,6 +23,7 @@ import java.util.List;
 public class HomeController extends HttpServlet {
     private final ProductService productService = new ProductServiceImpl();
     private final CategoryService categoryService = new CategoryServiceImpl();
+    private final UserService userService = new UserServiceImpl();
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");

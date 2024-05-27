@@ -46,16 +46,27 @@ function AddAddressPopUps(name = "", phone = "", city = "", district = "", ward 
         </div >
 
         <div class="Add_address_btns">
-            <input class="btn btn_Send" value="Xác nhận" type="button" required>
-                <input class="btn btn_Cancel" value="Hủy" type="button" required>
-                </div>
-            </form>
+            <div class="btn btn_Send">
+                Xác nhận
+            </div>
+            <div class="btn btn_Cancel">
+                Hủy
+            </div>
+        </div>
+    </form>
         `;
     overlay.appendChild(AddAddressPopUp);
     document.body.appendChild(overlay);
+    AddAddressPopUp.querySelector('.Add_address_btns .btn_Send').addEventListener('click', () => {
+        AddAddressItem(getAddressInfor());
+    });
 }
 
-function AddressItem(address) {
+function AddAddressItem(address) {
+    let Type = {
+        "default": "Mặc định",
+        "pickup": "Địa chỉ lấy hàng"
+    }
     let addressItem = document.createElement('div');
     addressItem.className = 'Address_item';
     let addressHTML = `
@@ -95,15 +106,11 @@ function AddressItem(address) {
         addressHTML += `
         <div class="row2 Address_set_default btn" onclick="SetDefault(this)">
             Đặt làm địa chỉ mặc định
-        </div>`;
+        </div>
+    </div>
+    `;
+        document.querySelector('.Address_container').appendChild(addressItem);
     }
-
-    addressHTML += `
-    </div>`;
-
-    addressItem.innerHTML = addressHTML;
-    return addressItem;
-}
 
 function createExampleAddressItem() {
     let citySelect = document.querySelector('#city');
@@ -116,29 +123,97 @@ function createExampleAddressItem() {
         ward: wardSelect.options[wardSelect.selectedIndex].text,
         district: districtSelect.options[districtSelect.selectedIndex].text,
         city: citySelect.options[citySelect.selectedIndex].text,
-        wardValue: wardSelect.value,
-        districtValue: districtSelect.value,
-        cityValue: citySelect.value,
-        isDefault: document.querySelector('#Set_default').checked,
-        id : null
+        type: document.querySelector('#Set_default').checked ? "default" : "type"
     };
-    console.log(address.isDefault);
-     $.ajax({
-        type: "POST",
+    let addressItem = AddressItem(address);
+    document.querySelector('.Address_container').appendChild(addressItem);
+    $.ajax({
+        type: "GET",
         url: "/PBL3_1_war_exploded/api/address",
-
         data: {
             fullname: address.name,
             phone: address.phone,
             detail: address.detail,
             ward: wardSelect.value,
             district: districtSelect.value,
-            city: citySelect.value,
-            is_default: document.querySelector('#Set_default').checked
+            city: citySelect.value
         },
-         dataType: 'json',
         success: function (response) {
-            if(address.isDefault) {
+        }
+    });
+}
+}
+
+    document.getElementById('addAddressBtn').addEventListener('click', function () {
+        AddAddressPopUps();
+        document.querySelector('.btn_Send').addEventListener('click', function () {
+            createExampleAddressItem();
+            document.body.removeChild(overlay);
+            document.body.lastChild.remove();
+        });
+        document.querySelector('.btn_Cancel').addEventListener('click', function () {
+            document.body.removeChild(overlay);
+            document.body.lastChild.remove();
+        });
+        let script = document.createElement('script');
+        script.src = "../app.js";
+        document.body.appendChild(script);
+    });
+
+    function removeAddress(button) {
+        let item = button.parentElement.parentElement.parentElement;
+        let addressId = item.querySelector("input[name='addressId']").value;
+        $.ajax({
+            type: "POST",
+            url: "/PBL3_1_war_exploded/api/remove-address",
+            data: {addressId: addressId},
+            success: function (response) {
+            }
+        });
+        item.remove();
+
+    }
+
+    function updateAddress(button) {
+        let item = button.parentElement.parentElement.parentElement;
+        let addressId = item.querySelector("input[name='addressId']").value;
+        let addressName = item.querySelector("input[name='addressName']").value;
+        let addressDetail = item.querySelector("input[name='addressDetail']").value;
+        let addressPhone = item.querySelector("input[name='addressPhone']").value;
+        let addressWard = item.querySelector("input[name='addressWard']").value;
+        let addressDistrict = item.querySelector("input[name='addressDistrict']").value;
+        let addressProvince = item.querySelector("input[name='addressProvince']").value;
+        let addressIsDefault = item.querySelector("input[name='addressIsDefault']").value === "true";
+        AddAddressPopUps(addressName, addressPhone, addressProvince, addressDistrict, addressWard, addressDetail, addressIsDefault)
+        let script = document.createElement('script');
+        script.src = "../app.js";
+        document.body.appendChild(script);
+        document.querySelector('.btn_Send').addEventListener('click', function () {
+            $.ajax({
+                type: "POST",
+                url: "/PBL3_1_war_exploded/api/update-address",
+                data: {
+                    addressId: addressId,
+                    name: document.querySelector('#name').value,
+                    phone: document.querySelector('#phone').value,
+                    detail: document.querySelector('#Address-Desc').value,
+                    city: document.querySelector('#city').value,
+                    district: document.querySelector('#district').value,
+                    ward: document.querySelector('#ward').value,
+                    is_default: document.querySelector('#Set_default').checked
+                },
+                success: function (response) {
+                }
+            });
+            if (addressIsDefault && !document.querySelector('#Set_default').checked) {
+                item.querySelector(".row3.Address_type").remove();
+                let defaultAddress = document.createElement('div');
+                defaultAddress.className = 'row2 Address_set_default btn';
+                defaultAddress.innerText = 'Đặt làm địa chỉ mặc định'
+                defaultAddress.setAttribute('onclick', 'SetDefault(this)');
+                item.querySelector('.Address_item_right').appendChild(defaultAddress);
+            }
+            if (!addressIsDefault && document.querySelector('#Set_default').checked) {
                 let defaultNow = document.querySelector(".row3.Address_type");
                 if (defaultNow !== null) {
                     let Address = document.createElement('div');
@@ -149,168 +224,63 @@ function createExampleAddressItem() {
                     defaultNow.parentElement.parentElement.querySelector("input[name='addressIsDefault']").value = false;
                     defaultNow.remove();
                 }
+                item.querySelector('.row2.Address_set_default.btn').remove();
+                let defaultAddress = document.createElement('div');
+                defaultAddress.className = 'row3 Address_type';
+                defaultAddress.innerText = 'Mặc định';
+                item.querySelector('.Address_item_left').appendChild(defaultAddress);
             }
-        address.id=response;
-        let addressItem = AddressItem(address);
-        document.querySelector('.Address_container').appendChild(addressItem);
+            item.querySelector("input[name='addressName']").value = document.querySelector('#name').value;
+            item.querySelector("input[name='addressDetail']").value = document.querySelector('#Address-Desc').value;
+            item.querySelector("input[name='addressPhone']").value = document.querySelector('#phone').value;
+            item.querySelector("input[name='addressWard']").value = document.querySelector('#ward').value;
+            item.querySelector("input[name='addressDistrict']").value = document.querySelector('#district').value;
+            item.querySelector("input[name='addressProvince']").value = document.querySelector('#city').value;
+            item.querySelector("input[name='addressIsDefault']").value = document.querySelector('#Set_default').checked;
 
+            // Update the displayed address details
+            item.querySelector(".row1").innerText = `${document.querySelector('#name').value} | ${document.querySelector('#phone').value}`;
+            item.querySelector(".row2 p:first-child").innerText = document.querySelector('#Address-Desc').value;
+            // Update the address fields displayed
+            let ward = document.querySelector('#ward');
+            let district = document.querySelector('#district');
+            let province = document.querySelector('#city');
+            item.querySelector(".row2 p:last-child").innerText = `${ward.options[ward.selectedIndex].text}, ${district.options[district.selectedIndex].text}, ${province.options[province.selectedIndex].text}`;
+            document.body.removeChild(overlay);
+            document.body.lastChild.remove();
+        });
+
+        document.querySelector('.btn_Cancel').addEventListener('click', function () {
+            document.body.removeChild(overlay);
+            document.body.lastChild.remove();
+        });
+    }
+
+    function SetDefault(set) {
+        let item = set.parentElement.parentElement;
+        let defaultNow = document.querySelector(".row3.Address_type");
+        if (defaultNow !== null) {
+            let Address = document.createElement('div');
+            Address.className = 'row2 Address_set_default btn';
+            Address.innerText = 'Đặt làm địa chỉ mặc định'
+            Address.setAttribute('onclick', 'SetDefault(this)');
+            defaultNow.parentElement.parentElement.querySelector('.Address_item_right').appendChild(Address);
+            defaultNow.parentElement.parentElement.querySelector("input[name='addressIsDefault']").value = false;
+            defaultNow.remove();
         }
-    });
-
-
-}
-
-document.getElementById('addAddressBtn').addEventListener('click', function () {
-    AddAddressPopUps();
-    document.querySelector('.btn_Send').addEventListener('click', function () {
-        createExampleAddressItem();
-        document.body.removeChild(overlay);
-        document.body.lastChild.remove();
-    });
-// <<<<<<< hanh
-    document.querySelector('.btn_Cancel').addEventListener('click', function () {
-        document.body.removeChild(overlay);
-        document.body.lastChild.remove();
-    });
-// =======
-// // // <<<<<<< hanh
-// //     document.querySelector('.btn_Cancel').addEventListener('click', function () {
-// // // =======
-// >>>>>>> main
-    let script = document.createElement('script');
-    script.src = "../app.js";
-    document.body.appendChild(script);
-});
-// <<<<<<< hanh
-function removeAddress(button){
-    let item = button.parentElement.parentElement.parentElement;
- let addressId = item.querySelector("input[name='addressId']").value;
-    $.ajax({
-        type: "POST",
-        url: "/PBL3_1_war_exploded/api/remove-address",
-        data: { addressId: addressId },
-        success: function (response) {
-        }
-// =======
-
-// document.querySelector('.Address_update_btn').addEventListener('click',  (e) => {
-//     const AddressItem = e.target;
-//     // let name  = AddressItem.
-//     AddAddressPopUps();
-//     document.querySelector('.Add_address_btns .btn_Cancel').addEventListener('click', function () {
-// // >>>>>>> main
-//         document.body.removeChild(overlay);
-//         document.body.lastChild.remove();
-// >>>>>>> main
-    });
-    item.remove();
-
-}
-function updateAddress(button){
-    let item = button.parentElement.parentElement.parentElement;
-    let addressId = item.querySelector("input[name='addressId']").value;
-    let addressName = item.querySelector("input[name='addressName']").value;
-    let addressDetail = item.querySelector("input[name='addressDetail']").value;
-    let addressPhone = item.querySelector("input[name='addressPhone']").value;
-    let addressWard = item.querySelector("input[name='addressWard']").value;
-    let addressDistrict = item.querySelector("input[name='addressDistrict']").value;
-    let addressProvince = item.querySelector("input[name='addressProvince']").value;
-    let addressIsDefault = item.querySelector("input[name='addressIsDefault']").value === "true";
-    AddAddressPopUps(addressName,addressPhone,addressProvince,addressDistrict,addressWard,addressDetail,addressIsDefault)
-    let script = document.createElement('script');
-    script.src = "../app.js";
-    document.body.appendChild(script);
-    document.querySelector('.btn_Send').addEventListener('click', function () {
+        item.querySelector('.row2.Address_set_default.btn').remove();
+        let defaultAddress = document.createElement('div');
+        defaultAddress.className = 'row3 Address_type';
+        defaultAddress.innerText = 'Mặc định';
+        item.querySelector('.Address_item_left').appendChild(defaultAddress);
+        item.querySelector("input[name='addressIsDefault']").value = true;
         $.ajax({
             type: "POST",
-            url: "/PBL3_1_war_exploded/api/update-address",
+            url: "/PBL3_1_war_exploded/api/set-default",
             data: {
-                addressId: addressId,
-                name: document.querySelector('#name').value,
-                phone: document.querySelector('#phone').value,
-                detail: document.querySelector('#Address-Desc').value,
-                city: document.querySelector('#city').value,
-                district: document.querySelector('#district').value,
-                ward: document.querySelector('#ward').value,
-                is_default: document.querySelector('#Set_default').checked
+                addressId: item.querySelector("input[name='addressId']").value,
             },
             success: function (response) {
-                }
-        });
-        if(addressIsDefault && !document.querySelector('#Set_default').checked ){
-            item.querySelector(".row3.Address_type").remove();
-            let defaultAddress = document.createElement('div');
-            defaultAddress.className = 'row2 Address_set_default btn';
-            defaultAddress.innerText='Đặt làm địa chỉ mặc định'
-            defaultAddress.setAttribute('onclick', 'SetDefault(this)');
-            item.querySelector('.Address_item_right').appendChild(defaultAddress);
-        }
-        if (!addressIsDefault && document.querySelector('#Set_default').checked){
-            let defaultNow= document.querySelector(".row3.Address_type");
-            if(defaultNow!==null) {
-                let Address = document.createElement('div');
-                Address.className = 'row2 Address_set_default btn';
-                Address.innerText = 'Đặt làm địa chỉ mặc định'
-                Address.setAttribute('onclick', 'SetDefault(this)');
-                defaultNow.parentElement.parentElement.querySelector('.Address_item_right').appendChild(Address);
-                defaultNow.parentElement.parentElement.querySelector("input[name='addressIsDefault']").value=false;
-                defaultNow.remove();
             }
-            item.querySelector('.row2.Address_set_default.btn').remove();
-            let defaultAddress = document.createElement('div');
-            defaultAddress.className = 'row3 Address_type';
-            defaultAddress.innerText='Mặc định';
-            item.querySelector('.Address_item_left').appendChild(defaultAddress);
-        }
-        item.querySelector("input[name='addressName']").value = document.querySelector('#name').value;
-        item.querySelector("input[name='addressDetail']").value = document.querySelector('#Address-Desc').value;
-        item.querySelector("input[name='addressPhone']").value = document.querySelector('#phone').value;
-        item.querySelector("input[name='addressWard']").value = document.querySelector('#ward').value;
-        item.querySelector("input[name='addressDistrict']").value = document.querySelector('#district').value;
-        item.querySelector("input[name='addressProvince']").value = document.querySelector('#city').value;
-        item.querySelector("input[name='addressIsDefault']").value = document.querySelector('#Set_default').checked;
-
-        // Update the displayed address details
-        item.querySelector(".row1").innerText = `${document.querySelector('#name').value} | ${document.querySelector('#phone').value}`;
-        item.querySelector(".row2 p:first-child").innerText = document.querySelector('#Address-Desc').value;
-        // Update the address fields displayed
-        let ward = document.querySelector('#ward');
-        let district = document.querySelector('#district');
-        let province = document.querySelector('#city');
-        item.querySelector(".row2 p:last-child").innerText = `${ward.options[ward.selectedIndex].text}, ${district.options[district.selectedIndex].text}, ${province.options[province.selectedIndex].text}`;
-        document.body.removeChild(overlay);
-        document.body.lastChild.remove();
-    });
-
-    document.querySelector('.btn_Cancel').addEventListener('click', function () {
-        document.body.removeChild(overlay);
-        document.body.lastChild.remove();
-    });
-}
-function SetDefault(set){
-    let item = set.parentElement.parentElement;
-    let defaultNow= document.querySelector(".row3.Address_type");
-    if(defaultNow!==null) {
-    let Address = document.createElement('div');
-    Address.className = 'row2 Address_set_default btn';
-    Address.innerText='Đặt làm địa chỉ mặc định'
-    Address.setAttribute('onclick', 'SetDefault(this)');
-    defaultNow.parentElement.parentElement.querySelector('.Address_item_right').appendChild(Address);
-    defaultNow.parentElement.parentElement.querySelector("input[name='addressIsDefault']").value=false;
-    defaultNow.remove();}
-    item.querySelector('.row2.Address_set_default.btn').remove();
-    let defaultAddress = document.createElement('div');
-    defaultAddress.className = 'row3 Address_type';
-    defaultAddress.innerText='Mặc định';
-    item.querySelector('.Address_item_left').appendChild(defaultAddress);
-    item.querySelector("input[name='addressIsDefault']").value=true;
-    $.ajax({
-        type: "POST",
-        url: "/PBL3_1_war_exploded/api/set-default",
-        data: {
-            addressId: item.querySelector("input[name='addressId']").value,
-        },
-        success: function (response) {
-        }
-    });
+        });
 }

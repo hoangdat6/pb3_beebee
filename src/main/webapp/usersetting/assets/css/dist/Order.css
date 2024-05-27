@@ -1,0 +1,121 @@
+.UAAS_wrap {
+  gap: 32px;
+}
+
+.Order_content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Order_content #nav {
+  display: flex;
+  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0), 0px 1px 0px 0px rgba(0, 0, 0, 0.01), 0px 1px 0px 0px rgba(0, 0, 0, 0.03);
+}
+
+.Order_content #nav .nav-item {
+  padding: 17px 10px;
+  min-width: 166px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+  background-color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+.Order_content #nav .nav-item:hover {
+  color: #DC2626;
+  border-bottom: 1px solid #DC2626;
+}
+
+.Order_content .search_form {
+  display: block;
+  position: relative;
+}
+
+.Order_content .search_form #search {
+  padding: 10px 15px;
+  border-radius: 5px;
+  width: 100%;
+  border: 0.5px solid #ccc;
+}
+
+.Order_content .search_form i {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+}
+
+.Order_content .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Order_content .wrap .Order_item {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.Order_content .wrap .Order_item .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Order_content .wrap .Order_item .header .shop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.Order_content .wrap .Order_item .header .shop img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.Order_content .wrap .Order_item .content {
+  width: 100%;
+}
+
+.Order_content .wrap .Order_item .content .product {
+  width: 100%;
+  display: flex;
+  gap: 15px;
+}
+
+.Order_content .wrap .Order_item .content .product .product_img {
+  width: 98px;
+  height: 98px;
+  object-fit: cover;
+}
+
+.Order_content .wrap .Order_item .content .product .product_info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.Order_content .wrap .Order_item .content .product .product_info .qty_and_price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Order_content .wrap .Order_item .footer .qty_and_total {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Order_content .wrap .Order_item .footer .choice {
+  display: flex;
+  justify-content: space-between;
+}
+
+/*# sourceMappingURL=Order.css.map */

@@ -169,7 +169,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
             rs = ps.executeQuery();
 
             while(rs.next()){
-                list.add(rowMapper.mapRow   (rs));
+                list.add(rowMapper.mapRow(rs));
             }
         } catch (SQLException e) {
             e.printStackTrace();
