@@ -3,6 +3,7 @@ package com.example.pbl3_1.dao.impl;
 import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.dao.ShippingMethodDAO;
 import com.example.pbl3_1.entity.ShippingMethod;
+import com.example.pbl3_1.entity.myEnum.EShippingMethod;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class ShippingMethodDAOImpl implements ShippingMethodDAO {
 
         return genericDAO.query(sql, resultSet -> {
             ShippingMethod shippingMethod = new ShippingMethod();
-            shippingMethod.setId(resultSet.getShort("id"));
+            shippingMethod.setShippingMethod(EShippingMethod.valueOf(resultSet.getShort("id")));
             shippingMethod.setName(resultSet.getString("name"));
             shippingMethod.setDescription(resultSet.getString("description"));
             shippingMethod.setFee(resultSet.getInt("fee"));
@@ -27,7 +28,7 @@ public class ShippingMethodDAOImpl implements ShippingMethodDAO {
         String sql = "SELECT * FROM shipping_method WHERE id = ?";
         return genericDAO.query(sql, resultSet -> {
             ShippingMethod shippingMethod = new ShippingMethod();
-            shippingMethod.setId(resultSet.getShort("id"));
+            shippingMethod.setShippingMethod(EShippingMethod.valueOf(resultSet.getShort("id")));
             shippingMethod.setName(resultSet.getString("name"));
             shippingMethod.setDescription(resultSet.getString("description"));
             shippingMethod.setFee(resultSet.getInt("fee"));

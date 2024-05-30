@@ -79,12 +79,16 @@ function load(response){
 
 }
 
-function saveToCart(){
+let check;
+
+function saveToCart(check1){
     let variation1 = null;
     let variation2 = null;
     let input = document.getElementsByClassName('Qty__Input');
     let quantity = parseInt(input[1].value);
     // addItemToCart();
+
+    check = check1;
     if($(".Category_option1").length){
         variation1 = $(".Category_option1.Selected").attr('id');
         if($(".Category_option2").length)
@@ -107,15 +111,24 @@ function saveToCart(){
         url: "/PBL3_1_war_exploded/api/add-to-cart",
         data: {variation1: variation1, variation2: variation2, quantity: quantity},
         success: function(response){
-            let re = JSON.parse(response);
-            if(re.status === "200"){
-                showSuccessToast("Success", "Đã thêm vào giỏ hàng");
-            } else {
-                showErrorToast("Warning", "Số lượng sản phẩm không đủ");
+            if (check){
+                if(response.code == '200'){
+                    showSuccessToast("Success", "Đã thêm vào giỏ hàng");
+                } else {
+                    showErrorToast("Warning", "Số lượng sản phẩm không đủ");
+                }
+            }else {
+                if(response.code == '200'){
+                    window.location.href = "/PBL3_1_war_exploded/cart";
+                } else {
+                    showErrorToast("Warning", "Số lượng sản phẩm không đủ");
+                }
             }
         }
     });
 }
+
+
 
 // function addItemToCart(cartItem){
 //     let newcartItem = document.createElement("div");
@@ -154,5 +167,9 @@ function saveToCart(){
 // }
 
 
-
+$(document).ready(function () {
+    $('#check_out').click(function () {
+        saveToCart(false);
+    })
+});
 

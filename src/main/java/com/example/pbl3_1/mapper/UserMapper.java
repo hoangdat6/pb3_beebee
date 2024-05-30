@@ -1,7 +1,7 @@
 package com.example.pbl3_1.mapper;
 
-import com.example.pbl3_1.entity.ERole;
-import com.example.pbl3_1.entity.Egender;
+import com.example.pbl3_1.entity.myEnum.ERole;
+import com.example.pbl3_1.entity.myEnum.Egender;
 import com.example.pbl3_1.entity.User;
 
 import java.sql.ResultSet;

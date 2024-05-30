@@ -2,11 +2,10 @@ package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.dao.impl.UserDAOimpl;
 import com.example.pbl3_1.dao.UserDAO;
-import com.example.pbl3_1.entity.ERole;
+import com.example.pbl3_1.entity.myEnum.ERole;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.UserService;
 
-import java.sql.Date;
 import java.util.AbstractMap;
 import java.util.List;
 
@@ -50,12 +49,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Integer updatePass(String username, String password) {
+    public Object updatePass(String username, String password) {
         return userDAO.updatePass(username, password);
     }
 
     @Override
-    public Integer updateInfor(User user) {
+    public Object updateInfor(User user) {
         return userDAO.updateInfor(user);
     }
 

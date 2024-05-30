@@ -1,10 +1,8 @@
 package com.example.pbl3_1.dao;
 
-import com.example.pbl3_1.dao.CommonDAO;
-import com.example.pbl3_1.entity.ERole;
+import com.example.pbl3_1.entity.myEnum.ERole;
 import com.example.pbl3_1.entity.User;
 
-import java.sql.Date;
 import java.util.AbstractMap;
 import java.util.List;
 
@@ -14,8 +12,8 @@ public interface UserDAO extends CommonDAO<User> {
     String findUsernameByEmail(String email);
     List<AbstractMap.SimpleEntry<String, String>> findByUsernameOrEmail(String username, String email);
     boolean findEmail(String email);
-    Integer updatePass(String username, String password);
-    Integer updateInfor(User user);
+    Object updatePass(String username, String password);
+    Object updateInfor(User user);
 
     void updateRole(Long userId, ERole eRole);
 }

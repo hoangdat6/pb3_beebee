@@ -98,7 +98,7 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
     }
 
     @Override
-    public Integer update(ShoppingCartItem shoppingCartItem) {
+    public Object update(ShoppingCartItem shoppingCartItem) {
         return shoppingCartItemDAO.update(shoppingCartItem);
     }
 

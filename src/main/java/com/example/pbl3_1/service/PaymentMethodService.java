@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PaymentMethodService{
     List<PaymentMethod> getPaymentMethods();
+
+    PaymentMethod getPaymentMethodById(Short paymentMethodId);
 }
