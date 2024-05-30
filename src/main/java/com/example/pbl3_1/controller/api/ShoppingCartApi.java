@@ -1,6 +1,7 @@
 package com.example.pbl3_1.controller.api;
 
 import com.example.pbl3_1.Util.SessionUtil;
+import com.example.pbl3_1.controller.dto.ResponseEntityDTO;
 import com.example.pbl3_1.entity.ShoppingCartItem;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.CartItemService;
@@ -42,13 +43,19 @@ public class ShoppingCartApi extends HttpServlet {
 
         ObjectMapper objectMapper = new ObjectMapper();
         response.setContentType("application/json");
-        String json;
+
+        ResponseEntityDTO responseDTO = new ResponseEntityDTO();
+
         if(id != null){
-            json = "{\"status\" : \"200\"}";
+            responseDTO.setCode(200);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(Long.valueOf(id.toString()));
+            SessionUtil.getInstance().putValue(request, "ORDER_CART_ITEM", id);
         }else {
-            json = "{\"status\" : \"500\"}";
+            responseDTO.setCode(500);
+            responseDTO.setMessage("Warning");
         }
-        objectMapper.writeValue(response.getOutputStream(), json);
+        objectMapper.writeValue(response.getOutputStream(), responseDTO);
     }
 
     @Override

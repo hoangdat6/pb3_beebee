@@ -1,11 +1,11 @@
 package com.example.pbl3_1.controller.api;
 
 import com.example.pbl3_1.Util.SessionUtil;
+import com.example.pbl3_1.controller.dto.ResponseEntityDTO;
 import com.example.pbl3_1.controller.dto.cart.CartInfoDTO;
-import com.example.pbl3_1.entity.Address;
-import com.example.pbl3_1.entity.Order;
-import com.example.pbl3_1.entity.OrderDetail;
 import com.example.pbl3_1.entity.User;
+import com.example.pbl3_1.entity.myEnum.EPaymentMethod;
+import com.example.pbl3_1.entity.myEnum.EShippingMethod;
 import com.example.pbl3_1.service.OrderService;
 import com.example.pbl3_1.service.impl.OrderServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,10 +16,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 @WebServlet(name = "checkOutApi", urlPatterns = {"/api/checkout"})
 public class CheckOutApi extends HttpServlet {
@@ -42,9 +40,25 @@ public class CheckOutApi extends HttpServlet {
                 ? Short.parseShort(SessionUtil.getInstance().getValue(request, "shippingMethodId").toString())
                 : null;
 
+        Integer paymentTotal = dataOrder.get("paymentTotal") != null ? Integer.parseInt(dataOrder.get("paymentTotal").toString()) : null;
+        SessionUtil.getInstance().putValue(request, "paymentTotal", paymentTotal);
+        SessionUtil.getInstance().putValue(request, "paymentMethodId", paymentMethodId);
+
+        EPaymentMethod paymentMethod = paymentMethodId != null ? EPaymentMethod.valueOf(paymentMethodId) : null;
+        EShippingMethod shippingMethod = shippingMethodId != null ? EShippingMethod.valueOf(shippingMethodId) : null;
+
         List<CartInfoDTO> checkOutInfoDTOs = (List<CartInfoDTO>) SessionUtil.getInstance().getValue(request, "checkOutInfoDTOs");
 
         User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-        orderService.createOrder(checkOutInfoDTOs, addressId, shippingMethodId, paymentMethodId, user.getId());
+
+        ResponseEntityDTO responseEntityDTO = new ResponseEntityDTO();
+        responseEntityDTO.setCode(200);
+        try {
+            orderService.createOrder(checkOutInfoDTOs, addressId, shippingMethod, paymentMethod, user.getId());
+        }catch(Exception e){
+            responseEntityDTO.setCode(409);
+            responseEntityDTO.setMessage(e.getMessage());
+        }
+        mapper.writeValue(response.getOutputStream(), responseEntityDTO);
     }
 }

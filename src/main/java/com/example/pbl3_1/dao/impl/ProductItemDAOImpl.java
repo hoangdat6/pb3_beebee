@@ -1,10 +1,14 @@
 package com.example.pbl3_1.dao.impl;
 
+import com.example.pbl3_1.Util.JDBCUtil;
 import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.dao.ProductItemDAO;
+import com.example.pbl3_1.entity.OrderDetail;
 import com.example.pbl3_1.entity.ProductItem;
 import com.example.pbl3_1.mapper.ProductItemMapper;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
@@ -96,5 +100,36 @@ public class ProductItemDAOImpl implements ProductItemDAO {
         String sql = "SELECT * FROM product_item WHERE id = ?" ;
         List<ProductItem> productItems = genericDAO.query(sql, new ProductItemMapper(), productItemId);
         return !productItems.isEmpty() ? productItems.get(0) : null;
+    }
+
+    @Override
+    public void updateStock(List<OrderDetail> orderDetails) throws SQLException {
+        String sql = "UPDATE product_item SET qty_in_stock = qty_in_stock - ? WHERE id = ?";
+        updateAll(sql, orderDetails);
+    }
+
+    private void updateAll(String sql, List<OrderDetail> orderDetails) throws SQLException {
+        Connection con = JDBCUtil.getInstance().getConnection();
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            for (OrderDetail orderDetail : orderDetails) {
+                ps.setLong(1, orderDetail.getQuantity());
+                ps.setLong(2, orderDetail.getProductItemId());
+                ps.addBatch();
+            }
+
+            ps.executeBatch();
+        }catch (SQLException e){
+            throw new SQLException();
+        }finally {
+            if(con != null) {
+                con.close();
+            }
+            if(ps != null) {
+                ps.close();
+            }
+        }
     }
 }

@@ -39,8 +39,8 @@
         <div class="Process_Item">
             <span class="Process_Item-Number">1</span>
             <span class="Process_Item-Title">
-                    Giỏ hàng
-                </span>
+                Giỏ hàng
+            </span>
         </div>
         <div class="clear"></div>
 
@@ -174,8 +174,8 @@
             <span>Phương thức thanh toán</span>
             <c:forEach var="paymentMethod" items="${paymentMethods}">
                 <div class="radio_payment-item">
-                    <input type="radio" name="payment_method" id="${paymentMethod.id}" checked>
-                    <Label for="${paymentMethod.id}">${paymentMethod.name}</Label>
+                    <input type="radio" name="payment_method" id="${paymentMethod.paymentMethod.getValue()}" checked>
+                    <Label for="${paymentMethod.paymentMethod.getValue()}">${paymentMethod.name}</Label>
                 </div>
             </c:forEach>
         </div>

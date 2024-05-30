@@ -41,13 +41,14 @@ public class CartItemServiceImpl implements CartItemService {
         ShoppingCartItem cartItemId = cartItemDAO.findByCartIAndProductItemId(cartId, productItemId);
 
         if(cartItemId != null){
-             return cartItemDAO.update(ShoppingCartItem.builder().
+             cartItemDAO.update(ShoppingCartItem.builder().
                     id(cartItemId.getId()).
                     CartId(cartId).
                     ProductItemId(productItemId).
                     quantity(cartItemId.getQuantity() + i).
                     createdAt(new Timestamp(System.currentTimeMillis())).
                     build());
+             return cartItemDAO.findByCartIAndProductItemId(cartId, productItemId).getId();
         }else {
             return cartItemDAO.save(ShoppingCartItem.builder().
                     CartId(cartId).

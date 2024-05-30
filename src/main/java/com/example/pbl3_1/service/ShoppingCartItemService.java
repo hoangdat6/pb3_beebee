@@ -9,7 +9,7 @@ import java.util.List;
 public interface ShoppingCartItemService {
     List<ShopForCartDTO> findByIdUser(Long id);
     public ShoppingCartItem findById(Long id);
-    public Integer update(ShoppingCartItem shoppingCartItem);
+    public Object update(ShoppingCartItem shoppingCartItem);
     public void deleteById(Long object);
     List<CartInfoDTO> getCartsInfoByUserId(Long userId);
 }

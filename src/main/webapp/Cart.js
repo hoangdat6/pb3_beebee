@@ -34,6 +34,13 @@ $(document).ready(function() {
     let cartCBs = $(document).find('.Cart_CB');
 
     cartCBs.each(function() {
+        let ORDER_CART_ITEM = $(this).closest('.Cart_Table').find('input[name="ORDER_CART_ITEM"]').val();
+
+        let cartItemId = $(this).closest(".Shop_Products-Cell").find("input[name='shoppingCartItemId']").val();
+        if (ORDER_CART_ITEM != null && ORDER_CART_ITEM == cartItemId){
+            $(this).prop('checked', true);
+        }
+
         let cell = $(this).closest('.Shop_Products-Cell');
         let isDeleted = cell.find('.isDeleted').val();
         if (isDeleted == 'true') {
@@ -42,13 +49,21 @@ $(document).ready(function() {
             cell.classList.add("sold-out-product");
         }else{
             let isSoldOut = cell.find('.isSoldOut').val();
+            let isOutOfStock = cell.find('.isOutOfStock').val();
             if (isSoldOut == 'true') {
                 let checkBox = cell.find('.Check_box');
                 checkBox.find('.Cart_CB').remove();
                 checkBox.append('<div class="sold_out">Hết hàng</div>');
                 cell.addClass('sold-out-product');
+                return;
+            }
+            if (isOutOfStock == 'true'){
+                let checkBox = cell.find('.Check_box');
+                checkBox.find('.Cart_CB').remove();
+                checkBox.append('<div class="sold_out" style="font-size: 10px;">không đủ hàng</div>');
             }
         }
+        getPrice();
     });
 });
 
@@ -85,6 +100,22 @@ function UpdateCartItem(button) {
         quantity--;
     }
 
+    let product = item.closest(".Shop_Products-Cell");
+    let qtyInStock = $(product).find(".qtyInStock").val();
+
+    if(quantity <= qtyInStock){
+        let checkbox = $(product).find(".Check_box");
+        checkbox.find(".sold_out").remove();
+        if (checkbox.find(".Cart_CB").length === 0)
+            checkbox.append(`<label><input type="checkbox" name="Cart_CB" class="Cart_CB"></label>`);
+    }else{
+        let checkbox = $(product).find(".Check_box");
+        checkbox.find(".Cart_CB").remove();
+        if (checkbox.find(".sold_out").length === 0)
+            checkbox.append(`<div class="sold_out" style="font-size: 10px;">không đủ hàng</div>`);
+        getPrice();
+    }
+
     if(quantity === 0){
         let check = createAlertPopUp("Thông báo", "Bạn chắc chắn muốn bỏ sản phẩm này?", [
             {text: 'Có', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: true},
@@ -106,7 +137,7 @@ function UpdateCartItem(button) {
 
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function () {
-            let id = item.querySelector("input[name='id']").value;
+            let id = item.querySelector("input[name='shoppingCartItemId']").value;
             console.log("Action:", action);
             $.ajax({
                 type: "GET",
