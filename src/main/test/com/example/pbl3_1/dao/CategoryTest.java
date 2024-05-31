@@ -4,10 +4,9 @@ import com.example.pbl3_1.dao.impl.CategoryDAOImpl;
 import com.example.pbl3_1.entity.Category;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertTrue;
@@ -22,15 +21,11 @@ public class CategoryTest {
     }
 
     @Test
-    public void createStream_whenFindFirstResultIsPresent_thenCorrect() {
-
-
-        List<String> list = new ArrayList<>(1);
-
-        Optional<String> result = list.stream().findFirst();
-
-//        assertTrue(result.isPresent());
-//        assertThat(result.get(), is("A"));
-        System.out.println(result.get());
+    public void generateOrderId() {
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String formattedDateTime = now.format(formatter);
+        String randomNumber = String.format("%04d", new Random().nextInt(10000)); // Số ngẫu nhiên 4 chữ số
+        System.out.println("ORD-" + formattedDateTime + "-" + "userId" + "-" + randomNumber);
     }
 }

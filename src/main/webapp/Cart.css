@@ -37,12 +37,13 @@ span.Process_Item-Number {
     flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
+    margin-inline: 100px;
 }
 
 /*Main Cart table*/
 
 #Cart_Content .Cart_Table{
-
+    width: 60%;
 }
 
 .Table_Header {
@@ -64,11 +65,14 @@ span.Process_Item-Number {
 
 .Table_Header-Price {
     display: flex;
-    justify-content: space-between;
+    text-align: center;
     padding: 0 15px;
     flex: 4;
 }
 
+.Table_Header-Item {
+    flex: 1;
+}
 
 .Table_Content{
 
@@ -76,7 +80,7 @@ span.Process_Item-Number {
 
 .Shop_Products {
     position: relative;
-    padding: 20px 0;
+    padding-top: 20px;
     border-bottom: 1px solid #171819;
 }
 
@@ -181,12 +185,13 @@ p.Item-Category {
 }
 
 .Cell_Col_3 {
-    width: 30%;
+    /*width: 30%;*/
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     padding: 0 15px;
     flex: 4;
+    text-align: center ;
 }
 
 .Product_Info-Item {
@@ -205,6 +210,10 @@ p.Item-Category {
     border-radius: 3px;
     border: 1px solid rgba(0, 0, 0, 0.09);
     background-color: #fff;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex: 1;
 }
 
 .Item-Qty input{
@@ -212,20 +221,28 @@ p.Item-Category {
     padding: 3px 5px;
     text-align: center;
     border: none;
+    font-size: 16px;
 }
 
 .Item-Qty button{
-    padding: 5px 3px;
+    /*padding: 5px 3px;*/
+    font-size: 16px;
 }
 
 .Item-Unit_Price{
     font-size: 14px;
+    flex: 1;
 }
 
 .Item-Total_Price{
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 600;
-    color: #121212
+    color: #121212;
+    flex: 1;
+}
+
+.Item-Remove {
+    flex: 1;
 }
 
 /*Aside*/

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface PaymentMethodDAO {
     List<PaymentMethod> getPaymentMethods();
+
+    PaymentMethod getPaymentMethodById(Short paymentMethodId);
 }

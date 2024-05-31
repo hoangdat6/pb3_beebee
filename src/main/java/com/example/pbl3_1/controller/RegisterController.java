@@ -4,7 +4,7 @@ import com.example.pbl3_1.Util.PasswordEncryption;
 import com.example.pbl3_1.Util.RandomCode;
 import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
-import com.example.pbl3_1.entity.Egender;
+import com.example.pbl3_1.entity.myEnum.Egender;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.UserService;
 import com.example.pbl3_1.service.impl.UserServiceImpl;

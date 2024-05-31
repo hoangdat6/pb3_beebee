@@ -96,12 +96,12 @@ function order(){
         contentType: "application/json; charset=utf-8",
         dataType: "json",
         success: function (response) {
-            console.log(response);
+
         }
     });
 }
 
-
+let paymentTotal;
 function getPriceOrder(){
     let shops = document.querySelectorAll(".product_of_shop");
     let total_all = 0;
@@ -146,7 +146,9 @@ function getPriceOrder(){
     total_all_order.textContent = (Math.round(total_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     shipping_fee.textContent = (Math.round(shipping_fee_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
     voucher_all.textContent = "-" +  (Math.round(voucher_discount_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
-    total_all_money.textContent = (Math.round((total_all - voucher_discount_all + shipping_fee_all)).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' }));
+    paymentTotal = Math.round(total_all - voucher_discount_all + shipping_fee_all);
+    total_all_money.textContent = paymentTotal.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+
 }
 
 $(document).ready(function () {
@@ -165,7 +167,8 @@ function getDataForOrder(){
     let paymentMethodId = document.querySelector("input[name='payment_method']:checked").id;
     let data = {
         addressId : addressId,
-        paymentMethodId : paymentMethodId
+        paymentMethodId : paymentMethodId,
+        paymentTotal : paymentTotal
     }
 
     $.ajax({
@@ -175,6 +178,15 @@ function getDataForOrder(){
         contentType: "application/json",
         success: function (response) {
             console.log(response);
+            if (response.code == '200'){
+                window.location.href = '/PBL3_1_war_exploded/check-out-done';
+            }else {
+                createAlertPopUp("Xác nhận", "Có 1 số sản phẩm đã hết hàng, vui lòng chọn các lựa chọn sau!",
+                    [{text: 'Trở về giỏ hàng', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: true},
+                        {text: 'Đặt tất cả các sản phẩm còn lại', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: false}]
+                    )
+            }
         }
     });
 }
+

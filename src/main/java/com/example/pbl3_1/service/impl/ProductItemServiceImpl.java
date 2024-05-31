@@ -4,9 +4,11 @@ import com.example.pbl3_1.dao.ProductItemDAO;
 import com.example.pbl3_1.dao.ShoppingCartDAO;
 import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
 import com.example.pbl3_1.dao.impl.ShoppingCartDAOImpl;
+import com.example.pbl3_1.entity.OrderDetail;
 import com.example.pbl3_1.entity.ProductItem;
 import com.example.pbl3_1.service.ProductItemService;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,4 +33,8 @@ public class ProductItemServiceImpl implements ProductItemService {
         }
     }
 
+    @Override
+    public void updateStock(List<OrderDetail> orderDetails) throws SQLException {
+        productItemDAO.updateStock(orderDetails);
+    }
 }

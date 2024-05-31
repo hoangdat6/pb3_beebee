@@ -13,18 +13,24 @@ import com.example.pbl3_1.dao.impl.VariationOptionDAOImpl;
 import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.Order;
 import com.example.pbl3_1.entity.OrderDetail;
+import com.example.pbl3_1.entity.myEnum.EOrderStatus;
+import com.example.pbl3_1.entity.myEnum.EPaymentMethod;
+import com.example.pbl3_1.entity.myEnum.EShippingMethod;
 import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.OrderService;
+import com.example.pbl3_1.service.ProductItemService;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
 public class OrderServiceImpl implements OrderService {
-    private OrderDAO orderDAO = new OrderDAOImpl();
-    private VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
-    private AddressService addressService = new AddressServiceImpl();
+    private final OrderDAO orderDAO = new OrderDAOImpl();
+    private final VariationOptionDAO variationOptionDAO = new VariationOptionDAOImpl();
+    private final AddressService addressService = new AddressServiceImpl();
+    private final ProductItemService productItemService =  new ProductItemServiceImpl();
 
     @Override
     public List<ProductForCheckOut> getProductByOrderList(List<Long> shoppingCartItemId) {
@@ -39,7 +45,7 @@ public class OrderServiceImpl implements OrderService {
             System.out.println(variations.toString());
             productForCheckOut.setVariations(variations.toString());
         }
-        
+
 
         return productForShoppingCartDTOS;
     }
@@ -113,7 +119,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<CartInfoDTO> createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, Short shippingMethodId, Short paymentMethodId, Long userId) {
+    public void createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, EShippingMethod shippingMethod, EPaymentMethod paymentMethod, Long userId) {
         Boolean isOutOfStock = false;
         Boolean isSoldOut = false;
 
@@ -152,15 +158,18 @@ public class OrderServiceImpl implements OrderService {
                         .detailAddress(address.getDetail())
                         .districtAddress(address.getDistrict())
                         .provinceAddress(address.getProvince())
-                        .shippingMethodId(shippingMethodId)
-                        .paymentMethodId(paymentMethodId)
-                        .orderStatusId((short) 1)
-                        .userId(userId)
+                        .shippingMethodId(shippingMethod.getValue())
+                        .paymentMethodId(paymentMethod.getValue())
+                        .orderStatusId(
+                                paymentMethod != EPaymentMethod.THANH_TOAN_KHI_NHAN_HANG
+                                        ? EOrderStatus.CHO_THANH_TOAN.getValue()
+                                        : EOrderStatus.CHO_XAC_NHAN.getValue()
+                        ).userId(userId)
                         .sellerId(checkOutInfo.getShopId())
                         .build();
 
                 List<OrderDetail> orderDetails = new ArrayList<>();
-                Long totalPrice = 0L;
+                long totalPrice = 0L;
                 for(ProductForCartDTO productForCartDTO : checkOutInfo.getProductForCartDTOList()) {
                     OrderDetail orderDetail = OrderDetail.builder()
                             .productItemId(productForCartDTO.getProductItemId())
@@ -171,10 +180,34 @@ public class OrderServiceImpl implements OrderService {
                     totalPrice += Math.round(productForCartDTO.getPrice() * (1 - productForCartDTO.getDiscount() / 100.0)) * productForCartDTO.getQuantity();
                     orderDetails.add(orderDetail);
                 }
+
+                order.setId(createOrderId(order, orderDetails));
                 order.setTotal(totalPrice);
-                orderDAO.createOrder(order, orderDetails);
+                try {
+                    orderDAO.createOrder(order, orderDetails);
+                    productItemService.updateStock(orderDetails);
+                }catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
+
+
         }
-        return null;
+    }
+
+    private String createOrderId(Order order, List<OrderDetail> orderDetails) {
+        StringBuilder code = new StringBuilder();
+
+        // lấy thời gian hiện tại theo millisecond
+        String currentTime = System.currentTimeMillis() + "";
+
+        // lấy 11 chữ số trong đó;
+        currentTime = currentTime.substring(2);
+
+        code.append(order.getSellerId()).append(order.getUserId()).append(orderDetails.size());
+
+        code.append(currentTime);
+
+        return code.toString();
     }
 }

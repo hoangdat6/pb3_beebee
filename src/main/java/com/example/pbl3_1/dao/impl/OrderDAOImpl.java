@@ -159,14 +159,14 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public void createOrder(Order order, List<OrderDetail> orderDetails) {
-        StringBuilder sql = new StringBuilder("INSERT INTO orders (user_id, seller_id,");
+    public void createOrder(Order order, List<OrderDetail> orderDetails) throws SQLException {
+        StringBuilder sql = new StringBuilder("INSERT INTO orders (id, user_id, seller_id,");
                 sql.append("fullname, phone,");
                 sql.append("detail_address, commune_address, ");
                 sql.append("district_address, province_address,");
                 sql.append("payment_method_id, shipping_method_id,");
                 sql.append("order_status_id, order_total, created_at, updated_at)");
-        sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+        sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
         StringBuilder sql2 = new StringBuilder("INSERT INTO order_detail \n");
         sql2.append("(order_id, \n");
@@ -179,40 +179,40 @@ public class OrderDAOImpl implements OrderDAO {
         saveAllOrder(sql.toString(), sql2.toString(), order, orderDetails);
     }
 
-    private void saveAllOrder(String sql, String sql2, Order order, List<OrderDetail> orderDetails) {
+    private void saveAllOrder(String sql, String sql2, Order order, List<OrderDetail> orderDetails) throws SQLException{
         Connection con = JDBCUtil.getInstance().getConnection();
         try {
             con.setAutoCommit(false);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        try(PreparedStatement orderStatement = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)){
-
-            orderStatement.setLong(1, order.getUserId());
-            orderStatement.setLong(2, order.getSellerId());
-            orderStatement.setString(3, order.getFullName());
-            orderStatement.setString(4, order.getPhone());
-            orderStatement.setString(5, order.getDetailAddress());
-            orderStatement.setString(6, order.getCommuneAddress());
-            orderStatement.setString(7, order.getDistrictAddress());
-            orderStatement.setString(8, order.getProvinceAddress());
-            orderStatement.setShort(9, order.getPaymentMethodId());
-            orderStatement.setLong(10, order.getShippingMethodId());
-            orderStatement.setLong(11, order.getOrderStatusId());
-            orderStatement.setLong(12, order.getTotal());
-            orderStatement.setTimestamp(13, new Timestamp(System.currentTimeMillis()));
+        try(PreparedStatement orderStatement = con.prepareStatement(sql)){
+            orderStatement.setString(1, order.getId());
+            orderStatement.setLong(2, order.getUserId());
+            orderStatement.setLong(3, order.getSellerId());
+            orderStatement.setString(4, order.getFullName());
+            orderStatement.setString(5, order.getPhone());
+            orderStatement.setString(6, order.getDetailAddress());
+            orderStatement.setString(7, order.getCommuneAddress());
+            orderStatement.setString(8, order.getDistrictAddress());
+            orderStatement.setString(9, order.getProvinceAddress());
+            orderStatement.setShort(10, order.getPaymentMethodId());
+            orderStatement.setLong(11, order.getShippingMethodId());
+            orderStatement.setLong(12, order.getOrderStatusId());
+            orderStatement.setLong(13, order.getTotal());
             orderStatement.setTimestamp(14, new Timestamp(System.currentTimeMillis()));
+            orderStatement.setTimestamp(15, new Timestamp(System.currentTimeMillis()));
 
             orderStatement.executeUpdate();
 
-            ResultSet rs = orderStatement.getGeneratedKeys();
-            if(rs.next()) {
-                order.setId(rs.getLong(1));
-            }
+//            ResultSet rs = orderStatement.getGeneratedKeys();
+//            if(rs.next()) {
+//                order.setId(rs.getString(1));
+//            }
 
             try(PreparedStatement orderDetailStatement = con.prepareStatement(sql2)) {
                 for(OrderDetail orderDetail : orderDetails) {
-                    orderDetailStatement.setLong(1, order.getId());
+                    orderDetailStatement.setString(1, order.getId());
                     orderDetailStatement.setLong(2, orderDetail.getProductItemId());
                     orderDetailStatement.setInt(3, orderDetail.getQuantity());
                     orderDetailStatement.setInt(4, orderDetail.getUnitPrice());
@@ -222,11 +222,11 @@ public class OrderDAOImpl implements OrderDAO {
                 orderDetailStatement.executeBatch();
             }catch (SQLException ex){
                 con.rollback();
-                ex.printStackTrace();
+                throw new SQLException("Đặt hàng chưa thành công!");
             }
             con.commit();
         }catch (SQLException e){
-            e.printStackTrace();
+            throw new SQLException("Đặt hàng chưa thành công!");
         }
     }
 }
