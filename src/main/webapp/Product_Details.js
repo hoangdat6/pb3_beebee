@@ -85,7 +85,7 @@ function saveToCart(check1){
     let variation1 = null;
     let variation2 = null;
     let input = document.getElementsByClassName('Qty__Input');
-    let quantity = parseInt(input[1].value);
+    let quantity = parseInt(input[0].value);
     // addItemToCart();
 
     check = check1;
@@ -172,4 +172,3 @@ $(document).ready(function () {
         saveToCart(false);
     })
 });
-

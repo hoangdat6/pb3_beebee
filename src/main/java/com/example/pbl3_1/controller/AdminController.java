@@ -98,7 +98,7 @@ public class AdminController extends HttpServlet {
                 boolean checkUnlockOrLock = ums.lockAccount(lockID);
 
                 Map<String, Boolean> lockMap = new HashMap<String, Boolean>();
-                lockMap.put("status", checkUnlockOrLock);
+                lockMap.put("is_locked", checkUnlockOrLock);
 
                 String lockJson = gson.toJson(lockMap);
                 resp.getWriter().write(lockJson);
@@ -109,7 +109,7 @@ public class AdminController extends HttpServlet {
                 boolean checkLockOrUnlock = ums.lockShop(lockShopID);
 
                 Map<String, Boolean> lockShopMap = new HashMap<String, Boolean>();
-                lockShopMap.put("status", checkLockOrUnlock);
+                lockShopMap.put("is_locked", checkLockOrUnlock);
 
                 String lockShopJson = gson.toJson(lockShopMap);
                 resp.getWriter().write(lockShopJson);

@@ -1,6 +1,7 @@
 package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.cart.ProductItemInfoForCartDTO;
+import com.example.pbl3_1.controller.dto.cart.SmallCartItem;
 import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.dao.ShoppingCartItemDAO;
 import com.example.pbl3_1.entity.ShoppingCartItem;
@@ -120,6 +121,71 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
                         .quantity(resultSet.getInt("quantity"))
                         .isOutOfStock(resultSet.getBoolean("is_out_of_stock"))
                         .isSoldOut(resultSet.getBoolean("is_sold_out"))
+                        .build();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, userId);
+    }
+
+    @Override
+    public List<SmallCartItem> getAllCartItemsByUserId(Long userId) {
+        String query = "SELECT\n" +
+                "    products.name AS name,\n" +
+                "    product_item.price AS price,\n" +
+                "    (\n" +
+                "        SELECT product_item.img_path\n" +
+                "        FROM product_item\n" +
+                "        WHERE product_item.product_id = products.id\n" +
+                "          AND product_item.img_path IS NOT NULL\n" +
+                "        LIMIT 1\n" +
+                "    ) AS coverImgPath,\n" +
+                "    shopping_cart_item.quantity AS quantity,\n" +
+                "    CONCAT(\n" +
+                "            COALESCE(\n" +
+                "                    (\n" +
+                "                        SELECT variation_option.value\n" +
+                "                        FROM variation_option\n" +
+                "                        WHERE variation_option.id = product_item.variation1\n" +
+                "                          AND  variation_option.value IS NOT NULL\n" +
+                "                        LIMIT 1\n" +
+                "                    ),\n" +
+                "                    ''\n" +
+                "            ),\n" +
+                "            ' ',\n" +
+                "            COALESCE(\n" +
+                "                    (\n" +
+                "                        SELECT variation_option.value\n" +
+                "                        FROM variation_option\n" +
+                "                        WHERE variation_option.id = product_item.variation2\n" +
+                "                          AND variation_option.value IS NOT NULL\n" +
+                "                        LIMIT 1\n" +
+                "                    ),\n" +
+                "                    ''\n" +
+                "            )\n" +
+                "    ) AS variations,\n" +
+                "    product_item.id AS productItemId,\n" +
+                "    sellers.avatar AS shopImgPath,\n" +
+                "    sellers.shop_name AS shopName\n" +
+                "FROM\n" +
+                "    shopping_cart\n" +
+                "        INNER JOIN shopping_cart_item ON shopping_cart.id = shopping_cart_item.cart_id\n" +
+                "        LEFT JOIN product_item ON shopping_cart_item.product_item_id = product_item.id\n" +
+                "        LEFT JOIN products ON product_item.product_id = products.id\n" +
+                "        LEFT JOIN sellers ON products.seller_id = sellers.id\n" +
+                "WHERE shopping_cart.user_id = ?\n" +
+                "ORDER BY  shopping_cart_item.created_at DESC;";
+        return genericDAO.query(query, resultSet -> {
+            try {
+                String shopImgPath = resultSet.getString("shopImgPath");
+                return SmallCartItem.builder()
+                        .name(resultSet.getString("name"))
+                        .price(resultSet.getLong("price"))
+                        .coverImgPath(resultSet.getString("coverImgPath"))
+                        .quantity(resultSet.getLong("quantity"))
+                        .variations(resultSet.getString("variations"))
+                        .shopImgPath(shopImgPath != null ? shopImgPath.split(",")[0] : null)
+                        .shopName(resultSet.getString("shopName"))
                         .build();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
