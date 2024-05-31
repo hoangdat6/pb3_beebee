@@ -9,6 +9,7 @@
           <div class="Header-Top__item2">Bạn đang ở kênh mua hàng! <a href="<c:url value="/seller/account/register"/>" class="orange-bold">Chuyển qua kênh người
               bán?</a></div>
           <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script src="<c:url value="/Top-Bar.js"/>"></script>
           <script>
             var timeoutId; // Biến để lưu trữ ID của hẹn giờ
 
@@ -117,40 +118,8 @@
       color: #121212;">
                 <h3>SẢN PHẨM MỚI THÊM</h3>
                 <div class="SM_Cart-Content">
-                  <div class="SM_Cart-Item">
-                    <input name="SM_Cart_CB" type="checkbox" class="SM_Cart-Item--Checkbox">
-                    <img class="SM_Cart-Item--Image" src="img/Product-Details/Category-1.jpeg" alt="Product">
-                    <div class="SM_Cart-Item--Main">
-                      <h3 class="Main--Name">Bàn xách tay</h3>
-                      <div class="Main--Shop">
-                        <img src="img/Brand/Coffee.jpeg" alt="Shop Avatar">
-                        <span>Tên Shop</span>
-                      </div>
-                      <div class="Main--Qty_and_Category">
-                        <span class="Main--Category">Loại: Đen</span>
-                        <div class="Main--Qty Qty">
-                          <button class="btn Qty__Minus" onclick="decreaseQuantity(this)"><i class="fa-solid fa-minus"
-                              style="font-size: 10px;"></i></button>
-                          <input class="btn Qty__Input" value="1" min="1">
-                          <button class="btn Qty__Plus" onclick="increaseQuantity(this)"><i class="fa-solid fa-plus"
-                              style="font-size: 10px;"></i></button>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="SM_Cart-Item--Price">
-                      <span>350.000₫</span>
-                      <i class="fa-solid fa-x"></i>
-                    </div>
-                  </div>
                 </div>
                 <div class="Purchase">
-                  <div class="Total">
-                    <h3>Total</h3>
-                    <span class="Total_Price">
-                      1.400.000₫
-                    </span>
-                  </div>
-                  <a class="Checkout-Btn btn" href="Checkout.jsp">Thanh toán</a>
                   <a class="Cart-Btn btn" href="<c:url value="/cart"/> ">Xem giỏ hàng</a>
                 </div>
               </div>
@@ -161,5 +130,12 @@
             </li>
           </ul>
         </div>
+<c:if test="${sessionScope.get('USERMODEL') != null}">
+        <script>
+          $(document).ready(function(){
+              update();
+          });
+        </script>
+</c:if>
       </header>
       <%-- End of Top Bar --%>

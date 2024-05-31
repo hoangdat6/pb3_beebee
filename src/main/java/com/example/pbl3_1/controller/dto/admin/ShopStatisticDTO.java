@@ -20,7 +20,7 @@ public class ShopStatisticDTO {
     Integer totalProducts;
     Long totalRevenue;
     Float rating;
-    Boolean status;
+    Boolean is_locked;
     Date createdAt;
     String email;
 }

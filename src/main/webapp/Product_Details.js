@@ -83,7 +83,7 @@ function saveToCart(){
     let variation1 = null;
     let variation2 = null;
     let input = document.getElementsByClassName('Qty__Input');
-    let quantity = parseInt(input[1].value);
+    let quantity = parseInt(input[0].value);
     // addItemToCart();
     if($(".Category_option1").length){
         variation1 = $(".Category_option1.Selected").attr('id');
@@ -110,49 +110,10 @@ function saveToCart(){
             let re = JSON.parse(response);
             if(re.status === "200"){
                 showSuccessToast("Success", "Đã thêm vào giỏ hàng");
+                update();
             } else {
                 showErrorToast("Warning", "Số lượng sản phẩm không đủ");
             }
         }
     });
 }
-
-// function addItemToCart(cartItem){
-//     let newcartItem = document.createElement("div");
-//     cartItem.className = "SM_Cart-Item";
-//     cartItem.innerHTML= `
-//         <input name="SM_Cart_CB" type="checkbox" class="SM_Cart-Item--Checkbox">
-//         <img class="SM_Cart-Item--Image" src="${cartItem.coverImgPath}" alt="Product">
-//         <div class="SM_Cart-Item--Main">
-//             <h3 class="Main--Name">&{cartItem.name}</h3>
-//             <div class="Main--Shop">
-//                 <img src="${cartItem.shopImgPath}" alt="Shop Avatar">
-//                 <span>${cartItem.shopName}</span>
-//             </div>
-//             <div class="Main--Qty_and_Category">
-//                 <span class="Main--Category">
-//                     ${cartItem.variationName1}: ${cartItem.variation1},
-//                     ${cartItem.variationName2}: ${cartItem.variation2}
-//                 </span>
-//                 <div class="Main--Qty Qty">
-//                     <button class="btn Qty__Minus" onclick="decreaseQuantity(this)">
-//                         <i class="fa-solid fa-minus" style="font-size: 10px;"></i>
-//                     </button>
-//                     <input class="btn Qty__Input" value="${cartItem.quantity}" min="1">
-//                     <button class="btn Qty__Plus" onclick="increaseQuantity(this)">
-//                         <i class="fa-solid fa-plus" style="font-size: 10px;"></i>
-//                     </button>
-//                 </div>
-//             </div>
-//         </div>
-//         <div class="SM_Cart-Item--Price">
-//             <span>${cartItem.Price}</span>
-//             <i class="fa-solid fa-x"></i>
-//         </div>`;
-//
-//     document.querySelector(".SM_Cart-Content").appendChild(newcartItem);
-// }
-
-
-
-
