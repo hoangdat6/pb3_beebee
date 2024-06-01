@@ -1,6 +1,7 @@
 package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
+import com.example.pbl3_1.controller.dto.product.ProductManagementDTO;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.CategoryDAO;
@@ -82,4 +83,22 @@ public class ProductServiceImpl implements ProductService {
     public List<Category> getAllCategories() {
         return productDAO.getAllCategories();
     }
+
+    @Override
+    public List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size) {
+        return productDAO.getProductManagement(sellerId, idCategory, searchValue, page, size);
+    }
+    @Override
+    public List<Category> getCategoriesbyIdShop(Long idShop){
+        return productDAO.getCategoriesbyIdShop(idShop);
+    }
+    @Override
+    public void deleteProduct(Long idProduct){
+        productDAO.deleteProduct(idProduct);
+    }
+    @Override
+    public int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue){
+        return productDAO.getProductManagementTotalPage(sellerId, idCategory, searchValue);
+    }
+
 }

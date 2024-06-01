@@ -15,7 +15,7 @@ public class UserStatisticDTO {
     String id;
     String name;
     String email;
-    Boolean status;
+    Boolean is_locked;
     Date createdAt;
     String phone;
     Long total;

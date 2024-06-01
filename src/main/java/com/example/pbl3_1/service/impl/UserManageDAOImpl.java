@@ -16,14 +16,14 @@ public class UserManageDAOImpl implements UserManageDAO {
     @Override
     public List<UserStatisticDTO> getAllCustomer() {
         String sql = "SELECT users.id, users.username, users.avatar, SellerTmp.avatar AS ShopAvatar, email, users.phone, users.created_at,\n" +
-                "coalesce(sum(orders.order_total), 0) as total, status\n" +
+                "coalesce(sum(orders.order_total), 0) as total, is_locked\n" +
                 "FROM users\n" +
                 "    LEFT JOIN orders ON orders.user_id = users.id\n" +
                 "    LEFT JOIN (\n" +
                 "        select sellers.user_id, sellers.avatar\n" +
                 "        from sellers\n" +
                 "    ) AS SellerTmp ON SellerTmp.user_id = users.id\n" +
-                "GROUP BY users.id, username, email, status, SellerTmp.avatar\n" +
+                "GROUP BY users.id, username, email, is_locked, SellerTmp.avatar\n" +
                 "LIMIT 10;";
 
         List<UserStatisticDTO> list =  genericDAO.query(sql, result ->{
@@ -31,7 +31,7 @@ public class UserManageDAOImpl implements UserManageDAO {
                     .id(result.getString("id"))
                     .name(result.getString("username"))
                     .email(result.getString("email"))
-                    .status(result.getBoolean("status"))
+                    .is_locked(result.getBoolean("is_locked"))
                     .total(result.getLong("total"))
                     .imgPath(result.getString("avatar") == null ? "" : "/" + result.getString("avatar"))
                     .createdAt(result.getDate("created_at"))
@@ -45,7 +45,7 @@ public class UserManageDAOImpl implements UserManageDAO {
     public List<UserStatisticDTO> getAllSeller() {
         String sql = "SELECT sellers.id, sellers.shop_name, " +
                 "(SELECT coalesce(SUM(order_total), 0) FROM orders WHERE sellers.id = orders.seller_id) AS total_revenue,\n" +
-                "sellers.status,\n" +
+                "sellers.is_locked,\n" +
                 "users.email\n" +
                 "FROM sellers\n" +
                 "LEFT JOIN orders ON orders.seller_id = sellers.id\n" +
@@ -58,34 +58,37 @@ public class UserManageDAOImpl implements UserManageDAO {
                     .id(result.getString("id"))
                     .name(result.getString("shop_name"))
                     .email(result.getString("email"))
-                    .status(result.getBoolean("status"))
+                    .is_locked(result.getBoolean("is_locked"))
                     .total(result.getLong("total_revenue"))
                     .build();
         });
     }
 
     @Override
-    public List<UserStatisticDTO> searchCustomers(String userSearch) {
+    public List<UserStatisticDTO> searchCustomers(String userSearch, short status) {
         String query = "SELECT users.id, users.username, users.avatar, SellerTmp.avatar AS ShopAvatar, email, users.phone, users.created_at,\n" +
-                "coalesce(sum(orders.order_total), 0) as total, status\n" +
+                "coalesce(sum(orders.order_total), 0) as total, users.is_locked\n" +
                 "FROM users\n" +
                 "    LEFT JOIN orders ON orders.user_id = users.id\n" +
                 "    LEFT JOIN (\n" +
                 "        select sellers.user_id, sellers.avatar\n" +
                 "        from sellers\n" +
                 "    ) AS SellerTmp ON SellerTmp.user_id = users.id\n" +
-                "WHERE username LIKE '%" + userSearch + "%' OR email LIKE '%"+ userSearch + "%@gmail.com' \n" +
-                "GROUP BY users.id, username, email, status, SellerTmp.avatar\n" +
+                "WHERE (username LIKE '%" + userSearch + "%' OR email LIKE '%"+ userSearch + "%@gmail.com') \n";
+        if (status == 0) {
+            query += " AND users.is_locked = TRUE\n";
+        } else if (status == 1) {
+            query += " AND users.is_locked = FALSE\n";
+        }
+        query += "GROUP BY users.id, username, email, is_locked, SellerTmp.avatar\n" +
                 "LIMIT 10;";
-        List<UserStatisticDTO> list =  genericDAO.query(query, result -> {
-            return UserStatisticDTO.builder()
-                    .id(result.getString("id"))
-                    .name(result.getString("username"))
-                    .email(result.getString("email"))
-                    .status(result.getBoolean("status"))
-                    .total(result.getLong("total"))
-                    .build();
-        });
+        List<UserStatisticDTO> list =  genericDAO.query(query, result -> UserStatisticDTO.builder()
+                .id(result.getString("id"))
+                .name(result.getString("username"))
+                .email(result.getString("email"))
+                .is_locked(result.getBoolean("is_locked"))
+                .total(result.getLong("total"))
+                .build());
         return list;
     }
 
@@ -99,7 +102,7 @@ public class UserManageDAOImpl implements UserManageDAO {
                 "    (SELECT COUNT(*) FROM seller_followers WHERE sellers.id = seller_followers.seller_id) AS followers,\n" +
                 "    (SELECT COUNT(*) FROM products WHERE sellers.id = products.seller_id) AS count_products,\n" +
                 "    (SELECT coalesce(SUM(order_total), 0) FROM orders WHERE sellers.id = orders.seller_id) AS total_revenue,\n" +
-                "    sellers.status,\n" +
+                "    sellers.is_locked,\n" +
                 "    sellers.created_at\n" +
                 "FROM\n" +
                 "    sellers\n" +
@@ -111,19 +114,17 @@ public class UserManageDAOImpl implements UserManageDAO {
                 "    sellers.user_id = ?\n" +
                 "GROUP BY\n" +
                 "    sellers.id;";
-        List<ShopStatisticDTO> list =  genericDAO.query(sql, result -> {
-            return ShopStatisticDTO.builder()
-                    .id(result.getLong("id"))
-                    .name(result.getString("shop_name"))
-                    .imgPath("/" + result.getString("avatar").split(",")[0])
-                    .location(result.getString("province"))
-                    .followers(result.getInt("followers"))
-                    .totalProducts(result.getInt("count_products"))
-                    .totalRevenue(result.getLong("total_revenue"))
-                    .status(result.getBoolean("status"))
-                    .createdAt(result.getDate("created_at"))
-                    .build();
-        }, id);
+        List<ShopStatisticDTO> list =  genericDAO.query(sql, result -> ShopStatisticDTO.builder()
+                .id(result.getLong("id"))
+                .name(result.getString("shop_name"))
+                .imgPath("/" + result.getString("avatar").split(",")[0])
+                .location(result.getString("province"))
+                .followers(result.getInt("followers"))
+                .totalProducts(result.getInt("count_products"))
+                .totalRevenue(result.getLong("total_revenue"))
+                .is_locked(result.getBoolean("is_locked"))
+                .createdAt(result.getDate("created_at"))
+                .build(), id);
         if (list.size() == 0) return null;
         return list.get(0);
     }
@@ -131,7 +132,7 @@ public class UserManageDAOImpl implements UserManageDAO {
     @Override
     public UserStatisticDTO getCustomerById(Long id) {
         String sql = "select users.id, users.username, avatar, email, users.phone, users.created_at,\n" +
-                "       coalesce(sum(orders.order_total), 0) as total, status\n" +
+                "       coalesce(sum(orders.order_total), 0) as total, is_locked\n" +
                 "from users\n" +
                 "left join orders on users.id = orders.user_id\n" +
                 "where users.id = ?\n" +
@@ -141,7 +142,7 @@ public class UserManageDAOImpl implements UserManageDAO {
                     .id(result.getString("id"))
                     .name(result.getString("username"))
                     .email(result.getString("email"))
-                    .status(result.getBoolean("status"))
+                    .is_locked(result.getBoolean("is_locked"))
                     .total(result.getLong("total"))
                     .phone(result.getString("phone"))
                     .createdAt(result.getDate("created_at"))
@@ -151,29 +152,29 @@ public class UserManageDAOImpl implements UserManageDAO {
         return list.get(0);
     }
 
-    private boolean getAccountStatus(Long id) {
-        String sql = "SELECT status FROM users WHERE id = ?";
-        List<Boolean> statuses = genericDAO.query(sql, result -> {
+    private boolean getAccountis_locked(Long id) {
+        String sql = "SELECT is_locked FROM users WHERE id = ?";
+        List<Boolean> is_lockedes = genericDAO.query(sql, result -> {
             try {
-                return result.getBoolean("status");
+                return result.getBoolean("is_locked");
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
         }, id);
-        return statuses.get(0);
+        return is_lockedes.get(0);
     }
 
     //Check if the shop locked or unlocked, locked return false, unlocked return true
-    private boolean getShopStatus(Long id) {
-        String sql = "SELECT status FROM sellers WHERE id = ?";
-        List<Boolean> statuses = genericDAO.query(sql, result -> {
+    private boolean getShopis_locked(Long id) {
+        String sql = "SELECT is_locked FROM sellers WHERE id = ?";
+        List<Boolean> is_lockedes = genericDAO.query(sql, result -> {
             try {
-                return result.getBoolean("status");
+                return result.getBoolean("is_locked");
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
         }, id);
-        return statuses.get(0);
+        return is_lockedes.get(0);
     }
 
     //unlock return true, lock return false
@@ -181,11 +182,11 @@ public class UserManageDAOImpl implements UserManageDAO {
     public boolean lockAccount(Long lockID) {
         String sql;
         boolean unlock = false;
-        if (getAccountStatus(lockID)) {
-            sql = "UPDATE users SET status = FALSE WHERE id = ?";
+        if (getAccountis_locked(lockID)) {
+            sql = "UPDATE users SET is_locked = FALSE WHERE id = ?";
         } else {
             unlock = true;
-            sql = "UPDATE users SET status = TRUE WHERE id = ?";
+            sql = "UPDATE users SET is_locked = TRUE WHERE id = ?";
         }
         genericDAO.update(sql, lockID);
         return unlock;
@@ -196,10 +197,10 @@ public class UserManageDAOImpl implements UserManageDAO {
     public boolean lockShop(Long lockShopID) {
         String sql;
         boolean unlock = false;
-        if (getShopStatus(lockShopID)) {
-            sql = "UPDATE sellers SET status = FALSE WHERE id = ?";
+        if (getShopis_locked(lockShopID)) {
+            sql = "UPDATE sellers SET is_locked = FALSE WHERE id = ?";
         } else {
-            sql = "UPDATE sellers SET status = TRUE WHERE id = ?";
+            sql = "UPDATE sellers SET is_locked = TRUE WHERE id = ?";
             unlock = true;
         }
         genericDAO.update(sql, lockShopID);
@@ -207,51 +208,52 @@ public class UserManageDAOImpl implements UserManageDAO {
     }
 
     @Override
-    public List<UserStatisticDTO> searchSeller(String sellerSearch) {
+    public List<UserStatisticDTO> searchSeller(String sellerSearch, Short status) {
         String query = "SELECT sellers.id, sellers.shop_name, " +
                 "(SELECT coalesce(SUM(order_total), 0) FROM orders WHERE sellers.id = orders.seller_id) AS total_revenue,\n" +
-                "sellers.status,\n" +
+                "sellers.is_locked,\n" +
                 "users.email\n" +
                 "FROM sellers\n" +
                 "LEFT JOIN orders ON orders.seller_id = sellers.id\n" +
                 "LEFT JOIN address ON sellers.address_id = address.id\n" +
                 "LEFT JOIN users ON sellers.user_id = users.id\n" +
-                "WHERE shop_name LIKE '%" + sellerSearch + "%' OR email LIKE '%"+ sellerSearch + "%@gmail.com' \n" +
-                "GROUP BY sellers.id\n" +
+                "WHERE (shop_name LIKE '%" + sellerSearch + "%' OR email LIKE '%"+ sellerSearch + "%@gmail.com') \n";
+        if (status == 0) {
+            query += "AND sellers.is_locked = TRUE\n";
+        } else if (status == 1) {
+            query += "AND sellers.is_locked = FALSE\n";
+        }
+        query += " GROUP BY sellers.id\n" +
                 "LIMIT 10;";
-        List<UserStatisticDTO> list =  genericDAO.query(query, result -> {
-            return UserStatisticDTO.builder()
-                    .id(result.getString("id"))
-                    .name(result.getString("shop_name"))
-                    .email(result.getString("email"))
-                    .status(result.getBoolean("status"))
-                    .total(result.getLong("total_revenue"))
-                    .build();
-        });
+        List<UserStatisticDTO> list =  genericDAO.query(query, result -> UserStatisticDTO.builder()
+                .id(result.getString("id"))
+                .name(result.getString("shop_name"))
+                .email(result.getString("email"))
+                .is_locked(result.getBoolean("is_locked"))
+                .total(result.getLong("total_revenue"))
+                .build());
         return list;
     }
 
     @Override
     public UserStatisticDTO getCustomerByShopId(Long id) {
         String sql = "select users.id, users.username, users.avatar, email, users.phone, users.created_at,\n" +
-                "coalesce(sum(orders.order_total), 0) as total, users.status\n" +
+                "coalesce(sum(orders.order_total), 0) as total, users.is_locked\n" +
                 "from users\n" +
                 "left join orders on users.id = orders.user_id\n" +
                 "left join sellers on users.id = sellers.user_id\n" +
                 "where sellers.id = ?\n" +
                 "group by users.id;";
-        List<UserStatisticDTO> list =  genericDAO.query(sql, result -> {
-            return UserStatisticDTO.builder()
-                    .id(result.getString("id"))
-                    .name(result.getString("username"))
-                    .email(result.getString("email"))
-                    .status(result.getBoolean("status"))
-                    .total(result.getLong("total"))
-                    .phone(result.getString("phone"))
-                    .createdAt(result.getDate("created_at"))
-                    .imgPath(result.getString("avatar") == null ? "" : "/" +result.getString("avatar"))
-                    .build();
-        }, id);
+        List<UserStatisticDTO> list =  genericDAO.query(sql, result -> UserStatisticDTO.builder()
+                .id(result.getString("id"))
+                .name(result.getString("username"))
+                .email(result.getString("email"))
+                .is_locked(result.getBoolean("is_locked"))
+                .total(result.getLong("total"))
+                .phone(result.getString("phone"))
+                .createdAt(result.getDate("created_at"))
+                .imgPath(result.getString("avatar") == null ? "" : "/" +result.getString("avatar"))
+                .build(), id);
         return list.get(0);
     }
 
@@ -265,7 +267,7 @@ public class UserManageDAOImpl implements UserManageDAO {
                 "    (SELECT COUNT(*) FROM seller_followers WHERE sellers.id = seller_followers.seller_id) AS followers,\n" +
                 "    (SELECT COUNT(*) FROM products WHERE sellers.id = products.seller_id) AS count_products,\n" +
                 "    (SELECT coalesce(SUM(order_total), 0) FROM orders WHERE sellers.id = orders.seller_id) AS total_revenue,\n" +
-                "    sellers.status,\n" +
+                "    sellers.is_locked,\n" +
                 "    sellers.created_at\n" +
                 "FROM\n" +
                 "    sellers\n" +
@@ -277,19 +279,17 @@ public class UserManageDAOImpl implements UserManageDAO {
                 "    sellers.id = ?\n" +
                 "GROUP BY\n" +
                 "    sellers.id;";
-        List<ShopStatisticDTO> list =  genericDAO.query(sql, result -> {
-            return ShopStatisticDTO.builder()
-                    .id(result.getLong("id"))
-                    .name(result.getString("shop_name"))
-                    .imgPath("/" + result.getString("avatar").split(",")[0])
-                    .location(result.getString("province"))
-                    .followers(result.getInt("followers"))
-                    .totalProducts(result.getInt("count_products"))
-                    .totalRevenue(result.getLong("total_revenue"))
-                    .status(result.getBoolean("status"))
-                    .createdAt(result.getDate("created_at"))
-                    .build();
-        }, id);
+        List<ShopStatisticDTO> list =  genericDAO.query(sql, result -> ShopStatisticDTO.builder()
+                .id(result.getLong("id"))
+                .name(result.getString("shop_name"))
+                .imgPath("/" + result.getString("avatar").split(",")[0])
+                .location(result.getString("province"))
+                .followers(result.getInt("followers"))
+                .totalProducts(result.getInt("count_products"))
+                .totalRevenue(result.getLong("total_revenue"))
+                .is_locked(result.getBoolean("is_locked"))
+                .createdAt(result.getDate("created_at"))
+                .build(), id);
         if (list.size() == 0) return null;
         return list.get(0);
     }

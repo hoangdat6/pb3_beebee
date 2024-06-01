@@ -21,9 +21,9 @@ public class UserMannageServiceImpl implements UserManageService {
         return result;
     }
 
-    public List<UserStatisticDTO> searchCustomers(String userSearch){
+    public List<UserStatisticDTO> searchCustomers(String userSearch, Short status){
         List<UserStatisticDTO> result = new ArrayList<>();
-        result = userManage.searchCustomers(userSearch);
+        result = userManage.searchCustomers(userSearch, status);
         return result;
     }
 
@@ -49,8 +49,8 @@ public class UserMannageServiceImpl implements UserManageService {
     }
 
     @Override
-    public List<UserStatisticDTO> searchSeller(String sellerSearch) {
-        return userManage.searchSeller(sellerSearch);
+    public List<UserStatisticDTO> searchSeller(String sellerSearch, Short status) {
+        return userManage.searchSeller(sellerSearch, status);
     }
 
     @Override

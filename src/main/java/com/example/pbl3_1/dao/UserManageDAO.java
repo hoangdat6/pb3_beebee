@@ -10,7 +10,7 @@ public interface UserManageDAO {
 
     List<UserStatisticDTO> getAllSeller();
 
-    List<UserStatisticDTO> searchCustomers(String userSearch);
+    List<UserStatisticDTO> searchCustomers(String userSearch, short status);
 
     ShopStatisticDTO getShopById(Long id);
 
@@ -21,7 +21,7 @@ public interface UserManageDAO {
 
     boolean lockShop(Long lockShopID);
 
-    List<UserStatisticDTO> searchSeller(String sellerSearch);
+    List<UserStatisticDTO> searchSeller(String sellerSearch, Short status);
 
     UserStatisticDTO getCustomerByShopId(Long id);
 

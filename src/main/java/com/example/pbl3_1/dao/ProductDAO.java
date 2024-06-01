@@ -1,6 +1,7 @@
 package com.example.pbl3_1.dao;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
+import com.example.pbl3_1.controller.dto.product.ProductManagementDTO;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.entity.Category;
@@ -20,4 +21,8 @@ public interface ProductDAO extends CommonDAO<Product>{
     List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories);
     List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories);
     List<Category> getAllCategories();
+    List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size);
+    List<Category> getCategoriesbyIdShop(Long idShop);
+    int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue);
+    void deleteProduct(Long idProduct);
 }

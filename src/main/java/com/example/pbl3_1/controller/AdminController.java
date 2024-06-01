@@ -52,14 +52,18 @@ public class AdminController extends HttpServlet {
                 break;
             case "/searchCustomer":
                 String userSearch = req.getParameter("val");
-                List<UserStatisticDTO> searchResults = ums.searchCustomers(userSearch);
+                Short status = Short.parseShort(req.getParameter("status"));
+
+                List<UserStatisticDTO> searchResults = ums.searchCustomers(userSearch, status);
 
                 String searchJson = gson.toJson(searchResults);
                 resp.getWriter().write(searchJson);
                 break;
             case "/searchSeller":
                 String sellerSearch = req.getParameter("val");
-                List<UserStatisticDTO> searchSellerResults = ums.searchSeller(sellerSearch);
+                Short sellerStatus = Short.parseShort(req.getParameter("status"));
+
+                List<UserStatisticDTO> searchSellerResults = ums.searchSeller(sellerSearch, sellerStatus);
 
                 String searchSellerJson = gson.toJson(searchSellerResults);
                 resp.getWriter().write(searchSellerJson);
@@ -98,7 +102,7 @@ public class AdminController extends HttpServlet {
                 boolean checkUnlockOrLock = ums.lockAccount(lockID);
 
                 Map<String, Boolean> lockMap = new HashMap<String, Boolean>();
-                lockMap.put("status", checkUnlockOrLock);
+                lockMap.put("is_locked", checkUnlockOrLock);
 
                 String lockJson = gson.toJson(lockMap);
                 resp.getWriter().write(lockJson);
@@ -109,7 +113,7 @@ public class AdminController extends HttpServlet {
                 boolean checkLockOrUnlock = ums.lockShop(lockShopID);
 
                 Map<String, Boolean> lockShopMap = new HashMap<String, Boolean>();
-                lockShopMap.put("status", checkLockOrUnlock);
+                lockShopMap.put("is_locked", checkLockOrUnlock);
 
                 String lockShopJson = gson.toJson(lockShopMap);
                 resp.getWriter().write(lockShopJson);
