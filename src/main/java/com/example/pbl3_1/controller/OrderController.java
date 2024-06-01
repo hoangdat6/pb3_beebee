@@ -51,7 +51,13 @@ public class OrderController extends HttpServlet {
     }
 
     public void showCheckOutPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
         List<Map<Object, Object>> orderDetail = (List<Map<Object, Object>>) request.getSession().getAttribute("orderDetail");
+
+        if(orderDetail == null) {
+            response.sendRedirect("cart");
+            return;
+        }
 
         User user = (User) request.getSession().getAttribute("USERMODEL");
 
@@ -90,7 +96,7 @@ public class OrderController extends HttpServlet {
         address.setProvince(addressUtils.getCityName(address.getProvince()));
 
         SessionUtil.getInstance().putValue(request, "checkOutInfoDTOs", checkOutInfoDTOs);
-        SessionUtil.getInstance().putValue(request, "shippingMethodId", shippingMethod.getId());
+        SessionUtil.getInstance().putValue(request, "shippingMethodId", shippingMethod.getShippingMethod().getValue());
         request.setAttribute("address", address);
         request.setAttribute("paymentMethods", paymentMethods);
         request.setAttribute("checkOutInfoDTOs", checkOutInfoDTOs);

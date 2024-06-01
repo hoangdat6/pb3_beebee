@@ -1,5 +1,7 @@
 package com.example.pbl3_1.entity;
 
+import com.example.pbl3_1.entity.myEnum.ERole;
+import com.example.pbl3_1.entity.myEnum.Egender;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

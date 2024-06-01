@@ -15,7 +15,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+<%--    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>--%>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="./toast.js"></script>
@@ -108,7 +109,7 @@
                     <button class="btn Qty__Plus" onclick="increaseQuantity(this)"><i
                             class="fa-solid fa-plus"></i></button>
                 </div>
-                <button class="btn Add-to-Cart Same" onclick="saveToCart()">
+                <button class="btn Add-to-Cart Same" onclick="saveToCart(true)">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <p>Thêm vào giỏ hàng</p>
                 </button>
@@ -118,7 +119,7 @@
                     <p>Yêu thích</p>
                 </button>
             </div>
-            <button class="btn Buy">Mua ngay</button>
+            <button class="btn Buy" id="check_out">Mua ngay</button>
             <div class="Product-Menu">
                 Danh mục
                 <span>${productDetail.categoryName}</span>

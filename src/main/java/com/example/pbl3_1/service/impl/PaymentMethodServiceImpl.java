@@ -13,4 +13,9 @@ public class PaymentMethodServiceImpl implements PaymentMethodService {
     public List<PaymentMethod> getPaymentMethods() {
         return paymentMethodDAO.getPaymentMethods();
     }
+
+    @Override
+    public PaymentMethod getPaymentMethodById(Short paymentMethodId) {
+        return paymentMethodDAO.getPaymentMethodById(paymentMethodId);
+    }
 }

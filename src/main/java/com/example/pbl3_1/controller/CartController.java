@@ -27,13 +27,11 @@ public class CartController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
 
-//        if(CheckLoggedUser.checkLoggedUser(request, response, "/cart")) {
-            User userLogin = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
-            List<ShippingMethod> shippingMethods = shippingMethodService.getAllShippingMethods();
-            System.out.println(shippingMethods);
-            request.setAttribute("shippingMethods", shippingMethods);
-            request.setAttribute("shoppingCarts", shoppingCartItemService.getCartsInfoByUserId(userLogin.getId()));
-            request.getRequestDispatcher("Cart.jsp").forward(request, response);
-//        }
+        User userLogin = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
+        List<ShippingMethod> shippingMethods = shippingMethodService.getAllShippingMethods();
+
+        request.setAttribute("shippingMethods", shippingMethods);
+        request.setAttribute("shoppingCarts", shoppingCartItemService.getCartsInfoByUserId(userLogin.getId()));
+        request.getRequestDispatcher("Cart.jsp").forward(request, response);
     }
 }

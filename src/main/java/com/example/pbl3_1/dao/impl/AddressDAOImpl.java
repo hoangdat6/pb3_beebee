@@ -59,7 +59,7 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public Integer update(Address address) {
+    public Object update(Address address) {
         String sql = "UPDATE address SET detail= ?, ward = ?, district = ?, province = ?, updated_at = ? , fullname= ?, phone= ? WHERE id = ?";
         return genericDAO.update(sql,
                 address.getDetail(),

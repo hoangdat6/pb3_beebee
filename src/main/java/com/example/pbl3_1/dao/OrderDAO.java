@@ -5,6 +5,7 @@ import com.example.pbl3_1.controller.dto.checkout.ProductForCheckOut;
 import com.example.pbl3_1.entity.Order;
 import com.example.pbl3_1.entity.OrderDetail;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -17,5 +18,5 @@ public interface OrderDAO {
 
     Integer getQuantityInStock(Long productItemId);
 
-    void createOrder(Order order, List<OrderDetail> orderDetails);
+    void createOrder(Order order, List<OrderDetail> orderDetails) throws SQLException;
 }

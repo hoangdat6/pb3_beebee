@@ -32,5 +32,4 @@ public class OrderApi extends HttpServlet {
 
         objectMapper.writeValue(response.getOutputStream(), "{\"status\" : \"200\"}");
     }
-
 }

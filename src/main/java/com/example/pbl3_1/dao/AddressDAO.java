@@ -9,7 +9,7 @@ public interface AddressDAO {
     Long addAddress(Address address);
     List<AddressDTO> getByIdUser(Long id);
     void delete(Long id);
-    Integer update(Address address);
+    Object update(Address address);
     Address getDefaultAddressByUserId(Long id);
     Address getAddressById(Long id);
 }
