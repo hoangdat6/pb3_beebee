@@ -26,13 +26,12 @@ public class ProductController extends HttpServlet {
         System.out.println(path);
         switch (path) {
             case "/product":
-                String url = path + "?id=" + request.getParameter("id");
-                showProductDetails(request, response, url);
+                showProductDetails(request, response);
                 break;
         }
     }
 
-    public void showProductDetails(HttpServletRequest request, HttpServletResponse response, String url) throws ServletException, IOException {
+    public void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
         SessionUtil.getInstance().putValue(request, "product_id", id);
