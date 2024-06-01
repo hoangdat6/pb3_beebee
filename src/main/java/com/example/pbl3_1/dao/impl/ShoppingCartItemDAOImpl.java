@@ -34,7 +34,6 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
     }
 
 
-
     @Override
     public void deleteById(Long object) {
         String sql = "DELETE FROM shopping_cart_item where id = ?";
