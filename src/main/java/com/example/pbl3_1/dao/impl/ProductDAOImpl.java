@@ -1,6 +1,7 @@
 package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
+import com.example.pbl3_1.controller.dto.product.ProductManagementDTO;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.ProductDAO;
@@ -15,6 +16,7 @@ import java.util.List;
 
 public class ProductDAOImpl implements ProductDAO {
     private AbstractDAOImpl<Product> abstractDAO = new AbstractDAOImpl<>();
+
     @Override
     public Long save(Product product) {
         String sql = "insert into products (name, description, img_path, category_id, seller_id, created_at, discount) values (?, ?, ?, ?, ?, ?)";
@@ -172,7 +174,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories) {
-        if(categories.isEmpty()) {
+        if (categories.isEmpty()) {
             StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
             sql.append("FROM products AS p\n");
             sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
@@ -199,16 +201,16 @@ public class ProductDAOImpl implements ProductDAO {
                     return null;
                 }
             }, "%" + keyword + "%", "%" + keyword + "%", minPrice, maxPrice);
-        }else
-        {
+        } else {
             StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
             sql.append("FROM products AS p\n");
             sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
             sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
             sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ?)\n");
             sql.append("AND ( p.category_id = " + categories.charAt(0) + "\n");
-            for (int i = 1; i < categories.length(); i++) {
-                sql.append("OR p.category_id = " + categories.charAt(i) + "\n");
+            String[] Categories = categories.split("-");
+            for (int i = 1; i < Categories.length; i++) {
+                sql.append("OR p.category_id = " + Categories[i] + "\n");
             }
             sql.append(") ");
 
@@ -239,7 +241,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories) {
-        if(categories.isEmpty()) {
+        if (categories.isEmpty()) {
             StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(*) as count\n");
             sql.append("FROM products AS p\n");
             sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
@@ -262,15 +264,16 @@ public class ProductDAOImpl implements ProductDAO {
                     return null;
                 }
             }, "%" + keyword + "%", "%" + keyword + "%", minPrice, maxPrice);
-        }else {
+        } else {
             StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(*) as count\n");
             sql.append("FROM products AS p\n");
             sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
             sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
             sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ?)\n");
             sql.append("AND ( p.category_id = " + categories.charAt(0) + "\n");
-            for (int i = 1; i < categories.length(); i++) {
-                sql.append("OR p.category_id = " + categories.charAt(i) + "\n");
+            String[] Categories = categories.split("-");
+            for (int i = 1; i < Categories.length; i++) {
+                sql.append("OR p.category_id = " + Categories[i] + "\n");
             }
             sql.append(") ");
             sql.append("GROUP BY s.id, s.avatar, s.shop_name, s.views, p.discount\n");
@@ -308,5 +311,121 @@ public class ProductDAOImpl implements ProductDAO {
                 return null;
             }
         });
+    }
+
+    @Override
+    public List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size) {
+        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.sales, pi.price, ps.name as status_name, SUM(qty_in_stock) as total_qty\n");
+        sql.append("FROM products AS p\n");
+        sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+        sql.append("JOIN product_status ps ON p.product_status_id = ps.id\n");
+        sql.append("WHERE p.seller_id = ?\n");
+        sql.append("AND p.product_status_id <> 2\n");
+        if (idCategory != 0) {
+            sql.append("AND p.category_id = ?\n");
+        }
+        sql.append("AND p.name LIKE ?\n");
+        sql.append("GROUP BY p.id, p.name, p.sales, pi.price, ps.name\n");
+        sql.append("LIMIT ? OFFSET ?");
+        if (idCategory != 0) {
+            return abstractDAO.query(sql.toString(), resultSet -> {
+                try {
+                    return new ProductManagementDTO(
+                            resultSet.getLong("id"),
+                            resultSet.getString("name"),
+                            resultSet.getInt("price"),
+                            resultSet.getInt("total_qty"),
+                            resultSet.getLong("sales"),
+                            resultSet.getString("status_name")
+                    );
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }, sellerId, idCategory, "%" + searchValue + "%", size, (page - 1) * size);
+        }
+        return abstractDAO.query(sql.toString(), resultSet -> {
+            try {
+                return new ProductManagementDTO(
+                        resultSet.getLong("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("price"),
+                        resultSet.getInt("total_qty"),
+                        resultSet.getLong("sales"),
+                        resultSet.getString("status_name")
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }, sellerId, "%" + searchValue + "%", size, (page - 1) * size);
+    }
+
+    @Override
+    public List<Category> getCategoriesbyIdShop(Long idShop) {
+        String sql = "SELECT * FROM categories WHERE id IN (SELECT DISTINCT category_id FROM products WHERE seller_id = ? AND product_status_id <> 2)";
+        return abstractDAO.query(sql, resultSet -> {
+            try {
+                return new Category(
+                        resultSet.getInt("id"),
+                        resultSet.getString("name"),
+                        resultSet.getString("img_path")
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }, idShop);
+    }
+
+    @Override
+    public void deleteProduct(Long idProduct) {
+        String sql = "UPDATE products SET product_status_id = 2 WHERE id = ?";
+        abstractDAO.update(sql, idProduct);
+    }
+
+    @Override
+    public int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue) {
+        StringBuilder sql = new StringBuilder("SELECT COUNT(p.id) as total\n");
+        sql.append("FROM products AS p\n");
+        sql.append("JOIN product_status ps ON p.product_status_id = ps.id\n");
+        sql.append("WHERE p.seller_id = ?\n");
+        sql.append("AND p.product_status_id <> 2\n");
+        if (idCategory != 0) {
+            sql.append("AND p.category_id = ?\n");
+        }
+        sql.append("AND p.name LIKE ?\n");
+        if (idCategory != 0) {
+            return abstractDAO.query(sql.toString(), resultSet -> {
+                try {
+                    return resultSet.getInt("total");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return 0;
+                }
+            }, sellerId, idCategory, "%" + searchValue + "%").size() == 0 ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
+                try {
+                    return resultSet.getInt("total");
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return 0;
+                }
+            }, sellerId, idCategory, "%" + searchValue + "%").get(0);
+        }
+        return abstractDAO.query(sql.toString(), resultSet -> {
+            try {
+                return resultSet.getInt("total");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        }, sellerId, "%" + searchValue + "%").size() == 0 ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
+            try {
+                return resultSet.getInt("total");
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return 0;
+            }
+        }, sellerId, "%" + searchValue + "%").get(0);
     }
 }

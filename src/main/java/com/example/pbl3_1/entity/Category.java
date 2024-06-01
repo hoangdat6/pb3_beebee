@@ -16,4 +16,8 @@ public class Category {
 
     public Category() {
     }
+    @Override
+    public String toString() {
+        return "Category(id=" + this.getId() + ", name=" + this.getName() + ", imgPath=" + this.getImgPath() + ")";
+    }
 }
