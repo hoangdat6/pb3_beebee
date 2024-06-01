@@ -19,5 +19,5 @@ public interface OrderService {
 
     List<CartInfoDTO> getCartInfoDTO(List<Long> shoppingCartItemId);
 
-    void createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, EShippingMethod shippingMethod, EPaymentMethod paymentMethod, Long userId) throws SQLException;
+    String createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, EShippingMethod shippingMethod, EPaymentMethod paymentMethod, Long userId) throws SQLException;
 }

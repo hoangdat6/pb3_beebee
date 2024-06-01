@@ -84,25 +84,21 @@
             </div>
             <div class="Info">
 <%--                <div class="Info-Item">#0123_45678</div>--%>
-<%--                <div class="Info-Item">02/08/2024</div>--%>
+<%--                <div class="Info-Item">02/08/2024</div>--%> 
+                <input type="hidden" name="ids" id="ids" value="${ids}">
+                <input type="hidden" name="paymentTotal" id="paymentTotal" value="${paymentTotal}">
+
                 <div class="Info-Item">
                     <fmt:formatNumber value="${paymentTotal}" type="currency"/>
                 </div>
                 <div class="Info-Item payment" id="${paymentMethod.paymentMethod.getValue()}">${paymentMethod.name}</div>
             </div>
         </div>
-        <a href="#" class="btn History">Lịch sử mua hàng</a>
+        <div myCheck="1" class="btn History">Lịch sử mua hàng</div>
     </main>
 
-    <script>
-        $(document).ready(function () {
-            let paymentId = $(".payment").attr("id");
-            if (paymentId == '2') {
-                $(".History").attr("href", "new_link.html");
-                $(".History").text("Thanh toán");
-            }
-        })
-    </script>
+    <script src="<c:url value='CheckOutDone.js'/>"></script>
+    <script src="<c:url value='RemovePopup.js'/>"></script>
 
     <%@ include file="Footer.jsp" %>
 </body>

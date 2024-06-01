@@ -119,10 +119,10 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public void createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, EShippingMethod shippingMethod, EPaymentMethod paymentMethod, Long userId) {
+    public String createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, EShippingMethod shippingMethod, EPaymentMethod paymentMethod, Long userId) throws SQLException {
         Boolean isOutOfStock = false;
         Boolean isSoldOut = false;
-
+        StringBuilder ids = new StringBuilder();
         Address address = addressService.getAddressById(addressId);
 
         for(CartInfoDTO checkOutInfo : checkOutInfoDTO) {
@@ -150,6 +150,8 @@ public class OrderServiceImpl implements OrderService {
             throw new RuntimeException("Đã có sản phẩm bán hết");
 
         }else {
+            List<Order> orders = new ArrayList<>();
+            List<List<OrderDetail>> lists = new ArrayList<>();
             for(CartInfoDTO checkOutInfo : checkOutInfoDTO) {
                 Order order = Order.builder()
                         .phone(address.getPhone())
@@ -168,6 +170,7 @@ public class OrderServiceImpl implements OrderService {
                         .sellerId(checkOutInfo.getShopId())
                         .build();
 
+
                 List<OrderDetail> orderDetails = new ArrayList<>();
                 long totalPrice = 0L;
                 for(ProductForCartDTO productForCartDTO : checkOutInfo.getProductForCartDTOList()) {
@@ -181,18 +184,27 @@ public class OrderServiceImpl implements OrderService {
                     orderDetails.add(orderDetail);
                 }
 
+
                 order.setId(createOrderId(order, orderDetails));
                 order.setTotal(totalPrice);
-                try {
-                    orderDAO.createOrder(order, orderDetails);
-                    productItemService.updateStock(orderDetails);
-                }catch (SQLException e) {
-                    e.printStackTrace();
-                }
+
+                orders.add(order);
+                lists.add(orderDetails);
+                ids.append(order.getId()).append("d");
             }
 
+            try {
+                orderDAO.createOrders(orders, lists);
+                productItemService.updateStocks(lists);
+            }catch (SQLException e) {
+                e.printStackTrace();
+                throw new SQLException();
+            }
 
+            ids.deleteCharAt(ids.length() - 1);
         }
+
+        return ids.toString();
     }
 
     private String createOrderId(Order order, List<OrderDetail> orderDetails) {
@@ -202,9 +214,10 @@ public class OrderServiceImpl implements OrderService {
         String currentTime = System.currentTimeMillis() + "";
 
         // lấy 11 chữ số trong đó;
-        currentTime = currentTime.substring(2);
+        currentTime = currentTime.substring(4);
+        String formattedNumber = String.format("%06d", order.getSellerId());
 
-        code.append(order.getSellerId()).append(order.getUserId()).append(orderDetails.size());
+        code.append(formattedNumber).append(order.getUserId()).append(orderDetails.size());
 
         code.append(currentTime);
 
