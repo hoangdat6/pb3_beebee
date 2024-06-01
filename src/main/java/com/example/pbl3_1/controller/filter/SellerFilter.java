@@ -1,9 +1,6 @@
 package com.example.pbl3_1.controller.filter;
 
 import com.example.pbl3_1.Util.SessionUtil;
-import com.example.pbl3_1.controller.user_login.CheckLoggedUser;
-import com.example.pbl3_1.controller.user_login.CheckRegisteredSeller;
-import com.example.pbl3_1.entity.ERole;
 import com.example.pbl3_1.entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;

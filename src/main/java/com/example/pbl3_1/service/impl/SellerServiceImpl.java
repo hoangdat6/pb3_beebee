@@ -7,7 +7,7 @@ import com.example.pbl3_1.dao.SellerFollowDAO;
 import com.example.pbl3_1.dao.impl.SellerDAOImpl;
 import com.example.pbl3_1.dao.impl.SellerFollowDAOImpl;
 import com.example.pbl3_1.entity.Address;
-import com.example.pbl3_1.entity.ERole;
+import com.example.pbl3_1.entity.myEnum.ERole;
 import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.SellerService;

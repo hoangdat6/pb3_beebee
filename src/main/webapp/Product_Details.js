@@ -43,7 +43,7 @@ $(document).ready(function(){
         let variation1 = null;
         let variation2 = null;
         let input = document.getElementsByClassName('Qty__Input');
-        let quantity = parseInt(input[1].value);
+        let quantity = parseInt(input[0].value);
 
         if($(".Category_option1").length){
             variation1 = $(".Category_option1.Selected").attr('id');
@@ -79,12 +79,16 @@ function load(response){
 
 }
 
-function saveToCart(){
+let check;
+
+function saveToCart(check1){
     let variation1 = null;
     let variation2 = null;
     let input = document.getElementsByClassName('Qty__Input');
-    let quantity = parseInt(input[1].value);
-    addItemToCart();
+    let quantity = parseInt(input[0].value);
+    // addItemToCart();
+
+    check = check1;
     if($(".Category_option1").length){
         variation1 = $(".Category_option1.Selected").attr('id');
         if($(".Category_option2").length)
@@ -101,58 +105,87 @@ function saveToCart(){
         showErrorToast("Warning", "Số lượng sản phẩm không đủ");
         return;
     }
+    let variations = "";
+    $(".Category_item .Selected").each(function(){
+        variations += $(this).text() + " ";
+    });
+
+    const shopImg = $('#coverImgShop').attr('src');
+    const shopName = $('#shopName').text();
+    const product= {
+        name: $("#Product-Name").text(),
+        price: $(".new-Price").text(),
+        quantity: $(".Qty__Input").val(),
+        coverImgPath: $(".Main-Image").css('background-image').split('(')[1].split(')')[0].slice(1, -1),
+        variations: variations,
+        shopName: shopName,
+        shopImgPath: shopImg
+    }
 
     $.ajax({
         type: "POST",
         url: "/PBL3_1_war_exploded/api/add-to-cart",
         data: {variation1: variation1, variation2: variation2, quantity: quantity},
         success: function(response){
-            let re = JSON.parse(response);
-            if(re.status === "200"){
-                showSuccessToast("Success", "Đã thêm vào giỏ hàng");
-            } else {
-                showErrorToast("Warning", "Số lượng sản phẩm không đủ");
+            if (check){
+                if(response.code == '200'){
+                    showSuccessToast("Success", "Đã thêm vào giỏ hàng");
+                    addItemToCart(product);
+                } else {
+                    showErrorToast("Warning", "Số lượng sản phẩm không đủ");
+                }
+            }else {
+                if(response.code == '200'){
+                    window.location.href = "/PBL3_1_war_exploded/cart";
+                } else {
+                    showErrorToast("Warning", "Số lượng sản phẩm không đủ");
+                }
             }
         }
     });
 }
 
-function addItemToCart(cartItem){
-    let newcartItem = document.createElement("div");
-    cartItem.className = "SM_Cart-Item";
-    cartItem.innerHTML= `
-        <input name="SM_Cart_CB" type="checkbox" class="SM_Cart-Item--Checkbox">
-        <img class="SM_Cart-Item--Image" src="${cartItem.coverImgPath}" alt="Product">
-        <div class="SM_Cart-Item--Main">
-            <h3 class="Main--Name">&{cartItem.name}</h3>
-            <div class="Main--Shop">
-                <img src="${cartItem.shopImgPath}" alt="Shop Avatar">
-                <span>${cartItem.shopName}</span>
-            </div>
-            <div class="Main--Qty_and_Category">
-                <span class="Main--Category">
-                    ${cartItem.variationName1}: ${cartItem.variation1}, 
-                    ${cartItem.variationName2}: ${cartItem.variation2}
-                </span>
-                <div class="Main--Qty Qty">
-                    <button class="btn Qty__Minus" onclick="decreaseQuantity(this)">
-                        <i class="fa-solid fa-minus" style="font-size: 10px;"></i>
-                    </button>
-                    <input class="btn Qty__Input" value="${cartItem.quantity}" min="1">
-                    <button class="btn Qty__Plus" onclick="increaseQuantity(this)">
-                        <i class="fa-solid fa-plus" style="font-size: 10px;"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <div class="SM_Cart-Item--Price">
-            <span>${cartItem.Price}</span>
-            <i class="fa-solid fa-x"></i>
-        </div>`;
-
-    document.querySelector(".SM_Cart-Content").appendChild(newcartItem);
-}
 
 
+// function addItemToCart(cartItem){
+//     let newcartItem = document.createElement("div");
+//     cartItem.className = "SM_Cart-Item";
+//     cartItem.innerHTML= `
+//         <input name="SM_Cart_CB" type="checkbox" class="SM_Cart-Item--Checkbox">
+//         <img class="SM_Cart-Item--Image" src="${cartItem.coverImgPath}" alt="Product">
+//         <div class="SM_Cart-Item--Main">
+//             <h3 class="Main--Name">&{cartItem.name}</h3>
+//             <div class="Main--Shop">
+//                 <img src="${cartItem.shopImgPath}" alt="Shop Avatar">
+//                 <span>${cartItem.shopName}</span>
+//             </div>
+//             <div class="Main--Qty_and_Category">
+//                 <span class="Main--Category">
+//                     ${cartItem.variationName1}: ${cartItem.variation1},
+//                     ${cartItem.variationName2}: ${cartItem.variation2}
+//                 </span>
+//                 <div class="Main--Qty Qty">
+//                     <button class="btn Qty__Minus" onclick="decreaseQuantity(this)">
+//                         <i class="fa-solid fa-minus" style="font-size: 10px;"></i>
+//                     </button>
+//                     <input class="btn Qty__Input" value="${cartItem.quantity}" min="1">
+//                     <button class="btn Qty__Plus" onclick="increaseQuantity(this)">
+//                         <i class="fa-solid fa-plus" style="font-size: 10px;"></i>
+//                     </button>
+//                 </div>
+//             </div>
+//         </div>
+//         <div class="SM_Cart-Item--Price">
+//             <span>${cartItem.Price}</span>
+//             <i class="fa-solid fa-x"></i>
+//         </div>`;
+//
+//     document.querySelector(".SM_Cart-Content").appendChild(newcartItem);
+// }
 
 
+$(document).ready(function () {
+    $('#check_out').click(function () {
+        saveToCart(false);
+    })
+});

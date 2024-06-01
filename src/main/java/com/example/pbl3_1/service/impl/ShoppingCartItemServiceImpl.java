@@ -3,6 +3,7 @@ package com.example.pbl3_1.service.impl;
 import com.example.pbl3_1.controller.dto.cart.CartInfoDTO;
 import com.example.pbl3_1.controller.dto.cart.ProductForCartDTO;
 import com.example.pbl3_1.controller.dto.cart.ProductItemInfoForCartDTO;
+import com.example.pbl3_1.controller.dto.cart.SmallCartItem;
 import com.example.pbl3_1.controller.dto.product.ProductForShoppingCartDTO;
 import com.example.pbl3_1.controller.dto.product.ShopForCartDTO;
 import com.example.pbl3_1.controller.dto.product.VariationDTO;
@@ -98,7 +99,7 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
     }
 
     @Override
-    public Integer update(ShoppingCartItem shoppingCartItem) {
+    public Object update(ShoppingCartItem shoppingCartItem) {
         return shoppingCartItemDAO.update(shoppingCartItem);
     }
 
@@ -168,6 +169,16 @@ public class ShoppingCartItemServiceImpl implements ShoppingCartItemService {
         }
 
         return cartInfoDTOS;
+    }
+
+    @Override
+    public List<SmallCartItem> getAllCartItemsByUserId(Long userId) {
+        return shoppingCartItemDAO.getAllCartItemsByUserId(userId);
+    }
+
+    @Override
+    public Object findByUserId(Long id) {
+        return null;
     }
 
 

@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ include file="common/taglib.jsp"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
@@ -13,10 +14,14 @@
   <link rel="stylesheet" href="<c:url value="/CheckOutDone.css"/>">
   <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
   <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 </head>
 
 <%-- Header  --%>
 <%@ include file="Top-Bar.jsp" %>
+<fmt:setLocale value = "vi_VN"/>
+
 
 <body class="Color-White">
     <div id="COD_Header">
@@ -72,20 +77,32 @@
         </div>
         <div class="COD-Order_Detail">
             <div class="Title">
-                <div class="Title-Item">Mã đơn hàng</div>
-                <div class="Title-Item">Ngày</div>
+<%--                <div class="Title-Item">Mã đơn hàng</div>--%>
+<%--                <div class="Title-Item">Ngày</div>--%>
                 <div class="Title-Item">Tổng thanh toán</div>
                 <div class="Title-Item">Phương thức thanh toán</div>
             </div>
             <div class="Info">
-                <div class="Info-Item">#0123_45678</div>
-                <div class="Info-Item">02/08/2024</div>
-                <div class="Info-Item">800.000₫</div>
-                <div class="Info-Item">Tài khoản ngân hàng</div>
+<%--                <div class="Info-Item">#0123_45678</div>--%>
+<%--                <div class="Info-Item">02/08/2024</div>--%>
+                <div class="Info-Item">
+                    <fmt:formatNumber value="${paymentTotal}" type="currency"/>
+                </div>
+                <div class="Info-Item payment" id="${paymentMethod.paymentMethod.getValue()}">${paymentMethod.name}</div>
             </div>
         </div>
         <a href="#" class="btn History">Lịch sử mua hàng</a>
     </main>
+
+    <script>
+        $(document).ready(function () {
+            let paymentId = $(".payment").attr("id");
+            if (paymentId == '2') {
+                $(".History").attr("href", "new_link.html");
+                $(".History").text("Thanh toán");
+            }
+        })
+    </script>
 
     <%@ include file="Footer.jsp" %>
 </body>

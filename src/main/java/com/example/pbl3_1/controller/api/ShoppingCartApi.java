@@ -1,6 +1,8 @@
 package com.example.pbl3_1.controller.api;
 
 import com.example.pbl3_1.Util.SessionUtil;
+import com.example.pbl3_1.controller.dto.cart.SmallCartItem;
+import com.example.pbl3_1.controller.dto.ResponseEntityDTO;
 import com.example.pbl3_1.entity.ShoppingCartItem;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.CartItemService;
@@ -8,6 +10,7 @@ import com.example.pbl3_1.service.impl.CartItemServiceImpl;
 import com.example.pbl3_1.service.ShoppingCartItemService;
 import com.example.pbl3_1.service.impl.ShoppingCartItemServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,9 +18,10 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
-@WebServlet(name = "cartApi", urlPatterns = {"/api/cart", "/api/add-to-cart", "/api/remove","/api/update"})
+@WebServlet(name = "cartApi", urlPatterns = {"/api/cart", "/api/add-to-cart", "/api/remove","/api/update", "/api/getAllCartItems"})
 public class ShoppingCartApi extends HttpServlet {
     private final CartItemService cartItemService = new CartItemServiceImpl();
     public final ShoppingCartItemService shoppingCartItemService= new ShoppingCartItemServiceImpl();
@@ -42,13 +46,19 @@ public class ShoppingCartApi extends HttpServlet {
 
         ObjectMapper objectMapper = new ObjectMapper();
         response.setContentType("application/json");
-        String json;
+
+        ResponseEntityDTO responseDTO = new ResponseEntityDTO();
+
         if(id != null){
-            json = "{\"status\" : \"200\"}";
+            responseDTO.setCode(200);
+            responseDTO.setMessage("Success");
+            responseDTO.setData(Long.valueOf(id.toString()));
+            SessionUtil.getInstance().putValue(request, "ORDER_CART_ITEM", id);
         }else {
-            json = "{\"status\" : \"500\"}";
+            responseDTO.setCode(500);
+            responseDTO.setMessage("Warning");
         }
-        objectMapper.writeValue(response.getOutputStream(), json);
+        objectMapper.writeValue(response.getOutputStream(), responseDTO);
     }
 
     @Override
@@ -73,6 +83,18 @@ public class ShoppingCartApi extends HttpServlet {
                 else shoppingCartItemService.update(cartItem);
                 response.setContentType("application/json");
                 response.getWriter().write("{\"status\": \"200\"}");
+                break;
+            case "/api/getAllCartItems":
+                User user = (User)SessionUtil.getInstance().getValue(request, "USERMODEL");
+                if(Objects.nonNull(user)){
+                    response.setContentType("application/json");
+                    Gson gson = new Gson();
+
+                    List<SmallCartItem> smallCartItems = shoppingCartItemService.getAllCartItemsByUserId(user.getId());
+                    String json = gson.toJson(smallCartItems);
+                    System.out.println(json);
+                    response.getWriter().write(json);
+                }
                 break;
         }
     }

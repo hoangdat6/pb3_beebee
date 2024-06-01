@@ -26,12 +26,17 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public Integer update(Address address) {
+    public Object update(Address address) {
         return addressDAO.update(address);
     }
 
     public Address getDefaultAddressByUserId(Long id) {
         return addressDAO.getDefaultAddressByUserId(id);
 
+    }
+
+    @Override
+    public Address getAddressById(Long id) {
+        return addressDAO.getAddressById(id);
     }
 }

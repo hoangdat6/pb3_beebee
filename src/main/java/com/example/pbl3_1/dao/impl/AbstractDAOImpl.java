@@ -4,7 +4,6 @@ import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.Util.JDBCUtil;
 import com.example.pbl3_1.entity.ProductItem;
 import com.example.pbl3_1.mapper.RowMapper;
-import jakarta.inject.Inject;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -191,18 +190,18 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
     }
 
     @Override
-    public Integer update(String sql, Object... parameters) {
+    public Object update(String sql, Object... parameters) {
         Connection con = null;
         PreparedStatement ps = null;
         ResultSet resultSet = null;
         try {
             con = JDBCUtil.getInstance().getConnection();
             con.setAutoCommit(false);
-            ps = con.prepareStatement(sql);
+            ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             setParameter(ps, 0, parameters);
-            Integer row = ps.executeUpdate();
+            Integer id = ps.executeUpdate();
             con.commit();
-            return row;
+            return id;
         } catch (SQLException e) {
             e.printStackTrace();
             if (con != null) {

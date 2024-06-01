@@ -36,7 +36,7 @@ const generatePopup = (user, shop) => {
                     <h3>${user.name}</h3>
                 </div>
         </div>
-        <div class="status">${user.status ? "Đang hoạt động" : "Đã khóa"}</div>
+        <div id="user_is_locked" class="is_locked">${!user.is_locked ? "Đang hoạt động" : "Đã khóa"}</div>
     </div>
     <div class="line80"></div>
     <div class="bot">
@@ -57,7 +57,7 @@ const generatePopup = (user, shop) => {
             <div class="item-content money">${user.total} VND</div>
         </div>
     </div>
-    <button id="LockAccount">Khóa tài khoản</button>
+    <button id="LockAccount">${user.is_locked ? "Mở khóa" : "Khóa tài khoản"} Khóa tài khoản</button>
     <input type="hidden" name="shop_id" value="${user.id}">
 </div>
     `;
@@ -73,7 +73,7 @@ const generatePopup = (user, shop) => {
                     <p>${shop.followers} lượt theo dõi</p>
                 </div>
         </div>
-        <div class="status">${shop.status ? "Đang hoạt động" : "Đã khóa"}</div>
+        <div id="shop_is_locked" class="is_locked">${!shop.is_locked ? "Đang hoạt động" : "Đã khóa"}</div>
     </div>
     <div class="line80"></div>
     <div class="bot">
@@ -98,7 +98,7 @@ const generatePopup = (user, shop) => {
             <div class="item-content money">${shop.location}</div>
         </div>
     </div>
-    <button id="LockShop">Khóa shop</button>
+    <button id="LockShop">${shop.is_locked ? "Mở khóa" : "Khóa shop"}</button>
     <input type="hidden" name="shop_id" value="${shop.id}">
 </div>`;
     }
@@ -108,7 +108,7 @@ const generatePopup = (user, shop) => {
     if (shop != null)
     {
         const LockShop = document.getElementById("LockShop");
-        if (shop.status){
+        if (!shop.is_locked){
             LockShop.innerText = "Khóa shop";
             LockShop.style.backgroundColor = "red";
         }
@@ -116,16 +116,30 @@ const generatePopup = (user, shop) => {
             LockShop.innerText = "Mở khóa";
             LockShop.style.backgroundColor = "green";
         }
+
+        if (shop.is_locked){
+            $("#shop_is_locked").css("color", "#FF5630");
+        }
+        else{
+            $("#shop_is_locked").css("color", "#38CB89");
+        }
     }
 
     const LockAccount = document.getElementById("LockAccount");
-    if (user.status){
+    if (!user.is_locked){
         LockAccount.innerText = "Khóa tài khoản";
         LockAccount.style.backgroundColor = "red";
     }
     else{
         LockAccount.innerText = "Mở khóa";
         LockAccount.style.backgroundColor = "green";
+    }
+
+    if (user.is_locked){
+        $("#user_is_locked").css("color", "#FF5630");
+    }
+    else{
+        $("#user_is_locked").css("color", "#38CB89");
     }
 
     // Thêm sự kiện để xóa overlay khi click bên ngoài popup
@@ -142,6 +156,7 @@ const generatePopup = (user, shop) => {
     $("#LockShop").click(function(e) {
         if (shop == null) return;
         e.preventDefault();
+        let shop_is_locked = $("#shop_is_locked");
         $.ajax({
             url: "/PBL3_1_war_exploded/lockShop",
             type: 'GET',
@@ -151,20 +166,26 @@ const generatePopup = (user, shop) => {
             success: function(data) {
                 console.log(data);
                 let buttonTarget = e.target;
-                if (data.status){
+                if (!data.is_locked){
                     alert("Mở khóa shop thành công!");
                     buttonTarget.innerText = "Khóa shop";
                     buttonTarget.style.backgroundColor = "red";
+                    shop_is_locked.text("Đang hoạt động");
+                    shop_is_locked.css("color", "#38CB89");
                 }
                 else {
                     alert("Khóa shop thành công!");
                     buttonTarget.innerText = "Mở khóa";
                     buttonTarget.style.backgroundColor = "green";
+                    shop_is_locked.text("Đã khóa");
+                    shop_is_locked.css("color", "#FF5630");
                 }
+                if($("#seller").css("color") === 'rgb(255, 0, 0)')
+                    updateSellerStatus(shop.id, !shop.is_locked);
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR, textis_locked, errorThrown) {
                 console.log('Error:', errorThrown);
-                console.log('Status:', textStatus);
+                console.log('is_locked:', textis_locked);
                 console.log('jqXHR:', jqXHR);
             }
         });
@@ -173,6 +194,7 @@ const generatePopup = (user, shop) => {
     // Xử lý sự kiện khi click vào nút khóa Shop
     $("#LockAccount").click(function(e) {
         e.preventDefault();
+        let user_is_locked = $("#user_is_locked");
         $.ajax({
             url: "/PBL3_1_war_exploded/lockAccount",
             type: 'GET',
@@ -182,25 +204,43 @@ const generatePopup = (user, shop) => {
             success: function(data) {
                 console.log(data);
                 let buttonTarget = e.target;
-                if (data.status){
+                if (!data.is_locked){
                     alert("Mở khóa tài khoản thành công!");
                     buttonTarget.innerText = "Khóa tài khoản";
                     buttonTarget.style.backgroundColor = "red";
+                    user_is_locked.text("Đang hoạt động");
+                    user_is_locked.css("color", "#38CB89");
                 }
                 else {
                     alert("Khóa tài khoản thành công!");
                     buttonTarget.innerText = "Mở khóa";
                     buttonTarget.style.backgroundColor = "green";
+                    user_is_locked.text("Đã khóa");
+                    user_is_locked.css("color", "#FF5630");
                 }
-                updateTable();
+                if ($("#customer").css("color") === 'rgb(255, 0, 0)')
+                    updateCustomerStatus(user.id, !user.is_locked);
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR, textis_locked, errorThrown) {
                 console.log('Error:', errorThrown);
-                console.log('Status:', textStatus);
+                console.log('is_locked:', textis_locked);
                 console.log('jqXHR:', jqXHR);
             }
         });
+
     });
+}
+
+function updateCustomerStatus(user_id, is_locked) {
+    let body = $('tbody');
+    let row = body.find(`#${user_id}`);
+    (is_locked ? row.find('td').eq(3).text('Đã khóa') : row.find('td').eq(3).text('Đang hoạt động'));
+}
+
+function updateSellerStatus(shop_id, is_locked) {
+    let body = $('tbody');
+    let row = body.find(`#${shop_id}`);
+    (is_locked ? row.find('td').eq(3).text('Đã khóa') : row.find('td').eq(3).text('Đang hoạt động'));
 }
 
 
@@ -213,9 +253,9 @@ function getDataByURL(URL) {
                 console.log(data);
                 resolve(data);
             },
-            error: function(jqXHR, textStatus, errorThrown) {
+            error: function(jqXHR, textis_locked, errorThrown) {
                 console.log('Error:', errorThrown);
-                console.log('Status:', textStatus);
+                console.log('is_locked:', textis_locked);
                 console.log('jqXHR:', jqXHR);
                 reject(null);
             }
@@ -264,13 +304,14 @@ $(document).ready(function() {
 function updateTable() {
     let curPage = $("#seller").css("color") === 'rgb(255, 0, 0)' ? "/searchSeller" : "/searchCustomer";
     let val = $("#user_search").val();
-
+    let status = $("#status").val();
     // Send a GET request to the server
     $.ajax({
         url: "/PBL3_1_war_exploded/" + curPage,
         type: 'GET',
         data: {
             val: val,
+            status: status
         },
         success: function (data) {
             console.log(data);
@@ -282,9 +323,9 @@ function updateTable() {
 
             rerenderTable(data, headers);
         },
-        error: function (jqXHR, textStatus, errorThrown) {
+        error: function (jqXHR, textis_locked, errorThrown) {
             console.log('Error:', errorThrown);
-            console.log('Status:', textStatus);
+            console.log('is_locked:', textis_locked);
             console.log('jqXHR:', jqXHR);
         }
     });
@@ -314,7 +355,7 @@ function rerenderTable(data, headers) {
             '<td>' + (index + 1) + '</td>' +
             '<td>' + item.name + '</td>' +
             '<td>' + item.email + '</td>' +
-            `<td>${item.status ? "Đang hoạt động" : "Đã khóa"}</td>` +
+            `<td>${item.is_locked ? "Đã khóa" : "Đang hoạt động"}</td>` +
             '<td>' + item.total + '</td>' +
             '</tr>'
         );
@@ -335,9 +376,9 @@ function rerenderTable(data, headers) {
                         console.log(data);
                         generatePopup(data.customer, data.shop ?? null);
                     },
-                    error: function (jqXHR, textStatus, errorThrown) {
+                    error: function (jqXHR, textis_locked, errorThrown) {
                         console.log('Error:', errorThrown);
-                        console.log('Status:', textStatus);
+                        console.log('is_locked:', textis_locked);
                         console.log('jqXHR:', jqXHR);
                     }
                 });

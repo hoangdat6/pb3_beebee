@@ -12,12 +12,12 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 public class Order {
-    private Long id;
+    private String id;
     private Long userId;
     private Long sellerId;
     private String phone;
     private String fullName;
-    private Integer total;
+    private Long total;
     private String detailAddress;
     private String communeAddress;
     private String districtAddress;

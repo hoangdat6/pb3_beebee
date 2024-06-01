@@ -103,8 +103,10 @@
   color: #38CB89;
 }
 
-.pop-up-content .status {
+.pop-up-content .is_locked {
   color: #38CB89;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 .pop-up-content button {

@@ -1,3 +1,4 @@
+
 package com.example.pbl3_1.controller.api;
 
 import com.example.pbl3_1.Util.AddressUtils;
@@ -77,7 +78,7 @@ public class AddressApi extends HttpServlet {
                 Address updateAddress = new Address(Long.parseLong(request.getParameter("addressId")),request.getParameter("name"),request.getParameter("phone"),request.getParameter("detail"),request.getParameter("ward"),request.getParameter("district"),request.getParameter("city"));
                 addressService.update(updateAddress);
                 boolean isDefault = Boolean.parseBoolean(request.getParameter("is_default"));
-                    userAddressService.setDefault(user.getId(),Long.parseLong(request.getParameter("addressId")),isDefault);
+                userAddressService.setDefault(user.getId(),Long.parseLong(request.getParameter("addressId")),isDefault);
                 response.setContentType("application/json");
                 break;
             case "/api/set-default":

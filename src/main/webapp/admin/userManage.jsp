@@ -35,9 +35,9 @@
                         <div class="status">
                             Trạng thái
                             <select name="status" id="status">
-                                <option value="all">Tất cả</option>
-                                <option value="active">Đang hoạt động</option>
-                                <option value="inactive">Ngưng hoạt động</option>
+                                <option value="-1">Tất cả</option>
+                                <option value="1">Đang hoạt động</option>
+                                <option value="0">Ngưng hoạt động</option>
                             </select>
                         </div>
 
@@ -47,6 +47,7 @@
                                 <button id="search_customer">Tìm kiếm</button>
                         </form>
                     </div>
+
                 <div class="search_result">
                     <h3>Kết quả tìm kiếm</h3>
                     <table id="table">
@@ -76,7 +77,6 @@
                 rerenderTable(data, ["STT", "Tên", "Email", "Trạng thái", "Chi tiêu/năm"]);
             });
     </script>
-<%--    <script type="text/javascript" src="userManage.js"></script>--%>
 </body>
 
 </html>

@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
     <script type="text/javascript" src="<c:url value="AlertPopUp.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <%@ include file="Top-Bar.jsp" %>
@@ -57,6 +57,7 @@
 
 <div id="Cart_Content">
     <main class="Cart_Table">
+        <input type="hidden" name="ORDER_CART_ITEM" value="${sessionScope.get("ORDER_CART_ITEM")}">
         <div class="Table_Header">
             <div class="Check_box">
                 <input type="checkbox" name="Cart_CB" id="select_all">
@@ -91,7 +92,7 @@
                                     <input type="hidden" value="${productcart.isSoldOut}" class="isSoldOut">
                                     <input type="hidden" value="${productcart.isDeleted}" class="isDeleted">
                                     <input type="hidden" value="${productcart.isOutOfStock}" class="isOutOfStock">
-
+                                    <input type="hidden" value="${productcart.qtyInStock}" class="qtyInStock">
                                     <label>
                                         <input type="checkbox" name="Cart_CB" class="Cart_CB">
                                     </label>
@@ -106,12 +107,13 @@
                                         </div>
                                         <div>
                                             <p class="Item-Category">
-<%--                                                <c:forEach items="${productcart.variations}" var="variation">--%>
-<%--                                                    ${variation.name}: ${variation.value} <br>--%>
-<%--                                                </c:forEach>--%>
                                                     ${productcart.variations}
                                             </p>
                                         </div>
+                                        <c:if test="${productcart.qtyInStock <= 10}">
+                                            <span>còn ${productcart.qtyInStock} sản phẩm</span>
+
+                                        </c:if>
                                     </div>
                                 </a>
 
@@ -121,9 +123,9 @@
                                         <input type="hidden" name="price" value="${productcart.price}">
                                         <input type="hidden" name="discount" value="${productcart.discount}">
                                         <input type="hidden" value="${productcart.productItemId}" name="productItemId">
-                                        <button class="btn" type="submit" name="action" value="decrease" onclick="UpdateCartItem(this)">-</button>
+                                        <button class="btn" type="submit" name="action" value="decrease" onclick="UpdateCartItem(this)"><i class="fa-solid fa-minus"></i></button>
                                         <input class="Qty__Input" name="quantity" value="${productcart.quantity}" min="1" readonly>
-                                        <button class="btn" type="submit" name="action" value="increase" onclick="UpdateCartItem(this)">+</button>
+                                        <button class="btn" type="submit" name="action" value="increase" onclick="UpdateCartItem(this)"><i class="fa-solid fa-plus"></i></button>
                                     </div>
                                     <span class="Item-Unit_Price">
                                         <fmt:formatNumber value="${productcart.price * (1 - productcart.discount / 100.0)}" type="currency"/>
@@ -152,8 +154,8 @@
         <div class="Cart_Summary-Voucher">
             <c:forEach var="shippingMethod" items="${shippingMethods}">
                 <div class="Shipping_Option-Item">
-                    <input type="radio" id="shippingMethod${shippingMethod.id}" name="shippingMethod" value="${shippingMethod.id}">
-                    <label for="shippingMethod${shippingMethod.id}">${shippingMethod.name}</label>
+                    <input type="radio" id="shippingMethod${shippingMethod.shippingMethod.getValue()}" name="shippingMethod" value="${shippingMethod.shippingMethod.getValue()}">
+                    <label for="shippingMethod${shippingMethod.shippingMethod.getValue()}">${shippingMethod.name}</label>
                     <span>${shippingMethod.fee}đ</span>
                 </div>
             </c:forEach>

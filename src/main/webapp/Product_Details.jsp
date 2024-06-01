@@ -15,7 +15,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+<%--    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>--%>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="./toast.js"></script>
@@ -108,7 +109,7 @@
                     <button class="btn Qty__Plus" onclick="increaseQuantity(this)"><i
                             class="fa-solid fa-plus"></i></button>
                 </div>
-                <button class="btn Add-to-Cart Same" onclick="saveToCart()">
+                <button class="btn Add-to-Cart Same" onclick="saveToCart(true)">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <p>Thêm vào giỏ hàng</p>
                 </button>
@@ -118,7 +119,7 @@
                     <p>Yêu thích</p>
                 </button>
             </div>
-            <button class="btn Buy">Mua ngay</button>
+            <button class="btn Buy" id="check_out">Mua ngay</button>
             <div class="Product-Menu">
                 Danh mục
                 <span>${productDetail.categoryName}</span>
@@ -136,11 +137,11 @@
     </div>
     <div class="Shop">
         <a href="<c:url value="/shop?id=${productDetail.sellerId}"/>">
-            <img src="${productDetail.sellerAvatar}" alt="Logo Shop">
+            <img id="coverImgShop" src="${productDetail.sellerAvatar}" alt="Logo Shop">
         </a>
         <div class="Shop-Content">
             <a href="<c:url value="/shop?id=${productDetail.sellerId}"/>">
-                <h3>${productDetail.sellerName}</h3>
+                <h3 id="shopName">${productDetail.sellerName}</h3>
             </a>
             <div class="Shop-Evaluation">
                 <i class="fa-solid fa-star"></i>
@@ -466,127 +467,6 @@
         </div>
         <button class="See-More">Xem thêm</button>
     </div>
-
-<%--    <div class="Similar_Product pad-l-r-170">--%>
-<%--        <h3>Sản phẩm tương tự</h3>--%>
-<%--        <span>Nhiều sản phẩm hơn ></span>--%>
-<%--        <div class="line"></div>--%>
-<%--        <div class="Product-List" style="background: #fff;">--%>
-<%--            <div class="Product-Card">--%>
-<%--                <div class="Product-Image">--%>
-<%--                    <span class="Hot">Hot</span>--%>
-<%--                    <span class="Discount">- 50%</span>--%>
-<%--                </div>--%>
-<%--                <div class="Product-Desc">--%>
-<%--                    &lt;%&ndash;@declare id="pd-brand-avatar" &ndash;%&gt;--%>
-<%--                    <h3>Áo thun nữ co dãn</h3>--%>
-<%--                    <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit--%>
-<%--                        amet--%>
-<%--                        consectetur.</p>--%>
-<%--                    <div class="PD-Brand-Avatar"></div>--%>
-<%--                    <label for="PD-Brand-Avatar">Tên Shop</label>--%>
-<%--                    <div class="clear"></div>--%>
-<%--                    <div class="Line"></div>--%>
-<%--                    <div class="Product-Bot-Container">--%>
-<%--                        <div class="Product-Price">--%>
-<%--                                                        <span class="new-Price">--%>
-<%--                                                            120.000₫--%>
-<%--                                                        </span>--%>
-<%--                            <span class="old-Price">--%>
-<%--                                                            240.000₫--%>
-<%--                                                        </span>--%>
-<%--                        </div>--%>
-<%--                        <div class="Product-Button">--%>
-<%--                            <i class="fa-regular fa-heart"></i>--%>
-<%--                            <i class="fa-solid fa-cart-shopping"></i>--%>
-<%--                        </div>--%>
-<%--                        <div class="Product-Evaluation">--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-regular fa-star"></i>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
-<%--            <div class="Product-Card">--%>
-<%--                <div class="Product-Image">--%>
-<%--                    <span class="Hot">Hot</span>--%>
-<%--                    <span class="Discount">- 50%</span>--%>
-<%--                </div>--%>
-<%--                <div class="Product-Desc">--%>
-<%--                    <h3>Áo thun nữ co dãn</h3>--%>
-<%--                    <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet--%>
-<%--                        consectetur.</p>--%>
-<%--                    <div class="PD-Brand-Avatar"></div>--%>
-<%--                    <label for="PD-Brand-Avatar">Tên Shop</label>--%>
-<%--                    <div class="clear"></div>--%>
-<%--                    <div class="Line"></div>--%>
-<%--                    <div class="Product-Bot-Container">--%>
-<%--                        <div class="Product-Price">--%>
-<%--                                                    <span class="new-Price">--%>
-<%--                                                        120.000₫--%>
-<%--                                                    </span>--%>
-<%--                            <span class="old-Price">--%>
-<%--                                                        240.000₫--%>
-<%--                                                    </span>--%>
-<%--                        </div>--%>
-<%--                        <div class="Product-Button">--%>
-<%--                            <i class="fa-regular fa-heart"></i>--%>
-<%--                            <i class="fa-solid fa-cart-shopping"></i>--%>
-<%--                        </div>--%>
-<%--                        <div class="Product-Evaluation">--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-regular fa-star"></i>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-
-<%--            <div class="Product-Card">--%>
-<%--                <div class="Product-Image">--%>
-<%--                    <span class="Hot">Hot</span>--%>
-<%--                    <span class="Discount">- 50%</span>--%>
-<%--                </div>--%>
-<%--                <div class="Product-Desc">--%>
-<%--                    <h3>Áo thun nữ co dãn</h3>--%>
-<%--                    <p class="Character">Lorem ipsum dolor sit amet .Lorem ipsum dolor sit amet--%>
-<%--                        consectetur.</p>--%>
-<%--                    <div class="PD-Brand-Avatar"></div>--%>
-<%--                    <label for="PD-Brand-Avatar">Tên Shop</label>--%>
-<%--                    <div class="clear"></div>--%>
-<%--                    <div class="Line"></div>--%>
-<%--                    <div class="Product-Bot-Container">--%>
-<%--                        <div class="Product-Price">--%>
-<%--                                                    <span class="new-Price">--%>
-<%--                                                        120.000₫--%>
-<%--                                                    </span>--%>
-<%--                            <span class="old-Price">--%>
-<%--                                                        240.000₫--%>
-<%--                                                    </span>--%>
-<%--                        </div>--%>
-<%--                        <div class="Product-Button">--%>
-<%--                            <i class="fa-regular fa-heart"></i>--%>
-<%--                            <i class="fa-solid fa-cart-shopping"></i>--%>
-<%--                        </div>--%>
-<%--                        <div class="Product-Evaluation">--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-solid fa-star"></i>--%>
-<%--                            <i class="fa-regular fa-star"></i>--%>
-<%--                        </div>--%>
-<%--                    </div>--%>
-<%--                </div>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--        <button class="btn"> <i class="fa-solid fa-chevron-right"></i> </button>--%>
-<%--    </div>--%>
 </div>
 <script type="text/javascript" src="<c:url value="Product_Details.js"/>"></script>
 <%@ include file="Footer.jsp" %>
