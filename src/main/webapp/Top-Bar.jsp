@@ -60,7 +60,7 @@
         </div>
         <div class="Header-Bot">
           <div class="Header-Bot__left">
-            <a href='<c:url value="/home"/>' ><img class="Logo" src='<c:url value= "/img/Logo/Logo.png"/>' alt="Logo"></a>
+            <a href='<c:url value="/home"/>' ><img class="Logo" src='<c:url value= "/img/Logo/Logo Ispum.png"/>' alt="Logo"></a>
             <form action= '<c:url value="/search"/>' method="post">
               <label for="search"></label>
               <input type="search" value='<c:if test="${sessionScope.get('keyword') != null}">${sessionScope.get('keyword')}</c:if>' id="search" name="search" placeholder="Tìm kiếm theo sản phẩm, phân loại và thương hiệu">
@@ -72,12 +72,13 @@
           <ul class="Header-Bot__right">
             <li class="Header-Bot__Account">
               <c:if test="${sessionScope.get('USERMODEL') != null}">
-                <a style="color: #030712" href='<c:url value="/usersetting/userinfor"/>'><i class="fa-solid fa-user"></i>
+                <a href='<c:url value="/usersetting/userinfor"/>'>
+                  <i class="fa-solid fa-user"></i>
                     ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
                 </a>
               </c:if>
               <c:if test="${sessionScope.get('USERMODEL') == null}">
-                <a style="color: #030712" href='<c:url value="/login"/>'><i class="fa-solid fa-user"></i>
+                <a href='<c:url value="/login"/>'><i class="fa-solid fa-user"></i>
                 ${sessionScope.get("USERMODEL") != null ? sessionScope.get("USERMODEL").username : "Đăng nhập"}
                 </a>
               </c:if>
@@ -87,19 +88,19 @@
               <div class="User_option">
                 <div class="Shop_option">
                   <h3>Shop của bạn</h3>
-                  <a href="#"><img src="./img/Shop/kenhNguoiBan.svg" alt="">Kênh người bán</a>
-                  <a href="#"><img src="./img/Shop/QLDonhang.svg" alt="">Quản lí đơn hàng</a>
-                  <a href="#"><img src="./img/Shop/QLSanPham.svg" alt="">Quản lí sản phẩm</a>
-                  <a href="#"><img src="./img/Shop/DuLieu.svg" alt="">Dữ liệu</a>
-                  <a href="#"><img src="./img/Shop/ChamSocKH.svg" alt="">Chăm sóc khách hàng</a>
+                  <a href="#"><i class="fa-solid fa-shop"></i> Kênh người bán</a>
+                  <a href="#"><i class="fa-solid fa-list-check"></i> Quản lí đơn hàng</a>
+                  <a href="#"><i class="fa-brands fa-product-hunt"></i> Quản lí sản phẩm</a>
+                  <a href="#"><i class="fa-solid fa-chart-simple"></i> Dữ liệu</a>
+                  <a href="#"><i class="fa-solid fa-headset"></i> Chăm sóc khách hàng</a>
                 </div>
                 <div class="Line"></div>
                 <div class="Account_option">
                   <h3>Tài khoản của bạn</h3>
-                  <a href='<c:url value="/usersetting/userinfor"/>'><img src="./img/Shop/TKCuaToi.svg" alt="">Tài khoản của tôi</a>
-                  <a href='<c:url value="/usersetting/address"/>'><img src="./img/Shop/DiaChiCT.svg" alt="">Địa chỉ của tôi</a>
-                  <a href="#"><img src="./img/Shop/DonMua.svg" alt="">Đơn mua</a>
-                  <a href='<c:url value="/logout"/>'><img src="./img/Shop/DangXuar.svg" alt="">Đăng xuất</a>
+                  <a href='<c:url value="/usersetting/userinfor"/>'><i class="fa-solid fa-user"></i> Tài khoản của tôi</a>
+                  <a href='<c:url value="/usersetting/address"/>'><i class="fa-solid fa-location-dot"></i> Địa chỉ của tôi</a>
+                  <a href="#"><i class="fa-solid fa-money-bill"></i> Đơn mua</a>
+                  <a href='<c:url value="/logout"/>'><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                 </div>
               </div>
               </c:if>
@@ -119,9 +120,7 @@
                 <h3>SẢN PHẨM MỚI THÊM</h3>
                 <div class="SM_Cart-Content">
                 </div>
-                <div class="Purchase">
-                  <a class="Cart-Btn btn" href="<c:url value="/cart"/> ">Xem giỏ hàng</a>
-                </div>
+                  <a class="Cart-Btn btn" href="<c:url value="/cart"/>">Xem giỏ hàng</a>
               </div>
             </li>
             <li class="Header-Bot__Announce">

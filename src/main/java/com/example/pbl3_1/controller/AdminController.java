@@ -52,14 +52,18 @@ public class AdminController extends HttpServlet {
                 break;
             case "/searchCustomer":
                 String userSearch = req.getParameter("val");
-                List<UserStatisticDTO> searchResults = ums.searchCustomers(userSearch);
+                Short status = Short.parseShort(req.getParameter("status"));
+
+                List<UserStatisticDTO> searchResults = ums.searchCustomers(userSearch, status);
 
                 String searchJson = gson.toJson(searchResults);
                 resp.getWriter().write(searchJson);
                 break;
             case "/searchSeller":
                 String sellerSearch = req.getParameter("val");
-                List<UserStatisticDTO> searchSellerResults = ums.searchSeller(sellerSearch);
+                Short sellerStatus = Short.parseShort(req.getParameter("status"));
+
+                List<UserStatisticDTO> searchSellerResults = ums.searchSeller(sellerSearch, sellerStatus);
 
                 String searchSellerJson = gson.toJson(searchSellerResults);
                 resp.getWriter().write(searchSellerJson);

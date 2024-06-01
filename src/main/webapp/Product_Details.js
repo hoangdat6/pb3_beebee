@@ -43,7 +43,7 @@ $(document).ready(function(){
         let variation1 = null;
         let variation2 = null;
         let input = document.getElementsByClassName('Qty__Input');
-        let quantity = parseInt(input[1].value);
+        let quantity = parseInt(input[0].value);
 
         if($(".Category_option1").length){
             variation1 = $(".Category_option1.Selected").attr('id');
@@ -101,6 +101,22 @@ function saveToCart(){
         showErrorToast("Warning", "Số lượng sản phẩm không đủ");
         return;
     }
+    let variations = "";
+    $(".Category_item .Selected").each(function(){
+        variations += $(this).text() + " ";
+    });
+
+    const shopImg = $('#coverImgShop').attr('src');
+    const shopName = $('#shopName').text();
+    const product= {
+        name: $("#Product-Name").text(),
+        price: $(".new-Price").text(),
+        quantity: $(".Qty__Input").val(),
+        coverImgPath: $(".Main-Image").css('background-image').split('(')[1].split(')')[0].slice(1, -1),
+        variations: variations,
+        shopName: shopName,
+        shopImgPath: shopImg
+    }
 
     $.ajax({
         type: "POST",
@@ -110,7 +126,7 @@ function saveToCart(){
             let re = JSON.parse(response);
             if(re.status === "200"){
                 showSuccessToast("Success", "Đã thêm vào giỏ hàng");
-                update();
+                addItemToCart(product);
             } else {
                 showErrorToast("Warning", "Số lượng sản phẩm không đủ");
             }
