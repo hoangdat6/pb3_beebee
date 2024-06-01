@@ -304,13 +304,14 @@ $(document).ready(function() {
 function updateTable() {
     let curPage = $("#seller").css("color") === 'rgb(255, 0, 0)' ? "/searchSeller" : "/searchCustomer";
     let val = $("#user_search").val();
-
+    let status = $("#status").val();
     // Send a GET request to the server
     $.ajax({
         url: "/PBL3_1_war_exploded/" + curPage,
         type: 'GET',
         data: {
             val: val,
+            status: status
         },
         success: function (data) {
             console.log(data);

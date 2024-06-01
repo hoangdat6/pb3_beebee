@@ -81,7 +81,7 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
         sql.append("    s.id as seller_id,\n");
         sql.append("    s.shop_name as seller_name,\n");
         sql.append("    s.avatar as img_path,\n");
-        sql.append("    s.status as status,\n");
+        sql.append("    s.is_locked as is_locked,\n");
         sql.append("    sci.id as shopping_cart_item_id,\n");
         sql.append("    p.id as product_id,\n");
         sql.append("    p.name as product_name,\n");
@@ -108,7 +108,7 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
                         .shopId(resultSet.getLong("seller_id"))
                         .shopName(resultSet.getString("seller_name"))
                         .shopImg(resultSet.getString("img_path").split(",")[0])
-                        .sellerIsLocked(resultSet.getBoolean("status"))
+                        .sellerIsLocked(resultSet.getBoolean("is_locked"))
                         .shoppingCartItemId(resultSet.getLong("shopping_cart_item_id"))
                         .productId(resultSet.getLong("product_id"))
                         .productName(resultSet.getString("product_name"))

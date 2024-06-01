@@ -13,7 +13,7 @@ public interface UserManageService {
     public void lockSellerByID(int UserId);
     public void unlockSellerByID(int UserId);
 
-    List<UserStatisticDTO> searchCustomers(String userSearch);
+    List<UserStatisticDTO> searchCustomers(String userSearch, Short status);
 
     UserStatisticDTO getCustomerById(Long id);
 
@@ -24,7 +24,7 @@ public interface UserManageService {
 
     boolean lockShop(Long lockShopID);
 
-    List<UserStatisticDTO> searchSeller(String sellerSearch);
+    List<UserStatisticDTO> searchSeller(String sellerSearch, Short status);
 
     UserStatisticDTO getCustomerByShopId(Long id);
 

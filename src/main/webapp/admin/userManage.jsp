@@ -35,9 +35,9 @@
                         <div class="status">
                             Trạng thái
                             <select name="status" id="status">
-                                <option value="all">Tất cả</option>
-                                <option value="active">Đang hoạt động</option>
-                                <option value="inactive">Ngưng hoạt động</option>
+                                <option value="-1">Tất cả</option>
+                                <option value="1">Đang hoạt động</option>
+                                <option value="0">Ngưng hoạt động</option>
                             </select>
                         </div>
 
