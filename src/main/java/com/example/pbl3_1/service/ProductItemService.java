@@ -11,4 +11,6 @@ public interface ProductItemService {
     ProductItem getProductItemByVariations(String v1, String v2);
 
     void updateStock(List<OrderDetail> orderDetails) throws SQLException;
+
+    void updateStocks(List<List<OrderDetail>> lists) throws SQLException;
 }

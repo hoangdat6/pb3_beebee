@@ -21,11 +21,14 @@ public class CheckOutDoneController extends HttpServlet {
 
         Integer paymentTotal = (Integer) SessionUtil.getInstance().getValue(request, "paymentTotal");
         Short paymentMethodId = (Short) SessionUtil.getInstance().getValue(request, "paymentMethodId");
+        String ids = (String) SessionUtil.getInstance().getValue(request, "IDS");
 
         PaymentMethod paymentMethod = paymentMethodService.getPaymentMethodById(paymentMethodId);
 
+
         request.setAttribute("paymentTotal", paymentTotal);
         request.setAttribute("paymentMethod", paymentMethod);
+        request.setAttribute("ids", ids);
 
         request.getRequestDispatcher("CheckOutDone.jsp").forward(request, response);
     }

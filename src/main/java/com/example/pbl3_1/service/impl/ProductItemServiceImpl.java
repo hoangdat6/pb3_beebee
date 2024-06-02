@@ -37,4 +37,11 @@ public class ProductItemServiceImpl implements ProductItemService {
     public void updateStock(List<OrderDetail> orderDetails) throws SQLException {
         productItemDAO.updateStock(orderDetails);
     }
+
+    @Override
+    public void updateStocks(List<List<OrderDetail>> lists) throws SQLException {
+        for(List<OrderDetail> orderDetails : lists){
+            updateStock(orderDetails);
+        }
+    }
 }

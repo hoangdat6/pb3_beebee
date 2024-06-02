@@ -98,7 +98,7 @@ public class OrderDAOImpl implements OrderDAO {
         sql.append("    s.id as seller_id,\n");
         sql.append("    s.shop_name as seller_name,\n");
         sql.append("    s.avatar as img_path,\n");
-        sql.append("    s.status as status,\n");
+        sql.append("    s.is_locked as is_locked,\n");
         sql.append("    sci.id as shopping_cart_item_id,\n");
         sql.append("    p.id as product_id,\n");
         sql.append("    p.name as product_name,\n");
@@ -131,7 +131,7 @@ public class OrderDAOImpl implements OrderDAO {
                         .shopId(resultSet.getLong("seller_id"))
                         .shopName(resultSet.getString("seller_name"))
                         .shopImg(resultSet.getString("img_path").split(",")[0])
-                        .sellerIsLocked(resultSet.getBoolean("status"))
+                        .sellerIsLocked(resultSet.getBoolean("is_locked"))
                         .shoppingCartItemId(resultSet.getLong("shopping_cart_item_id"))
                         .productId(resultSet.getLong("product_id"))
                         .productName(resultSet.getString("product_name"))
@@ -179,6 +179,77 @@ public class OrderDAOImpl implements OrderDAO {
         saveAllOrder(sql.toString(), sql2.toString(), order, orderDetails);
     }
 
+    @Override
+    public void createOrders(List<Order> orders, List<List<OrderDetail>> lists) throws SQLException {
+        StringBuilder sql = new StringBuilder("INSERT INTO orders (id, user_id, seller_id,");
+        sql.append("fullname, phone,");
+        sql.append("detail_address, commune_address, ");
+        sql.append("district_address, province_address,");
+        sql.append("payment_method_id, shipping_method_id,");
+        sql.append("order_status_id, order_total, created_at, updated_at)");
+        sql.append("VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
+
+        StringBuilder sql2 = new StringBuilder("INSERT INTO order_detail \n");
+        sql2.append("(order_id, \n");
+        sql2.append("product_item_id, \n");
+        sql2.append("quantity, \n");
+        sql2.append("price)\n");
+        sql2.append("VALUES (?, ?, ?, ?)");
+
+        saveAllOrders(sql.toString(), sql2.toString(), orders, lists);
+    }
+
+
+    private void saveAllOrders(String sql, String sql2, List<Order> orders, List<List<OrderDetail>> lists) throws SQLException {
+        Connection con = JDBCUtil.getInstance().getConnection();
+        try {
+            con.setAutoCommit(false);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        for(int i = 0; i < orders.size(); i++) {
+            Order order = orders.get(i);
+            try(PreparedStatement orderStatement = con.prepareStatement(sql)){
+                orderStatement.setString(1, order.getId());
+                orderStatement.setLong(2, order.getUserId());
+                orderStatement.setLong(3, order.getSellerId());
+                orderStatement.setString(4, order.getFullName());
+                orderStatement.setString(5, order.getPhone());
+                orderStatement.setString(6, order.getDetailAddress());
+                orderStatement.setString(7, order.getCommuneAddress());
+                orderStatement.setString(8, order.getDistrictAddress());
+                orderStatement.setString(9, order.getProvinceAddress());
+                orderStatement.setShort(10, order.getPaymentMethodId());
+                orderStatement.setLong(11, order.getShippingMethodId());
+                orderStatement.setLong(12, order.getOrderStatusId());
+                orderStatement.setLong(13, order.getTotal());
+                orderStatement.setTimestamp(14, new Timestamp(System.currentTimeMillis()));
+                orderStatement.setTimestamp(15, new Timestamp(System.currentTimeMillis()));
+
+                orderStatement.executeUpdate();
+
+                try(PreparedStatement orderDetailStatement = con.prepareStatement(sql2)) {
+                    for(OrderDetail orderDetail : lists.get(i)) {
+                        orderDetailStatement.setString(1, order.getId());
+                        orderDetailStatement.setLong(2, orderDetail.getProductItemId());
+                        orderDetailStatement.setInt(3, orderDetail.getQuantity());
+                        orderDetailStatement.setInt(4, orderDetail.getUnitPrice());
+
+                        orderDetailStatement.addBatch();
+                    }
+                    orderDetailStatement.executeBatch();
+                }catch (SQLException ex){
+                    con.rollback();
+                    throw new SQLException("Đặt hàng chưa thành công!");
+                }
+            }catch (SQLException e){
+                con.rollback();
+                throw new SQLException("Đặt hàng chưa thành công!");
+            }
+        }
+        con.commit();
+    }
+
     private void saveAllOrder(String sql, String sql2, Order order, List<OrderDetail> orderDetails) throws SQLException{
         Connection con = JDBCUtil.getInstance().getConnection();
         try {
@@ -204,11 +275,6 @@ public class OrderDAOImpl implements OrderDAO {
             orderStatement.setTimestamp(15, new Timestamp(System.currentTimeMillis()));
 
             orderStatement.executeUpdate();
-
-//            ResultSet rs = orderStatement.getGeneratedKeys();
-//            if(rs.next()) {
-//                order.setId(rs.getString(1));
-//            }
 
             try(PreparedStatement orderDetailStatement = con.prepareStatement(sql2)) {
                 for(OrderDetail orderDetail : orderDetails) {

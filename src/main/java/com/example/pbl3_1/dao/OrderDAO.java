@@ -19,4 +19,6 @@ public interface OrderDAO {
     Integer getQuantityInStock(Long productItemId);
 
     void createOrder(Order order, List<OrderDetail> orderDetails) throws SQLException;
+
+    void createOrders(List<Order> orders, List<List<OrderDetail>> lists) throws SQLException;
 }
