@@ -15,7 +15,8 @@ function generateSidebar() {
         <ul>
             <li class="subitem"><a href="">Tất cả sản phẩm</a></li>
             <li class="subitem"><a href="">Sản phẩm vi phạm</a></li>
-            <li class="subitem"><a href="">Thêm sản phẩm</a></li>
+            <li class="subitem"><a href="/PBL3_1_war_exploded/seller/product/save">Thêm sản phẩm</a></li>
+            <li class="subitem"><a href="/PBL3_1_war_exploded/seller/voucher/AddVoucher.jsp">Thêm Voucher</a></li>
         </ul>
     </div>
 
@@ -42,7 +43,7 @@ function generateSidebar() {
         </ul>
     </div>
 
-    <a href="" class="btn item">
+    <a href="/PBL3_1_war_exploded/seller/statistic" class="btn item">
         <i class="fa-solid fa-chart-area"></i>
         <span>Dữ liệu và thống kê</span>
     </a>

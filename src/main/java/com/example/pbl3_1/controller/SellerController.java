@@ -21,7 +21,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-@WebServlet(name = "seller", urlPatterns = {"/seller/account/register", "/seller", "/shop"})
+@WebServlet(name = "seller", urlPatterns = {"/seller/account/register", "/seller", "/shop", "/seller/statistic"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
     maxFileSize = 1024 * 1024 * 10,      // 10MB
     maxRequestSize = 1024 * 1024 * 50)  // 50MB
@@ -50,6 +50,9 @@ public class SellerController extends HttpServlet {
                 }else if(action.equals("avatar")){
                     request.getRequestDispatcher("AvatarAndCover.jsp").forward(request, response);
                 }
+                break;
+            case "/seller/statistic":
+                request.getRequestDispatcher("statistic/statistic.jsp").forward(request, response);
                 break;
         }
     }

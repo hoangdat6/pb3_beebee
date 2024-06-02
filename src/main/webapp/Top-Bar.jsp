@@ -6,7 +6,7 @@
           <div class="Header-Top__item1">Chúng tôi giao hàng mỗi ngày từ <span class="orange-bold">7:00</span> đến
             <span class="orange-bold">23:00</span>
           </div>
-          <div class="Header-Top__item2">Bạn đang ở kênh mua hàng! <a href="<c:url value="/seller/account/register"/>" class="orange-bold">Chuyển qua kênh người
+          <div class="Header-Top__item2">Bạn đang ở kênh mua hàng! <a href="<c:url value="/seller/account/register"/>" class="orange-medium">Chuyển qua kênh người
               bán?</a></div>
           <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
           <script src="<c:url value="/Top-Bar.js"/>"></script>
@@ -47,7 +47,7 @@
                   $('#suggestSearch').empty();
                   // Thêm từng kết quả tìm kiếm vào danh sách
                   response.forEach(function(suggestion) {
-                    $('#suggestSearch').append('<a role="option" href="/PBL3_1_war_exploded/search?keyword=' + encodeURIComponent(suggestion) + '">' + suggestion + '</a><br>');
+                    $('#suggestSearch').append('<a role="option" href="/PBL3_1_war_exploded/search?keyword=' + encodeURIComponent(suggestion) + '">' + suggestion + '</a>');
                   });
                   console.log('Đã nhận phản hồi từ servlet: ' + response);
                 },
@@ -64,7 +64,9 @@
             <form action= '<c:url value="/search"/>' method="post">
               <label for="search"></label>
               <input type="search" value='<c:if test="${sessionScope.get('keyword') != null}">${sessionScope.get('keyword')}</c:if>' id="search" name="search" placeholder="Tìm kiếm theo sản phẩm, phân loại và thương hiệu">
-              <div id="suggestSearch"></div>
+              <div id="suggestSearch">
+
+              </div>
               <i class="fa-solid fa-magnifying-glass"></i>
             </form>
           </div>
@@ -88,7 +90,7 @@
               <div class="User_option">
                 <div class="Shop_option">
                   <h3>Shop của bạn</h3>
-                  <a href="#"><i class="fa-solid fa-shop"></i> Kênh người bán</a>
+                  <a href="<c:url value="/seller/account/register"/>"><i class="fa-solid fa-shop"></i> Kênh người bán</a>
                   <a href="#"><i class="fa-solid fa-list-check"></i> Quản lí đơn hàng</a>
                   <a href="#"><i class="fa-brands fa-product-hunt"></i> Quản lí sản phẩm</a>
                   <a href="#"><i class="fa-solid fa-chart-simple"></i> Dữ liệu</a>

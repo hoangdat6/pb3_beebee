@@ -9,7 +9,7 @@ Chào mừng bạn đến với <span style="font-weight: 500;">Kênh người b
 <div class="Main_Header_wrap">
     <div class="Main_Header">
         <div class="left">
-            <img src="../../img/Logo/Logo Ispum.png" alt="">
+            <img src="<c:url value="/img/Logo/Logo Ispum.png"/>" alt="">
             <h3 class="title" style="color:#EA580C;">Kênh người bán</h3>
         </div>
         <div class="right">

@@ -51,6 +51,16 @@ html {
     font-weight: 700;
 }
 
+.orange-medium {
+    color: var(--orange-weight-color);
+    font-weight: 500;
+}
+
+.orange-medium:hover {
+    font-weight: 700;
+    cursor: pointer;
+}
+
 .Logo:hover {
     cursor: pointer;
 }

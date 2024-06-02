@@ -5,8 +5,13 @@ a {
 }
 
 #Header {
-    min-height: 140px;
     width: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.10), 0 8px 8px 0 rgba(0, 0, 0, 0.09), 0 19px 11px 0 rgba(0, 0, 0, 0.05), 0 33px 13px 0 rgba(0, 0, 0, 0.01), 0 52px 14px 0 rgba(0, 0, 0, 0.00);
 }
 
 #Header .Header-Top {
@@ -17,22 +22,22 @@ a {
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    background-color: #ECEBEE;
 }
 
 #Header .Header-Bot {
     background-color: #fff;
     padding: 0 170px;
     display: flex;
-    flex-direction: row;
-    min-height: 103px;
     align-items: center;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 20px;
 }
 
 .Header-Bot__left {
     display: flex;
+    align-items: center;
     flex-grow: 1;
+    gap: 20px;
 }
 
 .Header-Bot img {
@@ -42,31 +47,61 @@ a {
 
 .Header-Bot form {
     width: auto;
-    padding: 12px 24px;
-    flex-grow: 1;
     position: relative;
-    align-items: center;
+    flex-grow: 1;
 }
+
+.Header-Bot__left #suggestSearch{
+    position: absolute;
+    top: 46px;
+    left: 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.10), 0 8px 8px 0 rgba(0, 0, 0, 0.09), 0 19px 11px 0 rgba(0, 0, 0, 0.05), 0 33px 13px 0 rgba(0, 0, 0, 0.01), 0 52px 14px 0 rgba(0, 0, 0, 0.00);
+    z-index: 2;
+    background-color: #fff;
+}
+
+.Header-Bot__left #suggestSearch a{
+    display: block;
+    padding: 5px 10px;
+    background-color: #fff;
+    color: #141718;
+}
+
+.Header-Bot__left #suggestSearch a:hover{
+    cursor: pointer;
+    background-color: #f1f1f1;
+}
+
 
 .Header-Bot form input {
     width: 100%;
-    padding: 16px 20px;
-    border: none;
+    padding: 12px 15px;
     border-radius: 8px;
-    background-color: var(--search-bg-color);
     color: var(--search-text-color);
     font-size: 16px;
+    border: 2px solid #ccc;
 }
 
 .Header-Bot form input:hover {
-    background-color: #ccc;
+    border-color: #141718;
 }
 
 .Header-Bot form i {
     position: absolute;
-    right: 10%;
-    bottom: 40%;
-    font-size: 20px;
+    top: 0;
+    right: 0;
+    padding: 15px;
+    font-size: 16px;
+    height: 100%;
+    border-radius: 5px;
+    background-color: #141718;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+.Header-Bot form i:hover{
+    cursor: pointer;
+    opacity: 0.7;
 }
 
 .Header-Bot__right {
@@ -77,12 +112,11 @@ a {
     padding: 12px 24px;
     font-size: 16px;
     font-weight: 500;
-    margin: 0 10px;
+    transition: all 0.3s;
 }
 
 .Header-Bot__right li:hover {
-    background-color: #DC2626;
-    color: #fff !important;
+    color: #FF5630;
     cursor: pointer;
 }
 
@@ -332,3 +366,5 @@ span.Main--Category {
     display: flex;
     flex-direction: column;
 }
+
+
