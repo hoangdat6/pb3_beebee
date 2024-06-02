@@ -9,13 +9,11 @@
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <title><c:if test="${sessionScope.get('keyword') != null}">${sessionScope.get('keyword')}</c:if></title>
-                <link rel="stylesheet" type="text/css" href="style.css">
                 <link rel="stylesheet" type="text/css" href="Top-Bar.css">
                 <link rel="stylesheet" type="text/css" href="Footer.css">
                 <link rel="stylesheet" type="text/css" href="CommonCSS.css">
-                <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
                 <link rel="stylesheet" href="Search.css">
-                <link rel="stylesheet" href="grid.css">
+                <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
                 <script src="Card.js"></script>
             </head>
 
@@ -56,10 +54,6 @@
                                 <h4 class="S_sidebar-title">Theo danh mục</h4>
                                 <div class="S_catalog-content">
                                     <div class="checkbox-group">
-<%--                                        <div class="Checkbox_item">--%>
-<%--                                            <input type="checkbox" class="S_catalog-item" id="catalog-item1">--%>
-<%--                                            <label for="catalog-item1">Thời trang</label>--%>
-<%--                                        </div>--%>
                                     </div>
                                 </div>
                             </div>

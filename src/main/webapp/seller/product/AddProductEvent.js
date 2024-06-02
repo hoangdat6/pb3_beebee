@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById("product_image").addEventListener('change', AddProductImage);
+    let labelElement = document.querySelector('label[for="product_image"]');
+    labelElement.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+    labelElement.addEventListener('drop', AddProductImage);
+
+    document.getElementById("cover_image").addEventListener('change', AddCoverImage);
+    let coverLabelElement = document.querySelector('label[for="cover_image"]');
+    coverLabelElement.addEventListener('dragover', function(event) {
+        event.preventDefault();
+    });
+    coverLabelElement.addEventListener('drop', AddCoverImage);
+
     document.querySelector("#product_name").addEventListener('input', function () {
         let charCount = this.value.length;
         document.querySelector("#span_for_name").textContent = `${charCount}/120`;

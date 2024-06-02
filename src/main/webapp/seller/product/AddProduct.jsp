@@ -42,12 +42,12 @@
                     Thông tin cơ bản
                 </h3>
 
-                <div class="Basic_info_item Basic_info_image" style="align-items: flex-start;">
+                <div class="Basic_info_item Basic_info_image">
                     <div class="Product_Image">
                         <h3 class="item_title">Hình ảnh sản phẩm</h3>
                         <div class="Product_Image_Container">
                             <div id="image_preview">
-                                <input onchange="AddProductImage(this)" type="file" name="product_image" id="product_image" accept="image/*" multiple>
+                                <input type="file" name="product_image" id="product_image" accept="image/*" multiple>
                                 <label for="product_image">
                                     <img id="ProductImage" src="../../img/Logo/Image.png" alt="">
                                     <span>Thêm hình ảnh</span>
@@ -56,17 +56,21 @@
                         </div>
                     </div>
 
-                    <div class="Cover_image">
-                        <h3 class="item_title" style="width: max-content;">Ảnh bìa
-                            <span style="font-size: 11px; font-weight: 400; color: #6C7275;">
-                                <span style="color: #EA580C;">*</span>
-                                Ảnh bìa sẽ được hiển thị tại các trang kết quả tìm kiếm.</span></h3>
-                        <input onchange="AddCoverImage(this)" type="file" name="cover_image" id="cover_image" accept="image/*" multiple>
-                        <label for="cover_image">
-                            <img id="coverImage" src="../../img/Logo/Image.png" alt="">
-                            <span>Thêm hình ảnh</span>
-                        </label>
-                        <span style="font-size: 11px; font-weight: 400; color: #6C7275; margin-top: 10px; display: block;"><span style="color: #EA580C;">*</span>  <span style="color:#131417">Tips:</span> Việc sử dụng ảnh bìa đẹp sẽ thu hút thêm lượt truy cập vào sản phẩm của bạn</span>
+                    <div class="note">
+                        <h3 class="item_title" style="width: max-content;">Ảnh bìa</h3>
+                        <p>
+                            <span style="color: #EA580C;">*</span>
+                            Ảnh đầu tiên mặc định sẽ là ảnh bìa
+                        </p>
+                        <p>
+                            <span style="color: #EA580C;">*</span>
+                            Ảnh bìa sẽ được hiển thị tại các trang kết quả tìm kiếm.
+                        </p>
+                        <p>
+                            <span style="color: #EA580C;">*</span>
+                            <span style="color:#131417">Tips:</span>
+                            Việc sử dụng ảnh bìa đẹp sẽ thu hút thêm lượt truy cập vào sản phẩm của bạn
+                        </p>
                     </div>
                 </div>
 
@@ -79,13 +83,7 @@
                     <div style="display: block; width: 100%;">
                         <div class="Basic_info_item">
                             <input type="text" name="product_name" id="product_name" required>
-                            <span id="span_for_name" style="
-                                    padding: 10px;
-                                    color: #9CA3AF;
-                                    position: absolute;
-                                    right: 0;
-                                    top: 50%;
-                                    transform: translateY(-50%);">0/120
+                            <span id="span_for_name">0/120
                             </span>
                         </div>
                         <div id="warning_name">
@@ -114,7 +112,7 @@
                         </div>
                         <div  style="display: block; width: 100%;">
                             <div class="Basic_info_item" style="align-items: flex-start; position: relative; z-index: 0;">
-                                <input type="number" name="discount" id="discount" placeholder="<= 99%" required>
+                                <input type="number" name="discount" id="discount" placeholder="<= 99%" max="100" required>
                             </div>
                             <div id="warning_discount">
                             </div>
@@ -131,7 +129,7 @@
                         <div class="Basic_info_item" style="align-items: flex-start; position: relative; z-index: 0;">
                             <textarea name="product_description" id="product_description" cols="30" rows="10"
                             style="resize: none;"  required></textarea>
-                            <span id="span_for_description" style="position: absolute; bottom: 10px; right: 15%; font-size: 12px; color: #9CA3AF">0/3000</span>
+                            <span id="span_for_description">0/3000</span>
                         </div>
                         <div id="warning_description">
                         </div>

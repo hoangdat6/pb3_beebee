@@ -254,8 +254,10 @@ function AddVarientGroup() {
     }
 }
 
-function UpdateProductImageAfterChangeImage(input) {
-    let file = input.files[0];
+function UpdateProductImageAfterChangeImage(event) {
+    event.preventDefault();
+    let file = event.type === 'drop' ? event.dataTransfer.files[0] : event.target.files[0];
+    let input = event.target.parentElement.querySelector('input[type="file"]');
     let reader = new FileReader();
     let VI = input.parentElement;
     reader.onloadend = function () {
@@ -351,11 +353,16 @@ function AddVarient(id) {
               <label for="VI_img${cntVGI0element}">
                 <img src=${blackImgPath} alt="preview">
               </label>
-              <input type="file" name="VI_img" class="VI_img" onchange="UpdateProductImageAfterChangeImage(this)" id="VI_img${cntVGI0element}">
+              <input type="file" name="VI_img" class="VI_img" id="VI_img${cntVGI0element}">
               <input type="text" name="VI_name" id="VI_name" onblur="renameVI0(this)" placeholder="Tên phân loại">
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
+        document.getElementById(`VI_img${cntVGI0element}`).addEventListener('change', UpdateProductImageAfterChangeImage);
+        document.getElementById(`VI0${VI_id_wrap0}`).addEventListener('dragover', function (e) {
+            e.preventDefault();
+        });
+        document.getElementById(`VI0${VI_id_wrap0}`).addEventListener('drop', UpdateProductImageAfterChangeImage);
         table.addVI0toTable("", blackImgPath);
         ++cntVGI0element;
         ++VI_id_wrap0;
@@ -411,42 +418,53 @@ function ChangeImagePreview(div) {
     reader.readAsDataURL(input.files[0]);
 }
 
-function AddProductImage(input) {
-    let container = document.getElementById('image_preview');
-    let file = input.files[0];
-    let reader = new FileReader();
+function createImgObject(imgpath){
     let imgobj = document.createElement('div');
-    imgobj.className = "imgObject";
+    imgobj.classList.add("imgObject");
     let img = document.createElement('img');
-    let btnrRemove = document.createElement('button');
-    btnrRemove.className = "btnRemove";
-    btnrRemove.innerHTML = '<i class="fa-solid fa-x"></i>';
-    btnPreview = document.createElement('button');
+    img.src = imgpath;
+    let btnRemove = document.createElement('button');
+    btnRemove.classList.add("btnRemove");
+    btnRemove.classList.add("btn");
+    btnRemove.innerHTML = '<i class="fa-solid fa-x"></i>';
+    let btnPreview = document.createElement('button');
     btnPreview.className = "btnPreview";
+    btnPreview.classList.add("btn");
     btnPreview.innerHTML = '<i class="fa-solid fa-search"></i>';
 
     imgobj.appendChild(img);
-    imgobj.appendChild(btnrRemove);
+    imgobj.appendChild(btnRemove);
+    btnRemove.addEventListener('click', function (e) {
+        e.preventDefault();
+        container.removeChild(imgobj);
+    });
     imgobj.appendChild(btnPreview);
+    btnPreview.addEventListener('click', function () {
+        createImagePreview(img.src);
+    });
+    return imgobj;
+}
 
-    reader.onload = function (e) {
-        img.src = e.target.result;
+
+function AddProductImage(event) {
+    event.preventDefault();
+    let container = document.getElementById('image_preview');
+    let file = event.type === 'drop' ? event.dataTransfer.files[0] : event.target.files[0];
+    let reader = new FileReader();
+    let imgobj;
+    reader.onloadend = function (e) {
+        imgobj = createImgObject(e.target.result);
         container.appendChild(imgobj);
     }
     if (file) {
         reader.readAsDataURL(file);
-    } else {
-        img.src = "../img/Logo/BlackImg.png";
-        container.appendChild(imgobj);
     }
-    img.addEventListener('click', function () {
-        createImagePreview(img.src);
-    });
 }
 
-function AddCoverImage(input) {
-    let label = input.parentElement.querySelector('label');
-    let file = input.files[0];
+function AddCoverImage(event) {
+    event.preventDefault();
+    let label = document.querySelector('label[for="cover_image"]');
+    let file = event.type === 'drop' ? event.dataTransfer.files[0] : event.target.files[0];
     let reader = new FileReader();
     reader.onloadend = function () {
         label.querySelector('span').style.display = 'none';
@@ -457,8 +475,6 @@ function AddCoverImage(input) {
     }
     if (file) {
         reader.readAsDataURL(file);
-    } else {
-        document.querySelector('.cover_image img').src = blackImgPath;
     }
 }
 
@@ -566,7 +582,7 @@ function createOverlay() {
     overlay.style.display = "flex";
     overlay.style.justifyContent = "center";
     overlay.style.alignItems = "center";
-    overlay.style.zIndex = "3";
+    overlay.style.zIndex = "10000";
     overlay.addEventListener('click', function () {
         overlay.parentElement.removeChild(overlay);
     });
