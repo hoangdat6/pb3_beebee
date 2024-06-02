@@ -41,6 +41,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductDetailDTO getProductDetail(Long id) {
         ProductDetailDTO productDetailDTO = productDAO.getProductDetailById(id);
+        if(productDetailDTO == null){
+            return null;
+        }
         List<Variation> variations = variationService.getVariationsByProductId(id);
         List<String> imgPaths = productItemDAO.getImgPathByProductId(id);
 
