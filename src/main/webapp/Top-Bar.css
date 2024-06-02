@@ -170,6 +170,14 @@ a {
     }
 }
 
+.Header-Bot__Cart{
+    position: relative;
+}
+
+.Header-Bot__Cart:hover .SM_Cart_Container {
+    display: block;
+}
+
 .SM_Cart_Container {
     position: absolute;
     font-size: 16px;
@@ -181,16 +189,11 @@ a {
     background: #fff;
     color: #121212;
     display: none;
-    min-width: 300px;
     justify-content: center;
 }
 
-.Header-Bot__Cart:hover .SM_Cart_Container {
-    display: block;
-}
-
 .SM_Cart_Container>h3 {
-    font-size: 20px;
+    font-size: 16px;
     font-weight: 500;
     text-align: center;
     margin: 10px 0;
@@ -200,6 +203,7 @@ a {
     padding: 6px 6px;
     max-height: 500px;
     overflow-y: scroll;
+    border: 1px solid #ccc;
 }
 
 .SM_Cart-Item {
@@ -257,7 +261,6 @@ h3.Main--Name {
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 2;
-    /* Số dòng tối đa */
     -webkit-box-orient: vertical;
     width: 200px;
 }
@@ -277,9 +280,26 @@ h3.Main--Name {
 
 span.Main--Category {
     margin-right: 10px;
-    width: 80px;
+    width: fit-content;
+    max-width: 120px;
     font-size: 12px;
     color: #6C7275;
+}
+
+.Main--Qty_and_Category input{
+    max-width: 30px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.Main--Qty{
+    display: flex;
+    color: #333;
+}
+
+.Main--Qty span{
+    font-size: 12px;
+    font-weight: 500;
 }
 
 .SM_Cart-Item--Price span {
