@@ -2,16 +2,13 @@ package com.example.pbl3_1.controller;
 
 import com.example.pbl3_1.Util.IntAndListProductContainer;
 import com.example.pbl3_1.controller.dto.product.ProductManagementDTO;
-import com.example.pbl3_1.controller.dto.product.SellerDTO;
 import com.example.pbl3_1.entity.Category;
-import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.ProductService;
 import com.example.pbl3_1.service.SellerService;
 import com.example.pbl3_1.service.impl.ProductServiceImpl;
 import com.example.pbl3_1.service.impl.SellerServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.mysql.cj.conf.ConnectionUrlParser;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -19,9 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @WebServlet (name = "ProductManagement", urlPatterns = {"/seller/product/productmanagement"})
 public class ProductManagementController extends HttpServlet {

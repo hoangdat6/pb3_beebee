@@ -9,10 +9,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <link rel="stylesheet" href="../common/SellerCommon.css">
-    <link rel="stylesheet" type="text/css" href="../../CommonCSS.css">
-    <link rel="stylesheet" type="text/css" href="./assets/css/statistic.css">
-    <script src="./../common/SellerCommon.js"></script>
+    <link rel="stylesheet" href="<c:url value="/seller/common/SellerCommon.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="statistic/assets/css/statistic.css"/>">
+    <script src="<c:url value="/seller/common/SellerCommon.js"/>"></script>
     <title>Thống kê</title>
 </head>
 
@@ -97,7 +97,7 @@
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="./statistic.js"></script>
+    <script src="<c:url value="statistic/statistic.js"/>"></script>
 </body>
 
 </html>
