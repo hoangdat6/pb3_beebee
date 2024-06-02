@@ -107,18 +107,9 @@
               </div>
               </c:if>
             </li>
-            <li class="Header-Bot__Cart" style="position: relative;">
+            <li class="Header-Bot__Cart">
               <i class="fa-solid fa-cart-shopping"></i>Giỏ hàng
-              <div class="SM_Cart_Container" style="position: absolute;
-      font-size: 16px;
-      top: 0;
-      margin-top: 40px;
-      left: 0;
-      box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.10), 0 8px 8px 0 rgba(0, 0, 0, 0.09), 0 19px 11px 0 rgba(0, 0, 0, 0.05), 0 33px 13px 0 rgba(0, 0, 0, 0.01), 0 52px 14px 0 rgba(0, 0, 0, 0.00);
-      z-index: 5;
-      padding: 40px 24px;
-      background: #fff;
-      color: #121212;">
+              <div class="SM_Cart_Container">
                 <h3>SẢN PHẨM MỚI THÊM</h3>
                 <div class="SM_Cart-Content">
                 </div>
