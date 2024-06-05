@@ -1,4 +1,7 @@
-function GenerateSideBar(type = "UserInformation", username) {
+function GenerateSideBar(type = "UserInformation", username, avatar) {
+    if (avatar === "" || avatar == null) {
+        avatar = "img/Shop/Avatar.png";
+    }
     // Tạo thẻ aside
     let aside = document.createElement('aside');
     aside.classList.add('UAAS_bar');
@@ -7,8 +10,8 @@ function GenerateSideBar(type = "UserInformation", username) {
     aside.innerHTML = `
     <div class="UAAS_bar_top">
         <div class="Avatar_wrapper">
-            <img class="UAAS_avatar" id="Avatar" src="../img/Product-Details/Review-Avatar-1.jpeg" alt="#">
-            <input type="file" name="fileInput" id="fileInput" style="display: none;">
+            <img class="UAAS_avatar" id="Avatar" src="${"/PBL3_1_war_exploded/" + avatar}" alt="#">
+            <input type="file" name="fileInput" id="fileInput" accept="image/*" style="display: none;">
             <img class="UAAS_camera" src="../img/User_information/Camera.svg" id="cameraImage" alt="#">
         </div>
         <h3 class="UAAS_userName">${username}</h3>

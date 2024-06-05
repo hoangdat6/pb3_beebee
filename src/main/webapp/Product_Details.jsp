@@ -100,26 +100,30 @@
             </div>
 
             <div class="Product_Loop-Button">
-                <div class="Qty">
-                    <button class="btn Qty__Minus" onclick="decreaseQuantity(this)"><i
-                            class="fa-solid fa-minus"></i></button>
-                    <label>
-                        <input class="btn Qty__Input" type="number" value="1" min="1">
-                    </label>
-                    <button class="btn Qty__Plus" onclick="increaseQuantity(this)"><i
-                            class="fa-solid fa-plus"></i></button>
-                </div>
-                <button class="btn Add-to-Cart Same" onclick="saveToCart(true)">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    <p>Thêm vào giỏ hàng</p>
-                </button>
+                <c:if test="${productDetail.isProductOfSeller == false}">
+                    <div class="Qty">
+                        <button class="btn Qty__Minus" onclick="decreaseQuantity(this)"><i
+                                class="fa-solid fa-minus"></i></button>
+                        <label>
+                            <input class="btn Qty__Input" type="number" value="1" min="1">
+                        </label>
+                        <button class="btn Qty__Plus" onclick="increaseQuantity(this)"><i
+                                class="fa-solid fa-plus"></i></button>
+                    </div>
+                    <button class="btn Add-to-Cart Same" onclick="saveToCart(true)">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <p>Thêm vào giỏ hàng</p>
+                    </button>
 
-                <button class="btn Add-to-Favorite Same">
-                    <i class="fa-regular fa-heart"></i>
-                    <p>Yêu thích</p>
-                </button>
+                    <button class="btn Add-to-Favorite Same">
+                        <i class="fa-regular fa-heart"></i>
+                        <p>Yêu thích</p>
+                    </button>
+                </c:if>
             </div>
-            <button class="btn Buy" id="check_out">Mua ngay</button>
+            <c:if test="${productDetail.isProductOfSeller == false}">
+                <button class="btn Buy" id="check_out">Mua ngay</button>
+            </c:if>
             <div class="Product-Menu">
                 Danh mục
                 <span>${productDetail.categoryName}</span>

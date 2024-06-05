@@ -39,6 +39,7 @@ $(document).ready(function() {
         let cartItemId = $(this).closest(".Shop_Products-Cell").find("input[name='shoppingCartItemId']").val();
         if (ORDER_CART_ITEM != null && ORDER_CART_ITEM == cartItemId){
             $(this).prop('checked', true);
+
         }
 
         let cell = $(this).closest('.Shop_Products-Cell');
@@ -46,7 +47,7 @@ $(document).ready(function() {
         if (isDeleted == 'true') {
             cell.find(".Cart_CB").remove();
             cell.find(".Check_box").append('<div class="sold_out">Ngừng bán</div>');
-            cell.classList.add("sold-out-product");
+            cell.addClass('sold-out-product');
         }else{
             let isSoldOut = cell.find('.isSoldOut').val();
             let isOutOfStock = cell.find('.isOutOfStock').val();

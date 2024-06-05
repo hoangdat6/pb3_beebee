@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Shop.css"/>">
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
     <script src="Card.js"></script>

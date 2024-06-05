@@ -13,7 +13,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script type="text/javascript" src="../main.js"></script>
     <link rel="stylesheet" href="<c:url value="/Pop_ups.css"/>">
     <script src="../toast.js"></script>
@@ -77,9 +77,10 @@
 </div>
 <%@ include file="../Footer.jsp" %>
 <script>
-    GenerateSideBar("Location", "${User.username}");
+    GenerateSideBar("Location", "${User.username}", "${User.avatar}");
 </script>
 <script type="text/javascript" src="./Location.js"></script>
+<script src="<c:url value='/RemovePopup.js'/>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </body>
 

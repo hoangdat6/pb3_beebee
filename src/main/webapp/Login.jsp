@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href ="<c:url value="/Footer.css"/>">
     <!-- <script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script> -->
     <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
 
 </head>
 <body class="BG-White">

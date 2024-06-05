@@ -43,7 +43,7 @@ $(document).ready(function(){
         let variation1 = null;
         let variation2 = null;
         let input = document.getElementsByClassName('Qty__Input');
-        let quantity = parseInt(input[0].value);
+        // let quantity = parseInt(input[0].value);
 
         if($(".Category_option1").length){
             variation1 = $(".Category_option1.Selected").attr('id');

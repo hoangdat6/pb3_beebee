@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href = "<c:url value="/Footer.css"/>">
   <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
   <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
-  <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
   <script src="<c:url value="/Card.js"/>"></script>
 </head>
 
@@ -94,7 +94,9 @@
         });
         </c:forEach>
       </script>
+    <input type="button" value="Xem thêm" class="btn-view_more">
   </div>
+  <div class="Product">
 
   <div class="Title-Container">
     <div class="Title-Desc">
@@ -103,7 +105,6 @@
     </div>
     <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
   </div>
-
   <div class="Product_list pad-l-r-170 pad-t-b-30">
     <% for (int i = 0; i < 20; i++) { %>
 
@@ -135,6 +136,9 @@
       </div>
     </div>
     <% } %>
+  </div>
+    <input type="button" value="Xem thêm" class="btn-view_more">
+
   </div>
 
 </div>

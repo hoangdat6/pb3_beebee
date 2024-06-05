@@ -154,7 +154,7 @@
         <div class="Cart_Summary-Voucher">
             <c:forEach var="shippingMethod" items="${shippingMethods}">
                 <div class="Shipping_Option-Item">
-                    <input type="radio" id="shippingMethod${shippingMethod.shippingMethod.getValue()}" name="shippingMethod" value="${shippingMethod.shippingMethod.getValue()}">
+                    <input type="radio" id="shippingMethod${shippingMethod.shippingMethod.getValue()}" name="shippingMethod" value="${shippingMethod.shippingMethod.getValue()}" checked>
                     <label for="shippingMethod${shippingMethod.shippingMethod.getValue()}">${shippingMethod.name}</label>
                     <span>${shippingMethod.fee}đ</span>
                 </div>

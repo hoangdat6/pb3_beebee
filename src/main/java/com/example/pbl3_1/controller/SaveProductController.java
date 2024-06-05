@@ -172,15 +172,15 @@ public class SaveProductController extends HttpServlet {
             // Decode base64 string to byte array
             byte[] data1 = Base64.getDecoder().decode(imageStrings.get(i));
 
-            dir = productId + File.separator;
-            Path path = Paths.get(rootPath + File.separator + dir);
+            dir = productId + "/";
+            Path path = Paths.get(rootPath + "/" + dir);
             if(!Files.exists(path)){
                 Files.createDirectories(path);
             }
 
             filename = productId + "_" +  i  + item + ".png";
             // Define path to save image
-            Path pathImg = Paths.get(path + File.separator + filename);
+            Path pathImg = Paths.get(path + "/" + filename);
 
             // Write byte array to file
             Files.write(pathImg, data1);

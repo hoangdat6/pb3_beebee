@@ -66,8 +66,10 @@ public class ProductDAOImpl implements ProductDAO {
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
         sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+        sql.append("JOIN product_status AS ps ON p.product_status_id = ps.id\n");
+        sql.append("WHERE ps.id = 1\n");
         sql.append("GROUP BY p.id\n");
-//        sql.append("LIMIT 20 OFFSET 0");
+        sql.append("LIMIT 20 OFFSET 0");
 
 
         return abstractDAO.query(sql.toString(), resultSet -> {
@@ -132,6 +134,7 @@ public class ProductDAOImpl implements ProductDAO {
                         resultSet.getString("shop_name"),
                         resultSet.getString("avatar").split(",")[0],
                         resultSet.getInt("total_qty"),
+                        false,
                         null
                 );
             } catch (SQLException e) {

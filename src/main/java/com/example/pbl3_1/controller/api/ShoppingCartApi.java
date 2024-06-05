@@ -92,7 +92,6 @@ public class ShoppingCartApi extends HttpServlet {
 
                     List<SmallCartItem> smallCartItems = shoppingCartItemService.getAllCartItemsByUserId(user.getId());
                     String json = gson.toJson(smallCartItems);
-                    System.out.println(json);
                     response.getWriter().write(json);
                 }
                 break;

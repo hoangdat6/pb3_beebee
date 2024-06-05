@@ -31,11 +31,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductPreviewDTO> getProductsForHome() {
-        List<ProductPreviewDTO> productForHomeDTO = productDAO.getProductForHomeDtos();
-        for (ProductPreviewDTO product : productForHomeDTO){
-            product.setMainImage();
-        }
-        return productForHomeDTO;
+        return productDAO.getProductForHomeDtos();
     }
 
     @Override
