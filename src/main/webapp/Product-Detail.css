@@ -24,25 +24,19 @@
 
 /*Product Details*/
 #PD-Content {
+  padding-top: 30px;
+  padding-bottom: 50px;
   background-color: #fff;
-  margin-left: auto;
-  margin-right: auto;
-  width: 1200px;
 }
 
 #PD-Content .Product_Loop {
-  padding: 40px 20px 20px 20px;
-  /*padding-top: 40px;*/
   display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
+  flex-wrap: wrap;
   background-color: #fff;
 }
 
 /*Product Loop Left*/
 #PD-Content .Product_Loop .Product_Loop-left {
-  /*margin-right: 172px;*/
-  /*margin-bottom: 50px;*/
 }
 
 .Product_Loop-left {
@@ -129,9 +123,8 @@
 
 /*Product Loop Right*/
 #PD-Content .Product_Loop .Product_Loop-right {
-  flex-wrap: wrap;
-  min-width: 520px;
-  max-width: 650px;
+  max-width: 60%;
+  flex-grow: 1;
 }
 
 #PD-Content .Product_Loop .Product_Loop-right .Product-Content {
@@ -141,9 +134,8 @@
 }
 
 .text-description{
-  width: 650px;
   white-space: pre-line;
-  /*font-family: 'Courier New', Courier, monospace;*/
+  font-size: 16px;
 }
 
 .Product_Loop-right .Product-Evaluation {
@@ -327,7 +319,7 @@
 
 /*Begin Shop*/
 #PD-Content .Shop {
-  padding: 30px 170px;
+  padding: 30px 0;
   display: flex;
 }
 
@@ -367,8 +359,6 @@
 
 #PD-Content .Tabs .Tabs-Menu {
   display: flex;
-  padding-bottom: 25px;
-  border-bottom: 2px solid #ccc;
   margin-bottom: 35px;
 }
 
@@ -377,53 +367,34 @@
   font-size: 20px;
   color: #807E7E;
   position: relative;
+  transition: 0.3s ease-in-out;
+  border: 2px solid #fff;
   /* Để có thể sử dụng vị trí tương đối cho pseudo-element */
 }
 
 .Tabs .Tabs-Menu button:hover {
-  color: #000;
+  color: #141718;
+  border-bottom-color: #141718;
 }
 
-.Tabs .Tabs-Menu button::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  /*  Để căn giữa */
-  width: 20%;
-  /* Chiều rộng của border-bottom */
-  height: 2px;
-  /* Chiều dày của border-bottom */
-  background-color: #000;
-  /* Màu sắc của border-bottom */
-  transition: width 0.3s ease;
-  /* Thêm hiệu ứng chuyển động */
-  transform: translateX(-50%);
-  /* Để căn giữa */
-  visibility: hidden;
-  /* Không hiển thị ban đầu */
-}
-
-.Tabs .Tabs-Menu button:hover::after {
-  visibility: visible;
-  /* Hiển thị khi hover */
-  width: calc(100% - 60px);
-  /* Chiều rộng của border-bottom sẽ là 100% trừ đi kích thước của padding */
-}
-
-.Tabs .Review-Section {
+.Tabs #Tabs-Content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  max-height: 1000px;
+  overflow-y: scroll;
+  padding: 30px;
+  border: 1px solid #ccc;
+  border-radius: 15px;
 }
 
-.Review-Section>h3 {
+#Tabs-Content h3 {
   font-size: 28px;
   font-weight: 500;
   margin-bottom: 30px;
 }
 
-.Review-Section>button {
+#Tabs-Content button {
   border-radius: 5px;
   border: 1px solid #ccc;
   padding: 10px 12px;
@@ -432,20 +403,20 @@
   margin-bottom: 30px;
 }
 
-.Review-Section .Review-Item {
+#Tabs-Content .Review-Item {
   display: flex;
   padding: 30px 0;
   border-bottom: #ccc 0.5px solid;
   margin-bottom: 15px;
 }
 
-.Review-Section .Review-Item img {
+#Tabs-Content .Review-Item img {
   width: 72px;
   height: 72px;
   border-radius: 50%;
 }
 
-.Review-Section .Review-Item .Review-Item--Content {
+#Tabs-Content .Review-Item .Review-Item--Content {
   padding-left: 15px;
   max-width: 90%;
 }
