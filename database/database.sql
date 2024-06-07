@@ -23,7 +23,6 @@ DROP TABLE IF EXISTS `address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `address` (
-
                            `id` bigint NOT NULL AUTO_INCREMENT,
                            `detail` varchar(500) DEFAULT NULL,
                            `ward` varchar(50) DEFAULT NULL,
@@ -34,8 +33,7 @@ CREATE TABLE `address` (
                            `phone` char(15) DEFAULT NULL,
                            `fullname` varchar(50) DEFAULT NULL,
                            PRIMARY KEY (`id`)
-
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +42,7 @@ CREATE TABLE `address` (
 
 LOCK TABLES `address` WRITE;
 /*!40000 ALTER TABLE `address` DISABLE KEYS */;
-INSERT INTO `address` VALUES (1,NULL,'Hòa Khánh Nam','Liên chiều','Đà Nẵng','2024-04-21 16:16:07','2024-04-21 16:16:13',NULL,NULL),(2,'asdadas','00043','002','01','2024-04-27 13:00:01','2024-04-27 13:00:01',NULL,NULL),(3,'asdadas','00043','002','01','2024-04-27 13:04:05','2024-04-27 13:04:05',NULL,NULL),(4,'asdasdas','00043','002','01','2024-04-27 13:07:12','2024-04-27 13:07:12',NULL,NULL),(5,'asdasdas','00043','002','01','2024-04-27 13:07:47','2024-04-27 13:07:47',NULL,NULL),(6,'asdadadsa','00043','002','01','2024-04-27 13:11:09','2024-04-27 13:11:09',NULL,NULL),(7,'asdasdasdadssadadaas','00043','002','01','2024-04-27 13:13:38','2024-04-27 13:13:38',NULL,NULL),(8,'asdasdadasda','00043','002','01','2024-04-27 13:16:02','2024-04-27 13:16:02',NULL,NULL),(9,'asdadsadasd','00043','002','01','2024-04-27 13:22:01','2024-04-27 13:22:01',NULL,NULL),(10,'adadadasda','00043','002','01','2024-04-27 14:13:31','2024-04-27 14:13:31',NULL,NULL),(11,'adsasdasdsa','00043','002','01','2024-04-27 14:16:09','2024-04-27 14:16:09',NULL,NULL),(12,'asdadsad','00043','002','01','2024-04-27 14:17:46','2024-04-27 14:17:46',NULL,NULL),(13,'asdasdasd','00043','002','01','2024-04-27 14:19:11','2024-04-27 14:19:11',NULL,NULL),(14,'Xom van phuc','17683','427','40','2024-04-27 14:25:19','2024-04-27 14:25:19',NULL,NULL),(15,'asdasdadadasdasdasd','00043','002','01','2024-04-27 14:35:57','2024-04-27 14:35:57',NULL,NULL),(16,'adsasdasda','00043','002','01','2024-04-27 14:46:08','2024-04-27 14:46:08',NULL,NULL),(17,'asdasdsa','00043','002','01','2024-04-27 22:37:00','2024-04-27 22:37:00',NULL,NULL),(18,'12 nguyen khoa chiem','05617','168','19','2024-04-27 22:45:57','2024-04-27 22:45:57',NULL,NULL),(19,'12141231213','00043','002','01','2024-05-02 20:52:21','2024-05-02 20:52:21',NULL,NULL),(20,'121321','00043','002','01','2024-05-02 20:54:07','2024-05-02 20:54:07',NULL,NULL),(21,' 121321 ','00043','002','01','2024-05-02 20:55:39','2024-05-02 20:55:39',NULL,NULL),(22,'121312','00043','002','01','2024-05-02 20:57:05','2024-05-02 20:57:05',NULL,NULL),(23,'123 Hoàng Hoa Thám','00815','027','02','2024-05-10 15:24:09','2024-05-10 15:24:09',NULL,NULL),(24,'asdasdasdasd','00043','002','01','2024-05-10 22:03:06','2024-05-10 22:03:06',NULL,NULL),(25,'asdasdasda','00763','026','02','2024-05-11 16:13:13','2024-05-11 16:13:13',NULL,NULL),(26,'asdasdasdsa','00043','002','01','2024-05-11 16:23:34','2024-05-11 16:23:34',NULL,NULL),(27,'123123123','00043','002','01','2024-05-12 14:52:10','2024-05-12 14:52:10',NULL,NULL),(28,'','','','','2024-05-15 13:07:21','2024-05-15 13:07:21','',''),(31,'9 Hà Văn Tính','20198','490','48','2024-05-22 09:02:02','2024-05-22 09:02:42','0396454720','Hoàng Văn Đạt'),(32,'123 Nguyễn Tri Phương','00001','001','01','2024-05-22 09:02:32','2024-05-22 09:33:24','0396454720','Hoàng Văn Đạt'),(35,'asdasdasda','01359','043','04','2024-05-24 15:14:21','2024-05-24 15:14:21',NULL,NULL),(36,'asdasdsa','00001','001','01','2024-05-27 16:06:20','2024-05-27 16:06:20','asdasdsad','asdasd'),(37,'Xóm Vạn Phúc','17683','427','40','2024-05-30 09:18:56','2024-05-30 09:18:56','0396454720','Hoàng Văn Đat'),(38,'123, Nguyễn Tri Phương','00001','001','01','2024-06-02 08:59:16','2024-06-02 08:59:16',NULL,NULL);
+INSERT INTO `address` VALUES (1,NULL,'Hòa Khánh Nam','Liên chiều','Đà Nẵng','2024-04-21 16:16:07','2024-04-21 16:16:13',NULL,NULL),(2,'asdadas','00043','002','01','2024-04-27 13:00:01','2024-04-27 13:00:01',NULL,NULL),(3,'asdadas','00043','002','01','2024-04-27 13:04:05','2024-04-27 13:04:05',NULL,NULL),(4,'asdasdas','00043','002','01','2024-04-27 13:07:12','2024-04-27 13:07:12',NULL,NULL),(5,'asdasdas','00043','002','01','2024-04-27 13:07:47','2024-04-27 13:07:47',NULL,NULL),(6,'asdadadsa','00043','002','01','2024-04-27 13:11:09','2024-04-27 13:11:09',NULL,NULL),(7,'asdasdasdadssadadaas','00043','002','01','2024-04-27 13:13:38','2024-04-27 13:13:38',NULL,NULL),(8,'asdasdadasda','00043','002','01','2024-04-27 13:16:02','2024-04-27 13:16:02',NULL,NULL),(9,'asdadsadasd','00043','002','01','2024-04-27 13:22:01','2024-04-27 13:22:01',NULL,NULL),(10,'adadadasda','00043','002','01','2024-04-27 14:13:31','2024-04-27 14:13:31',NULL,NULL),(11,'adsasdasdsa','00043','002','01','2024-04-27 14:16:09','2024-04-27 14:16:09',NULL,NULL),(12,'asdadsad','00043','002','01','2024-04-27 14:17:46','2024-04-27 14:17:46',NULL,NULL),(13,'asdasdasd','00043','002','01','2024-04-27 14:19:11','2024-04-27 14:19:11',NULL,NULL),(14,'Xom van phuc','17683','427','40','2024-04-27 14:25:19','2024-04-27 14:25:19',NULL,NULL),(15,'asdasdadadasdasdasd','00043','002','01','2024-04-27 14:35:57','2024-04-27 14:35:57',NULL,NULL),(16,'adsasdasda','00043','002','01','2024-04-27 14:46:08','2024-04-27 14:46:08',NULL,NULL),(17,'asdasdsa','00043','002','01','2024-04-27 22:37:00','2024-04-27 22:37:00',NULL,NULL),(18,'12 nguyen khoa chiem','05617','168','19','2024-04-27 22:45:57','2024-04-27 22:45:57',NULL,NULL),(19,'12141231213','00043','002','01','2024-05-02 20:52:21','2024-05-02 20:52:21',NULL,NULL),(20,'121321','00043','002','01','2024-05-02 20:54:07','2024-05-02 20:54:07',NULL,NULL),(21,' 121321 ','00043','002','01','2024-05-02 20:55:39','2024-05-02 20:55:39',NULL,NULL),(22,'121312','00043','002','01','2024-05-02 20:57:05','2024-05-02 20:57:05',NULL,NULL),(23,'123 Hoàng Hoa Thám','00815','027','02','2024-05-10 15:24:09','2024-05-10 15:24:09',NULL,NULL),(24,'asdasdasdasd','00043','002','01','2024-05-10 22:03:06','2024-05-10 22:03:06',NULL,NULL),(25,'asdasdasda','00763','026','02','2024-05-11 16:13:13','2024-05-11 16:13:13',NULL,NULL),(26,'asdasdasdsa','00043','002','01','2024-05-11 16:23:34','2024-05-11 16:23:34',NULL,NULL),(27,'123123123','00043','002','01','2024-05-12 14:52:10','2024-05-12 14:52:10',NULL,NULL),(28,'','','','','2024-05-15 13:07:21','2024-05-15 13:07:21','',''),(31,'9 Hà Văn Tính','20198','490','48','2024-05-22 09:02:02','2024-05-22 09:02:42','0396454720','Hoàng Văn Đạt'),(32,'123 Nguyễn Tri Phương','00001','001','01','2024-05-22 09:02:32','2024-05-22 09:33:24','0396454720','Hoàng Văn Đạt'),(35,'asdasdasda','01359','043','04','2024-05-24 15:14:21','2024-05-24 15:14:21',NULL,NULL),(36,'asdasdsa','00001','001','01','2024-05-27 16:06:20','2024-05-27 16:06:20','asdasdsad','asdasd'),(37,'Xóm Vạn Phúc','17683','427','40','2024-05-30 09:18:56','2024-05-30 09:18:56','0396454720','Hoàng Văn Đat'),(38,'123, Nguyễn Tri Phương','00001','001','01','2024-06-02 08:59:16','2024-06-02 08:59:16',NULL,NULL),(39,'123 Nguyễn Tri Phương','00001','001','01','2024-06-07 16:29:07','2024-06-07 16:29:07','030283472','CoolMate');
 /*!40000 ALTER TABLE `address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -56,12 +54,10 @@ DROP TABLE IF EXISTS `categories`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `categories` (
-
                               `id` int NOT NULL AUTO_INCREMENT,
                               `name` varchar(50) DEFAULT NULL,
                               `img_path` varchar(255) DEFAULT NULL,
                               PRIMARY KEY (`id`)
-
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -83,9 +79,9 @@ DROP TABLE IF EXISTS `discount_type`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `discount_type` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                                 `id` smallint NOT NULL AUTO_INCREMENT,
+                                 `name` varchar(100) DEFAULT NULL,
+                                 PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -117,8 +113,7 @@ CREATE TABLE `order_detail` (
                                 KEY `order_detail_orders_id_fk` (`order_id`),
                                 CONSTRAINT `order_detail_ibfk_2` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`),
                                 CONSTRAINT `order_detail_orders_id_fk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
-
-) ENGINE=InnoDB AUTO_INCREMENT=204 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=207 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,8 +122,7 @@ CREATE TABLE `order_detail` (
 
 LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
-
-
+INSERT INTO `order_detail` VALUES (204,365,'000002101752555792',7,64800),(205,372,'00002331753952639',1,133200),(206,363,'000002101754038760',2,336000);
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -140,15 +134,15 @@ DROP TABLE IF EXISTS `order_discount`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `order_discount` (
-  `id` bigint NOT NULL AUTO_INCREMENT,
-  `order_id` varchar(20) NOT NULL,
-  `voucher_discount` int DEFAULT NULL,
-  `discount_type_id` smallint DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `discount_type_id` (`discount_type_id`),
-  KEY `order_discount_orders_id_fk` (`order_id`),
-  CONSTRAINT `order_discount_ibfk_1` FOREIGN KEY (`discount_type_id`) REFERENCES `discount_type` (`id`),
-  CONSTRAINT `order_discount_orders_id_fk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
+                                  `id` bigint NOT NULL AUTO_INCREMENT,
+                                  `order_id` varchar(20) NOT NULL,
+                                  `voucher_discount` int DEFAULT NULL,
+                                  `discount_type_id` smallint DEFAULT NULL,
+                                  PRIMARY KEY (`id`),
+                                  KEY `discount_type_id` (`discount_type_id`),
+                                  KEY `order_discount_orders_id_fk` (`order_id`),
+                                  CONSTRAINT `order_discount_ibfk_1` FOREIGN KEY (`discount_type_id`) REFERENCES `discount_type` (`id`),
+                                  CONSTRAINT `order_discount_orders_id_fk` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -169,9 +163,9 @@ DROP TABLE IF EXISTS `order_status`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `order_status` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `status` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                                `id` smallint NOT NULL AUTO_INCREMENT,
+                                `status` varchar(255) DEFAULT NULL,
+                                PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -193,32 +187,32 @@ DROP TABLE IF EXISTS `orders`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `orders` (
-  `id` varchar(20) NOT NULL,
-  `user_id` bigint DEFAULT NULL,
-  `payment_method_id` smallint DEFAULT NULL,
-  `shipping_method_id` smallint DEFAULT NULL,
-  `order_total` bigint DEFAULT NULL,
-  `order_status_id` smallint DEFAULT NULL,
-  `commune_address` varchar(50) DEFAULT NULL,
-  `district_address` varchar(50) DEFAULT NULL,
-  `province_address` varchar(50) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `phone` varchar(15) DEFAULT NULL,
-  `fullname` varchar(50) DEFAULT NULL,
-  `detail_address` varchar(50) DEFAULT NULL,
-  `seller_id` bigint DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `payment_method_id` (`payment_method_id`),
-  KEY `user_id` (`user_id`),
-  KEY `order_status` (`order_status_id`),
-  KEY `shipping_method` (`shipping_method_id`),
-  KEY `orders_sellers_id_fk` (`seller_id`),
-  CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_method` (`id`),
-  CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`id`),
-  CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`shipping_method_id`) REFERENCES `shipping_method` (`id`),
-  CONSTRAINT `orders_sellers_id_fk` FOREIGN KEY (`seller_id`) REFERENCES `sellers` (`id`)
+                          `id` varchar(20) NOT NULL,
+                          `user_id` bigint DEFAULT NULL,
+                          `payment_method_id` smallint DEFAULT NULL,
+                          `shipping_method_id` smallint DEFAULT NULL,
+                          `order_total` bigint DEFAULT NULL,
+                          `order_status_id` smallint DEFAULT NULL,
+                          `commune_address` varchar(50) DEFAULT NULL,
+                          `district_address` varchar(50) DEFAULT NULL,
+                          `province_address` varchar(50) DEFAULT NULL,
+                          `created_at` timestamp NULL DEFAULT NULL,
+                          `updated_at` timestamp NULL DEFAULT NULL,
+                          `phone` varchar(15) DEFAULT NULL,
+                          `fullname` varchar(50) DEFAULT NULL,
+                          `detail_address` varchar(50) DEFAULT NULL,
+                          `seller_id` bigint DEFAULT NULL,
+                          PRIMARY KEY (`id`),
+                          KEY `payment_method_id` (`payment_method_id`),
+                          KEY `user_id` (`user_id`),
+                          KEY `order_status` (`order_status_id`),
+                          KEY `shipping_method` (`shipping_method_id`),
+                          KEY `orders_sellers_id_fk` (`seller_id`),
+                          CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`payment_method_id`) REFERENCES `payment_method` (`id`),
+                          CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+                          CONSTRAINT `orders_ibfk_3` FOREIGN KEY (`order_status_id`) REFERENCES `order_status` (`id`),
+                          CONSTRAINT `orders_ibfk_4` FOREIGN KEY (`shipping_method_id`) REFERENCES `shipping_method` (`id`),
+                          CONSTRAINT `orders_sellers_id_fk` FOREIGN KEY (`seller_id`) REFERENCES `sellers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -228,6 +222,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES ('000002101752555792',10,2,3,453600,1,'00001','001','01','2024-06-07 16:29:16','2024-06-07 16:29:16','030283472','CoolMate','123 Nguyễn Tri Phương',2),('000002101754038760',10,2,3,672000,1,'00001','001','01','2024-06-07 16:53:59','2024-06-07 16:53:59','030283472','CoolMate','123 Nguyễn Tri Phương',2),('00002331753952639',3,2,3,133200,1,'00001','001','01','2024-06-07 16:52:33','2024-06-07 16:52:33','0396454720','Hoàng Văn Đạt','123 Nguyễn Tri Phương',23);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,9 +234,9 @@ DROP TABLE IF EXISTS `payment_method`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `payment_method` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                                  `id` smallint NOT NULL AUTO_INCREMENT,
+                                  `name` varchar(50) DEFAULT NULL,
+                                  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -277,8 +272,7 @@ CREATE TABLE `product_item` (
                                 CONSTRAINT `product_item_ibfk_1` FOREIGN KEY (`variation1`) REFERENCES `variation_option` (`id`),
                                 CONSTRAINT `product_item_ibfk_2` FOREIGN KEY (`variation2`) REFERENCES `variation_option` (`id`),
                                 CONSTRAINT `product_item_ibfk_3` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=363 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+) ENGINE=InnoDB AUTO_INCREMENT=392 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -287,8 +281,7 @@ CREATE TABLE `product_item` (
 
 LOCK TABLES `product_item` WRITE;
 /*!40000 ALTER TABLE `product_item` DISABLE KEYS */;
-INSERT INTO `product_item` VALUES (334,115,'ImageProduct/115/115_01.png',NULL,209,107,600000),(335,115,'ImageProduct/115/115_02.png',NULL,210,93,600000),(336,115,'ImageProduct/115/115_03.png',NULL,211,111,600000),(337,115,'ImageProduct/115/115_04.png',NULL,212,85,600000),(338,115,'ImageProduct/115/115_05.png',NULL,213,114,600000),(339,116,'ImageProduct/116/116_01.png',214,215,107,850000),(340,116,'ImageProduct/116/116_01.png',214,216,94,850000),(341,116,'ImageProduct/116/116_01.png',214,217,106,850000),(342,116,'ImageProduct/116/116_01.png',214,218,93,850000),(343,116,'ImageProduct/116/116_05.png',219,215,106,850000),(344,116,'ImageProduct/116/116_05.png',219,216,80,850000),(345,116,'ImageProduct/116/116_05.png',219,217,85,850000),(346,116,'ImageProduct/116/116_05.png',219,218,81,850000),(347,116,'ImageProduct/116/116_09.png',220,215,80,850000),(348,116,'ImageProduct/116/116_09.png',220,216,80,850000),(349,116,'ImageProduct/116/116_09.png',220,217,66,850000),(350,116,'ImageProduct/116/116_09.png',220,218,83,850000),(351,116,'ImageProduct/116/116_013.png',221,215,79,850000),(352,116,'ImageProduct/116/116_013.png',221,216,100,850000),(353,116,'ImageProduct/116/116_013.png',221,217,81,850000),(354,116,'ImageProduct/116/116_013.png',221,218,100,850000),(355,116,'ImageProduct/116/116_017.png',222,215,100,850000),(356,116,'ImageProduct/116/116_017.png',222,216,89,850000),(357,116,'ImageProduct/116/116_017.png',222,217,84,850000),(358,116,'ImageProduct/116/116_017.png',222,218,83,850000),(359,116,'ImageProduct/116/116_021.png',223,215,100,850000),(360,116,'ImageProduct/116/116_021.png',223,216,88,850000),(361,116,'ImageProduct/116/116_021.png',223,217,71,850000),(362,116,'ImageProduct/116/116_021.png',223,218,61,850000);
-
+INSERT INTO `product_item` VALUES (334,115,'ImageProduct/115/115_01.png',NULL,209,107,600000),(335,115,'ImageProduct/115/115_02.png',NULL,210,93,600000),(336,115,'ImageProduct/115/115_03.png',NULL,211,111,600000),(337,115,'ImageProduct/115/115_04.png',NULL,212,85,600000),(338,115,'ImageProduct/115/115_05.png',NULL,213,114,600000),(339,116,'ImageProduct/116/116_01.png',214,215,107,850000),(340,116,'ImageProduct/116/116_01.png',214,216,94,850000),(341,116,'ImageProduct/116/116_01.png',214,217,106,850000),(342,116,'ImageProduct/116/116_01.png',214,218,93,850000),(343,116,'ImageProduct/116/116_05.png',219,215,106,850000),(344,116,'ImageProduct/116/116_05.png',219,216,80,850000),(345,116,'ImageProduct/116/116_05.png',219,217,85,850000),(346,116,'ImageProduct/116/116_05.png',219,218,81,850000),(347,116,'ImageProduct/116/116_09.png',220,215,80,850000),(348,116,'ImageProduct/116/116_09.png',220,216,80,850000),(349,116,'ImageProduct/116/116_09.png',220,217,66,850000),(350,116,'ImageProduct/116/116_09.png',220,218,83,850000),(351,116,'ImageProduct/116/116_013.png',221,215,79,850000),(352,116,'ImageProduct/116/116_013.png',221,216,100,850000),(353,116,'ImageProduct/116/116_013.png',221,217,81,850000),(354,116,'ImageProduct/116/116_013.png',221,218,100,850000),(355,116,'ImageProduct/116/116_017.png',222,215,100,850000),(356,116,'ImageProduct/116/116_017.png',222,216,89,850000),(357,116,'ImageProduct/116/116_017.png',222,217,84,850000),(358,116,'ImageProduct/116/116_017.png',222,218,83,850000),(359,116,'ImageProduct/116/116_021.png',223,215,100,850000),(360,116,'ImageProduct/116/116_021.png',223,216,88,850000),(361,116,'ImageProduct/116/116_021.png',223,217,71,850000),(362,116,'ImageProduct/116/116_021.png',223,218,61,850000),(363,121,'ImageProduct/121/121_01.png',NULL,224,98,400000),(364,121,'ImageProduct/121/121_02.png',NULL,225,100,400000),(365,125,'ImageProduct/125/125_0.png',NULL,NULL,95,90000),(366,126,'ImageProduct/126/126_01.png',NULL,226,12,180000),(367,126,'ImageProduct/126/126_02.png',NULL,227,30,180000),(368,126,'ImageProduct/126/126_03.png',NULL,228,121,180000),(369,126,'ImageProduct/126/126_04.png',NULL,229,123,180000),(370,126,'ImageProduct/126/126_05.png',NULL,230,12,180000),(371,127,'ImageProduct/127/127_01.png',231,232,12,180000),(372,127,'ImageProduct/127/127_01.png',231,233,122,180000),(373,127,'ImageProduct/127/127_01.png',231,234,121,180000),(374,127,'ImageProduct/127/127_01.png',231,235,105,180000),(375,127,'ImageProduct/127/127_05.png',236,232,112,180000),(376,127,'ImageProduct/127/127_05.png',236,233,107,180000),(377,127,'ImageProduct/127/127_05.png',236,234,98,180000),(378,127,'ImageProduct/127/127_05.png',236,235,102,180000),(379,127,'ImageProduct/127/127_09.png',237,232,103,180000),(380,127,'ImageProduct/127/127_09.png',237,233,108,180000),(381,127,'ImageProduct/127/127_09.png',237,234,106,180000),(382,127,'ImageProduct/127/127_09.png',237,235,111,180000),(383,127,'ImageProduct/127/127_013.png',238,232,104,180000),(384,127,'ImageProduct/127/127_013.png',238,233,108,180000),(385,127,'ImageProduct/127/127_013.png',238,234,109,180000),(386,127,'ImageProduct/127/127_013.png',238,235,105,180000),(387,127,'ImageProduct/127/127_017.png',239,232,112,180000),(388,127,'ImageProduct/127/127_017.png',239,233,108,180000),(389,127,'ImageProduct/127/127_017.png',239,234,107,180000),(390,127,'ImageProduct/127/127_017.png',239,235,105,180000),(391,128,'ImageProduct/128/128_0.png',NULL,NULL,212,180000);
 /*!40000 ALTER TABLE `product_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -300,7 +293,6 @@ DROP TABLE IF EXISTS `product_status`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product_status` (
-
                                   `id` smallint NOT NULL,
                                   `name` varchar(20) DEFAULT NULL,
                                   PRIMARY KEY (`id`)
@@ -325,7 +317,6 @@ DROP TABLE IF EXISTS `products`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `products` (
-
                             `id` bigint NOT NULL AUTO_INCREMENT,
                             `name` varchar(500) DEFAULT NULL,
                             `description` varchar(4096) DEFAULT NULL,
@@ -344,8 +335,7 @@ CREATE TABLE `products` (
                             CONSTRAINT `products_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
                             CONSTRAINT `products_ibfk_2` FOREIGN KEY (`seller_id`) REFERENCES `sellers` (`id`),
                             CONSTRAINT `products_product_status_id_fk` FOREIGN KEY (`product_status_id`) REFERENCES `product_status` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -354,8 +344,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-
-INSERT INTO `products` VALUES (115,'Vợt cầu lông Kumpoo K520 pro chính hãng sợi carbon 4U căng sẵn công thủ toàn diện cho mọi người chơi','Siêu phẩm Kumpoo Power Control K520 Pro là sự lựa chọn hàng đầu khi bạn đang tìm kiếm cho mình vợt cầu lông giá rẻ nổi trội với thiết kế đẹp, hiện đại\n\n\n\nQUÀ TẶNG:\n\n- 1 cước chính hãng KUMPOO hoặc VENSON (VS) (CĂNG SẴN 10.5KG)\n\n- 1 quấn cán chính hãng Kumpoo (Màu ngẫu nhiên)\n\n- 1 bao nỉ đựng vợt\n\n\n\nLƯU Ý\n\n- Vợt cầu lông căng sẵn 10.5kg, khách nhận chỉ việc sử dụng. Nếu bạn không muốn căng vợt sẵn, vui lòng note chú ý cho shop nhé \n\n- Shop gửi nguyên set, cuốn cán không quấn sẵn\n\n- Shop không nhận căng quá 12kg. Nếu bạn muốn căng ≥12kg, vui lòng căng máy điện tử tại cửa hàng thể thao cầu lông gần bạn, note chú ý \"Không căng vợt\" và shop sẽ gửi khung vợt, cước cho bạn ạ\n\n- 1 ĐỔI 1 TRONG 30 NGÀY: Đối với vợt sập khung, lỗi do nhà sản xuất. KHÔNG áp dụng với cước vợt và khung vợt hỏng, gãy do ngoại lực tác động, va chạm khi chơi cầu\n\n\n\nTHÔNG SỐ KỸ THUẬT\n\n- Thương hiệu: Kumpoo\n\n- Mã sản phẩm: Power Control K520 Pro\n\n- Màu sắc: Đen, Trắng\n\n- Cước vợt: Căng sẵn (Chọn màu)\n\n- Độ cứng: 8.5 - Trung bình\n\n- Chất liệu: Carbon Fiber\n\n- Trọng lượng: 82 +- 2 g (4U)\n\n- Chiều dài vợt: 675 mm\n\n- Sức căng dây: 24 - 28 lbs (Tối đa 12,7kg)\n\n- Điểm cân bằng: 290 +- 5 mm\n\n\n\nCÔNG NGHỆ VỢT KUMPOO K520 PRO\n\n- Áp dụng công nghệ High Modulus Graphite + Nano Carbon Control Power tăng độ bền lên 20%, giúp người chơi có những cú đánh uy lực, chuẩn xác.\n\n- Vợt Kumpoo K520 Pro thuộc dòng vợt cầu lông giá rẻ với thông số khá dễ chịu như trọng lượng 4U, điểm cân bằng 290mm và so với bản thường, Kumpoo K520 Pro sẽ có đũa cứng hơn giúp các pha phản tạt và phòng thủ của người chơi được hỗ trợ nhiều hơn.\n\n- Chuyển đổi chế độ tấn công và phòng thủ theo ý muốn rất tốt cho những người mới bắt đầu luyện tập buộc và bảo vệ cổ tay.\n\n- Phần khung của vợt cầu lông Kumpoo K520 Pro chính hãng được thiết kế theo dạng hộp cho khả năng tăng cường sức mạnh tối đa trong mỗi cú vung đảm bảo sẽ hỗ trợ lực cực tốt cho các lông thủ trong các quả đập cầu hoặc phông cầu cao sâu đi đến cuối sân.\n\n\n\nĐỐI TƯỢNG PHÙ HỢP:\n\n- Lối chơi toàn diện, thiên về điều cầu nổi trội với những quả phông cầu cao sâu đi đến cuối sân và luôn cán vạch đích\n\n- Dùng trong cả đánh đơn và đánh đôi\n\n- Dành cho người chơi có trình độ trung bình, trung bình - yếu và cả những bạn mới tập\n\n\n\nKUMPOO CAM KẾT:\n\n- Sản phẩm chính hãng, nhập khẩu trực tiếp từ thương hiệu Kumpoo\n\n- Sản phẩm 100% giống mô tả\n\n- Đảm bảo chất lượng, dịch vụ tốt nhất, hàng được giao từ 1-5 ngày kể từ ngày đặt hàng\n\n- Giao hàng trên toàn quốc theo hình thức COD hoặc qua ví ShopeePay\n\n- Đổi trả theo đúng quy định của Shopee\n\n1. Điều kiện áp dụng (trong vòng 07 ngày kể từ khi nhận sản phẩm):\n\n- Hàng hoá vẫn còn mới, chưa qua sử dụng\n\n- Hàng hóa hư hỏng do vận chuyển hoặc do nhà sản xuất.\n\n2. Trường hợp được chấp nhận:\n\n- Hàng không đúng chủng loại, mẫu mã như quý khách đặt hàng\n\n- Không đủ số lượng, không đủ bộ như trong đơn hàng\n\n- Tình trạng bên ngoài bị ảnh hưởng như rách bao bì, bong tróc, bể vỡ…\n\n3. Trường hợp không đủ điều kiện áp dụng chính sách:\n\n- Quá 03 ngày kể từ khi Quý khách nhận hàng\n\n- Gửi lại hàng không đúng mẫu mã, không phải hàng của KUMPOO\n\n- Đặt nhầm sản phẩm, chủng loại, không thích, không hợp,...\n\n-  Không có video quay lại quá trình nhận và mở sản phẩm\n\n\n\n#votcaulong #vot #cau #long #vot #chinhhang #giare #carbon #lining #kumpoo #the #thao #K520 #K520pro #lanting #ak7 #e55ls #power #control #yonex #sakura #pc99 #nam #nu #dung #cu #badminton #tan #cong #phong #thu #toan #dien','ImageProduct/115/115_0.png,ImageProduct/115/115_1.png,ImageProduct/115/115_2.png,ImageProduct/115/115_3.png,ImageProduct/115/115_4.png,ImageProduct/115/115_5.png,ImageProduct/115/115_6.png,ImageProduct/115/115_7.png,ImageProduct/115/115_8.png',4,2,'2024-06-07 15:11:26',18,33,0,1),(116,'Vợt cầu lông Kumpoo Light Pink 4U 100% carbon căng sẵn 10.5kg tặng kèm cước, quấn cán, túi đựng vợt','Siêu phẩm PHÂN PHỐI ĐỘC QUYỀN Kumpoo Power Control Light Pink là sự lựa chọn hàng đầu khi bạn đang tìm kiếm cho mình vợt cầu lông độc đáo, đặc biệt nổi trội với thiết kế đẹp, hiện đạI\n\n\n\nSet quà tặng đơn hàng:\n\n- 1 cước chính hãng KUMPOO hoặc VENSON (VS) (CĂNG SẴN 10.5KG)\n\n- 1 quấn cán vợt chính hãng Kumpoo\n\n- 1 bao nỉ đựng vợt\n\n- 1 đôi tất thể thao trắng unisex chính hãng (Số lượng quà tặng có hạn - THÊM DEAL SỐC 0Đ VÀO GIỎ HÀNG NGAY. Trong trường hợp khách hàng KHÔNG thêm deal sốc 0đ sẽ KHÔNG nhận được quà tặng giới hạn ạ)\n\n\n\nLƯU Ý\n\n- Vợt cầu lông căng sẵn 10.5kg, khách nhận chỉ việc sử dụng. Nếu bạn không muốn căng vợt sẵn, vui lòng note chú ý cho shop nhé \n\n- Shop gửi nguyên set, cuốn cán không quấn sẵn\n\n- Shop không nhận căng quá 12kg. Nếu bạn muốn căng ≥12kg, vui lòng căng máy điện tử tại cửa hàng thể thao cầu lông gần bạn, note chú ý \"Không căng vợt\" và shop sẽ gửi khung vợt, cước cho bạn ạ\n\n- 1 ĐỔI 1 TRONG 30 NGÀY: Đối với vợt sập khung, lỗi do nhà sản xuất. KHÔNG áp dụng với cước vợt và khung vợt hỏng, gãy do ngoại lực tác động, va chạm khi chơi cầu\n\n\n\nTHÔNG SỐ KỸ THUẬT\n\n- Thương hiệu: Kumpoo\n\n- Mã sản phẩm: Power Control Light Pink\n\n- Màu sắc: Đen Hồng\n\n- Cước vợt: K65 Kumpoo\n\n- Độ cứng: 8.5 - Trung bình\n\n- Chất liệu: Carbon Fiber\n\n- Trọng lượng: 82 +- 2 g (4U)\n\n- Chiều dài vợt: 675 mm\n\n- Sức căng dây: 24 - 28 lbs (Tối đa 12,7kg)\n\n- Điểm cân bằng: 290 +- 5 mm\n\n\n\nCÔNG NGHỆ VỢT KUMPOO LIGHTPINK PHÂN PHỐI ĐỘC QUYỀN:\n\n- Áp dụng công nghệ High Modulus Graphite + Nano Carbon Control Power tăng độ bền lên 20%, giúp người chơi có những cú đánh uy lực, chuẩn xác.\n\n- Vợt cầu lông Kumpoo Light Pink với thông số khá dễ chịu như trọng lượng 4U, điểm cân bằng 290mm và so với bản thường, Kumpoo Power Control LightPink sẽ có đũa cứng hơn giúp các pha phản tạt và phòng thủ của người chơi được hỗ trợ nhiều hơn.\n\n- Chuyển đổi chế độ tấn công và phòng thủ theo ý muốn rất tốt cho những người mới bắt đầu luyện tập buộc và bảo vệ cổ tay.\n\n- Phần khung của vợt cầu lông Kumpoo Light Pink chính hãng được thiết kế theo dạng hộp cho khả năng tăng cường sức mạnh tối đa trong mỗi cú vung đảm bảo sẽ hỗ trợ lực cực tốt cho các lông thủ trong các quả đập cầu hoặc phông cầu cao sâu đi đến cuối sân.\n\n\n\nĐỐI TƯỢNG PHÙ HỢP:\n\n- Lối chơi toàn diện, thiên về điều cầu nổi trội với những quả phông cầu cao sâu đi đến cuối sân và luôn cán vạch đích\n\n- Dùng trong cả đánh đơn và đánh đôi\n\n- Dành cho người chơi có trình độ trung bình, trung bình - yếu và cả những bạn mới tập\n\n\n\nKUMPOO CAM KẾT:\n\n- Sản phẩm chính hãng, nhập khẩu trực tiếp từ thương hiệu Kumpoo\n\n- Sản phẩm 100% giống mô tả\n\n- Đảm bảo chất lượng, dịch vụ tốt nhất, hàng được giao từ 1-5 ngày kể từ ngày đặt hàng\n\n- Giao hàng trên toàn quốc theo hình thức COD hoặc qua ví ShopeePay\n\n- Đổi trả theo đúng quy định của Shopee\n\n1. Điều kiện áp dụng (trong vòng 07 ngày kể từ khi nhận sản phẩm):\n\n- Hàng hoá vẫn còn mới, chưa qua sử dụng\n\n- Hàng hóa hư hỏng do vận chuyển hoặc do nhà sản xuất.\n\n2. Trường hợp được chấp nhận:\n\n- Hàng không đúng chủng loại, mẫu mã như quý khách đặt hàng\n\n- Không đủ số lượng, không đủ bộ như trong đơn hàng\n\n- Tình trạng bên ngoài bị ảnh hưởng như rách bao bì, bong tróc, bể vỡ…\n\n3. Trường hợp không đủ điều kiện áp dụng chính sách:\n\n- Quá 03 ngày kể từ khi Quý khách nhận hàng\n\n- Gửi lại hàng không đúng mẫu mã, không phải hàng của KUMPOO\n\n- Đặt nhầm sản phẩm, chủng loại, không thích, không hợp,...\n\n-  Không có video quay lại quá trình nhận và mở sản phẩm\n\n\n\n#votcaulong #vot #cau #long #lightpink #blackpink #quatang #noel #tet #giangsinh #hong #docquyen #light #black #pink #moi #ramat #chinhhang #giare #carbon #lining #kumpoo #the #thao #K520 #K520pro #lanting #ak7 #e55ls #power #control #yonex #sakura #pc99 #nam #nu #dung #cu #badminton #tan #cong #phong #thu #toan #dien #den #trang #xanh','ImageProduct/116/116_0.png,ImageProduct/116/116_1.png,ImageProduct/116/116_2.png,ImageProduct/116/116_3.png,ImageProduct/116/116_4.png,ImageProduct/116/116_5.png,ImageProduct/116/116_6.png,ImageProduct/116/116_7.png,ImageProduct/116/116_8.png',4,2,'2024-06-07 15:42:27',12,16,0,1);
+INSERT INTO `products` VALUES (115,'Vợt cầu lông Kumpoo K520 pro chính hãng sợi carbon 4U căng sẵn công thủ toàn diện cho mọi người chơi','Siêu phẩm Kumpoo Power Control K520 Pro là sự lựa chọn hàng đầu khi bạn đang tìm kiếm cho mình vợt cầu lông giá rẻ nổi trội với thiết kế đẹp, hiện đại\n\n\n\nQUÀ TẶNG:\n\n- 1 cước chính hãng KUMPOO hoặc VENSON (VS) (CĂNG SẴN 10.5KG)\n\n- 1 quấn cán chính hãng Kumpoo (Màu ngẫu nhiên)\n\n- 1 bao nỉ đựng vợt\n\n\n\nLƯU Ý\n\n- Vợt cầu lông căng sẵn 10.5kg, khách nhận chỉ việc sử dụng. Nếu bạn không muốn căng vợt sẵn, vui lòng note chú ý cho shop nhé \n\n- Shop gửi nguyên set, cuốn cán không quấn sẵn\n\n- Shop không nhận căng quá 12kg. Nếu bạn muốn căng ≥12kg, vui lòng căng máy điện tử tại cửa hàng thể thao cầu lông gần bạn, note chú ý \"Không căng vợt\" và shop sẽ gửi khung vợt, cước cho bạn ạ\n\n- 1 ĐỔI 1 TRONG 30 NGÀY: Đối với vợt sập khung, lỗi do nhà sản xuất. KHÔNG áp dụng với cước vợt và khung vợt hỏng, gãy do ngoại lực tác động, va chạm khi chơi cầu\n\n\n\nTHÔNG SỐ KỸ THUẬT\n\n- Thương hiệu: Kumpoo\n\n- Mã sản phẩm: Power Control K520 Pro\n\n- Màu sắc: Đen, Trắng\n\n- Cước vợt: Căng sẵn (Chọn màu)\n\n- Độ cứng: 8.5 - Trung bình\n\n- Chất liệu: Carbon Fiber\n\n- Trọng lượng: 82 +- 2 g (4U)\n\n- Chiều dài vợt: 675 mm\n\n- Sức căng dây: 24 - 28 lbs (Tối đa 12,7kg)\n\n- Điểm cân bằng: 290 +- 5 mm\n\n\n\nCÔNG NGHỆ VỢT KUMPOO K520 PRO\n\n- Áp dụng công nghệ High Modulus Graphite + Nano Carbon Control Power tăng độ bền lên 20%, giúp người chơi có những cú đánh uy lực, chuẩn xác.\n\n- Vợt Kumpoo K520 Pro thuộc dòng vợt cầu lông giá rẻ với thông số khá dễ chịu như trọng lượng 4U, điểm cân bằng 290mm và so với bản thường, Kumpoo K520 Pro sẽ có đũa cứng hơn giúp các pha phản tạt và phòng thủ của người chơi được hỗ trợ nhiều hơn.\n\n- Chuyển đổi chế độ tấn công và phòng thủ theo ý muốn rất tốt cho những người mới bắt đầu luyện tập buộc và bảo vệ cổ tay.\n\n- Phần khung của vợt cầu lông Kumpoo K520 Pro chính hãng được thiết kế theo dạng hộp cho khả năng tăng cường sức mạnh tối đa trong mỗi cú vung đảm bảo sẽ hỗ trợ lực cực tốt cho các lông thủ trong các quả đập cầu hoặc phông cầu cao sâu đi đến cuối sân.\n\n\n\nĐỐI TƯỢNG PHÙ HỢP:\n\n- Lối chơi toàn diện, thiên về điều cầu nổi trội với những quả phông cầu cao sâu đi đến cuối sân và luôn cán vạch đích\n\n- Dùng trong cả đánh đơn và đánh đôi\n\n- Dành cho người chơi có trình độ trung bình, trung bình - yếu và cả những bạn mới tập\n\n\n\nKUMPOO CAM KẾT:\n\n- Sản phẩm chính hãng, nhập khẩu trực tiếp từ thương hiệu Kumpoo\n\n- Sản phẩm 100% giống mô tả\n\n- Đảm bảo chất lượng, dịch vụ tốt nhất, hàng được giao từ 1-5 ngày kể từ ngày đặt hàng\n\n- Giao hàng trên toàn quốc theo hình thức COD hoặc qua ví ShopeePay\n\n- Đổi trả theo đúng quy định của Shopee\n\n1. Điều kiện áp dụng (trong vòng 07 ngày kể từ khi nhận sản phẩm):\n\n- Hàng hoá vẫn còn mới, chưa qua sử dụng\n\n- Hàng hóa hư hỏng do vận chuyển hoặc do nhà sản xuất.\n\n2. Trường hợp được chấp nhận:\n\n- Hàng không đúng chủng loại, mẫu mã như quý khách đặt hàng\n\n- Không đủ số lượng, không đủ bộ như trong đơn hàng\n\n- Tình trạng bên ngoài bị ảnh hưởng như rách bao bì, bong tróc, bể vỡ…\n\n3. Trường hợp không đủ điều kiện áp dụng chính sách:\n\n- Quá 03 ngày kể từ khi Quý khách nhận hàng\n\n- Gửi lại hàng không đúng mẫu mã, không phải hàng của KUMPOO\n\n- Đặt nhầm sản phẩm, chủng loại, không thích, không hợp,...\n\n-  Không có video quay lại quá trình nhận và mở sản phẩm\n\n\n\n#votcaulong #vot #cau #long #vot #chinhhang #giare #carbon #lining #kumpoo #the #thao #K520 #K520pro #lanting #ak7 #e55ls #power #control #yonex #sakura #pc99 #nam #nu #dung #cu #badminton #tan #cong #phong #thu #toan #dien','ImageProduct/115/115_0.png,ImageProduct/115/115_1.png,ImageProduct/115/115_2.png,ImageProduct/115/115_3.png,ImageProduct/115/115_4.png,ImageProduct/115/115_5.png,ImageProduct/115/115_6.png,ImageProduct/115/115_7.png,ImageProduct/115/115_8.png',4,2,'2024-06-07 15:11:26',18,36,0,1),(116,'Vợt cầu lông Kumpoo Light Pink 4U 100% carbon căng sẵn 10.5kg tặng kèm cước, quấn cán, túi đựng vợt','Siêu phẩm PHÂN PHỐI ĐỘC QUYỀN Kumpoo Power Control Light Pink là sự lựa chọn hàng đầu khi bạn đang tìm kiếm cho mình vợt cầu lông độc đáo, đặc biệt nổi trội với thiết kế đẹp, hiện đạI\n\n\n\nSet quà tặng đơn hàng:\n\n- 1 cước chính hãng KUMPOO hoặc VENSON (VS) (CĂNG SẴN 10.5KG)\n\n- 1 quấn cán vợt chính hãng Kumpoo\n\n- 1 bao nỉ đựng vợt\n\n- 1 đôi tất thể thao trắng unisex chính hãng (Số lượng quà tặng có hạn - THÊM DEAL SỐC 0Đ VÀO GIỎ HÀNG NGAY. Trong trường hợp khách hàng KHÔNG thêm deal sốc 0đ sẽ KHÔNG nhận được quà tặng giới hạn ạ)\n\n\n\nLƯU Ý\n\n- Vợt cầu lông căng sẵn 10.5kg, khách nhận chỉ việc sử dụng. Nếu bạn không muốn căng vợt sẵn, vui lòng note chú ý cho shop nhé \n\n- Shop gửi nguyên set, cuốn cán không quấn sẵn\n\n- Shop không nhận căng quá 12kg. Nếu bạn muốn căng ≥12kg, vui lòng căng máy điện tử tại cửa hàng thể thao cầu lông gần bạn, note chú ý \"Không căng vợt\" và shop sẽ gửi khung vợt, cước cho bạn ạ\n\n- 1 ĐỔI 1 TRONG 30 NGÀY: Đối với vợt sập khung, lỗi do nhà sản xuất. KHÔNG áp dụng với cước vợt và khung vợt hỏng, gãy do ngoại lực tác động, va chạm khi chơi cầu\n\n\n\nTHÔNG SỐ KỸ THUẬT\n\n- Thương hiệu: Kumpoo\n\n- Mã sản phẩm: Power Control Light Pink\n\n- Màu sắc: Đen Hồng\n\n- Cước vợt: K65 Kumpoo\n\n- Độ cứng: 8.5 - Trung bình\n\n- Chất liệu: Carbon Fiber\n\n- Trọng lượng: 82 +- 2 g (4U)\n\n- Chiều dài vợt: 675 mm\n\n- Sức căng dây: 24 - 28 lbs (Tối đa 12,7kg)\n\n- Điểm cân bằng: 290 +- 5 mm\n\n\n\nCÔNG NGHỆ VỢT KUMPOO LIGHTPINK PHÂN PHỐI ĐỘC QUYỀN:\n\n- Áp dụng công nghệ High Modulus Graphite + Nano Carbon Control Power tăng độ bền lên 20%, giúp người chơi có những cú đánh uy lực, chuẩn xác.\n\n- Vợt cầu lông Kumpoo Light Pink với thông số khá dễ chịu như trọng lượng 4U, điểm cân bằng 290mm và so với bản thường, Kumpoo Power Control LightPink sẽ có đũa cứng hơn giúp các pha phản tạt và phòng thủ của người chơi được hỗ trợ nhiều hơn.\n\n- Chuyển đổi chế độ tấn công và phòng thủ theo ý muốn rất tốt cho những người mới bắt đầu luyện tập buộc và bảo vệ cổ tay.\n\n- Phần khung của vợt cầu lông Kumpoo Light Pink chính hãng được thiết kế theo dạng hộp cho khả năng tăng cường sức mạnh tối đa trong mỗi cú vung đảm bảo sẽ hỗ trợ lực cực tốt cho các lông thủ trong các quả đập cầu hoặc phông cầu cao sâu đi đến cuối sân.\n\n\n\nĐỐI TƯỢNG PHÙ HỢP:\n\n- Lối chơi toàn diện, thiên về điều cầu nổi trội với những quả phông cầu cao sâu đi đến cuối sân và luôn cán vạch đích\n\n- Dùng trong cả đánh đơn và đánh đôi\n\n- Dành cho người chơi có trình độ trung bình, trung bình - yếu và cả những bạn mới tập\n\n\n\nKUMPOO CAM KẾT:\n\n- Sản phẩm chính hãng, nhập khẩu trực tiếp từ thương hiệu Kumpoo\n\n- Sản phẩm 100% giống mô tả\n\n- Đảm bảo chất lượng, dịch vụ tốt nhất, hàng được giao từ 1-5 ngày kể từ ngày đặt hàng\n\n- Giao hàng trên toàn quốc theo hình thức COD hoặc qua ví ShopeePay\n\n- Đổi trả theo đúng quy định của Shopee\n\n1. Điều kiện áp dụng (trong vòng 07 ngày kể từ khi nhận sản phẩm):\n\n- Hàng hoá vẫn còn mới, chưa qua sử dụng\n\n- Hàng hóa hư hỏng do vận chuyển hoặc do nhà sản xuất.\n\n2. Trường hợp được chấp nhận:\n\n- Hàng không đúng chủng loại, mẫu mã như quý khách đặt hàng\n\n- Không đủ số lượng, không đủ bộ như trong đơn hàng\n\n- Tình trạng bên ngoài bị ảnh hưởng như rách bao bì, bong tróc, bể vỡ…\n\n3. Trường hợp không đủ điều kiện áp dụng chính sách:\n\n- Quá 03 ngày kể từ khi Quý khách nhận hàng\n\n- Gửi lại hàng không đúng mẫu mã, không phải hàng của KUMPOO\n\n- Đặt nhầm sản phẩm, chủng loại, không thích, không hợp,...\n\n-  Không có video quay lại quá trình nhận và mở sản phẩm\n\n\n\n#votcaulong #vot #cau #long #lightpink #blackpink #quatang #noel #tet #giangsinh #hong #docquyen #light #black #pink #moi #ramat #chinhhang #giare #carbon #lining #kumpoo #the #thao #K520 #K520pro #lanting #ak7 #e55ls #power #control #yonex #sakura #pc99 #nam #nu #dung #cu #badminton #tan #cong #phong #thu #toan #dien #den #trang #xanh','ImageProduct/116/116_0.png,ImageProduct/116/116_1.png,ImageProduct/116/116_2.png,ImageProduct/116/116_3.png,ImageProduct/116/116_4.png,ImageProduct/116/116_5.png,ImageProduct/116/116_6.png,ImageProduct/116/116_7.png,ImageProduct/116/116_8.png',4,2,'2024-06-07 15:42:27',12,19,0,1),(121,'Quả cầu lông ngỗng Kumpoo 4 chính hãng, ống cầu lông 12 quả siêu bền chất lượng cao, chịu va đập tốt','Quả cầu lông ngỗng Kumpoo 4 chính hãng, ống cầu lông 12 quả siêu bền, chịu va đập tốt, luyện tập trong nhà và ngoài trời – thương hiệu thể thao nổi tiếng thế giới đến từ Nhật Bản cung cấp cho người chơi những sản phẩm cầu lông chất lượng và bền bỉ được đánh giá cao\n\n\n\nTHÔNG TIN SẢN PHẨM\n\n- Quy cách đóng gói: 1 hộp (12 quả cầu lông)\n\n- Lông cầu: Lông ngỗng\n\n- Tốc độ bay: 77/77\n\n- Hãng sản xuất: Kumpoo\n\n- Mẫu mã: Kumpoo 4\n\n- Thích hợp: Thi đấu và tập luyện, đánh trong nhà và ngoài trời\n\n\n\nƯU ĐIỂM SẢN PHẨM\n\n- Quả cầu lông Kumpoo với tốc độ 77 thích hợp cho những khu vực có khí hậu nóng ẩm như Việt Nam. Quả cầu được thiết kế tiêu chuẩn dùng được trong cả tập luyện và thi đấu, phù hợp với nhiều kiểu thời tiết và đa dạng địa hình: trong nhà hay ngoài trời đều có thể sử dụng được.\n\n- Quả cầu lông tới từ thương hiệu Kumpoo có độ bền cao được sử dụng loại lông vũ bền nhất của gia cầm và phần đế cầu sử dụng loại cao su xốp tiêu chuẩn có độ khả năng chịu sức đập cầu lớn, ổn định trong từng đường cầu.\n\n- Một ống cầu lông Kumpoo bao gồm 12 quả được thiết kế tiêu chuẩn phù hợp với cả trong thi đấu chuyên nghiệp hay tập luyện thường ngày.\n\n\n\nKUMPOO CAM KẾT:\n\n- Sản phẩm chính hãng, nhập khẩu trực tiếp từ thương hiệu Kumpoo\n\n- Sản phẩm 100% giống mô tả\n\n- Đảm bảo chất lượng, dịch vụ tốt nhất, hàng được giao từ 1-5 ngày kể từ ngày đặt hàng\n\n- Giao hàng trên toàn quốc theo hình thức COD hoặc qua ví ShopeePay\n\n- Đổi trả theo đúng quy định của Shopee\n\n1. Điều kiện áp dụng (trong vòng 07 ngày kể từ khi nhận sản phẩm):\n\n- Hàng hoá vẫn còn mới, chưa qua sử dụng\n\n- Hàng hóa hư hỏng do vận chuyển hoặc do nhà sản xuất.\n\n2. Trường hợp được chấp nhận:\n\n- Hàng không đúng chủng loại, mẫu mã như quý khách đặt hàng\n\n- Không đủ số lượng, không đủ bộ như trong đơn hàng\n\n- Tình trạng bên ngoài bị ảnh hưởng như rách bao bì, bong tróc, bể vỡ…\n\n3. Trường hợp không đủ điều kiện áp dụng chính sách:\n\n- Quá 03 ngày kể từ khi Quý khách nhận hàng\n\n- Gửi lại hàng không đúng mẫu mã, không phải hàng của KUMPOO\n\n- Đặt nhầm sản phẩm, chủng loại, không thích, không hợp,...\n\n-  Không có video quay lại quá trình nhận và mở sản phẩm\n\n\n\n#quacaulong #setcaulong #hopcaulong #ongcaulong #caulong #cau #long #quacau #longngong #longvu #ngong #benbi #thidau #luyentap #4 #bamboo #kumpoo #votcaulong #vot #lining #vs #sakura','ImageProduct/121/121_0.png,ImageProduct/121/121_1.png,ImageProduct/121/121_2.png,ImageProduct/121/121_3.png,ImageProduct/121/121_4.png,ImageProduct/121/121_5.png,ImageProduct/121/121_6.png,ImageProduct/121/121_7.png',4,2,'2024-06-07 16:12:03',16,5,0,1),(125,'Túi cầu lông Kumpoo chính hãng, túi rút vải nhung dày dặn, mềm mại đựng tối đa 4 vợt cầu lông tiện lợi','Túi cầu lông Kumpoo chính hãng, túi rút vải nhung dày dặn, mềm mại đựng tối đa 4 vợt cầu lông tiện lợi\n\n\n\nTHÔNG SỐ KỸ THUẬT\n\n- Thương hiệu: Kumpoo\n\n- Loại: Túi dây rút\n\n- Kích thước: 75cm x 23cm\n\n- Chất liệu: Vải nhung\n\n- Đựng tối đa: 4 vợt\n\n- Quy cách đóng gói: 1 túi\n\n\n\nĐẶC ĐIỂM NỔI BẬT\n\n- Túi cầu lông đựng được tối đa 4 vợt cầu lông, thêu logo Kumpoo vàng vô cùng sang trọng, thanh lịch, trẻ trung, hiện đại\n\n- Chất liệu vải nhung cực dày dặn, mềm mại\n\n- Túi dây rút đựng vợt cầu lông dễ dàng vệ sinh; được các lông thủ vô cùng yêu thích vì sự tiện lợi, dễ sử dụng\n\n\n\nKUMPOO CAM KẾT:\n\n- Sản phẩm chính hãng, nhập khẩu trực tiếp từ thương hiệu Kumpoo\n\n- Sản phẩm 100% giống mô tả\n\n- Đảm bảo chất lượng, dịch vụ tốt nhất, hàng được giao từ 1-5 ngày kể từ ngày đặt hàng\n\n- Giao hàng trên toàn quốc theo hình thức COD hoặc qua ví ShopeePay\n\n- Đổi trả theo đúng quy định của Shopee\n\n1. Điều kiện áp dụng (trong vòng 07 ngày kể từ khi nhận sản phẩm):\n\n- Hàng hoá vẫn còn mới, chưa qua sử dụng\n\n- Hàng hóa hư hỏng do vận chuyển hoặc do nhà sản xuất.\n\n2. Trường hợp được chấp nhận:\n\n- Hàng không đúng chủng loại, mẫu mã như quý khách đặt hàng\n\n- Không đủ số lượng, không đủ bộ như trong đơn hàng\n\n- Tình trạng bên ngoài bị ảnh hưởng như rách bao bì, bong tróc, bể vỡ…\n\n3. Trường hợp không đủ điều kiện áp dụng chính sách:\n\n- Quá 03 ngày kể từ khi Quý khách nhận hàng\n\n- Gửi lại hàng không đúng mẫu mã, không phải hàng của KUMPOO\n\n- Đặt nhầm sản phẩm, chủng loại, không thích, không hợp,...\n\n-  Không có video quay lại quá trình nhận và mở sản phẩm\n\n\n\n#tuicaulong #tui #caulong #votcaulong #tuidayrut #tuirut #tuidungvot #tuidung #tuivot #kumpoo #tuinhung #tuivai','ImageProduct/125/125_0.png,ImageProduct/125/125_1.png,ImageProduct/125/125_2.png,ImageProduct/125/125_3.png,ImageProduct/125/125_4.png',4,2,'2024-06-07 16:24:18',28,4,0,1),(126,'Quần Short nam Ultra Pro thoải mái vận động (có túi khóa kéo) thương hiệu Coolmate','Thương hiệu : COOLMATE\nPhong cách : Thể thao, Cơ bản, Đường phố\nXuất xứ : Việt Nam\nLoại quần short : Khác\nMẫu : Trơn\nChất liệu : 90% Polyester, 10% Spandex, Co dãn, thoải mái vận động\nKho hàng : 2894\nGửi từ :Hà Nội','ImageProduct/126/126_0.png,ImageProduct/126/126_1.png,ImageProduct/126/126_2.png,ImageProduct/126/126_3.png,ImageProduct/126/126_4.png,ImageProduct/126/126_5.png,ImageProduct/126/126_6.png,ImageProduct/126/126_7.png',4,23,'2024-06-07 16:37:31',26,2,0,2),(127,'Quần Short nam Ultra Pro thoải mái vận động (có túi khóa kéo) thương hiệu Coolmate','Thương hiệu : COOLMATE\nPhong cách : Thể thao, Cơ bản, Đường phố\nXuất xứ : Việt Nam\nLoại quần short : Khác\nMẫu : Trơn\nChất liệu : 90% Polyester, 10% Spandex, Co dãn, thoải mái vận động\nKho hàng : 2894\nGửi từ :Hà Nội','ImageProduct/127/127_0.png,ImageProduct/127/127_1.png,ImageProduct/127/127_2.png,ImageProduct/127/127_3.png,ImageProduct/127/127_4.png,ImageProduct/127/127_5.png,ImageProduct/127/127_6.png,ImageProduct/127/127_7.png',4,23,'2024-06-07 16:38:55',26,4,0,1),(128,'Quần Short nam Ultra Pro thoải mái vận động (có túi khóa kéo) thương hiệu Coolmate','Thương hiệu : COOLMATE\nPhong cách : Thể thao, Cơ bản, Đường phố\nXuất xứ : Việt Nam\nLoại quần short : Khác\nMẫu : Trơn\nChất liệu : 90% Polyester, 10% Spandex, Co dãn, thoải mái vận động\nKho hàng : 2894\nGửi từ :Hà Nội','ImageProduct/128/128_0.png,ImageProduct/128/128_1.png,ImageProduct/128/128_2.png,ImageProduct/128/128_3.png,ImageProduct/128/128_4.png,ImageProduct/128/128_5.png,ImageProduct/128/128_6.png,ImageProduct/128/128_7.png',4,23,'2024-06-07 16:40:50',26,1,0,2);
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,12 +356,12 @@ DROP TABLE IF EXISTS `seller_followers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `seller_followers` (
-  `user_id` bigint NOT NULL,
-  `seller_id` bigint NOT NULL,
-  PRIMARY KEY (`user_id`,`seller_id`),
-  KEY `seller_id` (`seller_id`),
-  CONSTRAINT `seller_followers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `seller_followers_ibfk_2` FOREIGN KEY (`seller_id`) REFERENCES `sellers` (`id`)
+                                    `user_id` bigint NOT NULL,
+                                    `seller_id` bigint NOT NULL,
+                                    PRIMARY KEY (`user_id`,`seller_id`),
+                                    KEY `seller_id` (`seller_id`),
+                                    CONSTRAINT `seller_followers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+                                    CONSTRAINT `seller_followers_ibfk_2` FOREIGN KEY (`seller_id`) REFERENCES `sellers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -408,7 +397,6 @@ CREATE TABLE `sellers` (
                            KEY `user_id` (`user_id`),
                            CONSTRAINT `sellers_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
                            CONSTRAINT `sellers_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
-
 ) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -430,11 +418,11 @@ DROP TABLE IF EXISTS `shipping_method`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shipping_method` (
-  `id` smallint NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) DEFAULT NULL,
-  `description` varchar(255) DEFAULT NULL,
-  `fee` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
+                                   `id` smallint NOT NULL AUTO_INCREMENT,
+                                   `name` varchar(50) DEFAULT NULL,
+                                   `description` varchar(255) DEFAULT NULL,
+                                   `fee` int DEFAULT NULL,
+                                   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -456,14 +444,12 @@ DROP TABLE IF EXISTS `shopping_cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shopping_cart` (
-
                                  `id` bigint NOT NULL AUTO_INCREMENT,
                                  `user_id` bigint DEFAULT NULL,
                                  `created_at` datetime DEFAULT NULL,
                                  PRIMARY KEY (`id`),
                                  KEY `user_id` (`user_id`),
                                  CONSTRAINT `shopping_cart_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -485,7 +471,6 @@ DROP TABLE IF EXISTS `shopping_cart_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `shopping_cart_item` (
-
                                       `id` bigint NOT NULL AUTO_INCREMENT,
                                       `cart_id` bigint DEFAULT NULL,
                                       `product_item_id` bigint DEFAULT NULL,
@@ -494,8 +479,7 @@ CREATE TABLE `shopping_cart_item` (
                                       PRIMARY KEY (`id`),
                                       KEY `product_item_id` (`product_item_id`),
                                       CONSTRAINT `shopping_cart_item_ibfk_1` FOREIGN KEY (`product_item_id`) REFERENCES `product_item` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=147 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+) ENGINE=InnoDB AUTO_INCREMENT=152 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -504,9 +488,7 @@ CREATE TABLE `shopping_cart_item` (
 
 LOCK TABLES `shopping_cart_item` WRITE;
 /*!40000 ALTER TABLE `shopping_cart_item` DISABLE KEYS */;
-
-INSERT INTO `shopping_cart_item` VALUES (146,5,335,1,'2024-06-07 15:33:43');
-
+INSERT INTO `shopping_cart_item` VALUES (146,5,335,2,'2024-06-07 16:30:00'),(147,5,365,7,'2024-06-07 16:28:21'),(148,5,345,1,'2024-06-07 16:29:54'),(149,5,343,1,'2024-06-07 16:29:56'),(150,1,372,1,'2024-06-07 16:51:06'),(151,5,363,2,'2024-06-07 16:53:52');
 /*!40000 ALTER TABLE `shopping_cart_item` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -518,15 +500,15 @@ DROP TABLE IF EXISTS `user_address`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user_address` (
-  `user_id` bigint NOT NULL,
-  `address_id` bigint NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `is_default` bit(1) DEFAULT NULL,
-  PRIMARY KEY (`user_id`,`address_id`),
-  KEY `address_id` (`address_id`),
-  CONSTRAINT `user_address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
-  CONSTRAINT `user_address_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
+                                `user_id` bigint NOT NULL,
+                                `address_id` bigint NOT NULL,
+                                `created_at` timestamp NULL DEFAULT NULL,
+                                `updated_at` timestamp NULL DEFAULT NULL,
+                                `is_default` bit(1) DEFAULT NULL,
+                                PRIMARY KEY (`user_id`,`address_id`),
+                                KEY `address_id` (`address_id`),
+                                CONSTRAINT `user_address_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+                                CONSTRAINT `user_address_ibfk_2` FOREIGN KEY (`address_id`) REFERENCES `address` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -536,7 +518,7 @@ CREATE TABLE `user_address` (
 
 LOCK TABLES `user_address` WRITE;
 /*!40000 ALTER TABLE `user_address` DISABLE KEYS */;
-INSERT INTO `user_address` VALUES (3,31,'2024-05-22 09:02:02','2024-05-22 09:02:02',_binary '\0'),(3,32,'2024-05-22 09:02:32','2024-05-22 09:02:32',_binary ''),(3,36,'2024-05-27 16:06:20','2024-05-27 16:06:20',_binary '\0'),(4,2,NULL,NULL,NULL),(9,37,'2024-05-30 09:18:56','2024-05-30 09:18:56',_binary '');
+INSERT INTO `user_address` VALUES (3,31,'2024-05-22 09:02:02','2024-05-22 09:02:02',_binary '\0'),(3,32,'2024-05-22 09:02:32','2024-05-22 09:02:32',_binary ''),(3,36,'2024-05-27 16:06:20','2024-05-27 16:06:20',_binary '\0'),(4,2,NULL,NULL,NULL),(9,37,'2024-05-30 09:18:56','2024-05-30 09:18:56',_binary ''),(10,39,'2024-06-07 16:29:07','2024-06-07 16:29:07',_binary '');
 /*!40000 ALTER TABLE `user_address` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -548,7 +530,6 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-
                          `id` bigint NOT NULL AUTO_INCREMENT,
                          `username` varchar(255) DEFAULT NULL,
                          `password` varchar(255) DEFAULT NULL,
@@ -562,7 +543,6 @@ CREATE TABLE `users` (
                          `fullname` varchar(255) DEFAULT NULL,
                          `role` varchar(10) DEFAULT NULL,
                          PRIMARY KEY (`id`)
-
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -572,10 +552,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-
 INSERT INTO `users` VALUES (3,'dat1234','JSm5oAGusjmIxnepT8TmaCahBxU=','dathv2004@gmail.com','12312312312','2024-03-15 16:28:14','male','2024-03-20',_binary '','USER_AVATAR/3/3.png','Hoàng Văn Đạt','SELLER'),(4,'dat','PLQ4laHKUA3DY7RcRDjFyxl0rDM=','dathv123@gmail.com',NULL,'2024-03-23 21:17:39','male','2024-03-06',_binary '\0',NULL,NULL,'CUSTOMER'),(5,'dat123122','XMnJIT/dD1rQAAJv71cSrW3feWE=','102220056@sv1.dut.udn.vn',NULL,'2024-03-24 23:26:20','male','2024-03-01',_binary '',NULL,NULL,'CUSTOMER'),(6,'dat12345','UGd8MZh6DWh5c9fwLtlCybcrsmE=','dat10108@gmail.com',NULL,'2024-04-05 15:10:01','male','2004-12-31',_binary '\0',NULL,NULL,'CUSTOMER'),(9,'dat123','MHiL+CJ3N3411r6p6v1KAKMC+7I=','102220055@sv1.dut.udn.vn','','2024-05-11 16:06:16','male','2024-05-23',_binary '','USER_AVATAR/9/9.png','sdasdasdasdas','SELLER'),(10,'Coolmate123','1dLwkC8QDljJyk8B2LVzbH3EI4k=','dat10106868@gmail.com',NULL,'2024-06-02 08:55:03','male','2023-10-18',_binary '\0','USER_AVATAR/10/10.png',NULL,'SELLER');
-
-
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -587,15 +564,13 @@ DROP TABLE IF EXISTS `variation`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `variation` (
-
                              `id` bigint NOT NULL AUTO_INCREMENT,
                              `product_id` bigint DEFAULT NULL,
                              `name` varchar(50) DEFAULT NULL,
                              PRIMARY KEY (`id`),
                              KEY `variation_products_id_fk` (`product_id`),
                              CONSTRAINT `variation_products_id_fk` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -604,9 +579,7 @@ CREATE TABLE `variation` (
 
 LOCK TABLES `variation` WRITE;
 /*!40000 ALTER TABLE `variation` DISABLE KEYS */;
-
-INSERT INTO `variation` VALUES (89,115,'Loại'),(90,116,'Mã sản phẩm'),(91,116,'Màu cước');
-
+INSERT INTO `variation` VALUES (89,115,'Loại'),(90,116,'Mã sản phẩm'),(91,116,'Màu cước'),(92,121,'Phân Loại'),(93,126,'Màu'),(94,127,'Màu'),(95,127,'Size');
 /*!40000 ALTER TABLE `variation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -618,15 +591,13 @@ DROP TABLE IF EXISTS `variation_option`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `variation_option` (
-
                                     `id` bigint NOT NULL AUTO_INCREMENT,
                                     `variation_id` bigint DEFAULT NULL,
                                     `value` varchar(50) DEFAULT NULL,
                                     PRIMARY KEY (`id`),
                                     KEY `variation_id` (`variation_id`),
                                     CONSTRAINT `variation_option_ibfk_1` FOREIGN KEY (`variation_id`) REFERENCES `variation` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=224 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
+) ENGINE=InnoDB AUTO_INCREMENT=240 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -635,9 +606,7 @@ CREATE TABLE `variation_option` (
 
 LOCK TABLES `variation_option` WRITE;
 /*!40000 ALTER TABLE `variation_option` DISABLE KEYS */;
-
-INSERT INTO `variation_option` VALUES (209,89,'K52 Pro Trắng'),(210,89,'K52 Pro Trắng-Đen'),(211,89,'K520 Pro Trắng-Xanh'),(212,89,'K520 Pro T - Xanh Lá'),(213,89,'K52 Pro Đen'),(214,90,'LightPink'),(215,91,'Hồng'),(216,91,'Trắng'),(217,91,'Đen'),(218,91,'Xanh'),(219,90,'BlackPink'),(220,90,'Veluriyam 5U Tím'),(221,90,'Veluriyam 5U Xanh'),(222,90,'Lush Mountain Trắng'),(223,90,'Lush Mountain Xanh');
-
+INSERT INTO `variation_option` VALUES (209,89,'K52 Pro Trắng'),(210,89,'K52 Pro Trắng-Đen'),(211,89,'K520 Pro Trắng-Xanh'),(212,89,'K520 Pro T - Xanh Lá'),(213,89,'K52 Pro Đen'),(214,90,'LightPink'),(215,91,'Hồng'),(216,91,'Trắng'),(217,91,'Đen'),(218,91,'Xanh'),(219,90,'BlackPink'),(220,90,'Veluriyam 5U Tím'),(221,90,'Veluriyam 5U Xanh'),(222,90,'Lush Mountain Trắng'),(223,90,'Lush Mountain Xanh'),(224,92,'1 hộp cầu - Tốc 77'),(225,92,'1 hộp cầu - Tốc 76'),(226,93,'ĐEN'),(227,93,'XÁM'),(228,93,'XANH TÍM THAN'),(229,93,'XANH AQUA'),(230,93,'XANH NHAT'),(231,94,'ĐEN'),(232,95,'M'),(233,95,'L'),(234,95,'XL'),(235,95,'2XL'),(236,94,'XÁM'),(237,94,'XANH TÍM THAN'),(238,94,'XANH AQUA'),(239,94,'XANH NHAT');
 /*!40000 ALTER TABLE `variation_option` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -650,5 +619,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-07 16:01:22
-
+-- Dump completed on 2024-06-07 21:34:17
