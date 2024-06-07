@@ -89,9 +89,8 @@
 }
 
 .S_Product_list {
-    display: grid;
-    margin-top: 15px;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
     padding: 20px;
 }
@@ -136,12 +135,14 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 300;
     color: #333333;
-    width: max-content;
     padding: 20px 30px;
-    gap: 8px;
+    border: 1px solid #141718;
+    border-radius: 15px;
+    gap: 15px;
+    margin: 0 40px;
 }
 
 .S_shop_info h3 {
@@ -200,5 +201,3 @@
     background-color: #FFFFFF;
     color: #131313;
 }
-
-.S_Product_list {}

@@ -2,6 +2,7 @@
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <%@ include file="common/taglib.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <!DOCTYPE html>
 <html lang="vi">
@@ -15,7 +16,6 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
-<%--    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>--%>
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
@@ -31,7 +31,7 @@
 
 </div>
 
-<div id="PD-Content">
+<div id="PD-Content" class="pad-l-r-170">
     <div class="Product_Loop">
         <div class="Product_Loop-left">
             <div class="Product_Loop-Image">
@@ -124,14 +124,6 @@
                 Danh mục
                 <span>${productDetail.categoryName}</span>
             </div>
-            <div class="Product-Info">
-                <div class="Heading-Container"
-                     style="display: flex; justify-content:space-between">
-                    <h3>Thông tin thêm về sản phẩm</h3>
-                    <i class="fa-solid fa-chevron-right"></i>
-                </div>
-                <div class="text-description" style="max-width: 650px">${productDetail.description}</div>
-            </div>
         </div>
 
     </div>
@@ -153,321 +145,20 @@
             </div>
         </div>
     </div>
-    <div class="Tabs pad-l-r-170">
+    <script>
+        var description = `${productDetail.description}`;
+    </script>
+    <div class="Tabs">
         <div class="Tabs-Menu">
-            <button class="Tabs-Menu__Item1 btn">Thông tin chi tiết về sản phẩm</button>
-            <button class="Tabs-Menu__Item2 btn">Câu hỏi</button>
-            <button class="Tabs-Menu__Item3 btn">Đánh giá</button>
+            <button id="Tabs_detail" class="btn" >Thông tin chi tiết về sản phẩm</button>
+            <button id="Tabs_comment" class="btn">Đánh giá</button>
         </div>
-        <div class="Review-Section">
-            <h3>11 Đánh giá</h3>
-            <button class="btn"
-                    style="display: flex; justify-content:space-between; width: 256px;">
-                <span>Mới nhất</span>
-                <i class="fa-solid fa-chevron-down"></i>
-            </button>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="Review-Item">
-                <img class="Review-Item__Avatar" src="img/Product-Details/Review-Avatar-1.jpeg"
-                     alt="Avatar">
-                <div class="Review-Item--Content">
-                    <h4 class="Review-Item__Name">Sofia Havetz</h4>
-                    <div class="Review-Item__Evaluation">
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-solid fa-star"></i>
-                        <i class="fa-regular fa-star"></i>
-                    </div>
-                    <p class="Review-Item__Comment">I bought it 3 weeks ago and now come back
-                        just
-                        to say “Awesome Product”. I really enjoy it. At vero eos et accusamus et
-                        iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum
-                        deleniti atque corrupt et quas molestias excepturi sint non provident.
-                    </p>
-                    <div class="Review-Respond">
-                        <button class="btn"><i class="fa-regular fa-thumbs-up"></i>
-                            Like</button>
-                        <button class="btn"><i class="fa-regular fa-comment-dots"></i>
-                            Reply</button>
-                    </div>
-                </div>
-            </div>
+        <div id="Tabs-Content">
 
         </div>
-        <button class="See-More">Xem thêm</button>
     </div>
 </div>
 <script type="text/javascript" src="<c:url value="Product_Details.js"/>"></script>
+<script defer type="text/javascript" src="<c:url value="Product_Detail_event.js"/>"></script>
 <%@ include file="Footer.jsp" %>
 </body>

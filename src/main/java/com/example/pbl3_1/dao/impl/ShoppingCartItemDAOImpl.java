@@ -185,7 +185,7 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
                         .variations(resultSet.getString("variations"))
                         .shopImgPath(shopImgPath != null ? shopImgPath.split(",")[0] : null)
                         .shopName(resultSet.getString("shopName"))
-                        .build();
+                            .build();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
