@@ -78,7 +78,7 @@ public class SearchController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         String keyword = request.getParameter("keyword");
-        keyword = URLDecoder.decode(keyword, "UTF-8");
+//        keyword = URLDecoder.decode(keyword, "UTF-8");
         boolean fill = request.getParameter("fill") != null;
         SessionUtil sessionUtil = SessionUtil.getInstance();
         if(fill)
