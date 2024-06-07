@@ -13,7 +13,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="../main.js"></script>
     <link rel="stylesheet" href="<c:url value="UserInformation.css"/>">
     <link rel="stylesheet" href="<c:url value="/Pop_ups.css"/>">
@@ -135,7 +136,7 @@
 <script type="text/javascript" src="<c:url value ="/Pop-ups.js"/>"></script>
 <script defer src="<c:url value = "UserInformation.js"/>"></script>
 <script defer>
-    GenerateSideBar("UserInformation", "${User.username}");
+    GenerateSideBar("UserInformation", "${User.username}", "${User.avatar}");
 </script>
 </body>
 

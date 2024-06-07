@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 public interface ProductItemDAO {
-    ProductItem getProductItemByVariations(Long v1, Long v2);
+    ProductItem getProductItemByVariations(Long productId, Long v1, Long v2);
     List<String> getImgPathByProductId(Long id);
     Map.Entry<Float, Float> getMaxAndMinPriceByProductId(Long id);
     Long getProductItemIdByVariations(Long productId, Long v1, Long v2);

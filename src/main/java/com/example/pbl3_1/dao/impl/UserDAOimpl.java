@@ -102,4 +102,10 @@ public class UserDAOimpl implements UserDAO {
         String sql = "UPDATE users SET role = ? WHERE id = ?";
         abstractDAO.update(sql, eRole.toString(), userId);
     }
+
+    @Override
+    public void updateAvatar(Long userId, String path) {
+        String sql = "UPDATE users SET avatar = ? WHERE id = ?";
+        abstractDAO.update(sql, path, userId);
+    }
 }

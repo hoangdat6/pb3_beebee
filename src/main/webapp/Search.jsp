@@ -169,7 +169,9 @@
                                             <c:set var="count" value="0" />
                                             <c:forEach items="${searchproducts}" var="searchproduct">
                                             <c:if test="${searchproduct.sellerId == searchsellers[0].id and count lt 3}">
-                                            var productUrl = '<c:url value="/product?id=${searchproduct.id}" />';
+                                            var productName = '${searchproduct.name}';
+                                            var productId = '${searchproduct.id}';
+                                            var productUrl = '<c:url value="/product?" />';
                                             var sellerName = "${searchproduct.sellerName != null ? searchproduct.sellerName : 'Tên Shop'}";
                                             var sellerUrl = "<c:url value="/shop?id=${searchproduct.sellerId != null ? searchproduct.sellerId : 0}"/>";
                                             var sellerAvatar = "${searchproduct.sellerAvatar != null ? searchproduct.sellerAvatar : 'img/Brand/Coffee.jpeg'}";
@@ -178,6 +180,8 @@
                                                 price: "${searchproduct.price}",
                                                 discount: "${searchproduct.discount}",
                                                 imgPath: "${searchproduct.imgPath}",
+                                                productName: productName,
+                                                productId : productId,
                                                 sellerName: sellerName,
                                                 productUrl: productUrl,
                                                 sellerUrl: sellerUrl,
@@ -201,7 +205,9 @@
                                     <div class="S_Product_list">
                                         <script>
                                             <c:forEach items="${searchproducts}" var="searchproduct">
-                                            var productUrl = '<c:url value="/product?id=${searchproduct.id}" />';
+                                            var productName = '${searchproduct.name}';
+                                            var productId = '${searchproduct.id}';
+                                            var productUrl = '<c:url value="/product?" />';
                                             var sellerName = "${searchproduct.sellerName != null ? searchproduct.sellerName : 'Tên Shop'}";
                                             var sellerUrl = "<c:url value="/shop?id=${searchproduct.sellerId != null ? searchproduct.sellerId : 0}"/>";
                                             var sellerAvatar = "${searchproduct.sellerAvatar != null ? searchproduct.sellerAvatar : 'img/Brand/Coffee.jpeg'}";
@@ -211,12 +217,15 @@
                                                 price: "${searchproduct.price}",
                                                 discount: "${searchproduct.discount}",
                                                 imgPath: "${searchproduct.imgPath}",
+                                                productName: productName,
+                                                productId : productId,
                                                 sellerName: sellerName,
                                                 productUrl: productUrl,
                                                 sellerUrl : sellerUrl,
                                                 sellerAvatar : sellerAvatar
                                             });
                                             </c:forEach>
+
                                         </script>
                                     </div>
                                 </div>

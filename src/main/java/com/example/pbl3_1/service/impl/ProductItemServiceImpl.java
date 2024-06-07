@@ -21,15 +21,15 @@ public class ProductItemServiceImpl implements ProductItemService {
     }
 
     @Override
-    public ProductItem getProductItemByVariations(String  v1, String v2) {
+    public ProductItem getProductItemByVariations(String productId, String  v1, String v2) {
         if(!Objects.equals(v1, "")){
             if(!Objects.equals(v2, "")){
-                return productItemDAO.getProductItemByVariations(Long.parseLong(v1), Long.parseLong(v2));
+                return productItemDAO.getProductItemByVariations(Long.parseLong(productId),Long.parseLong(v1), Long.parseLong(v2));
             }else {
-                return productItemDAO.getProductItemByVariations(Long.parseLong(v1), null);
+                return productItemDAO.getProductItemByVariations(Long.parseLong(productId),null, Long.parseLong(v1));
             }
         }else {
-            return productItemDAO.getProductItemByVariations(null, null);
+            return productItemDAO.getProductItemByVariations(Long.parseLong(productId), null, null);
         }
     }
 

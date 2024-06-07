@@ -24,7 +24,7 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
 
     @Override
     public Object update(ShoppingCartItem object) {
-        String sql = "UPDATE shop_bee.shopping_cart_item SET cart_id = ?, product_item_id = ?, quantity = ?, created_at = ? WHERE id = ?";
+            String sql = "UPDATE shop_bee.shopping_cart_item SET cart_id = ?, product_item_id = ?, quantity = ?, created_at = ? WHERE id = ?";
         return genericDAO.update(sql,
                 object.getCartId(),
                 object.getProductItemId(),

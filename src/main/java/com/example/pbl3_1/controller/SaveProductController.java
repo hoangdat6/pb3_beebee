@@ -120,21 +120,25 @@ public class SaveProductController extends HttpServlet {
         for(int i = 1; i < data.size() - 1; i++){
             ProductItem item = new ProductItem();
             item.setProductId(productId);
-            if(i % row == 1){
-                if(data.get(i).getOrDefault("ProductItemImage", null) != null){
-                    String itemImages = data.get(i).get("ProductItemImage").toString();
-                    imgPath = saveImages(rootPath, productId.toString(), Integer.toString(i), List.of(itemImages));
-                    saveImages(webappDirectoryRoot, productId.toString(), Integer.toString(i), List.of(itemImages));
+            if(row != 0) {
+                if(i % row == 1 || row == 1){
+                    if(data.get(i).getOrDefault("ProductItemImage", null) != null){
+                        String itemImages = data.get(i).get("ProductItemImage").toString();
+                        imgPath = saveImages(rootPath, productId.toString(), Integer.toString(i), List.of(itemImages));
+                        saveImages(webappDirectoryRoot, productId.toString(), Integer.toString(i), List.of(itemImages));
+                        item.setImgPath(imgPath);
+                    }
+                }else {
                     item.setImgPath(imgPath);
                 }
             }else {
-                item.setImgPath(imgPath);
+                item.setImgPath(images.split(",")[0]);
             }
 
             if(variation1 != null){
                 // nếu variation1 không rỗng thì thêm vào database
                 variationOption1 = variationOptionService.addVariationOptionOrGet(VariationOption.builder().
-                        value(data.get(i).get("VariationOption2").toString()).
+                        value(data.get(i).get("VariationOption1").toString()).
                         variationId(variation1).
                         build()
                 );
@@ -142,7 +146,7 @@ public class SaveProductController extends HttpServlet {
             if(variation2 != null){
                 // nếu variation2 không rỗng thì thêm vào database
                 variationOption2 = variationOptionService.addVariationOptionOrGet(VariationOption.builder().
-                        value(data.get(i).get("VariationOption1").toString()).
+                        value(data.get(i).get("VariationOption2").toString()).
                         variationId(variation2).build());
             }
 
@@ -172,15 +176,15 @@ public class SaveProductController extends HttpServlet {
             // Decode base64 string to byte array
             byte[] data1 = Base64.getDecoder().decode(imageStrings.get(i));
 
-            dir = productId + File.separator;
-            Path path = Paths.get(rootPath + File.separator + dir);
+            dir = productId + "/";
+            Path path = Paths.get(rootPath + "/" + dir);
             if(!Files.exists(path)){
                 Files.createDirectories(path);
             }
 
             filename = productId + "_" +  i  + item + ".png";
             // Define path to save image
-            Path pathImg = Paths.get(path + File.separator + filename);
+            Path pathImg = Paths.get(path + "/" + filename);
 
             // Write byte array to file
             Files.write(pathImg, data1);

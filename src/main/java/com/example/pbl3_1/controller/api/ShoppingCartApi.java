@@ -36,7 +36,7 @@ public class ShoppingCartApi extends HttpServlet {
         User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
 
         // if the user is logged in then get the data form view
-        Long productId = (Long) SessionUtil.getInstance().getValue(request, "product_id");
+        Long productId = Long.parseLong(request.getParameter("productId"));
         String variation1 = request.getParameter("variation1");
         String variation2 = request.getParameter("variation2");
         String quantity = request.getParameter("quantity");
@@ -92,7 +92,6 @@ public class ShoppingCartApi extends HttpServlet {
 
                     List<SmallCartItem> smallCartItems = shoppingCartItemService.getAllCartItemsByUserId(user.getId());
                     String json = gson.toJson(smallCartItems);
-                    System.out.println(json);
                     response.getWriter().write(json);
                 }
                 break;

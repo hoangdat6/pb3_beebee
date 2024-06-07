@@ -23,6 +23,8 @@ public class UserSettingController extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=UTF-8");
         SessionUtil.getInstance().putValue(request, "EmailStatus", true);
+//        User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
+//        request.setAttribute("avatarUser", user.getAvatar());
         request.getRequestDispatcher("UserInformation.jsp").forward(request, response);
     }
 
