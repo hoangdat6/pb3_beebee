@@ -213,7 +213,7 @@ public class ProductDAOImpl implements ProductDAO {
                             resultSet.getString("name"),
                             resultSet.getInt("min_price"),
                             resultSet.getInt("discount"),
-                            resultSet.getString("img_path"),
+                            resultSet.getString("img_path").split(",")[0],
                             resultSet.getLong("seller_id"),
                             resultSet.getString("shop_name"),
                             resultSet.getString("avatar").split(",")[0]
@@ -248,7 +248,7 @@ public class ProductDAOImpl implements ProductDAO {
                             resultSet.getString("name"),
                             resultSet.getInt("min_price"),
                             resultSet.getInt("discount"),
-                            resultSet.getString("img_path"),
+                            resultSet.getString("img_path").split(",")[0],
                             resultSet.getLong("seller_id"),
                             resultSet.getString("shop_name"),
                             resultSet.getString("avatar").split(",")[0]
