@@ -135,7 +135,8 @@ public class ProductDAOImpl implements ProductDAO {
                         resultSet.getString("avatar").split(",")[0],
                         resultSet.getInt("total_qty"),
                         false,
-                        null
+                        null,
+                        true
                 );
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -154,7 +155,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public Long addProduct(Product product) {
-        String sql = "INSERT INTO products (name, description, img_path, category_id, seller_id, created_at, discount, views) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products (name, description, img_path, category_id, seller_id, created_at, discount, views, product_status_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return abstractDAO.save(
                 sql,
                 product.getName(),
@@ -164,7 +165,8 @@ public class ProductDAOImpl implements ProductDAO {
                 product.getSellerId(),
                 new Timestamp(System.currentTimeMillis()),
                 product.getDiscount(),
-                0
+                0,
+                1
         );
     }
 

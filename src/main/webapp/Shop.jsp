@@ -78,6 +78,7 @@
 
     </div>
     <script>
+
         var sellerUrl = '<c:url value="/shop?id=${seller.id != null ? seller.id : 0}"/>';
         var sellerName = "${seller.shopName != null ? seller.shopName : 'Tên Shop'}";
         var sellerAvatar = "${seller.avatar != null ? seller.avatar : './img/Brand/Coffee.jpeg'}";
@@ -85,6 +86,8 @@
         var isFollowed = ${seller.isFollowed};
 
         <c:forEach items="${seller.mostViewedProducts}" var="product">
+        var productName = '${product.name}';
+        var productId = '${product.id}';
         var productUrl = '<c:url value="/product?id=${product.id}" />';
 
         document.querySelector('#Shop_content .Product_list').innerHTML += createCard({
@@ -92,6 +95,8 @@
             price: "${product.price}",
             discount: "${product.discount}",
             imgPath: "${product.imgPath}",
+            productName: productName,
+            productId : productId,
             sellerName: sellerName,
             productUrl: productUrl,
             sellerUrl : sellerUrl,

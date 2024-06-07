@@ -14,6 +14,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Objects;
 
 @WebServlet(name = "product", urlPatterns = {"/product"})
@@ -37,17 +39,34 @@ public class ProductController extends HttpServlet {
 
     public void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
+//        String name = request.getParameter("n");
+
         ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
+
         User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
         Long sellerId = sellerService.getIdByUserId(user.getId());
-        if(Objects.equals(sellerId, productDetailDTO.getSellerId())) {
-            productDetailDTO.setProductOfSeller(true);
-        }else {
-            productDetailDTO.setProductOfSeller(false);
+
+        if(productDetailDTO == null) {
+            productDetailDTO  = new ProductDetailDTO();
+            productDetailDTO.setAvailable(false);
         }
 
-        System.out.println(productDetailDTO.getIsProductOfSeller());
-        SessionUtil.getInstance().putValue(request, "product_id", id);
+//        Long productId =(Long) SessionUtil.getInstance().getValue(request, "productId");
+//        if(productId != null) {
+//            if(!productId.equals(productDetailDTO.getId())) {
+//                productDetailDTO.setAvailable(false);
+//            }else {
+//                SessionUtil.getInstance().removeValue(request, "productId");
+//            }
+//        }else {
+//            SessionUtil.getInstance().putValue(request, "productId", productDetailDTO.getId());
+//        }
+
+
+        if(Objects.equals(sellerId, productDetailDTO.getSellerId())) {
+            productDetailDTO.setProductOfSeller(true);
+        }
+
         request.setAttribute("productDetail", productDetailDTO);
         request.getRequestDispatcher("Product_Details.jsp").forward(request, response);
     }

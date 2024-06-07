@@ -200,6 +200,8 @@ function loadProduct(sellerId, url) {
                     price: product.price,
                     discount: product.discount,
                     imgPath: product.imgPath,
+                    productName: product.name,
+                    productId : product.id,
                     sellerName: sellerName,
                     productUrl: productUrl1,
                     sellerUrl: sellerUrl,

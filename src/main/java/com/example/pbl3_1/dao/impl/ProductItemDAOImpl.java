@@ -16,9 +16,9 @@ import java.util.Map;
 public class ProductItemDAOImpl implements ProductItemDAO {
     GenericDAO<ProductItem> genericDAO = new AbstractDAOImpl<>();
     @Override
-    public ProductItem getProductItemByVariations(Long v1, Long v2) {
-        String sql = "SELECT * FROM product_item WHERE (variation1 = ? OR variation1 IS NULL) AND (variation2 = ? OR variation2 IS NULL)";
-        List<ProductItem> productItems = genericDAO.query(sql, new ProductItemMapper(), v1, v2);
+    public ProductItem getProductItemByVariations(Long productId, Long v1, Long v2) {
+        String sql = "SELECT * FROM product_item WHERE product_id = ? && ((variation1 = ? OR variation1 IS NULL) AND (variation2 = ? OR variation2 IS NULL))";
+        List<ProductItem> productItems = genericDAO.query(sql, new ProductItemMapper(), productId, v1, v2);
         return !productItems.isEmpty() ? productItems.get(0) : null;
     }
 

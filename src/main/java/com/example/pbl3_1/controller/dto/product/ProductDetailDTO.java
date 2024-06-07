@@ -30,6 +30,7 @@ public class ProductDetailDTO {
     private int quantity;
     private boolean isProductOfSeller;
     private List<Variation> variations;
+    private boolean available;
 
 
     public ProductDetailDTO(){

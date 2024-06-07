@@ -77,7 +77,9 @@
     <div class="Product_list pad-l-r-170 pad-t-b-30"></div>
       <script>
         <c:forEach items="${products}" var="product">
-        var productUrl = '<c:url value="/product?id=${product.id}" />';
+        var productName = '${product.name}';
+        var productId = '${product.id}';
+        var productUrl = '<c:url value="/product?" />';
         var sellerName = "${product.sellerName != null ? product.sellerName : 'Tên Shop'}";
         var sellerUrl = "<c:url value="/shop?id=${product.sellerId != null ? product.sellerId : 0}"/>";
         var sellerAvatar = "${product.sellerAvatar != null ? product.sellerAvatar : 'img/Brand/Coffee.jpeg'}";
@@ -87,6 +89,8 @@
           price: "${product.price}",
           discount: "${product.discount}",
           imgPath: "${product.imgPath}",
+          productName: productName,
+          productId : productId,
           sellerName: sellerName,
           productUrl: productUrl,
           sellerUrl : sellerUrl,

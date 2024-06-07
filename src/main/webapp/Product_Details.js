@@ -39,6 +39,7 @@ let oldPrice = $(".Product-Price").html();
 let quantityAll = $("#quantity").html();
 
 $(document).ready(function(){
+    let productId = $(document).find("#product_id").val();
     $(".Category_option1, .Category_option2").click(function(){
         let variation1 = null;
         let variation2 = null;
@@ -60,7 +61,7 @@ $(document).ready(function(){
         $.ajax({
             type: "GET",
             url: "/PBL3_1_war_exploded/api/product-detail",
-            data: {variation1: variation1, variation2: variation2},
+            data: {variation1: variation1, variation2: variation2, productId: productId},
             success: function(response){
                 load(response);
             }
@@ -82,6 +83,7 @@ function load(response){
 let check;
 
 function saveToCart(check1){
+    let productId = $(document).find("#product_id").val();
     let variation1 = null;
     let variation2 = null;
     let input = document.getElementsByClassName('Qty__Input');
@@ -125,7 +127,7 @@ function saveToCart(check1){
     $.ajax({
         type: "POST",
         url: "/PBL3_1_war_exploded/api/add-to-cart",
-        data: {variation1: variation1, variation2: variation2, quantity: quantity},
+        data: {variation1: variation1, variation2: variation2, quantity: quantity, productId : productId},
         success: function(response){
             if (check){
                 if(response.code == '200'){
