@@ -21,6 +21,7 @@ public class JDBCUtil {
             String username = "root";
             String password = "dat123";
 
+
             con = DriverManager.getConnection(url, username, password);
             System.out.println(DriverManager.getDriver(url).toString());
             return con;

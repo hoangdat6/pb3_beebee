@@ -195,5 +195,8 @@
   color: #fff;
   transition: 0.3s;
 }
-
+.active{
+  border-bottom-color: #ee4d2d !important;
+  color: #ee4d2d !important;
+}
 /*# sourceMappingURL=Order.css.map */

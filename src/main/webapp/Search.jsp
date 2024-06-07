@@ -265,6 +265,7 @@
                     </div>
                 <script>
                     $(document).ready(function() {
+
                         $('.S_catalog-item').change(function() {
                             var categoryID = Array.from(document.querySelectorAll('.S_catalog-item:checked')).map(element => element.id.split("-")[2]).join('-');
                             var minPrice = Math.floor(parseFloat(document.getElementById('min-price').value));

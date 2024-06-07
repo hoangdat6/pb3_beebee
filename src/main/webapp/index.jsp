@@ -55,7 +55,7 @@
     </p>
     <div class="Card-Container">
       <c:forEach items="${categories}" var="category" begin="0" end="5">
-        <a href='<c:url value="/catrgory/${category.id}"/>' class="Category-Card">
+        <a href='<c:url value="/search?keyword=${category.name}"/>' class="Category-Card">
           <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
           <p class="Card-Desc">
             <c:out value="${category.name}"/>
