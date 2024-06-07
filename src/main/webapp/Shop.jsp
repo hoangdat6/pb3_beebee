@@ -22,29 +22,31 @@
     <img src="${seller.coverImage}"  alt="Ảnh bìa" class="Shop_background">
     <div class="Shop_infor">
         <img src="${seller.avatar}"  alt="Ảnh đại diện" class="Shop_image">
-        <div class="Shop_desc">
-            <div class="col">
-                <h3 class="Shop_name">${seller.shopName}</h3>
-                <p class="Shop_evaluate"><img src="./img/Shop/Star Icon.svg"  alt=""> 4.9 | ${seller.followers} lượt theo dõi
-                </p>
-            </div>
-            <div class="col">
-                <p class="Shop_subHeading"><img src="./img/Shop/Product Icon.svg" alt="Sản phẩm">Sản
-                    phẩm:
-                    <span class="Shop_subVal">${seller.countProduct}</span>
-                </p>
-                <p class="Shop_subHeading"> <img src="./img/Shop/Chat.svg" alt="Chat">Tỉ lệ phản hồi
-                    chat:
-                    <span class="Shop_subVal">99% (Trong vài giờ)</span>
-                </p>
-            </div>
-            <div class="col">
-                <p class="Shop_subHeading"><img src="./img/Shop/Location icon.svg" alt="">Vị trí:
-                    <span class="Shop_subVal">${seller.province}</span>
-                </p>
-                <p class="Shop_subHeading"><img src="./img/Shop/ThamGiaIcon.svg" alt="Tham gia">Tham gia:
-                    <span class="Shop_subVal">5 năm</span>
-                </p>
+        <div class="Shop_desc_wrap">
+            <div class="Shop_desc">
+                <div class="col">
+                    <h3 class="Shop_name">${seller.shopName}</h3>
+                    <p class="Shop_evaluate"><img src="./img/Shop/Star Icon.svg"  alt=""> 4.9 | ${seller.followers} lượt theo dõi
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="Shop_subHeading"><img src="./img/Shop/Product Icon.svg" alt="Sản phẩm">Sản
+                        phẩm:
+                        <span class="Shop_subVal">${seller.countProduct}</span>
+                    </p>
+                    <p class="Shop_subHeading"> <img src="./img/Shop/Chat.svg" alt="Chat">Tỉ lệ phản hồi
+                        chat:
+                        <span class="Shop_subVal">99% (Trong vài giờ)</span>
+                    </p>
+                </div>
+                <div class="col">
+                    <p class="Shop_subHeading"><img src="./img/Shop/Location icon.svg" alt="">Vị trí:
+                        <span class="Shop_subVal">${seller.province}</span>
+                    </p>
+                    <p class="Shop_subHeading"><img src="./img/Shop/ThamGiaIcon.svg" alt="Tham gia">Tham gia:
+                        <span class="Shop_subVal">5 năm</span>
+                    </p>
+                </div>
             </div>
             <div class="follow">
                 <c:if test="${seller.isFollowed == false}">
@@ -134,17 +136,17 @@
                     <i class="fa-solid fa-search"></i>
                 </form>
                 <h3>Sắp xếp theo</h3>
-                <button class="Btn_Filter" id="btn_pop">
+                <button class="btn Btn_Filter" id="btn_pop">
                     <span class="Filter_item">Phổ biến</span>
                 </button>
-                <button class="Btn_Filter" id="btn_ctime">
+                <button class="btn Btn_Filter" id="btn_ctime">
                     <span class="Filter_item">Mới nhất</span>
                 </button>
-                <button class="Btn_Filter" id="btn_best">
+                <button class="btn Btn_Filter" id="btn_best">
                     <span class="Filter_item">Bán chạy</span>
                 </button>
                 <div class="Filter_price">
-                    <span style="font-size: 16px; font-weight: 500;">Giá</span>
+                    <span>Giá</span>
                     <select name="Lọc giá" id="Shop_Filter">
                         <option value="ASC"> Thấp đến cao</option>
                         <option value="DESC"> Cao đến thấp</option>

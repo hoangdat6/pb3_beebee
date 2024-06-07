@@ -8,6 +8,7 @@
 }
 
 :root {
+    --green: #38CB89;
     --bg-color: #ECEBEE;
     --note-color: #9CA3AF;
     --orange-weight-color: #EA580C;
@@ -111,50 +112,26 @@ a {
 }
 
 input[type="checkbox"] {
-    position: relative;
     cursor: pointer;
+    padding: 2px;
 }
 
 input[type="checkbox"]:hover {
-    background: #23262F;
+    border-color: #141718;
 }
 
-/* Tạo hộp checkbox custom */
-input[type="checkbox"]:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 10px;
-    height: 10px;
-    border: 2px solid #000;
-    /* Màu đen */
-    border-radius: 2px;
-}
-
-input[type="checkbox"]:checked::before {
-    background-color: #000;
+input[type="checkbox"]:checked {
     color: #fff;
+    accent-color: #141718;
 }
 
-/*input[type="checkbox"]:checked::after {*/
-/*    width: 6px;*/
-/*    height: 2px;*/
-/*    border-left: 1px solid #000;*/
-/*    border-right: 1px solid #000;*/
-/*    rotate: -45deg;*/
-/*}*/
 
 /*Product Card*/
 
 .Product_list {
-    display: grid;
-    margin-top: 15px;
-    grid-template-columns: repeat(5, 1fr);
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    /* flex-wrap: wrap; */
-    /* column-gap: calc((100% - 4 * 237px) / 3); */
 }
 
 .Card {
@@ -168,6 +145,7 @@ input[type="checkbox"]:checked::before {
     drop-shadow(0px 17px 7px rgba(0, 0, 0, 0.01))
     drop-shadow(0px 27px 8px rgba(0, 0, 0, 0.00));
     max-width: 240px;
+    flex-grow: 1;
 }
 
 .Card-Image {
