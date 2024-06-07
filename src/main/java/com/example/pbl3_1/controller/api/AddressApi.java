@@ -51,7 +51,6 @@ public class AddressApi extends HttpServlet {
         String urlPattern = request.getServletPath();
         User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
 
-
         switch (urlPattern){
             case "/api/address" :
                 Address address = new Address(request.getParameter("fullname"),request.getParameter("phone"),request.getParameter("detail"),request.getParameter("ward"),request.getParameter("district"),request.getParameter("city"));

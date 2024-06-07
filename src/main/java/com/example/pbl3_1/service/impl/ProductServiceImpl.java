@@ -3,6 +3,7 @@ package com.example.pbl3_1.service.impl;
 import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
 import com.example.pbl3_1.controller.dto.product.ProductManagementDTO;
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
+import com.example.pbl3_1.controller.dto.product.UserOrderProductDTO;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.CategoryDAO;
 import com.example.pbl3_1.dao.ProductDAO;
@@ -31,16 +32,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductPreviewDTO> getProductsForHome() {
-        List<ProductPreviewDTO> productForHomeDTO = productDAO.getProductForHomeDtos();
-        for (ProductPreviewDTO product : productForHomeDTO){
-            product.setMainImage();
-        }
-        return productForHomeDTO;
+        return productDAO.getProductForHomeDtos();
     }
 
     @Override
     public ProductDetailDTO getProductDetail(Long id) {
         ProductDetailDTO productDetailDTO = productDAO.getProductDetailById(id);
+        if(productDetailDTO == null){
+            return null;
+        }
         List<Variation> variations = variationService.getVariationsByProductId(id);
         List<String> imgPaths = productItemDAO.getImgPathByProductId(id);
 
@@ -100,5 +100,8 @@ public class ProductServiceImpl implements ProductService {
     public int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue){
         return productDAO.getProductManagementTotalPage(sellerId, idCategory, searchValue);
     }
-
+    @Override
+    public List<UserOrderProductDTO> getUserOrderProduct(Long userId, int status){
+        return productDAO.getUserOrderProduct(userId, status);
+    }
 }

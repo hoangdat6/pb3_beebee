@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href = "<c:url value="/Footer.css"/>">
   <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
   <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
-  <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
   <script src="<c:url value="/Card.js"/>"></script>
 </head>
 
@@ -55,7 +55,7 @@
     </p>
     <div class="Card-Container">
       <c:forEach items="${categories}" var="category" begin="0" end="5">
-        <a href='<c:url value="/catrgory/${category.id}"/>' class="Category-Card">
+        <a href='<c:url value="/search?keyword=${category.name}"/>' class="Category-Card">
           <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
           <p class="Card-Desc">
             <c:out value="${category.name}"/>
@@ -77,7 +77,9 @@
     <div class="Product_list pad-l-r-170 pad-t-b-30"></div>
       <script>
         <c:forEach items="${products}" var="product">
-        var productUrl = '<c:url value="/product?id=${product.id}" />';
+        var productName = '${product.name}';
+        var productId = '${product.id}';
+        var productUrl = '<c:url value="/product?" />';
         var sellerName = "${product.sellerName != null ? product.sellerName : 'Tên Shop'}";
         var sellerUrl = "<c:url value="/shop?id=${product.sellerId != null ? product.sellerId : 0}"/>";
         var sellerAvatar = "${product.sellerAvatar != null ? product.sellerAvatar : 'img/Brand/Coffee.jpeg'}";
@@ -87,6 +89,8 @@
           price: "${product.price}",
           discount: "${product.discount}",
           imgPath: "${product.imgPath}",
+          productName: productName,
+          productId : productId,
           sellerName: sellerName,
           productUrl: productUrl,
           sellerUrl : sellerUrl,
@@ -94,7 +98,9 @@
         });
         </c:forEach>
       </script>
+    <input type="button" value="Xem thêm" class="btn-view_more">
   </div>
+  <div class="Product">
 
   <div class="Title-Container">
     <div class="Title-Desc">
@@ -103,7 +109,6 @@
     </div>
     <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
   </div>
-
   <div class="Product_list pad-l-r-170 pad-t-b-30">
     <% for (int i = 0; i < 20; i++) { %>
 
@@ -135,6 +140,9 @@
       </div>
     </div>
     <% } %>
+  </div>
+    <input type="button" value="Xem thêm" class="btn-view_more">
+
   </div>
 
 </div>

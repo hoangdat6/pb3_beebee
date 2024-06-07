@@ -2,6 +2,7 @@ package com.example.pbl3_1.dao;
 
 import com.example.pbl3_1.mapper.RowMapper;
 
+import java.sql.SQLException;
 import java.util.List;
 
 public interface GenericDAO<T> {

@@ -204,6 +204,7 @@ public class AbstractDAOImpl<T> implements GenericDAO<T> {
             return id;
         } catch (SQLException e) {
             e.printStackTrace();
+
             if (con != null) {
                 try {
                     con.rollback();

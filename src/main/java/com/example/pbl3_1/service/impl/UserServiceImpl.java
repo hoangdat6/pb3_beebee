@@ -63,4 +63,9 @@ public class UserServiceImpl implements UserService {
         userDAO.updateRole(userId, eRole);
     }
 
+    @Override
+    public void updateAvatar(Long userId, String path) {
+        userDAO.updateAvatar(userId, path);
+    }
+
 }

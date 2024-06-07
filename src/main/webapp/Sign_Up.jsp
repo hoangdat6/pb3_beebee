@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href ="<c:url value="/Footer.css"/>">
         <link rel="stylesheet" type="text/css" href="<c:url value="/Sign_Up.css"/>">
         <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
-        <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
 
     </head>
 <body class="Color-White">

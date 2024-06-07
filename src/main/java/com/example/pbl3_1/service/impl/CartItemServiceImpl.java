@@ -26,7 +26,7 @@ public class CartItemServiceImpl implements CartItemService {
                 productItemId = productItemDAO.getProductItemIdByVariations(productId, Long.parseLong(variation1), Long.parseLong(variation2));
             else
                 // add to cart with 1 variation
-                productItemId = productItemDAO.getProductItemIdByVariations(productId, Long.parseLong(variation1), null);
+                productItemId = productItemDAO.getProductItemIdByVariations(productId, null, Long.parseLong(variation1));
         }else {
             // add to cart without variation
             productItemId = productItemDAO.getProductItemIdByVariations(productId, null, null);
