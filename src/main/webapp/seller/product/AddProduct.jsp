@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <script src="<c:url value="/toast.js"/>"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/toast.css"/>" />
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 

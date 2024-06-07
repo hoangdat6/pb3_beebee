@@ -494,6 +494,10 @@ function AddProduct() {
         imageSrc.push(image.src.split(',')[1]);
     });
 
+    if (Variation2Name === "") {
+        Variation2Name = Variation1Name;
+        Variation1Name = "";
+    }
     data.push({
         ProductName: ProductName,
         ProductCategory: ProductCategory,
@@ -515,7 +519,7 @@ function AddProduct() {
             if (cells.length === 4) {
                 VariationOption1Name = cells[0].innerText;
             }
-            if(cnt % rowSpan === 1){
+            if(cnt % rowSpan === 1 || rowSpan === 1){
                 ProductItemImage = cells[0].querySelector('img').src.split(',')[1];
             }
             cnt ++;
@@ -532,6 +536,9 @@ function AddProduct() {
                 Price: Price
             });
         }
+        data.push({
+            rowSpan: table.table.rows[1].cells[0].rowSpan
+        })
     } else {
         let QtyInStock = document.getElementById("KhoHang").value;
         let Price = document.getElementById("Gia").value;
@@ -541,11 +548,11 @@ function AddProduct() {
             QtyInStock: QtyInStock,
             Price: Price
         });
+        data.push({
+            rowSpan: 0
+        })
     }
 
-    data.push({
-        rowSpan: table.table.rows[1].cells[0].rowSpan
-    })
 
     fetch('/PBL3_1_war_exploded/seller/product/save', {
         method: 'POST',

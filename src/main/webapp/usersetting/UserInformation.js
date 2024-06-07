@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', function () {
         // Check if any file is selected
         if (fileInput.files && fileInput.files[0]) {
             const reader = new FileReader();
-
             // Read the selected file as a URL
             reader.onload = function (e) {
                 // Set the image source to the selected file URL
@@ -23,6 +22,25 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Read the selected file
             reader.readAsDataURL(fileInput.files[0]);
+
+
         }
     });
+
+    avatar.addEventListener("load", function () {
+        let data= avatar.src.split(",")[1];
+        console.log(JSON.stringify({source : data}));
+        if (data != undefined) {
+            $.ajax( {
+                    type: "POST",
+                    url: "/PBL3_1_war_exploded/api/userAvatar",
+                    data: JSON.stringify({source : data}),
+                    contentType : "application/json",
+                    success: function(response){
+
+                    }
+                }
+            )
+        }
+    })
 });

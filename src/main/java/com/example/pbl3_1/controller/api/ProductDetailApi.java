@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "productDetailApi", urlPatterns = {"/api/product-detail"})
 public class ProductDetailApi extends HttpServlet{
-    ProductItemService productItemService = new ProductItemServiceImpl();
+    private final ProductItemService productItemService = new ProductItemServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -23,10 +23,11 @@ public class ProductDetailApi extends HttpServlet{
 
         String variantId1 = request.getParameter("variation1");
         String variantId2 = request.getParameter("variation2");
+        String productId = request.getParameter("productId");
 
         System.out.println(variantId2);
 
-        ProductItem productItem = productItemService.getProductItemByVariations(variantId1, variantId2);
+        ProductItem productItem = productItemService.getProductItemByVariations(productId, variantId1, variantId2);
 
         ObjectMapper objectMapper = new ObjectMapper();
         response.setContentType("application/json");

@@ -31,16 +31,15 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductPreviewDTO> getProductsForHome() {
-        List<ProductPreviewDTO> productForHomeDTO = productDAO.getProductForHomeDtos();
-        for (ProductPreviewDTO product : productForHomeDTO){
-            product.setMainImage();
-        }
-        return productForHomeDTO;
+        return productDAO.getProductForHomeDtos();
     }
 
     @Override
     public ProductDetailDTO getProductDetail(Long id) {
         ProductDetailDTO productDetailDTO = productDAO.getProductDetailById(id);
+        if(productDetailDTO == null){
+            return null;
+        }
         List<Variation> variations = variationService.getVariationsByProductId(id);
         List<String> imgPaths = productItemDAO.getImgPathByProductId(id);
 

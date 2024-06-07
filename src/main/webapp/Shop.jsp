@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Shop.css"/>">
-    <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
     <script src="Card.js"></script>
@@ -78,6 +78,7 @@
 
     </div>
     <script>
+
         var sellerUrl = '<c:url value="/shop?id=${seller.id != null ? seller.id : 0}"/>';
         var sellerName = "${seller.shopName != null ? seller.shopName : 'Tên Shop'}";
         var sellerAvatar = "${seller.avatar != null ? seller.avatar : './img/Brand/Coffee.jpeg'}";
@@ -85,6 +86,8 @@
         var isFollowed = ${seller.isFollowed};
 
         <c:forEach items="${seller.mostViewedProducts}" var="product">
+        var productName = '${product.name}';
+        var productId = '${product.id}';
         var productUrl = '<c:url value="/product?id=${product.id}" />';
 
         document.querySelector('#Shop_content .Product_list').innerHTML += createCard({
@@ -92,6 +95,8 @@
             price: "${product.price}",
             discount: "${product.discount}",
             imgPath: "${product.imgPath}",
+            productName: productName,
+            productId : productId,
             sellerName: sellerName,
             productUrl: productUrl,
             sellerUrl : sellerUrl,

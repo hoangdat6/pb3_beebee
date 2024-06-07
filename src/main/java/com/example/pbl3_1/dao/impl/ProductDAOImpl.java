@@ -66,8 +66,10 @@ public class ProductDAOImpl implements ProductDAO {
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
         sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+        sql.append("JOIN product_status AS ps ON p.product_status_id = ps.id\n");
+        sql.append("WHERE ps.id = 1\n");
         sql.append("GROUP BY p.id\n");
-//        sql.append("LIMIT 20 OFFSET 0");
+        sql.append("LIMIT 20 OFFSET 0");
 
 
         return abstractDAO.query(sql.toString(), resultSet -> {
@@ -91,17 +93,32 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public ProductDetailDTO getProductDetailById(Long id) {
-        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path , MIN(pi.price) as min_price, MAX(pi.price) as max_price, p.description,\n");
-        sql.append("p.seller_id, s.shop_name, s.avatar,\n");
-        sql.append("p.category_id ,c.name as category_name,\n");
-        sql.append("SUM(qty_in_stock) as total_qty\n");
-        sql.append("FROM products AS p\n");
-        sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
-        sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
-        sql.append("JOIN categories as c ON p.category_id = c.id\n");
-        sql.append("WHERE p.id = ?");
+//        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path , MIN(pi.price) as min_price, MAX(pi.price) as max_price, p.description,\n");
+//        sql.append("p.seller_id, s.shop_name, s.avatar,\n");
+//        sql.append("p.category_id ,c.name as category_name,\n");
+//        sql.append("SUM(qty_in_stock) as total_qty\n");
+//        sql.append("FROM products AS p\n");
+//        sql.append("LEFT JOIN product_item pi ON p.id = pi.product_id\n");
+//        sql.append("LEFT JOIN sellers AS s ON p.seller_id = s.id\n");
+//        sql.append("LEFT JOIN categories as c ON p.category_id = c.id\n");
+//        sql.append("WHERE p.id = ?");
 
-        return abstractDAO.query(sql.toString(), resultSet -> {
+        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path, pi.min_price, pi.max_price, p.description,\n");
+        sql.append("       p.seller_id, s.shop_name, s.avatar, p.category_id, c.name as category_name, pi.total_qty\n");
+        sql.append("FROM products AS p\n");
+        sql.append("         JOIN (\n");
+        sql.append("    SELECT product_id,\n");
+        sql.append("           MIN(price) as min_price,\n");
+        sql.append("           MAX(price) as max_price,\n");
+        sql.append("           SUM(qty_in_stock) as total_qty\n");
+        sql.append("    FROM product_item\n");
+        sql.append("    GROUP BY product_id\n");
+        sql.append(") AS pi ON p.id = pi.product_id\n");
+        sql.append("         JOIN sellers AS s ON p.seller_id = s.id\n");
+        sql.append("         JOIN categories as c ON p.category_id = c.id\n");
+        sql.append("WHERE p.id = ?;");
+
+        List<ProductDetailDTO> list = abstractDAO.query(sql.toString(), resultSet -> {
             try {
                 return new ProductDetailDTO(
                         resultSet.getLong("id"),
@@ -117,13 +134,17 @@ public class ProductDAOImpl implements ProductDAO {
                         resultSet.getString("shop_name"),
                         resultSet.getString("avatar").split(",")[0],
                         resultSet.getInt("total_qty"),
-                        null
+                        false,
+                        null,
+                        true
                 );
             } catch (SQLException e) {
                 e.printStackTrace();
                 return null;
             }
-        }, id).get(0);
+        }, id);
+
+        return list.isEmpty() ? null : list.get(0);
     }
 
     @Override
@@ -134,7 +155,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public Long addProduct(Product product) {
-        String sql = "INSERT INTO products (name, description, img_path, category_id, seller_id, created_at, discount, views) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO products (name, description, img_path, category_id, seller_id, created_at, discount, views, product_status_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         return abstractDAO.save(
                 sql,
                 product.getName(),
@@ -144,7 +165,8 @@ public class ProductDAOImpl implements ProductDAO {
                 product.getSellerId(),
                 new Timestamp(System.currentTimeMillis()),
                 product.getDiscount(),
-                0
+                0,
+                1
         );
     }
 

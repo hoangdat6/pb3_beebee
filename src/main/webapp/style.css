@@ -137,6 +137,8 @@ a{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+
 }
 
 .Title-Container h3{
@@ -288,4 +290,19 @@ a{
 
 .Product-Evaluation{
     color: var(--main-color);
+}
+
+.Product {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 100px;
+}
+
+.btn-view_more {
+    padding: 8px 12px;
+    border-radius: 12px;
+    background-color: #fff;
+    font-weight: 700;
+    border: none;
 }

@@ -3,6 +3,8 @@ function formatCurrency(value) {
 }
 
 function createCard(product) {
+    product.productName = product.productName.split(" ").join("-");
+    product.productUrl += `n=${product.productName}&id=${product.productId}`;
     return `
         <div class="Card">
             <a href='${product.productUrl}'>

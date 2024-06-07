@@ -28,10 +28,16 @@ public class ProductDetailDTO {
     private String sellerName;
     private String sellerAvatar;
     private int quantity;
+    private boolean isProductOfSeller;
     private List<Variation> variations;
+    private boolean available;
 
 
     public ProductDetailDTO(){
 
+    }
+
+    public boolean getIsProductOfSeller() {
+        return isProductOfSeller;
     }
 }
