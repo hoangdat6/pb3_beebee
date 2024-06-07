@@ -85,7 +85,7 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
         sql.append("    p.id as product_id,\n");
         sql.append("    p.name as product_name,\n");
         sql.append("    p.discount as product_discount,\n");
-        sql.append("    p.is_deleted as product_is_deleted,\n");
+        sql.append("    p.product_status_id as product_status_id,\n");
         sql.append("    pi.id as product_item_id,\n");
         sql.append("    pi.price as product_price,\n");
         sql.append("    pi.qty_in_stock as product_qty_in_stock,\n");
@@ -112,7 +112,7 @@ public class ShoppingCartItemDAOImpl implements ShoppingCartItemDAO {
                         .productId(resultSet.getLong("product_id"))
                         .productName(resultSet.getString("product_name"))
                         .discount(resultSet.getInt("product_discount"))
-                        .productIsDeleted(resultSet.getBoolean("product_is_deleted"))
+                        .productIsDeleted(resultSet.getShort("product_status_id") != 1)
                         .productItemId(resultSet.getLong("product_item_id"))
                         .price(resultSet.getInt("product_price"))
                         .qtyInStock(resultSet.getInt("product_qty_in_stock"))
