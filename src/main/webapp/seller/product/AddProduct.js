@@ -252,6 +252,8 @@ function AddVarientGroup() {
         AddVarient('VI_wrap1');
         createTable();
     }
+
+    showErrorInput(Enumerator.ADD_VARIANT_GROUP);
 }
 
 function UpdateProductImageAfterChangeImage(event) {
@@ -392,6 +394,8 @@ function AddVarient(id) {
         ++cntVGI1element;
     }
     // table.createTableByRows();
+    showErrorInput(Enumerator.ADD_VARIANT);
+
 }
 
 
@@ -473,6 +477,10 @@ function AddProductImage(event) {
 }
 
 function AddProduct() {
+    if(showErrorInput(Enumerator.SAVE_PRODUCT)){
+        showErrorToast("Warning", "Vui lòng điền đầy đủ thông tin");
+        return;
+    }
     let data = [];
     let ProductName = document.querySelector('#product_name').value;
     let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
@@ -601,8 +609,6 @@ function createImagePreview(src) {
     overlay.appendChild(imagePreview);
 }
 
-
-
 $(document).ready(function () {
     $('#product_name').on("input", function () {
         let span = $('#span_for_name');
@@ -633,7 +639,52 @@ $(document).ready(function () {
         // span.text($(this).val() + '%');
     });
 
+    showErrorInput(Enumerator.ADD_VARIANT_GROUP);
+});
 
-})
+const Enumerator = Object.freeze({
+    SAVE_PRODUCT: 0,
+    ADD_VARIANT_GROUP: 1,
+    ADD_VARIANT: 2
+});
+
+function showErrorInput(e){
+    let inputs = $(".AddProduct_content input");
+
+    let check = false;
+    if(e == Enumerator.SAVE_PRODUCT){
+        inputs.each(function () {
+            if ($(this).val().length === 0) {
+                $(this).css({
+                    borderColor: 'red'
+                });
+                check = true;
+            } else {
+                $(this).css({
+                    borderColor: 'black'
+                });
+                check = false;
+            }
+        });
+    }else {
+
+        inputs.each(function () {
+            $(this).on("input", function () {
+                if($(this).val().length === 0){
+                    $(this).css({
+                        borderColor: 'red'
+                    });
+                }else{
+                    $(this).css({
+                        borderColor: 'black'
+                    });
+                }
+            });
+        });
+    }
+
+    return check;
+}
+
 
 
