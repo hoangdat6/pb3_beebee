@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
+    <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="./toast.js"></script>
@@ -71,16 +72,17 @@
                     </c:if>
 
                     <c:if test="${productDetail.minPrice == productDetail.maxPrice}">
-                                                <span class="old-Price">
-                                                    <fmt:formatNumber value="${productDetail.maxPrice}" type="currency" />
-                                                </span>
+                        <span class="old-Price">
+                            <fmt:formatNumber value="${productDetail.maxPrice}" type="currency" />
+                        </span>
                         <span class="new-Price">
-                                                    <fmt:formatNumber value="${productDetail.maxPrice * (1 - productDetail.discount / 100)}" type="currency" />
-                                                </span>
+                            <fmt:formatNumber value="${productDetail.maxPrice * (1 - productDetail.discount / 100)}" type="currency" />
+                        </span>
                     </c:if>
 
                 </div>
                 <div class="Product_category">
+                    <input type="hidden" id="product_id" value="${productDetail.id}">
                     <c:set var="cnt" value="1" />
                     <c:forEach var="variation" items="${productDetail.variations}">
                         <div class="Category_item">
@@ -100,6 +102,7 @@
             </div>
 
             <div class="Product_Loop-Button">
+                <c:if test="${productDetail.isProductOfSeller == false}">
                 <div class="Qty">
                     <button class="btn Qty__Minus" onclick="decreaseQuantity(this)"><i
                             class="fa-solid fa-minus"></i></button>
@@ -118,8 +121,12 @@
                     <i class="fa-regular fa-heart"></i>
                     <p>Yêu thích</p>
                 </button>
+                </c:if>
+
             </div>
-            <button class="btn Buy" id="check_out">Mua ngay</button>
+            <c:if test="${productDetail.isProductOfSeller == false}">
+                <button class="btn Buy" id="check_out">Mua ngay</button>
+            </c:if>
             <div class="Product-Menu">
                 Danh mục
                 <span>${productDetail.categoryName}</span>
@@ -160,5 +167,8 @@
 </div>
 <script type="text/javascript" src="<c:url value="Product_Details.js"/>"></script>
 <script defer type="text/javascript" src="<c:url value="Product_Detail_event.js"/>"></script>
+<script src="<c:url value="/Pop-ups.js"/>"></script>
+<script src="<c:url value="/AlertPopUp.js"/>"></script>
+
 <%@ include file="Footer.jsp" %>
 </body>

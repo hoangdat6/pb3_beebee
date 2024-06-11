@@ -18,6 +18,8 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/toast.css"/>" />
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src=<c:url value="/seller/common/SellerCommon.js"/>></script>
+
 </head>
 
 <body>
@@ -207,7 +209,6 @@
     <script src="<c:url value="/seller/product/AddProduct.js"/>"></script>
     <script src="<c:url value="/seller/product/AddProductEvent.js"/>"></script>
     <script src="<c:url value="/Common.js"/>"></script>
-    <script src=<c:url value="/seller/common/SellerCommon.js"/>></script>
 </body>
 
 </html>

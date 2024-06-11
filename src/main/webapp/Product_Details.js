@@ -97,7 +97,8 @@ function saveToCart(check1){
             variation2 = $(".Category_option2.Selected").attr('id');
 
         if(variation1 === undefined || variation2 === undefined){
-            alert("Please choose a variation and quantity");
+            createAlertPopUp("Thông báo", "Vui lòng chọn loại sản phẩm và số lượng",
+                [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()'}]);
             return;
         }
     }

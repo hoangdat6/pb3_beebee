@@ -432,6 +432,7 @@ function ChangeImagePreview(div) {
     }
     reader.readAsDataURL(input.files[0]);
 }
+let countImage = 0;
 
 function createImgObject(imgpath){
     let imgobj = document.createElement('div');
@@ -452,6 +453,7 @@ function createImgObject(imgpath){
     btnRemove.addEventListener('click', function (e) {
         e.preventDefault();
         imgobj.parentElement.removeChild(imgobj);
+        countImage--;
     });
     imgobj.appendChild(btnPreview);
     btnPreview.addEventListener('click', function () {
@@ -470,6 +472,7 @@ function AddProductImage(event) {
     reader.onloadend = function (e) {
         imgobj = createImgObject(e.target.result);
         container.appendChild(imgobj);
+        countImage++;
     }
     if (file) {
         reader.readAsDataURL(file);
@@ -477,10 +480,16 @@ function AddProductImage(event) {
 }
 
 function AddProduct() {
+    if(countImage < 4){
+        showErrorToast("Warning", "Vui lòng thêm ít nhất 4 hình ảnh");
+        return;
+    }
+
     if(showErrorInput(Enumerator.SAVE_PRODUCT)){
         showErrorToast("Warning", "Vui lòng điền đầy đủ thông tin");
         return;
     }
+
     let data = [];
     let ProductName = document.querySelector('#product_name').value;
     let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
@@ -649,25 +658,26 @@ const Enumerator = Object.freeze({
 });
 
 function showErrorInput(e){
-    let inputs = $(".AddProduct_content input");
 
     let check = false;
     if(e == Enumerator.SAVE_PRODUCT){
+        let inputs = $(".AddProduct_content input");
         inputs.each(function () {
             if ($(this).val().length === 0) {
-                $(this).css({
-                    borderColor: 'red'
-                });
-                check = true;
+                if(!($(this).attr("id") == "inventory" || $(this).attr("id") == "price")){
+                    $(this).css({
+                        borderColor: 'red'
+                    });
+                    check = true;
+                }
             } else {
                 $(this).css({
                     borderColor: 'black'
                 });
-                check = false;
             }
         });
     }else {
-
+        let inputs = $(".AddProduct_content input");
         inputs.each(function () {
             $(this).on("input", function () {
                 if($(this).val().length === 0){
@@ -685,6 +695,8 @@ function showErrorInput(e){
 
     return check;
 }
+
+
 
 
 

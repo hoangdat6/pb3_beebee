@@ -29,13 +29,11 @@ $(document).ready(function () {
 $(document).ready(function () {
     $(`.History`).click(function () {
         let check = $(`.History`).attr("myCheck");
-
-
+        
         if(check == "1"){
             window.location.href = "/PBL3_1_war_exploded/usersetting/order";
         }
-
-
+        
         if (check == "2"){
             let orderIds = $(`#ids`).val();
             let paymentTotal = $(`#paymentTotal`).val();
@@ -50,7 +48,7 @@ function overlayQR(total, orderIds){
     let QRPopups = document.createElement("div");
 
     QRPopups.innerHTML =  `
-        <img src="https://img.vietqr.io/image/970422-00161224886868-compact2.png?amount=${total}&addInfo='${orderIds}'&accountName=HOANG%20VAN%20DAT">
+        <img src="https://img.vietqr.io/image/970422-00161224886868-compact2.png?amount=${total}&addInfo='${orderIds}'&accountName=HOANG%20VAN%20DAT" alt="QR chuyển tiền">
     `
 
     overlay.appendChild(QRPopups);
