@@ -60,6 +60,3 @@ function updateChart(revenue, access) {
     myChart.data.datasets[1].data = access;
     myChart.update();
 }
-
-const newDataDoanhSo = [10000000, 2000000, 3000000, 4000000, 5000000, 6000000, 7000000, 8000000, 9000000, 10000000, 11000000, 12000000];
-const newDataLuotTruyCap = [500, 600, 700, 800, 900, 1000, 1100, 1200, 1300, 1400, 1500, 1600];

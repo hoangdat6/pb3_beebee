@@ -6,25 +6,6 @@ function createListOrder(data) {
     });
 }
 
-// <div className="footer">
-//     <div className="qty_and_total">
-//         <div className="qty">6 sản phẩm</div>
-//         <div className="total">
-//             Tổng tiền: <span>100.000đ</span>
-//         </div>
-//     </div>
-//     <div className="choice">
-//         <p>Vui lòng chỉ nhấn “Đã nhận được hàng” khi đơn hàng đã được giao đến bạn và sản phẩm nhận
-//             được
-//             không có vấn đề nào.</p>
-//         <div className="action">
-//             <button className="btn btn1">Đánh giá</button>
-//             <button className="btn btn2">Yêu cầu trả hàng hoàn tiền</button>
-//             <button className="btn btn2">Liên hệ người bán</button>
-//         </div>
-//     </div>
-// </div>
-
 function createOrderTable(order, Class) {
     document.querySelector(".wrap").innerHTML +=
             `<div class="Order_item ${Class}">    
@@ -109,7 +90,7 @@ function createOrderDetailTable() {
         },
         contentType: 'application/json',
         success: function (data) {
-            console.log(data);
+            // console.log(data);
             createListOrder(data);
         },
         error: function (error) {

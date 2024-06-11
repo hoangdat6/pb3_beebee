@@ -49,7 +49,7 @@
   <div class="clear"></div>
 </div>
 <div id="Home-Content">
-  <div class="Category">
+  <div class="Category pad-l-r-170 pad-t-b-30">
     <p class="Category-Title">
       Danh mục
     </p>
@@ -67,7 +67,7 @@
   </div>
   <!-- Khu vực "DÀNH RIÊNG CHO BẠN" -->
   <div class="Product">
-    <div class="Title-Container">
+    <div class="Title-Container pad-l-r-170 pad-t-b-30">
       <div class="Title-Desc">
         <h3>Dành riêng cho bạn</h3>
         <p>Sản phẩm mới với mức giá tốt nhất</p>
@@ -102,7 +102,7 @@
   </div>
   <div class="Product">
 
-  <div class="Title-Container">
+  <div class="Title-Container pad-l-r-170 pad-t-b-30">
     <div class="Title-Desc">
       <h3>Sản phẩm hàng đầu</h3>
       <p>Các sản phẩm bán chạy và đánh giá cao</p>

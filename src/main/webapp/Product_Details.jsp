@@ -82,6 +82,7 @@
                 </div>
                 <div class="Product_category">
                     <c:set var="cnt" value="1" />
+                    <input type="hidden" id="product_id" name="product_id" value="${productDetail.id}"/>
                     <c:forEach var="variation" items="${productDetail.variations}">
                         <div class="Category_item">
                             <h3 style="font-size: 16px; color:#333; margin-right: 20px;">${variation.name}</h3>

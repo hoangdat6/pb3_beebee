@@ -8,12 +8,12 @@ function generateSidebar() {
     </a>
 
     <div>
-        <a href="" class="btn item">
+        <a href="/PBL3_1_war_exploded/seller/product/productmanagement" class="btn item">
             <i class="fa-solid fa-bag-shopping"></i>
             <span>Quản lý sản phẩm</span>
         </a>
         <ul>
-            <li class="subitem"><a href="">Tất cả sản phẩm</a></li>
+            <li class="subitem"><a href="/PBL3_1_war_exploded/seller/product/productmanagement">Tất cả sản phẩm</a></li>
             <li class="subitem"><a href="">Sản phẩm vi phạm</a></li>
             <li class="subitem"><a href="/PBL3_1_war_exploded/seller/product/save">Thêm sản phẩm</a></li>
             <li class="subitem"><a href="/PBL3_1_war_exploded/seller/voucher/AddVoucher.jsp">Thêm Voucher</a></li>
