@@ -48,6 +48,14 @@ input[type="file"] {
     width: 100%;
 }
 
+input[name="VI_name"],
+input[name="varient_group_name"]
+{
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #6C7275;
+}
+
 #Basic_info,
 #Sale_info {
     width: 790px;
@@ -148,6 +156,10 @@ input[type="file"] {
     align-items: flex-start;
     position: relative;
     flex-grow: 1;
+}
+
+#product_name {
+    padding-right: 30px;
 }
 
 #Basic_info .Basic_info_item input,

@@ -603,6 +603,37 @@ function createImagePreview(src) {
 
 
 
-document.addEventListener("DOMContentLoaded", () => {
+$(document).ready(function () {
+    $('#product_name').on("input", function () {
+        let span = $('#span_for_name');
+        if($(this).val().length > 120){
+            $(this).val($(this).val().substring(0, 120));
+            span.css( {
+                color: 'red'
+            });
+        }
+        span.text($(this).val().length + '/120');
+    });
 
-});
+    $('#product_description').on("input", function () {
+        let span = $('#span_for_description');
+        if($(this).val().length > 3000){
+            $(this).val($(this).val().substring(0, 3000));
+            span.css( {
+                color: 'red'
+            });
+        }
+        span.text($(this).val().length + '/3000');
+    });
+
+    $('#discount').on("input", function () {
+        if($(this).val().length > 2){
+            $(this).val($(this).val().slice(0, 2));
+        }
+        // span.text($(this).val() + '%');
+    });
+
+
+})
+
+

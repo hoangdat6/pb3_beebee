@@ -82,7 +82,7 @@
                     </div>
                     <div style="display: block; width: 100%;">
                         <div class="Basic_info_item">
-                            <input type="text" name="product_name" id="product_name" required>
+                            <input type="text" name="product_name" id="product_name" style="padding-right: 100px;" required>
                             <span id="span_for_name">0/120
                             </span>
                         </div>
@@ -162,13 +162,13 @@
                         <h3 class="item_title">Danh sách phân loại hàng</h3>
                         <div class="SII_content_wrap">
                             <div class="SII_list_top">
+                                <input type="number" name="Kho hàng" id="inventory" placeholder="Kho hàng">
                                 <div style="position: relative;     flex-grow: 1;">
                                     <input type="number" name="Giá" id="price" placeholder="Giá"
                                         style="padding-left: 30px; width:100%">
                                     <i class="fa-solid fa-dong-sign"
                                         style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%);"></i>
                                 </div>
-                                <input type="number" name="Kho hàng" id="inventory" placeholder="Kho hàng">
                                 <button class="SII_list_top_btn" onclick="ApplyPriceAndInventoryAll()">Áp
                                     dụng cho tất cả phân loại</button>
                             </div>
@@ -183,14 +183,15 @@
                     <div>
 
                     </div>
-                    <div class="SII SII_price">
-                        <label for="Gia" class="item_title">Giá</label>
-                        <input type="number" name="" id="Gia" placeholder="Giá">
-                    </div>
 
                     <div class="SII SII_inventory">
                         <label for="KhoHang" class="item_title">Kho hàng</label>
                         <input type="number" name="Kho Hang" id="KhoHang" placeholder="Kho hàng">
+                    </div>
+
+                    <div class="SII SII_price">
+                        <label for="Gia" class="item_title">Giá</label>
+                        <input type="number" name="" id="Gia" placeholder="Giá">
                     </div>
 
                 </div>

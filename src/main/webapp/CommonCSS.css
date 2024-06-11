@@ -47,6 +47,7 @@ html {
     scroll-behavior: smooth;
 }
 
+
 .orange-bold {
     color: var(--orange-weight-color);
     font-weight: 700;

@@ -22,8 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Read the selected file
             reader.readAsDataURL(fileInput.files[0]);
-
-
         }
     });
 
