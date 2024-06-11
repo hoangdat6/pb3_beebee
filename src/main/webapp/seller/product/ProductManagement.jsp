@@ -26,14 +26,14 @@
 <%@ include file="../common/SellerCommon.jsp" %>
 <fmt:setLocale value = "vi_VN"/>
 <script>
-    function createTableRow(stt, id, name, sales, price, stock, status) {
+    function createTableRow(stt, id, name, sales, min_price, max_price, stock, status) {
         return `
         <tr>
             <td><input type="checkbox" name="" id="productid-` + id + `"></td>
             <td>` + stt + `</td>
             <td>` + name + `</td>
             <td>` + sales + `</td>
-            <td>` + price + `</td>
+            <td>` + min_price + ' - ' + max_price + `</td>
             <td>` + stock + `</td>
             <td>` + status + `</td>
         </tr>
@@ -52,10 +52,11 @@
             var id = product.id;
             var name = product.name;
             var sales = product.sales;
-            var price = product.price;
+            var min_price = product.min_price;
+            var max_price = product.max_price;
             var stock = product.quantity;
             var status = product.statusName;
-            document.querySelector(".list_product").innerHTML += createTableRow(stt, id, name, sales, price, stock, status);
+            document.querySelector(".list_product").innerHTML += createTableRow(stt, id, name, sales, min_price, max_price, stock, status);
             stt++;
         });
     }
@@ -104,7 +105,7 @@
         <div class="table_content">
             <table class="product_content">
                 <thead>
-                <td style="width: 30px;"><input type="checkbox" name="" id=""></td>
+                <td style="width: 30px;"><input type="checkbox" name="" id="mainCheckbox"></td>
                 <td style="width: 30px;">STT</td>
                 <td style="width: 200px;">Tên sản phẩm</td>
                 <td style="width: 100px;">Doanh số</td>
@@ -141,11 +142,11 @@
             var id = ${product.id};
             var name = '${product.name}';
             var sales = ${product.sales};
-            var price = ${product.price};
+            var min_price = ${product.min_price};
+            var max_price = ${product.max_price};
             var stock = ${product.quantity};
             var status = '${product.statusName}';
-            console.log("id = " + id + " name = " + name + " sales = " + sales + " price = " + price + " stock = " + stock + " status = " + status);
-            document.querySelector(".list_product").innerHTML += createTableRow(stt, id, name, sales, price, stock, status);
+            document.querySelector(".list_product").innerHTML += createTableRow(stt, id, name, sales, min_price, max_price, stock, status);
             stt++;
             </c:forEach>
             document.querySelector(".category_input").innerHTML += createCategoryOption(0, "Tất cả");
@@ -182,7 +183,7 @@
                 // Thực hiện các hành động khác dựa trên giá trị của option được chọn
                 // ...
             });
-            document.querySelector(".page_content").addEventListener("click", function(event) {
+                document.querySelector(".page_content").addEventListener("click", function(event) {
                 const selectedBox = event.target;
                 if(selectedBox.classList.contains("page_number") === false)
                     return;
@@ -259,6 +260,31 @@
                     },
                     error: function (error) {
                         console.error('Error:', error);
+                    }
+                });
+            });
+            var mainCheckbox = document.querySelector('#mainCheckbox');
+
+            // Lắng nghe sự kiện click trên checkbox chính
+            mainCheckbox.addEventListener('click', function() {
+                // Lấy tất cả các checkbox khác
+                var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+                // Đặt trạng thái của tất cả các checkbox khác tương ứng với trạng thái của checkbox chính
+                checkboxes.forEach(function(checkbox) {
+                    checkbox.checked = mainCheckbox.checked;
+                });
+            });
+            // Lấy tất cả các checkbox
+            var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+
+            // Lắng nghe sự kiện click trên mỗi checkbox
+            checkboxes.forEach(function(checkbox) {
+                checkbox.addEventListener('click', function() {
+                    // Nếu checkbox này bị bỏ chọn
+                    if (!this.checked) {
+                        // Bỏ chọn checkbox "Tất cả"
+                        document.querySelector('#mainCheckbox').checked = false;
                     }
                 });
             });

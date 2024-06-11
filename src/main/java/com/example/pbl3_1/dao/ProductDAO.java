@@ -19,12 +19,14 @@ public interface ProductDAO extends CommonDAO<Product>{
     Long addProduct(Product product);
     List<String> getSuggestName(String textSearch);
     void updateProductImage(Long productId, String images);
-    List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories);
+    List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories, int page, int size);
     List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories);
+    int getSearchTotalPage(String keyword, int minPrice, int maxPrice, String categories);
     List<Category> getAllCategories();
     List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size);
     List<Category> getCategoriesbyIdShop(Long idShop);
     int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue);
     void deleteProduct(Long idProduct);
     List<UserOrderProductDTO> getUserOrderProduct(Long idUser, int status);
+    void changeOrder(String idOrder, int changeId);
 }

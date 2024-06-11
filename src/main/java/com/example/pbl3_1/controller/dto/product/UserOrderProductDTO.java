@@ -17,7 +17,7 @@ public class UserOrderProductDTO {
     private String name;
     private String avatar;
     private String status;
+    private Integer shippingFee;
     private List<ProductOrderDTO> products;
     private List<OrderDiscountDTO> orderDiscounts;
-    private Integer shippingFee;
 }
