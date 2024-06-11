@@ -88,7 +88,6 @@ a{
 /*Content*/
 
 #Home-Content{
-    margin-top: 30px;
     background-color: var(--bg-color);
 }
 
@@ -138,7 +137,7 @@ a{
     justify-content: space-between;
     align-items: center;
     width: 100%;
-
+    background-color: #FFF;
 }
 
 .Title-Container h3{
@@ -165,11 +164,15 @@ a{
 }
 
 /* Product */
+.Product{
+    padding: 0 0 20px 0;
+}
+
 .Product-List{
-    background-color: var(--Product-List-Color);
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background-color: #F3F4F6;
 }
 
 .Product-Card{
@@ -292,17 +295,18 @@ a{
     color: var(--main-color);
 }
 
-.Product {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    margin-bottom: 100px;
-}
-
 .btn-view_more {
-    padding: 8px 12px;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 16px;
     border-radius: 12px;
     background-color: #fff;
-    font-weight: 700;
-    border: none;
+    border: 1px solid #141718;
+    margin: 0 auto;
+    display: block;
+
+    &:hover {
+        background-color: #141718;
+        color: #fff;
+    }
 }
