@@ -39,3 +39,4 @@ function GenerateSideBar(type = "UserInformation", username, avatar) {
     let wrap = document.querySelector('.UAAS_wrap');
     wrap.prepend(aside);
 }
+

@@ -50,7 +50,8 @@
     </div>
     <script>
         $(document).ready(function() {
-        createOrderDetailTable()
+        createOrderDetailTable();
+        GenerateSideBar("Order" ,"${USERMODEL.username}", "${USERMODEL.avatar}");
         });
     </script>
     <%@ include file="../Footer.jsp" %>

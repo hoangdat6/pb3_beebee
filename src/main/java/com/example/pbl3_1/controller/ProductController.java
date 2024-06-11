@@ -38,8 +38,8 @@ public class ProductController extends HttpServlet {
     }
 
     public void showProductDetails(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
-//        String name = request.getParameter("n");
+        String productId = request.getParameter("id");
+        Long id = Long.parseLong(productId);
 
         ProductDetailDTO productDetailDTO = productService.getProductDetail(id);
 
@@ -50,17 +50,6 @@ public class ProductController extends HttpServlet {
             productDetailDTO  = new ProductDetailDTO();
             productDetailDTO.setAvailable(false);
         }
-
-//        Long productId =(Long) SessionUtil.getInstance().getValue(request, "productId");
-//        if(productId != null) {
-//            if(!productId.equals(productDetailDTO.getId())) {
-//                productDetailDTO.setAvailable(false);
-//            }else {
-//                SessionUtil.getInstance().removeValue(request, "productId");
-//            }
-//        }else {
-//            SessionUtil.getInstance().putValue(request, "productId", productDetailDTO.getId());
-//        }
 
 
         if(Objects.equals(sellerId, productDetailDTO.getSellerId())) {

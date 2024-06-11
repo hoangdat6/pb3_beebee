@@ -123,7 +123,7 @@
 
 /*Product Loop Right*/
 #PD-Content .Product_Loop .Product_Loop-right {
-  max-width: 60%;
+  max-width: 50%;
   flex-grow: 1;
 }
 
@@ -205,7 +205,6 @@
 
 #PD-Content .Product_Loop .Product_Loop-right .Product_Loop-Button {
   display: flex;
-  justify-content: space-between;
   gap: 10px;
 }
 
@@ -234,7 +233,6 @@
 
 .Qty__Input {
   width: 50px;
-  padding-left: 15px;
   text-align: center;
   font-size: 16px;
   font-weight: 600;
@@ -246,12 +244,14 @@
   background-color: #fff;
   border: 1px solid #121212;
   text-align: center;
-  border-radius: 8px;
+  border-radius: 5px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   font-size: 16px;
   font-weight: 400;
+  justify-content: center;
+  flex-grow: 1;
 }
 
 .Product_Loop-Button .Same:hover {

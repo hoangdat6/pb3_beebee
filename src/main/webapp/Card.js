@@ -42,6 +42,3 @@ function createCard(product) {
         </div>
     `;
 }
-
-
-
