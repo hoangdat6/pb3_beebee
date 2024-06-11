@@ -118,13 +118,13 @@ function UpdateCartItem(button) {
     }
 
     if(quantity === 0){
-        let check = createAlertPopUp("Thông báo", "Bạn chắc chắn muốn bỏ sản phẩm này?", [
-            {text: 'Có', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: true},
+        let check = createAlertPopUp("Thông báo", "Bạn chắc chắn muốn bỏ sản phẩm này?",
+            [{text: 'Có', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: true},
             {text: 'Không', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: false}]
         ).then((value) => {
-            if(value === true){
+            if(value === true) {
                 RemoveCartItem(button.parentElement.parentElement);
-            }else {
+            } else {
                 quantity++;
             }
         });
@@ -276,6 +276,13 @@ function getSelectedDataByShop(){
     let shopElements = document.querySelectorAll('.Shop_Products');
 
     let selectedItems = getSelectedItems();
+
+    if(selectedItems.length === 0){
+        createAlertPopUp("Thông báo", "Vui lòng chọn sản phẩm",
+            [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()'}]);
+        return;
+    }
+
     selectedItems.forEach(item => {
         let shoppingCartItemId = parseInt(item.find("input[name='shoppingCartItemId']").val());
         selectedData.push({
@@ -287,7 +294,9 @@ function getSelectedDataByShop(){
 
     if(shippingMethod === null){
         createAlertPopUp("Thông báo", "Vui lòng chọn phương thức giao hàng",
-            [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()'}]);
+            [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()'},
+                {text: 'Không', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: false}]);
+
         return;
     }
 
@@ -312,9 +321,9 @@ function getInfo(){
     }
 
     $.ajax({
-        type: "POST",
-        url: "/PBL3_1_war_exploded/api/order",
-        data: JSON.stringify(selectedData),
+        type : "POST",
+        url : "/PBL3_1_war_exploded/api/order",
+        data : JSON.stringify(selectedData),
         contentType: "application/json",
         success: function(response){
             console.log(response);

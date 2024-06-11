@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if (charCount === 0) {
-            document.getElementById("warning_name").innerHTML = `<span style="color: #DC2626;">Không được để trống ô</span>`;
+            document.getElementById("warning_name").innerHTML = `<span style="color: #DC2626; font-size: 12px; padding-left: 10px;">Không được để trống ô</span>`;
             document.querySelector("label[for='product_name']").style = "padding-bottom: 10px;";
         } else {
             document.getElementById("warning_name").innerHTML = "";
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         if(charCount === 0) {
-            document.getElementById("warning_description").innerHTML = `<span style="color: #DC2626;">Không được để trống ô</span>`;
+            document.getElementById("warning_description").innerHTML = `<span style="color: #DC2626; font-size: 12px; padding-left: 10px;">Không được để trống ô</span>`;
             document.querySelector("label[for='product_description']").style = "padding-bottom: 10px;";
         }else {
             document.getElementById("warning_description").innerHTML = "";
@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelector("#discount").addEventListener('input', function () {
         let charCount = this.value.length;
         if(charCount === 0) {
-            document.getElementById("warning_discount").innerHTML = `<span style="color: #DC2626;">Không được để trống ô</span>`;
+            document.getElementById("warning_discount").innerHTML = `<span style="color: #DC2626; font-size: 12px; padding-left: 10px;">Không được để trống ô</span>`;
             document.querySelector("label[for='product_description']").style = "padding-bottom: 10px;";
 
         }else {

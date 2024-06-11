@@ -258,7 +258,6 @@
                                         <h1>Không tìm thấy kết quả nào</h1>
                                         <h2>Hãy thử sử dụng các từ khóa chung chung hơn</h2>
                                     </div>
-
                                 </div><!-- Code to execute if condition is false -->
                             </c:otherwise>
                         </c:choose>

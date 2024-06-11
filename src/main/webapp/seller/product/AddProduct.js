@@ -252,6 +252,8 @@ function AddVarientGroup() {
         AddVarient('VI_wrap1');
         createTable();
     }
+
+    showErrorInput(Enumerator.ADD_VARIANT_GROUP);
 }
 
 function UpdateProductImageAfterChangeImage(event) {
@@ -392,6 +394,8 @@ function AddVarient(id) {
         ++cntVGI1element;
     }
     // table.createTableByRows();
+    showErrorInput(Enumerator.ADD_VARIANT);
+
 }
 
 
@@ -428,6 +432,7 @@ function ChangeImagePreview(div) {
     }
     reader.readAsDataURL(input.files[0]);
 }
+let countImage = 0;
 
 function createImgObject(imgpath){
     let imgobj = document.createElement('div');
@@ -448,6 +453,7 @@ function createImgObject(imgpath){
     btnRemove.addEventListener('click', function (e) {
         e.preventDefault();
         imgobj.parentElement.removeChild(imgobj);
+        countImage--;
     });
     imgobj.appendChild(btnPreview);
     btnPreview.addEventListener('click', function () {
@@ -466,6 +472,7 @@ function AddProductImage(event) {
     reader.onloadend = function (e) {
         imgobj = createImgObject(e.target.result);
         container.appendChild(imgobj);
+        countImage++;
     }
     if (file) {
         reader.readAsDataURL(file);
@@ -473,6 +480,16 @@ function AddProductImage(event) {
 }
 
 function AddProduct() {
+    if(countImage < 4){
+        showErrorToast("Warning", "Vui lòng thêm ít nhất 4 hình ảnh");
+        return;
+    }
+
+    if(showErrorInput(Enumerator.SAVE_PRODUCT)){
+        showErrorToast("Warning", "Vui lòng điền đầy đủ thông tin");
+        return;
+    }
+
     let data = [];
     let ProductName = document.querySelector('#product_name').value;
     let discount = parseFloat(document.querySelector('#discount').value) === null ? 0 : parseFloat(document.querySelector('#discount').value);
@@ -601,8 +618,85 @@ function createImagePreview(src) {
     overlay.appendChild(imagePreview);
 }
 
+$(document).ready(function () {
+    $('#product_name').on("input", function () {
+        let span = $('#span_for_name');
+        if($(this).val().length > 120){
+            $(this).val($(this).val().substring(0, 120));
+            span.css( {
+                color: 'red'
+            });
+        }
+        span.text($(this).val().length + '/120');
+    });
 
+    $('#product_description').on("input", function () {
+        let span = $('#span_for_description');
+        if($(this).val().length > 3000){
+            $(this).val($(this).val().substring(0, 3000));
+            span.css( {
+                color: 'red'
+            });
+        }
+        span.text($(this).val().length + '/3000');
+    });
 
-document.addEventListener("DOMContentLoaded", () => {
+    $('#discount').on("input", function () {
+        if($(this).val().length > 2){
+            $(this).val($(this).val().slice(0, 2));
+        }
+        // span.text($(this).val() + '%');
+    });
 
+    showErrorInput(Enumerator.ADD_VARIANT_GROUP);
 });
+
+const Enumerator = Object.freeze({
+    SAVE_PRODUCT: 0,
+    ADD_VARIANT_GROUP: 1,
+    ADD_VARIANT: 2
+});
+
+function showErrorInput(e){
+
+    let check = false;
+    if(e == Enumerator.SAVE_PRODUCT){
+        let inputs = $(".AddProduct_content input");
+        inputs.each(function () {
+            if ($(this).val().length === 0) {
+                if(!($(this).attr("id") == "inventory" || $(this).attr("id") == "price")){
+                    $(this).css({
+                        borderColor: 'red'
+                    });
+                    check = true;
+                }
+            } else {
+                $(this).css({
+                    borderColor: 'black'
+                });
+            }
+        });
+    }else {
+        let inputs = $(".AddProduct_content input");
+        inputs.each(function () {
+            $(this).on("input", function () {
+                if($(this).val().length === 0){
+                    $(this).css({
+                        borderColor: 'red'
+                    });
+                }else{
+                    $(this).css({
+                        borderColor: 'black'
+                    });
+                }
+            });
+        });
+    }
+
+    return check;
+}
+
+
+
+
+

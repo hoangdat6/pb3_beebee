@@ -18,7 +18,8 @@
     <link rel="stylesheet" href="<c:url value="SideBar.css"/>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="<c:url value="ProductManagement.js"/>"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
+    <script src=<c:url value="/seller/common/SellerCommon.js"/>></script>
     <title>Quản lý sản phẩm</title>
 </head>
 <body>
@@ -76,64 +77,6 @@
         }
     }
 </script>
-<div class="side_bar">
-    <a href="" class="btn item">
-        <i class="fa-solid fa-clipboard"></i>
-        <span>Quản lý đơn hàng</span>
-    </a>
-
-    <div>
-        <a href="" class="btn item">
-            <i class="fa-solid fa-bag-shopping"></i>
-            <span>Quản lý sản phẩm</span>
-        </a>
-        <ul>
-            <li class="subitem"><a href="">Tất cả sản phẩm</a></li>
-            <li class="subitem"><a href="">Sản phẩm vi phạm</a></li>
-            <li class="subitem"><a href="">Thêm sản phẩm</a></li>
-        </ul>
-    </div>
-
-    <div>
-        <a href="" class="btn item">
-            <i class="fa-solid fa-comments"></i>
-            <span>Chăm sóc khách hàng</span>
-        </a>
-        <ul>
-            <li class="subitem"><a href="">Quản lí Chat</a></li>
-            <li class="subitem"><a href="">Quản lí đánh giá</a></li>
-        </ul>
-    </div>
-
-    <div>
-        <a href="" class="btn item">
-            <i class="fa-solid fa-wallet"></i>
-            <span>Tài chính</span>
-        </a>
-        <ul>
-            <li class="subitem"><a href="">Doanh thu</a></li>
-            <li class="subitem"><a href="">Số dư TK BeeShop</a></li>
-            <li class="subitem"><a href="">Tài khoản ngân hàng</a></li>
-        </ul>
-    </div>
-
-    <a href="" class="btn item">
-        <i class="fa-solid fa-chart-area"></i>
-        <span>Dữ liệu và thống kê</span>
-    </a>
-
-    <div>
-        <a href="" class="btn item">
-            <i class="fa-solid fa-shop"></i>
-            <span>Quản lý Shop</span>
-        </a>
-        <ul>
-            <li class="subitem"><a href="">Hồ sơ Shop</a></li>
-            <li class="subitem"><a href="">Trang trí Shop</a></li>
-            <li class="subitem"><a href="">Thiết lập Shop</a></li>
-        </ul>
-    </div>
-</div>
 
 <div class="container">
     <div class="content">
