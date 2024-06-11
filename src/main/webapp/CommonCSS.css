@@ -318,3 +318,14 @@ input[type="checkbox"]:checked {
 .sold-out-product .btn {
     display: none; /* Ẩn tất cả các nút khác */
 }
+
+/*Drag and Drop*/
+.drop-zone {
+    border: 2px dashed #ccc;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.drop-zone.dragover {
+    background-color: #e0e0e0;
+    border-color: #333;
+}

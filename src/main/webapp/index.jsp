@@ -79,7 +79,7 @@
         <c:forEach items="${products}" var="product">
         var productName = '${product.name}';
         var productId = '${product.id}';
-        var productUrl = '<c:url value="/product?" />';
+        var productUrl = `<c:url value="/product?" />`;
         var sellerName = "${product.sellerName != null ? product.sellerName : 'Tên Shop'}";
         var sellerUrl = "<c:url value="/shop?id=${product.sellerId != null ? product.sellerId : 0}"/>";
         var sellerAvatar = "${product.sellerAvatar != null ? product.sellerAvatar : 'img/Brand/Coffee.jpeg'}";

@@ -48,7 +48,7 @@
                         <div class="Product_Image_Container">
                             <div id="image_preview">
                                 <input type="file" name="product_image" id="product_image" accept="image/*" multiple>
-                                <label for="product_image">
+                                <label for="product_image" class="drop-zone">
                                     <img id="ProductImage" src="../../img/Logo/Image.png" alt="">
                                     <span>Thêm hình ảnh</span>
                                 </label>

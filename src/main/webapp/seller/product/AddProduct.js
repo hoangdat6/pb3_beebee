@@ -255,9 +255,8 @@ function AddVarientGroup() {
 }
 
 function UpdateProductImageAfterChangeImage(event) {
-    event.preventDefault();
     let file = event.type === 'drop' ? event.dataTransfer.files[0] : event.target.files[0];
-    let input = event.target.parentElement.querySelector('input[type="file"]');
+    let input = event.target.querySelector('input[type="file"]');
     let reader = new FileReader();
     let VI = input.parentElement;
     reader.onloadend = function () {
@@ -266,8 +265,6 @@ function UpdateProductImageAfterChangeImage(event) {
     }
     if (file) {
         reader.readAsDataURL(file);
-    } else {
-        VI.querySelector(`label img`).src = blackImgPath;
     }
 }
 
@@ -312,7 +309,6 @@ function removeVI1(element) {
 
 function renameVI0(input) {
     let index = getVI0Index(input);
-    UpdateProductImageAfterChangeImage(input.parentElement.querySelector('input[type="file"]'));
     let name = input.parentElement.querySelector('input[type="text"]').value;
     let srcImg = input.parentElement.querySelector('img').src;
     let info = {
@@ -349,7 +345,7 @@ function AddVarient(id) {
     //Thêm mới một phân loại (Varient Item)
     if (id == 'VI_wrap0') {
         VI_wrap.insertAdjacentHTML('beforeend', `
-        <div class="VI" id="VI0${VI_id_wrap0}">
+        <div class="VI drop-zone" id="VI0${VI_id_wrap0}">
               <label for="VI_img${cntVGI0element}">
                 <img src=${blackImgPath} alt="preview">
               </label>
@@ -358,11 +354,26 @@ function AddVarient(id) {
               <button class="btn Remove_VI" onclick="removeVI0(this)"><i class="fa-solid fa-x"></i></button>
         </div>
       `);
-        document.getElementById(`VI_img${cntVGI0element}`).addEventListener('change', UpdateProductImageAfterChangeImage);
-        document.getElementById(`VI0${VI_id_wrap0}`).addEventListener('dragover', function (e) {
+        let VIwrap = document.getElementById(`VI0${VI_id_wrap0}`);
+        let VI_Image = document.getElementById(`VI_img${cntVGI0element}`);
+        let VI_Element = document.getElementById(`VI0${VI_id_wrap0}`);
+        VI_Image.addEventListener('change', UpdateProductImageAfterChangeImage);
+        VIwrap.addEventListener('dragover', function (e) {
             e.preventDefault();
         });
-        document.getElementById(`VI0${VI_id_wrap0}`).addEventListener('drop', UpdateProductImageAfterChangeImage);
+        VI_Element.addEventListener('dragenter', (event) => {
+            event.preventDefault();
+            VI_Element.classList.add('dragover');
+        });
+        VI_Element .addEventListener('dragleave', () => {
+            VI_Element.classList.remove('dragover');
+            console.log('dragleave');
+        });
+        VI_Element.addEventListener('drop', (event) => {
+            event.preventDefault();
+            VI_Element.classList.remove('dragover');
+            UpdateProductImageAfterChangeImage(event);
+        });
         table.addVI0toTable("", blackImgPath);
         ++cntVGI0element;
         ++VI_id_wrap0;
@@ -436,7 +447,7 @@ function createImgObject(imgpath){
     imgobj.appendChild(btnRemove);
     btnRemove.addEventListener('click', function (e) {
         e.preventDefault();
-        container.removeChild(imgobj);
+        imgobj.parentElement.removeChild(imgobj);
     });
     imgobj.appendChild(btnPreview);
     btnPreview.addEventListener('click', function () {
@@ -455,23 +466,6 @@ function AddProductImage(event) {
     reader.onloadend = function (e) {
         imgobj = createImgObject(e.target.result);
         container.appendChild(imgobj);
-    }
-    if (file) {
-        reader.readAsDataURL(file);
-    }
-}
-
-function AddCoverImage(event) {
-    event.preventDefault();
-    let label = document.querySelector('label[for="cover_image"]');
-    let file = event.type === 'drop' ? event.dataTransfer.files[0] : event.target.files[0];
-    let reader = new FileReader();
-    reader.onloadend = function () {
-        label.querySelector('span').style.display = 'none';
-        label.querySelector('img').src = reader.result;
-        label.querySelector('img').style.width = '60px';
-        label.querySelector('img').style.height = '60px';
-        label.querySelector('img').style.objectFit = 'cover';
     }
     if (file) {
         reader.readAsDataURL(file);
@@ -612,6 +606,3 @@ function createImagePreview(src) {
 document.addEventListener("DOMContentLoaded", () => {
 
 });
-
-
-
