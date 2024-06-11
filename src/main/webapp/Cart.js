@@ -313,10 +313,8 @@ function getShippingMethod(){
 
 function getInfo(){
     let selectedData = getSelectedDataByShop();
-    
-    if(selectedData.length === 0){
-        createAlertPopUp("Thông báo", "Vui lòng chọn sản phẩm",
-            [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()'}]);
+
+    if(selectedData === undefined || selectedData.length === 0){
         return;
     }
 
