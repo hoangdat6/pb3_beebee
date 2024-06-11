@@ -36,7 +36,9 @@ public class ShoppingCartApi extends HttpServlet {
         User user = (User) SessionUtil.getInstance().getValue(request, "USERMODEL");
 
         // if the user is logged in then get the data form view
-        Long productId = Long.parseLong(request.getParameter("productId"));
+        String productID =  request.getParameter("productId");
+        Long productId = Long.parseLong(productID);
+
         String variation1 = request.getParameter("variation1");
         String variation2 = request.getParameter("variation2");
         String quantity = request.getParameter("quantity");

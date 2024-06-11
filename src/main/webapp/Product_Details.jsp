@@ -44,7 +44,7 @@
                     <img src="${productDetail.imgPath[1]}" alt="#">
                     <img src="${productDetail.imgPath[2]}" alt="#">
                     <img src="${productDetail.imgPath[3]}" alt="#">
-                    <i style="display: block; margin-left: auto; padding: 15px 12px;" class="fa-solid fa-chevron-right Next"></i>
+                    <i style="display: block; padding: 15px 12px;" class="fa-solid fa-chevron-right Next"></i>
                 </div>
             </div>
         </div>
@@ -84,6 +84,7 @@
                 <div class="Product_category">
                     <input type="hidden" id="product_id" value="${productDetail.id}">
                     <c:set var="cnt" value="1" />
+                    <input type="hidden" id="product_id" name="product_id" value="${productDetail.id}"/>
                     <c:forEach var="variation" items="${productDetail.variations}">
                         <div class="Category_item">
                             <h3 style="font-size: 16px; color:#333; margin-right: 20px;">${variation.name}</h3>

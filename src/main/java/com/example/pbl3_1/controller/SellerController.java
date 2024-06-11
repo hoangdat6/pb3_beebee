@@ -4,11 +4,13 @@ import com.example.pbl3_1.Util.RandomCode;
 import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
+import com.example.pbl3_1.controller.dto.seller.StatisticDTO;
 import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.SellerService;
 import com.example.pbl3_1.service.impl.SellerServiceImpl;
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,6 +22,7 @@ import jakarta.servlet.http.Part;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 @WebServlet(name = "seller", urlPatterns = {"/seller/account/register", "/seller", "/shop", "/seller/statistic"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
@@ -52,6 +55,19 @@ public class SellerController extends HttpServlet {
                 }
                 break;
             case "/seller/statistic":
+                User user = (User)SessionUtil.getInstance().getValue(request, "USERMODEL");
+                Long sellerId = sellerService.getIdByUserId(user.getId());
+                StatisticDTO statisticDTO = sellerService.getStatistic(sellerId);
+                List<StatisticDTO>  statisticDTOS = sellerService.getStatisticByYear(sellerId, 2024);
+
+                Gson gson = new Gson();
+                String statisticByYear = gson.toJson(statisticDTOS);
+
+                System.out.println("Statistic: " + statisticDTO.getConversionRate() + " " + statisticDTO.getTotalAccesses() + " " + statisticDTO.getTotalOrder() + " " + statisticDTO.getTotalRevenue() + " " + statisticDTO.getMonth());
+                System.out.println("StatisticByYear: " + statisticByYear);
+
+                request.setAttribute("statistic", statisticDTO);
+                request.setAttribute("statisticByYear", statisticByYear);
                 request.getRequestDispatcher("statistic/statistic.jsp").forward(request, response);
                 break;
         }

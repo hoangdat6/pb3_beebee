@@ -2,6 +2,7 @@ package com.example.pbl3_1.service.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
+import com.example.pbl3_1.controller.dto.seller.StatisticDTO;
 import com.example.pbl3_1.dao.SellerDAO;
 import com.example.pbl3_1.dao.SellerFollowDAO;
 import com.example.pbl3_1.dao.impl.SellerDAOImpl;
@@ -13,6 +14,8 @@ import com.example.pbl3_1.service.AddressService;
 import com.example.pbl3_1.service.SellerService;
 import com.example.pbl3_1.service.UserService;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 public class SellerServiceImpl implements SellerService {
@@ -88,5 +91,28 @@ public class SellerServiceImpl implements SellerService {
     @Override
     public Long getIdByUserId(Long userId) {
         return sellerDAO.getIdByUserId(userId);
+    }
+
+    @Override
+    public StatisticDTO getStatistic(Long sellerId) {
+        // Lấy ngày hiện tại
+        Calendar cal = Calendar.getInstance();
+
+        // Đặt ngày đầu tuần là Thứ Hai
+        cal.setFirstDayOfWeek(Calendar.MONDAY);
+
+        // Tìm ngày đầu tuần
+        cal.set(Calendar.DAY_OF_WEEK, cal.getFirstDayOfWeek());
+        Date startTime = new Date(cal.getTimeInMillis());
+
+        // Tìm ngày cuối tuần
+        cal.add(Calendar.DATE, 6);
+        Date endTime = new Date(cal.getTimeInMillis());
+        return sellerDAO.getStatistic(sellerId, startTime, endTime);
+    }
+
+    @Override
+    public List<StatisticDTO> getStatisticByYear(Long sellerId, Integer year){
+        return sellerDAO.getStatisticByYear(sellerId, year);
     }
 }

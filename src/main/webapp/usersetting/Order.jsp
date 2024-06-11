@@ -9,7 +9,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đơn hàng của tôi</title>
-<%--    <script defer type="module" src="./GenerateSideBar.js"></script>--%>
     <script src="<c:url value="GenerateSideBar.js"/>"></script>
     <script defer src="<c:url value="Order.js"/>"></script>
     <link rel="stylesheet" type="text/css" href="../style.css">
@@ -50,8 +49,8 @@
     </div>
     <script>
         $(document).ready(function() {
-        createOrderDetailTable();
-        GenerateSideBar("Order" ,"${USERMODEL.username}", "${USERMODEL.avatar}");
+            createOrderDetailTable();
+            GenerateSideBar("Order" ,"${USERMODEL.username}", "${USERMODEL.avatar}");
         });
     </script>
     <%@ include file="../Footer.jsp" %>

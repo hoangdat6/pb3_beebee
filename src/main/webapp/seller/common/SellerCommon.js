@@ -8,7 +8,7 @@ function generateSidebar() {
     </a>
 
     <div>
-        <a href="" class="btn item">
+        <a href="/PBL3_1_war_exploded/seller/product/productmanagement" class="btn item">
             <i class="fa-solid fa-bag-shopping"></i>
             <span>Quản lý sản phẩm</span>
         </a>

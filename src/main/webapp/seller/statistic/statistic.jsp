@@ -38,7 +38,7 @@
                 <div id="statistic_info">
                     <div class="statis_card">
                         <h4 class="card_title">Doanh số</h4>
-                        <p class="card_value">2.033.555 VNĐ</p>
+                        <p class="card_value">${statistic.totalRevenue}</p>
                         <div class="card_compare">
                             <p>So với tuần trước</p>
                             <div class="card_compare_value">-3.2%</div>
@@ -47,8 +47,8 @@
                     </div>
 
                     <div class="statis_card">
-                        <h4 class="card_title">Doanh số</h4>
-                        <p class="card_value">100</p>
+                        <h4 class="card_title">Đơn hàng</h4>
+                        <p class="card_value">${statistic.totalOrder}</p>
                         <div class="card_compare">
                             <p>So với tuần trước</p>
                             <div class="card_compare_value">-3.2%</div>
@@ -57,8 +57,8 @@
                     </div>
 
                     <div class="statis_card">
-                        <h4 class="card_title">Doanh số</h4>
-                        <p class="card_value">100</p>
+                        <h4 class="card_title">Tỷ lệ chuyển đổi</h4>
+                        <p class="card_value">${statistic.conversionRate}%</p>
                         <div class="card_compare">
                             <p>So với tuần trước</p>
                             <div class="card_compare_value">-3.2%</div>
@@ -67,8 +67,8 @@
                     </div>
 
                     <div class="statis_card">
-                        <h4 class="card_title">Doanh số</h4>
-                        <p class="card_value">100</p>
+                        <h4 class="card_title">Lượt truy cập</h4>
+                        <p class="card_value">${statistic.totalAccesses}</p>
                         <div class="card_compare">
                             <p>So với tuần trước</p>
                             <div class="card_compare_value">-3.2%</div>
@@ -90,14 +90,18 @@
                     </select>
                 </div>
                 <canvas id="myChart"></canvas>
-                <script>
-
-                </script>
             </div>
         </div>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="<c:url value="statistic/statistic.js"/>"></script>
+    <script>
+        const statisticByYear = JSON.parse('${statisticByYear}');
+        console.log(statisticByYear);
+        const revenues = statisticByYear.map(item => item.totalRevenue);
+        const accesses = statisticByYear.map(item => item.totalAccesses);
+        updateChart(revenues, accesses);
+    </script>
 </body>
 
 </html>

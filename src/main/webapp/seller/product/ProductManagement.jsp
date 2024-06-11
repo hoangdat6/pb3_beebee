@@ -25,16 +25,6 @@
 <body>
 <%@ include file="../common/SellerCommon.jsp" %>
 <fmt:setLocale value = "vi_VN"/>
-<%--<div class="Side_nav">--%>
-<%--    <a class="btn" href="#Basic_info">--%>
-<%--        Thông tin cơ bản--%>
-<%--    </a>--%>
-<%--    <a class="btn" href="#Sale_info">--%>
-<%--        Thông tin bán hàng--%>
-<%--    </a>--%>
-<%--    <p>Vui lòng điền đầy đủ thông tin</p>--%>
-<%--    <p>Nếu sản phẩm không có phân loại. Bạn không bắt buộc phải thêm phân loại</p>--%>
-<%--</div>--%>
 <script>
     function createTableRow(stt, id, name, sales, price, stock, status) {
         return `
@@ -275,6 +265,6 @@
         </script>
     </div>
 </div>
-
+<script src="<c:url value="/seller/common/SellerCommon.js"/>"></script>
 </body>
 </html>

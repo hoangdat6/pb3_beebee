@@ -330,3 +330,34 @@ input[type="checkbox"]:checked {
     background-color: #e0e0e0;
     border-color: #333;
 }
+
+
+/*Responsive*/
+@media only screen and (max-width: 1270px) {
+    .pad-l-r-170{
+        padding-left: 100px;
+        padding-right: 100px;
+    }
+}
+
+@media only screen and (max-width: 1080px) {
+    .pad-l-r-170 {
+        padding-left: 80px;
+        padding-right: 80px;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .pad-l-r-170 {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .pad-l-r-170 {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+

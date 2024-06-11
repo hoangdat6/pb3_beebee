@@ -25,10 +25,14 @@ function GenerateSideBar(type = "UserInformation", username, avatar) {
         <li class="UAAS_bar_bot_item" id="UAAS_location">
             <a href="/PBL3_1_war_exploded/usersetting/address">
                 <i class="fa-solid fa-location-dot"></i> 
-                Địa chỉ của tôi</li>
+                Địa chỉ của tôi
             </a>
-        <li class="UAAS_bar_bot_item" id="UAAS_order"><i class="fa-solid fa-box"></i> Đơn hàng
-            của tôi</li>
+        </li>
+        <li class="UAAS_bar_bot_item" id="UAAS_order">
+            <a href="/PBL3_1_war_exploded/usersetting/order">
+                <i class="fa-solid fa-box"></i> Đơn hàng của tôi
+            </a>
+        </li>
         <li class="UAAS_bar_bot_item" id="UAAS_favorite"><i class="fa-solid fa-heart"></i> Sản phẩm
             yêu thích</li>
         <li class="UAAS_bar_bot_item" id="UAAS_logOut"><a href='/PBL3_1_war_exploded/logout'><i

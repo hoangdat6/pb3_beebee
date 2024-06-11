@@ -2,11 +2,13 @@ package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
+import com.example.pbl3_1.controller.dto.seller.StatisticDTO;
 import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.dao.SellerDAO;
 import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.mapper.SellerMapper;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -16,7 +18,7 @@ public class SellerDAOImpl implements SellerDAO {
     @Override
     public SellerDTO getShopById(Long id) {
         StringBuilder sql = new StringBuilder("SELECT s.id, s.shop_name, s.avatar, \n");
-       sql.append("coalesce(f.follower_count, 0) as follower_count, coalesce(p.product_count, 0) as product_count, a.province, s.created_at\n");
+        sql.append("coalesce(f.follower_count, 0) as follower_count, coalesce(p.product_count, 0) as product_count, a.province, s.created_at\n");
         sql.append("FROM sellers s\n");
         sql.append("LEFT JOIN (\n");
         sql.append("    SELECT sf.seller_id, COUNT(*) as follower_count\n");
@@ -118,6 +120,94 @@ public class SellerDAOImpl implements SellerDAO {
                 throw new RuntimeException(e);
             }
         }, userId).stream().findFirst().orElse(null);
+    }
+
+    @Override
+    public StatisticDTO getStatistic(Long sellerId, Date startDate, Date endDate) {
+        String query = "select\n" +
+                "    (\n" +
+                "        select sum(orders.order_total)\n" +
+                "        from  orders\n" +
+                "        where orders.seller_id = ?\n" +
+                "        AND orders.order_status_id = 5\n" +
+                "        AND orders.created_at BETWEEN ? AND ?\n" +
+                "    ) AS totalRevenue,\n" +
+                "    (\n" +
+                "        select sum(products.views)\n" +
+                "        from products\n" +
+                "        where products.seller_id = ?\n" +
+                "        AND products.created_at BETWEEN ? AND ?\n" +
+                "    ) AS totalAccesses,\n" +
+                "    (\n" +
+                "        select count(order_detail.product_item_id)\n" +
+                "        from orders inner join order_detail on orders.id = order_detail.order_id\n" +
+                "        where orders.seller_id = ?\n" +
+                "        AND orders.created_at BETWEEN ? AND ?\n" +
+                "    ) AS totalProductsSold,\n" +
+                "    (\n" +
+                "        select count(order_detail.order_id)\n" +
+                "        from orders inner join order_detail on orders.id = order_detail.order_id\n" +
+                "        where orders.seller_id = ?\n" +
+                "        AND orders.created_at BETWEEN ? AND ?\n" +
+                "    ) AS totalOrders;";
+        return genericDAO.query(query, resultSet -> {
+            try {
+                return StatisticDTO.builder()
+                        .totalRevenue(resultSet.getLong("totalRevenue"))
+                        .totalAccesses(resultSet.getLong("totalAccesses"))
+                        .conversionRate(Float.valueOf(String.format("%.2f", 1.0f * resultSet.getLong("totalProductsSold") / Math.max(resultSet.getLong("totalAccesses"), 1) * 100)))
+                        .totalOrder(resultSet.getLong("totalOrders"))
+                        .build();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, sellerId, startDate, endDate, sellerId, startDate, endDate, sellerId, startDate, endDate, sellerId, startDate, endDate).stream().findFirst().orElse(null);
+    }
+
+    @Override
+    public List<StatisticDTO> getStatisticByYear(Long sellerId, int year) {
+        String query = "SELECT\n" +
+                "    months.month AS month,\n" +
+                "    COALESCE(\n" +
+                "            (\n" +
+                "                SELECT SUM(orders.order_total)\n" +
+                "                FROM orders\n" +
+                "                WHERE orders.seller_id = ?\n" +
+                "                  AND orders.order_status_id = 5\n" +
+                "                  AND YEAR(orders.created_at) = ?\n" +
+                "                  AND MONTH(orders.created_at) = months.month\n" +
+                "            ), 0\n" +
+                "    ) AS totalRevenue,\n" +
+                "    COALESCE(\n" +
+                "            (\n" +
+                "                SELECT SUM(products.views)\n" +
+                "                FROM products\n" +
+                "                WHERE products.seller_id = ?\n" +
+                "                  AND YEAR(products.created_at) = ?\n" +
+                "                  AND MONTH(products.created_at) = months.month\n" +
+                "            ), 0\n" +
+                "    ) AS totalAccesses\n" +
+                "FROM (\n" +
+                "         SELECT 1 AS month UNION ALL SELECT 2 UNION ALL SELECT 3 UNION ALL\n" +
+                "         SELECT 4 UNION ALL SELECT 5 UNION ALL SELECT 6 UNION ALL\n" +
+                "         SELECT 7 UNION ALL SELECT 8 UNION ALL SELECT 9 UNION ALL\n" +
+                "         SELECT 10 UNION ALL SELECT 11 UNION ALL SELECT 12\n" +
+                "     ) AS months\n" +
+                "         LEFT JOIN orders ON MONTH(orders.created_at) = months.month AND orders.seller_id = ? AND YEAR(orders.created_at) = ?\n" +
+                "GROUP BY months.month\n" +
+                "ORDER BY months.month;";
+
+        return genericDAO.query(query, resultSet -> {
+            try {
+                return StatisticDTO.builder()
+                        .month(resultSet.getInt("month"))
+                        .totalRevenue(resultSet.getLong("totalRevenue"))
+                        .totalAccesses(resultSet.getLong("totalAccesses"))
+                        .build();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, sellerId, year, sellerId, year, sellerId, year);
     }
 
     public List<ProductPreviewDTO> getProductPreviewDTOs(String sql, Long idSeller,Integer limit , Integer offset) {

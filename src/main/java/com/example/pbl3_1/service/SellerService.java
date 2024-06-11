@@ -1,6 +1,7 @@
 package com.example.pbl3_1.service;
 
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
+import com.example.pbl3_1.controller.dto.seller.StatisticDTO;
 import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.Seller;
 
@@ -13,4 +14,8 @@ public interface SellerService {
     Long addShop(Seller seller, Address address);
     void updateIsFollowed(Long userId, Long sellerId, Boolean isFollowed);
     Long getIdByUserId(Long userId);
+
+    StatisticDTO getStatistic(Long sellerId);
+
+    List<StatisticDTO> getStatisticByYear(Long sellerId, Integer year);
 }
