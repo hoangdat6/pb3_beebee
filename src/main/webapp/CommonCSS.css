@@ -282,8 +282,8 @@ input[type="checkbox"]:checked {
 #Page_pre {}
 
 .num_item:hover {
-    background-color: #141718;
-    color: #fff;
+    background-color: #141718 !important;
+    color: #fff !important;
 }
 
 .shop_locked {

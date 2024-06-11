@@ -199,4 +199,44 @@
   border-bottom-color: #ee4d2d !important;
   color: #ee4d2d !important;
 }
+.btnPay:hover{
+  background-color: #141718;
+  color: #fff;
+  transition: 0.3s;
+}
+.btnReceived:hover{
+  background-color: #141718;
+  color: #fff;
+  transition: 0.3s;
+}
+.btnReview:hover{
+  background-color: #141718;
+  color: #fff;
+  transition: 0.3s;
+}
+.btnReturn:hover{
+  background-color: #141718;
+  color: #fff;
+  transition: 0.3s;
+}
+.btnCancel:hover{
+  background-color: #141718;
+  color: #fff;
+  transition: 0.3s;
+}
+.btnPay:hover{
+  background-color: #141718;
+  color: #fff;
+  transition: 0.3s;
+}
+.btnContact:hover{
+  background-color: #141718;
+  color: #fff;
+  transition: 0.3s;
+}
+.btnRepurchase:hover{
+  background-color: #141718;
+  color: #fff;
+  transition: 0.3s;
+}
 /*# sourceMappingURL=Order.css.map */

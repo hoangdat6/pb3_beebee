@@ -79,6 +79,8 @@ public class SearchController extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         String keyword = request.getParameter("keyword");
 //        keyword = URLDecoder.decode(keyword, "UTF-8");
+        int size = 7;
+        int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
         boolean fill = request.getParameter("fill") != null;
         SessionUtil sessionUtil = SessionUtil.getInstance();
         if(fill)
@@ -88,12 +90,16 @@ public class SearchController extends HttpServlet {
             int minPrice = request.getParameter("minPrice") != null ? Integer.parseInt(request.getParameter("minPrice")) : 0;
             int maxPrice = request.getParameter("maxPrice") != null ? Integer.parseInt(request.getParameter("maxPrice")) : 1000000000;
             String categories = request.getParameter("categoryID") != null ? request.getParameter("categoryID") : "";
-            System.out.println("Keyword = " + keyword + "minPrice = " + minPrice + " maxPrice = " + maxPrice + " categories = " + categories);
-            List<ProductPreviewDTO> products = productService.getProductsForSearch(keyword, minPrice, maxPrice, categories);
+            System.out.println("Keyword = " + keyword + "minPrice = " + minPrice + " maxPrice = " + maxPrice + " categories = " + categories + " page = " + page + " size = " + size);
+            List<ProductPreviewDTO> products = productService.getProductsForSearch(keyword, minPrice, maxPrice, categories, page, size);
             List<SellerDTO> sellers = productService.getSellersForSearch(keyword, minPrice, maxPrice, categories);
+            int totalPage = productService.getSearchTotalPage(keyword, minPrice, maxPrice, categories);
+            System.out.println("Total page: " + totalPage);
+            totalPage = totalPage % size == 0 ? totalPage / size : totalPage / size + 1;
+            sessionUtil.putValue(request, "totalPage", totalPage);
             System.out.println(products);
             System.out.println(sellers);
-            TwoListContainer data = new TwoListContainer(products, sellers);
+            TwoListContainer data = new TwoListContainer(products, sellers, totalPage);
             ObjectMapper objectMapper = new ObjectMapper();
             try {
                 objectMapper.writeValue(response.getOutputStream(), data);
@@ -105,9 +111,13 @@ public class SearchController extends HttpServlet {
         {
             sessionUtil.putValue(request, "keyword", keyword);
             System.out.println("khong fill");
-            List<ProductPreviewDTO> products = productService.getProductsForSearch(keyword, 0, 1000000000, "");
+            List<ProductPreviewDTO> products = productService.getProductsForSearch(keyword, 0, 1000000000, "", page, size);
             List<SellerDTO> sellers = productService.getSellersForSearch(keyword, 0, 1000000000, "");
             List<Category> SearchCategories = productService.getAllCategories();
+            int totalPage = productService.getSearchTotalPage(keyword, 0, 1000000000, "");
+            System.out.println("Total page: " + totalPage);
+            totalPage = totalPage % size == 0 ? totalPage / size : totalPage / size + 1;
+            sessionUtil.putValue(request, "totalPage", totalPage);
             System.out.println(SearchCategories.get(0).getId() + "   " + SearchCategories.get(0).getName());
             System.out.println(sellers);
             System.out.println(products);

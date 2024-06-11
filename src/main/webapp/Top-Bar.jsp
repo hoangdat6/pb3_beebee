@@ -92,7 +92,7 @@
                   <h3>Shop của bạn</h3>
                   <a href="<c:url value="/seller/account/register"/>"><i class="fa-solid fa-shop"></i> Kênh người bán</a>
                   <a href="#"><i class="fa-solid fa-list-check"></i> Quản lí đơn hàng</a>
-                  <a href="#"><i class="fa-brands fa-product-hunt"></i> Quản lí sản phẩm</a>
+                  <a href="<c:url value="/seller/product/productmanagement"/>"><i class="fa-brands fa-product-hunt"></i> Quản lí sản phẩm</a>
                   <a href="#"><i class="fa-solid fa-chart-simple"></i> Dữ liệu</a>
                   <a href="#"><i class="fa-solid fa-headset"></i> Chăm sóc khách hàng</a>
                 </div>
@@ -101,7 +101,7 @@
                   <h3>Tài khoản của bạn</h3>
                   <a href='<c:url value="/usersetting/userinfor"/>'><i class="fa-solid fa-user"></i> Tài khoản của tôi</a>
                   <a href='<c:url value="/usersetting/address"/>'><i class="fa-solid fa-location-dot"></i> Địa chỉ của tôi</a>
-                  <a href="#"><i class="fa-solid fa-money-bill"></i> Đơn mua</a>
+                  <a href='<c:url value="/usersetting/order"/>'><i class="fa-solid fa-money-bill"></i> Đơn mua</a>
                   <a href='<c:url value="/logout"/>'><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
                 </div>
               </div>
