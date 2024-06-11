@@ -31,17 +31,14 @@
 
 #PD-Content .Product_Loop {
   display: flex;
-  flex-wrap: wrap;
   background-color: #fff;
+  gap: 30px;
 }
 
 /*Product Loop Left*/
 #PD-Content .Product_Loop .Product_Loop-left {
-}
-
-.Product_Loop-left {
-  padding: 15px;
-  width: 450px;
+  width: 40%;
+  max-width: 450px;
 }
 
 @media only screen and (max-width: 954px) {
@@ -50,7 +47,6 @@
   }
 
   .Product_Loop-left {
-    margin-right: 20px;
   }
 
   .Product_Loop-right {
@@ -59,12 +55,11 @@
 }
 
 #PD-Content .Product_Loop .Product_Loop-left .Product_Loop-Image {
-  width: 100%;
 }
 
 #PD-Content .Product_Loop-left .Product_Loop-Image .Main-Image {
-  padding-top: 344px;
-  max-width: 344px;
+  padding-top: 100%;
+  width: 100%;
   margin-bottom: 18px;
   position: relative;
 }
@@ -94,16 +89,14 @@
 
 #PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image {
   display: flex;
-  flex-wrap: wrap;
-  max-width: 344px;
-  justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 #PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image img {
   width: 100px;
   height: 138px;
-  overflow: hidden;
+  object-fit: cover;
 }
 
 #PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image .Next {
@@ -123,8 +116,7 @@
 
 /*Product Loop Right*/
 #PD-Content .Product_Loop .Product_Loop-right {
-  max-width: 50%;
-  flex-grow: 1;
+  width: 60%;
 }
 
 #PD-Content .Product_Loop .Product_Loop-right .Product-Content {
@@ -495,4 +487,56 @@
   justify-content: center;
   padding: 30px 30px;
   font-size: 30px;
+}
+
+/*Responsive*/
+@media only screen and (max-width : 1270px) {
+  #PD-Content{
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+  }
+}
+
+@media only screen and (max-width : 1080px){
+  #PD-Content{
+    padding-left: 100px !important;
+    padding-right: 100px !important;
+  }
+
+  .Product_Loop-Button .Same p{
+    font-size: 0 !important;
+  }
+}
+
+
+@media only screen and (max-width : 960px) {
+  #PD-Content .Product_Loop {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #PD-Content .Product_Loop .Product_Loop-right{
+    max-width: fit-content;
+  }
+
+  #PD-Content{
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+  }
+
+  .Product_Loop .Product_Loop-left{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .Product_Loop .Product_Loop-right{
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+@media only screen and (max-width : 760px){
+  #PD-Content{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+  }
 }

@@ -98,7 +98,7 @@
         });
         </c:forEach>
       </script>
-    <input type="button" value="Xem thêm" class="btn-view_more">
+    <button type="button" class="btn-view_more">Xem thêm <i class="fa-solid fa-chevron-down"></i></button>
   </div>
   <div class="Product">
 

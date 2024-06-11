@@ -388,4 +388,36 @@ span.Main--Category {
     flex-direction: column;
 }
 
+@media only screen and (max-width: 1270px) {
+    .Header-Bot__right li {
+        font-size: 0 !important;
+    }
+    .Header-Bot,
+    .Header-Top{
+        padding: 0 120px !important;
+
+    }
+}
+
+/* Responsive */
+@media only screen and (max-width: 1080px) {
+    .Header-Bot,
+    .Header-Top {
+        padding: 0 100px !important;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    .Header-Bot,
+    .Header-Top {
+        padding: 0 50px !important;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .Header-Bot,
+    .Header-Top {
+        padding: 0 10px !important;
+    }
+}
 

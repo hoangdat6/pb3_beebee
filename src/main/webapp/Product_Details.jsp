@@ -43,7 +43,7 @@
                     <img src="${productDetail.imgPath[1]}" alt="#">
                     <img src="${productDetail.imgPath[2]}" alt="#">
                     <img src="${productDetail.imgPath[3]}" alt="#">
-                    <i class="fa-solid fa-chevron-right Next"></i>
+                    <i style="display: block; margin-left: auto; padding: 15px 12px;" class="fa-solid fa-chevron-right Next"></i>
                 </div>
             </div>
         </div>

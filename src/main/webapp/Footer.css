@@ -1,56 +1,52 @@
 /* Footer */
-
 #Footer {
     /* Your footer styling goes here */
-    height: 450px;
     padding: 40px 170px;
     background-color: #030712;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    gap: 20px;
     color: #fff;
 }
 
-#Footer a{
+#Footer a {
     color: #fff !important;
 }
 
-#Footer ul li{
+#Footer ul li {
     font-size: 14px;
     margin-bottom: 8px;
 }
 
-.Footer-Title{
+.Footer-Title {
     font-size: 24px !important;
     font-weight: 600 !important;
     margin-bottom: 24px !important;
 }
 
-.Phone-Number__Container{
+.Phone-Number__Container {
     display: grid;
     grid-template-areas:
-  "Icon time time"
-  "Icon phone phone"
+        "Icon time time"
+        "Icon phone phone";
 }
 
-.Phone-Number__Container i{
+.Phone-Number__Container i {
     font-size: 32px;
     grid-area: Icon;
 }
 
-.Email__Container{
+.Email__Container {
     margin-top: 30px;
 }
 
-.Email__Container i{
+.Email__Container i {
     font-size: 32px;
     margin-right: 20px;
-}
-
-.Email__Container i{
     float: left;
 }
 
-.Phone-Number__Container .time{
+.Phone-Number__Container .time {
     grid-area: time;
     font-size: 12px;
     font-weight: 400;
@@ -58,22 +54,107 @@
 }
 
 .Phone-Number__Container .PhoneNumber,
-.Email__Container-Email{
+.Email__Container-Email {
     grid-area: phone;
     font-size: 16px;
     font-weight: 700;
     padding-top: 5px;
 }
 
-.Email__Container-Email{
-    float: left;
-}
-
-.Footer-Social i{
+.Footer-Social i {
     font-size: 30px;
 }
 
-.Social-Container{
+.Social-Container {
     display: flex;
-    justify-content: space-between;
+    gap: 20px;
+    justify-content: center;
+}
+
+.Footer-Policy{
+    display: flex;
+    flex-direction: column;
+}
+
+/* Responsive */
+@media only screen and (max-width: 1080px) {
+    #Footer {
+        padding: 40px 100px;
+    }
+    .Footer-Social i {
+        font-size: 20px;
+    }
+
+    .Phone-Number__Container i,
+    .Email__Container i {
+        font-size: 20px;
+    }
+
+    .Footer-Title{
+        font-size: 20px !important;
+    }
+}
+
+@media only screen and (max-width: 960px) {
+    #Footer {
+        padding: 30px 50px;
+    }
+
+    .Footer-Title{
+        font-size: 18px !important;
+    }
+
+    .Footer-Social i {
+        font-size: 16px;
+    }
+
+    .Phone-Number__Container,
+    .Email__Container {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+    }
+
+    .Phone-Number__Container i,
+    .Email__Container i {
+        margin-bottom: 10px;
+    }
+
+    .Phone-Number__Container .time,
+    .Phone-Number__Container .PhoneNumber,
+    .Email__Container-Email {
+        margin-left: 0;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    #Footer {
+        padding: 20px 10px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .Phone-Number__Container,
+    .Email__Container,
+    .Footer-Policy{
+        align-items: center;
+        text-align: center;
+    }
+
+    .Phone-Number__Container i,
+    .Email__Container i {
+        font-size: 16px;
+    }
+
+    .Footer-Social i {
+        font-size: 16px;
+    }
+
+    .Social-Container {
+        justify-content: center;
+    }
+
+    #Footer ul li {
+        font-size: 11px;
+    }
 }
