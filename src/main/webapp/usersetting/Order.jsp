@@ -28,7 +28,7 @@
     <div id="toast">
     </div>
     <h3 class="title">ĐƠN MUA</h3>
-    <div class="UAAS_wrap pad-l-r-170">
+    <div class="UAAS_wrap" style="display: flex; justify-content: center">
         <main class="Order_content">
             <div id="nav">
                 <a class="nav-item btn active" id="0">Tất cả</a>
@@ -54,6 +54,8 @@
         });
     </script>
     <%@ include file="../Footer.jsp" %>
+    <script src="<c:url value='/RemovePopup.js'/>"></script>
+
 </body>
 
 </html>

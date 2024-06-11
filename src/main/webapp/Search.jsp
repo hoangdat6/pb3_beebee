@@ -13,7 +13,7 @@
                 <link rel="stylesheet" type="text/css" href="Footer.css">
                 <link rel="stylesheet" type="text/css" href="CommonCSS.css">
                 <link rel="stylesheet" href="Search.css">
-                <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
+                <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
                 <script src="Card.js"></script>
             </head>
 
@@ -44,6 +44,23 @@
                         // Trả về phần tử div
                         return checkboxDiv;
                     }
+                    function ShowPageNumber(totalPage){
+                        var pageContent = document.querySelector(".Page_num");
+                        pageContent.innerHTML = "";
+                        pageContent.innerHTML += `<div class="num_item" id="Page_pre"><i class="fa-solid fa-chevron-left"></i></div>`;
+                        for (var i = 1; i <= totalPage; i++){
+                            pageContent.innerHTML += `<div class="num_item" id="numPage">` + i + `</div>`;
+                        }
+                        pageContent.innerHTML += `<div class="num_item" id="Page_next"><i class="fa-solid fa-chevron-right"></i></div>`;
+                        for(var i = 1; i <= document.querySelectorAll(".num_item").length - 2; i++)
+                        {
+                            if(document.querySelectorAll(".num_item")[i].innerHTML === "1")
+                            {
+                                document.querySelector(".Page_num").children[i].style.backgroundColor = "#141718";
+                                document.querySelector(".Page_num").children[i].style.color = "white";
+                            }
+                        }
+                    }
                 </script>
                     <div class="Search_wrap">
                         <c:choose>
@@ -72,69 +89,69 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="S_place">
-                                <h4 class="S_sidebar-title">Nơi bán</h4>
-                                <div class="S_place-content">
-                                    <div class="checkbox-group">
-                                        <div class="Checkbox_item">
-                                            <input type="checkbox" class="S_place-item" id="place-item1">
-                                            <label for="place-item1">Hà Nội</label>
-                                        </div>
+<%--                            <div class="S_place">--%>
+<%--                                <h4 class="S_sidebar-title">Nơi bán</h4>--%>
+<%--                                <div class="S_place-content">--%>
+<%--                                    <div class="checkbox-group">--%>
+<%--                                        <div class="Checkbox_item">--%>
+<%--                                            <input type="checkbox" class="S_place-item" id="place-item1">--%>
+<%--                                            <label for="place-item1">Hà Nội</label>--%>
+<%--                                        </div>--%>
 
-                                        <div>
-                                            <input type="checkbox" class="S_place-item" id="place-item2">
-                                            <label for="place-item2">Thành phố Hồ Chí Minh</label>
-                                        </div>
+<%--                                        <div>--%>
+<%--                                            <input type="checkbox" class="S_place-item" id="place-item2">--%>
+<%--                                            <label for="place-item2">Thành phố Hồ Chí Minh</label>--%>
+<%--                                        </div>--%>
 
-                                        <div>
-                                            <input type="checkbox" class="S_place-item" id="place-item3">
-                                            <label for="place-item3">Đà Nẵng</label>
-                                        </div>
+<%--                                        <div>--%>
+<%--                                            <input type="checkbox" class="S_place-item" id="place-item3">--%>
+<%--                                            <label for="place-item3">Đà Nẵng</label>--%>
+<%--                                        </div>--%>
 
-                                        <div>
-                                            <input type="checkbox" class="S_place-item" id="place-item4">
-                                            <label for="place-item4">Quảng Trị</label>
-                                        </div>
+<%--                                        <div>--%>
+<%--                                            <input type="checkbox" class="S_place-item" id="place-item4">--%>
+<%--                                            <label for="place-item4">Quảng Trị</label>--%>
+<%--                                        </div>--%>
 
-                                        <div>
-                                            <input type="checkbox" class="S_place-item" id="place-item5">
-                                            <label for="place-item5">Đăk Lăk</label>
-                                        </div>
-                                    </div>
-                                    <span class="S_seemore">Xem thêm <i class="fa-solid fa-chevron-down"></i></span>
-                                </div>
-                            </div>
+<%--                                        <div>--%>
+<%--                                            <input type="checkbox" class="S_place-item" id="place-item5">--%>
+<%--                                            <label for="place-item5">Đăk Lăk</label>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                    <span class="S_seemore">Xem thêm <i class="fa-solid fa-chevron-down"></i></span>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
 
-                            <div class="S_rating">
-                                <h4 class="S_sidebar-title">Đánh giá</h4>
-                                <div class="S_rating-content">
-                                    <div class="rating_item">
-                                        <input type="checkbox" name="" id="">
-                                        <img src="./img/Search/Rating group.png" alt="">
-                                    </div>
+<%--                            <div class="S_rating">--%>
+<%--                                <h4 class="S_sidebar-title">Đánh giá</h4>--%>
+<%--                                <div class="S_rating-content">--%>
+<%--                                    <div class="rating_item">--%>
+<%--                                        <input type="checkbox" name="" id="">--%>
+<%--                                        <img src="./img/Search/Rating group.png" alt="">--%>
+<%--                                    </div>--%>
 
-                                    <div class="rating_item">
-                                        <input type="checkbox" name="" id="">
-                                        <img src="./img/Search/Rating group-2.png" alt="">
-                                        <span>Trở lên</span>
-                                    </div>
-                                    <div class="rating_item">
-                                        <input type="checkbox" name="" id="">
-                                        <img src="./img/Search/Rating group-3.png" alt="">
-                                        <span>Trở lên</span>
-                                    </div>
-                                    <div class="rating_item">
-                                        <input type="checkbox" name="" id="">
-                                        <img src="./img/Search/Rating group-4.png" alt="">
-                                        <span>Trở lên</span>
-                                    </div>
-                                    <div class="rating_item">
-                                        <input type="checkbox" name="" id="">
-                                        <img src="./img/Search/Rating group-5.png" alt="">
-                                        <span>Trở lên</span>
-                                    </div>
-                                </div>
-                            </div>
+<%--                                    <div class="rating_item">--%>
+<%--                                        <input type="checkbox" name="" id="">--%>
+<%--                                        <img src="./img/Search/Rating group-2.png" alt="">--%>
+<%--                                        <span>Trở lên</span>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="rating_item">--%>
+<%--                                        <input type="checkbox" name="" id="">--%>
+<%--                                        <img src="./img/Search/Rating group-3.png" alt="">--%>
+<%--                                        <span>Trở lên</span>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="rating_item">--%>
+<%--                                        <input type="checkbox" name="" id="">--%>
+<%--                                        <img src="./img/Search/Rating group-4.png" alt="">--%>
+<%--                                        <span>Trở lên</span>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="rating_item">--%>
+<%--                                        <input type="checkbox" name="" id="">--%>
+<%--                                        <img src="./img/Search/Rating group-5.png" alt="">--%>
+<%--                                        <span>Trở lên</span>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <button class="btn S_price_btn" id = "btn-apply">Áp dụng</button>
                         </aside>
                             <div class="Search_empty" style="display: none">
@@ -230,17 +247,21 @@
                                     </div>
                                 </div>
                                 <div class="Page_num" style="width: 650px;">
-                                    <div class="num_item" id="Page_pre"><i class="fa-solid fa-chevron-left"></i></div>
-                                    <div class="num_item">1</div>
-                                    <div class="num_item">2</div>
-                                    <div class="num_item">3</div>
-                                    <div class="num_item">4</div>
-                                    <div class="num_item">5</div>
-                                    <div class="num_item">...</div>
-                                    <div class="num_item">20</div>
-                                    <div class="num_item" id="Page_next"><i class="fa-solid fa-chevron-right"></i></div>
+
+<%--                                    <div class="num_item" id="Page_pre"><i class="fa-solid fa-chevron-left"></i></div>--%>
+<%--                                    --%>
+<%--&lt;%&ndash;                                    <div class="num_item">1</div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <div class="num_item">2</div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <div class="num_item">3</div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <div class="num_item">4</div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <div class="num_item">5</div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <div class="num_item">...</div>&ndash;%&gt;--%>
+<%--&lt;%&ndash;                                    <div class="num_item">20</div>&ndash;%&gt;--%>
+<%--                                    <div class="num_item" id="Page_next"><i class="fa-solid fa-chevron-right"></i></div>--%>
                                 </div>
                             <script>
+                                var totalPage = ${totalPage};
+                                ShowPageNumber(totalPage);
                                 <c:forEach items="${searchcategories}" var="category">
                                 var categoryID = "catalog-item-" + "<c:out value='${category.id}'/>";
                                 var categoryName = "<c:out value='${category.name}'/>";
@@ -291,6 +312,8 @@
                                 success: function(data) {
                                     var result = data;
                                     updatePageWithResult(result, keyword);
+                                    console.log("TotalPage: " + result.TotalPage);
+                                    ShowPageNumber(result.TotalPage);
                                 },
                                 error: function(error) {
                                     console.error('Error:', error);
@@ -303,7 +326,7 @@
                     document.getElementById('btn-apply').addEventListener('click', function() {
                         var minPrice = Math.floor(parseFloat(document.getElementById('min-price').value));
                         var maxPrice = Math.floor(parseFloat(document.getElementById('max-price').value));
-                        var categoryID = Array.from(document.querySelectorAll('.S_catalog-item:checked')).map(element => element.id.slice(-1)).join('');
+                        var categoryID = Array.from(document.querySelectorAll('.S_catalog-item:checked')).map(element => element.id.split("-")[2]).join('-');
                         console.log(categoryID)
                         // Lấy URL hiện tại
                         var url = new URL(window.location.href);
@@ -328,6 +351,8 @@
                                     // Handle the response data
                                     let result = data;
                                     updatePageWithResult(result, keyword);
+                                    console.log("TotalPage: " + result.TotalPage);
+                                    ShowPageNumber(result.TotalPage);
                                     console.log("success");
                                 },
                                 error: function (error) {
@@ -338,10 +363,9 @@
                             alert('Please enter valid prices');
                         }
                     });
-                    function updatePageWithResult(result, keyword) {
+                    function updatePageWithResult(result, keyword, checkPage = false) {
                         let products = result.list1;
                         let sellers = result.list2;
-                        console.log("leng = " + products.length);
                         if(products.length === 0) {
                             document.querySelector('.S_shop_wrap').style.display = 'none';
                             document.querySelector('.S_big_title').style.display = 'none';
@@ -354,41 +378,46 @@
                         document.querySelector('.Search_empty').style.display = 'none';
                         document.querySelector('.S_shop_wrap').style.display = 'flex';
                         document.querySelector('.S_big_title').style.display = 'block';
-                        document.querySelector('.S_product .S_Product_list').style.display = 'grid';
+                        document.querySelector('.S_product .S_Product_list').style.display = 'flex';
                         document.querySelector('.S_product .S_big_title').style.display = 'block';
                         document.querySelector('.S_content').style.display = 'block';
-                        let productContainer = document.querySelector('.S_shop_wrap .S_Shop_product');
-                        productContainer.innerHTML = '';
-                        document.querySelector('.S_big_title').innerHTML = '';
-                        let shoplienquan = "SHOP LIÊN QUAN ĐẾN \"" + keyword + "\"";
-                        document.querySelector('.S_big_title').innerHTML = '<h3>' + shoplienquan + '</h3>';
-                        document.querySelector('.S_Shop_info').innerHTML = '';
-                        document.querySelector('.S_Shop_info').innerHTML = '<img src="' + sellers[0].avatar + '" alt="#">' +
-                            '<h3>' + sellers[0].shopName + '</h3>' +
-                            '<div class="S_Shop_rating">' +
-                            '<span>' +
-                            '<i class="fa-solid fa-star"></i>' + sellers[0].views + ' | 60k lượt theo dõi' +
-                            '</span>' +
-                            '</div>' +
-                            '<a href="/PBL3_1_war_exploded/shop?id=' + sellers[0].id + '" class="S_Shop_btn btn">Xem shop</a>';
-                        let cnt = 0;
+                        if(checkPage === false)
+                        {
+                            let productContainer = document.querySelector('.S_shop_wrap .S_Shop_product');
+                            productContainer.innerHTML = '';
+                            document.querySelector('.S_big_title').innerHTML = '';
+                            let shoplienquan = "SHOP LIÊN QUAN ĐẾN \"" + keyword + "\"";
+                            document.querySelector('.S_big_title').innerHTML = '<h3>' + shoplienquan + '</h3>';
+                            document.querySelector('.S_Shop_info').innerHTML = '';
+                            document.querySelector('.S_Shop_info').innerHTML = '<img src="' + sellers[0].avatar + '" alt="#">' +
+                                '<h3>' + sellers[0].shopName + '</h3>' +
+                                '<div class="S_Shop_rating">' +
+                                '<span>' +
+                                '<i class="fa-solid fa-star"></i>' + sellers[0].views + ' | 60k lượt theo dõi' +
+                                '</span>' +
+                                '</div>' +
+                                '<a href="/PBL3_1_war_exploded/shop?id=' + sellers[0].id + '" class="S_Shop_btn btn">Xem shop</a>';
+                            let cnt = 0;
 
-                        products.forEach(product => {
-                            if(product.sellerId == sellers[0].id && cnt < 3) {
-                                let productUrl = `/PBL3_1_war_exploded/product?id=` + product.id;
-                                productContainer.innerHTML += createCard({
-                                    name: product.name,
-                                    price: product.price,
-                                    discount: product.discount,
-                                    imgPath: product.imgPath,
-                                    sellerName: product.sellerName,
-                                    productUrl: productUrl,
-                                    sellerUrl: sellerUrl,
-                                    sellerAvatar: sellerAvatar
-                                });
-                                cnt++;
-                            }
-                        });
+                            products.forEach(product => {
+                                if(product.sellerId == sellers[0].id && cnt < 3) {
+                                    let productUrl = `/PBL3_1_war_exploded/product?id=` + product.id;
+                                    productContainer.innerHTML += createCard({
+                                        name: product.name,
+                                        price: product.price,
+                                        discount: product.discount,
+                                        imgPath: product.imgPath,
+                                        productName:product.name,
+                                        productId: product.id,
+                                        sellerName: product.sellerName,
+                                        productUrl: productUrl,
+                                        sellerUrl: sellerUrl,
+                                        sellerAvatar: sellerAvatar
+                                    });
+                                    cnt++;
+                                }
+                            });
+                        }
                         let productContainer2 = document.querySelector('.S_product .S_Product_list');
                         productContainer2.innerHTML = '';
                         products.forEach(product => {
@@ -398,6 +427,8 @@
                                 price: product.price,
                                 discount: product.discount,
                                 imgPath: product.imgPath,
+                                productName:product.name,
+                                productId: product.id,
                                 sellerName: product.sellerName,
                                 productUrl: productUrl,
                                 sellerUrl: sellerUrl,
@@ -405,6 +436,94 @@
                             });
                         });
                     }
+                    document.querySelector(".Page_num").addEventListener("click", function (event){
+                        const selectedBox = event.target;
+                        if(selectedBox.classList.contains("num_item") === false)
+                            return;
+
+                        var currentPage = 0;
+                        for(var i = 1; i <= document.querySelectorAll(".num_item").length - 2; i++)
+                        {
+                            if(document.querySelectorAll(".num_item")[i].style.backgroundColor === "rgb(20, 23, 24)")
+                            {
+                                currentPage = i;
+                                break;
+                            }
+                        }
+                        console.log("Before: " + currentPage);
+                        if(selectedBox.id === "Page_pre" || selectedBox.id === "Page_next")
+                        {
+                            if(selectedBox.id === "Page_pre")
+                            {
+                                console.log("Pre");
+                                if(currentPage <= 1)
+                                    return;
+                                currentPage = currentPage - 1;
+                            }
+                            else
+                            {
+                                console.log("Next");
+                                if(currentPage >= document.querySelectorAll(".num_item").length - 2)
+                                    return;
+                                currentPage = currentPage + 1;
+                            }
+                        }else
+                        {
+                            selectedBox.style.backgroundColor = "#141718";
+                            selectedBox.style.color = "white";
+                            document.querySelector(".Page_num").style.backgroundColor = "white";
+                            currentPage = selectedBox.innerText;
+                        }
+                        document.querySelectorAll(".num_item").forEach(function (pageNumber){
+                            pageNumber.style.backgroundColor = "white";
+                            pageNumber.style.color = "#141718";
+                        });
+                        for(var i = 1; i <= document.querySelectorAll(".num_item").length - 2; i++)
+                        {
+                            if(document.querySelectorAll(".num_item")[i].innerHTML === currentPage.toString())
+                            {
+                                document.querySelectorAll(".num_item")[i].style.backgroundColor = "#141718";
+                                document.querySelectorAll(".num_item")[i].style.color = "white";
+                            }
+                        }
+                        console.log("After: " + currentPage);
+                        var minPrice = Math.floor(parseFloat(document.getElementById('min-price').value));
+                        var maxPrice = Math.floor(parseFloat(document.getElementById('max-price').value));
+                        var categoryID = Array.from(document.querySelectorAll('.S_catalog-item:checked')).map(element => element.id.split("-")[2]).join('-');
+                        console.log(categoryID)
+                        // Lấy URL hiện tại
+                        var url = new URL(window.location.href);
+                        // Lấy tham số 'keyword' từ URL
+                        var keyword = url.searchParams.get('keyword');
+                        var fill = false;
+                        if(!isNaN(minPrice) || categoryID !== '') fill = true;
+                        if(isNaN(minPrice)) minPrice = 0;
+                        if(isNaN(maxPrice)) maxPrice = 1000000000;
+                        $.ajax({
+                            url: '/PBL3_1_war_exploded/search',
+                            type: 'GET',
+                            data: {
+                                keyword: encodeURIComponent(keyword),
+                                minPrice: minPrice,
+                                maxPrice: maxPrice,
+                                categoryID: categoryID,
+                                fill: fill,
+                                page: currentPage
+                            },
+                            contentType: 'application/json',
+                            success: function(data) {
+                                // Handle the response data
+                                let result = data;
+                                updatePageWithResult(result, keyword, true);
+                                console.log("success");
+                            },
+                            error: function (error) {
+                                console.error('Error:', error);
+                            }
+                        });
+
+
+                    });
                 </script>
                     <%@ include file="Footer.jsp" %>
             </body>

@@ -70,8 +70,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories) {
-        return productDAO.getProductsForSearch(keyword, minPrice, maxPrice, categories);
+    public List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories, int page, int size) {
+        return productDAO.getProductsForSearch(keyword, minPrice, maxPrice, categories, page, size);
     }
 
     @Override
@@ -79,6 +79,10 @@ public class ProductServiceImpl implements ProductService {
         return productDAO.getSellersForSearch(keyword, minPrice, maxPrice, categories);
     }
 
+    @Override
+    public int getSearchTotalPage(String keyword, int minPrice, int maxPrice, String categories) {
+        return productDAO.getSearchTotalPage(keyword, minPrice, maxPrice, categories);
+    }
     @Override
     public List<Category> getAllCategories() {
         return productDAO.getAllCategories();
@@ -103,5 +107,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<UserOrderProductDTO> getUserOrderProduct(Long userId, int status){
         return productDAO.getUserOrderProduct(userId, status);
+    }
+    @Override
+    public void changeOrder(String orderId, int changeId){
+        productDAO.changeOrder(orderId, changeId);
     }
 }

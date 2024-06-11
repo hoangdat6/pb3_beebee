@@ -194,17 +194,17 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories) {
+    public List<ProductPreviewDTO> getProductsForSearch(String keyword, int minPrice, int maxPrice, String categories, int page, int size) {
         if (categories.isEmpty()) {
             StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
             sql.append("FROM products AS p\n");
             sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
             sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
             sql.append("JOIN categories AS c ON p.category_id = c.id\n");
-            sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ? OR c.name LIKE ?)\n");
+            sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ? OR c.name REGEXP ?)\n");
             sql.append("GROUP BY p.id\n");
             sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
-            //        sql.append("LIMIT 20 OFFSET 0");
+            sql.append("LIMIT ? OFFSET ?");
 
             return abstractDAO.query(sql.toString(), resultSet -> {
                 try {
@@ -222,16 +222,16 @@ public class ProductDAOImpl implements ProductDAO {
                     e.printStackTrace();
                     return null;
                 }
-            }, "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", minPrice, maxPrice);
+            }, "%" + keyword + "%", "%" + keyword + "%" ,"%" + keyword + "%" , minPrice, maxPrice, size, (page - 1) * size);
         } else {
+            String[] Categories = categories.split("-");
             StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
             sql.append("FROM products AS p\n");
             sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
             sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
             sql.append("JOIN categories AS c ON p.category_id = c.id\n");
             sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ? OR c.name LIKE ?)\n");
-            sql.append("AND ( p.category_id = " + categories.charAt(0) + "\n");
-            String[] Categories = categories.split("-");
+            sql.append("AND ( p.category_id = " + Categories[0] + "\n");
             for (int i = 1; i < Categories.length; i++) {
                 sql.append("OR p.category_id = " + Categories[i] + "\n");
             }
@@ -239,7 +239,7 @@ public class ProductDAOImpl implements ProductDAO {
 
             sql.append("GROUP BY p.id\n");
             sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
-            //        sql.append("LIMIT 20 OFFSET 0");
+            sql.append("LIMIT ? OFFSET ?");
 
             return abstractDAO.query(sql.toString(), resultSet -> {
                 try {
@@ -258,14 +258,14 @@ public class ProductDAOImpl implements ProductDAO {
                     e.printStackTrace();
                     return null;
                 }
-            }, "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", minPrice, maxPrice);
+            }, "%" + keyword + "%" , "%" + keyword + "%" ,  "%" + keyword + "%" , minPrice, maxPrice, size, (page - 1) * size);
         }
     }
 
     @Override
     public List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories) {
         if (categories.isEmpty()) {
-            StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(*) as count\n");
+            StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(p.id) as count\n");
             sql.append("FROM products AS p\n");
             sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
             sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
@@ -273,7 +273,7 @@ public class ProductDAOImpl implements ProductDAO {
             sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ? OR c.name LIKE ?)\n");
             sql.append("GROUP BY s.id, s.avatar, s.shop_name, s.views, p.discount\n");
             sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
-            sql.append("ORDER BY count \n");
+            sql.append("ORDER BY count DESC\n");
             sql.append("LIMIT 1\n");
             return abstractDAO.query(sql.toString(), resultSet -> {
                 try {
@@ -289,21 +289,21 @@ public class ProductDAOImpl implements ProductDAO {
                 }
             }, "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", minPrice, maxPrice);
         } else {
-            StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(*) as count\n");
+            String[] Categories = categories.split("-");
+            StringBuilder sql = new StringBuilder("SELECT s.id, s.avatar, s.shop_name, s.views, COUNT(p.id) as count\n");
             sql.append("FROM products AS p\n");
             sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
             sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
             sql.append("JOIN categories AS c ON p.category_id = c.id\n");
             sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ? OR c.name LIKE ?)\n");
-            sql.append("AND ( p.category_id = " + categories.charAt(0) + "\n");
-            String[] Categories = categories.split("-");
+            sql.append("AND ( p.category_id = " + Categories[0] + "\n");
             for (int i = 1; i < Categories.length; i++) {
                 sql.append("OR p.category_id = " + Categories[i] + "\n");
             }
             sql.append(") ");
             sql.append("GROUP BY s.id, s.avatar, s.shop_name, s.views, p.discount\n");
             sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
-            sql.append("ORDER BY count\n");
+            sql.append("ORDER BY count DESC\n");
             sql.append("LIMIT 1\n");
             return abstractDAO.query(sql.toString(), resultSet -> {
                 try {
@@ -318,6 +318,73 @@ public class ProductDAOImpl implements ProductDAO {
                     return null;
                 }
             }, "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", minPrice, maxPrice);
+        }
+    }
+
+    @Override
+    public int getSearchTotalPage(String keyword, int minPrice, int maxPrice, String categories)
+    {
+        if (categories.isEmpty()) {
+            StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
+            sql.append("FROM products AS p\n");
+            sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+            sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+            sql.append("JOIN categories AS c ON p.category_id = c.id\n");
+            sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ? OR c.name LIKE ?)\n");
+            sql.append("GROUP BY p.id\n");
+            sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
+            return abstractDAO.query(sql.toString(), resultSet -> {
+                try {
+                    return new ProductPreviewDTO(
+                            resultSet.getLong("id"),
+                            resultSet.getString("name"),
+                            resultSet.getInt("min_price"),
+                            resultSet.getInt("discount"),
+                            resultSet.getString("img_path").split(",")[0],
+                            resultSet.getLong("seller_id"),
+                            resultSet.getString("shop_name"),
+                            resultSet.getString("avatar").split(",")[0]
+                    );
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                    return null;
+                }
+            }, "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", minPrice, maxPrice).size();
+        } else {
+            String[] Categories = categories.split("-");
+            StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
+            sql.append("FROM products AS p\n");
+            sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+            sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+            sql.append("JOIN categories AS c ON p.category_id = c.id\n");
+            sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ? OR c.name LIKE ?)\n");
+            sql.append("AND ( p.category_id = " + Categories[0] + "\n");
+            for (int i = 1; i < Categories.length; i++) {
+                sql.append("OR p.category_id = " + Categories[i] + "\n");
+            }
+            sql.append(") ");
+
+            sql.append("GROUP BY p.id\n");
+            sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
+
+            return abstractDAO.query(sql.toString(), resultSet -> {
+                try {
+                    return new ProductPreviewDTO(
+                            resultSet.getLong("id"),
+                            resultSet.getString("name"),
+                            resultSet.getInt("min_price"),
+                            resultSet.getInt("discount"),
+                            resultSet.getString("img_path").split(",")[0],
+                            resultSet.getLong("seller_id"),
+                            resultSet.getString("shop_name"),
+                            resultSet.getString("avatar").split(",")[0]
+                    );
+                } catch (SQLException e) {
+                    System.out.println(sql);
+                    e.printStackTrace();
+                    return null;
+                }
+            }, "%" + keyword + "%", "%" + keyword + "%", "%" + keyword + "%", minPrice, maxPrice).size();
         }
     }
 
@@ -340,7 +407,7 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size) {
-        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.sales, pi.price, ps.name as status_name, SUM(qty_in_stock) as total_qty\n");
+        StringBuilder sql = new StringBuilder("SELECT DISTINCT p.id, p.name, p.sales, MIN(pi.price) as min_price, MAX(pi.price) as max_price, ps.name as status_name, SUM(qty_in_stock) as total_qty\n");
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
         sql.append("JOIN product_status ps ON p.product_status_id = ps.id\n");
@@ -350,7 +417,7 @@ public class ProductDAOImpl implements ProductDAO {
             sql.append("AND p.category_id = ?\n");
         }
         sql.append("AND p.name LIKE ?\n");
-        sql.append("GROUP BY p.id, p.name, p.sales, pi.price, ps.name\n");
+        sql.append("GROUP BY p.id, p.name, p.sales, ps.name\n");
         sql.append("LIMIT ? OFFSET ?");
         if (idCategory != 0) {
             return abstractDAO.query(sql.toString(), resultSet -> {
@@ -358,7 +425,8 @@ public class ProductDAOImpl implements ProductDAO {
                     return new ProductManagementDTO(
                             resultSet.getLong("id"),
                             resultSet.getString("name"),
-                            resultSet.getInt("price"),
+                            resultSet.getInt("min_price"),
+                            resultSet.getInt("max_price"),
                             resultSet.getInt("total_qty"),
                             resultSet.getLong("sales"),
                             resultSet.getString("status_name")
@@ -374,7 +442,8 @@ public class ProductDAOImpl implements ProductDAO {
                 return new ProductManagementDTO(
                         resultSet.getLong("id"),
                         resultSet.getString("name"),
-                        resultSet.getInt("price"),
+                        resultSet.getInt("min_price"),
+                        resultSet.getInt("max_price"),
                         resultSet.getInt("total_qty"),
                         resultSet.getLong("sales"),
                         resultSet.getString("status_name")
@@ -453,6 +522,13 @@ public class ProductDAOImpl implements ProductDAO {
             }
         }, sellerId, "%" + searchValue + "%").get(0);
     }
+
+    @Override
+    public void changeOrder(String idOrder, int changeId) {
+        String sql = "UPDATE orders SET order_status_id = ? WHERE id = ?";
+        abstractDAO.update(sql, changeId, idOrder);
+    }
+
     @Override
     public List<UserOrderProductDTO> getUserOrderProduct(Long idUser, int status){
         StringBuilder sql = new StringBuilder("SELECT o.id, o.seller_id, s.shop_name, s.avatar, os.status, sm.fee\n");
@@ -494,6 +570,7 @@ public class ProductDAOImpl implements ProductDAO {
                             .name(resultSet.getString("shop_name"))
                             .avatar(resultSet.getString("avatar").split(",")[0])
                             .status(resultSet.getString("status"))
+                            .shippingFee(resultSet.getInt("fee"))
                             .build();
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -502,9 +579,6 @@ public class ProductDAOImpl implements ProductDAO {
             }, idUser, status);
         }
 
-//        for(UserOrderProductDTO userOrderProductDTO : list){
-//            System.out.println(userOrderProductDTO.getId() + " " + userOrderProductDTO.getName() + " " + userOrderProductDTO.getSellerId() + " " + userOrderProductDTO.getAvatar());
-//        }
         StringBuilder sql2 = new StringBuilder("SELECT odi.voucher_discount, dt.name\n");
         sql2.append("FROM order_discount AS odi\n");
         sql2.append("JOIN discount_type AS dt ON odi.discount_type_id = dt.id\n");
@@ -514,7 +588,7 @@ public class ProductDAOImpl implements ProductDAO {
         sql3.append("JOIN product_item pi ON p.id = pi.product_id\n");
         sql3.append("JOIN order_detail od ON pi.id = od.product_item_id\n");
         sql3.append("WHERE od.order_id = ?\n");
-        StringBuilder sql4 = new StringBuilder("SELECT v.name\n");
+        StringBuilder sql4 = new StringBuilder("SELECT v.name, vo.value\n");
         sql4.append("FROM variation AS v\n");
         sql4.append("JOIN variation_option vo ON v.id = vo.variation_id\n");
         sql4.append("WHERE vo.id = ?\n");
@@ -531,9 +605,6 @@ public class ProductDAOImpl implements ProductDAO {
                     return null;
                 }
             }, userOrderProductDTO.getId());
-//            for (OrderDiscountDTO orderDiscountDTO : orderDiscountDTOS) {
-//                System.out.println(orderDiscountDTO.getNameVoucher() + " " + orderDiscountDTO.getVoucherDiscount());
-//            }
             userOrderProductDTO.setOrderDiscounts(orderDiscountDTOS);
             List<ProductOrderDTO> products = abstractDAO.query(sql3.toString(), resultSet -> {
                 try {
@@ -560,7 +631,7 @@ public class ProductDAOImpl implements ProductDAO {
                 if(productOrderDTO.getVariation1() != 0){
                     productOrderDTO.setNameVariation1(abstractDAO.query(sql4.toString(), resultSet -> {
                         try {
-                            return resultSet.getString("name");
+                            return resultSet.getString("name") + ": " + resultSet.getString("value");
                         } catch (SQLException e) {
                             e.printStackTrace();
                             return null;
@@ -570,7 +641,7 @@ public class ProductDAOImpl implements ProductDAO {
                 if(productOrderDTO.getVariation2() != 0){
                     productOrderDTO.setNameVariation2(abstractDAO.query(sql4.toString(), resultSet -> {
                         try {
-                            return resultSet.getString("name");
+                            return resultSet.getString("name") + ": " + resultSet.getString("value");
                         } catch (SQLException e) {
                             e.printStackTrace();
                             return null;
@@ -579,15 +650,10 @@ public class ProductDAOImpl implements ProductDAO {
                 }
             }
 
-//            System.out.println("Thong tin variation: ");
-//            for(ProductOrderDTO productOrderDTO1 : products){
-//                if (productOrderDTO1.getVariation1() != 0)
-//                    System.out.println(productOrderDTO1.getNameVariation1());
-//                if (productOrderDTO1.getVariation2() != 0)
-//                    System.out.println(productOrderDTO1.getNameVariation2());
-//            }
             userOrderProductDTO.setProducts(products);
         }
         return list;
     }
 }
+
+

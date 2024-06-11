@@ -90,7 +90,7 @@
         <c:forEach items="${seller.mostViewedProducts}" var="product">
         var productName = '${product.name}';
         var productId = '${product.id}';
-        var productUrl = '<c:url value="/product?id=${product.id}" />';
+        var productUrl = '<c:url value="/product?" />';
 
         document.querySelector('#Shop_content .Product_list').innerHTML += createCard({
             name: "${product.name}",

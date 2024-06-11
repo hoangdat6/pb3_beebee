@@ -194,7 +194,7 @@ function loadProduct(sellerId, url) {
             let productContainer = document.querySelector('#Shop_product .Product_list');
             productContainer.innerHTML = '';
             products.forEach(product => {
-                let productUrl1 = `/PBL3_1_war_exploded/product?id=${product.id}`;
+                let productUrl1 = `/PBL3_1_war_exploded/product?`;
                 productContainer.innerHTML += createCard({
                     name: product.name,
                     price: product.price,

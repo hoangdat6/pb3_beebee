@@ -27,7 +27,7 @@
                     <i class="fa-solid fa-check"></i>
                 </div>
                 <p class="SR_main_para">Chúc mừng, bạn đã thành công đăng ký trở thành người bán!!!</p>
-                <button onclick="location.href='../product/AddProduct.jsp'" class="SR_main_btn btn">Trải nghiệm giao diện người bán</button>
+                <button onclick="location.href='../product/save'" class="SR_main_btn btn">Trải nghiệm giao diện người bán</button>
             </div>
         </main>
     </div>

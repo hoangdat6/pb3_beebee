@@ -117,5 +117,9 @@
   display: flex;
   justify-content: space-between;
 }
-
+.btnPay:hover{
+  background-color: #141718;
+  color: #fff;
+  transition: 0.3s;
+}
 /*# sourceMappingURL=Order.css.map */
