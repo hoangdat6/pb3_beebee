@@ -194,7 +194,7 @@ public class ProductDAOImpl implements ProductDAO {
             sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
             sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
             sql.append("JOIN categories AS c ON p.category_id = c.id\n");
-            sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ? OR c.name REGEXP ?)\n");
+            sql.append("WHERE (p.name LIKE ? OR s.shop_name LIKE ? OR c.name LIKE ?)\n");
             sql.append("GROUP BY p.id\n");
             sql.append("HAVING MIN(pi.price) * (1 -  p.discount / 100) >= ? AND MIN(pi.price) * (1 -  p.discount / 100) <= ?\n");
             sql.append("LIMIT ? OFFSET ?");
@@ -536,6 +536,12 @@ public class ProductDAOImpl implements ProductDAO {
     public void addVisitTime(Long id) {
         String sql = "INSERT INTO product_visit (product_id, time) VALUES (?, ?)";
         abstractDAO.save(sql, id, new Timestamp(System.currentTimeMillis()));
+    }
+
+    @Override
+    public void updateSale(Long id, Long sales) {
+        String sql = "UPDATE products SET sales = sales + ? WHERE id = ?";
+        abstractDAO.update(sql, sales, id);
     }
 
     @Override

@@ -67,7 +67,7 @@ public class ProductManagementController extends HttpServlet {
             }
             int status = request.getParameter("status") == null ? 0 : Integer.parseInt(request.getParameter("status"));
             System.out.println("status: " + status);
-            int size = 2;
+            int size = 6;
             int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
             String searchValue = request.getParameter("search") == null ? "" : request.getParameter("search");
             Long IDseller = sellerService.getIdByUserId(user.getId());

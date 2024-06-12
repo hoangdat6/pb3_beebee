@@ -89,9 +89,10 @@ public class UserOrderController extends HttpServlet {
         if(user == null){
             response.sendRedirect(request.getContextPath() + "/login");
         }else{
-            String id = request.getParameter("id");
-            System.out.println("Received Order: " + id);
-            productService.changeOrder(id, 5);
+            String orderId = request.getParameter("id");
+            System.out.println("Received Order: " + orderId);
+            productService.changeOrder(orderId, 5);
+            productService.updateSale(orderId);
         }
     }
 }

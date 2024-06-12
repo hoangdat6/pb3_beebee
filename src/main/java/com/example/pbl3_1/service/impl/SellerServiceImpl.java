@@ -31,7 +31,7 @@ public class SellerServiceImpl implements SellerService {
         try {
             Boolean isFollowed = sellerDAO.isFollowed(id, userId);
             SellerDTO sellerDTO = sellerDAO.getShopById(id);
-            List<ProductPreviewDTO> products = sellerDAO.getMostViewedProducts(id, 0, 5, "desc");
+            List<ProductPreviewDTO> products = sellerDAO.getMostViewedProducts(id, 0, 6, "desc");
 
             // lấy ra list ảnh
             List<String> images = List.of(sellerDTO.getAvatar().split(","));

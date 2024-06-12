@@ -2,6 +2,7 @@
 package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.Util.JDBCUtil;
+import com.example.pbl3_1.controller.dto.ProductSale;
 import com.example.pbl3_1.controller.dto.cart.ProductItemInfoForCartDTO;
 import com.example.pbl3_1.controller.dto.checkout.ProductForCheckOut;
 import com.example.pbl3_1.dao.OrderDAO;
@@ -197,6 +198,29 @@ public class OrderDAOImpl implements OrderDAO {
         sql2.append("VALUES (?, ?, ?, ?)");
 
         saveAllOrders(sql.toString(), sql2.toString(), orders, lists);
+    }
+
+    @Override
+    public List<ProductSale> getSaleByOrderId(String orderId) {
+        StringBuilder sql = new StringBuilder("select p.id, SUM(od.price * od.quantity) as total\n");
+        sql.append("    from orders o\n");
+        sql.append("JOIN order_detail od on o.id = od.order_id\n");
+        sql.append("JOIN product_item pi on od.product_item_id = pi.id\n");
+        sql.append("JOIN products p on pi.product_id = p.id\n");
+        sql.append("where o.id = ?\n");
+        sql.append("group by p.id");
+
+        return abstractDAO.query(sql.toString(), resultSet -> {
+            try {
+                return ProductSale.builder()
+                        .id(resultSet.getLong("id"))
+                        .sales(resultSet.getLong("total"))
+                        .build();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }, orderId);
     }
 
 

@@ -30,7 +30,7 @@ public class SellerDAOImpl implements SellerDAO {
         sql.append("    FROM products p\n");
         sql.append("    GROUP BY p.seller_id\n");
         sql.append(") p ON s.id = p.seller_id\n");
-        sql.append("JOIN address a on s.address_id = a.id\n");
+        sql.append("LEFT JOIN address a on s.address_id = a.id\n");
         sql.append("where s.id = ?;");
 
         List<SellerDTO> sellers = genericDAO.query(sql.toString(), resultSet -> {
@@ -72,7 +72,8 @@ public class SellerDAOImpl implements SellerDAO {
         sql.append("  FROM products p\n");
         sql.append("           JOIN product_item pi on p.id = pi.product_id\n");
         sql.append("           JOIN sellers s on p.seller_id = s.id\n");
-        sql.append("  WHERE s.id = ?\n");
+        sql.append("            JOIN product_status AS ps ON p.product_status_id = ps.id\n");
+        sql.append("  WHERE s.id = ? and ps.id = 1\n");
         sql.append("  GROUP BY p.id, p.views\n");
         sql.append("  ORDER BY p.views DESC LIMIT ? OFFSET ?\n");
         sql.append(") as t order by (min_price * (1 -  discount / 100))\n");
@@ -88,7 +89,8 @@ public class SellerDAOImpl implements SellerDAO {
         sql.append("  FROM products p\n");
         sql.append("           JOIN product_item pi on p.id = pi.product_id\n");
         sql.append("           JOIN sellers s on p.seller_id = s.id\n");
-        sql.append("  WHERE s.id = ?\n");
+        sql.append("           JOIN product_status AS ps ON p.product_status_id = ps.id\n");
+        sql.append("  WHERE s.id = ? and ps.id = 1\n");
         sql.append("  GROUP BY p.id, p.created_at\n");
         sql.append("  ORDER BY p.created_at DESC LIMIT ? OFFSET ?\n");
         sql.append(") as t order by (min_price * (1 -  discount / 100))\n");
