@@ -683,11 +683,11 @@ function showErrorInput(e){
         let inputs = $(".AddProduct_content input");
         inputs.each(function () {
             $(this).on("input", function () {
-                if($(this).val().length === 0){
+                if ($(this).val().length === 0) {
                     $(this).css({
                         borderColor: 'red'
                     });
-                }else{
+                } else {
                     $(this).css({
                         borderColor: 'black'
                     });
