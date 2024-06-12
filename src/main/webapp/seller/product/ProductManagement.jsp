@@ -25,64 +25,19 @@
 <body>
 <%@ include file="../common/SellerCommon.jsp" %>
 <fmt:setLocale value = "vi_VN"/>
-<script>
-    function createTableRow(stt, id, name, sales, min_price, max_price, stock, status) {
-        return `
-        <tr>
-            <td><input type="checkbox" name="" id="productid-` + id + `"></td>
-            <td>` + stt + `</td>
-            <td>` + name + `</td>
-            <td>` + sales + `</td>
-            <td>` + min_price + ' - ' + max_price + `</td>
-            <td>` + stock + `</td>
-            <td>` + status + `</td>
-        </tr>
-    `;
-    }
-    function createCategoryOption(id, name) {
-        return `
-        <option value="` + id + `" class="category_item">` + name + `</option>
-    `;
-    }
-    function UpdateShowProducts(result){
-        var listProduct = result;
-        document.querySelector(".list_product").innerHTML = "";
-        var stt = 1;
-        listProduct.forEach(product => {
-            var id = product.id;
-            var name = product.name;
-            var sales = product.sales;
-            var min_price = product.min_price;
-            var max_price = product.max_price;
-            var stock = product.quantity;
-            var status = product.statusName;
-            document.querySelector(".list_product").innerHTML += createTableRow(stt, id, name, sales, min_price, max_price, stock, status);
-            stt++;
-        });
-    }
-    function ShowPageNumber(totalPage){
-        var pageContent = document.querySelector(".page_content");
-        pageContent.innerHTML = "";
-        for (var i = 1; i <= totalPage; i++){
-            pageContent.innerHTML += `<div class="page_number">` + i + `</div>`;
-        }
-    }
-</script>
+
 
 <div class="container">
     <div class="content">
         <div class="button_content">
-            <div class="button_container">
-                <div class="btn_shop ">Tất cả</div>
+            <div class="button_container status-0 active">
+                <div class="btn_shop">Tất cả</div>
             </div>
-            <div class="button_container">
-                <div class="btn_shop ">Đang hoạt động</div>
+            <div class="button_container status-1">
+                <div class="btn_shop">Đang hoạt động</div>
             </div>
-            <div class="button_container">
-                <div class="btn_shop ">Vi phạm</div>
-            </div>
-            <div class="button_container">
-                <div class="btn_shop ">Chờ duyệt</div>
+            <div class="button_container status-3">
+                <div class="btn_shop">Vi phạm</div>
             </div>
         </div>
 
@@ -161,6 +116,7 @@
             document.querySelector("#category").addEventListener("change", function() {
                 var selectedOption = this.value; // Lấy giá trị của option được chọn
                 var searchValue = document.querySelector("#search").value;
+                var status = document.querySelector(".active").classList[1].split('-')[1];
                 console.log(selectedOption);
                 $.ajax({
                     url: "/PBL3_1_war_exploded/seller/product/productmanagement",
@@ -168,6 +124,7 @@
                     data: {
                         idcategory: selectedOption,
                         search: searchValue,
+                        status: status,
                         check: true
                     },
                     contentType: 'application/json',
@@ -196,6 +153,7 @@
                 var selectedPage = event.target.innerText;
                 var selectedOption = document.querySelector("#category").value;
                 var searchValue = document.querySelector("#search").value;
+                var status = document.querySelector(".active").classList[1].split('-')[1];
                 // document.querySelector(".page_number").
                 console.log(selectedPage);
                 $.ajax({
@@ -205,6 +163,7 @@
                         idcategory: selectedOption,
                         search: searchValue,
                         page: selectedPage,
+                        status: status,
                         check: true
                     },
                     contentType: 'application/json',
@@ -219,6 +178,7 @@
             document.querySelector(".search_btn").addEventListener("click", function() {
                 var searchValue = document.querySelector("#search").value;
                 var selectedOption = document.querySelector("#category").value;
+                var status = document.querySelector(".active").classList[1].split('-')[1];
                 console.log(searchValue);
                 $.ajax({
                     url: "/PBL3_1_war_exploded/seller/product/productmanagement",
@@ -226,6 +186,7 @@
                     data: {
                         idcategory: selectedOption,
                         search: searchValue,
+                        status: status,
                         check: true
                     },
                     contentType: 'application/json',
@@ -243,6 +204,7 @@
                 var idString = selectedProductIds.join('-');
                 var searchValue = document.querySelector("#search").value;
                 var selectedOption = document.querySelector("#category").value;
+                var status = document.querySelector(".active").classList[1].split('-')[1];
                 $.ajax({
                     url: "/PBL3_1_war_exploded/seller/product/productmanagement",
                     type: "GET",
@@ -251,6 +213,7 @@
                         search: searchValue,
                         idProducts: idString,
                         action: "delete",
+                        status: status,
                         check: true
                     },
                     contentType: 'application/json',

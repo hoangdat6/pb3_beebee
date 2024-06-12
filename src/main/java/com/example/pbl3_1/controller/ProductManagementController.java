@@ -56,13 +56,15 @@ public class ProductManagementController extends HttpServlet {
                     productService.deleteProduct(Long.parseLong(idProduct[i]));
                 }
             }
-            int size = 5;
+            int status = request.getParameter("status") == null ? 0 : Integer.parseInt(request.getParameter("status"));
+            System.out.println("status: " + status);
+            int size = 10;
             int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
             String searchValue = request.getParameter("search") == null ? "" : request.getParameter("search");
             Long IDseller = sellerService.getIdByUserId(user.getId());
-            List<ProductManagementDTO> productManagementDTOList = productService.getProductManagement(IDseller, id, searchValue, page, size);
+            List<ProductManagementDTO> productManagementDTOList = productService.getProductManagement(IDseller, id, searchValue, page, size, status);
             List<Category> categories = productService.getCategoriesbyIdShop(IDseller);
-            int totalPage = productService.getProductManagementTotalPage(IDseller, id, searchValue);
+            int totalPage = productService.getProductManagementTotalPage(IDseller, id, searchValue, status);
             System.out.println("totalPage: " + totalPage);
             totalPage = totalPage % size == 0 ? totalPage / size : totalPage / size + 1;
             if(check){
