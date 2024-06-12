@@ -5,6 +5,6 @@ import com.example.pbl3_1.entity.Category;
 import java.util.List;
 
 public interface CategoryService {
-    public List<Category> getCategories();
+    List<Category> getCategories();
     int getCategoryByName(String name);
 }

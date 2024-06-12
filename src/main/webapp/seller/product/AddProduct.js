@@ -661,10 +661,10 @@ function showErrorInput(e){
 
     let check = false;
     if(e == Enumerator.SAVE_PRODUCT){
-        let inputs = $(".AddProduct_content input");
+        let inputs = $(".AddProduct_content input[type='number'], .AddProduct_content input[type='text'], .AddProduct_content textarea");
         inputs.each(function () {
             if ($(this).val().length === 0) {
-                if(!($(this).attr("id") == "inventory" || $(this).attr("id") == "price")){
+                if(!($(this).attr("id") === "inventory" || $(this).attr("id") === "price")){
                     $(this).css({
                         borderColor: 'red'
                     });
@@ -676,15 +676,18 @@ function showErrorInput(e){
                 });
             }
         });
+
+
+
     }else {
         let inputs = $(".AddProduct_content input");
         inputs.each(function () {
             $(this).on("input", function () {
-                if($(this).val().length === 0){
+                if ($(this).val().length === 0) {
                     $(this).css({
                         borderColor: 'red'
                     });
-                }else{
+                } else {
                     $(this).css({
                         borderColor: 'black'
                     });

@@ -15,15 +15,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="<c:url value="/seller/voucher/AddVoucher.css"/>">
+    <link rel="stylesheet" href="AddVoucher.css">
     <link rel="stylesheet" href="<c:url value="/seller/product/SideBar.css"/>">
     <link rel="stylesheet" href="<c:url value="PopupChooseProduct.css"/>">
-    <link rel="stylesheet" href="<c:url value="/CommonCSS.css"/>">
     <script src="<c:url value="PopupChooseProduct.js"/>"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://kit.fontawesome.com/609bda8d38.js" crossorigin="anonymous"></script>
-    <script src="<c:url value="/seller/common/SellerCommon.js"/>"></script>
-
     <title>Thêm voucher</title>
 </head>
 
@@ -31,6 +27,60 @@
 <%@ include file="/seller/common/SellerCommon.jsp" %>
 <fmt:setLocale value = "vi_VN"/>
 
+
+<div class="side_bar">
+    <a href="" class="btn item">
+        <i class="fa-solid fa-clipboard"></i>
+        <span>Quản lý đơn hàng</span>
+    </a>
+    <div>
+        <a href="" class="btn item">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span>Quản lý sản phẩm</span>
+        </a>
+        <ul>
+            <li class="subitem"><a href="">Tất cả sản phẩm</a></li>
+            <li class="subitem"><a href="">Sản phẩm vi phạm</a></li>
+            <li class="subitem"><a href="">Thêm sản phẩm</a></li>
+        </ul>
+    </div>
+    <div>
+        <a href="" class="btn item">
+            <i class="fa-solid fa-comments"></i>
+            <span>Chăm sóc khách hàng</span>
+        </a>
+        <ul>
+            <li class="subitem"><a href="">Quản lí Chat</a></li>
+            <li class="subitem"><a href="">Quản lí đánh giá</a></li>
+        </ul>
+    </div>
+    <div>
+        <a href="" class="btn item">
+            <i class="fa-solid fa-wallet"></i>
+            <span>Tài chính</span>
+        </a>
+        <ul>
+            <li class="subitem"><a href="">Doanh thu</a></li>
+            <li class="subitem"><a href="">Số dư TK BeeShop</a></li>
+            <li class="subitem"><a href="">Tài khoản ngân hàng</a></li>
+        </ul>
+    </div>
+    <a href="" class="btn item">
+        <i class="fa-solid fa-chart-area"></i>
+        <span>Dữ liệu và thống kê</span>
+    </a>
+    <div>
+        <a href="" class="btn item">
+            <i class="fa-solid fa-shop"></i>
+            <span>Quản lý Shop</span>
+        </a>
+        <ul>
+            <li class="subitem"><a href="">Hồ sơ Shop</a></li>
+            <li class="subitem"><a href="">Trang trí Shop</a></li>
+            <li class="subitem"><a href="">Thiết lập Shop</a></li>
+        </ul>
+    </div>
+</div>
 <div class="container">
     <section>
         <h3>Thông tin cơ bản</h3>

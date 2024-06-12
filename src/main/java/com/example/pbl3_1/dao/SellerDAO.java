@@ -2,10 +2,10 @@ package com.example.pbl3_1.dao;
 
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
-import com.example.pbl3_1.controller.dto.seller.StatisticDTO;
+import com.example.pbl3_1.controller.dto.seller.Stats;
 import com.example.pbl3_1.entity.Seller;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 public interface SellerDAO {
@@ -18,7 +18,9 @@ public interface SellerDAO {
 
     Long getIdByUserId(Long userId);
 
-    StatisticDTO getStatistic(Long sellerId, Date startDate, Date endDate);
+    Stats getStatistic(Long sellerId, Date startDate, Date endDate);
 
-    List<StatisticDTO> getStatisticByYear(Long sellerId, int year);
+    List<Stats> getStatisticByYear(Long sellerId, int year);
+
+    java.util.Date getShopCreatedAtByID(Long sellerId);
 }

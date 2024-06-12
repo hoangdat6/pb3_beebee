@@ -167,21 +167,14 @@ document.getElementById('addAddressBtn').addEventListener('click', function () {
         document.body.removeChild(overlay);
         document.body.lastChild.remove();
     });
-// <<<<<<< hanh
     document.querySelector('.btn_Cancel').addEventListener('click', function () {
         document.body.removeChild(overlay);
         document.body.lastChild.remove();
     });
-// =======
-// // // <<<<<<< hanh
-// //     document.querySelector('.btn_Cancel').addEventListener('click', function () {
-// // // =======
-// >>>>>>> main
     let script = document.createElement('script');
     script.src = "../app.js";
     document.body.appendChild(script);
 });
-// <<<<<<< hanh
 function removeAddress(button){
     let item = button.parentElement.parentElement.parentElement;
     let addressId = item.querySelector("input[name='addressId']").value;
@@ -191,17 +184,6 @@ function removeAddress(button){
         data: { addressId: addressId },
         success: function (response) {
         }
-// =======
-
-// document.querySelector('.Address_update_btn').addEventListener('click',  (e) => {
-//     const AddressItem = e.target;
-//     // let name  = AddressItem.
-//     AddAddressPopUps();
-//     document.querySelector('.Add_address_btns .btn_Cancel').addEventListener('click', function () {
-// // >>>>>>> main
-//         document.body.removeChild(overlay);
-//         document.body.lastChild.remove();
-// >>>>>>> main
     });
     item.remove();
 

@@ -9,6 +9,7 @@ import java.util.List;
 
 public class CategoryServiceImpl implements CategoryService {
     CategoryDAO categoryDAO = new CategoryDAOImpl();
+
     @Override
     public List<Category> getCategories() {
         return categoryDAO.findAll();
