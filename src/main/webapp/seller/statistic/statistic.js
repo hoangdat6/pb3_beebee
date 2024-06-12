@@ -136,10 +136,12 @@ function calculateIncreasePercent(currentStats, previousStats) {
     let result = properties.map(property => {
         let increasePercent
         let value = currentStats[property];
+        let increasePercent = -1;
         if (previousStats[property] != 0) {
-            increasePercent = ((value - previousStats[property]) / Math.max(previousStats[property], 1));
+
+            increasePercent = parseFloat(value - previousStats[property]) / Math.max(previousStats[property], 1) * 100;
+
         }
-        else increasePercent = -1;
         return { value, increasePercent };
     });
 
@@ -219,6 +221,7 @@ function updateOverviewStatistic(currentStats, previousStats) {
             statisticCard[i].querySelector('.card_value').innerText = value >= 1 ? value : (value * 100) + '%';
         }
         statisticCard[i].querySelector('.card_compare_value').innerText = (increasePercent != -1 ? increasePercent  + '%' : 'Dữ liệu ' + selectedOptionText + ' trước là 0');
+
         statisticCard[i].querySelector('.card_compare p').innerText = 'So với ' + selectedOptionText + ' trước';
     }
 }
