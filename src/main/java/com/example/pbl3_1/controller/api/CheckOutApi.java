@@ -57,7 +57,7 @@ public class CheckOutApi extends HttpServlet {
             String ids = orderService.createOrder(checkOutInfoDTOs, addressId, shippingMethod, paymentMethod, user.getId());
             SessionUtil.getInstance().putValue(request, "IDS", ids);
         }catch(Exception e){
-            e.printStackTrace();
+//            e.printStackTrace();
             responseEntityDTO.setCode(409);
             responseEntityDTO.setMessage(e.getMessage());
         }

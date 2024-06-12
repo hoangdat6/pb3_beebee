@@ -197,7 +197,8 @@ th, td {
     display: flex;
     justify-self: start;
     flex-direction: column;
-    font-size: 10px;
+    font-size: 14px;
+    gap: 10px;
 }
 
 .notice_span i {

@@ -198,7 +198,7 @@ public class OrderServiceImpl implements OrderService {
                 orderDAO.createOrders(orders, lists);
                 productItemService.updateStocks(lists);
             }catch (SQLException e) {
-                e.printStackTrace();
+//                e.printStackTrace();
                 throw new SQLException();
             }
 

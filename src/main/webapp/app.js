@@ -26,8 +26,10 @@ promise.then(function (result) {
   let citis = document.getElementById("city");
   let districts = document.getElementById("district");
   let wards = document.getElementById("ward");
-  if (citis.value !=="" && districts.value !=="" && wards.value !=="")
-    renderAddress(data,citis.value,districts.value,wards.value);
+  if ((citis != undefined && citis != null && citis.value !=="") &&
+      (citis != undefined && citis != null && citis.value !=="") &&
+      (citis != undefined && citis != null && citis.value !==""))
+    renderAddress(data, citis.value, districts.value, wards.value);
   else
    renderAddress(data, '01', '001', '00001');
 // =======

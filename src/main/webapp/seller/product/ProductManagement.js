@@ -17,40 +17,41 @@ function createOverlay() {
 }
 function getProductTable(overlay, PopUps, data, name){
     let productTable = `<div class="product_popup">
-            <div class="produc_table">
-                <div class="product_title" style="background-color: #CCCCCC">
-                    <h3>${name}</h3>
-                </div>
-                <table class="table_product_content">
-                `;
+    <div class="produc_table">
+        <div class="product_title">
+            <h3>${name}</h3>
+        </div>
+        <div class="scrollable-table">
+            <table class="table_product_content">
+                <thead>`;
     if(data.length > 0)
     {
         productTable += `<tr>
-                            <th>Ảnh</th>`
-        if(data[0].variation1 !== null) productTable += `<th>${data[0].variation1.split(": ")[0]}</th>`
-        if(data[0].variation2 !== null) productTable += `<th>${data[0].variation2.split(": ")[0]}</th>`
+                        <th>Ảnh</th>`;
+        if(data[0].variation1 !== null) productTable += `<th>${data[0].variation1.split(": ")[0]}</th>`;
+        if(data[0].variation2 !== null) productTable += `<th>${data[0].variation2.split(": ")[0]}</th>`;
         productTable += `<th>Kho hàng</th>
-                         <th>Giá tiền</th>
-                        </tr>`
+                     <th>Giá tiền</th>
+                    </tr>`;
     }
+    productTable += `</thead><tbody>`;
     for(var i = 0; i < data.length; i++){
         productTable += `<tr>
-                            <td><img src="/PBL3_1_war_exploded/${data[i].imgPath}" alt="" ></td>`
-        if(data[i].variation1 !== null) productTable += `<td>${data[i].variation1.split(": ")[1]}</td>`
-        if(data[i].variation2 !== null) productTable += `<td>${data[i].variation2.split(": ")[1]}</td>`
+                        <td><img src="/PBL3_1_war_exploded/${data[i].imgPath}" alt="" ></td>`;
+        if(data[i].variation1 !== null) productTable += `<td>${data[i].variation1.split(": ")[1]}</td>`;
+        if(data[i].variation2 !== null) productTable += `<td>${data[i].variation2.split(": ")[1]}</td>`;
         productTable += `<td><input type="number" value="${data[i].quantity}" class="quantity productId-${data[i].id}"></td>
-                            <td><input type="number" value="${data[i].price}" class="price productId-${data[i].id}"></td>
-                         </tr>`
+                        <td><input type="number" value="${data[i].price}" class="price productId-${data[i].id}"></td>
+                     </tr>`;
     }
-    productTable += `</table>
-            </div>`
-    productTable += `<div class="popup_btn">
-                    <button type="button" onclick="RemovePopup()">Hủy</button>
-                    <button type="button" id="confirm_update">Xác nhận</button>
-                </div>
+    productTable += `</tbody></table>
         </div>`;
+    productTable += `<div class="popup_btn">
+            <button class="btn" type="button" onclick="RemovePopup()">Hủy</button>
+            <button class="btn" type="button" id="confirm_update">Xác nhận</button>
+        </div>
+    </div>`;
 
-    // addressList = data;
     PopUps.innerHTML = productTable;
     overlay.appendChild(PopUps);
 
@@ -191,17 +192,12 @@ function ShowPageNumber(totalPage, currentPage = 1){
     }
 }
 document.addEventListener("DOMContentLoaded", function() {
-    // Lấy tất cả các nút có class là 'button_container'
     var buttons = document.querySelectorAll('.button_container');
-    // let ink = document.querySelector('.tab__ink_bar');
-    // ink.style.width = buttons[0].offsetWidth + 'px';
 
     // Đăng ký sự kiện click cho từng nút
     buttons.forEach(function(button) {
         button.addEventListener('click', function() {
             setActive(this);
-            // ink.style.width = this.offsetWidth + 'px';
-            // ink.style.transform = `translateX(${this.offsetLeft}px)`;
         });
     });
 });
