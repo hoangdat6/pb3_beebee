@@ -135,7 +135,7 @@
                                         <fmt:formatNumber value="${(productcart.price * (1 - productcart.discount / 100.0)) * productcart.quantity}" type="currency"/>
                                     </span>
                                 </div>
-                                <button class="Item-Remove" onclick="RemoveCartItem(this)" >
+                                <button class="Item-Remove" >
                                     Xóa
                                 </button>
                             </div>
