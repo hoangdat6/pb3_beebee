@@ -401,7 +401,7 @@
 
                             products.forEach(product => {
                                 if(product.sellerId == sellers[0].id && cnt < 3) {
-                                    let productUrl = `/PBL3_1_war_exploded/product?id=` + product.id;
+                                    let productUrl = "/PBL3_1_war_exploded/product?";
                                     productContainer.innerHTML += createCard({
                                         name: product.name,
                                         price: product.price,

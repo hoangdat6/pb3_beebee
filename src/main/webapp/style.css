@@ -105,20 +105,24 @@ a{
 .Card-Container{
     display: flex;
     flex-wrap: wrap;
+    jsutify-content: center;
     gap: 10px;
 }
 
 .Category-Card{
     background-color: #fff;
-    padding: 12px 24px;
+    padding: 12px 21px;
     border-radius: 15px;
     box-shadow: var(--Category-box-shadow);
+    width: 178px;
 }
 
 .Category-Card img{
-    max-width: 130px;
-    max-height: 130px;
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
+    overflow: hidden;
+    object-fit: cover;
 }
 
 .Card-Desc{
@@ -127,6 +131,7 @@ a{
     padding: 10px 0;
     font-size: var(--font-size-m);
     font-weight: 600;
+    text-align: center;
 }
 
 /* Product and Product Card */

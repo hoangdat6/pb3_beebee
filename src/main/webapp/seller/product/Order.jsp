@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="<c:url value="/seller/common/SellerCommon.css"/>">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>'/>
+    <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
+
 </head>
 
 <body>
@@ -54,6 +56,8 @@
 </script>
 <script src="<c:url value='/RemovePopup.js'/>"></script>
 <script src="<c:url value="/seller/common/SellerCommon.js"/>"></script>
+<script src="<c:url value="/Pop-ups.js"/>"></script>
+<script src="<c:url value="/AlertPopUp.js"/>"></script>
 </body>
 
 </html>

@@ -43,6 +43,8 @@
 .Add_address .Add_address_btns .btn_Send {
   background-color: #131417;
   color: #fff;
+  height: 50px;
+
 }
 .Add_address .Add_address_btns .btn_Send:hover {
   background-color: #fff;
@@ -52,6 +54,13 @@
 .Add_address .Add_address_btns .btn_Cancel:hover {
   color: #FF5630;
 }
+
+.Add_address .Add_address_btns .btn_Cancel {
+    color: #6C7275;
+    height: 50px;
+}
+
+
 
 /*End CSS add new Address */
 /*CSS Location Page  (Address page) */
