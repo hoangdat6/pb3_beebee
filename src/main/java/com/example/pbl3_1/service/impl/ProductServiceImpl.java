@@ -122,6 +122,12 @@ public class ProductServiceImpl implements ProductService {
     public List<UserOrderProductDTO> getUserOrderProduct(Long userId, int status){
         return productDAO.getUserOrderProduct(userId, status);
     }
+
+    @Override
+    public List<SellerOrderProductDTO> getSellerOrderProduct(Long idSeller, int status) {
+        return productDAO.getSellerOrderProduct(idSeller, status);
+    }
+
     @Override
     public void changeOrder(String orderId, int changeId){
         productDAO.changeOrder(orderId, changeId);
