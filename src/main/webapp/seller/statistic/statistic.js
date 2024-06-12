@@ -1,3 +1,4 @@
+
 const ctx = document.getElementById('myChart').getContext('2d');
 const myChart = new Chart(ctx, {
     type: 'bar',
@@ -60,3 +61,165 @@ function updateChart(revenue, access) {
     myChart.data.datasets[1].data = access;
     myChart.update();
 }
+
+
+/*Xử lí sự kiện*/
+let timeType = document.getElementById('time_type');
+let chartYear = document.getElementById('chart_year');
+
+/*
+type = 0: week,
+type = 1: month,
+type = 2: year
+ */
+
+let OverviewStatisticsAWeekAgo = [
+    {
+        type: 0,
+        totalRevenue: 0,
+        totalOrder: 0,
+        totalAccesses: 0,
+        conversionRate: 0,
+        isHasValue: false
+    }
+    ,
+    {
+        type: 0,
+        totalRevenue: 0,
+        totalOrder: 0,
+        totalAccesses: 0,
+        conversionRate: 0,
+        isHasValue: false
+    }
+    ,
+    {
+        type: 0,
+        totalRevenue: 0,
+        totalOrder: 0,
+        totalAccesses: 0,
+        conversionRate: 0,
+        isHasValue: false
+    }
+]
+
+let OverviewStatistics = [
+    {
+        type: 0,
+        totalRevenue: 0,
+        totalOrder: 0,
+        totalAccesses: 0,
+        conversionRate: 0,
+        isHasValue: false
+    }
+    ,
+    {
+        type: 1,
+        totalRevenue: 0,
+        totalOrder: 0,
+        totalAccesses: 0,
+        conversionRate: 0,
+        isHasValue: false
+    }
+    ,
+    {
+        type: 2,
+        totalRevenue: 0,
+        totalOrder: 0,
+        totalAccesses: 0,
+        conversionRate: 0,
+        isHasValue: false
+    }
+]
+
+function calculateIncreasePercent(currentStats, previousStats) {
+    let properties = ['totalRevenue', 'totalOrder', 'conversionRate', 'totalAccesses'];
+    let result = properties.map(property => {
+        let value = currentStats[property];
+        if (previousStats[property] != 0) {
+            let increasePercent = ((value - previousStats[property]) / Math.max(previousStats[property], 1));
+        }
+        else increasePercent = -1;
+        return { value, increasePercent };
+    });
+
+    return result;
+}
+timeType.addEventListener('change', () => {
+    AJAXGetAndUpdateOverviewStatistic();
+});
+
+function AJAXGetAndUpdateChart() {
+    let timeTypeValue = timeType.value;
+    let chartYearValue = chartYear.value;
+    let url = '/PBL3_1_war_exploded/seller/statistic/chart';
+
+    $.ajax({
+        url: url,
+        type: 'GET',
+        data: {
+            year: chartYearValue
+        },
+        success: function(data) {
+            const dataObject = JSON.parse(data);
+            const revenue = dataObject.map(element =>  element.totalRevenue);
+            const access = dataObject.map(element => element.totalAccesses);
+            updateChart(revenue, access);
+        },
+        error: function() {
+            alert('Error');
+        }
+    });
+}
+
+chartYear.addEventListener('change', () => {
+    AJAXGetAndUpdateChart();
+});
+
+function AJAXGetAndUpdateOverviewStatistic() {
+    let timeTypeValue = timeType.value;
+    if (OverviewStatistics[timeTypeValue].isHasValue) {
+        updateOverviewStatistic(OverviewStatistics[timeTypeValue], OverviewStatisticsAWeekAgo[timeTypeValue]);
+        return;
+    }
+
+    let url = '/PBL3_1_war_exploded/seller/statistic/overview';
+
+    $.ajax({
+        url: url,
+        type: 'GET',
+        data: {
+            timeType: timeTypeValue
+        },
+        success: function(data) {
+            const dataObject = JSON.parse(data);
+            OverviewStatistics[timeType.value] = dataObject.currentStats;
+            OverviewStatistics[timeType.value].isHasValue = true;
+            OverviewStatisticsAWeekAgo[timeType.value] = dataObject.previousStats;
+            OverviewStatisticsAWeekAgo[timeType.value].isHasValue = true;
+            updateOverviewStatistic(OverviewStatistics[timeType.value], OverviewStatisticsAWeekAgo[timeType.value]);
+        },
+        error: function() {
+            alert('Error');
+        }
+    });
+}
+
+function updateOverviewStatistic(currentStats, previousStats) {
+    let statisticCard = document.querySelectorAll('.statis_card');
+
+    let result = calculateIncreasePercent(currentStats, previousStats);
+    let selectedOptionText = timeType.options[timeType.selectedIndex].innerText.toLowerCase();
+    for (let i = 0; i < result.length; i++) {
+        let value = result[i].value;
+        let increasePercent = result[i].increasePercent;
+        statisticCard[i].querySelector('.card_value').innerText = value >= 1 ? value : (value * 100) + '%';
+        statisticCard[i].querySelector('.card_compare_value').innerText = (increasePercent != -1 ? increasePercent  + '%' : 'Dữ liệu ' + selectedOptionText + ' trước là 0');
+        statisticCard[i].querySelector('.card_compare p').innerText = 'So với ' + selectedOptionText + ' trước';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    AJAXGetAndUpdateOverviewStatistic();
+    AJAXGetAndUpdateChart();
+});
+

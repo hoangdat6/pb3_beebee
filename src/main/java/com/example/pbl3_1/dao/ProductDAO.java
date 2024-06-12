@@ -32,4 +32,5 @@ public interface ProductDAO extends CommonDAO<Product>{
     List<ProductPreviewDTO> getTopProductsForHome(int i, int i1);
     void changeOrder(String idOrder, int changeId);
 
+    void addVisitTime(Long id);
 }
