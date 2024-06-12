@@ -2,7 +2,7 @@ function generateSidebar() {
     let sidebar = document.createElement("div");
     sidebar.classList.add("side_bar");
     sidebar.innerHTML = `
-    <a href="" class="btn item">
+    <a href="/PBL3_1_war_exploded/seller/product/order" class="btn item">
         <i class="fa-solid fa-clipboard"></i>
         <span>Quản lý đơn hàng</span>
     </a>

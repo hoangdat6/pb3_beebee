@@ -1,9 +1,12 @@
 package com.example.pbl3_1.controller;
 
+import com.example.pbl3_1.controller.dto.product.SellerOrderProductDTO;
 import com.example.pbl3_1.controller.dto.product.UserOrderProductDTO;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.ProductService;
+import com.example.pbl3_1.service.SellerService;
 import com.example.pbl3_1.service.impl.ProductServiceImpl;
+import com.example.pbl3_1.service.impl.SellerServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,12 +15,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
-
-@WebServlet(name = "UserOrderController", urlPatterns = {"/usersetting/order", "/usersetting/order/api", "/usersetting/order/cancel", "/usersetting/order/received"})
-public class UserOrderController extends HttpServlet {
+@WebServlet(name = "SellerOrderController", urlPatterns = {"/seller/product/order", "/seller/product/order/api", "/seller/product/order/confirm", "/seller/product/order/delivered"})
+public class SellerOrderController extends HttpServlet {
     private final ProductService productService = new ProductServiceImpl();
+    private final SellerService sellerService = new SellerServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -26,29 +28,29 @@ public class UserOrderController extends HttpServlet {
 //        ShowOrder(request, response);
         String path = request.getServletPath();
         switch (path) {
-            case "/usersetting/order":
+            case "/seller/product/order":
                 request.getRequestDispatcher("Order.jsp").forward(request, response);
                 break;
-            case "/usersetting/order/api":
+            case "/seller/product/order/api":
                 ShowOrder(request, response);
                 break;
-            case "/usersetting/order/cancel":
-                CancelOrder(request, response);
+            case "/seller/product/order/confirm":
+                ConfirmOrder(request, response);
                 ShowOrder(request, response);
                 break;
-            case "/usersetting/order/received":
-                ReceivedOrder(request, response);
+            case "/seller/product/order/delivered":
+                DeliveredOrder(request, response);
                 ShowOrder(request, response);
                 break;
         }
     }
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getServletPath();
-        if(action != null && action.equals("/usersetting/order"))
-        {
-            response.sendRedirect(request.getContextPath() + "/usersetting/order");
-        }
+//        String action = request.getServletPath();
+//        if(action != null && action.equals("/usersetting/order"))
+//        {
+//            response.sendRedirect(request.getContextPath() + "/usersetting/order");
+//        }
     }
     public void ShowOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
@@ -58,8 +60,9 @@ public class UserOrderController extends HttpServlet {
         if(user == null){
             response.sendRedirect(request.getContextPath() + "/login");
         }else{
+            Long IDseller = sellerService.getIdByUserId(user.getId());
             int status = request.getParameter("status") == null ? 0 : Integer.parseInt(request.getParameter("status"));
-            List<UserOrderProductDTO> data = productService.getUserOrderProduct(user.getId(), status);
+            List<SellerOrderProductDTO> data = productService.getSellerOrderProduct(IDseller, status);
             ObjectMapper objectMapper = new ObjectMapper();
             try {
                 objectMapper.writeValue(response.getOutputStream(), data);
@@ -68,7 +71,7 @@ public class UserOrderController extends HttpServlet {
             }
         }
     }
-    public void CancelOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void ConfirmOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -78,10 +81,10 @@ public class UserOrderController extends HttpServlet {
         }else{
             String id = request.getParameter("id");
             System.out.println("Cancel Order: " + id);
-            productService.changeOrder(id, 6);
+            productService.changeOrder(id, 4);
         }
     }
-    public void ReceivedOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void DeliveredOrder(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
@@ -89,10 +92,9 @@ public class UserOrderController extends HttpServlet {
         if(user == null){
             response.sendRedirect(request.getContextPath() + "/login");
         }else{
-            String orderId = request.getParameter("id");
-            System.out.println("Received Order: " + orderId);
-            productService.changeOrder(orderId, 5);
-            productService.updateSale(orderId);
+            String id = request.getParameter("id");
+            System.out.println("Received Order: " + id);
+            productService.changeOrder(id, 3);
         }
     }
 }
