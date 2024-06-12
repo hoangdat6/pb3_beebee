@@ -1,3 +1,6 @@
+
+
+
 function getPrice() {
     let products = document.querySelectorAll(".Col2-Product-Item");
     let total = 0;
@@ -128,7 +131,7 @@ function getPriceOrder(){
         let voucher_money = shop.querySelector(".voucher_money");
         let total_money = shop.querySelector(".total_money");
         // let voucher_discount = parseInt(shop.querySelector("input[name='voucher_discount']").value);
-        let voucher_discount = 100;
+        let voucher_discount = 0;
 
         voucher_discount_all += voucher_discount;
 
@@ -161,7 +164,6 @@ function btnOrder(){
     getDataForOrder();
 }
 
-
 function getDataForOrder(){
     let addressId = document.querySelector("#address_id").value;
     let paymentMethodId = document.querySelector("input[name='payment_method']:checked").id;
@@ -183,7 +185,7 @@ function getDataForOrder(){
             }else {
                 createAlertPopUp("Xác nhận", "Có 1 số sản phẩm đã hết hàng, vui lòng chọn các lựa chọn sau!",
                     [{text: 'Trở về giỏ hàng', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: true},
-                        {text: 'Đặt tất cả các sản phẩm còn lại', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: false}]
+                        {text: 'các sản phẩm còn lại', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: false}]
                     )
             }
         }
