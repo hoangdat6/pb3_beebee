@@ -661,7 +661,7 @@ function showErrorInput(e){
 
     let check = false;
     if(e == Enumerator.SAVE_PRODUCT){
-        let inputs = $(".AddProduct_content input");
+        let inputs = $(".AddProduct_content input[type='number'], .AddProduct_content input[type='text'], .AddProduct_content textarea");
         inputs.each(function () {
             if ($(this).val().length === 0) {
                 if(!($(this).attr("id") === "inventory" || $(this).attr("id") === "price")){
@@ -697,8 +697,3 @@ function showErrorInput(e){
     }
     return check;
 }
-
-
-
-
-

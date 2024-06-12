@@ -4,13 +4,15 @@ import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.entity.User;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
+import jakarta.servlet.http.HttpFilter;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebFilter(urlPatterns = {"/seller/account/register"})
-public class SellerFilter implements Filter {
+@WebFilter(urlPatterns = {"/admin/*"})
+public class AdminFilter implements Filter {
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest request = (HttpServletRequest) servletRequest;
@@ -26,16 +28,11 @@ public class SellerFilter implements Filter {
         }else {
             String url = request.getRequestURI();
             switch (user.getRole()) {
-                case CUSTOMER:
-                        chain.doFilter(request, response);
-                    break;
                 case ADMIN:
-                case SELLER:
-                    if(url.contains("/seller/account/register")) {
-                        response.sendRedirect(request.getContextPath() + "/seller/statistic");
-                    }else {
-                        chain.doFilter(request, response);
-                    }
+                    chain.doFilter(request, response);
+                    break;
+                default:
+                    response.sendRedirect(request.getContextPath() + "/error-401");
                     break;
 
             }

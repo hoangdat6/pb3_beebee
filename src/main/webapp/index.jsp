@@ -55,9 +55,10 @@
       Danh mục
     </p>
     <div class="Card-Container">
-      <c:forEach items="${categories}" var="category" begin="0" end="5">
+      <c:forEach items="${categories}" var="category" begin="0" end="7">
         <a href='<c:url value="/search?keyword=${category.name}"/>' class="Category-Card">
-          <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">
+          <img src="<c:url value="${category.imgPath == null ? 'img/Product/T-Shirt.jpeg' : category.imgPath}" />" alt="Thời trang">
+<%--          <img src="img/Product/T-Shirt.jpeg" alt="Thời trang">--%>
           <p class="Card-Desc">
             <c:out value="${category.name}"/>
           </p>

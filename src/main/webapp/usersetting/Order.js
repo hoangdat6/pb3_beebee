@@ -170,7 +170,7 @@ function createOrderDetailTable() {
                 btn.addEventListener('click', function () {
                     // Xử lý sự kiện click cho nút 'Đã nhận hàng'
                     console.log('Đã nhận hàng');
-                    createAlertPopUp("Thông báo", "Bạn có chắc chắn muốn hủy đơn hàng này không?",
+                    createAlertPopUp("Thông báo", "Bạn có xác nhận đã nhận hàng không?",
                         [{text: 'Có', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: true},
                             {text: 'Không', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: false} ])
                         .then((value) => {

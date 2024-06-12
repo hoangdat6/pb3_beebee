@@ -82,15 +82,19 @@ public class OrderController extends HttpServlet {
 
         // Get default address
         Address address = addressService.getDefaultAddressByUserId(user.getId());
-        if(address != null){
-            String appPath = request.getServletContext().getRealPath("/");
-            String filePath = appPath + "usersetting/data.json";
-            AddressUtils addressUtils = new AddressUtils(filePath);
-
-            address.setWard(addressUtils.getWardName(address.getProvince(),address.getDistrict(),address.getWard()));
-            address.setDistrict(addressUtils.getDistrictName(address.getProvince(),address.getDistrict()));
-            address.setProvince(addressUtils.getCityName(address.getProvince()));
+        if(address == null){
+            response.sendRedirect("usersetting/address");
+            return;
         }
+
+
+        String appPath = request.getServletContext().getRealPath("/");
+        String filePath = appPath + "usersetting/data.json";
+        AddressUtils addressUtils = new AddressUtils(filePath);
+
+        address.setWard(addressUtils.getWardName(address.getProvince(),address.getDistrict(),address.getWard()));
+        address.setDistrict(addressUtils.getDistrictName(address.getProvince(),address.getDistrict()));
+        address.setProvince(addressUtils.getCityName(address.getProvince()));
 
         SessionUtil.getInstance().putValue(request, "checkOutInfoDTOs", checkOutInfoDTOs);
         SessionUtil.getInstance().putValue(request, "shippingMethodId", shippingMethod.getShippingMethod().getValue());

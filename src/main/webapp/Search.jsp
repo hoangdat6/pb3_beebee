@@ -401,7 +401,7 @@
 
                             products.forEach(product => {
                                 if(product.sellerId == sellers[0].id && cnt < 3) {
-                                    let productUrl = `/PBL3_1_war_exploded/product?id=` + product.id;
+                                    let productUrl = "/PBL3_1_war_exploded/product?";
                                     productContainer.innerHTML += createCard({
                                         name: product.name,
                                         price: product.price,
@@ -421,7 +421,7 @@
                         let productContainer2 = document.querySelector('.S_product .S_Product_list');
                         productContainer2.innerHTML = '';
                         products.forEach(product => {
-                            let productUrl = `/PBL3_1_war_exploded/product?id=` + product.id;
+                            let productUrl = `/PBL3_1_war_exploded/product?`;
                             productContainer2.innerHTML += createCard({
                                 name: product.name,
                                 price: product.price,

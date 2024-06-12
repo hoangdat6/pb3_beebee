@@ -124,30 +124,38 @@ function createSellerOrderDetailTable() {
             document.querySelectorAll('.btnDelivered').forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     console.log('Đã gửi hàng');
-                    var result = confirm("Bạn có chắc chắn muốn hủy đơn hàng này không?");
-                    if (result) {
-                        // Xử lý sự kiện click cho nút 'Hủy đơn hàng'
-                        console.log('Đã gửi hàng');
-                        console.log(btn.classList[2].substring(3));
-                        $.ajax({
-                            url: '/PBL3_1_war_exploded/seller/product/order/delivered',
-                            type: 'GET',
-                            data: {
-                                id: btn.classList[2].substring(3),
-                                status: status
-                            },
-                            success: function (data) {
-                                console.log(data);
-                                createSellerOrderDetailTable();
-                            },
-                            error: function (error) {
-                                console.error('Error:', error);
+                    // var result = confirm("Bạn đã thật sự giao hàng chưa?");
+                    createAlertPopUp("Thông báo", "Bạn đã thật sự giao hàng chưa?",
+                        [{text: 'Có', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: true},
+                            {text: 'Không', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: false} ])
+                        .then((value) => {
+                            if(value === true) {
+                                // Xử lý sự kiện click cho nút 'Hủy đơn hàng'
+                                console.log('Đã gửi hàng');
+                                console.log(btn.classList[2].substring(3));
+                                $.ajax({
+                                    url: '/PBL3_1_war_exploded/seller/product/order/delivered',
+                                    type: 'GET',
+                                    data: {
+                                        id: btn.classList[2].substring(3),
+                                        status: status
+                                    },
+                                    success: function (data) {
+                                        console.log(data);
+                                        createSellerOrderDetailTable();
+                                    },
+                                    error: function (error) {
+                                        console.error('Error:', error);
+                                    }
+                                });
                             }
                         });
-                    }else
-                    {
-                        console.log("Không hủy");
-                    }
+                    // if (result) {
+                    //
+                    // }else
+                    // {
+                    //     console.log("Không hủy");
+                    // }
                 });
             });
 
@@ -163,31 +171,31 @@ function createSellerOrderDetailTable() {
             document.querySelectorAll('.btnConfirm').forEach(function (btn) {
                 btn.addEventListener('click', function () {
                     // Xử lý sự kiện click cho nút 'Đã nhận hàng'
-                    var result = confirm("Bạn có chắc chắn muốn xác nhận đơn hàng không?")
-                    if (result) {
-                        // Xử lý sự kiện click cho nút 'Hủy đơn hàng'
-                        console.log('Đã xác nhận');
-                        console.log(btn.classList[2].substring(3));
-                        $.ajax({
-                            url: '/PBL3_1_war_exploded//seller/product/order/confirm',
-                            type: 'GET',
-                            data: {
-                                id: btn.classList[2].substring(3),
-                                status: status
-                            },
-                            success: function (data) {
-                                console.log(data);
-                                createSellerOrderDetailTable();
-                            },
-                            error: function (error) {
-                                console.error('Error:', error);
+                    createAlertPopUp("Thông báo", "Bạn có chắc chắn muốn xác nhận đơn hàng không?",
+                        [{text: 'Có', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: true},
+                            {text: 'Không', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: false} ])
+                        .then((value) => {
+                            if(value === true) {
+                                // Xử lý sự kiện click cho nút 'Hủy đơn hàng'
+                                console.log('Đã xác nhận');
+                                console.log(btn.classList[2].substring(3));
+                                $.ajax({
+                                    url: '/PBL3_1_war_exploded//seller/product/order/confirm',
+                                    type: 'GET',
+                                    data: {
+                                        id: btn.classList[2].substring(3),
+                                        status: status
+                                    },
+                                    success: function (data) {
+                                        console.log(data);
+                                        createSellerOrderDetailTable();
+                                    },
+                                    error: function (error) {
+                                        console.error('Error:', error);
+                                    }
+                                });
                             }
                         });
-                    }else
-                    {
-                        console.log("Không nhận");
-                    }
-
                 });
             });
 

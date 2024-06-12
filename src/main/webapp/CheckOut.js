@@ -1,6 +1,3 @@
-
-
-
 function getPrice() {
     let products = document.querySelectorAll(".Col2-Product-Item");
     let total = 0;
@@ -164,6 +161,7 @@ function btnOrder(){
     getDataForOrder();
 }
 
+
 function getDataForOrder(){
     let addressId = document.querySelector("#address_id").value;
     let paymentMethodId = document.querySelector("input[name='payment_method']:checked").id;
@@ -184,9 +182,23 @@ function getDataForOrder(){
                 window.location.href = '/PBL3_1_war_exploded/check-out-done';
             }else {
                 createAlertPopUp("Xác nhận", "Có 1 số sản phẩm đã hết hàng, vui lòng chọn các lựa chọn sau!",
-                    [{text: 'Trở về giỏ hàng', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: true},
-                        {text: 'các sản phẩm còn lại', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: false}]
-                    )
+                    [{text: 'Trở về giỏ hàng', class: 'button-solid-primary btn-m btn-long', callback: 'removeAlert()', resolveValue: true}]
+                    ).then((value) => {
+                    if(value){
+                        window.location.href = '/PBL3_1_war_exploded/cart';
+                    }
+                    // else {
+                    //     let products = document.querySelectorAll(".product_item");
+                    //     products.forEach(product => {
+                    //         let quantity = parseInt(product.querySelector("input[name='quantity']").value);
+                    //         let status = product.querySelector("input[name='status']").value;
+                    //         if(status === "false"){
+                    //             product.querySelector("input[name='quantity']").value = quantity - 1;
+                    //         }
+                    //     });
+                    //     getPriceOrder();
+                    // }
+                });
             }
         }
     });
