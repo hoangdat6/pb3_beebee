@@ -1,5 +1,6 @@
 package com.example.pbl3_1.service.impl;
 
+import com.example.pbl3_1.controller.dto.ProductSale;
 import com.example.pbl3_1.controller.dto.cart.CartInfoDTO;
 import com.example.pbl3_1.controller.dto.cart.ProductForCartDTO;
 import com.example.pbl3_1.controller.dto.cart.ProductItemInfoForCartDTO;
@@ -205,6 +206,11 @@ public class OrderServiceImpl implements OrderService {
         }
 
         return ids.toString();
+    }
+
+    @Override
+    public List<ProductSale> getSaleByOrderId(String orderId) {
+        return orderDAO.getSaleByOrderId(orderId);
     }
 
     private String createOrderId(Order order, List<OrderDetail> orderDetails) {

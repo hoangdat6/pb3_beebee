@@ -18,6 +18,9 @@
     <link rel="stylesheet" href="../Pop_ups.css">
     <link rel="stylesheet" href="../CommonCSS.css">
     <link rel="stylesheet" href="./assets/css/Order.css">
+    <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
+
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
 </head>
 
 <body class="Color-White">
@@ -55,7 +58,8 @@
     </script>
     <%@ include file="../Footer.jsp" %>
     <script src="<c:url value='/RemovePopup.js'/>"></script>
-
+    <script src="<c:url value="/Pop-ups.js"/>"></script>
+    <script src="<c:url value="/AlertPopUp.js"/>"></script>
 </body>
 
 </html>

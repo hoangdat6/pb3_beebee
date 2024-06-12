@@ -1,0 +1,61 @@
+.popup-product-list {
+    height: 540px;
+    width: 836px;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    display: flex;
+    padding: 12px 0 12px 12px;
+    border-radius: 5px;
+}
+
+.main_img {
+    flex: 2;
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.main_img img {
+    width: 100%;   /* Đảm bảo ảnh chiếm toàn bộ chiều rộng của phần tử chứa */
+    height: 100%;  /* Chiếm toàn bộ chiều cao của phần tử chứa */
+    object-fit: contain; /* Đảm bảo toàn bộ ảnh hiển thị trong phần tử chứa mà không bị cắt */
+}
+
+.product_list {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px;
+    padding: 40px 0 30px 12px;
+}
+
+.product_list img {
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+}
+
+.Next1 {
+    padding: 20px 10px;
+    border-radius: 5px;
+    line-height: 40px;
+    font-size: 15px;
+    background-color: #D9D9D9;
+    opacity: 50%;
+    cursor: pointer; /* Thêm con trỏ chuột để hiển thị như nút bấm */
+}
+
+#prev-left-pu {
+    position: absolute;
+    top: calc(50% - 25px);
+    left: 20px;
+    z-index: 10000;
+}
+
+#next-right-pu {
+    position: absolute;
+    top: calc(50% - 25px);
+    right: 20px;
+    z-index: 10000;
+}

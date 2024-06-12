@@ -9,10 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @AllArgsConstructor
-public class StatisticDTO {
-    public Long totalRevenue;
-    public Long totalOrder;
-    public Float conversionRate;
-    public Long totalAccesses;
-    public Integer month;
+public class StatisticOverview {
+    private Stats currentStats;
+    private Stats previousStats;
 }

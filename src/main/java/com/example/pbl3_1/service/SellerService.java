@@ -1,10 +1,12 @@
 package com.example.pbl3_1.service;
 
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
-import com.example.pbl3_1.controller.dto.seller.StatisticDTO;
+import com.example.pbl3_1.controller.dto.seller.StatisticOverview;
+import com.example.pbl3_1.controller.dto.seller.Stats;
 import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.Seller;
 
+import java.util.Date;
 import java.util.List;
 
 public interface SellerService {
@@ -15,7 +17,11 @@ public interface SellerService {
     void updateIsFollowed(Long userId, Long sellerId, Boolean isFollowed);
     Long getIdByUserId(Long userId);
 
-    StatisticDTO getStatistic(Long sellerId);
+    Stats getStatistic(Long sellerId);
 
-    List<StatisticDTO> getStatisticByYear(Long sellerId, Integer year);
+    List<Stats> getStatisticByYear(Long sellerId, Integer year);
+
+    StatisticOverview getStatisticOverview(Long sellerId, Integer timeType);
+
+    Date getShopCreatedAtByID(Long sellerId);
 }
