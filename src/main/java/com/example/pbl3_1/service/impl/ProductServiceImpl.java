@@ -1,9 +1,6 @@
 package com.example.pbl3_1.service.impl;
 
-import com.example.pbl3_1.controller.dto.product.ProductDetailDTO;
-import com.example.pbl3_1.controller.dto.product.ProductManagementDTO;
-import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
-import com.example.pbl3_1.controller.dto.product.UserOrderProductDTO;
+import com.example.pbl3_1.controller.dto.product.*;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.CategoryDAO;
 import com.example.pbl3_1.dao.ProductDAO;
@@ -117,6 +114,16 @@ public class ProductServiceImpl implements ProductService {
     public void changeOrder(String orderId, int changeId){
         productDAO.changeOrder(orderId, changeId);
     }
+
+    @Override
+    public List<ProductUpdateDTO> getProductUpdate(Long id) {
+        return productDAO.getProductUpdate(id);
+    }
+
+    @Override
+    public void updateProduct(Long id, Integer quantity, Integer price) {
+        productDAO.updateProduct(id, quantity, price);
+
     @Override
     public List<ProductPreviewDTO> getTopProductsForHome(int i, int i1) {
         return productDAO.getTopProductsForHome(i, i1);

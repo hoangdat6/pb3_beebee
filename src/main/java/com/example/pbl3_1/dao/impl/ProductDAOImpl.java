@@ -706,6 +706,64 @@ public class ProductDAOImpl implements ProductDAO {
             }
         }, 12, (page - 1) * 12);
     }
+
+  
+    @Override
+    public List<ProductUpdateDTO> getProductUpdate(Long id) {
+        StringBuilder sql = new StringBuilder("SELECT pi.id, pi.price, pi.qty_in_stock, pi.img_path, pi.variation1, pi.variation2\n");
+        sql.append("FROM product_item AS pi\n");
+        sql.append("WHERE pi.product_id = ?");
+        List<ProductUpdateDTO> data = abstractDAO.query(sql.toString(), resultSet -> {
+            try {
+                return ProductUpdateDTO.builder()
+                        .id(resultSet.getLong("id"))
+                        .price(resultSet.getInt("price"))
+                        .quantity(resultSet.getInt("qty_in_stock"))
+                        .imgPath(resultSet.getString("img_path"))
+                        .idVariation1(resultSet.getLong("variation1"))
+                        .idVariation2(resultSet.getLong("variation2"))
+                        .build();
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }, id);
+//        System.out.println("Thong tin product: " + data);
+        StringBuilder sql2 = new StringBuilder("SELECT v.name, vo.value\n");
+        sql2.append("FROM variation AS v\n");
+        sql2.append("JOIN variation_option vo ON v.id = vo.variation_id\n");
+        sql2.append("WHERE vo.id = ?");
+        for(int i = 0; i < data.size(); i++)
+        {
+            if(data.get(i).getIdVariation1() != 0){
+                data.get(i).setVariation1(abstractDAO.query(sql2.toString(), resultSet -> {
+                    try {
+                        return resultSet.getString("name") + ": " + resultSet.getString("value");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                }, data.get(i).getIdVariation1()).get(0));
+            }
+            if(data.get(i).getIdVariation2() != 0){
+                data.get(i).setVariation2(abstractDAO.query(sql2.toString(), resultSet -> {
+                    try {
+                        return resultSet.getString("name") + ": " + resultSet.getString("value");
+                    } catch (SQLException e) {
+                        e.printStackTrace();
+                        return null;
+                    }
+                }, data.get(i).getIdVariation2()).get(0));
+            }
+        }
+        return data;
+    }
+
+    @Override
+    public void updateProduct(Long id, Integer quantity, Integer price) {
+        String sql = "UPDATE product_item SET qty_in_stock = ?, price = ? WHERE id = ?";
+        abstractDAO.update(sql, quantity, price, id);
+    }
 }
 
 
