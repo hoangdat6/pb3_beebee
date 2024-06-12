@@ -1,4 +1,318 @@
-insert into shop_bee.users (id, username, password, email, phone, created_at, gender, dob, is_locked, avatar, fullname, role)
+insert into shop_bee.products (id, name, description, img_path, category_id, seller_id, created_at, discount, views, sales, product_status_id)
+values  (455, 'Đồng hồ led để bàn báo thức UKIO màn hình LCD cao cấp đo nhiệt độ và độ ẩm', 'Đồng hồ LED để bàn UKIO đa năng màn hình LCD sắc nét , chế độ báo thức, đèn nền ban đêm, đo nhiệt độ, đo độ ẩm, ngày, tháng , thứ ....
+
+
+
+MÔ TẢ SẢN PHẨM
+
+Sản phẩm: Đồng hồ để bàn
+
+Pin: 2 viên pin đũa
+
+Chất liệu: nhựa ABS cao cấp
+
+Chế độ ánh sáng: 4 chế độ sáng
+
+
+
+PHỤ KIỆN GỒM
+
+1 hướng dẫn sử dụng
+
+1 đồng hồ
+
+2 viên pin
+
+
+
+CHÍNH SÁCH ĐỔI TRẢ THEO QUY ĐỊNH CỦA SHOPEE
+
+Bảo hành 1 đổi 1 trong 7 ngày
+
+Bảo hành sử dụng sản phẩm trong 3 tháng
+
+Nếu có vấn đề hãy liên hệ trực tiếp qua Shopee chat của UKIO', 'ImageProduct/455/455_0.png,ImageProduct/455/455_1.png,ImageProduct/455/455_2.png,ImageProduct/455/455_3.png,ImageProduct/455/455_4.png', 2, 101, '2024-06-13 00:34:01', 50, 0, 0, 1),
+        (456, 'Đồng hồ treo tường gỗ tự nhiên phong cách Vintage mộc mạc |Tranh đồng hồ trang trí tường nghệ thuật | Artclock Soyn C146', 'Mỗi chiếc đồng hồ treo tường của Soyn không chỉ có chức năng xem giờ mà thêm vào đó là sự lồng ghép những hình ảnh nghệ thuật ấn tượng và tinh tế. Điều đó sẽ tạo nên một sản phẩm rất đặc biệt khi được treo trên tường nhà.
+
+- Sản phẩm gồm bề mặt Vải bố đay kết hợp vạch giờ bằng gỗ nổi khối (Mẫu 2024) hoặc Tranh in giả vải bố có 12 vạch trên chất liệu Cotton Canvas (Mẫu 2023), khung viền gỗ tự nhiên, máy kim trôi không gây tiếng ồn và điểm thú vị nữa là bộ kim đồng hồ cũng được làm bằng gỗ rất tỉ mỉ.
+
+- Khung gỗ thông sơn màu nâu rustic.
+
+- Bộ kim đồng hồ làm bằng gỗ óc chó.
+
+- Kích thước: 33 x 33 x 3.5 cm. Độ dày 3.5cm có thể đứng vững trên mặt bàn, kệ, treo trên tường sẽ tạo sự nổi khối, dày dặn, thẩm mỹ cao.
+
+- Bảo hành máy đồng hồ: 1 năm', 'ImageProduct/456/456_0.png,ImageProduct/456/456_1.png,ImageProduct/456/456_2.png,ImageProduct/456/456_3.png', 2, 101, '2024-06-13 00:40:03', 5, 0, 0, 1),
+        (457, 'Đồng hồ kỹ thuật số LED 3D Đồng hồ treo tường thời trang phát sáng đa chức năng USB cắm đồng hồ điện tử Trang trí nhà cử', 'Tên: Đồng hồ treo tường kỹ thuật số LED
+
+
+
+Chất liệu: Acrylic
+
+
+
+Màu sắc: Trắng / đen
+
+
+
+Kích thước sản phẩm: 23 * 9cm
+
+
+
+Màn hình: Pin kỹ thuật số: CR2032 (với pin tích hợp)
+
+
+
+Chức năng: thời gian, nhiệt độ, năm và tháng
+
+
+
+Mã sản phẩm: G607
+
+
+
+Gói bao gồm: 1 x đồng hồ LED1 x cáp USB1 x Hướng dẫn sử dụng
+
+
+
+Các tính năng:
+
+
+
+1. Hiển thị thời gian LED
+
+
+
+2. Hiển thị thời gian, ngày tháng, nhiệt độ, đồng hồ báo thức
+
+
+
+3. Phạm vi nhiệt độ 0°C - 50°C (32°F - 122°F)
+
+
+
+4. Độ sáng động học tự động làm mờ
+
+
+
+5. 4 nút: Thiết lập Đặt lại xuống
+
+
+
+6. Ngày: 1 Tháng Giêng 2000-31 Tháng Mười Hai 2099
+
+
+
+7. Màn hình LED để tự động chuyển đổi thời gian, ngày tháng và nhiệt độ
+
+
+
+8. Có thể đặt trên mặt bàn hoặc treo trên tường', 'ImageProduct/457/457_0.png,ImageProduct/457/457_1.png,ImageProduct/457/457_2.png,ImageProduct/457/457_3.png,ImageProduct/457/457_4.png', 2, 101, '2024-06-13 00:47:47', 41, 0, 0, 1),
+        (458, 'Đồng hồ treo tường trang trí hươu tài lộc MOD Decor, Lianzhang JJT', 'ĐỒNG HỒ TREO TƯỜNG NGHỆ THUẬT MOD DECOR THIẾT KẾ PHONG CÁCH BẮC ÂU TRANG TRÍ NHÀ CỬA
+
+
+
+MOD Decor là thương hiệu cung cấp giải pháp trang trí nội thất decor hàng đầu tại Việt Nam với nhiều năm kinh nghiệm trong lĩnh vực kinh doanh và kiến thức decor trang trí. MOD Decor tự hào đem đến cho khách hàng những sản phẩm tranh sắt treo tường, đồng hồ decor,...nhập khẩu chất lượng có giá trị tốt nhất, đẹp nhất cũng như đi cùng vẻ đẹp hoàn hảo, sự tự tin về chất lượng sản phẩm bền bỉ qua nhiều năm cùng chính sách giá cả hợp lý, ưu đãi cho khách hàng.
+
+CHI TIẾT SẢN PHẨM
+
+◈ Mã sản phẩm: 2608
+
+◈ Kích thước: 40*74cm
+
+◈ Mặt đồng hồ: Có kính (kim trần)
+
+◈ Chất liệu: Hợp kim mạ + Sơn tĩnh điện 4-5 lớp không han gỉ, bay màu, độ bền lên tới 20 - 30 năm.', 'ImageProduct/458/458_0.png,ImageProduct/458/458_1.png,ImageProduct/458/458_2.png,ImageProduct/458/458_3.png,ImageProduct/458/458_4.png', 2, 101, '2024-06-13 00:52:55', 43, 0, 0, 1),
+        (459, 'Đồng hồ treo tường trang trí hai con chim công khổng tước xoè đuôi', 'Đồng hồ treo tường trang trí hai con chim công khổng tước xoè đuôi KS618 tại KHANG ĐĂNG HOME là sản phẩm loại 1 tốt nhất trên thị trường hiện nay. Đồng hồ được sản xuất trên dây truyền công nghệ hiện đại theo tiêu chuẩn châu Âu (CE&Rosh).
+
+Sản phẩm làm bằng chất liệu thép sơn tĩnh điện 3 lớp đảm bảo không hoen gỉ, không phai màu, khác hẳn với các sản phẩm sơn phun thông thường trôi nổi trên thị trường.
+
+Thông tin sản phẩm:
+
+- Mã sản phẩm: KD618
+- Kích thước: 72*72cm
+- Mặt đồng hồ: 24cm
+- Chất liệu: Thép sơn tĩnh điện 3 lớp
+- Động cơ: Qartz, kim trôi không gây tiếng động
+- Bảo hành: 5 năm
++ Tặng kèm đinh treo thông minh (không cần khoan đục tường), tặng pin đồng hồ, tặng 1 bộ kim và đá dự phòng.+  + Đồng hồ trang trí treo tường thép sơn tĩnh điện đôi Chim công vàng xoè đuôi nguyên khối như trong ảnh, được đóng hộp cẩn thận bởi 2 lớp xốp dầy và lớp hộp bìa carton bên ngoài. Sản phẩm được buộc dây chắc chắn để đảm bảo không bị xê dịch trong quá trình vận chuyển vì thế phí vận chuyển sẽ hơi cao nhưng bù lại Quý khách được hoàn toàn yên tâm về sự chất lượng và sự an toàn của sản phẩm khi đến tay.', 'ImageProduct/459/459_0.png,ImageProduct/459/459_1.png,ImageProduct/459/459_2.png,ImageProduct/459/459_3.png', 2, 101, '2024-06-13 01:00:09', 39, 0, 0, 1),
+        (460, 'Máy tính xách tay Apple MacBook Air (2020) M1 Chip, 13.3-inch, 8GB, 256GB SSD', 'Máy tính xách tay mỏng và nhẹ nhất của Apple, nay siêu mạnh mẽ với chip Apple M1. Xử lý công việc giúp bạn với CPU 8 lõi nhanh như chớp. Đưa các ứng dụng và game có đồ họa khủng lên một tầm cao mới với GPU 7 lõi. Đồng thời, tăng tốc các tác vụ máy học với Neural Engine 16 lõi. Tất cả gói gọn trong một thiết kế không quạt, giảm thiểu tiếng ồn, thời lượng pin dài nhất từ trước đến nay lên đến 18 giờ (1) MacBook Air. Vẫn cực kỳ cơ động. Mà mạnh mẽ hơn nhiều.
+
+Tính năng nổi bật
+•       Chip M1 do Apple thiết kế tạo ra một cú nhảy vọt về hiệu năng máy học, CPU và GPU
+•       Tăng thời gian sử dụng với thời lượng pin lên đến 18 giờ (1)
+•       CPU 8 lõi cho tốc độ nhanh hơn đến 3.5x, xử lý công việc nhanh chóng hơn bao giờ hết (2)
+•       GPU lên đến 7 lõi với tốc độ xử lý đồ họa nhanh hơn đến 5x cho các ứng dụng và game đồ họa khủng (2)
+•       Neural Engine 16 lõi cho công nghệ máy học hiện đại
+•       Bộ nhớ thống nhất 8GB giúp bạn làm việc gì cũng nhanh chóng và trôi chảy
+•       Ổ lưu trữ SSD siêu nhanh giúp mở các ứng dụng và tập tin chỉ trong tích tắc
+•       Thiết kế không quạt giảm tối đa tiếng ồn khi sử dụng
+•       Màn hình Retina 13.3 inch với dải màu rộng P3 cho hình ảnh sống động và chi tiết ấn tượng (3)
+•       Camera FaceTime HD với bộ xử lý tín hiệu hình ảnh tiên tiến cho các cuộc gọi video đẹp hình, rõ tiếng hơn
+•       Bộ ba micro phối hợp tập trung thu giọng nói của bạn, không thu tạp âm môi trường
+•       Wi-Fi 6 thế hệ mới giúp kết nối nhanh hơn
+•       Hai cổng Thunderbolt / USB 4 để sạc và kết nối phụ kiện
+•       Bàn phím Magic Keyboard có đèn nền và Touch ID giúp mở khóa và thanh toán an toàn hơn
+•       macOS Big Sur với thiết kế mới đầy táo bạo cùng nhiều cập nhật quan trọng cho các ứng dụng Safari, Messages và Maps
+•       Hiện có màu vàng kim, xám bạc và bạc ', 'ImageProduct/460/460_0.png,ImageProduct/460/460_1.png,ImageProduct/460/460_2.png,ImageProduct/460/460_3.png,ImageProduct/460/460_4.png', 15, 100, '2024-06-13 01:08:27', 34, 0, 0, 1),
+        (461, 'Máy tính xách tay Apple Macbook Air (2022) M2 chip, 13.6 inches, 8GB, 256GB SSD', 'Apple Macbook Air (2022) M2 chip  (năm SX 2022), 13.6 inches, 8GB, 256GB SSD
+SPG (Space Gray), STL (Starlight), MDN (Midnight).
+Bộ xử lý
+Hãng CPU: Apple
+Công nghệ CPU: M2
+Loại CPU: 8 - Core
+Tốc độ CPU: 100GB/s memory bandwidth
+
+RAM & Ổ cứng
+Dung lượng RAM: 8 GB
+Dung lượng ổ cứng: 256GB SSD
+
+Màn hình
+Kích thước màn hình: 13.6 inches
+Công nghệ màn hình: Liquid Retina, True Tone Technology, Wide color (P3)
+Độ phân giải: 2560 x 1664 Pixels
+Loại màn hình: LED
+Độ sáng: 500 nits
+Colors: 1 triệu màu
+
+Đồ họa
+Card onboard
+Hãng: Apple
+Model GPU: 8 - Core
+
+Bảo mật
+Mở khóa vân tay
+Mật khẩu', 'ImageProduct/461/461_0.png,ImageProduct/461/461_1.png,ImageProduct/461/461_2.png,ImageProduct/461/461_3.png', 15, 100, '2024-06-13 01:13:45', 32, 0, 0, 1),
+        (462, 'Máy tính xách tay MacBook Pro- M3 Pro Chip, 16-inch, 18GB, 512GB', 'Thông số kỹ thuật
+
+- Chip Apple M3 Pro với CPU 12 lõi, GPU 18 lõi và Neural Engine 16 lõi
+
+- Bộ nhớ thống nhất 18GB
+
+- Ổ lưu trữ SSD 512GB
+
+- Màn hình Liquid Retina XDR 16 inch²
+
+- Bộ Tiếp Hợp Nguồn USB-C 140W
+
+-Ba cổng Thunderbolt 4, cổng HDMI, khe thẻ nhớ SDXC, giắc cắm tai nghe, cổng MagSafe 3
+
+- Bàn phím Magic Keyboard có đèn nền với Touch ID - Tiếng Anh (Mỹ)
+
+
+
+Thông tin bảo hành:
+
+Bảo hành: 12 tháng kể từ ngày kích hoạt sản phẩm.
+
+Kích hoạt bảo hành tại: https://checkcoverage.apple.com/vn/en/', 'ImageProduct/462/462_0.png,ImageProduct/462/462_1.png,ImageProduct/462/462_2.png,ImageProduct/462/462_3.png,ImageProduct/462/462_4.png', 15, 100, '2024-06-13 01:17:33', 2, 0, 0, 1),
+        (463, 'Mac mini M2 (10-Core GPU| 8GB RAM | 512GB SSD)', 'Tính năng nổi bật – Mac mini M2
+
+Chip M2 cho tốc độ và hiệu năng vượt trội
+
+CPU 8 lõi cho hiệu năng nhanh hơn đến 18% để xử lý nhanh chóng các tác vụ hàng ngày1
+
+GPU 10 lõi cho hiệu năng nhanh hơn đến 35% để xử lý các ứng dụng và game đòi hỏi cao về đồ họa1
+
+Neural Engine 16 lõi cho công nghệ máy học hiện đại
+
+Bộ nhớ thống nhất từ 8GB đến 24GB giúp bạn làm việc gì cũng nhanh chóng và trôi chảy
+
+Ổ lưu trữ SSD siêu nhanh giúp mở các ứng dụng và tập tin chỉ trong tích tắc
+
+Hỗ trợ kết nối tối đa hai màn hình
+
+Hệ thống tản nhiệt tiên tiến mang lại hiệu năng đột phá
+
+Kết nối không dây nhanh với Wi-Fi 6E2
+
+Hai cổng Thunderbolt 4, một cổng HDMI, hai cổng USB-A, jack cắm tai nghe, Ethernet Gigabit hoặc 10Gb
+
+Thiết kế vuông 7,7 inch màu bạc cực kỳ nhỏ gọn
+
+macOS Ventura mang đến cho bạn những phương thức mới và hiệu quả để hoàn thành nhiều việc hơn, chia sẻ và cộng tác trên tất cả các thiết bị Apple
+
+iPhone 15 Series mới ra mắt đang là cơn sốt của nhiều người dùng yêu công nghệ, đặc biệt dòng sản phẩm iPhone 15 Pro Max dự kiến sẽ là sản phẩm bùng nổ doanh số của nhà Apple. Tham khảo ngay sản phẩm iPhone 15 Pro Max ShopDunk để có cơ hội giảm tới 2 triệu đồng qua cổng thanh toán và được hỗ trợ 1.5 triệu đồng khi đổi máy cũ, trả góp với lãi suất 0%.', 'ImageProduct/463/463_0.png,ImageProduct/463/463_1.png,ImageProduct/463/463_2.png,ImageProduct/463/463_3.png', 15, 100, '2024-06-13 01:22:07', 14, 0, 0, 1),
+        (464, 'Củ sạc Apple 2 cổng Type-C 35W', 'Tổng Quan
+
+Bộ Tiếp Hợp Nguồn USB-C Kép 35W Nhỏ Gọn cho phép bạn sạc đồng thời hai thiết bị, dù bạn đang ở nhà, ở văn phòng hay đang di chuyển. Apple khuyến nghị sử dụng bộ tiếp hợp nguồn này với MacBook Air. Bạn cũng có thể sử dụng phụ kiện này với iPhone, iPad, Apple Watch và AirPods.
+
+
+
+Kết nối bộ tiếp hợp nguồn này với Bộ Tiếp Hợp Nguồn Du Lịch để sạc ở những khu vực khác trên thế giới.
+
+
+
+Cáp sạc được bán riêng.
+
+
+
+Trong hộp có gì
+
+Bộ Tiếp Hợp Nguồn USB-C Kép 35W Nhỏ Gọn của Apple
+
+
+
+Thông Số Kĩ Thuật
+
+USB-C
+
+', 'ImageProduct/464/464_0.png,ImageProduct/464/464_1.png,ImageProduct/464/464_2.png,ImageProduct/464/464_3.png', 15, 100, '2024-06-13 01:27:47', 30, 0, 0, 1);
+
+insert into shop_bee.variation (id, product_id, name)
+values
+    (1038, 455, 'Màu sắc'),
+    (1039, 456, 'Mẫu'),
+    (1040, 457, 'Màu sắc'),
+    (1041, 460, 'Màu sắc'),
+    (1042, 461, 'Màu sắc'),
+    (1043, 462, 'Màu sắc');
+
+insert into shop_bee.variation_option (id, variation_id, value)
+values  (5140, 1038, 'Trắng'),
+        (5141, 1038, 'Đen'),
+        (5142, 1038, 'Trắng đếm ngược pin'),
+        (5143, 1038, 'Trắng + Đếm ngược'),
+        (5144, 1038, 'Đen + Đếm ngược'),
+        (5145, 1039, 'Mẫu mới 2024'),
+        (5146, 1039, 'Mẫu 2023'),
+        (5147, 1040, 'Trắng'),
+        (5148, 1040, 'Đen'),
+        (5149, 1041, 'Gool'),
+        (5150, 1041, 'Sliver'),
+        (5151, 1041, 'Space Gray'),
+        (5152, 1042, 'Silver'),
+        (5153, 1042, 'Space Gray'),
+        (5154, 1042, 'Starlight'),
+        (5155, 1042, 'Midnight'),
+        (5156, 1043, 'Space Black'),
+        (5157, 1043, 'Silver');
+
+insert into shop_bee.product_item (id, product_id, img_path, variation1, variation2, qty_in_stock, price)
+values  (5194, 455, 'ImageProduct/455/455_01.png', null, 5140, 200, 300000),
+        (5195, 455, 'ImageProduct/455/455_02.png', null, 5141, 200, 300000),
+        (5196, 455, 'ImageProduct/455/455_03.png', null, 5142, 200, 300000),
+        (5197, 455, 'ImageProduct/455/455_04.png', null, 5143, 200, 300000),
+        (5198, 455, 'ImageProduct/455/455_05.png', null, 5144, 200, 300000),
+        (5199, 456, 'ImageProduct/456/456_01.png', null, 5145, 400, 250000),
+        (5200, 456, 'ImageProduct/456/456_02.png', null, 5146, 400, 250000),
+        (5201, 457, 'ImageProduct/457/457_01.png', null, 5147, 200, 170000),
+        (5202, 457, 'ImageProduct/457/457_02.png', null, 5148, 200, 170000),
+        (5203, 458, 'ImageProduct/458/458_0.png', null, null, 400, 990000),
+        (5204, 459, 'ImageProduct/459/459_0.png', null, null, 500, 850000),
+        (5205, 460, 'ImageProduct/460/460_01.png', null, 5149, 300, 28990000),
+        (5206, 460, 'ImageProduct/460/460_02.png', null, 5150, 300, 28990000),
+        (5207, 460, 'ImageProduct/460/460_03.png', null, 5151, 300, 28990000),
+        (5208, 461, 'ImageProduct/461/461_01.png', null, 5152, 500, 32990000),
+        (5209, 461, 'ImageProduct/461/461_02.png', null, 5153, 500, 32990000),
+        (5210, 461, 'ImageProduct/461/461_03.png', null, 5154, 500, 32990000),
+        (5211, 461, 'ImageProduct/461/461_04.png', null, 5155, 500, 32990000),
+        (5212, 462, 'ImageProduct/462/462_01.png', null, 5156, 300, 64999000),
+        (5213, 462, 'ImageProduct/462/462_02.png', null, 5157, 300, 64999000),
+        (5214, 463, 'ImageProduct/463/463_0.png', null, null, 500, 23990000),
+        (5215, 464, 'ImageProduct/464/464_0.png', null, null, 500, 1690000);
+-- Last Update: 2024-06-12 15:00:57
+/*insert into shop_bee.users (id, username, password, email, phone, created_at, gender, dob, is_locked, avatar, fullname, role)
 values  (100, 'hanhpro', 'xQI9dArilfTVHDd1YeydSmRjZKQ=', 'ngoconghanh2k4@gmail.com', null, '2024-06-11 22:37:47', 'male', '2004-05-15', false, null, null, 'SELLER'),
         (102, 'hanhsieucapvippro', 'gs5+exjNAndiJhaJ2eGHu99FpvE=', 'hanhsieucapvippro@gmail.com', null, '2024-06-12 16:53:30', 'male', '2004-05-15', false, null, null, 'SELLER'),
         (103, 'hanhhaygay', '9+1i4lmef8tjn38U8GN9fx+t0oE=', 'lezancuong@gmail.com', null, '2024-06-12 20:49:07', 'male', '2004-05-15', false, null, null, 'SELLER');
@@ -2020,3 +2334,4 @@ values  (5001, 400, 'ImageProduct/400/400_01.png', 5000, 5001, 100, 30700000),
         (5192, 453, 'ImageProduct/453/453_02.png', null, 5139, 200, 660000),
         (5193, 454, 'ImageProduct/454/454_0.png', null, null, 500, 902000);
 
+*/
