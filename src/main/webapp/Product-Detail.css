@@ -90,24 +90,33 @@
 #PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 20px;
 }
 
 #PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image img {
   width: 100px;
-  height: 138px;
+  height: 100px;
   object-fit: cover;
+  cursor: pointer;
 }
 
 #PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image .Next {
   width: 25px;
   height: 40px;
-  padding-left: 5px;
+  padding-left: 10px;
   border-radius: 5px;
   line-height: 40px;
   font-size: 15px;
   background-color: #D9D9D9;
   opacity: 50%;
+}
+
+#image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
 }
 
 #PD-Content .Product_Loop-left .Product_Loop-Image .Secondary-Image .Next:hover {

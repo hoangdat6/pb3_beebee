@@ -113,23 +113,29 @@
 
 .table_content {
     display: flex;
-    justify-content: center;
+    justify-content: start;
     flex-direction: column;
     margin: 10px 50px;
-    width: 100%;
-}
-
-.product_content {
-    width: 90%;
+    min-height: 378px;
+    max-height: 378px;
+    overflow: auto;
 }
 
 .product_content {
     border-collapse: collapse;
 }
 
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
 .product_content td {
     border: 1px solid rgba(0, 0, 0, 0.1);
     padding: 10px;
+    max-width: 57px; /* Chiều rộng tối đa */
+    overflow: hidden; /* Ẩn phần văn bản vượt quá */
+    text-overflow: ellipsis; /* Hiển thị dấu ... */
 }
 
 .product_content td:nth-child(1),

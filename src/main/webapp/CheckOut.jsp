@@ -17,14 +17,15 @@
     <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
     <script type="text/javascript" src="<c:url value="AlertPopUp.js"/>"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script type="text/javascript" src="main.js"></script>
     <script src="<c:url value="CheckOut.js"/>"></script>
     <%--    <script src="<c:url value="Pop-ups.js"/>"></script>--%>
     <script src="<c:url value="PopupAddress.js"/>"></script>
     <script src="<c:url value="ApplyVoucher.js"/>"></script>
-
+    <script src="<c:url value="/usersetting/Location.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/usersetting/UAASCommon.css"/>">
+    <link rel="stylesheet" href="<c:url value="/usersetting/assets/css/Location.css"/>">
 
 </head>
 <%@ include file="Top-Bar.jsp" %>
@@ -64,21 +65,39 @@
 
 <div id="CO_Content">
     <section class="content_item address_content">
+
         <div class="title_address">
-            <div class="sub_title">
-                <i class="fa-solid fa-location-dot"></i>
-                <h3>Địa chỉ nhận hàng</h3>
-            </div>
-            <div onclick="AddressPopUp()"  class="change_address">Thay đổi</div>
+            <c:if test="${address == null}">
+                <div class="sub_title">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Bạn chưa có địa chỉ nhận hàng</h3>
+                </div>
+                <div onclick="AddAddressPopUps()"  class="change_address" id="addAddress">Thêm địa chỉ mới</div>
+            </c:if>
+
+            <c:if test="${address != null}">
+                <div class="sub_title">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Địa chỉ nhận hàng</h3>
+                </div>
+                <div onclick="AddressPopUp()"  class="change_address">Thay đổi</div>
+            </c:if>
+<%--            <div class="sub_title">--%>
+<%--                <i class="fa-solid fa-location-dot"></i>--%>
+<%--                <h3>Địa chỉ nhận hàng</h3>--%>
+<%--            </div>--%>
+<%--            <div onclick="AddressPopUp()"  class="change_address">Thay đổi</div>--%>
         </div>
         <div class="address_content--item" id="delivery_address">
-            <input type="hidden" id="address_id" value="${address.id}">
-            <div class="info_cus">
-                ${address.fullname}, ${address.phone}
-            </div>
-            <div class="address_info">
-                ${address.detail}, ${address.ward}, ${address.district}, ${address.province}
-            </div>
+            <c:if test="${address != null}">
+                <input type="hidden" id="address_id" value="${address.id}">
+                <div class="info_cus">
+                    ${address.fullname}, ${address.phone}
+                </div>
+                <div class="address_info">
+                    ${address.detail}, ${address.ward}, ${address.district}, ${address.province}
+                </div>
+            </c:if>
         </div>
     </section>
     <section class="content_item product_content">
@@ -132,10 +151,12 @@
             <div class="checkout_of_shop">
                 <input type="hidden" name="shippingFee" value="${checkOutInfoDTO.shippingMethod.fee}">
                 <div class="shop_voucher">
-                    <span>Voucher của shop</span>
-                    <div>
-                        <a onclick="createPopupVoucher()" class="choose_voucher">Chọn Voucher</a>
-                        <input type="text" name="voucher_discount">
+                    <div style="display: none">
+                        <span>Voucher của shop</span>
+                        <div>
+                            <a onclick="createPopupVoucher()" class="choose_voucher">Chọn Voucher</a>
+                            <input type="text" name="voucher_discount">
+                        </div>
                     </div>
                 </div>
                 <div class="total_payment">
@@ -152,7 +173,7 @@
                             <span class="shipping_fee">${checkOutInfoDTO.shippingMethod.fee}đ</span>
                         </c:if>
                     </div>
-                    <div class="payment_item">
+                    <div class="payment_item" style="display: none">
                         <span>Voucher</span>
                         <span class="voucher_money">-211000đ</span>
                     </div>
@@ -191,7 +212,7 @@
                     <span>Phí vận chuyển</span>
                     <span id="shipping_fee">21000đ</span>
                 </div>
-                <div class="all_order_total-item">
+                <div class="all_order_total-item" style="display: none">
                     <span>Voucher</span>
                     <span id="voucher_all">-211000đ</span>
                 </div>
@@ -215,8 +236,8 @@
 <%--</script>--%>
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
-<script src="<c:url value="app.js"/>"></script>
 <script src="<c:url value="RemovePopup.js"/>"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 
 
 </body>

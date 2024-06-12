@@ -129,30 +129,31 @@ function createOrderDetailTable() {
             createListOrder(data);
             document.querySelectorAll('.btnCancel').forEach(function (btn) {
                 btn.addEventListener('click', function () {
-                    var result = confirm("Bạn có chắc chắn muốn hủy đơn hàng này không?");
-                    if (result) {
-                        // Xử lý sự kiện click cho nút 'Hủy đơn hàng'
-                        console.log('Hủy đơn hàng');
-                        console.log(btn.classList[2].substring(3));
-                        $.ajax({
-                            url: '/PBL3_1_war_exploded/usersetting/order/cancel',
-                            type: 'GET',
-                            data: {
-                                id: btn.classList[2].substring(3),
-                                status: status
-                            },
-                            success: function (data) {
-                                console.log(data);
-                                createOrderDetailTable();
-                            },
-                            error: function (error) {
-                                console.error('Error:', error);
+                    createAlertPopUp("Thông báo", "Bạn có chắc chắn muốn hủy đơn hàng này không?",
+                        [{text: 'Có', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: true},
+                            {text: 'Không', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: false} ])
+                        .then((value) => {
+                            if(value === true) {
+                                // Xử lý sự kiện click cho nút 'Hủy đơn hàng'
+                                console.log('Hủy đơn hàng');
+                                console.log(btn.classList[2].substring(3));
+                                $.ajax({
+                                    url: '/PBL3_1_war_exploded/usersetting/order/cancel',
+                                    type: 'GET',
+                                    data: {
+                                        id: btn.classList[2].substring(3),
+                                        status: status
+                                    },
+                                    success: function (data) {
+                                        console.log(data);
+                                        createOrderDetailTable();
+                                    },
+                                    error: function (error) {
+                                        console.error('Error:', error);
+                                    }
+                                });
                             }
                         });
-                    }else
-                    {
-                        console.log("Không hủy");
-                    }
                 });
             });
 
@@ -169,30 +170,31 @@ function createOrderDetailTable() {
                 btn.addEventListener('click', function () {
                     // Xử lý sự kiện click cho nút 'Đã nhận hàng'
                     console.log('Đã nhận hàng');
-                    var result = confirm("Bạn có chắc chắn muốn xác nhận đã nhận hàng không?")
-                    if (result) {
-                        // Xử lý sự kiện click cho nút 'Hủy đơn hàng'
-                        console.log('Đã nhận hàng');
-                        console.log(btn.classList[2].substring(3));
-                        $.ajax({
-                            url: '/PBL3_1_war_exploded/usersetting/order/received',
-                            type: 'GET',
-                            data: {
-                                id: btn.classList[2].substring(3),
-                                status: status
-                            },
-                            success: function (data) {
-                                console.log(data);
-                                createOrderDetailTable();
-                            },
-                            error: function (error) {
-                                console.error('Error:', error);
+                    createAlertPopUp("Thông báo", "Bạn có chắc chắn muốn hủy đơn hàng này không?",
+                        [{text: 'Có', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: true},
+                            {text: 'Không', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: false} ])
+                        .then((value) => {
+                            if(value === true) {
+                                // Xử lý sự kiện click cho nút 'Hủy đơn hàng'
+                                console.log('Đã nhận hàng');
+                                console.log(btn.classList[2].substring(3));
+                                $.ajax({
+                                    url: '/PBL3_1_war_exploded/usersetting/order/received',
+                                    type: 'GET',
+                                    data: {
+                                        id: btn.classList[2].substring(3),
+                                        status: status
+                                    },
+                                    success: function (data) {
+                                        console.log(data);
+                                        createOrderDetailTable();
+                                    },
+                                    error: function (error) {
+                                        console.error('Error:', error);
+                                    }
+                                });
                             }
                         });
-                    }else
-                    {
-                        console.log("Không nhận");
-                    }
 
                 });
             });
@@ -239,6 +241,8 @@ function createOrderDetailTable() {
         }
     });
 }
+
+
 
 // import GenerateSideBar from "./GenerateSideBar.js";
 //

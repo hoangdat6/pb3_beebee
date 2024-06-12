@@ -80,6 +80,7 @@ function RemoveCartItem(button) {
         success: function(response){
             if(response.status === "200"){
                 item.remove();
+                getPrice();
             }
             if(parent.innerHTML.trim() === ''){
                 parent.parentElement.remove(); // xóa Shop_Products nếu shop không còn sản phẩm nào.
@@ -87,6 +88,33 @@ function RemoveCartItem(button) {
         }
     });
 }
+
+// document.addEventListener('DOMContentLoaded', function() {
+//     document.querySelectorAll(".Item-Remove").addEventListener("click", function() {
+//         createAlertPopUp("Thông báo", "Bạn có chắc chắn muốn hủy đơn hàng này không?",
+//         [{text: 'Có', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: true},
+//                 {text: 'Không', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: false} ])
+//         .then((value) => {
+//             if(value === true) {
+//                 RemoveCartItem(this);
+//                 getPrice();
+//             }
+//         });
+//     })
+// });
+
+$(document).ready(function() {
+    $(".Item-Remove").click(function() {
+        createAlertPopUp("Thông báo", "Bạn có chắc chắn muốn hủy đơn hàng này không?",
+        [{text: 'Có', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: true},
+                {text: 'Không', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: false} ])
+        .then((value) => {
+            if(value === true) {
+                RemoveCartItem(this);
+            }
+        });
+    })
+})
 
 let debounceTimer;
 function UpdateCartItem(button) {
@@ -114,7 +142,7 @@ function UpdateCartItem(button) {
         checkbox.find(".Cart_CB").remove();
         if (checkbox.find(".sold_out").length === 0)
             checkbox.append(`<div class="sold_out" style="font-size: 10px;">không đủ hàng</div>`);
-        getPrice();
+        // getPrice();
     }
 
     if(quantity === 0){
@@ -124,6 +152,7 @@ function UpdateCartItem(button) {
         ).then((value) => {
             if(value === true) {
                 RemoveCartItem(button.parentElement.parentElement);
+                getPrice();
             } else {
                 quantity++;
             }
@@ -134,7 +163,7 @@ function UpdateCartItem(button) {
         item.parentElement.querySelector(".Item-Total_Price").textContent =
             (Math.round(quantity * price * (1 - discount / 100.0))).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 
-        getPrice();
+        // getPrice();
 
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function () {
@@ -150,6 +179,8 @@ function UpdateCartItem(button) {
         }, 1000); // Delay in milliseconds
 
     }
+    getPrice();
+
 }
 
 

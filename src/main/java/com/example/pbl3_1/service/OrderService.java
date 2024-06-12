@@ -1,5 +1,6 @@
 package com.example.pbl3_1.service;
 
+import com.example.pbl3_1.controller.dto.ProductSale;
 import com.example.pbl3_1.controller.dto.cart.CartInfoDTO;
 import com.example.pbl3_1.controller.dto.checkout.CheckOutInfoDTO;
 import com.example.pbl3_1.controller.dto.checkout.ProductForCheckOut;
@@ -20,4 +21,6 @@ public interface OrderService {
     List<CartInfoDTO> getCartInfoDTO(List<Long> shoppingCartItemId);
 
     String createOrder(List<CartInfoDTO> checkOutInfoDTO, Long addressId, EShippingMethod shippingMethod, EPaymentMethod paymentMethod, Long userId) throws SQLException;
+
+    List<ProductSale> getSaleByOrderId(String orderId);
 }

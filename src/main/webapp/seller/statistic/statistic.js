@@ -134,10 +134,13 @@ let OverviewStatistics = [
 function calculateIncreasePercent(currentStats, previousStats) {
     let properties = ['totalRevenue', 'totalOrder', 'conversionRate', 'totalAccesses'];
     let result = properties.map(property => {
+        let increasePercent
         let value = currentStats[property];
         let increasePercent = -1;
         if (previousStats[property] != 0) {
+
             increasePercent = parseFloat(value - previousStats[property]) / Math.max(previousStats[property], 1) * 100;
+
         }
         return { value, increasePercent };
     });
@@ -212,8 +215,13 @@ function updateOverviewStatistic(currentStats, previousStats) {
     for (let i = 0; i < result.length; i++) {
         let value = result[i].value;
         let increasePercent = result[i].increasePercent;
-        statisticCard[i].querySelector('.card_value').innerText = value >= 1 ? value : parseFloat((value * 100)).toFixed(2)  + '%';
-        statisticCard[i].querySelector('.card_compare_value').innerText = (increasePercent !== -1 ? parseFloat(increasePercent).toFixed(2)  + '%' : 'Dữ liệu ' + selectedOptionText + ' trước là 0');
+        if(i == 0){
+            statisticCard[i].querySelector('.card_value').innerText = formatCurrency(value >= 1 ? value : (value * 100) + '%', 'VND');
+        }else {
+            statisticCard[i].querySelector('.card_value').innerText = value >= 1 ? value : (value * 100) + '%';
+        }
+        statisticCard[i].querySelector('.card_compare_value').innerText = (increasePercent != -1 ? increasePercent  + '%' : 'Dữ liệu ' + selectedOptionText + ' trước là 0');
+
         statisticCard[i].querySelector('.card_compare p').innerText = 'So với ' + selectedOptionText + ' trước';
     }
 }

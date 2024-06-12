@@ -1,5 +1,6 @@
 package com.example.pbl3_1.service.impl;
 
+import com.example.pbl3_1.controller.dto.ProductSale;
 import com.example.pbl3_1.controller.dto.product.*;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.CategoryDAO;
@@ -11,6 +12,7 @@ import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
 import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.Product;
 import com.example.pbl3_1.entity.Variation;
+import com.example.pbl3_1.service.OrderService;
 import com.example.pbl3_1.service.ProductService;
 import com.example.pbl3_1.service.VariationService;
 
@@ -21,6 +23,7 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryDAO categoryDAO = new CategoryDAOImpl();
     private final VariationService variationService = new VariationServiceImpl();
     private final ProductItemDAO productItemDAO = new ProductItemDAOImpl();
+    private final OrderService orderService = new OrderServiceImpl();
 
     @Override
     public Long addProduct(Product product) {
@@ -59,6 +62,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void addVisitTime(Long id) {
         productDAO.addVisitTime(id);
+    }
+
+    @Override
+    public void updateSale(String orderId) {
+        List<ProductSale> productSales = orderService.getSaleByOrderId(orderId);
+
+        for(ProductSale productSale : productSales){
+            productDAO.updateSale(productSale.getId(), productSale.getSales());
+        }
     }
 
     @Override
@@ -110,6 +122,12 @@ public class ProductServiceImpl implements ProductService {
     public List<UserOrderProductDTO> getUserOrderProduct(Long userId, int status){
         return productDAO.getUserOrderProduct(userId, status);
     }
+
+    @Override
+    public List<SellerOrderProductDTO> getSellerOrderProduct(Long idSeller, int status) {
+        return productDAO.getSellerOrderProduct(idSeller, status);
+    }
+
     @Override
     public void changeOrder(String orderId, int changeId){
         productDAO.changeOrder(orderId, changeId);

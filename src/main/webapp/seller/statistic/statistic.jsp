@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="<c:url value="/seller/common/SellerCommon.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="statistic/assets/css/statistic.css"/>">
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="<c:url value="/seller/common/SellerCommon.js"/>"></script>
+    <script src="<c:url value="/Card.js"/>"></script>
     <title>Thống kê</title>
 </head>
 

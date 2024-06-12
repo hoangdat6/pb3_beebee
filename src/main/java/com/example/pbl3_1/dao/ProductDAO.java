@@ -25,10 +25,12 @@ public interface ProductDAO extends CommonDAO<Product>{
     int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue, int status);
     void deleteProduct(Long idProduct);
     List<UserOrderProductDTO> getUserOrderProduct(Long idUser, int status);
+    List<SellerOrderProductDTO> getSellerOrderProduct(Long idSeller, int status);
 
     List<ProductPreviewDTO> getTopProductsForHome(int i, int i1);
     void changeOrder(String idOrder, int changeId);
     List<ProductUpdateDTO> getProductUpdate(Long id);
     void updateProduct(Long id, Integer quantity, Integer price);
     void addVisitTime(Long id);
+    void updateSale(Long id, Long sales);
 }

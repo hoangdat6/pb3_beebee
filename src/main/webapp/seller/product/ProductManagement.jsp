@@ -22,6 +22,7 @@
     <script src="<c:url value="ProductManagement.js"/>"></script>
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <script src="<c:url value="ProductManagement.js"/>"></script>
+    <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
     <title>Quản lý sản phẩm</title>
 </head>
 <body>
@@ -62,6 +63,7 @@
         <div class="table_content">
             <table class="product_content">
                 <thead>
+
                 <td><input type="checkbox" name="" id="mainCheckbox"></td>
                 <td>STT</td>
                 <td>Tên sản phẩm</td>
@@ -69,6 +71,7 @@
                 <td>Giá</td>
                 <td>Kho Hàng</td>
                 <td>Trạng thái</td>
+
                 </thead>
                 <tbody class="list_product">
                 </tbody>
@@ -207,39 +210,44 @@
                 var idString = selectedProductIds.join('-');
                 if(idString === "")
                 {
-                    alert("Vui lòng chọn ít nhất 1 sản phẩm để xóa");
+                    createAlertPopUp("Thông báo", "Vui lòng chọn ít nhất 1 sản phẩm để xóa",
+                        [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: true}]
+                    )
                     return;
                 }
                 var searchValue = document.querySelector("#search").value;
                 var selectedOption = document.querySelector("#category").value;
                 var status = document.querySelector(".active").classList[1].split('-')[1];
-                var result = confirm("Bạn có chắc chắn muốn xác nhận đã nhận hàng không?")
-                if (result) {
-                    // Xử lý sự kiện click cho nút 'Xóa sản phẩm'
-                    $.ajax({
-                        url: "/PBL3_1_war_exploded/seller/product/productmanagement",
-                        type: "GET",
-                        data: {
-                            idcategory: selectedOption,
-                            search: searchValue,
-                            idProducts: idString,
-                            action: "delete",
-                            status: status,
-                            check: true
-                        },
-                        contentType: 'application/json',
-                        success: function(response) {
-                            UpdateShowProducts(response.list);
-                            ShowPageNumber(response.totalPage, response.currentPage);
-                        },
-                        error: function (error) {
-                            console.error('Error:', error);
+                // var result = confirm("Bạn có chắc chắn muốn xác nhận đã nhận hàng không?")
+
+                createAlertPopUp("Thông báo", "Bạn có chắc chắn muốn xác nhận đã nhận hàng không?",
+                    [{text: 'Có', class: 'btn-light btn-m', callback: 'removeAlert()', resolveValue: true},
+                        {text: 'Không', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: false} ])
+                    .then((value) => {
+                        if(value === true) {
+                            // Xử lý sự kiện click cho nút 'Xóa sản phẩm'
+                            $.ajax({
+                                url: "/PBL3_1_war_exploded/seller/product/productmanagement",
+                                type: "GET",
+                                data: {
+                                    idcategory: selectedOption,
+                                    search: searchValue,
+                                    idProducts: idString,
+                                    action: "delete",
+                                    status: status,
+                                    check: true
+                                },
+                                contentType: 'application/json',
+                                success: function(response) {
+                                    UpdateShowProducts(response.list);
+                                    ShowPageNumber(response.totalPage, response.currentPage);
+                                },
+                                error: function (error) {
+                                    console.error('Error:', error);
+                                }
+                            });
                         }
                     });
-                }else
-                {
-                    console.log("Không xóa");
-                }
             });
             var mainCheckbox = document.querySelector('#mainCheckbox');
 
@@ -276,7 +284,9 @@
                 });
                 if(cnt !== 1)
                 {
-                    alert("Vui lòng chọn 1 sản phẩm để cập nhật");
+                    createAlertPopUp("Thông báo", "Vui lòng chọn 1 sản phẩm để cập nhật!",
+                        [{text: 'Ok', class: 'button-solid-primary btn-m', callback: 'removeAlert()', resolveValue: true}]
+                    )
                 }else
                 {
                     var idProduct;
@@ -293,5 +303,8 @@
     </div>
 </div>
 <script src="<c:url value="/seller/common/SellerCommon.js"/>"></script>
+<%--<script src="<c:url value='/RemovePopup.js'/>"></script>--%>
+<script src="<c:url value="/Pop-ups.js"/>"></script>
+<script src="<c:url value="/AlertPopUp.js"/>"></script>
 </body>
 </html>

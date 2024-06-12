@@ -25,8 +25,11 @@ public interface ProductService {
     List<UserOrderProductDTO> getUserOrderProduct(Long idUser, int status);
 
     List<ProductPreviewDTO> getTopProductsForHome(int i, int i1);
+    List<SellerOrderProductDTO> getSellerOrderProduct(Long idSeller, int status);
     void changeOrder(String idOrder, int changeId);
     List<ProductUpdateDTO> getProductUpdate(Long id);
     void updateProduct(Long id, Integer quantity, Integer price);
     void addVisitTime(Long id);
+
+    void updateSale(String orderId);
 }

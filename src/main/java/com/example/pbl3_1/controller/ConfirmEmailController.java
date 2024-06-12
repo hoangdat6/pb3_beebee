@@ -49,6 +49,7 @@ public class ConfirmEmailController extends HttpServlet {
                 sessionUtil.removeValue(request, "codestatus");
                 User user = (User)sessionUtil.getValue(request, "newUser");
                 user.setRole(ERole.CUSTOMER);
+                user.setAvatar("USER_AVATAR/default/default.png");
                 userService.save(user);
                 sessionUtil.removeValue(request, "newUser");
                 sessionUtil.removeValue(request, "code");

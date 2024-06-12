@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
     <script type="text/javascript" src="<c:url value="AlertPopUp.js"/>"></script>
     <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
-    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>'/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <%@ include file="Top-Bar.jsp" %>
@@ -135,7 +135,7 @@
                                         <fmt:formatNumber value="${(productcart.price * (1 - productcart.discount / 100.0)) * productcart.quantity}" type="currency"/>
                                     </span>
                                 </div>
-                                <button class="Item-Remove" onclick="RemoveCartItem(this)" >
+                                <button class="Item-Remove" >
                                     Xóa
                                 </button>
                             </div>
