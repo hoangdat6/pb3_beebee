@@ -13,6 +13,7 @@
   <link rel="stylesheet" type="text/css" href = "<c:url value="/Footer.css"/>">
   <link rel="stylesheet" type="text/css" href="<c:url value="/style.css"/>">
   <script type="text/javascript" src="<c:url value="/main.js"/>"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
   <script src="<c:url value="/Card.js"/>"></script>
 </head>
@@ -49,7 +50,7 @@
   <div class="clear"></div>
 </div>
 <div id="Home-Content">
-  <div class="Category pad-l-r-170 pad-t-b-30">
+  <div class="Category">
     <p class="Category-Title">
       Danh mục
     </p>
@@ -67,14 +68,14 @@
   </div>
   <!-- Khu vực "DÀNH RIÊNG CHO BẠN" -->
   <div class="Product">
-    <div class="Title-Container pad-l-r-170 pad-t-b-30">
+    <div class="Title-Container">
       <div class="Title-Desc">
         <h3>Dành riêng cho bạn</h3>
         <p>Sản phẩm mới với mức giá tốt nhất</p>
       </div>
       <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
     </div>
-    <div class="Product_list pad-l-r-170 pad-t-b-30"></div>
+    <div class="Product_list pad-l-r-170 pad-t-b-30" id="for-you"></div>
       <script>
         <c:forEach items="${products}" var="product">
         var productName = '${product.name}';
@@ -84,7 +85,7 @@
         var sellerUrl = "<c:url value="/shop?id=${product.sellerId != null ? product.sellerId : 0}"/>";
         var sellerAvatar = "${product.sellerAvatar != null ? product.sellerAvatar : 'img/Brand/Coffee.jpeg'}";
 
-        document.querySelector('.Product .Product_list').innerHTML += createCard({
+        document.querySelector('#for-you').innerHTML += createCard({
           name: "${product.name}",
           price: "${product.price}",
           discount: "${product.discount}",
@@ -98,53 +99,45 @@
         });
         </c:forEach>
       </script>
-    <button type="button" class="btn-view_more">Xem thêm <i class="fa-solid fa-chevron-down"></i></button>
+    <input type="hidden" name="page-for_you" id="page-for_you" value="1" >
+    <button type="button" class="btn-view_more" id="btn-show_more_for-you">Xem thêm <i class="fa-solid fa-chevron-down"></i></button>
   </div>
   <div class="Product">
-
-  <div class="Title-Container pad-l-r-170 pad-t-b-30">
-    <div class="Title-Desc">
-      <h3>Sản phẩm hàng đầu</h3>
-      <p>Các sản phẩm bán chạy và đánh giá cao</p>
-    </div>
-    <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
-  </div>
-  <div class="Product_list pad-l-r-170 pad-t-b-30">
-    <% for (int i = 0; i < 20; i++) { %>
-
-    <div class="Card">
-      <img class="Card-Image" src="./img/Product/T-Shirt.jpeg" alt="Ảnh sản phẩm">
-      <span class="Hot">Hot</span>
-      <span class="Sale">-50%</span>
-      <div class="Card_top">
-        <h3>Áo thun nữ co dán</h3>
-        <div class="Card_shop">
-          <img src="./img/Brand/Coffee.jpeg" alt="Ảnh cửa hàng">
-          <span>Tên shop</span>
-        </div>
+    <div class="Title-Container">
+      <div class="Title-Desc">
+        <h3>Sản phẩm hàng đầu</h3>
+        <p>Các sản phẩm bán chạy và đánh giá cao</p>
       </div>
-      <div class="Card_bot">
-        <div class="Card_price">
-          <span class="oldPrice">238.000đ</span>
-          <span class="newPrice">150.000đ</span>
-        </div>
-
-        <div class="Card_rating">
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <i class="fa-solid fa-star"></i>
-          <span class="Card_ratingCount">(62.5k đánh giá) </span>
-        </div>
-      </div>
+      <button class="btn">View All <i class="fa-solid fa-arrow-right"></i></button>
     </div>
-    <% } %>
-  </div>
-    <input type="button" value="Xem thêm" class="btn-view_more">
+    <div class="Product_list pad-l-r-170 pad-t-b-30" id="top-product"></div>
+      <script>
+        <c:forEach items="${topProducts}" var="product">
+          var productName1 = '${product.name}';
+          var productId1 = '${product.id}';
+          var productUrl1 = `<c:url value="/product?" />`;
+          var sellerName1 = "${product.sellerName != null ? product.sellerName : 'Tên Shop'}";
+          var sellerUrl1 = "<c:url value="/shop?id=${product.sellerId != null ? product.sellerId : 0}"/>";
+          var sellerAvatar1 = "${product.sellerAvatar != null ? product.sellerAvatar : 'img/Brand/Coffee.jpeg'}";
 
+          document.querySelector('#top-product').innerHTML += createCard({
+            name: "${product.name}",
+            price: "${product.price}",
+            discount: "${product.discount}",
+            imgPath: "${product.imgPath}",
+            productName: productName1,
+            productId : productId1,
+            sellerName: sellerName1,
+            productUrl: productUrl1,
+            sellerUrl : sellerUrl1,
+            sellerAvatar : sellerAvatar1
+          });
+        </c:forEach>
+      </script>
+      <input type="hidden" name="page-for_you" id="page-top" value="1" >
+      <button type="button" class="btn-view_more" id="btn-show_more_top">Xem thêm <i class="fa-solid fa-chevron-down"></i></button>
   </div>
-
-</div>
   <%@ include file="Footer.jsp" %>
+<script src="<c:url value="/scripts.js"/>"></script>
+
 </body>

@@ -63,10 +63,15 @@ public class HomeController extends HttpServlet {
 
 
     public void showHome(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<ProductPreviewDTO> products = productService.getProductsForHome();
+        List<ProductPreviewDTO> products = productService.getProductsForHome(1, 12);
+        List<ProductPreviewDTO> topProducts = productService.getTopProductsForHome(1, 12);
+
         request.setAttribute("products", products);
+        request.setAttribute("topProducts", topProducts);
         request.setAttribute("categories", categoryService.getCategories());
 
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
+
+
 }
