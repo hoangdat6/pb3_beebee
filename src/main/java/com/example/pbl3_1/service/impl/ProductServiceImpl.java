@@ -1,5 +1,6 @@
 package com.example.pbl3_1.service.impl;
 
+import com.example.pbl3_1.controller.dto.ProductSale;
 import com.example.pbl3_1.controller.dto.product.*;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
 import com.example.pbl3_1.dao.CategoryDAO;
@@ -11,6 +12,7 @@ import com.example.pbl3_1.dao.impl.ProductItemDAOImpl;
 import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.Product;
 import com.example.pbl3_1.entity.Variation;
+import com.example.pbl3_1.service.OrderService;
 import com.example.pbl3_1.service.ProductService;
 import com.example.pbl3_1.service.VariationService;
 
@@ -21,6 +23,7 @@ public class ProductServiceImpl implements ProductService {
     private final CategoryDAO categoryDAO = new CategoryDAOImpl();
     private final VariationService variationService = new VariationServiceImpl();
     private final ProductItemDAO productItemDAO = new ProductItemDAOImpl();
+    private final OrderService orderService = new OrderServiceImpl();
 
     @Override
     public Long addProduct(Product product) {
@@ -59,6 +62,15 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void addVisitTime(Long id) {
         productDAO.addVisitTime(id);
+    }
+
+    @Override
+    public void updateSale(String orderId) {
+        List<ProductSale> productSales = orderService.getSaleByOrderId(orderId);
+
+        for(ProductSale productSale : productSales){
+            productDAO.updateSale(productSale.getId(), productSale.getSales());
+        }
     }
 
     @Override
@@ -123,6 +135,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void updateProduct(Long id, Integer quantity, Integer price) {
         productDAO.updateProduct(id, quantity, price);
+    }
 
     @Override
     public List<ProductPreviewDTO> getTopProductsForHome(int i, int i1) {

@@ -30,7 +30,7 @@ public class SellerDAOImpl implements SellerDAO {
         sql.append("    FROM products p\n");
         sql.append("    GROUP BY p.seller_id\n");
         sql.append(") p ON s.id = p.seller_id\n");
-        sql.append("JOIN address a on s.address_id = a.id\n");
+        sql.append("LEFT JOIN address a on s.address_id = a.id\n");
         sql.append("where s.id = ?;");
 
         List<SellerDTO> sellers = genericDAO.query(sql.toString(), resultSet -> {

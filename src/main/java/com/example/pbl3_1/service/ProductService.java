@@ -29,4 +29,6 @@ public interface ProductService {
     List<ProductUpdateDTO> getProductUpdate(Long id);
     void updateProduct(Long id, Integer quantity, Integer price);
     void addVisitTime(Long id);
+
+    void updateSale(String orderId);
 }

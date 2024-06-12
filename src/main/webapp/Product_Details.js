@@ -233,6 +233,12 @@ $(document).ready(function () {
             changeImagePopup(imgArr[currentStartPopup]);
         });
 
+        $('.image-item-popup').click(function () {
+            currentStartPopup = parseInt($(this).attr('id').split('-')[1]);
+            updateImagesPopup();
+            changeImagePopup(imgArr[currentStartPopup]);
+        })
+
         updateImagesPopup();
     });
 });
