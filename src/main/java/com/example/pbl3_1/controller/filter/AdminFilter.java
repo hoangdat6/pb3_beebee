@@ -28,15 +28,13 @@ public class AdminFilter implements Filter {
         }else {
             String url = request.getRequestURI();
             switch (user.getRole()) {
-                case CUSTOMER:
-                    response.sendRedirect(request.getContextPath() + "/home");
-                    break;
-                case SELLER:
-                    response.sendRedirect(request.getContextPath() + "/seller/product/save");
-                    break;
                 case ADMIN:
                     chain.doFilter(request, response);
                     break;
+                default:
+                    response.sendRedirect(request.getContextPath() + "/error-401");
+                    break;
+
             }
         }
     }

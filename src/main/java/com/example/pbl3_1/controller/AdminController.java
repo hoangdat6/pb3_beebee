@@ -41,7 +41,7 @@ public class AdminController extends HttpServlet {
 
         switch (action) {
             case "/admin":
-                resp.sendRedirect(req.getContextPath() + "/admin/usermanage");
+                resp.sendRedirect(req.getContextPath() + "/admin/statistic");
                 break;
             case "/admin/usermanage":
                 List<UserStatisticDTO> customers = ums.getAllCustomer();
