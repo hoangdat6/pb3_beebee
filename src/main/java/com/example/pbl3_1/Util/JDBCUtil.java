@@ -18,6 +18,7 @@ public class JDBCUtil {
             Connection con;
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/shop_bee";
+
             String username = "tuan";
             String password = "tuan2004";
             con = DriverManager.getConnection(url, username, password);
