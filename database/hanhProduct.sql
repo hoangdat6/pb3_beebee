@@ -1,8 +1,15 @@
 insert into shop_bee.users (id, username, password, email, phone, created_at, gender, dob, is_locked, avatar, fullname, role)
-
 values  (100, 'hanhpro', 'xQI9dArilfTVHDd1YeydSmRjZKQ=', 'ngoconghanh2k4@gmail.com', null, '2024-06-11 22:37:47', 'male', '2004-05-15', false, null, null, 'SELLER'),
         (102, 'hanhsieucapvippro', 'gs5+exjNAndiJhaJ2eGHu99FpvE=', 'hanhsieucapvippro@gmail.com', null, '2024-06-12 16:53:30', 'male', '2004-05-15', false, null, null, 'SELLER'),
         (103, 'hanhhaygay', '9+1i4lmef8tjn38U8GN9fx+t0oE=', 'lezancuong@gmail.com', null, '2024-06-12 20:49:07', 'male', '2004-05-15', false, null, null, 'SELLER');
+
+insert into shop_bee.categories (id, name, img_path)
+values   (16, 'Sắc đẹp', null);
+
+insert into shop_bee.address (id, detail, ward, district, province, created_at, updated_at, phone, fullname)
+values  (40, '26 Đặng Chất', '20197', '490', '48', '2024-06-11 22:46:43', '2024-06-11 22:46:43', null, null),
+        (41, '26 Đặng Chất', '20197', '490', '48', '2024-06-12 16:59:31', '2024-06-12 16:59:31', null, null),
+        (42, '26 Đặng Chất', '20197', '490', '48', '2024-06-12 20:57:14', '2024-06-12 20:57:14', null, null);
 
 insert into shop_bee.sellers (id, avatar, shop_name, description, address_id, user_id, views, created_at, is_locked)
 values  (100, 'SellerImages/11/avatar.png,SellerImages/11/cover.png', 'iPhone Store', null, 40, 100, 0, '2024-06-11 22:46:43', null),
