@@ -134,13 +134,10 @@ let OverviewStatistics = [
 function calculateIncreasePercent(currentStats, previousStats) {
     let properties = ['totalRevenue', 'totalOrder', 'conversionRate', 'totalAccesses'];
     let result = properties.map(property => {
-        let increasePercent
         let value = currentStats[property];
         let increasePercent = -1;
         if (previousStats[property] != 0) {
-
             increasePercent = parseFloat(value - previousStats[property]) / Math.max(previousStats[property], 1) * 100;
-
         }
         return { value, increasePercent };
     });

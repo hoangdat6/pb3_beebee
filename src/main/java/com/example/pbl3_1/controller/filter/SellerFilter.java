@@ -31,7 +31,7 @@ public class SellerFilter implements Filter {
                     break;
                 case SELLER:
                     if(url.contains("/seller/account/register")) {
-                        response.sendRedirect(request.getContextPath() + "/seller/product/save");
+                        response.sendRedirect(request.getContextPath() + "/seller/statistic");
                     }else {
                         chain.doFilter(request, response);
                     }
