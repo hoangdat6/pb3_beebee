@@ -14,8 +14,8 @@ const items = [
     {
         class: 'verify_nav',
         name: 'Kiểm duyệt',
-        icon: 'fa-user',
-        href: 'fa-circle-check'
+        icon: 'fa-circle-check',
+        href: ''
     },
     {
         class: 'product_nav',

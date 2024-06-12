@@ -1,3 +1,7 @@
+body{
+    height: 100vh;
+}
+
 #wrap .container {
     display: flex;
     flex-direction: column;
@@ -76,7 +80,7 @@
 }
 #wrap .container .content .search_result table thead th {
     padding: 10px 20px;
-    text-align: left;
+    text-align: center;
     border-bottom: 1px solid #ccc;
 }
 #wrap .container .content .search_result table tbody tr {
