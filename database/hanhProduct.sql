@@ -1,7 +1,360 @@
+insert into shop_bee.address (id, detail, ward, district, province, created_at, updated_at, phone, fullname)
+values  (43, 'Thôn Tân Trại 2', '19423', '464', '45', '2024-06-13 02:17:23', '2024-06-13 02:17:23', null, null);
+
+insert into shop_bee.users (id, username, password, email, phone, created_at, gender, dob, is_locked, avatar, fullname, role)
+values  (104, 'hanhit', 'gaDmHQx1LlsHsm/dRfHRnPWHdVQ=', 'ngo303481@gmail.com', null, '2024-06-13 02:14:03', 'male', '2004-05-15', false, null, null, 'SELLER');
+
+insert into shop_bee.sellers (id, avatar, shop_name, description, address_id, user_id, views, created_at, is_locked)
+values    (103, 'SellerImages/104/avatar.png,SellerImages/104/cover.png', 'Cánh chim và bầu trời', null, 43, 104, 0, '2024-06-13 02:17:23', null);
+
+
 insert into shop_bee.products (id, name, description, img_path, category_id, seller_id, created_at, discount, views, sales, product_status_id)
+values (465, 'Sách - Nhà giả kim (Paulo Coelho) ', 'Tác giả: Paulo Coelho
+Dịch giả: Lê Chu Cầu
+Nhà xuất bản: Hội nhà văn
+Số trang: 227
+Kích thước: 13 x 20,5 cm
+Ngày phát hành: 06-2020
+
+Tất cả những trải nghiệm trong chuyến phiêu du theo đuổi vận mệnh của mình đã giúp Santiago thấu hiểu được ý nghĩa sâu xa nhất của hạnh phúc, hòa hợp với vũ trụ và con người.
+
+Tiểu thuyết Nhà giả kim của Paulo Coelho như một câu chuyện cổ tích giản dị, nhân ái, giàu chất thơ, thấm đẫm những minh triết huyền bí của phương Đông. Trong lần xuất bản đầu tiên tại Brazil vào năm 1988, sách chỉ bán được 900 bản. Nhưng, với số phận đặc biệt của cuốn sách dành cho toàn nhân loại, vượt ra ngoài biên giới quốc gia, Nhà giả kim đã làm rung động hàng triệu tâm hồn, trở thành một trong những cuốn sách bán chạy nhất mọi thời đại, và có thể làm thay đổi cuộc đời người đọc.
+
+“Nhưng nhà luyện kim đan không quan tâm mấy đến những điều ấy. Ông đã từng thấy nhiều người đến rồi đi, trong khi ốc đảo và sa mạc vẫn là ốc đảo và sa mạc. Ông đã thấy vua chúa và kẻ ăn xin đi qua biển cát này, cái biển cát thường xuyên thay hình đổi dạng vì gió thổi nhưng vẫn mãi mãi là biển cát mà ông đã biết từ thuở nhỏ. Tuy vậy, tự đáy lòng mình, ông không thể không cảm thấy vui trước hạnh phúc của mỗi người lữ khách, sau bao ngày chỉ có cát vàng với trời xanh nay được thấy chà là xanh tươi hiện ra trước mắt. ‘Có thể Thượng đế tạo ra sa mạc chỉ để cho con người biết quý trọng cây chà là,’ ông nghĩ.”
+- Trích Nhà giả kim', 'ImageProduct/465/465_0.png,ImageProduct/465/465_1.png,ImageProduct/465/465_2.png,ImageProduct/465/465_3.png', 5, 103, '2024-06-13 02:20:09', 3, 0, 0, 1),
+       (466, 'Sách - Hoàng tử bé (Antoine De Saint-Exupéry)', 'Công ty phát hành Nhã nam
+
+Nhà xuất bản NXB Hội Nhà Văn
+
+Số trang 112
+
+Ngày phát hành 2019
+
+Tác giả Antoine de Saint Exupéry.
+
+Dịch giả: Trác Phong.
+
+
+
+
+
+Mô tả sản phẩm
+
+“Hoàng Tử Bé” (tên tiếng Pháp: Le Petit Prince) xuất bản năm 1943 và là tác phẩm nối tiếng nhất trong sự nghiệp của nhà văn phi công Pháp Antoine de Saint-Exupéry. Tác phẩm đã được dịch sang hơn 250 ngôn ngữ và cho đến nay đã bán được hơn 200 triệu bản khắp thế giới.
+
+
+
+Cuốn sách đẹp như một bài thơ thanh sáng, một câu chuyện cổ tích về tình yêu thương, lòng nhân ái, ý nghĩa của sự tồn tại, về sự cảm thông giữa người với người... Sự giản dị trong sáng tỏa khắp tác phẩm đã khiến nó trở thành một bài thơ bất hủ mà mãi mãi người ta muốn đem làm quà tặng của tình yêu. Cho đến nay, không biết bao nhiêu người đã đọc đi đọc lại tác phẩm này để rồi lần nào cũng lặng đi trong nước mắt', 'ImageProduct/466/466_0.png,ImageProduct/466/466_1.png,ImageProduct/466/466_2.png,ImageProduct/466/466_3.png', 5, 103, '2024-06-13 02:22:20', 20, 0, 0, 1),
+       (467, 'Sách - Chuyện con mèo dạy hải âu bay (Luis Sepúlveda)', 'Công ty phát hành Nhã Nam
+Tác giả Luis Sepulveda
+Ngày xuất bản 06-2019
+Kích thước 14 x 20.5 cm
+Nhà xuất bản Nhà Xuất Bản Hội Nhà Văn
+Loại bìa Bìa mềm
+Số trang 144
+
+Cô hải âu Kengah bị nhấn chìm trong váng dầu – thứ chất thải nguy hiểm mà những con người xấu xa bí mật đổ ra đại dương. Với nỗ lực đầy tuyệt vọng, cô bay vào bến cảng Hamburg và rơi xuống ban công của con mèo mun, to đùng, mập ú Zorba. Trong phút cuối cuộc đời, cô sinh ra một quả trứng và con mèo mun hứa với cô sẽ thực hiện ba lời hứa chừng như không tưởng với loài mèo:
+Không ăn quả trứng.
+Chăm sóc cho tới khi nó nở.
+Dạy cho con hải âu bay.
+Lời hứa của một con mèo cũng là trách nhiệm của toàn bộ mèo trên bến cảng, bởi vậy bè bạn của Zorba bao gồm ngài mèo Đại Tá đầy uy tín, mèo Secretario nhanh nhảu, mèo Einstein uyên bác, mèo Bốn Biển đầy kinh nghiệm đã chung sức giúp nó hoàn thành trách nhiệm. Tuy nhiên, việc chăm sóc, dạy dỗ một con hải âu đâu phải chuyện đùa, sẽ có hàng trăm rắc rối nảy sinh và cần có những kế hoạch đầy linh hoạt được bàn bạc kỹ càng…
+Chuyện con mèo dạy hải âu bay là kiệt tác dành cho thiếu nhi của nhà văn Chi Lê nổi tiếng Luis Sepúlveda – tác giả của cuốn Lão già mê đọc truyện tình đã bán được 18 triệu bản khắp thế giới. Tác phẩm không chỉ là một câu chuyện ấm áp, trong sáng, dễ thương về loài vật mà còn chuyển tải thông điệp về trách nhiệm với môi trường, về sự sẻ chia và yêu thương cũng như ý nghĩa của những nỗ lực – “Chỉ những kẻ dám mới có thể bay”.
+Cuốn sách mở đầu cho mùa hè với minh họa dễ thương, hài hước là món quà dành cho mọi trẻ em và người lớn.', 'ImageProduct/467/467_0.png,ImageProduct/467/467_1.png,ImageProduct/467/467_2.png,ImageProduct/467/467_3.png', 5, 103, '2024-06-13 02:27:24', 20, 0, 0, 1),
+       (468, 'Sách - Cây cam ngọt của tôi', 'Tác giả: José Mauro de Vasconcelos
+Dịch giả: Nguyễn Bích Lan , Tô Yến Ly
+Nhà xuất bản: Hội nhà văn
+Số trang: 244
+Kích thước: 14 x 20.5 cm
+Ngày phát hành: 12-2020
+
+“Vị chua chát của cái nghèo hòa trộn với vị ngọt ngào khi khám phá ra những điều khiến cuộc đời này đáng sống... một tác phẩm kinh điển của Brazil.”
+- Booklist
+
+“Một cách nhìn cuộc sống gần như hoàn chỉnh từ con mắt trẻ thơ… có sức mạnh sưởi ấm và làm tan nát cõi lòng, dù người đọc ở lứa tuổi nào.”
+- The National
+
+Hãy làm quen với Zezé, cậu bé tinh nghịch siêu hạng đồng thời cũng đáng yêu bậc nhất, với ước mơ lớn lên trở thành nhà thơ cổ thắt nơ bướm. Chẳng phải ai cũng công nhận khoản “đáng yêu” kia đâu nhé. Bởi vì, ở cái xóm ngoại ô nghèo ấy, nỗi khắc khổ bủa vây đã che mờ mắt người ta trước trái tim thiện lương cùng trí tưởng tượng tuyệt vời của cậu bé con năm tuổi.
+
+Có hề gì đâu bao nhiêu là hắt hủi, đánh mắng, vì Zezé đã có một người bạn đặc biệt để trút nỗi lòng: cây cam ngọt nơi vườn sau. Và cả một người bạn nữa, bằng xương bằng thịt, một ngày kia xuất hiện, cho cậu bé nhạy cảm khôn sớm biết thế nào là trìu mến, thế nào là nỗi đau, và mãi mãi thay đổi cuộc đời cậu.
+Mở đầu bằng những thanh âm trong sáng và kết thúc lắng lại trong những nốt trầm hoài niệm, Cây cam ngọt của tôi khiến ta nhận ra vẻ đẹp thực sự của cuộc sống đến từ những điều giản dị như bông hoa trắng của cái cây sau nhà, và rằng cuộc đời thật khốn khổ nếu thiếu đi lòng yêu thương và niềm trắc ẩn. Cuốn sách kinh điển này bởi thế không ngừng khiến trái tim người đọc khắp thế giới thổn thức, kể từ khi ra mắt lần đầu năm 1968 tại Brazil.', 'ImageProduct/468/468_0.png,ImageProduct/468/468_1.png,ImageProduct/468/468_2.png,ImageProduct/468/468_3.png', 5, 103, '2024-06-13 02:29:51', 5, 0, 0, 1),
+       (469, 'Sách - Tuổi trẻ đáng giá bao nhiêu (Rosie Nguyễn)', 'Tác giả: Rosie Nguyễn
+Nhà xuất bản: Hội nhà văn
+Số trang: 291
+Kích thước: 14 x 20,5 cm
+Ngày phát hành: 07-2021
+
+“Bạn hối tiếc vì không nắm bắt lấy một cơ hội nào đó, chẳng có ai phải mất ngủ.
+
+Bạn trải qua những ngày tháng nhạt nhẽo với công việc bạn căm ghét, người ta chẳng hề bận lòng.
+
+Bạn có chết mòn nơi xó tường với những ước mơ dang dở, đó không phải là việc của họ.
+
+Suy cho cùng, quyết định là ở bạn. Muốn có điều gì hay không là tùy bạn.
+
+Nên hãy làm những điều bạn thích. Hãy đi theo tiếng nói trái tim. Hãy sống theo cách bạn cho là mình nên sống.
+
+Vì sau tất cả, chẳng ai quan tâm.”
+
+
+“Tôi đã đọc quyển sách này một cách thích thú. Có nhiều kiến thức và kinh nghiệm hữu ích, những điều mới mẻ ngay cả với người gần trung niên như tôi.
+
+Tuổi trẻ đáng giá bao nhiêu? được tác giả chia làm 3 phần: HỌC, LÀM, ĐI.
+
+Nhưng tôi thấy cuốn sách còn thể hiện một phần thứ tư nữa, đó là ĐỌC.
+
+Hãy đọc sách, nếu bạn đọc sách một cách bền bỉ, sẽ đến lúc bạn bị thôi thúc không ngừng bởi ý muốn viết nên cuốn sách của riêng mình.
+
+Nếu tôi còn ở tuổi đôi mươi, hẳn là tôi sẽ đọc Tuổi trẻ đáng giá bao nhiêu? nhiều hơn một lần.”
+
+- Đặng Nguyễn Đông Vy, tác giả, nhà báo', 'ImageProduct/469/469_0.png,ImageProduct/469/469_1.png,ImageProduct/469/469_2.png,ImageProduct/469/469_3.png', 5, 103, '2024-06-13 02:32:10', 20, 0, 0, 1),
+       (470, 'Sách - Chiến binh cầu vồng', 'Tác giả: Andrea Hirata
+Dịch giả: Dạ Thảo
+Nhà xuất bản: Hội nhà văn
+Số trang: 428
+Kích thước: 14 x 20,5 cm
+Ngày phát hành: 04-2020
+
+Một tác phẩm có tầm ảnh hưởng sâu rộng nhất Indonesia
+
+“Thầy Harfan và cô Mus nghèo khổ đã mang đến cho tôi tuổi thơ đẹp nhất, tình bạn đẹp nhất, và tâm hồn phong phú, một thứ gì đó vô giá, thậm chí còn có giá trị hơn những khao khát mơ ước. Có thể tôi lầm, nhưng theo ý tôi, đây thật sự là hơi thở của giáo dục và linh hồn của một chốn được gọi là trường học.”
+- (Trích tác phẩm)
+
+***
+
+Trong ngày khai giảng, nhờ sự xuất hiện vào phút chót của cậu bé thiểu năng trí tuệ Harun, trường Muhammadiyah may mắn thoát khỏi nguy cơ đóng cửa. Nhưng ước mơ dạy và học trong ngôi trường Hồi giáo ấy liệu sẽ đi về đâu, khi ngôi trường xập xệ dường như sẵn sàng sụp xuống bất cứ lúc nào, khi lời đe dọa đóng cửa từ viên thanh tra giáo dục luôn lơ lửng trên đầu, khi những cỗ máy xúc hung dữ đang chực chờ xới tung ngôi trường để dò mạch thiếc…? Và liệu niềm đam mê học tập của những Chiến binh Cầu vồng đó có đủ sức chinh phục quãng đường ngày ngày đạp xe bốn mươi cây số, rồi đầm cá sấu lúc nhúc bọn ăn thịt người, chưa kể sự mê hoặc từ những chuyến phiêu lưu chết người theo tiếng gọi của ngài pháp sư bí ẩn trên đảo Hải Tặc, cùng sức cám dỗ khôn cưỡng từ những đồng tiền còm kiếm được nhờ công việc cu li toàn thời gian ...?
+
+Chiến binh Cầu vồng có cả tình yêu trong sáng tuổi học trò lẫn những trò đùa tinh quái, cả nước mắt lẫn tiếng cười – một bức tranh chân thực về hố sâu ngăn cách giàu nghèo, một tác phẩm văn học cảm động truyền tải sâu sắc nhất ý nghĩa đích thực của việc làm thầy, việc làm trò và việc học.
+
+Tác phẩm đã bán được trên năm triệu bản, được dịch ra 26 thứ tiếng, là một trong những đại diện xuất sắc nhất của  văn học Indonesia hiện đại.', 'ImageProduct/470/470_0.png,ImageProduct/470/470_1.png,ImageProduct/470/470_2.png,ImageProduct/470/470_3.png', 5, 103, '2024-06-13 02:35:56', 20, 0, 0, 1),
+       (471, 'Sách - Phía sau nghi can X (Higashino Keigo)', 'Tác giả: Higashino Keigo
+
+Ngày xuất bản: 06 - 2019
+
+Kích thước: 14 x 20.5 cm.
+
+Nhà xuất bản: Hội Nhà Văn
+
+Dịch Giả: Trương Thùy Lan
+
+Loại bìa Bìa mềm
+
+Số trang: 392.
+
+
+
+Khi nhấn chuông cửa nhà nghi can chính của một vụ án mới, điều tra viên Kusanagi không biết rằng anh sắp phải đương đầu với một thiên tài ẩn dật. Kusanagi càng không thể ngờ rằng, chỉ một câu nói vô thưởng vô phạt của anh đã kéo người bạn thân, Manabu Yukawa, một phó giáo sư vật lý tài năng, vào vụ án. Và điều làm sững sờ nhất, đó là vụ án kia chẳng qua cũng chỉ như một bài toán cấp ba đơn giản, tuy nhiên ấn số X khi được phơi bày ra lại không đem đến hạnh phúc cho bất cứ ai…
+
+
+
+Với một giọng văn tỉnh táo và dung dị, Higashino Keigo đã đem đến cho độc giả hơn cả một cuốn tiểu thuyết trinh thám. Mô tả tội ác không phải điều hấp dẫn nhất ở đây, mà còn là những giằng xé nội tâm thầm kín, những nhân vật bình dị, và sự quan tâm sâu sa tới con người. Tác phẩm đã đem lại cho Higashino Keigo Giải Naoki lần thứ 134, một giải thưởng văn học lâu đời sánh ngang giải Akutagawa tại Nhật.', 'ImageProduct/471/471_0.png,ImageProduct/471/471_1.png,ImageProduct/471/471_2.png,ImageProduct/471/471_3.png', 5, 103, '2024-06-13 02:38:18', 20, 0, 0, 1),
+       (472, 'Sách - Hỗn độn và khu vườn (Nguyễn Vĩnh Tiến) (Nhã Nam)', 'Tác giả: Nguyễn Vĩnh Tiến
+
+Nhà xuất bản: Hội nhà văn
+
+Kích thước: 15.5x24cm
+
+Số trang: 268
+
+Ngày phát hành: 2024
+
+
+
+"Phép cộng thì sướng
+
+Phép trừ thì đau
+
+Phép nhân thì của phép màu
+
+Phép chia thì của chuyến tàu rời ga
+
+Đời là cõi tạm thôi mà
+
+Uống canh Mạnh Bà thì hết cửu chương
+
+Buồn buồn nhớ nhớ thương thương
+
+Cả ba cộng lại bằng buông tay thiền
+
+Tỉnh tỉnh cộng với điên điên
+
+Bằng anh hùng mất thuyền quyên rã rời..."
+
+
+
+"Nguyễn Vĩnh Tiến đến với thơ từ năm tám tuổi, và hoạt động trên nhiều lĩnh vực: kiến trúc - văn chương - âm nhạc, với một sức viết mạnh mẽ rất mức, tài hoa rất mực.
+
+Đó là người của những chuyến viễn du, nhưng lại không bao giờ quên mang theo chiếc va li nặng chứa đầy đủ cả bóng quê nhà, cả mùi xứ sở.
+
+Đọc Nguyễn Vĩnh Tiến, nghe Nguyễn Vĩnh Tiến, ta dễ dàng trông thấy hồn thơ ngập tràn thành lũ, thành sông. Thấy chữ xếp thành đường làng. Thấy hồn thơ vững vàng đứng lẫn vào bóng núi, bóng trung du."
+
+- Nhã thơ Nguyễn Đăng Khoa', 'ImageProduct/472/472_0.png,ImageProduct/472/472_1.png,ImageProduct/472/472_2.png,ImageProduct/472/472_3.png', 5, 103, '2024-06-13 02:41:11', 20, 0, 0, 1),
+       (473, 'Sách - Im lặng là siêu sức mạnh', 'Tác giả: Jill Chang
+Dịch giả: Phạm Thị Hiền
+Nhà xuất bản: Dân Trí
+Số trang: 316
+Kích thước: 14x20.5 cm
+Ngày phát hành: 06-2021
+
+IM LẶNG LÀ SIÊU SỨC MẠNH
+Không nhiều lời, nhưng mọi người đều lắng nghe bạn
+
+Người hướng nội có thể thành công trong các nền văn hóa, ở các nơi làm việc khác nhau, Tịnh Nhân (Jill) chính là một ví dụ tuyệt vời. Cuốn sách hữu ích này của bà sẽ dẫn dắt độc giả vào cuộc cách mạng im lặng của người hướng nội. Từ nhiều ví dụ thực tế, Tịnh Nhân (Jill) cho thấy người hướng nội làm cách nào là chính mình, phát huy sở trường để có thể tỏa sáng nơi làm việc, trở thành tài sản tuyệt vời của công ty. Đây là cuốn sách hay mà các chiến sĩ im lặng chốn công sở hiện đại cần đọc. – Susan Cain, người sáng lập công ty Cách mạng Im lặng, tác giả cuốn Im lặng chính là sức mạnh
+
+Sách của Tịnh Nhân (Jill) đem lại sự tự tin và sức mạnh cho những người im lặng, có tư duy chu toàn nhưng đôi lúc bị đánh giá thấp một cách thiếu công bằng. Là một người hướng nội, bà cho thấy người hướng nội có thể đem lại ưu thế và năng lực khác biệt cho nơi làm việc. Đây là một cuốn sách thẳng thắn, xuất sắc, khiến người hướng nội như bạn cũng có thể tỏa sáng rực rỡ. – Tiến sĩ Doris Martin, nhà tư vấn đào tạo doanh nghiệp nổi tiếng người Đức, tác giả cuốn Mật mã thành công của người hướng nội
+
+GIỚI THIỆU SÁCH:
+Phải chăng người hướng nội trầm lặng, kiệm lời và e thẹn, thì khó lòng làm chuyên gia marketing, không thể đảm nhiệm việc quyên tiền từ thiện quốc tế, cũng thiếu sức thuyết phục khi trở thành nhà tư vấn nghề nghiệp? Tác giả Jill Chang đã dùng thân phận “người hướng nội” để kể lại quá trình phấn đấu của mình trong các doanh nghiệp có nền văn hóa hướng ngoại, qua đó làm thay đổi những ấn tượng đóng khung thông thường về người hướng nội.
+
+Đây là cuốn cẩm nang hữu ích giúp những người hướng nội nơi công sở hiểu rõ tính cách và sở trường của bản thân, biết cách “phân phối năng lượng” và “chọn thời cơ tấn công” để tỏa sáng. Không mệt mỏi với việc xã giao thù tạc, nhưng vẫn có quan hệ tốt đẹp với cấp trên, đồng nghiệp, khách hàng. Không nhiều lời, nhưng mọi người đều lắng nghe bạn.
+
+TÁC GIẢ:
+Jill Chang (Trương Tịnh Nhân)
+Giám đốc khu vực châu Á-Thái Bình Dương của tổ chức phi lợi nhuận Give2Asia, được chọn vào danh sách “40 nữ tinh anh trong ngành khoa học kỹ thuật” của Đài Loan năm 2018.
+Thích đọc sách, nhạc rock, đồ ngọt.', 'ImageProduct/473/473_0.png,ImageProduct/473/473_1.png,ImageProduct/473/473_2.png,ImageProduct/473/473_3.png', 5, 103, '2024-06-13 02:43:21', 20, 0, 0, 1),
+       (474, 'Sách - Chẳng Nhớ Quá Khứ, Chẳng Sợ Tương Lai', 'Tác giả: Thập Nhị
+Dịch giả: Tố Hinh
+Nhà xuất bản: Hội nhà văn
+Số trang: 308
+Kích thước: 14 x 20.5cm
+Ngày phát hành: 26-12-2019
+
+“Bất luận là tương lai hay quá khứ, chúng cũng là ảnh phản chiếu của cõi lòng bạn. Những hình ảnh phản chiếu đó thường hỗn loạn, bất định, làm rối phán đoán của bạn về sự thực. Đây là nguyên nhân khiến con người ta càng trưởng thành càng phức tạp, cũng là lý do tương lai và quá khứ đều dễ trở thành gánh nặng trên vai.
+
+Buông xuống không gì khác là phải nhìn thấu, từ đó mới có thể xem nhẹ. Thực ra những thứ gọi là chân tướng của thế giới chẳng liên quan gì đến bạn. Bởi thứ bạn có, cũng là điều từ đầu đến cuối bạn phải đối mặt, chỉ có chính bạn mà thôi. Nếu bạn chuyển tinh thần theo đuổi chân tướng thành sức mạnh để trau dồi cái tôi bên trong, có lẽ sẽ chóng tìm được chìa khóa để hòa hợp với thế giới hơn.
+
+[…] Sống là cảm nhận thật nhiều, cảm nhận từng khoảnh khắc của sinh mệnh. Bạn chẳng cần vội hiểu hết mọi thứ làm gì, những việc cuộc đời sắp đặt để bạn hiểu, ắt bạn sẽ hiểu thôi.
+
+Mong cho mọi người chẳng nhớ quá khứ, chẳng sợ tương lai. Cầu chúc các bạn bình yên vui vẻ.”  ', 'ImageProduct/474/474_0.png,ImageProduct/474/474_1.png,ImageProduct/474/474_2.png,ImageProduct/474/474_3.png', 5, 103, '2024-06-13 02:45:24', 20, 0, 0, 1),
+       (475, 'Sách - Vào bếp cùng nhóc Nicolas và bếp trưởng Alain Ducasse', 'Tác giả: Goscinny & Sempé
+Dịch giả: Phong Thu
+Nhà xuất bản: Hội nhà văn
+Số trang: 146
+Kích thước: 16x24 cm
+Ngày phát hành: 11-2020
+
+VÀO BẾP CÙNG NHÓC NICOLAS VÀ BẾP TRƯỞNG ALAIN DUCASSE
+Công thức làm bánh dành cho những người sành ăn từ 7-107 tuổi
+
+Một cuộc gặp gỡ vô cùng bất ngờ và đầy hài hước giữa cậu học trò lừng danh cùng vị bếp trưởng nối tiếng Alain Ducasse! Các bạn nhỏ sẽ được tái ngộ cùng nhóc Nicolas và sống lại những giây phút ngọt ngào của những bữa quà chiều, những buổi sinh nhật, những bữa tiệc ngày lễ,… thông qua tranh minh họa của vị họa sĩ đã trở thành huyền thoại Sempé.
+
+Với hơn 30 công thức làm bánh và đồ ăn vặt vô cùng đơn giản, dễ thực hiện, Vào bếp cùng nhóc Nicolas và bếp trưởng Alain Ducasse không chỉ giúp thỏa mãn những tâm hồn ăn uống mà còn mang lại những phút giây ấm áp, đầy sẻ chia trong căn bếp gia đình.
+___________
+Alain Ducasse là một trong những bếp trưởng nổi tiếng nhất thế hệ ông. Được tặng nhiều sao Michelin, là người sáng lập 23 nhà hàng tại 7 quốc gia khác nhau, ông nổi tiếng khắp nơi trên thế giới, từ Paris đến Tokyo. Trong nghề của mình, ông đề cao tinh thần chia sẻ và chuyển giao kiến thức.', 'ImageProduct/475/475_0.png,ImageProduct/475/475_1.png,ImageProduct/475/475_2.png,ImageProduct/475/475_3.png', 5, 103, '2024-06-13 02:47:45', 20, 0, 0, 1),
+       (476, 'Sách - Cây Hoa Anh Đào Của Kẻ Thù', 'Tác giả: Vương Định Quốc
+Dịch giả: Nguyễn Vinh Chi
+Nhà xuất bản: Hà Nội
+Số trang: 276
+Kích thước: 14 x 20.5cm
+Ngày phát hành: 19-12-2019
+
+Dưới chân bờ đê heo hút nơi thị trấn nhỏ ven biển bỗng dưng mọc lên một quán cà phê. Chủ quán là một người đàn ông lầm lũi, cả ngày quanh quẩn trong gian tiệm nhỏ có đôi cái bàn, chờ đợi sự xuất hiện của người vợ “bỏ nhà ra đi”.
+
+Một ngày nọ, kẻ thù của anh bước chân vào quán, quý ông lịch thiệp đã vấy bẩn lên vợ anh chỉ lẳng lặng uống hết cốc cà phê rồi ra về, và ngã bệnh. Trong khi cả thị trấn xôn xao đổ lỗi cho người đàn ông, con gái của kẻ thù lại tìm đến anh, cô muốn kiếm tìm lời giải cho bệnh tình của cha, và cả cơ hội chuộc lại lỗi lầm…
+
+Mượn câu chuyện yêu hận giăng mắc giữa một đôi vợ chồng và một cặp cha con, Vương Định Quốc không chỉ viết về ái tình mà còn phơi bày nguồn cơn những nỗi khổ chung của con người hiện đại. Song, ẩn sau văn phong giàu ý thơ, ngòi bút tinh chế cổ điển, bàn tay uyển chuyển nhào nặn cảm xúc, theo như lời ông, “điều tôi muốn bày tỏ không phải là đau buồn…”', 'ImageProduct/476/476_0.png,ImageProduct/476/476_1.png,ImageProduct/476/476_2.png,ImageProduct/476/476_3.png', 5, 103, '2024-06-13 02:49:50', 20, 0, 0, 1),
+       (477, 'Sách - Một lít nước mắt (Kito Aya)', 'GIỚI THIỆU SÁCH
+
+Một Lít Nước Mắt (Tái Bản)
+
+
+
+Căn bệnh Thoái hóa tiểu não phát triển khiến Aya phải ngồi xe lăn, không phát âm được như ý muốn, không thể cầm đũa và cuối cùng là nằm liệt giường. Aya kể lại cuộc chiến dai dẳng hàng năm trời với căn bệnh hiểm nghèo qua những dòng nhật ký đẫm nước mắt.
+
+
+
+Cảm động trước nghị lực sống phi thường của cô gái bé nhỏ. Họ trân quý cuộc sống như thế đó, còn chúng ta thì sao?
+
+
+
+“Hãy sống! Mình muốn hít thở thật sâu dưới trời xanh.”
+
+
+
+Một tâm hồn nhạy cảm.
+
+
+
+Một gia đình ấm áp.
+
+
+
+Một căn bệnh hiểm nghèo.
+
+
+
+Một cơ thể tật nguyền.
+
+
+
+Đó là những gì Kitou Aya có trong hơn 20 năm cuộc đời. Với Aya, tương lai của cô là một con đường hẹp, và càng ngày nó càng trở nên hẹp hơn. Căn bệnh ngăn trở Aya khỏi tất cả những ước mơ và dự định, thậm chí việc tự mình bước ra ngoài phố để đi tới hiệu sách cũng trở thành một khao khát cháy bỏng. Hơn 6 năm kiên trì viết nhật ký, cô kể về những cảm nhận và suy tư của bản thân trong suốt quãng thời gian chứng kiến cơ thể mình từng bước từng bước gánh lấy một số phận đau đớn . Nhưng từ trong nước mắt và tật nguyền, cuộc tìm kiếm giá trị bản thân của cô đã làm rúng động cả Nhật Bản.', 'ImageProduct/477/477_0.png,ImageProduct/477/477_1.png,ImageProduct/477/477_2.png,ImageProduct/477/477_3.png', 5, 103, '2024-06-13 02:51:47', 20, 0, 0, 1),
+       (478, 'Sách - Giết con chim nhại ', 'Tác giả Harper Lee
+
+Dịch giả: HUỲNH KIM OANH & PHẠM VIÊM PHƯƠNG
+
+Kích thước 14 x 20.5 cm
+
+Nhà xuất bản: Hội Nhà Văn
+
+Loại bìa: Bìa mềm
+
+Số trang: 420
+
+
+
+Nào, hãy mở cuốn sách này ra. Bạn phải làm quen ngay với bố Atticus của hai anh em - Jem và Scout, ông bố luật sư có một cách riêng, để những đứa trẻ của mình cứng cáp và vững vàng hơn khi đón nhận những bức xúc không sao hiểu nổi trong cuộc sống. Bạn sẽ nhớ rất lâu người đàn ông thích trốn trong nhà Boo Radley, kẻ bị đám đông coi là lập dị đã chọn một cách rất riêng để gửi những món quà nhỏ cho Jem và Scout, và khi chúng lâm nguy, đã đột nhiên xuất hiện để che chở. Và tất nhiên, bạn không thể bỏ qua anh chàng Tom Robinson, kẻ bị kết án tử hình vì tội hãm hiếp một cô gái da trắng, sự thật thà và suy nghĩ quá đỗi đơn giản của anh lại dẫn đến một cái kết hết sức đau lòng, chỉ vì lý do anh là một người da đen.
+
+
+
+Cho dù được kể dưới góc nhìn của một cô bé, cuốn sách Giết con chim nhại không né tránh bất kỳ vấn đề nào, gai góc hay lớn lao, sâu xa hay phức tạp: nạn phân biệt chủng tộc, những định kiến khắt khe, sự trọng nam khinh nữ… Góc nhìn trẻ thơ là một dấu ấn đậm nét và cũng là đặc sắc trong Giết con chim nhại. Trong sáng, hồn nhiên và đầy cảm xúc, những câu chuyện tưởng như chẳng có gì to tát gieo vào người đọc hạt mầm yêu thương.
+
+
+
+Gần 50 năm từ ngày đầu ra mắt, Giết con chim nhại, tác phẩm đầu tay và cũng là cuối cùng của nữ nhà văn Mỹ Harper Lee vẫn đầy sức hút với độc giả ở nhiều lứa tuổi.
+
+
+
+Thông điệp yêu thương trải khắp các chương sách là một trong những lý do khiến Giết con chim nhại giữ sức sống lâu bền của mình trong trái tim độc giả ở nhiều quốc gia, nhiều thế hệ. Những độc giả nhí tìm cho mình các trò nghịch ngợm và cách nhìn dí dỏm về thế giới xung quanh. Người lớn lại tìm ra điều thú vị sâu xa trong tình cha con nhà Atticus, và đặc biệt là tình người trong cuộc sống, như bé Scout quả quyết nói “em nghĩ chỉ có một hạng người. Đó là người”.', 'ImageProduct/478/478_0.png,ImageProduct/478/478_1.png,ImageProduct/478/478_2.png,ImageProduct/478/478_3.png', 5, 103, '2024-06-13 02:54:04', 20, 0, 0, 1),
+       (479, 'Sách - Những giấc mơ ở hiệu sách Morisaki', 'Tác giả: Yagisawa Satoshi
+
+Dịch giả: Trần Quỳnh Anh
+
+Nhà xuất bản: Hà Nội
+
+Số trang: 180
+
+Kích thước: 14x20.5 cm
+
+Ngày phát hành: 09-2022
+
+
+
+Bị người yêu lừa dối, Takako bỏ việc và rơi vào chuỗi ngày ngủ triền miên để trốn tránh nỗi buồn. Thế rồi, một cuộc điện thoại từ người cậu ruột cả 10 năm trời không gặp đã đánh thức cô khỏi cơn mộng mị. Takako đồng ý đến trông hiệu sách nửa buổi giúp cậu chỉ để làm vừa lòng mẹ. Nhưng thật ngoài tưởng tượng, chờ đợi cô là hiệu sách Morisaki cũ kỹ với thế giới của hàng nghìn cuốn sách chứa trong mình cả thời gian và lịch sử. Sách đã chữa lành vết thương trong lòng cô. Và hơn thế nữa, Takako tìm thấy bao nhiêu điều mới mẻ và thú vị mà trước đây cô chưa từng biết đến.
+
+Câu chuyện nhẹ nhàng mà sâu lắng, đặc biệt với những ai có sở thích sưu tầm sách cổ.', 'ImageProduct/479/479_0.png,ImageProduct/479/479_1.png,ImageProduct/479/479_2.png,ImageProduct/479/479_3.png', 5, 103, '2024-06-13 02:56:05', 20, 0, 0, 1);
+
+
+insert into shop_bee.product_item (id, product_id, img_path, variation1, variation2, qty_in_stock, price)
+values (5216, 465, 'ImageProduct/465/465_0.png', null, null, 500, 79000),
+       (5217, 466, 'ImageProduct/466/466_0.png', null, null, 1000, 75000),
+       (5218, 467, 'ImageProduct/467/467_0.png', null, null, 400, 49000),
+       (5219, 468, 'ImageProduct/468/468_0.png', null, null, 600, 108000),
+       (5220, 469, 'ImageProduct/469/469_0.png', null, null, 700, 99000),
+       (5221, 470, 'ImageProduct/470/470_0.png', null, null, 800, 109000),
+       (5222, 471, 'ImageProduct/471/471_0.png', null, null, 300, 129000),
+       (5223, 472, 'ImageProduct/472/472_0.png', null, null, 300, 168000),
+       (5224, 473, 'ImageProduct/473/473_0.png', null, null, 700, 155000),
+       (5225, 474, 'ImageProduct/474/474_0.png', null, null, 300, 118000),
+       (5226, 475, 'ImageProduct/475/475_0.png', null, null, 200, 160000),
+       (5227, 476, 'ImageProduct/476/476_0.png', null, null, 500, 96000),
+       (5228, 477, 'ImageProduct/477/477_0.png', null, null, 300, 80000),
+       (5229, 478, 'ImageProduct/478/478_0.png', null, null, 500, 145000),
+       (5230, 479, 'ImageProduct/479/479_0.png', null, null, 200, 75000);
+
+
+-- Last update: 2024-06-13 02:56:05
+
+/*insert into shop_bee.products (id, name, description, img_path, category_id, seller_id, created_at, discount, views, sales, product_status_id)
 values  (455, 'Đồng hồ led để bàn báo thức UKIO màn hình LCD cao cấp đo nhiệt độ và độ ẩm', 'Đồng hồ LED để bàn UKIO đa năng màn hình LCD sắc nét , chế độ báo thức, đèn nền ban đêm, đo nhiệt độ, đo độ ẩm, ngày, tháng , thứ ....
-
-
 
 MÔ TẢ SẢN PHẨM
 
@@ -310,7 +663,10 @@ values  (5194, 455, 'ImageProduct/455/455_01.png', null, 5140, 200, 300000),
         (5212, 462, 'ImageProduct/462/462_01.png', null, 5156, 300, 64999000),
         (5213, 462, 'ImageProduct/462/462_02.png', null, 5157, 300, 64999000),
         (5214, 463, 'ImageProduct/463/463_0.png', null, null, 500, 23990000),
-        (5215, 464, 'ImageProduct/464/464_0.png', null, null, 500, 1690000);
+        (5215, 464, 'ImageProduct/464/464_0.png', null, null, 500, 1690000);*/
+
+
+
 -- Last Update: 2024-06-12 15:00:57
 /*insert into shop_bee.users (id, username, password, email, phone, created_at, gender, dob, is_locked, avatar, fullname, role)
 =======
