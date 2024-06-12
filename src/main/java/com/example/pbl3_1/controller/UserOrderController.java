@@ -15,7 +15,7 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-@WebServlet(name = "UserOrderController", urlPatterns = {"/usersetting/order", "/usersetting/order/api", "/usersetting/order/cancel", "/usersetting/order/received"}) // "/usersetting/order/received
+@WebServlet(name = "UserOrderController", urlPatterns = {"/usersetting/order", "/usersetting/order/api", "/usersetting/order/cancel", "/usersetting/order/received"})
 public class UserOrderController extends HttpServlet {
     private final ProductService productService = new ProductServiceImpl();
     @Override
