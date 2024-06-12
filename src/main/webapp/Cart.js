@@ -114,7 +114,7 @@ function UpdateCartItem(button) {
         checkbox.find(".Cart_CB").remove();
         if (checkbox.find(".sold_out").length === 0)
             checkbox.append(`<div class="sold_out" style="font-size: 10px;">không đủ hàng</div>`);
-        getPrice();
+        // getPrice();
     }
 
     if(quantity === 0){
@@ -124,6 +124,7 @@ function UpdateCartItem(button) {
         ).then((value) => {
             if(value === true) {
                 RemoveCartItem(button.parentElement.parentElement);
+                getPrice();
             } else {
                 quantity++;
             }
@@ -134,7 +135,7 @@ function UpdateCartItem(button) {
         item.parentElement.querySelector(".Item-Total_Price").textContent =
             (Math.round(quantity * price * (1 - discount / 100.0))).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
 
-        getPrice();
+        // getPrice();
 
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(function () {
@@ -150,6 +151,8 @@ function UpdateCartItem(button) {
         }, 1000); // Delay in milliseconds
 
     }
+    getPrice();
+
 }
 
 

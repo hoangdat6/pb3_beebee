@@ -2,6 +2,7 @@ package com.example.pbl3_1.controller;
 
 import com.example.pbl3_1.Util.IntAndListProductContainer;
 import com.example.pbl3_1.controller.dto.product.ProductManagementDTO;
+import com.example.pbl3_1.controller.dto.product.ProductUpdateDTO;
 import com.example.pbl3_1.entity.Category;
 import com.example.pbl3_1.entity.User;
 import com.example.pbl3_1.service.ProductService;
@@ -18,7 +19,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-@WebServlet (name = "ProductManagement", urlPatterns = {"/seller/product/productmanagement"})
+@WebServlet (name = "ProductManagement", urlPatterns = {"/seller/product/productmanagement", "/seller/product/productmanagement/update", "/seller/product/productmanagement/updateproduct"})
 public class ProductManagementController extends HttpServlet {
     public final ProductService productService = new ProductServiceImpl();
     public final SellerService sellerService = new SellerServiceImpl();
@@ -32,6 +33,14 @@ public class ProductManagementController extends HttpServlet {
             case "/seller/product/productmanagement":
                 showProductManagement(request, response);
                 break;
+            case "/seller/product/productmanagement/update":
+                showUpdateProduct(request, response);
+                break;
+            case "/seller/product/productmanagement/updateproduct":
+                updateProduct(request, response);
+                showProductManagement(request, response);
+                break;
+
         }
     }
 
@@ -58,7 +67,7 @@ public class ProductManagementController extends HttpServlet {
             }
             int status = request.getParameter("status") == null ? 0 : Integer.parseInt(request.getParameter("status"));
             System.out.println("status: " + status);
-            int size = 10;
+            int size = 6;
             int page = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
             String searchValue = request.getParameter("search") == null ? "" : request.getParameter("search");
             Long IDseller = sellerService.getIdByUserId(user.getId());
@@ -71,7 +80,7 @@ public class ProductManagementController extends HttpServlet {
                 ObjectMapper objectMapper = new ObjectMapper();
                 try {
                     System.out.println("totalPageAfter: " + totalPage);
-                    IntAndListProductContainer IAL = new IntAndListProductContainer(productManagementDTOList, totalPage);
+                    IntAndListProductContainer IAL = new IntAndListProductContainer(productManagementDTOList, totalPage, page);
                     objectMapper.writeValue(response.getOutputStream(), IAL);
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -86,6 +95,45 @@ public class ProductManagementController extends HttpServlet {
                 request.getRequestDispatcher("ProductManagement.jsp").forward(request, response);
             }
 
+        }
+    }
+    public void showUpdateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        User user = (User) request.getSession().getAttribute("USERMODEL");
+        if(user == null){
+            response.sendRedirect(request.getContextPath() + "/login");
+        }else{
+            Long id = Long.parseLong(request.getParameter("id"));
+            List<ProductUpdateDTO> data = productService.getProductUpdate(id);
+            System.out.println("data = " + data);
+            ObjectMapper objectMapper = new ObjectMapper();
+            try {
+                objectMapper.writeValue(response.getOutputStream(), data);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    public void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        request.setCharacterEncoding("UTF-8");
+        User user = (User) request.getSession().getAttribute("USERMODEL");
+        if(user == null){
+            response.sendRedirect(request.getContextPath() + "/login");
+        }else{
+            String data = request.getParameter("data");
+            String[] dataArr = data.split(",");
+            for(int i = 0; i < dataArr.length; i++){
+                System.out.println("data: " + dataArr[i]);
+                String[] dataArr2 = dataArr[i].split("-");
+                Long id = Long.parseLong(dataArr2[0]);
+                Integer quantity = Integer.parseInt(dataArr2[1]);
+                Integer price = Integer.parseInt(dataArr2[2]);
+                productService.updateProduct(id, quantity, price);
+            }
         }
     }
 }

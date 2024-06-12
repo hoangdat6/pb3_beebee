@@ -14,6 +14,7 @@
     <script src="<c:url value="adminCommon/adminCommon.js"/>"></script>
     <link rel="stylesheet" href="../CommonCSS.css">
     <link rel="stylesheet" href="<c:url value="adminCommon/assets/css/adminCommon.css"/>">
+    <link rel="stylesheet" href="<c:url value="userManage.css"/>">
     <script src="<c:url value="userManageAJAX.js"/>" type="text/javascript"></script>
 </head>
 

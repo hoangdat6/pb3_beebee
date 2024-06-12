@@ -7,8 +7,10 @@ import java.util.List;
 public class IntAndListProductContainer {
     public List<ProductManagementDTO> list;
     public int totalPage;
-    public IntAndListProductContainer(List<ProductManagementDTO> list, int totalPage) {
+    public int currentPage;
+    public IntAndListProductContainer(List<ProductManagementDTO> list, int totalPage, int currentPage) {
         this.list = list;
         this.totalPage = totalPage;
+        this.currentPage = currentPage;
     }
 }

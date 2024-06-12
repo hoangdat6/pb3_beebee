@@ -1,4 +1,5 @@
 insert into shop_bee.users (id, username, password, email, phone, created_at, gender, dob, is_locked, avatar, fullname, role)
+
 values  (100, 'hanhpro', 'xQI9dArilfTVHDd1YeydSmRjZKQ=', 'ngoconghanh2k4@gmail.com', null, '2024-06-11 22:37:47', 'male', '2004-05-15', false, null, null, 'SELLER'),
         (102, 'hanhsieucapvippro', 'gs5+exjNAndiJhaJ2eGHu99FpvE=', 'hanhsieucapvippro@gmail.com', null, '2024-06-12 16:53:30', 'male', '2004-05-15', false, null, null, 'SELLER'),
         (103, 'hanhhaygay', '9+1i4lmef8tjn38U8GN9fx+t0oE=', 'lezancuong@gmail.com', null, '2024-06-12 20:49:07', 'male', '2004-05-15', false, null, null, 'SELLER');
@@ -66,6 +67,7 @@ Bảo hành: 12 tháng kể từ ngày kích hoạt sản phẩm.
 Kích hoạt bảo hành tại: https://checkcoverage.apple.com/vn/en/
 
 ', 'ImageProduct/400/400_0.png,ImageProduct/400/400_1.png,ImageProduct/400/400_2.png,ImageProduct/400/400_3.png,ImageProduct/400/400_4.png', 15, 100, '2024-06-12 09:29:10', 4, 1, 0, 1),
+
         (401, 'Điện thoại Apple iPhone 15 ', 'Thông số kỹ thuật:
 
 - 6.1″
@@ -116,8 +118,10 @@ Thông tin bảo hành:
 
 Bảo hành: 12 tháng kể từ ngày kích hoạt sản phẩm.
 
+
 Kích hoạt bảo hành tại: https://checkcoverage.apple.com/vn/en/', 'ImageProduct/401/401_0.png,ImageProduct/401/401_1.png,ImageProduct/401/401_2.png,ImageProduct/401/401_3.png', 15, 100, '2024-06-12 09:41:40', 3, 3, 0, 1),
         (402, 'Điện thoại Apple iPhone 13 ', 'iPhone 13
+
 
 Hệ thống camera kép tiên tiến nhất từng có trên iPhone. Chip A15 Bionic thần tốc. Bước nhảy vọt về
 
@@ -156,17 +160,24 @@ Bộ sản phẩm bao gồm
 1. Điện thoại
 
 2. Dây sạc', 'ImageProduct/402/402_0.png,ImageProduct/402/402_1.png,ImageProduct/402/402_2.png,ImageProduct/402/402_3.png', 15, 100, '2024-06-12 09:51:45', 18, 0, 0, 1),
+
         (403, 'Tai nghe AirPods Pro (thế hệ thứ 2) với Hộp Sạc MagSafe (USB-C)', 'Tổng Quan
+
 
 Âm thanh. Được thiết kế lại hoàn toàn
 
 AirPods Pro (thế hệ thứ 2) với Hộp Sạc MagSafe (USB-C) có khả năng Chủ Động Khử Tiếng Ồn cao hơn đến 2 lần so với thế hệ trước, cùng chế độ Xuyên Âm giúp bạn nghe thấy thế giới xung quanh mình và Âm Thanh Thích Ứng hoàn toàn mới điều chỉnh việc kiểm soát tiếng ồn theo môi trường của bạn một cách linh động. Nhận Biết Cuộc Hội Thoại giúp giảm âm lượng của nội dung đang nghe và tăng cường giọng nói phía trước bạn khi bạn đang tương tác với người khác. Một lần sạc duy nhất mang lại thời lượng pin lên đến 6 giờ. Và tính năng Điều khiển bằng thao tác chạm giúp bạn dễ dàng điều chỉnh âm lượng bằng một lần vuốt. Hộp Sạc MagSafe là một thiết bị độc lập tuyệt vời với loa tích hợp và dây đeo.', 'ImageProduct/403/403_0.png,ImageProduct/403/403_1.png,ImageProduct/403/403_2.png,ImageProduct/403/403_3.png', 15, 100, '2024-06-12 09:58:04', 11, 0, 0, 1),
+
         (404, 'Sạc Apple 20W USB-C Power Adapter(2024)', 'Bộ Sạc Apple USB-C 20W giúp sạc nhanh và hiệu quả tại nhà, trong văn phòng hoặc khi đang di chuyển. Tuy bộ sạc này tương thích với mọi thiết bị có cổng USB-C, nhưng Apple khuyên bạn nên sử dụng phụ kiện này với iPad Pro 11 inch và iPad Pro 12.9 inch (thế hệ thứ 3) để đạt hiệu quả sạc tối ưu. Bạn cũng có thể sử dụng với iPhone 8 hoặc các phiên bản cao hơn để tận dụng tính năng sạc nhanh.
 
 
 
+
+
 Không bán kèm cáp sạc. ', 'ImageProduct/404/404_0.png,ImageProduct/404/404_1.png,ImageProduct/404/404_2.png,ImageProduct/404/404_3.png', 15, 100, '2024-06-12 10:02:46', 47, 3, 0, 1),
+
         (405, 'Máy tính bảng Apple iPad Gen 9th 10.2-inch Wi-Fi 64GB', 'Mạnh mẽ. Dễ sử dụng. Đa năng. iPad mới có màn hình Retina tuyệt đẹp, chip A13 Bionic mạnh mẽ, camera trước Ultra Wide có tính năng Trung Tâm Màn Hình, tương thích với Apple Pencil và Smart Keyboard (1). iPad giúp bạn dễ dàng làm được nhiều việc hơn nữa. Tất cả tính năng với mức giá ấn tượng.
+
 
 
 
@@ -193,7 +204,9 @@ Tính năng nổi bật
 •	Tương thích với Apple Pencil (thế hệ thứ 1) và Smart Keyboard (1)
 
 •	iPadOS 15 sở hữu sức mạnh độc đáo, dễ sử dụng và được thiết kế cho tính đa năng của iPad', 'ImageProduct/405/405_0.png,ImageProduct/405/405_1.png,ImageProduct/405/405_2.png,ImageProduct/405/405_3.png', 15, 100, '2024-06-12 10:17:00', 39, 0, 0, 1),
+
         (406, 'Máy tính xách tay Apple MacBook Air 15 inch (2023) M2 Chip 8GB, 512GB', 'CPU 8 Lõi
+
 
 GPU 10 Lõi
 
@@ -226,7 +239,9 @@ MacBook Air 15 inch với chip M2
 Cáp USB-C sang MagSafe 3 (2m)
 
 Bộ Tiếp Hợp Nguồn USB-C', 'ImageProduct/406/406_0.png,ImageProduct/406/406_1.png,ImageProduct/406/406_2.png,ImageProduct/406/406_3.png', 15, 100, '2024-06-12 10:28:02', 18, 0, 0, 1),
+
         (407, 'Máy tính xách tay MacBook Pro- M3 Pro Chip, 16-inch, 18GB, 512GB', 'Thông số kỹ thuật
+
 
 - Chip Apple M3 Pro với CPU 12 lõi, GPU 18 lõi và Neural Engine 16 lõi
 
@@ -249,7 +264,9 @@ Thông tin bảo hành:
 Bảo hành: 12 tháng kể từ ngày kích hoạt sản phẩm.
 
 Kích hoạt bảo hành tại: https://checkcoverage.apple.com/vn/en/', 'ImageProduct/407/407_0.png,ImageProduct/407/407_1.png,ImageProduct/407/407_2.png,ImageProduct/407/407_3.png', 15, 100, '2024-06-12 10:34:09', 2, 0, 0, 1),
+
         (408, 'Bút cảm ứng Apple Pencil (2nd Generation)', 'Apple Pencil. Dùng dễ chưa từng thấy. Gắn kết bằng nam châm. Sạc không cần dây.
+
 
 Với độ chính xác hoàn hảo đến từng điểm ảnh cùng tính năng nhạy với độ nghiêng và lực ấn, Apple Pencil (thế hệ thứ 2) dễ dàng biến hóa thành công cụ sáng tạo, thành cọ vẽ, thành chì than hoặc thành cây bút chì yêu thích của bạn. Bút này giúp bạn vẽ, phác họa, viết các nét nguệch ngoạc và ghi chú hiệu quả hơn bao giờ hết.
 
@@ -257,7 +274,9 @@ Apple Pencil (thế hệ thứ 2), sức sống tươi mới cho công việc, t
 Bút gắn kết vào iPad Pro bằng nam châm, sạc không cần dây và cho phép bạn thay đổi công cụ chỉ với một cú chạm đúp đơn giản.
 
 *Tương thích với iPad Pro 12.9 inch (thế hệ thứ 3, 4 và 5), iPad Pro 11 inch (thế hệ thứ 1, 2 và 3) và iPad Air (thế hệ thứ 4).', 'ImageProduct/408/408_0.png,ImageProduct/408/408_1.png,ImageProduct/408/408_2.png,ImageProduct/408/408_3.png', 15, 100, '2024-06-12 10:39:49', 28, 0, 0, 1),
+
         (409, 'Đồng hồ Apple Watch SE (2023) 44mm (GPS) Viền nhôm - Dây cao su', 'Tại Việt Nam, về chính sách bảo hành và đổi trả của Apple, "sẽ được áp dụng chung" theo các điều khoản được liệt kê dưới đây:
+
 
 
 
@@ -270,6 +289,7 @@ Bút gắn kết vào iPad Pro bằng nam châm, sạc không cần dây và cho
 
 
 3) Các trung tâm bảo hành Apple ủy quyền tại Việt Nam: https://getsupport.apple.com/repair-locations?locale=vi_VN
+
 
 
 
@@ -1643,6 +1663,7 @@ Bước 2. Sau đó dùng mặt còn lại của miếng bông pad để làm s�
 
 Step 3. Mát xa nhẹ nhàng dưỡng chất còn sót lại giúp thấm sâu vào da hơn.', 'ImageProduct/454/454_0.png,ImageProduct/454/454_1.png,ImageProduct/454/454_2.png,ImageProduct/454/454_3.png,ImageProduct/454/454_4.png', 16, 102, '2024-06-12 22:43:28', 35, 0, 0, 1);
 
+
 insert into shop_bee.variation (id, product_id, name)
 values  (1000, 400, 'Màu Sắc'),
         (1001, 400, 'Dung lượng'),
@@ -1683,6 +1704,7 @@ values  (1000, 400, 'Màu Sắc'),
         (1036, 435, 'Khối Lượng'),
         (1037, 453, 'Số mặt');
 
+
 insert into shop_bee.variation_option (id, variation_id, value)
 values  (5000, 1000, 'Titan - Tự nhiên'),
         (5001, 1001, '256GB'),
@@ -1721,6 +1743,7 @@ values  (5000, 1000, 'Titan - Tự nhiên'),
         (5034, 1010, 'Silver'),
         (5035, 1011, 'StarLight'),
         (5036, 1011, 'MidNight'),
+
         (5037, 1011, 'Storm Blue'),
         (5038, 1012, 'Red'),
         (5039, 1012, 'Purple'),
@@ -1824,6 +1847,7 @@ values  (5000, 1000, 'Titan - Tự nhiên'),
         (5137, 1036, '100ml + 100ml'),
         (5138, 1037, '4 miếng (3 mặt)'),
         (5139, 1037, '4 miếng (2 mặt)');
+
 
 insert into shop_bee.product_item (id, product_id, img_path, variation1, variation2, qty_in_stock, price)
 values  (5001, 400, 'ImageProduct/400/400_01.png', 5000, 5001, 100, 30700000),
