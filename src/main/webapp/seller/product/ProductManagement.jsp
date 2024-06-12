@@ -16,11 +16,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="ProductManagement.css"/>">
     <link rel="stylesheet" href="<c:url value="ProductManagementTable.css"/>">
-    <link rel="stylesheet" href="<c:url value="SideBar.css"/>">
+    <link rel="stylesheet" href="<c:url value="/seller/common/SellerCommon.css"/>">
+    <link rel="stylesheet" href="<c:url value="/CommonCSS.css"/>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="<c:url value="ProductManagement.js"/>"></script>
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
-    <script src="<c:url value="/seller/common/SellerCommon.js"/>"></script>
     <script src="<c:url value="ProductManagement.js"/>"></script>
     <title>Quản lý sản phẩm</title>
 </head>
@@ -33,13 +33,13 @@
     <div class="content">
         <div class="button_content">
             <div class="button_container status-0 active">
-                <div class="btn_shop">Tất cả</div>
+                <div class="btn btn_shop">Tất cả</div>
             </div>
             <div class="button_container status-1">
-                <div class="btn_shop">Đang hoạt động</div>
+                <div class="btn btn_shop">Đang hoạt động</div>
             </div>
             <div class="button_container status-3">
-                <div class="btn_shop">Vi phạm</div>
+                <div class="btn btn_shop">Vi phạm</div>
             </div>
         </div>
 
@@ -62,19 +62,18 @@
         <div class="table_content">
             <table class="product_content">
                 <thead>
-                <td style="width: 30px;"><input type="checkbox" name="" id="mainCheckbox"></td>
-                <td style="width: 30px;">STT</td>
-                <td style="width: 200px;">Tên sản phẩm</td>
-                <td style="width: 100px;">Doanh số</td>
-                <td style="width: 50px;">Giá</td>
-                <td style="width: 50px;">Kho Hàng</td>
-                <td style="width: 50px;">Trạng thái</td>
+                <td><input type="checkbox" name="" id="mainCheckbox"></td>
+                <td>STT</td>
+                <td>Tên sản phẩm</td>
+                <td>Doanh số</td>
+                <td>Giá</td>
+                <td>Kho Hàng</td>
+                <td>Trạng thái</td>
                 </thead>
                 <tbody class="list_product">
                 </tbody>
             </table>
         </div>
-
         <div class="page_content">
         </div>
 

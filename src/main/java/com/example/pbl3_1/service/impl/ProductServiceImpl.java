@@ -123,6 +123,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void updateProduct(Long id, Integer quantity, Integer price) {
         productDAO.updateProduct(id, quantity, price);
+    }
 
     @Override
     public List<ProductPreviewDTO> getTopProductsForHome(int i, int i1) {
