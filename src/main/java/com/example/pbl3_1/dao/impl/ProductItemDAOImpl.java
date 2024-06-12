@@ -31,7 +31,7 @@ public class ProductItemDAOImpl implements ProductItemDAO {
 
     @Override
     public List<String> getImgPathByProductId(Long id) {
-        String sql = "SELECT img_path FROM product_item WHERE product_id = ?";
+        String sql = "SELECT DISTINCT img_path FROM product_item WHERE product_id = ?";
         return genericDAO.query(sql, resultSet -> {
             try {
                 return resultSet.getString("img_path");

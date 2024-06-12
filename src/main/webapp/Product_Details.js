@@ -30,8 +30,10 @@ function Selected(colorOptions, selectedOption) {
         selectedOption.classList.add('Selected');
 }
 
-function changeImage(image) {
-    document.getElementById('productImage').src = image;
+function changeImage(image, index) {
+    $(".Main-Image").attr('style', `background: url(${image}) center/cover no-repeat;`);
+    $(".Main-Image").attr('id', 'main_item-' + index);
+
 }
 
 let discount = parseFloat($(".Sale").attr('id'));
@@ -153,3 +155,94 @@ $(document).ready(function () {
         saveToCart(false);
     })
 });
+
+
+$(document).ready(function () {
+    // đặt hover cho hình ảnh
+    $('.image-item').hover(function () {
+        let image = $(this).attr('src');
+        let itemIndex = $(this).attr('id').split('-')[1];
+        $('.image-item').attr("style", "border: none;");
+        changeImage(image, itemIndex);
+    })
+});
+let img = $("#imgPaths").val();
+img = img.slice(1, img.length - 1);
+const imgArr = img.split(",").map(item => item.trim());
+
+
+
+$(document).ready(function () {
+    // chuyển ảnh
+    let currentStart = 1;
+    let visibleCount = 1;
+
+    function updateImages() {
+        $('.image-item').each(function(index) {
+            let imgIndex = (currentStart + index) % imgArr.length;
+            $(this).attr('src', imgArr[imgIndex]);
+            $(this).attr('id', 'image-' + imgIndex);
+            if(index === 1){
+                $(this).attr("style", "border: 2px solid #f00;");
+            }
+        });
+    }
+
+    $('#next-right').click(function () {
+        currentStart = (currentStart + visibleCount) % imgArr.length;
+        updateImages();
+        changeImage(imgArr[currentStart + 1], currentStart + 1);
+    });
+
+    $('#prev-left').click(function () {
+        currentStart = (currentStart - visibleCount + imgArr.length) % imgArr.length;
+        updateImages();
+        changeImage(imgArr[currentStart + 1], currentStart + 1);
+    });
+
+    updateImages();
+
+    let index;
+    // popup khi click vào ảnh
+    $('.image-item, .Main-Image').click(function () {
+        index = $(this).attr('id').split('-')[1];
+        createProductList(imgArr, parseInt(index));
+        // chuyển ảnh trong popup
+        let currentStartPopup = parseInt(index);
+        let visibleCountPopup = 1;
+
+        function updateImagesPopup() {
+            $('.image-item-popup').each(function(index) {
+                if(index === currentStartPopup){
+                    $(this).attr("style", "border: 2px solid #f00;");
+                }else {
+                    $(this).attr("style", "border: none;");
+                }
+            });
+        }
+
+        $('#next-right-pu').click(function () {
+            currentStartPopup = (currentStartPopup + visibleCountPopup) % imgArr.length;
+            updateImagesPopup();
+            changeImagePopup(imgArr[currentStartPopup]);
+        });
+
+        $('#prev-left-pu').click(function () {
+            currentStartPopup = (currentStartPopup - visibleCountPopup + imgArr.length) % imgArr.length;
+            updateImagesPopup();
+            changeImagePopup(imgArr[currentStartPopup]);
+        });
+
+        updateImagesPopup();
+    });
+});
+
+function changeImagePopup(image) {
+    $(".main_image_pu").attr('src', `${image}`);
+}
+
+
+
+
+
+

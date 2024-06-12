@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../Pop_ups.css">
     <link rel="stylesheet" href="../CommonCSS.css">
     <link rel="stylesheet" href="./assets/css/Order.css">
+    <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
 </head>
 
 <body class="Color-White">

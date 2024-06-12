@@ -16,11 +16,13 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
+    <link rel="stylesheet" type="text/css" href="<c:url value="/ProductImagePopup.css"/>">
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
     <link rel="stylesheet" href="<c:url value="/AlertPopUp.css"/>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script type="text/javascript" src="main.js"></script>
     <script type="text/javascript" src="./toast.js"></script>
+
     <link rel="stylesheet" type="text/css" href="<c:url value="/toast.css"/>">
 </head>
 
@@ -32,19 +34,25 @@
 
 </div>
 
+<c:set value="${productDetail.imgPath}" var="imgPath" />
+
 <div id="PD-Content" class="pad-l-r-170">
     <div class="Product_Loop">
         <div class="Product_Loop-left">
             <div class="Product_Loop-Image">
-                <div class="Main-Image" style="background: url(${productDetail.imgPath[0]}) center/cover no-repeat;">
+                <div class="Main-Image" style="background: url(${productDetail.imgPath[0]}) center/cover no-repeat;" id="main_item-0">
                     <span class="Hot">Hot</span>
                     <span class="Sale" id="${productDetail.discount}">-${productDetail.discount}%</span>
                 </div>
                 <div class="Secondary-Image">
-                    <img src="${productDetail.imgPath[1]}" alt="#">
-                    <img src="${productDetail.imgPath[2]}" alt="#">
-                    <img src="${productDetail.imgPath[3]}" alt="#">
-                    <i style="display: block; padding: 15px 12px;" class="fa-solid fa-chevron-right Next"></i>
+                    <input type="hidden" name="imgPaths" id="imgPaths" value="${imgPath}">
+                    <div><i class="fa-solid fa-chevron-left Next" id="prev-left"></i></div>
+                    <div id="image-container">
+                        <img src="${imgPath[1]}" alt="#" class="image-item" id="item-1">
+                        <img src="${imgPath[2]}" alt="#" class="image-item" id="item-2">
+                        <img src="${imgPath[3]}" alt="#" class="image-item" id="item-3">
+                    </div>
+                    <div><i class="fa-solid fa-chevron-right Next" id="next-right"></i></div>
                 </div>
             </div>
         </div>
@@ -170,6 +178,8 @@
 <script defer type="text/javascript" src="<c:url value="Product_Detail_event.js"/>"></script>
 <script src="<c:url value="/Pop-ups.js"/>"></script>
 <script src="<c:url value="/AlertPopUp.js"/>"></script>
+<script type="text/javascript" src="<c:url value="/ProductImagePopup.js"/>"></script>
+<script src="<c:url value="RemovePopup.js"/>"></script>
 
 <%@ include file="Footer.jsp" %>
 </body>
