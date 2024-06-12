@@ -660,7 +660,7 @@ const Enumerator = Object.freeze({
 function showErrorInput(e){
 
     let check = false;
-    if(e == Enumerator.SAVE_PRODUCT){
+    /*if(e == Enumerator.SAVE_PRODUCT){
         let inputs = $(".AddProduct_content input");
         inputs.each(function () {
             if ($(this).val().length === 0) {
@@ -691,7 +691,7 @@ function showErrorInput(e){
                 }
             });
         });
-    }
+    }*/
 
     return check;
 }
