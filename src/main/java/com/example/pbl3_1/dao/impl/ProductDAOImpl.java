@@ -533,6 +533,12 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public void addVisitTime(Long id) {
+        String sql = "INSERT INTO product_visit (product_id, time) VALUES (?, ?)";
+        abstractDAO.save(sql, id, new Timestamp(System.currentTimeMillis()));
+    }
+
+    @Override
     public List<UserOrderProductDTO> getUserOrderProduct(Long idUser, int status){
         StringBuilder sql = new StringBuilder("SELECT o.id, o.seller_id, s.shop_name, s.avatar, os.status, sm.fee\n");
         sql.append("FROM orders AS o\n");

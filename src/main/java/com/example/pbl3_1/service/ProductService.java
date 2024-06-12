@@ -29,4 +29,5 @@ public interface ProductService {
 
     List<ProductPreviewDTO> getTopProductsForHome(int i, int i1);
     void changeOrder(String idOrder, int changeId);
+    void addVisitTime(Long id);
 }

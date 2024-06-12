@@ -50,6 +50,7 @@ public class ProductServiceImpl implements ProductService {
         productDetailDTO.setVariations(variations);
         productDetailDTO.setImgPath(imgPaths);
         increaseView(id);
+        addVisitTime(id);
 
         return productDetailDTO;
     }
@@ -57,6 +58,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void increaseView(Long id) {
         productDAO.increaseView(id);
+    }
+    @Override
+    public void addVisitTime(Long id) {
+        productDAO.addVisitTime(id);
     }
 
     @Override

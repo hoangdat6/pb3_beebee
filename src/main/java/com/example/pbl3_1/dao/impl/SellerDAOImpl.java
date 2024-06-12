@@ -2,13 +2,13 @@ package com.example.pbl3_1.dao.impl;
 
 import com.example.pbl3_1.controller.dto.product.ProductPreviewDTO;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
-import com.example.pbl3_1.controller.dto.seller.StatisticDTO;
+import com.example.pbl3_1.controller.dto.seller.Stats;
 import com.example.pbl3_1.dao.GenericDAO;
 import com.example.pbl3_1.dao.SellerDAO;
 import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.mapper.SellerMapper;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
@@ -123,7 +123,10 @@ public class SellerDAOImpl implements SellerDAO {
     }
 
     @Override
-    public StatisticDTO getStatistic(Long sellerId, Date startDate, Date endDate) {
+    public Stats getStatistic(Long sellerId, Date startDate, Date endDate) {
+        Timestamp startTimestamp = new Timestamp(startDate.getTime());
+        Timestamp endTimestamp = new Timestamp(endDate.getTime());
+
         String query = "select\n" +
                 "    (\n" +
                 "        select sum(orders.order_total)\n" +
@@ -134,9 +137,10 @@ public class SellerDAOImpl implements SellerDAO {
                 "    ) AS totalRevenue,\n" +
                 "    (\n" +
                 "        select sum(products.views)\n" +
-                "        from products\n" +
+                "        from products left join product_visit\n" +
+                "        on products.id = product_visit.product_id\n" +
                 "        where products.seller_id = ?\n" +
-                "        AND products.created_at BETWEEN ? AND ?\n" +
+                "        AND product_visit.time BETWEEN ? AND ?\n" +
                 "    ) AS totalAccesses,\n" +
                 "    (\n" +
                 "        select count(order_detail.product_item_id)\n" +
@@ -152,20 +156,21 @@ public class SellerDAOImpl implements SellerDAO {
                 "    ) AS totalOrders;";
         return genericDAO.query(query, resultSet -> {
             try {
-                return StatisticDTO.builder()
+                return Stats.builder()
                         .totalRevenue(resultSet.getLong("totalRevenue"))
                         .totalAccesses(resultSet.getLong("totalAccesses"))
-                        .conversionRate(Float.valueOf(String.format("%.2f", 1.0f * resultSet.getLong("totalProductsSold") / Math.max(resultSet.getLong("totalAccesses"), 1) * 100)))
+                        .conversionRate(Double.valueOf(String.format("%.4f", 1.0f * resultSet.getLong("totalProductsSold") / Math.max(resultSet.getLong("totalAccesses"), 1))))
                         .totalOrder(resultSet.getLong("totalOrders"))
+                        .isHasValue(true)
                         .build();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
-        }, sellerId, startDate, endDate, sellerId, startDate, endDate, sellerId, startDate, endDate, sellerId, startDate, endDate).stream().findFirst().orElse(null);
+        }, sellerId, startTimestamp, endTimestamp, sellerId, startTimestamp, endTimestamp, sellerId, startTimestamp, endTimestamp, sellerId, startTimestamp, endTimestamp).stream().findFirst().orElse(null);
     }
 
     @Override
-    public List<StatisticDTO> getStatisticByYear(Long sellerId, int year) {
+    public List<Stats> getStatisticByYear(Long sellerId, int year) {
         String query = "SELECT\n" +
                 "    months.month AS month,\n" +
                 "    COALESCE(\n" +
@@ -199,7 +204,7 @@ public class SellerDAOImpl implements SellerDAO {
 
         return genericDAO.query(query, resultSet -> {
             try {
-                return StatisticDTO.builder()
+                return Stats.builder()
                         .month(resultSet.getInt("month"))
                         .totalRevenue(resultSet.getLong("totalRevenue"))
                         .totalAccesses(resultSet.getLong("totalAccesses"))
@@ -208,6 +213,18 @@ public class SellerDAOImpl implements SellerDAO {
                 throw new RuntimeException(e);
             }
         }, sellerId, year, sellerId, year, sellerId, year);
+    }
+
+    @Override
+    public Date getShopCreatedAtByID(Long sellerId) {
+        String sql = "Select created_at from sellers where id = ?";
+        return genericDAO.query(sql, resultSet -> {
+            try {
+                return resultSet.getTimestamp("created_at");
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        }, sellerId).stream().findFirst().orElse(null);
     }
 
     public List<ProductPreviewDTO> getProductPreviewDTOs(String sql, Long idSeller,Integer limit , Integer offset) {

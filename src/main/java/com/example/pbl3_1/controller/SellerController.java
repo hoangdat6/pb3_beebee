@@ -4,7 +4,8 @@ import com.example.pbl3_1.Util.RandomCode;
 import com.example.pbl3_1.Util.SendMail;
 import com.example.pbl3_1.Util.SessionUtil;
 import com.example.pbl3_1.controller.dto.seller.SellerDTO;
-import com.example.pbl3_1.controller.dto.seller.StatisticDTO;
+import com.example.pbl3_1.controller.dto.seller.StatisticOverview;
+import com.example.pbl3_1.controller.dto.seller.Stats;
 import com.example.pbl3_1.entity.Address;
 import com.example.pbl3_1.entity.Seller;
 import com.example.pbl3_1.entity.User;
@@ -22,9 +23,12 @@ import jakarta.servlet.http.Part;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
-@WebServlet(name = "seller", urlPatterns = {"/seller/account/register", "/seller", "/shop", "/seller/statistic"})
+@WebServlet(name = "seller", urlPatterns = {"/seller/account/register", "/seller", "/shop", "/seller/statistic", "/seller/statistic/overview", "/seller/statistic/chart"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 2, // 2MB
     maxFileSize = 1024 * 1024 * 10,      // 10MB
     maxRequestSize = 1024 * 1024 * 50)  // 50MB
@@ -38,6 +42,11 @@ public class SellerController extends HttpServlet {
         response.setContentType("text/html; charset=UTF-8");
         String path = request.getServletPath();
 
+
+        List<Stats> StatsS;
+        Stats Stats;
+        StatisticOverview statisticOverview;
+        String data;
         switch (path) {
             case "/shop":
                 String shopId = request.getParameter("id");
@@ -57,18 +66,31 @@ public class SellerController extends HttpServlet {
             case "/seller/statistic":
                 User user = (User)SessionUtil.getInstance().getValue(request, "USERMODEL");
                 Long sellerId = sellerService.getIdByUserId(user.getId());
-                StatisticDTO statisticDTO = sellerService.getStatistic(sellerId);
-                List<StatisticDTO>  statisticDTOS = sellerService.getStatisticByYear(sellerId, 2024);
-
-                Gson gson = new Gson();
-                String statisticByYear = gson.toJson(statisticDTOS);
-
-                System.out.println("Statistic: " + statisticDTO.getConversionRate() + " " + statisticDTO.getTotalAccesses() + " " + statisticDTO.getTotalOrder() + " " + statisticDTO.getTotalRevenue() + " " + statisticDTO.getMonth());
-                System.out.println("StatisticByYear: " + statisticByYear);
-
-                request.setAttribute("statistic", statisticDTO);
-                request.setAttribute("statisticByYear", statisticByYear);
+                Date date = sellerService.getShopCreatedAtByID(sellerId);
+                LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                int year = localDate.getYear();
+                request.setAttribute("year", year);
                 request.getRequestDispatcher("statistic/statistic.jsp").forward(request, response);
+                break;
+            case "/seller/statistic/overview":
+                user = (User)SessionUtil.getInstance().getValue(request, "USERMODEL");
+                sellerId = sellerService.getIdByUserId(user.getId());
+                String timeTypeStr = request.getParameter("timeType");
+                int timetype = Integer.parseInt(timeTypeStr);
+                statisticOverview = sellerService.getStatisticOverview(sellerId, timetype);
+                Gson gson = new Gson();
+                data = gson.toJson(statisticOverview);
+                response.getWriter().write(data);
+                break;
+            case "/seller/statistic/chart":
+                user = (User)SessionUtil.getInstance().getValue(request, "USERMODEL");
+                sellerId = sellerService.getIdByUserId(user.getId());
+                String yearStr = request.getParameter("year");
+                year = Integer.parseInt(yearStr);
+                StatsS = sellerService.getStatisticByYear(sellerId, year);
+                gson = new Gson();
+                data = gson.toJson(StatsS);
+                response.getWriter().write(data);
                 break;
         }
     }
