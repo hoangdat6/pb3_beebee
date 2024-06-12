@@ -156,8 +156,6 @@ function createExampleAddressItem() {
 
         }
     });
-
-
 }
 
 document.getElementById('addAddressBtn').addEventListener('click', function () {
@@ -175,6 +173,25 @@ document.getElementById('addAddressBtn').addEventListener('click', function () {
     script.src = "../app.js";
     document.body.appendChild(script);
 });
+
+
+// document.getElementById('addAddress').addEventListener('click', function () {
+//     AddAddressPopUps();
+//     document.querySelector('.btn_Send').addEventListener('click', function () {
+//         createExampleAddressItem();
+//         document.body.removeChild(overlay);
+//         document.body.lastChild.remove();
+//     });
+//     document.querySelector('.btn_Cancel').addEventListener('click', function () {
+//         document.body.removeChild(overlay);
+//         document.body.lastChild.remove();
+//     });
+//     let script = document.createElement('script');
+//     script.src = "../app.js";
+//     document.body.appendChild(script);
+// });
+
+
 function removeAddress(button){
     let item = button.parentElement.parentElement.parentElement;
     let addressId = item.querySelector("input[name='addressId']").value;

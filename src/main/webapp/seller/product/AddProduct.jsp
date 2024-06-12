@@ -12,8 +12,6 @@
     <link rel="stylesheet" type="text/css" href="<c:url value="/seller/product/AddProduct.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/seller/common/SellerCommon.css"/>">
     <link rel="stylesheet" type="text/css" href="<c:url value="/CommonCSS.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/Top-Bar.css"/>">
-    <link rel="stylesheet" type="text/css" href="<c:url value="/Footer.css"/>">
     <script src="<c:url value="/toast.js"/>"></script>
     <link rel="stylesheet" type="text/css" href="<c:url value="/toast.css"/>" />
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />

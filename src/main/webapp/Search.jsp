@@ -301,7 +301,8 @@
                                 url: '/PBL3_1_war_exploded/search',
                                 type: 'GET',
                                 data: {
-                                    keyword: encodeURIComponent(keyword),
+                                    // keyword: encodeURIComponent(keyword),
+                                    keyword: keyword,
                                     categoryID: categoryID,
                                     minPrice: minPrice,
                                     maxPrice: maxPrice,
