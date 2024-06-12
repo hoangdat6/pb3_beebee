@@ -15,11 +15,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="<c:url value="ProductManagement.css"/>">
+    <link rel="stylesheet" href="<c:url value="ProductManagementTable.css"/>">
     <link rel="stylesheet" href="<c:url value="SideBar.css"/>">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="<c:url value="ProductManagement.js"/>"></script>
     <link rel="stylesheet" type="text/css" href='<c:url value="/font-awesome-6-pro/css/all.css"/>' />
-    <script src=<c:url value="/seller/common/SellerCommon.js"/>></script>
+    <script src="<c:url value="/seller/common/SellerCommon.js"/>"></script>
+    <script src="<c:url value="ProductManagement.js"/>"></script>
     <title>Quản lý sản phẩm</title>
 </head>
 <body>
@@ -130,7 +132,8 @@
                     contentType: 'application/json',
                     success: function(response) {
                         UpdateShowProducts(response.list);
-                        ShowPageNumber(response.totalPage);
+                        console.log("Current page: " + response.currentPage);
+                        ShowPageNumber(response.totalPage, response.currentPage);
                     },
                     error: function (error) {
                         console.error('Error:', error);
@@ -192,7 +195,7 @@
                     contentType: 'application/json',
                     success: function(response) {
                         UpdateShowProducts(response.list);
-                        ShowPageNumber(response.totalPage);
+                        ShowPageNumber(response.totalPage, response.currentPage);
                     },
                     error: function (error) {
                         console.error('Error:', error);
@@ -200,31 +203,44 @@
                 });
             });
             document.querySelector(".btn_delete").addEventListener("click", function() {
+
                 var selectedProductIds = Array.from(document.querySelectorAll('input[type="checkbox"]:checked')).map(checkbox => checkbox.id.split('-')[1]);
                 var idString = selectedProductIds.join('-');
+                if(idString === "")
+                {
+                    alert("Vui lòng chọn ít nhất 1 sản phẩm để xóa");
+                    return;
+                }
                 var searchValue = document.querySelector("#search").value;
                 var selectedOption = document.querySelector("#category").value;
                 var status = document.querySelector(".active").classList[1].split('-')[1];
-                $.ajax({
-                    url: "/PBL3_1_war_exploded/seller/product/productmanagement",
-                    type: "GET",
-                    data: {
-                        idcategory: selectedOption,
-                        search: searchValue,
-                        idProducts: idString,
-                        action: "delete",
-                        status: status,
-                        check: true
-                    },
-                    contentType: 'application/json',
-                    success: function(response) {
-                        UpdateShowProducts(response.list);
-                        ShowPageNumber(response.totalPage);
-                    },
-                    error: function (error) {
-                        console.error('Error:', error);
-                    }
-                });
+                var result = confirm("Bạn có chắc chắn muốn xác nhận đã nhận hàng không?")
+                if (result) {
+                    // Xử lý sự kiện click cho nút 'Xóa sản phẩm'
+                    $.ajax({
+                        url: "/PBL3_1_war_exploded/seller/product/productmanagement",
+                        type: "GET",
+                        data: {
+                            idcategory: selectedOption,
+                            search: searchValue,
+                            idProducts: idString,
+                            action: "delete",
+                            status: status,
+                            check: true
+                        },
+                        contentType: 'application/json',
+                        success: function(response) {
+                            UpdateShowProducts(response.list);
+                            ShowPageNumber(response.totalPage, response.currentPage);
+                        },
+                        error: function (error) {
+                            console.error('Error:', error);
+                        }
+                    });
+                }else
+                {
+                    console.log("Không xóa");
+                }
             });
             var mainCheckbox = document.querySelector('#mainCheckbox');
 
@@ -250,6 +266,29 @@
                         document.querySelector('#mainCheckbox').checked = false;
                     }
                 });
+            });
+            document.querySelector(".btn_update").addEventListener("click", function(){
+                console.log("click update")
+                var cnt = 0;
+                document.querySelectorAll(".checkboxproduct").forEach(function(checkbox){
+                    if(checkbox.checked){
+                        cnt++;
+                    }
+                });
+                if(cnt !== 1)
+                {
+                    alert("Vui lòng chọn 1 sản phẩm để cập nhật");
+                }else
+                {
+                    var idProduct;
+                    document.querySelectorAll(".checkboxproduct").forEach(function(checkbox){
+                        if(checkbox.checked){
+                            idProduct = checkbox.id.split("-")[1];
+                        }
+                    });
+                    var name = document.querySelector("#name-" + idProduct).innerText;
+                    ProductManagementPopUp(idProduct, name);
+                }
             });
         </script>
     </div>
