@@ -79,25 +79,31 @@ let OverviewStatisticsAWeekAgo = [
         totalRevenue: 0,
         totalOrder: 0,
         totalAccesses: 0,
-        conversionRate: 0,
+        newSeller: 0,
+        newProduct: 0,
+        newCustomer: 0,
         isHasValue: false
     }
     ,
     {
-        type: 0,
+        type: 1,
         totalRevenue: 0,
         totalOrder: 0,
         totalAccesses: 0,
-        conversionRate: 0,
+        newSeller: 0,
+        newProduct: 0,
+        newCustomer: 0,
         isHasValue: false
     }
     ,
     {
-        type: 0,
+        type: 2,
         totalRevenue: 0,
         totalOrder: 0,
         totalAccesses: 0,
-        conversionRate: 0,
+        newSeller: 0,
+        newProduct: 0,
+        newCustomer: 0,
         isHasValue: false
     }
 ]
@@ -108,7 +114,9 @@ let OverviewStatistics = [
         totalRevenue: 0,
         totalOrder: 0,
         totalAccesses: 0,
-        conversionRate: 0,
+        newSeller: 0,
+        newProduct: 0,
+        newCustomer: 0,
         isHasValue: false
     }
     ,
@@ -117,7 +125,9 @@ let OverviewStatistics = [
         totalRevenue: 0,
         totalOrder: 0,
         totalAccesses: 0,
-        conversionRate: 0,
+        newSeller: 0,
+        newProduct: 0,
+        newCustomer: 0,
         isHasValue: false
     }
     ,
@@ -126,17 +136,20 @@ let OverviewStatistics = [
         totalRevenue: 0,
         totalOrder: 0,
         totalAccesses: 0,
-        conversionRate: 0,
+        newSeller: 0,
+        newProduct: 0,
+        newCustomer: 0,
         isHasValue: false
     }
 ]
 
 function calculateIncreasePercent(currentStats, previousStats) {
-    let properties = ['totalRevenue', 'totalOrder', 'conversionRate', 'totalAccesses'];
+    let properties = ['totalRevenue', 'totalOrder', 'newProduct', 'newSeller', 'newCustomer', 'totalAccesses'];
+    let increasePercent;
     let result = properties.map(property => {
         let value = currentStats[property];
         if (previousStats[property] != 0) {
-            let increasePercent = ((value - previousStats[property]) / Math.max(previousStats[property], 1));
+            increasePercent = parseFloat(((value - previousStats[property]) / Math.max(previousStats[property], 1)).toFixed(2));
         }
         else increasePercent = -1;
         return { value, increasePercent };
@@ -151,7 +164,7 @@ timeType.addEventListener('change', () => {
 function AJAXGetAndUpdateChart() {
     let timeTypeValue = timeType.value;
     let chartYearValue = chartYear.value;
-    let url = '/PBL3_1_war_exploded/seller/statistic/chart';
+    let url = '/PBL3_1_war_exploded/admin/statistic/chart';
 
     $.ajax({
         url: url,
@@ -160,7 +173,7 @@ function AJAXGetAndUpdateChart() {
             year: chartYearValue
         },
         success: function(data) {
-            const dataObject = JSON.parse(data);
+            const dataObject = data;
             const revenue = dataObject.map(element =>  element.totalRevenue);
             const access = dataObject.map(element => element.totalAccesses);
             updateChart(revenue, access);
@@ -182,7 +195,7 @@ function AJAXGetAndUpdateOverviewStatistic() {
         return;
     }
 
-    let url = '/PBL3_1_war_exploded/seller/statistic/overview';
+    let url = '/PBL3_1_war_exploded/admin/statistic/overview';
 
     $.ajax({
         url: url,
@@ -191,7 +204,7 @@ function AJAXGetAndUpdateOverviewStatistic() {
             timeType: timeTypeValue
         },
         success: function(data) {
-            const dataObject = JSON.parse(data);
+            const dataObject = data;
             OverviewStatistics[timeType.value] = dataObject.currentStats;
             OverviewStatistics[timeType.value].isHasValue = true;
             OverviewStatisticsAWeekAgo[timeType.value] = dataObject.previousStats;

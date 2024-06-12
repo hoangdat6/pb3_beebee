@@ -1,9 +1,13 @@
 package com.example.pbl3_1.controller;
 
 
+import com.example.pbl3_1.controller.dto.admin.AdminOverviewStat;
 import com.example.pbl3_1.controller.dto.admin.ShopStatisticDTO;
 import com.example.pbl3_1.controller.dto.admin.UserStatisticDTO;
+import com.example.pbl3_1.controller.dto.seller.Stats;
+import com.example.pbl3_1.service.StatService;
 import com.example.pbl3_1.service.UserManageService;
+import com.example.pbl3_1.service.impl.StatServiceImpl;
 import com.example.pbl3_1.service.impl.UserMannageServiceImpl;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
@@ -20,12 +24,16 @@ import java.util.List;
 import java.util.Map;
 
 
-@WebServlet(name = "AdminController", urlPatterns = {"/admin", "/admin/usermanage", "/searchCustomer", "/searchSeller",  "/getCustomerByID", "/lockAccount", "/lockShop", "/getAllCustomer", "/getAllSeller"})
+@WebServlet(name = "AdminController",
+        urlPatterns = {"/admin", "/admin/usermanage", "/searchCustomer", "/searchSeller",
+                "/getCustomerByID", "/lockAccount", "/lockShop", "/getAllCustomer",
+                "/getAllSeller", "/admin/statistic", "/admin/statistic/chart", "/admin/statistic/overview" })
 public class AdminController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getServletPath();
         UserManageService ums = new UserMannageServiceImpl();
+        StatService stat = new StatServiceImpl();
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
@@ -39,6 +47,10 @@ public class AdminController extends HttpServlet {
                 List<UserStatisticDTO> customers = ums.getAllCustomer();
                 req.setAttribute("ListData", customers);
                 req.getRequestDispatcher("userManage.jsp").forward(req, resp);
+                break;
+            case "/admin/statistic":
+                req.setAttribute("year", 2024);
+                req.getRequestDispatcher("statistic.jsp").forward(req, resp);
                 break;
             case "/getAllCustomer":
                 List<UserStatisticDTO> allCustomers = ums.getAllCustomer();
@@ -119,6 +131,19 @@ public class AdminController extends HttpServlet {
                 resp.getWriter().write(lockShopJson);
                 break;
             case "/productmanage":
+                break;
+            case "/admin/statistic/chart":
+                String year = req.getParameter("year");
+                List<Stats> stats = stat.getStatsByYear(year);
+                String statisticJson = gson.toJson(stats);
+                resp.getWriter().write(statisticJson);
+                break;
+            case "/admin/statistic/overview":
+                String timeTypeStr = req.getParameter("timeType");
+                int timeType = Integer.parseInt(timeTypeStr);
+                AdminOverviewStat overviewStats = stat.getOverviewStats(timeType);
+                String overviewJson = gson.toJson(overviewStats);
+                resp.getWriter().write(overviewJson);
                 break;
             default:
                 // code to handle default acton

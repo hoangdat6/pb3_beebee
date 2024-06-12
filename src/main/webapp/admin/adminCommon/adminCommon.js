@@ -6,10 +6,10 @@ const items = [
         href: 'http://localhost:8080/PBL3_1_war_exploded/admin/usermanage'
     },
     {
-        class: 'statis_nav',
+        class: 'statistic_nav',
         name: 'Dữ liệu thống kê',
         icon: 'fa-chart-pie',
-        href: ''
+        href: 'http://localhost:8080/PBL3_1_war_exploded/admin/statistic'
     },
     {
         class: 'verify_nav',
@@ -19,7 +19,7 @@ const items = [
     },
     {
         class: 'product_nav',
-        name: 'Quản lý người dùng',
+        name: 'Quản lý sản phẩm',
         icon: 'fa-box',
         href: ''
     },
@@ -36,6 +36,8 @@ const generateSidebar = (option) => {
         sidebar.appendChild(a)
     })
 
-    document.getElementById('wrap').prepend(sidebar);
-    document.querySelector(`.${option}_nav`).style.color = "red";
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('wrap').prepend(sidebar);
+        document.querySelector(`.${option}_nav`).style.color = "red";
+    });
 }
