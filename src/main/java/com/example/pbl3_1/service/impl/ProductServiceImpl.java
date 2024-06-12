@@ -31,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductPreviewDTO> getProductsForHome() {
-        return productDAO.getProductForHomeDtos();
+    public List<ProductPreviewDTO> getProductsForHome(Integer page, Integer size) {
+        return productDAO.getProductForHomeDtos(page, size);
     }
 
     @Override
@@ -111,5 +111,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void changeOrder(String orderId, int changeId){
         productDAO.changeOrder(orderId, changeId);
+    }
+    @Override
+    public List<ProductPreviewDTO> getTopProductsForHome(int i, int i1) {
+        return productDAO.getTopProductsForHome(i, i1);
     }
 }
