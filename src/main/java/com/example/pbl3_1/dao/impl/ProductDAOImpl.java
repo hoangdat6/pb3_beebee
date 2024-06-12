@@ -60,15 +60,18 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<ProductPreviewDTO> getProductForHomeDtos() {
-        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
-        sql.append("FROM products AS p\n");
-        sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
-        sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
-        sql.append("JOIN product_status AS ps ON p.product_status_id = ps.id\n");
-        sql.append("WHERE ps.id = 1\n");
-        sql.append("GROUP BY p.id\n");
-        sql.append("LIMIT 20 OFFSET 0");
+    public List<ProductPreviewDTO> getProductForHomeDtos(Integer page, Integer size) {
+        StringBuilder sql = new StringBuilder("SELECT * FROM (\n");
+        sql.append("    SELECT p.id, p.name, p.discount, p.img_path, p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price, p.views\n");
+        sql.append("    FROM products AS p\n");
+        sql.append("    JOIN product_item pi ON p.id = pi.product_id\n");
+        sql.append("    JOIN sellers AS s ON p.seller_id = s.id\n");
+        sql.append("    JOIN product_status AS ps ON p.product_status_id = ps.id\n");
+        sql.append("    WHERE ps.id = 1\n");
+        sql.append("    GROUP BY p.id, p.views\n");
+        sql.append("    LIMIT ? OFFSET ?\n");
+        sql.append(") AS limited_products\n");
+        sql.append("ORDER BY views DESC;");
 
 
         return abstractDAO.query(sql.toString(), resultSet -> {
@@ -87,21 +90,11 @@ public class ProductDAOImpl implements ProductDAO {
                 e.printStackTrace();
                 return null;
             }
-        });
+        }, 12, (page - 1) * 12);
     }
 
     @Override
     public ProductDetailDTO getProductDetailById(Long id) {
-//        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path , MIN(pi.price) as min_price, MAX(pi.price) as max_price, p.description,\n");
-//        sql.append("p.seller_id, s.shop_name, s.avatar,\n");
-//        sql.append("p.category_id ,c.name as category_name,\n");
-//        sql.append("SUM(qty_in_stock) as total_qty\n");
-//        sql.append("FROM products AS p\n");
-//        sql.append("LEFT JOIN product_item pi ON p.id = pi.product_id\n");
-//        sql.append("LEFT JOIN sellers AS s ON p.seller_id = s.id\n");
-//        sql.append("LEFT JOIN categories as c ON p.category_id = c.id\n");
-//        sql.append("WHERE p.id = ?");
-
         StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path, pi.min_price, pi.max_price, p.description,\n");
         sql.append("       p.seller_id, s.shop_name, s.avatar, p.category_id, c.name as category_name, pi.total_qty\n");
         sql.append("FROM products AS p\n");
@@ -406,13 +399,18 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size) {
+    public List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size, int status) {
         StringBuilder sql = new StringBuilder("SELECT DISTINCT p.id, p.name, p.sales, MIN(pi.price) as min_price, MAX(pi.price) as max_price, ps.name as status_name, SUM(qty_in_stock) as total_qty\n");
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
         sql.append("JOIN product_status ps ON p.product_status_id = ps.id\n");
         sql.append("WHERE p.seller_id = ?\n");
-        sql.append("AND p.product_status_id <> 2\n");
+        if (status == 0)
+        {
+            sql.append("AND p.product_status_id <> ?\n");
+            status = 2;
+        }
+        else sql.append("AND p.product_status_id = ?\n");
         if (idCategory != 0) {
             sql.append("AND p.category_id = ?\n");
         }
@@ -435,7 +433,7 @@ public class ProductDAOImpl implements ProductDAO {
                     e.printStackTrace();
                     return null;
                 }
-            }, sellerId, idCategory, "%" + searchValue + "%", size, (page - 1) * size);
+            }, sellerId, status, idCategory, "%" + searchValue + "%", size, (page - 1) * size);
         }
         return abstractDAO.query(sql.toString(), resultSet -> {
             try {
@@ -452,7 +450,7 @@ public class ProductDAOImpl implements ProductDAO {
                 e.printStackTrace();
                 return null;
             }
-        }, sellerId, "%" + searchValue + "%", size, (page - 1) * size);
+        }, sellerId, status, "%" + searchValue + "%", size, (page - 1) * size);
     }
 
     @Override
@@ -479,12 +477,17 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue) {
+    public int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue, int status) {
         StringBuilder sql = new StringBuilder("SELECT COUNT(p.id) as total\n");
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_status ps ON p.product_status_id = ps.id\n");
         sql.append("WHERE p.seller_id = ?\n");
-        sql.append("AND p.product_status_id <> 2\n");
+        if(status == 0)
+        {
+            sql.append("AND p.product_status_id <> ?\n");
+            status = 2;
+        }
+        else sql.append("AND p.product_status_id = ?\n");
         if (idCategory != 0) {
             sql.append("AND p.category_id = ?\n");
         }
@@ -497,14 +500,14 @@ public class ProductDAOImpl implements ProductDAO {
                     e.printStackTrace();
                     return 0;
                 }
-            }, sellerId, idCategory, "%" + searchValue + "%").isEmpty() ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
+            }, sellerId, status, idCategory, "%" + searchValue + "%").isEmpty() ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
                 try {
                     return resultSet.getInt("total");
                 } catch (SQLException e) {
                     e.printStackTrace();
                     return 0;
                 }
-            }, sellerId, idCategory, "%" + searchValue + "%").get(0);
+            }, sellerId, status, idCategory, "%" + searchValue + "%").get(0);
         }
         return abstractDAO.query(sql.toString(), resultSet -> {
             try {
@@ -513,14 +516,14 @@ public class ProductDAOImpl implements ProductDAO {
                 e.printStackTrace();
                 return 0;
             }
-        }, sellerId, "%" + searchValue + "%").isEmpty() ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
+        }, sellerId, status, "%" + searchValue + "%").isEmpty() ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
             try {
                 return resultSet.getInt("total");
             } catch (SQLException e) {
                 e.printStackTrace();
                 return 0;
             }
-        }, sellerId, "%" + searchValue + "%").get(0);
+        }, sellerId, status, "%" + searchValue + "%").get(0);
     }
 
     @Override
@@ -653,6 +656,49 @@ public class ProductDAOImpl implements ProductDAO {
             userOrderProductDTO.setProducts(products);
         }
         return list;
+    }
+
+    @Override
+    public List<ProductPreviewDTO> getTopProductsForHome(int page, int size) {
+//        StringBuilder sql = new StringBuilder("SELECT p.id, p.name, p.discount, p.img_path ,p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price\n");
+//        sql.append("FROM products AS p\n");
+//        sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
+//        sql.append("JOIN sellers AS s ON p.seller_id = s.id\n");
+//        sql.append("JOIN product_status AS ps ON p.product_status_id = ps.id\n");
+//        sql.append("WHERE ps.id = 1\n");
+//        sql.append("GROUP BY p.id, p.sales\n");
+//        sql.append("order by p.sales desc\n");
+//        sql.append("LIMIT ? OFFSET ?");
+
+        StringBuilder sql = new StringBuilder("SELECT * FROM (\n");
+        sql.append("    SELECT p.id, p.name, p.discount, p.img_path, p.seller_id, s.shop_name, s.avatar, MIN(pi.price) as min_price, p.sales\n");
+        sql.append("    FROM products AS p\n");
+        sql.append("    JOIN product_item pi ON p.id = pi.product_id\n");
+        sql.append("    JOIN sellers AS s ON p.seller_id = s.id\n");
+        sql.append("    JOIN product_status AS ps ON p.product_status_id = ps.id\n");
+        sql.append("    WHERE ps.id = 1\n");
+        sql.append("    GROUP BY p.id, p.sales\n");
+        sql.append("    LIMIT ? OFFSET ?\n");
+        sql.append(") AS limited_products\n");
+        sql.append("ORDER BY sales DESC;");
+
+        return abstractDAO.query(sql.toString(), resultSet -> {
+            try {
+                return new ProductPreviewDTO(
+                        resultSet.getLong("id"),
+                        resultSet.getString("name"),
+                        resultSet.getInt("min_price"),
+                        resultSet.getInt("discount"),
+                        resultSet.getString("img_path").split(",")[0],
+                        resultSet.getLong("seller_id"),
+                        resultSet.getString("shop_name"),
+                        resultSet.getString("avatar").split(",")[0]
+                );
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return null;
+            }
+        }, 12, (page - 1) * 12);
     }
 }
 

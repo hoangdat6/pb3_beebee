@@ -12,7 +12,7 @@ import java.util.List;
 
 public interface ProductService {
     Long addProduct(Product product);
-    List<ProductPreviewDTO> getProductsForHome();
+    List<ProductPreviewDTO> getProductsForHome(Integer page, Integer size);
     ProductDetailDTO getProductDetail(Long id);
     void increaseView(Long id);
     void updateProductImage(Long productId, String images);
@@ -21,10 +21,12 @@ public interface ProductService {
     List<SellerDTO> getSellersForSearch(String keyword, int minPrice, int maxPrice, String categories);
     int getSearchTotalPage(String keyword, int minPrice, int maxPrice, String categories);
     List<Category> getAllCategories();
-    List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size);
+    List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size, int status);
     List<Category> getCategoriesbyIdShop(Long idShop);
-    int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue);
+    int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue, int status);
     void deleteProduct(Long idProduct);
     List<UserOrderProductDTO> getUserOrderProduct(Long idUser, int status);
+
+    List<ProductPreviewDTO> getTopProductsForHome(int i, int i1);
     void changeOrder(String idOrder, int changeId);
 }

@@ -31,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductPreviewDTO> getProductsForHome() {
-        return productDAO.getProductForHomeDtos();
+    public List<ProductPreviewDTO> getProductsForHome(Integer page, Integer size) {
+        return productDAO.getProductForHomeDtos(page, size);
     }
 
     @Override
@@ -89,8 +89,8 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size) {
-        return productDAO.getProductManagement(sellerId, idCategory, searchValue, page, size);
+    public List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size, int status) {
+        return productDAO.getProductManagement(sellerId, idCategory, searchValue, page, size, status);
     }
     @Override
     public List<Category> getCategoriesbyIdShop(Long idShop){
@@ -101,8 +101,8 @@ public class ProductServiceImpl implements ProductService {
         productDAO.deleteProduct(idProduct);
     }
     @Override
-    public int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue){
-        return productDAO.getProductManagementTotalPage(sellerId, idCategory, searchValue);
+    public int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue, int status){
+        return productDAO.getProductManagementTotalPage(sellerId, idCategory, searchValue, status);
     }
     @Override
     public List<UserOrderProductDTO> getUserOrderProduct(Long userId, int status){
@@ -111,5 +111,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void changeOrder(String orderId, int changeId){
         productDAO.changeOrder(orderId, changeId);
+    }
+    @Override
+    public List<ProductPreviewDTO> getTopProductsForHome(int i, int i1) {
+        return productDAO.getTopProductsForHome(i, i1);
     }
 }
