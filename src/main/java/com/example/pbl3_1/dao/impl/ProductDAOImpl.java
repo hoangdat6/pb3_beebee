@@ -406,13 +406,18 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size) {
+    public List<ProductManagementDTO> getProductManagement(Long sellerId, int idCategory, String searchValue, int page, int size, int status) {
         StringBuilder sql = new StringBuilder("SELECT DISTINCT p.id, p.name, p.sales, MIN(pi.price) as min_price, MAX(pi.price) as max_price, ps.name as status_name, SUM(qty_in_stock) as total_qty\n");
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_item pi ON p.id = pi.product_id\n");
         sql.append("JOIN product_status ps ON p.product_status_id = ps.id\n");
         sql.append("WHERE p.seller_id = ?\n");
-        sql.append("AND p.product_status_id <> 2\n");
+        if (status == 0)
+        {
+            sql.append("AND p.product_status_id <> ?\n");
+            status = 2;
+        }
+        else sql.append("AND p.product_status_id = ?\n");
         if (idCategory != 0) {
             sql.append("AND p.category_id = ?\n");
         }
@@ -435,7 +440,7 @@ public class ProductDAOImpl implements ProductDAO {
                     e.printStackTrace();
                     return null;
                 }
-            }, sellerId, idCategory, "%" + searchValue + "%", size, (page - 1) * size);
+            }, sellerId, status, idCategory, "%" + searchValue + "%", size, (page - 1) * size);
         }
         return abstractDAO.query(sql.toString(), resultSet -> {
             try {
@@ -452,7 +457,7 @@ public class ProductDAOImpl implements ProductDAO {
                 e.printStackTrace();
                 return null;
             }
-        }, sellerId, "%" + searchValue + "%", size, (page - 1) * size);
+        }, sellerId, status, "%" + searchValue + "%", size, (page - 1) * size);
     }
 
     @Override
@@ -479,12 +484,17 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
-    public int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue) {
+    public int getProductManagementTotalPage(Long sellerId, int idCategory, String searchValue, int status) {
         StringBuilder sql = new StringBuilder("SELECT COUNT(p.id) as total\n");
         sql.append("FROM products AS p\n");
         sql.append("JOIN product_status ps ON p.product_status_id = ps.id\n");
         sql.append("WHERE p.seller_id = ?\n");
-        sql.append("AND p.product_status_id <> 2\n");
+        if(status == 0)
+        {
+            sql.append("AND p.product_status_id <> ?\n");
+            status = 2;
+        }
+        else sql.append("AND p.product_status_id = ?\n");
         if (idCategory != 0) {
             sql.append("AND p.category_id = ?\n");
         }
@@ -497,14 +507,14 @@ public class ProductDAOImpl implements ProductDAO {
                     e.printStackTrace();
                     return 0;
                 }
-            }, sellerId, idCategory, "%" + searchValue + "%").isEmpty() ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
+            }, sellerId, status, idCategory, "%" + searchValue + "%").isEmpty() ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
                 try {
                     return resultSet.getInt("total");
                 } catch (SQLException e) {
                     e.printStackTrace();
                     return 0;
                 }
-            }, sellerId, idCategory, "%" + searchValue + "%").get(0);
+            }, sellerId, status, idCategory, "%" + searchValue + "%").get(0);
         }
         return abstractDAO.query(sql.toString(), resultSet -> {
             try {
@@ -513,14 +523,14 @@ public class ProductDAOImpl implements ProductDAO {
                 e.printStackTrace();
                 return 0;
             }
-        }, sellerId, "%" + searchValue + "%").isEmpty() ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
+        }, sellerId, status, "%" + searchValue + "%").isEmpty() ? 0 : abstractDAO.query(sql.toString(), resultSet -> {
             try {
                 return resultSet.getInt("total");
             } catch (SQLException e) {
                 e.printStackTrace();
                 return 0;
             }
-        }, sellerId, "%" + searchValue + "%").get(0);
+        }, sellerId, status, "%" + searchValue + "%").get(0);
     }
 
     @Override
