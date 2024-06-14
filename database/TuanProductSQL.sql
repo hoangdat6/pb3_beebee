@@ -25,8 +25,6 @@ INSERT INTO `products` VALUES (129,'Bàn Phím Cơ Bluetooth Không Dây K86 RGB
                               (137,'Cây Xương Rồng Nhảy Múa Phát Ra Âm Thanh Vui Nhộn Cho Bé - có nhại tiếng + bài hát [ Click Giỏ Hàng Quà Tặng Miễn Phí ]','- CHÚ Ý  : [ Click Giỏ Hàng Quà Tặng Miễn Phí ]\nShop đang có chương trình Tặng quà miễn phí ~ Quý Khách Hàng Ấn vào Sản Phẩm sau đó Thêm vào giỏ hàng ~> click Giỏ Hàng đã thêm sau đó chọn Mua để được nhận Quà Miễn Phí ạ\n                  + PHÂN LOẠI SẠC { ĐÃ CÓ SẴN PIN BÊN TRONG } \n                   + PHÂN LOẠI DÙNG PIN { CHƯA CÓ PIN  VUI LÒNG QUÝ KHÁCH CHUẨN BỊ 3 QUẢ PIN TIỂU AAA }\n- tổng quà tặng {19 phần quà màgf khác hàng chọn } là 2 câp bút bị mầu ngẫu nhiên mọi người nhé. cả em nghi rất rõ trong hình ảnh và mô tả cả nhà đừng đòi enm 19 cây bút nhé \n+ thông tin sản phẩm \n- cây 120 bài hát\n- có chế độ bắt chiếc giọng nói \n\nĐược làm bằng chất liệu vải, thân thiện với môi trường và độ bền cao.\n  Đồ chơi cây xương rồng có thể nhảy, hát, di chuyển, xoay, mang lại cho bé những giây phút vui vẻ.\n  Đồ chơi cây xương rồng đang nhảy múa có thể thu hút sự chú ý của trẻ em, và rất tốt cho việc giáo dục sớm.\n  Đồ chơi xương rồng không chỉ là một món đồ chơi mang tính giáo dục mà còn có thể dùng để trang trí cho ngôi nhà của bạn thêm phần hấp dẫn.\n  Món quà hoàn hảo cho trẻ em cho dịp lễ hội, sinh nhật.\n  Bảng kích thước:\n  Chiều cao: Khoảng 32cm / 12,60 inch','ImageProduct/137/137_0.png,ImageProduct/137/137_1.png,ImageProduct/137/137_2.png,ImageProduct/137/137_3.png,ImageProduct/137/137_4.png',6,20002,'2024-06-13 01:17:21',5,0,0,1);
 
 
-
-
 INSERT INTO `variation` VALUES
                                (20000,129,'Phân Loại'),
                                (20001,130,'Phân Loại'),

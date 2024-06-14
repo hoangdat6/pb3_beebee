@@ -1,5 +1,5 @@
-insert into shop_bee.address (id, detail, ward, district, province, created_at, updated_at, phone, fullname)
-values  (43, 'Thôn Tân Trại 2', '19423', '464', '45', '2024-06-13 02:17:23', '2024-06-13 02:17:23', null, null);
+# insert into shop_bee.address (id, detail, ward, district, province, created_at, updated_at, phone, fullname)
+# values  (43, 'Thôn Tân Trại 2', '19423', '464', '45', '2024-06-13 02:17:23', '2024-06-13 02:17:23', null, null);
 
 insert into shop_bee.users (id, username, password, email, phone, created_at, gender, dob, is_locked, avatar, fullname, role)
 values  (104, 'hanhit', 'gaDmHQx1LlsHsm/dRfHRnPWHdVQ=', 'ngo303481@gmail.com', null, '2024-06-13 02:14:03', 'male', '2004-05-15', false, null, null, 'SELLER');
