@@ -149,7 +149,7 @@ function calculateIncreasePercent(currentStats, previousStats) {
     let result = properties.map(property => {
         let value = currentStats[property];
         if (previousStats[property] != 0) {
-            increasePercent = parseFloat(((value - previousStats[property]) / Math.max(previousStats[property], 1)).toFixed(2));
+            increasePercent = parseFloat(((value - previousStats[property]) / Math.max(previousStats[property], 1) * 100).toFixed(2));
         }
         else increasePercent = -1;
         return { value, increasePercent };
