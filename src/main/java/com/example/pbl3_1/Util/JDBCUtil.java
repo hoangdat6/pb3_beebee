@@ -20,7 +20,8 @@ public class JDBCUtil {
             String url = "jdbc:mysql://localhost:3306/shop_bee";
 
             String username = "root";
-            String password = "vulinhv11";
+            String password = "dat123";
+
             con = DriverManager.getConnection(url, username, password);
             System.out.println(DriverManager.getDriver(url).toString());
             return con;

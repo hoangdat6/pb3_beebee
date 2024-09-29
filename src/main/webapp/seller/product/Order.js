@@ -98,8 +98,8 @@ function createProductOrder(product) {
         `<div class="qty_and_price">` +
         `<div class="qty">Số lượng: ${product.quantity}</div>` +
         `<div class="price">` +
-        `<span class="old_price">${product.price * product.quantity}đ</span>` +
-        `<span class="new_price">${product.quantity * product.price * (100 - product.discount) / 100}đ</span>` +
+        `<span class="old_price">${(product.price * product.quantity).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}đ</span>` +
+        `<span class="new_price">${(product.quantity * product.price * (100 - product.discount) / 100).toLocaleString('vi-VN', { style: 'currency', currency: 'VND' })}</span>` +
         `</div>` +
         `</div>` +
         `</div>`;
@@ -134,7 +134,7 @@ function createSellerOrderDetailTable() {
                                 console.log('Đã gửi hàng');
                                 console.log(btn.classList[2].substring(3));
                                 $.ajax({
-                                    url: '/PBL3_1_war_exploded/seller/product/order/delivered',
+                                    url: '/PBL3_1_war_expproduct.quantity * product.price * (100 - product.discount) /loded/seller/product/order/delivered',
                                     type: 'GET',
                                     data: {
                                         id: btn.classList[2].substring(3),
